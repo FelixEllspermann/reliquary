@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: SleightwindSecondFace
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
+  cardName: Sleightwind Second Face
+  artwork: {fileID: 0}
+  rarity: 2
+  effects:
+  - label: Second Face
+    text: Add 1 Level 1 WIND monster from your Deck to your hand; gain 1 Mana.
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 17
+      isCost: 0
+      amount: 1
+      target: 6
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 1
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 1
+      attributeFilter: 4
+    - type: 3
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 0

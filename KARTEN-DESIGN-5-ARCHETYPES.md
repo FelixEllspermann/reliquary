@@ -462,8 +462,8 @@ leeres Feld nicht bestrafen — er ist eine Antwort, kein Anfang.
 # Die Infused-Ebene
 
 Die Tabellen oben zeigen, was eine Karte **umsonst** tut. Hier steht, was sie
-zusätzlich kann, wenn du Mana dafür übrig hast. 27 der 61 Karten bekommen eine
-Infused-Ebene — dieselbe Quote wie im bestehenden Set (91 von 223).
+zusätzlich kann, wenn du Mana dafür übrig hast. 38 der 61 Karten bekommen eine
+Infused-Ebene, zusammen 48 Effekte.
 
 **Zwei Arten, und der Unterschied ist wichtig:**
 
@@ -473,14 +473,14 @@ Infused-Ebene — dieselbe Quote wie im bestehenden Set (91 von 223).
   aus der Gruppe**: entweder das Original umsonst oder die teurere Fassung.
   Das ist die eigentliche Entscheidung, die diese Karten stellen.
 
-**Neu und in diesem Set zum ersten Mal:** acht Karten tragen **zwei**
+**Neu und in diesem Set zum ersten Mal:** zehn Karten tragen **zwei**
 Infused-Effekte — meist ein Coupled-Upgrade plus eine unabhängige Standalone.
 Bis eben konnte die Engine das nicht: sie sperrte bei einer Aktivierung nur
 *einen* gekoppelten Partner, ein zweiter wäre im selben Zug noch nutzbar
 gewesen. Im bestehenden Set trägt keine einzige Karte mehr als einen
 Infused-Effekt, deshalb ist es nie aufgefallen. Ist repariert.
 
-Die betroffenen acht sind unten mit **▲▲** markiert.
+Die betroffenen zehn sind unten mit **▲▲** markiert.
 
 ## 1 · Mechination
 

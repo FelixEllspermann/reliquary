@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: SacrilegionFirstSacrament
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
+  cardName: Sacrilegion First Sacrament
+  artwork: {fileID: 0}
+  rarity: 1
+  effects: []
+  level: 1
+  attribute: 5
+  monsterType: 3
+  atk: 1000
+  def: 1000
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1
+  summonText: 
+  summonManaCost: 0
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0

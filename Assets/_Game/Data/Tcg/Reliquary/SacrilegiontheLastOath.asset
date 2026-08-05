@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: SacrilegiontheLastOath
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
+  cardName: Sacrilegion, the Last Oath
+  artwork: {fileID: 0}
+  rarity: 3
+  effects:
+  - label: The Oath Is Kept
+    text: 'When this card is Summoned: Special Summon up to 2 Level 1 LIGHT monsters
+      from your Graveyard.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 9
+      isCost: 0
+      amount: 1
+      target: 4
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 1
+      targetCount: 2
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 1
+      attributeFilter: 0
+  - label: The Oath Is Raised
+    text: 'Instead, pay 4 Mana: Special Summon up to 2 Level 2 LIGHT monsters from
+      your Graveyard.'
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 4
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 9
+      isCost: 0
+      amount: 1
+      target: 4
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 2
+      targetCount: 2
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 1
+      attributeFilter: 0
+  - label: Hold Them Down
+    text: 'You can pay 3 Mana: 1 monster your opponent controls cannot attack this
+      turn.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 44
+      isCost: 0
+      amount: 1
+      target: 1
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 1
+  attribute: 5
+  monsterType: 3
+  atk: 1000
+  def: 1000
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1
+  summonText: 
+  summonManaCost: 0
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0
