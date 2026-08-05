@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Spectral:wght@400;500;600&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#070503; color:#E9E3D6; font-family:'Oswald',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#C8A45C; text-decoration:none; border-bottom:1px solid rgba(200,164,92,.4); }
+  a:hover { color:#E6CD8F; border-bottom-color:#E6CD8F; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Approach","dur":1.5},{"name":"Unlock","dur":2.0},{"name":"Open","dur":1.1},{"name":"Arrive","dur":2.0}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+</helmet>
+
+<x-import component-from-global-scope="VaultEnter" from="./animations-v2.jsx ./vault-enter.jsx" hint-size="100%,100%"></x-import>
+
+</x-dc>
+</body>
+</html>

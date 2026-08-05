@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: SunscaleBasilisk
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Sunscale Basilisk
+  artwork: {fileID: 7225861350665898839, guid: 168ab2d9f0800cf4b8951c5484f8ac3d, type: 3}
+  rarity: 1
+  effects:
+  - label: Piercing Gaze
+    text: 'You can pay 2 Mana: Target 1 face-down monster on the field; destroy it.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 2
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 14
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 2
+  attribute: 0
+  monsterType: 3
+  atk: 1400
+  def: 1400
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0

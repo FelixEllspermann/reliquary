@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: Encore
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Encore
+  artwork: {fileID: 7516869734338979232, guid: e079a622430fb734db0c7d5f4b01a703, type: 3}
+  rarity: 2
+  effects:
+  - label: Curtain Call
+    text: Flip 1 face-down monster you control face-up.
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 34
+      isCost: 0
+      amount: 1
+      target: 21
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Grand Encore
+    text: Flip up to 2 face-down monsters you control face-up.
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 3
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 34
+      isCost: 0
+      amount: 1
+      target: 21
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 2
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 1

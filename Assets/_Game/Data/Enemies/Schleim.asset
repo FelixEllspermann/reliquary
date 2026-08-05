@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da5c6c96efeddb43a42ed27772da0dd, type: 3}
+  m_Name: Schleim
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Data.EnemyData
+  enemyName: Schleim
+  sprite: {fileID: 21300000, guid: c43b7bdbeefc91b42aec052b184c40b3, type: 3}
+  tint: {r: 0.45, g: 0.8, b: 0.35, a: 1}
+  maxHealth: 45
+  pattern:
+  - type: 0
+    value: 8
+  - type: 0
+    value: 8
+  - type: 1
+    value: 6

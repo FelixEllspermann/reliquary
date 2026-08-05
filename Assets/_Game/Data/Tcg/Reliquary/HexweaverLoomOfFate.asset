@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: HexweaverLoomOfFate
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ReliquaryCardData
+  cardName: Hexweaver, Loom of Fate
+  artwork: {fileID: -6923066582828603249, guid: 330293503e3c2ff49ba2c7703b922cc3, type: 3}
+  rarity: 3
+  effects:
+  - label: Rethread Destiny
+    text: 'When this card is Summoned: Add up to 2 Spells from your Graveyard to
+      your hand.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 16
+      isCost: 0
+      amount: 1
+      target: 17
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 2
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 1
+  monsterType: 1
+  atk: 2600
+  def: 2600
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0
+  summonText: You have 5 or more Mana. Cost 2 Mana.
+  summonManaCost: 2
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 5
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0

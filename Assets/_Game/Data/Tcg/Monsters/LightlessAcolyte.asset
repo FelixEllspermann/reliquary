@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: LightlessAcolyte
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Lightless Acolyte
+  artwork: {fileID: -8788286860606816068, guid: b45e7f9ed81d0af4eadb751aac8d1f00, type: 3}
+  rarity: 1
+  effects:
+  - label: Whispered Offering
+    text: 'You can send this card from your hand to the Graveyard; add 1 "Lightless"
+      card from your Deck to your hand, and if you do, draw 1 card.'
+    isInfused: 0
+    manaCost: 0
+    trigger: 9
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 24
+      isCost: 1
+      amount: 1
+      target: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 17
+      amount: 1
+      target: 12
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Lightless
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 2
+      amount: 1
+      target: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Grasp from Below
+    text: 'If this card is in your Graveyard: You can pay 2 Mana and banish it; turn
+      1 monster your opponent controls face-down into Defense Position.'
+    isInfused: 1
+    manaCost: 2
+    trigger: 10
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 27
+      isCost: 1
+      amount: 1
+      target: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 26
+      amount: 1
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 1
+  attribute: 1
+  monsterType: 1
+  atk: 400
+  def: 600
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1

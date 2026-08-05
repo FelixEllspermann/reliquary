@@ -1,0 +1,287 @@
+using System;
+
+namespace Rouge.Tcg.Net
+{
+    /// <summary>Nachricht vom/zum Relay-Server (flach gehalten für JsonUtility).</summary>
+    [Serializable]
+    public class NetMessage
+    {
+        public string t;           // welcome | queued | lobby | match | relay | peer_left | left | error
+        public int id;             // welcome
+        public string name;        // hello
+        public string code;        // lobby / join
+        public string msg;         // error
+        public string youAre;      // match: "A" oder "B"
+        public string opponent;    // match: Gegnername
+        public string[] oppSlots;  // match: Kosmetik-Fächer des Gegners
+        public string[] oppIds;    // match: was er darin trägt (parallel zu oppSlots)
+        public int seed;           // match: gemeinsamer RNG-Seed
+        public string startPlayer; // match: "A" oder "B"
+        public NetData data;       // relay-Inhalt
+
+        // Account & Sammlung
+        public string pass;        // register/login: Passwort
+
+        // Steam-Anmeldung: Hex-Ticket aus SteamBridge, serverseitig geprüft
+        public string steamTicket;
+        public string steamName;   // Vorschlag für den Duellisten-Namen (Steam-Persona)
+        public string pack;        // buy_pack/open_pack: Packname
+        public string card;        // craft/dust: Kartenname
+        public string item;        // buy_cosmetic/equip_cosmetic: Gegenstands-Id
+        public string slot;        // equip_cosmetic: Fach
+        public bool won;           // duel_result
+
+        // rank_change: kommt am Duellende, wenn sich der Rang bewegt hat
+        public int rankDelta;      // RP-Änderung, kann negativ sein
+        public int rankValue;      // Rang danach (1..10)
+        public int rankTier;       // Unterstufe danach (1..5)
+        public string rankName;
+        public int rankRp;
+        public int rankFromValue;  // Rang davor
+        public int rankFromTier;
+        public bool rankPromoted;  // Unterstufe gestiegen
+        public bool rankUp;        // Hauptrang gestiegen — nur dann läuft die Animation
+        public NetProfile profile;   // auth_ok / profile / pack_result / craft_result
+        public string[] packCards;   // pack_result: gezogene Karten (Namen)
+        public int[] packFinishes;   // pack_result: Finish je gezogener Karte
+        public int finish;           // craft_result: gewürfeltes Finish der gefertigten Karte
+
+        // Deck-Verwaltung
+        public int deckIndex;      // save_deck/delete_deck/queue
+        public NetDeck deck;       // save_deck
+
+        // Server-autoritatives Duell
+        public bool sduel;          // hello: Client beherrscht Server-Duelle
+        public string op;           // sduel: state | request | events | log | end
+        public string duelId;
+        public string winner;       // sduel end: "A" | "B"
+        public SduelView view;      // sduel state
+        public SduelRequest request;// sduel request
+        public SduelEvent[] events; // sduel events
+        public string[] lines;      // sduel log
+        public SduelAnswer answer;  // sduel_intent (Client -> Server)
+    }
+
+    // ================== SERVER-DUELL (Wire-Formate des DuelHost) ==================
+
+    /// <summary>Eine Karte aus Server-Sicht — name null = für diesen Spieler verdeckt.</summary>
+    [Serializable]
+    public class SduelCard
+    {
+        public int id;             // 0 = leerer Zonen-Slot
+        public string name;
+        public bool faceDown;
+        public string position;    // "atk" | "def"
+        public int atk;
+        public int def;
+        public bool negated;
+    }
+
+    /// <summary>Die Seite eines Spielers; hand/extra sind nur für den Besitzer gefüllt.</summary>
+    [Serializable]
+    public class SduelSide
+    {
+        public string name;
+        public int lp;
+        public int mana;
+        public int manaPerTurn;
+        public int deckCount;
+        public int extraCount;
+        public int handCount;
+        public SduelCard[] hand;
+        public SduelCard[] extra;
+        public SduelCard[] monsters;
+        public SduelCard[] spells;
+        public SduelCard[] artifacts;
+        public SduelCard player;
+        public SduelCard[] grave;
+        public SduelCard[] banished;
+    }
+
+    [Serializable]
+    public class SduelView
+    {
+        public int turn;
+        public string phase;       // DuelPhase-Name
+        public bool yourTurn;
+        public SduelSide you;
+        public SduelSide foe;
+    }
+
+    /// <summary>Präsentations-Ereignis (maskiert: cardName null, wenn nicht sichtbar).</summary>
+    [Serializable]
+    public class SduelEvent
+    {
+        public string type;        // banner|cointoss|draw|shuffle|summon|moved|position|activation|pulse|targets|attack|impact|destroyed|tograve|spelltograve|banished
+        public int cardId;
+        public string cardName;
+        public int targetId;
+        public bool mine;
+        public string text;
+        public bool direct;
+    }
+
+    [Serializable]
+    public class SduelMainOption
+    {
+        public int i;
+        public string kind;        // MainActionKind-Name
+        public string label;
+        public int cardId;
+    }
+
+    [Serializable]
+    public class SduelBattleOption
+    {
+        public int i;
+        public string label;
+        public int attackerId;
+        public int targetId;
+        public bool direct;
+        public bool endBattle;
+    }
+
+    /// <summary>Eine Entscheidungs-Anfrage des Servers (Felder je nach type).</summary>
+    [Serializable]
+    public class SduelRequest
+    {
+        public int reqId;
+        public string type;        // start|main|battle|yesno|option|target|zone
+        public string title;
+        public string question;    // yesno
+        public int cardId;         // yesno/option: Kontext-Karte
+        public bool isPhaseWindow; // yesno
+        public SduelMainOption[] mainOptions;
+        public SduelBattleOption[] battleOptions;
+        public string[] choices;   // option
+        public bool allowCancel;   // option/target
+        public SduelCard[] candidates; // target
+        public int count;          // target
+        public bool allowFewer;    // target
+        public string zone;        // zone: ZoneType-Name
+        public int[] freeIndices;  // zone
+    }
+
+    /// <summary>Antwort des Clients auf einen Request (nur die passenden Felder zählen).</summary>
+    [Serializable]
+    public class SduelAnswer
+    {
+        public int reqId;
+        public bool first;         // start
+        public int chosen = -1;    // main/battle/option
+        public int zone = -1;      // main: Wunsch-Zone
+        public bool result;        // yesno
+        public bool cancelled;     // target
+        public int[] ids;          // target: Karten-IDs
+        public int index = -1;     // zone
+    }
+
+    /// <summary>Ein Account-Deck (auf dem Server gespeichert).</summary>
+    [Serializable]
+    public class NetDeck
+    {
+        public string name;
+        public string hero;
+        public string[] cards;
+        public string[] extra;  // Extra Deck (Reliquary-Karten)
+
+        // Finish je Exemplar, gleiche Reihenfolge wie cards/extra.
+        // Fehlt das Feld, sind alle Karten schlicht — alte Decks bleiben gültig.
+        public int[] cardFinishes;
+        public int[] extraFinishes;
+    }
+
+    /// <summary>Konto-Zustand vom Server.</summary>
+    [Serializable]
+    public class NetProfile
+    {
+        public string account;
+        public int coins;
+        public int tokensCommon;
+        public int tokensUncommon;
+        public int tokensRare;
+        public int tokensLegendary;
+        public string[] collectionCards;
+        public int[] collectionCounts;   // Gesamtzahl je Karte, über alle Finishes
+
+        // Aufschlüsselung nach Finish — gleiche Reihenfolge wie collectionCards
+        public int[] collectionPlain;
+        public int[] collectionGlossy;
+        public int[] collectionRainbow;
+        public int[] collectionStatic;
+        public string[] packNames;   // Pack-Inventar (ungeöffnete Packs)
+        public int[] packCounts;
+        public NetDeck[] decks;      // Account-Decks
+
+        // Daily-Siegel + Server-Status (Shell-Screens)
+        public int dailyStreak;      // aktuelle Serien-Länge (0 = nie geclaimt)
+        public bool dailyClaimable;  // Siegel bereit?
+        public long dailyNextInMs;   // Restzeit bis zum nächsten Claim
+        public int dailyRewardCoins; // Belohnung pro Claim
+
+        // Banlist: parallele Arrays, Limit = erlaubte Kopien (0 gebannt, 1 limitiert, 2 semi)
+        public string[] banlistNames;
+        public int[] banlistLimits;
+        public int banlistMaxCopies; // normales Kopienlimit ohne Banlist
+
+        // Banlist-Chronik: parallele Arrays; historyChanges enthält je Eintrag
+        // Zeilen der Form "neu|alt|Kartenname", getrennt durch \n
+        public string[] historyDates;
+        public string[] historyTitles;
+        public string[] historyNotes;
+        public string[] historyChanges;
+
+        /// <summary>Wurde dieser Account über Steam angelegt? (Anzeige in den Einstellungen)</summary>
+        public bool steamLinked;
+
+        // Rangleiter — vollständig serverseitig gerechnet, hier nur zur Anzeige
+        public int rankValue;        // 1..10
+        public int rankTier;         // 1..5
+        public string rankName;
+        public int rankRp;
+        public int rankTierFloor;    // RP-Untergrenze der aktuellen Unterstufe
+        public int rankNextAt;       // RP für die nächste Stufe, -1 an der Spitze
+        public string rankSeason;
+        public int rankWins;
+        public int rankLosses;
+        public int rankBestStreak;
+        public string[] titles;      // freigeschaltete Profiltitel
+
+        // Kosmetik — Besitz, Ausrüstung und der Ladenkatalog (Preise in Coins)
+        public string[] cosmeticsOwned;
+        public string[] equippedSlots;   // Fachnamen in fester Reihenfolge
+        public string[] equippedIds;     // dazu passend, leer = nichts ausgerüstet
+        public string[] shopIds;
+        public string[] shopNames;
+        public string[] shopSlots;
+        public string[] shopRarities;
+        public int[] shopPrices;         // -1 = nicht käuflich
+        public string[] shopCurrencies;  // "coins" | "shards" | ""
+        public string[] shopUnlocks;     // wie man einen unverkäuflichen bekommt
+
+        public int online;           // verbundene Spieler
+    }
+
+    /// <summary>Inhalt einer Relay-Nachricht zwischen den beiden Spielern.</summary>
+    [Serializable]
+    public class NetData
+    {
+        public string t;        // "deck" | "answer"
+
+        // Deck-Austausch
+        public string[] cards;  // Kartennamen in Deck-Reihenfolge
+        public string[] extra;  // Extra Deck (Reliquary-Karten)
+        public string hero;     // Name der Spielerkarte
+        public string deckName;
+
+        // Entscheidungs-Antwort (Lockstep)
+        public string kind;     // main | battle | yesno | option | target
+        public int seq;         // fortlaufende Nummer der Antworten dieses Spielers
+        public int chosen;      // main/battle/option: gewählter Index (-1 = Abbruch)
+        public int zone;        // main: Wunsch-Zone (PreferredZoneIndex)
+        public bool result;     // yesno
+        public bool cancelled;  // target: abgebrochen
+        public int[] indices;   // target: gewählte Kandidaten-Indizes
+        public string check;    // Desync-Prüfwert (Zug:LP:LP)
+    }
+}

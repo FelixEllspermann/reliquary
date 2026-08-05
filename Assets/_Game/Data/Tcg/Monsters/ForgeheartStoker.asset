@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: ForgeheartStoker
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Forgeheart Stoker
+  artwork: {fileID: -178690189011961404, guid: 2bf34b5c4b6f5c248aa9118b03e066b9, type: 3}
+  rarity: 0
+  effects:
+  - label: Stoke the Coals
+    text: 'When this card is Summoned: You can add 1 "Forgeheart" card from your
+      Deck to your hand.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 17
+      isCost: 0
+      amount: 1
+      target: 12
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Forgeheart
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 1
+  attribute: 3
+  monsterType: 4
+  atk: 800
+  def: 700
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1

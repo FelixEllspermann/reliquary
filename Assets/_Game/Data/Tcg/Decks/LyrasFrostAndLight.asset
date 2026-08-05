@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: LyrasFrostAndLight
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.DeckDefinition
+  deckName: Lyra's Frost & Light
+  playerCard: {fileID: 11400000, guid: 99582c29dd735ee439a83bdc28208604, type: 2}
+  cards:
+  - {fileID: 11400000, guid: e9a96da8771ae2241876834c3ffa0cc1, type: 2}
+  - {fileID: 11400000, guid: e9a96da8771ae2241876834c3ffa0cc1, type: 2}
+  - {fileID: 11400000, guid: e9a96da8771ae2241876834c3ffa0cc1, type: 2}
+  - {fileID: 11400000, guid: 14c87d008fdda124c973041b53295d8e, type: 2}
+  - {fileID: 11400000, guid: 14c87d008fdda124c973041b53295d8e, type: 2}
+  - {fileID: 11400000, guid: 14c87d008fdda124c973041b53295d8e, type: 2}
+  - {fileID: 11400000, guid: df02b9ed236ac88488d3720ca6ea8674, type: 2}
+  - {fileID: 11400000, guid: df02b9ed236ac88488d3720ca6ea8674, type: 2}
+  - {fileID: 11400000, guid: 52e340ea0964bf94d971a77bf8e0d54a, type: 2}
+  - {fileID: 11400000, guid: 52e340ea0964bf94d971a77bf8e0d54a, type: 2}
+  - {fileID: 11400000, guid: f09f85af28f066b4387fd0eca6b9b85d, type: 2}
+  - {fileID: 11400000, guid: 7e1502cdd33f8b24ab377ff7f18964ff, type: 2}
+  - {fileID: 11400000, guid: 121f768ef1ee2bc4994fb486ddfc8a7f, type: 2}
+  - {fileID: 11400000, guid: 121f768ef1ee2bc4994fb486ddfc8a7f, type: 2}
+  - {fileID: 11400000, guid: 121f768ef1ee2bc4994fb486ddfc8a7f, type: 2}
+  - {fileID: 11400000, guid: 76c031dd9cd10bd4aa3e7abdd19451db, type: 2}
+  - {fileID: 11400000, guid: 76c031dd9cd10bd4aa3e7abdd19451db, type: 2}
+  - {fileID: 11400000, guid: d4b41da18918990448df65a41816c6bf, type: 2}
+  - {fileID: 11400000, guid: d4b41da18918990448df65a41816c6bf, type: 2}
+  - {fileID: 11400000, guid: 8121173e448f1434097c95baa9694fab, type: 2}
+  - {fileID: 11400000, guid: 609a204b34d769447aed8a2f3a5c883d, type: 2}
+  - {fileID: 11400000, guid: 609a204b34d769447aed8a2f3a5c883d, type: 2}
+  - {fileID: 11400000, guid: 609a204b34d769447aed8a2f3a5c883d, type: 2}
+  - {fileID: 11400000, guid: 80aeeb613af8e9a4a8438f8f7543b545, type: 2}
+  - {fileID: 11400000, guid: 80aeeb613af8e9a4a8438f8f7543b545, type: 2}
+  - {fileID: 11400000, guid: 027b034db7778e7438a8aea0a3dbd965, type: 2}
+  - {fileID: 11400000, guid: 027b034db7778e7438a8aea0a3dbd965, type: 2}
+  - {fileID: 11400000, guid: d4e58fa32812f0641b8b97835484d33f, type: 2}
+  - {fileID: 11400000, guid: 1d1828ab13fee3c46ab423730aceacb0, type: 2}
+  - {fileID: 11400000, guid: 1d1828ab13fee3c46ab423730aceacb0, type: 2}
+  - {fileID: 11400000, guid: 018e18f7877c783459c4721c14852b04, type: 2}
+  - {fileID: 11400000, guid: 018e18f7877c783459c4721c14852b04, type: 2}
+  - {fileID: 11400000, guid: 08fdcfb7022482d41909ad30d333663b, type: 2}
+  - {fileID: 11400000, guid: 08fdcfb7022482d41909ad30d333663b, type: 2}
+  - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
+  - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
+  - {fileID: 11400000, guid: 31de00fffb3c3b844a0f6a97b13281c8, type: 2}
+  - {fileID: 11400000, guid: 05fb62841a514e14d96fa68b03fe1975, type: 2}
+  - {fileID: 11400000, guid: 144f61e7f5ca00746806d8c574b61a4e, type: 2}
+  - {fileID: 11400000, guid: 4a155a226d29f5847988855a60fb95ab, type: 2}

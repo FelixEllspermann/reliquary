@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: IronResolve
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Iron Resolve
+  artwork: {fileID: -7443578841981935924, guid: 60305bfe0ee6c1e479fd8bc1240b746b, type: 3}
+  rarity: 0
+  effects:
+  - label: Stand Firm
+    text: Target 1 monster you control; it gains 500 DEF until the end of the turn.
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 30
+      isCost: 0
+      amount: 500
+      target: 2
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Unbreakable
+    text: Target 1 monster you control; it gains 1200 DEF until the end of the turn.
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 3
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 30
+      isCost: 0
+      amount: 1200
+      target: 2
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 1

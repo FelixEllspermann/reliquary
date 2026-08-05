@@ -1,0 +1,220 @@
+────────────────────────────────
+0.1.0f9 · ONE COIN TOSS
+  · There were two coin tosses in the code — a whole screen for solo and
+    an overlay for online. You only ever saw one, but they were two
+    things to keep in step, and they had already drifted apart
+  · The overlay is now the only one, and it got everything the screen
+    had: the darkened board, rising embers, the caption during the
+    flight, the camera easing in and back out on impact, and the verdict
+    banner. Solo and online show the same flip
+  · The coin toss screen is gone. Duels load straight to the board
+
+ONE WAY TO DUEL
+────────────────────────────────
+
+THE REAL COIN TOSS, ONLINE TOO
+  · Online duels flipped a plain gold square. They now get the actual
+    coin — your equipped one, if you have one — rising, tumbling, landing
+    with a squash and a ring of dust, and stopping on the winning face
+  · It runs as an overlay rather than its own screen, because online the
+    server decides the toss mid-duel and there is no room to push a whole
+    scene in front of it. Solo and online now show the same flip
+
+ONLINE DUELS LOOK LIKE SOLO ONES NOW
+  · Attacks, destructions and Extra Deck summons had no animation online.
+    One cause behind all three: the board was updated first and the
+    animations played afterwards, so a card shattered on a table it had
+    already left, and a Reliquary stood in its zone before the vault
+    opened. Events are now sent at the seam where they belong — before
+    the change they describe
+  · The Extra Deck monster appears only once the vault animation ends
+
+NO MORE DEAD DUELS
+  · A request the client could not read left both players staring at a
+    board they could not touch — the server was waiting for an answer
+    that would never come. Nothing hard-locks now: an unreadable request
+    is answered, logged, and the duel goes on
+  · The same for a targeting prompt whose targets the client did not
+    know. That was the artifact lock
+
+SEARCHING YOUR DECK WORKS AGAIN
+  · A spell that fetches a monster from your Deck offered you nothing to
+    pick. Your Deck is hidden information and is never sent card by card,
+    so the client threw those candidates away and showed an empty window.
+    It now builds them from what the server sends with the prompt
+
+ALT-TAB
+  · The game kept running when it lost focus. It used to freeze and then
+    catch up in a rush, which is why an alt-tabbed opponent looked stuck
+
+ONE WAY TO DUEL
+  · Online duels ran on two completely different systems. Either the
+    server computed the duel and both clients displayed it, or both
+    clients computed it themselves in lockstep and only exchanged moves.
+    Which one you got depended on whether you were signed in
+  · Only the first was ever maintained. Every fix of the last while went
+    past the second one, and nobody could tell which they were in
+  · The lockstep path is gone. Every online duel is computed by the
+    server. If a duel cannot start, you get told why instead of quietly
+    dropping into something worse
+
+BOTH PLAYERS SEE THE SEAL
+  · Losing a duel now ends on the winner's victory seal, with their name
+    under it. A seal is a signature on a win, and one only the winner
+    ever sees is not a signature. It runs after the defeat sequence, not
+    over it — both are skippable
+
+ALSO
+  · Extra Deck summons open the vault at the right pile instead of the
+    middle of the screen — the two anchors were never wired up
+  · Animations no longer go missing for cards the client had not seen
+    yet, which is most of what comes out of an Extra Deck
+  · Thorn Setting's spikes break out of the frame instead of notching
+    into it. That silhouette is the whole point of the frame at 44 px
+
+COSMETICS SHOP
+  · The shop scrolls, and it shows everything. It was drawing the first
+    twenty items and silently dropping the other thirteen
+  · Filter by category: backs, mats, coins, frames, seals, titles
+
+────────────────────────────────
+0.1.0f2 · BOTH SIDES OF THE TABLE
+────────────────────────────────
+
+  · You now see your opponent's cosmetics. Their card back sits on their
+    face-down cards and their hand; it arrives with the match, before the
+    first frame of the duel, so nothing pops in later
+  · The duel mat is split down the middle — your mat on your half, theirs
+    on theirs. Each is drawn at full field size and cropped, so the
+    patterns still sit where they were designed to sit
+  · The toss coin cannot be split, so one rule decides it: player A's coin
+    flies. Always, no exceptions
+  · News scrolls. The panel had a scroll area all along, but nothing in it
+    accepted the mouse wheel, so the wheel went to the window behind it.
+    There is a slim bar on the right now that shows how much is left
+
+────────────────────────────────
+0.1.0f · WHAT THE WINNER LEAVES BEHIND
+────────────────────────────────
+
+VICTORY SEALS
+  · Winning a duel now stamps your seal on the screen. There are five,
+    and they differ in HOW they arrive: burned in, broken apart,
+    opened outward, struck from above, eclipsed
+  · Every seal finishes early and holds its last frame. That frame is
+    the one worth a screenshot
+  · Both players see it, so it is the loudest thing you can own
+
+COSMETICS
+  · The shop grew from 20 items to 33, and every one is now drawn as the
+    thing it actually is — no more coloured swatches
+  · Card backs (8), duel mats (6), toss coins (5), profile frames (6),
+    victory seals (5), titles (3)
+  · What you equip is finally visible: your card back on every face-down
+    card, your mat under the duel, your coin in the opening toss, your
+    frame around your portrait
+  · Prices were re-laddered by rarity now that the full set is in. Most
+    items got cheaper; nothing you already own changes
+
+SHARPER
+  · The level crest on cards was drawn at 44 px and blown up from there.
+    It is now drawn four times larger with smooth edges instead of
+    stair-steps — the same crest in the coin toss choice cards too
+  · Every generated sprite lost its mipmaps and its compression. Mipmaps
+    made the interface soft even at full size; compression put blocks in
+    the gradients
+  · The landing ring in the coin toss is drawn at twice the size
+
+THE COIN
+  · The back of the toss coin was a grey mush of overlapping spokes. It
+    now reads as three clean bands — crest, ring, spokes — so you can
+    tell which side is coming up mid-flip
+
+────────────────────────────────
+0.1.0d · SIX THINGS THAT MOVE
+────────────────────────────────
+
+NEW ANIMATIONS
+  · Rank Up — the seal reforms when you climb
+  · Pack Open — a flame field reads the rarity before the flip
+  · Activation and targeting — cards lift, charge, and thread to their
+    target
+  · Destruction — cards break into six wedges and are gathered up
+  · Defeat — you are a card, and the last direct attack hits it
+  · Extra Deck Summon — the vault opens and the Reliquary steps out
+
+DUEL
+  · Face-down cards turn face up BEFORE they activate
+  · Extra Deck monsters appear only once their summon has finished, and
+    they come from the summoning player's own vault
+  · Screen shake works again — it was moving a camera the interface ignores
+  · The old golden activation border is gone
+
+COSMETICS SHOP
+  · A shop for card backs, mats, coins, frames, seals and titles
+  · One currency: coins
+
+THE APP
+  · Proper window and taskbar icon
+  · No more "Made with Unity" splash
+  · Card names no longer lose their last letter — the font atlas was
+    overflowing onto a second texture that draws blank
+
+────────────────────────────────
+0.1.0c · TWO KEYS TO THE VAULT
+────────────────────────────────
+
+  · Sign in with Steam — one click, no password.
+    Shown only when the game runs through Steam
+  · The classic duelist name + password still works,
+    and one account can use both
+
+────────────────────────────────
+0.1.0b · THE DOOR BOTH WAYS
+────────────────────────────────
+
+  · Quit button in the top bar and on the login screen —
+    no more Alt+F4 to leave the vault
+
+────────────────────────────────
+0.1.0 · THE VAULT OPENS
+────────────────────────────────
+
+NEW CARDS
+  · 40 new generic cards across two sets
+  · New archetype: Fethaerbreese (Wind / Animal) — targeted negation on its bosses
+  · The card pool now holds 223 cards across 13 archetypes
+
+NEW MECHANICS
+  · Banishment as a second graveyard — banish cards, then call them back
+  · Mill: send cards from a Deck to the Graveyard. An empty Deck still only
+    loses on the next draw
+  · Take control of an enemy monster until the End Phase
+  · Shuffle a card on the field back into its owner's Deck
+  · Traps: set a Quick Spell and activate it on your opponent's turn
+  · Copy a monster, copy its stats, taunt, position locks, targeting immunity,
+    battle damage prevention, extra Normal Summons and summon locks
+
+BANLIST
+  · The banlist is now enforced when a deck is saved
+  · Limits are shown directly on the card rows in the Deck Builder
+
+DUEL
+  · Attack targets are chosen on the field instead of in a list
+  · "Up to" effects no longer force you to pick the maximum
+  · Spells and Artifacts let you pick their zone
+  · Special Summons from the hand let you choose Attack or Defense, always face-up
+  · Duel log is readable again: dark ink on the parchment, card names coloured
+    by card type
+
+SOUND
+  · Full sound pass: hover, click, typing, card draw, card placement,
+    effect activation, hits, destruction and the coin toss
+  · Separate volume slider for sound effects in the settings
+
+FIXES
+  · Effects targeting several cards now hit all of them, not just the first
+  · Cards that state a summon position are no longer overridden
+  · Coin toss: no more clipped headline, and the choice only appears
+    if you actually won the toss
+  · Opponent's hand is fully visible again

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: FrostNova
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Frost Nova
+  artwork: {fileID: 2274553097845166390, guid: 528ba2de1361a5f42aa3779368121c72, type: 3}
+  rarity: 1
+  effects:
+  - label: Freeze
+    text: Pay 1 Mana; 1 opponent's monster permanently loses 500 ATK and 500 DEF.
+    isInfused: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 8
+      amount: 500
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 12
+      amount: 500
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 0

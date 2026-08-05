@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: StormHawk
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Storm Hawk
+  artwork: {fileID: -3369677518046430187, guid: 5c44ab984ef895c4e9e3ad8fd5c95df0, type: 3}
+  rarity: 1
+  effects: []
+  level: 2
+  attribute: 4
+  monsterType: 2
+  atk: 2000
+  def: 1200

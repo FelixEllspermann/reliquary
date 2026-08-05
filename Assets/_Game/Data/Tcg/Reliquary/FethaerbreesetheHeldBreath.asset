@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: FethaerbreesetheHeldBreath
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ReliquaryCardData
+  cardName: Fethaerbreese, the Held Breath
+  artwork: {fileID: -792030569563263945, guid: d41a594d6dd512f47a3cefb7bacd982b, type: 3}
+  rarity: 3
+  effects:
+  - label: The Breath Held
+    text: 'When this card is Summoned: Target 1 card your opponent controls; negate
+      its effects until the end of the turn.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 37
+      isCost: 0
+      amount: 1
+      target: 22
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Nothing Is Spoken
+    text: "QUICK \xB7 Once per turn: You can pay 2 Mana; target 1 card your opponent
+      controls; negate its effects until the end of the turn."
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 1
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 37
+      isCost: 0
+      amount: 1
+      target: 22
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 4
+  monsterType: 2
+  atk: 3000
+  def: 2900
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1
+  summonText: 2 or more "Fethaerbreese" monsters you control and 5+ cards in your
+    Graveyard. Cost 3 Mana; Tribute 1 other monster.
+  summonManaCost: 3
+  reqNamedOnField: Fethaerbreese
+  reqNamedCount: 2
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 5
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 1

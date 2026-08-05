@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: AegisFragment
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ArtifactCardData
+  cardName: Aegis Fragment
+  artwork: {fileID: 7259086739219433024, guid: 1722caa0118585f4e906d7cdccb6a7f9, type: 3}
+  rarity: 0
+  effects:
+  - label: Shatter in Their Place
+    text: 'When this card is destroyed: You can place 1 "Barrierstruck" Artifact
+      from your Deck onto the field.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 4
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 36
+      isCost: 0
+      amount: 1
+      target: 18
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: Barrierstruck
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  slot: 2
+  atkBonus: 0
+  defBonus: 0
+  protectTypeFromEffectDestruction: 0
+  protectedType: 0
+  redirectDestructionToSelf: 1

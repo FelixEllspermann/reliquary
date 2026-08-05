@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: GenostitchedPrimeSpecimen
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Genostitched Prime Specimen
+  artwork: {fileID: -3534918213287419052, guid: 502e24f31f41c14428963e45fa430349, type: 3}
+  rarity: 3
+  effects:
+  - label: Perfected Graft
+    text: 'When this card is Summoned: You can equip 1 Artifact from your Deck to
+      this card.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 33
+      isCost: 0
+      amount: 1
+      target: 18
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Total Rejection
+    text: 'While equipped with an Artifact, you can pay 3 Mana: Destroy 1 monster
+      your opponent controls, then this card permanently gains 500 ATK.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 1
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 1
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 6
+      isCost: 0
+      amount: 500
+      target: 15
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 1
+  monsterType: 4
+  atk: 2400
+  def: 2000
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 1
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0

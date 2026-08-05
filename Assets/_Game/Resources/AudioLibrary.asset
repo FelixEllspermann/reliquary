@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db686fe8f19986b4393485ec1ea4b933, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.UI.AudioLibrary
+  hover: {fileID: 8300000, guid: 88745b005147cfa48bdecde1a623fa9e, type: 3}
+  buttonPress: {fileID: 8300000, guid: 50008298a2534e54796953b4dc6667d9, type: 3}
+  type: {fileID: 8300000, guid: 722d4f0d12ee822449593ca5e5cac2cc, type: 3}
+  claim: {fileID: 8300000, guid: 86a5bc1535de73a47b2b2183b96b72c1, type: 3}
+  cardHover: {fileID: 8300000, guid: 17e5b4ea8eda4c545b8f555c3b918afd, type: 3}
+  cardDraw: {fileID: 8300000, guid: 793b791870e35a14186260efc33c9546, type: 3}
+  cardPlace: {fileID: 8300000, guid: 0f4cacb325e3772419c28b97399f28df, type: 3}
+  cardActivate: {fileID: 8300000, guid: 35f767625905be745bdbdf4f3229f0d1, type: 3}
+  hit: {fileID: 8300000, guid: 2fb842ce51c75aa47854ab9858e1ec5b, type: 3}
+  destroyed: {fileID: 8300000, guid: b948e48f333296143996bffe581866aa, type: 3}
+  cardMoving: {fileID: 8300000, guid: 76dbabe947f9fb94991f33e50bb34a8c, type: 3}
+  coinToss: {fileID: 8300000, guid: 93a07684cbb2464408736d8958c4d71a, type: 3}
+  coinTurn: {fileID: 8300000, guid: 9a16a2e86d2bffe43a7c8bc7707493b0, type: 3}
+  coinHit: {fileID: 8300000, guid: 4a649a8a83eb9b04a997de0a7856d87d, type: 3}
+  sealUnlock: {fileID: 8300000, guid: c9fc33c53fb0a164bba486013fc1bf95, type: 3}
+  sealOpen: {fileID: 8300000, guid: e709667737ae2304ebbeb3f8017ea1da, type: 3}
+  cardShuffle: {fileID: 8300000, guid: eab02cf85fffaad4886e2c167ca9b8da, type: 3}
+  loginMusic: {fileID: 8300000, guid: 1406c9ce3b5727a4b83e88e52f02c691, type: 3}
+  menuMusic: {fileID: 8300000, guid: 850a95f85d5cb3e4db0fd894c3d85afc, type: 3}
+  tossMusic: {fileID: 8300000, guid: dd8f2b3804f217941bf4cabef4125a30, type: 3}
+  duelMusic:
+  - {fileID: 8300000, guid: b349ea7f7f343d04190eedfa8cf84de9, type: 3}
+  - {fileID: 8300000, guid: d104798cdaf275b46a8bdd99e9612130, type: 3}

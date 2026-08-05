@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3999c8cdf75fe4f97f087a6a6352f0, type: 3}
+  m_Name: TransitionSkin
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.UI.TransitionSkin
+  frame: {fileID: 21300000, guid: 41435a67ae7bf9e48b0503f2c0c2ef63, type: 3}
+  square: {fileID: 21300000, guid: 67cabb8288ebf284596ff24b72bc0edf, type: 3}
+  glow: {fileID: 21300000, guid: e19695a79cb961c4d951f4127080dd19, type: 3}
+  flare: {fileID: 21300000, guid: 458864e748289384abad9e313888d84b, type: 3}
+  weave: {fileID: 21300000, guid: 3478e95da78e7834390291658e36a3cb, type: 3}
+  rule: {fileID: 21300000, guid: 5584203a4b2dfce42928c3fa8bd43cda, type: 3}
+  fade: {fileID: 21300000, guid: b8a05c711ce7506409c8bd038e951aba, type: 3}
+  vignette: {fileID: 21300000, guid: d5d023b2931fb4c4687b295e880ed4cc, type: 3}
+  additive: {fileID: 2100000, guid: 4e93ad1a07ada574f81e39fea54a8c66, type: 2}
+  finishGloss: {fileID: 2800000, guid: ac58c1fd8db20ee419edf271c3ff327e, type: 3}
+  finishRainbow: {fileID: 2800000, guid: c98695a97abb4d84890f9dc22c5d0f52, type: 3}
+  finishGrating: {fileID: 2800000, guid: 3e3e58c1c88c25146b9bc4a01d8761ac, type: 3}
+  finishScanlines: {fileID: 2800000, guid: 7b0e97996ccfca4448a3b544c64090ad, type: 3}
+  finishNoise: {fileID: 2800000, guid: c9736ccd035733a429757899548135bd, type: 3}
+  finishBand: {fileID: 2800000, guid: f8107dbda60334240b81ca07f754e55a, type: 3}
+  diagFade: {fileID: 21300000, guid: e133b8937ec8f7a4ab9617085e8eef65, type: 3}
+  dashedRing: {fileID: 21300000, guid: 06206babe3c86fb459f4e877c33dd984, type: 3}
+  seal: {fileID: 21300000, guid: 2999f4d220334ff4a8e5ba328f084547, type: 3}
+  ring: {fileID: 21300000, guid: 6d810e150708ab24cb87eb792a04ea13, type: 3}
+  reliefOuter: {fileID: 21300000, guid: b011e197b48b81a4d9d5d10e2c7f48cd, type: 3}
+  reliefInner: {fileID: 21300000, guid: 6bf18362da9c5d949853c18db57c9f43, type: 3}
+  cardBack: {fileID: 21300000, guid: 56b5d67c268c05a4fb8cc1999ee2f5ec, type: 3}
+  parchment: {fileID: 21300000, guid: 47ed5f8fe36ccfa41b7a4fe0b028d5e5, type: 3}
+  zoneMonster: {fileID: 21300000, guid: 013ef430115df26448f1b3b9d89e437d, type: 3}
+  zoneSpell: {fileID: 21300000, guid: 5b8ff88b1dd2e7847827b3981f7bf4c7, type: 3}
+  zoneArtifact: {fileID: 21300000, guid: 1cc416ff72764d841be5501721431dee, type: 3}
+  cinzel: {fileID: 11400000, guid: 401e833221b92174b80e518f866ee1b9, type: 2}
+  oswald: {fileID: 11400000, guid: 0d9913fbf1a8567449c958ea034d9b61, type: 2}
+  spectral: {fileID: 11400000, guid: 61be4bbeea66e4a438d4dd44fc680d84, type: 2}

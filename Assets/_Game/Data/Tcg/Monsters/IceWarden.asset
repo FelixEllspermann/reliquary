@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: IceWarden
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Ice Warden
+  artwork: {fileID: 2020556455103429523, guid: f4a694bc15a2c444090d67f045e33130, type: 3}
+  rarity: 1
+  effects:
+  - label: Frost Breath
+    text: 'When your opponent summons a monster: You can pay 1 Mana; it loses 300
+      ATK.'
+    isInfused: 1
+    manaCost: 1
+    trigger: 5
+    oncePerTurn: 0
+    actions:
+    - type: 8
+      amount: 300
+      target: 1
+  level: 2
+  attribute: 2
+  monsterType: 1
+  atk: 1600
+  def: 1900

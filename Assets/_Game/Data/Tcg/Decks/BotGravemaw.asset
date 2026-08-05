@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotGravemaw
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.DeckDefinition
+  deckName: Maw of the Deep
+  playerCard: {fileID: 11400000, guid: 7a0c339fa6bf8ab4b95de7e72a79091b, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 5a818c04100e4e66b4f11d9e7cba856b, type: 2}
+  - {fileID: 11400000, guid: 5a818c04100e4e66b4f11d9e7cba856b, type: 2}
+  - {fileID: 11400000, guid: 5a818c04100e4e66b4f11d9e7cba856b, type: 2}
+  - {fileID: 11400000, guid: a67205cb5f0c4a5b94edf777dc69cf44, type: 2}
+  - {fileID: 11400000, guid: a67205cb5f0c4a5b94edf777dc69cf44, type: 2}
+  - {fileID: 11400000, guid: a67205cb5f0c4a5b94edf777dc69cf44, type: 2}
+  - {fileID: 11400000, guid: b9aa9b85cbcb4c8292d15ea47047d109, type: 2}
+  - {fileID: 11400000, guid: b9aa9b85cbcb4c8292d15ea47047d109, type: 2}
+  - {fileID: 11400000, guid: b9aa9b85cbcb4c8292d15ea47047d109, type: 2}
+  - {fileID: 11400000, guid: 5e9f7bc4fd774dc8af57108831887dd6, type: 2}
+  - {fileID: 11400000, guid: 5e9f7bc4fd774dc8af57108831887dd6, type: 2}
+  - {fileID: 11400000, guid: 5e9f7bc4fd774dc8af57108831887dd6, type: 2}
+  - {fileID: 11400000, guid: 80cf4b2a1d64499daa95678844c4f76e, type: 2}
+  - {fileID: 11400000, guid: 80cf4b2a1d64499daa95678844c4f76e, type: 2}
+  - {fileID: 11400000, guid: 80cf4b2a1d64499daa95678844c4f76e, type: 2}
+  - {fileID: 11400000, guid: 9bc171279676458f9cd885efd4cd4541, type: 2}
+  - {fileID: 11400000, guid: 9bc171279676458f9cd885efd4cd4541, type: 2}
+  - {fileID: 11400000, guid: 9bc171279676458f9cd885efd4cd4541, type: 2}
+  - {fileID: 11400000, guid: 662f9fff93e343fd9513125ab114f2f5, type: 2}
+  - {fileID: 11400000, guid: 662f9fff93e343fd9513125ab114f2f5, type: 2}
+  - {fileID: 11400000, guid: 662f9fff93e343fd9513125ab114f2f5, type: 2}
+  - {fileID: 11400000, guid: 3b33928e7f6941408dd5b3a3a0f31654, type: 2}
+  - {fileID: 11400000, guid: 3b33928e7f6941408dd5b3a3a0f31654, type: 2}
+  - {fileID: 11400000, guid: 3b33928e7f6941408dd5b3a3a0f31654, type: 2}
+  - {fileID: 11400000, guid: 582dc393437f430ab255f70e3bc33d7a, type: 2}
+  - {fileID: 11400000, guid: 582dc393437f430ab255f70e3bc33d7a, type: 2}
+  - {fileID: 11400000, guid: 582dc393437f430ab255f70e3bc33d7a, type: 2}
+  - {fileID: 11400000, guid: 846b01d9c9614f3182aa3e4c9e4b86ae, type: 2}
+  - {fileID: 11400000, guid: 846b01d9c9614f3182aa3e4c9e4b86ae, type: 2}
+  - {fileID: 11400000, guid: 846b01d9c9614f3182aa3e4c9e4b86ae, type: 2}
+  - {fileID: 11400000, guid: 86dcd7c168104ebba31cab04a13bab92, type: 2}
+  - {fileID: 11400000, guid: 86dcd7c168104ebba31cab04a13bab92, type: 2}
+  - {fileID: 11400000, guid: 86dcd7c168104ebba31cab04a13bab92, type: 2}
+  - {fileID: 11400000, guid: b78e8d4cbfcf40e7b76b29329425d0ce, type: 2}
+  - {fileID: 11400000, guid: b78e8d4cbfcf40e7b76b29329425d0ce, type: 2}
+  - {fileID: 11400000, guid: b78e8d4cbfcf40e7b76b29329425d0ce, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 0cd61bcba1014b7eb74628dfadc9ee03, type: 2}
+  - {fileID: 11400000, guid: 0cd61bcba1014b7eb74628dfadc9ee03, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: 4d5c6f7a1b3e4e92ba6d8fac4c5e7093, type: 2}
+  - {fileID: 11400000, guid: 4d5c6f7a1b3e4e92ba6d8fac4c5e7093, type: 2}
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: a3be0fd17b944ff81acdef02a294d6f9, type: 2}

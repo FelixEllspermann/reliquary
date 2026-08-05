@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: LightlessMatriarch
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Lightless Matriarch
+  artwork: {fileID: -6717416481733676354, guid: 5f5fed0870af53a4fb6ae8d456b7e067, type: 3}
+  rarity: 3
+  effects:
+  - label: Veiling Order
+    text: 'When this card is Summoned: You can turn up to 2 monsters on the field
+      face-down into Defense Position.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 26
+      isCost: 0
+      amount: 1
+      target: 3
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 2
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Extinguish
+    text: 'You can pay 3 Mana: Destroy 1 face-down monster your opponent controls,
+      then inflict 400 damage to your opponent.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 16
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 0
+      isCost: 0
+      amount: 400
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 1
+  monsterType: 1
+  atk: 2200
+  def: 1900
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Lightless
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0

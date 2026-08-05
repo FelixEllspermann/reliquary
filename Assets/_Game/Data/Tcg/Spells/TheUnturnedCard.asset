@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: TheUnturnedCard
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: The Unturned Card
+  artwork: {fileID: 5092161428222684417, guid: e3799b4c63b68f148a2793ae8ae4105d, type: 3}
+  rarity: 1
+  effects:
+  - label: The Unturned Card
+    text: 'Pay 2 Mana: Banish 1 face-down monster on the field, without turning it
+      face-up.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 2
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 5
+      isCost: 0
+      amount: 1
+      target: 14
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 0

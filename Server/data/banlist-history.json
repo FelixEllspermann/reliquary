@@ -1,0 +1,11 @@
+{
+  "_comment": "Chronik der Banlist. Nur Anzeige — durchgesetzt wird ausschliesslich banlist.json. Neueste Eintraege nach unten anhaengen; der Client dreht die Reihenfolge um. 'to' ist das neue Limit (0 gebannt, 1 limitiert, 2 semi-limitiert, 3 frei), 'from' das alte.",
+  "entries": [
+    {
+      "date": "2026-08-04",
+      "title": "0.1.0 · The Vault Opens",
+      "note": "Opening list. Nothing is restricted — the pool starts clean and stays that way until the first season of duels tells us otherwise.",
+      "changes": []
+    }
+  ]
+}

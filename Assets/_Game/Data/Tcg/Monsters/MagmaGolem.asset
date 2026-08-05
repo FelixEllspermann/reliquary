@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: MagmaGolem
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Magma Golem
+  artwork: {fileID: -2942882550697761431, guid: eaac6d555ef0b914ebaecf158d7054e8, type: 3}
+  rarity: 2
+  effects:
+  - label: Eruption
+    text: 'When this card is summoned: You can pay 2 Mana; both players take 500
+      damage.'
+    isInfused: 1
+    manaCost: 2
+    trigger: 3
+    oncePerTurn: 0
+    actions:
+    - type: 13
+      amount: 500
+      target: 0
+  level: 3
+  attribute: 3
+  monsterType: 4
+  atk: 2700
+  def: 2500

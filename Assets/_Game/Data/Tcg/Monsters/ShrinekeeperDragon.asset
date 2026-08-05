@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: ShrinekeeperDragon
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Shrinekeeper Dragon
+  artwork: {fileID: 411284644729994196, guid: 517c450d13a51294a9f79d55e7ec3f34, type: 3}
+  rarity: 1
+  effects:
+  - label: Morning Rite
+    text: 'During your Standby Phase: You can Special Summon 1 Level 1 Dragon-Type
+      monster from your Graveyard.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 6
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 9
+      isCost: 0
+      amount: 1
+      target: 4
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 1
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Guardian's Breath
+    text: 'You can pay 2 Mana: Target 1 Dragon-Type monster you control; it gains
+      500 DEF until the end of this turn.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 1
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 30
+      isCost: 0
+      amount: 500
+      target: 2
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 2
+  attribute: 0
+  monsterType: 0
+  atk: 1400
+  def: 1600
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1

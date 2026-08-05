@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: ShadowGrasp
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Shadow Grasp
+  artwork: {fileID: 1234420988433724044, guid: 7c719c7a84283c24baf020af79458c73, type: 3}
+  rarity: 1
+  effects:
+  - label: Grasp from the Dark
+    text: Pay 1 Mana; return 1 opponent's monster to the hand.
+    isInfused: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 10
+      amount: 1
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 1

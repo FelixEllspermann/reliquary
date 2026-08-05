@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotHeavenly
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.DeckDefinition
+  deckName: Choir of the First Light
+  playerCard: {fileID: 11400000, guid: 99582c29dd735ee439a83bdc28208604, type: 2}
+  cards:
+  - {fileID: 11400000, guid: e53163d7e73e4fe8a145db6f57a65521, type: 2}
+  - {fileID: 11400000, guid: e53163d7e73e4fe8a145db6f57a65521, type: 2}
+  - {fileID: 11400000, guid: e53163d7e73e4fe8a145db6f57a65521, type: 2}
+  - {fileID: 11400000, guid: 7276830192d94a7f931fde12fc7c69ec, type: 2}
+  - {fileID: 11400000, guid: 7276830192d94a7f931fde12fc7c69ec, type: 2}
+  - {fileID: 11400000, guid: 7276830192d94a7f931fde12fc7c69ec, type: 2}
+  - {fileID: 11400000, guid: afc2feca2a6048a990299601589cbcdd, type: 2}
+  - {fileID: 11400000, guid: afc2feca2a6048a990299601589cbcdd, type: 2}
+  - {fileID: 11400000, guid: afc2feca2a6048a990299601589cbcdd, type: 2}
+  - {fileID: 11400000, guid: 58304c3d1cac430582ca8a3c61a8f915, type: 2}
+  - {fileID: 11400000, guid: 58304c3d1cac430582ca8a3c61a8f915, type: 2}
+  - {fileID: 11400000, guid: 219ef584c1cc4d7daa66f499dd945395, type: 2}
+  - {fileID: 11400000, guid: 219ef584c1cc4d7daa66f499dd945395, type: 2}
+  - {fileID: 11400000, guid: 219ef584c1cc4d7daa66f499dd945395, type: 2}
+  - {fileID: 11400000, guid: ca31ccc5f0be4f61b8bc8e8b31f43ae5, type: 2}
+  - {fileID: 11400000, guid: ca31ccc5f0be4f61b8bc8e8b31f43ae5, type: 2}
+  - {fileID: 11400000, guid: ca31ccc5f0be4f61b8bc8e8b31f43ae5, type: 2}
+  - {fileID: 11400000, guid: dc0c714f405b4b6e85e350ab33978cc4, type: 2}
+  - {fileID: 11400000, guid: dc0c714f405b4b6e85e350ab33978cc4, type: 2}
+  - {fileID: 11400000, guid: dc0c714f405b4b6e85e350ab33978cc4, type: 2}
+  - {fileID: 11400000, guid: d3d62d8527214dcea920f35a5ec0d741, type: 2}
+  - {fileID: 11400000, guid: d3d62d8527214dcea920f35a5ec0d741, type: 2}
+  - {fileID: 11400000, guid: d3d62d8527214dcea920f35a5ec0d741, type: 2}
+  - {fileID: 11400000, guid: 1bde5bfdfd5d479e9a272348639a95b9, type: 2}
+  - {fileID: 11400000, guid: 1bde5bfdfd5d479e9a272348639a95b9, type: 2}
+  - {fileID: 11400000, guid: e96f43e2c4aa4f96a7929d5ca83dab6c, type: 2}
+  - {fileID: 11400000, guid: e96f43e2c4aa4f96a7929d5ca83dab6c, type: 2}
+  - {fileID: 11400000, guid: e96f43e2c4aa4f96a7929d5ca83dab6c, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 2c57bc1f1513414fbda0fd0c852a3862, type: 2}
+  - {fileID: 11400000, guid: 2c57bc1f1513414fbda0fd0c852a3862, type: 2}
+  - {fileID: 11400000, guid: 2c57bc1f1513414fbda0fd0c852a3862, type: 2}
+  - {fileID: 11400000, guid: 0cd61bcba1014b7eb74628dfadc9ee03, type: 2}
+  - {fileID: 11400000, guid: 0cd61bcba1014b7eb74628dfadc9ee03, type: 2}
+  - {fileID: 11400000, guid: 0cd61bcba1014b7eb74628dfadc9ee03, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: c5d02bf39db6511a3cef0224c4b6f81b, type: 2}
+  - {fileID: 11400000, guid: c5d02bf39db6511a3cef0224c4b6f81b, type: 2}
+  - {fileID: 11400000, guid: 6f7a4b9d3d504bb4dc8fabce6e7092b5, type: 2}
+  - {fileID: 11400000, guid: 92ad1ec06a834ee70fbcdef19183c5e8, type: 2}

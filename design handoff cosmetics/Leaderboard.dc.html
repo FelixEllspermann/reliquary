@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A0705"/><rect x="58" y="58" width="84" height="84" transform="rotate(45 100 100)" fill="none" stroke="#B9A3E0" stroke-width="6"/><text x="100" y="113" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#B9A3E0" text-anchor="middle">50</text></svg></template>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#070503; color:#E9E3D6; font-family:'Oswald',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#C8A45C; text-decoration:none; border-bottom:1px solid rgba(200,164,92,.4); }
+  a:hover { color:#E6CD8F; border-bottom-color:#E6CD8F; }
+  @keyframes relEmber { 0% { transform:translateY(0) rotate(45deg); opacity:0 } 18% { opacity:.5 } 100% { transform:translateY(-320px) rotate(45deg); opacity:0 } }
+  @keyframes relSpinSlow { to { transform:rotate(360deg) } }
+  @keyframes relPulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(122,205,150,.45) } 60% { opacity:.55; box-shadow:0 0 0 8px rgba(122,205,150,0) } }
+</style>
+</helmet>
+
+<div style="position:relative;width:1920px;height:1080px;overflow:hidden;background:radial-gradient(ellipse 1500px 820px at 50% 38%,#2A1C12,#0A0705 78%);font-family:'Oswald',sans-serif">
+
+  <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px),repeating-linear-gradient(-45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.85)"></div>
+  <div style="position:absolute;left:380px;bottom:40px;width:7px;height:7px;transform:rotate(45deg);background:#C8A45C;opacity:0;animation:relEmber 12s linear infinite;pointer-events:none"></div>
+  <div style="position:absolute;left:1420px;bottom:60px;width:5px;height:5px;transform:rotate(45deg);background:#EBCE8A;opacity:0;animation:relEmber 14s linear infinite 5.2s;pointer-events:none"></div>
+
+  <div style="position:relative;height:100%;display:flex;flex-direction:column">
+
+    <!-- top bar -->
+    <div style="height:92px;flex:none;box-sizing:border-box;padding:0 64px;display:flex;align-items:center;gap:26px;border-bottom:1px solid rgba(200,164,92,.2)">
+      <button style="display:flex;align-items:center;gap:11px;padding:12px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.35);border-radius:6px;color:#C8B189;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.2em;cursor:pointer" style-hover="border-color:#C8A45C;color:#F1DFB8;background:rgba(200,164,92,.14)">◀ MENU</button>
+      <div style="width:1px;height:34px;background:rgba(200,164,92,.24)"></div>
+      <div style="display:flex;align-items:center;gap:13px">
+        <i style="width:9px;height:9px;display:block;background:#C8A45C;transform:rotate(45deg)"></i>
+        <span style="font:500 12px/1 'Oswald',sans-serif;letter-spacing:.4em;color:#9C8A6A">THE FIFTY</span>
+      </div>
+      <div style="flex:1"></div>
+      <sc-if value="{{ seasonOn }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ showSeason }}" style="padding:12px 22px;background:linear-gradient(180deg,rgba(200,164,92,.26),rgba(200,164,92,.08));border:1px solid #C8A45C;border-radius:6px;color:#F5EBD4;font:600 12px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer">SEASON 3</button>
+      </sc-if>
+      <sc-if value="{{ seasonOff }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ showSeason }}" style="padding:12px 22px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.25);border-radius:6px;color:#9C8A6A;font:600 12px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer" style-hover="color:#E4D3AE;border-color:rgba(200,164,92,.55)">SEASON 3</button>
+      </sc-if>
+      <sc-if value="{{ allTimeOn }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ showAllTime }}" style="padding:12px 22px;background:linear-gradient(180deg,rgba(200,164,92,.26),rgba(200,164,92,.08));border:1px solid #C8A45C;border-radius:6px;color:#F5EBD4;font:600 12px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer">ALL TIME</button>
+      </sc-if>
+      <sc-if value="{{ allTimeOff }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ showAllTime }}" style="padding:12px 22px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.25);border-radius:6px;color:#9C8A6A;font:600 12px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer" style-hover="color:#E4D3AE;border-color:rgba(200,164,92,.55)">ALL TIME</button>
+      </sc-if>
+      <div style="width:1px;height:34px;background:rgba(200,164,92,.24)"></div>
+      <span style="display:flex;align-items:center;gap:9px;font:400 13px/1 'Spectral',serif;color:#7F9E8A"><i style="width:7px;height:7px;display:block;border-radius:50%;background:#7ACD96;animation:relPulse 2.4s ease-in-out infinite"></i>{{ updated }}</span>
+    </div>
+
+    <!-- body -->
+    <div style="flex:1;box-sizing:border-box;padding:34px 64px;display:flex;gap:28px;min-height:0">
+
+      <!-- podium + your standing -->
+      <div style="width:560px;flex:none;display:flex;flex-direction:column;gap:18px">
+
+        <div style="flex:none;position:relative;box-sizing:border-box;padding:24px 26px;border-radius:10px;border:2px solid rgba(220,206,248,.6);background:linear-gradient(120deg,rgba(94,78,140,.3),#140C07 62%,#291A0C);box-shadow:0 22px 50px rgba(0,0,0,.7),0 0 40px rgba(220,206,248,.14);display:flex;align-items:center;gap:22px">
+          <div style="position:absolute;inset:6px;border:1px solid rgba(220,206,248,.22);border-radius:5px;pointer-events:none"></div>
+          <div style="position:relative;width:112px;height:112px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 26px rgba(220,206,248,.55))">
+            <div style="position:absolute;width:112px;height:112px;border-radius:50%;border:1px dashed rgba(220,206,248,.35);animation:relSpinSlow 22s linear infinite"></div>
+            <div style="position:absolute;width:112px;height:2px;background:rgba(220,206,248,.28)"></div>
+            <div style="position:absolute;width:112px;height:2px;transform:rotate(90deg);background:rgba(220,206,248,.28)"></div>
+            <div style="position:absolute;width:98px;height:98px;border-radius:50%;border:1px solid rgba(220,206,248,.5)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #EFE7FA;background:linear-gradient(135deg,rgba(220,206,248,.32),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(239,231,250,.7)"></div>
+            <div style="position:absolute;width:24px;height:24px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#8E6A22);box-shadow:0 0 18px rgba(248,238,214,.7)"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.26em;color:#B9A3E0">FIRST SEAL OF THE VAULT</span>
+            <span style="font:700 34px/1.2 'Cinzel',serif;letter-spacing:.02em;color:#F6F1FE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ top1.name }}</span>
+            <div style="display:flex;align-items:baseline;gap:14px">
+              <span style="font:600 22px/1 'Cinzel',serif;color:#EFE7FA">{{ top1.rp }}</span>
+              <span style="font:400 14px/1 'Spectral',serif;color:#9A8AC4">{{ top1.wl }} · {{ top1.wr }} winrate</span>
+            </div>
+          </div>
+          <span style="font:700 62px/1 'Cinzel',serif;color:rgba(239,231,250,.22);flex:none">1</span>
+        </div>
+
+        <div style="flex:none;display:flex;gap:18px">
+          <div style="flex:1;position:relative;box-sizing:border-box;padding:20px;border-radius:9px;border:1px solid rgba(243,221,164,.5);background:linear-gradient(165deg,#3A2818,#140C07 62%,#291A0C);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="position:relative;width:56px;height:56px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 14px rgba(243,221,164,.45))">
+                <div style="position:absolute;width:48px;height:48px;border:1px solid rgba(243,221,164,.3)"></div>
+                <div style="position:absolute;width:48px;height:48px;transform:rotate(45deg);border:2px solid #F3DDA4;background:linear-gradient(135deg,rgba(248,238,214,.24),transparent 70%)"></div>
+                <div style="position:absolute;width:14px;height:14px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#A6802F)"></div>
+              </div>
+              <span style="font:700 38px/1 'Cinzel',serif;color:rgba(243,221,164,.24)">2</span>
+            </div>
+            <span style="font:600 22px/1.2 'Cinzel',serif;color:#F8EED6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ top2.name }}</span>
+            <span style="font:600 16px/1 'Cinzel',serif;color:#F3DDA4">{{ top2.rp }}</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ top2.wl }} · {{ top2.wr }}</span>
+          </div>
+          <div style="flex:1;position:relative;box-sizing:border-box;padding:20px;border-radius:9px;border:1px solid rgba(243,221,164,.5);background:linear-gradient(165deg,#3A2818,#140C07 62%,#291A0C);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="position:relative;width:56px;height:56px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 14px rgba(243,221,164,.45))">
+                <div style="position:absolute;width:48px;height:48px;border:1px solid rgba(243,221,164,.3)"></div>
+                <div style="position:absolute;width:48px;height:48px;transform:rotate(45deg);border:2px solid #F3DDA4;background:linear-gradient(135deg,rgba(248,238,214,.24),transparent 70%)"></div>
+                <div style="position:absolute;width:14px;height:14px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#A6802F)"></div>
+              </div>
+              <span style="font:700 38px/1 'Cinzel',serif;color:rgba(243,221,164,.24)">3</span>
+            </div>
+            <span style="font:600 22px/1.2 'Cinzel',serif;color:#F8EED6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ top3.name }}</span>
+            <span style="font:600 16px/1 'Cinzel',serif;color:#F3DDA4">{{ top3.rp }}</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ top3.wl }} · {{ top3.wr }}</span>
+          </div>
+        </div>
+
+        <div style="flex:none;box-sizing:border-box;padding:22px 24px;background:rgba(0,0,0,.42);border:1px solid rgba(235,206,138,.4);border-radius:8px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9C8A6A">YOUR STANDING</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ youNote }}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px">
+            <div style="position:relative;width:60px;height:60px;flex:none;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;width:52px;height:52px;border:1px solid rgba(235,206,138,.28)"></div>
+              <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:2px solid #EBCE8A;background:linear-gradient(135deg,rgba(246,228,180,.2),transparent 70%)"></div>
+              <div style="position:absolute;width:30px;height:30px;transform:rotate(45deg);border:1px solid rgba(235,206,138,.55)"></div>
+              <div style="position:absolute;width:13px;height:13px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22)"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <span style="font:600 24px/1 'Cinzel',serif;color:#F1DFB8">DiaPony</span>
+              <span style="font:400 14px/1 'Spectral',serif;color:#A2917A">Gold Seal III · 2 340 RP</span>
+            </div>
+            <div style="flex:none;text-align:right;display:flex;flex-direction:column;gap:7px">
+              <span style="font:700 30px/1 'Cinzel',serif;color:#F5EBD4">{{ youPos }}</span>
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">GLOBAL</span>
+            </div>
+          </div>
+          <div style="box-sizing:border-box;padding:11px 14px;background:linear-gradient(180deg,#EBE1C7,#D9CCAB);border:1px solid #8C7440">
+            <span style="font:400 13px/1.35 'Spectral',serif;color:#2E2417">{{ youGap }}</span>
+          </div>
+        </div>
+
+        <div style="flex:1;min-height:0"></div>
+      </div>
+
+      <!-- the fifty -->
+      <div style="flex:1;min-width:0;display:flex;gap:20px">
+
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <div style="height:30px;flex:none;display:flex;align-items:center;gap:12px;padding:0 12px">
+            <span style="width:40px;flex:none;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">#</span>
+            <span style="flex:1;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">DUELIST</span>
+            <span style="width:80px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">RP</span>
+            <span style="width:76px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">W–L</span>
+            <span style="width:44px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">WR</span>
+            <span style="width:40px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">Δ</span>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-rows:repeat(24,1fr);gap:5px">
+            <sc-for list="{{ colA }}" as="p" hint-placeholder-count="24">
+              <div style="display:flex;align-items:center;gap:12px;padding:0 12px;background:rgba(0,0,0,.34);border:1px solid rgba(220,206,248,.14);border-radius:4px;cursor:pointer;transition:border-color .14s ease-out,background .14s ease-out" style-hover="border-color:rgba(220,206,248,.5);background:rgba(220,206,248,.08)">
+                <span style="width:40px;flex:none;font:600 15px/1 'Cinzel',serif;color:#B9A3E0">{{ p.pos }}</span>
+                <i style="width:8px;height:8px;flex:none;display:block;transform:rotate(45deg);background:linear-gradient(135deg,#EFE7FA,#5E4E8C)"></i>
+                <span style="flex:1;min-width:0;font:400 15px/1 'Spectral',serif;color:#E9E3D6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                <span style="width:80px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">{{ p.rp }}</span>
+                <span style="width:76px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ p.wl }}</span>
+                <span style="width:44px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#A2917A">{{ p.wr }}</span>
+                <sc-if value="{{ p.up }}" hint-placeholder-val="{{ true }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#7ACD96">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.down }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#C05A44">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.flat }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#5C513F">{{ p.delta }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <div style="height:30px;flex:none;display:flex;align-items:center;gap:12px;padding:0 12px">
+            <span style="width:40px;flex:none;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">#</span>
+            <span style="flex:1;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">DUELIST</span>
+            <span style="width:80px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">RP</span>
+            <span style="width:76px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">W–L</span>
+            <span style="width:44px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">WR</span>
+            <span style="width:40px;flex:none;text-align:right;font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#6E6046">Δ</span>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-rows:repeat(24,1fr);gap:5px">
+            <sc-for list="{{ colBVault }}" as="p" hint-placeholder-count="11">
+              <div style="display:flex;align-items:center;gap:12px;padding:0 12px;background:rgba(0,0,0,.34);border:1px solid rgba(220,206,248,.14);border-radius:4px;cursor:pointer;transition:border-color .14s ease-out,background .14s ease-out" style-hover="border-color:rgba(220,206,248,.5);background:rgba(220,206,248,.08)">
+                <span style="width:40px;flex:none;font:600 15px/1 'Cinzel',serif;color:#B9A3E0">{{ p.pos }}</span>
+                <i style="width:8px;height:8px;flex:none;display:block;transform:rotate(45deg);background:linear-gradient(135deg,#EFE7FA,#5E4E8C)"></i>
+                <span style="flex:1;min-width:0;font:400 15px/1 'Spectral',serif;color:#E9E3D6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                <span style="width:80px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">{{ p.rp }}</span>
+                <span style="width:76px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ p.wl }}</span>
+                <span style="width:44px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#A2917A">{{ p.wr }}</span>
+                <sc-if value="{{ p.up }}" hint-placeholder-val="{{ true }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#7ACD96">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.down }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#C05A44">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.flat }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#5C513F">{{ p.delta }}</span></sc-if>
+              </div>
+            </sc-for>
+            <sc-for list="{{ colBRelic }}" as="p" hint-placeholder-count="12">
+              <div style="display:flex;align-items:center;gap:12px;padding:0 12px;background:rgba(0,0,0,.34);border:1px solid rgba(243,221,164,.14);border-radius:4px;cursor:pointer;transition:border-color .14s ease-out,background .14s ease-out" style-hover="border-color:rgba(243,221,164,.5);background:rgba(243,221,164,.08)">
+                <span style="width:40px;flex:none;font:600 15px/1 'Cinzel',serif;color:#C8A45C">{{ p.pos }}</span>
+                <i style="width:8px;height:8px;flex:none;display:block;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#A6802F)"></i>
+                <span style="flex:1;min-width:0;font:400 15px/1 'Spectral',serif;color:#E9E3D6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                <span style="width:80px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">{{ p.rp }}</span>
+                <span style="width:76px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ p.wl }}</span>
+                <span style="width:44px;flex:none;text-align:right;font:400 13px/1 'Spectral',serif;color:#A2917A">{{ p.wr }}</span>
+                <sc-if value="{{ p.up }}" hint-placeholder-val="{{ true }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#7ACD96">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.down }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#C05A44">{{ p.delta }}</span></sc-if>
+                <sc-if value="{{ p.flat }}" hint-placeholder-val="{{ false }}"><span style="width:40px;flex:none;text-align:right;font:500 12px/1 'Oswald',sans-serif;color:#5C513F">{{ p.delta }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},&quot;board&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;season&quot;,&quot;career&quot;],&quot;default&quot;:&quot;season&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Screen&quot;}}">
+class Component extends DCLogic {
+  state = { scope: null };
+
+  get scope() { return this.state.scope || this.props.board || 'season'; }
+
+  renderVals() {
+    const scope = this.scope;
+
+    // One pool of fifty. `rp` is this season, `career` is lifetime — the two tabs
+    // sort the same people by different keys and renumber from there.
+    const POOL = [
+      ['Vhalor', 6480, 24100, 412, 148], ['ashen_kite', 6395, 19880, 388, 151],
+      ['Marisol.', 6210, 22450, 401, 166], ['ORRIN_VT', 6088, 15320, 355, 149],
+      ['quartzfang', 5974, 20910, 372, 161], ['Ilse.', 5902, 14780, 341, 148],
+      ['nachtfalter', 5860, 23640, 396, 178], ['Tenebrae', 5744, 12990, 318, 141],
+      ['hollowgrin', 5688, 17220, 349, 158], ['KESTREL_09', 5612, 16480, 336, 152],
+      ['Sable Wren', 5540, 11870, 302, 138], ['mothlight', 5478, 18990, 358, 172],
+      ['Cinderhalt', 5402, 13440, 311, 147], ['VYRE', 5344, 21100, 369, 181],
+      ['Iolanthe', 5288, 10920, 288, 134], ['grimwald', 5210, 15760, 327, 159],
+      ['Perrin Ash', 5164, 12310, 296, 142], ['zephyrine', 5098, 19470, 351, 176],
+      ['Halcyon', 5042, 14020, 306, 151], ['obsidia', 4988, 11480, 279, 137],
+      ['Wren Sable', 4930, 17840, 338, 169], ['lanternjaw', 4876, 10240, 268, 132],
+      ['Corvid_', 4820, 16200, 322, 163], ['MECHATIDE', 4774, 13080, 291, 148],
+      ['saltmarrow', 4718, 20340, 356, 184], ['Bexley', 4664, 11060, 272, 141],
+      ['thornfield', 4610, 15180, 311, 162], ['Aurelio', 4562, 12640, 284, 150],
+      ['nyx.ashen', 4528, 18120, 334, 177], ['Grieve', 4512, 10680, 262, 139],
+      ['pallid_moth', 4496, 14560, 299, 158], ['Solenne', 4478, 11920, 275, 147],
+      ['ironwake', 4462, 16940, 318, 172], ['Verity Cole', 4440, 10120, 254, 136],
+      ['drossward', 4418, 13760, 288, 155], ['Ember Vale', 4396, 12180, 271, 149],
+      ['quiet_ash', 4372, 15920, 306, 168], ['Lorcan', 4348, 9860, 246, 133],
+      ['ferrous', 4326, 13220, 279, 152], ['Sibyl Crane', 4302, 11540, 262, 145],
+      ['unmade', 4280, 17380, 315, 178], ['Ada Ferrow', 4256, 9540, 238, 130],
+      ['brackwater', 4232, 12860, 271, 151], ['Nell Ashby', 4208, 11220, 254, 143],
+      ['veilstruck', 4184, 16480, 302, 174], ['Osric', 4158, 9280, 231, 128],
+      ['dimglass', 4132, 12440, 264, 149], ['Rhoswen', 4106, 10880, 247, 141],
+      ['coldkiln', 4078, 15740, 295, 171], ['Fen Marrow', 4040, 9020, 224, 126],
+    ].map(([name, rp, career, w, l]) => ({ name, rp, career, w, l }));
+
+    const key = scope === 'career' ? 'career' : 'rp';
+    const sorted = [...POOL].sort((a, b) => b[key] - a[key]);
+    const num = (v) => v.toLocaleString('en-US').replace(/,/g, ' ');
+
+    // Movement since the last update. Deterministic: derived from where a player
+    // sits on the other board, so the arrows are consistent between tabs.
+    const other = scope === 'career' ? 'rp' : 'career';
+    const otherOrder = [...POOL].sort((a, b) => b[other] - a[other]);
+
+    const shape = (p, i) => {
+      const d = otherOrder.indexOf(p) - i;
+      const move = Math.max(-9, Math.min(9, Math.round(d / 2)));
+      return {
+        pos: i + 1,
+        name: p.name,
+        rp: num(scope === 'career' ? p.career : p.rp),
+        wl: p.w + '–' + p.l,
+        wr: Math.round((p.w / (p.w + p.l)) * 100) + '%',
+        delta: move > 0 ? '▲' + move : move < 0 ? '▼' + -move : '—',
+        up: move > 0, down: move < 0, flat: move === 0,
+      };
+    };
+
+    const rows = sorted.map(shape);
+
+    return {
+      seasonOn: scope === 'season', seasonOff: scope !== 'season',
+      allTimeOn: scope === 'career', allTimeOff: scope !== 'career',
+      showSeason: () => this.setState({ scope: 'season' }),
+      showAllTime: () => this.setState({ scope: 'career' }),
+
+      updated: scope === 'career' ? 'lifetime totals' : 'updated 4 minutes ago',
+      top1: rows[0], top2: rows[1], top3: rows[2],
+      colA: rows.slice(3, 27),
+      colBVault: rows.slice(27, 38),
+      colBRelic: rows.slice(38, 50),
+
+      youPos: scope === 'career' ? '#2 106' : '#1 842',
+      youNote: scope === 'career' ? 'lifetime · 297 W' : 'Season 3 · Gold Seal III',
+      youGap: scope === 'career'
+        ? 'Career board counts every duel since launch. 486 played so far.'
+        : '1 700 RP to enter the Fifty. At +25 per win that is 68 clean wins.',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

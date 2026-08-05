@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A0705"/><rect x="58" y="58" width="84" height="84" transform="rotate(45 100 100)" fill="none" stroke="#EBCE8A" stroke-width="6"/><text x="100" y="113" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#EBCE8A" text-anchor="middle">X</text></svg></template>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#070503; color:#E9E3D6; font-family:'Oswald',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#C8A45C; text-decoration:none; border-bottom:1px solid rgba(200,164,92,.4); }
+  a:hover { color:#E6CD8F; border-bottom-color:#E6CD8F; }
+  @keyframes relEmber { 0% { transform:translateY(0) rotate(45deg); opacity:0 } 18% { opacity:.5 } 100% { transform:translateY(-320px) rotate(45deg); opacity:0 } }
+  @keyframes relSpinSlow { to { transform:rotate(360deg) } }
+</style>
+</helmet>
+
+<div style="position:relative;width:1920px;height:1080px;overflow:hidden;background:radial-gradient(ellipse 1500px 820px at 50% 40%,#2A1C12,#0A0705 78%);font-family:'Oswald',sans-serif">
+
+  <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px),repeating-linear-gradient(-45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.85)"></div>
+  <div style="position:absolute;left:300px;bottom:40px;width:7px;height:7px;transform:rotate(45deg);background:#C8A45C;opacity:0;animation:relEmber 12s linear infinite;pointer-events:none"></div>
+  <div style="position:absolute;left:1240px;bottom:60px;width:5px;height:5px;transform:rotate(45deg);background:#EBCE8A;opacity:0;animation:relEmber 14s linear infinite 4.4s;pointer-events:none"></div>
+
+  <div style="position:relative;height:100%;display:flex;flex-direction:column">
+
+    <!-- top bar -->
+    <div style="height:92px;flex:none;box-sizing:border-box;padding:0 64px;display:flex;align-items:center;gap:26px;border-bottom:1px solid rgba(200,164,92,.2)">
+      <button style="display:flex;align-items:center;gap:11px;padding:12px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.35);border-radius:6px;color:#C8B189;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.2em;cursor:pointer" style-hover="border-color:#C8A45C;color:#F1DFB8;background:rgba(200,164,92,.14)">◀ MENU</button>
+      <div style="width:1px;height:34px;background:rgba(200,164,92,.24)"></div>
+      <div style="display:flex;align-items:center;gap:13px">
+        <i style="width:9px;height:9px;display:block;background:#C8A45C;transform:rotate(45deg)"></i>
+        <span style="font:500 12px/1 'Oswald',sans-serif;letter-spacing:.4em;color:#9C8A6A">THE TEN SEALS</span>
+      </div>
+      <div style="flex:1"></div>
+      <span style="font:400 14px/1 'Spectral',serif;color:#8C7B5F">10 ranks · 5 sub-ranks each · 50 steps to the vault</span>
+      <div style="width:1px;height:34px;background:rgba(200,164,92,.24)"></div>
+      <div style="display:flex;align-items:center;gap:11px;padding:10px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(235,206,138,.4);border-radius:6px">
+        <i style="width:11px;height:11px;display:block;background:linear-gradient(135deg,#F6E4B4,#8E6A22);transform:rotate(45deg)"></i>
+        <span style="font:600 15px/1 'Cinzel',serif;color:#F1DFB8">GOLD SEAL III</span>
+        <span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">2 340 RP</span>
+      </div>
+    </div>
+
+    <!-- body -->
+    <div style="flex:1;box-sizing:border-box;padding:34px 64px;display:flex;gap:28px;min-height:0">
+
+      <!-- ladder -->
+      <div style="flex:1;min-width:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,1fr);gap:16px 20px">
+
+        <button onClick="{{ pick.r1 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(138,133,123,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(138,133,123,.8);background:rgba(138,133,123,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #8A857B;background:linear-gradient(135deg,rgba(110,106,98,.2),transparent 70%)"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#7A756C">RANK 01</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#CFCAC0">ASH SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#7A756C">0 – 399 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,133,123,.7)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,133,123,.7)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,133,123,.7)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,133,123,.7)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,133,123,.7)"></i>
+          </div>
+          <sc-if value="{{ sel.r1 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#8A857B;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r6 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(235,206,138,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(235,206,138,.85);background:rgba(235,206,138,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 14px rgba(235,206,138,.4))">
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(235,206,138,.28)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #EBCE8A;background:linear-gradient(135deg,rgba(246,228,180,.22),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(235,206,138,.6)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22)"></div>
+            <div style="position:absolute;left:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#EBCE8A"></div>
+            <div style="position:absolute;right:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#EBCE8A"></div>
+            <div style="position:absolute;left:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#EBCE8A"></div>
+            <div style="position:absolute;right:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#EBCE8A"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#B79A62">RANK 06</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#F5EBD4">GOLD SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#B79A62">2 100 – 2 599 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(235,206,138,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(235,206,138,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(235,206,138,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(235,206,138,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(235,206,138,.8)"></i>
+          </div>
+          <sc-if value="{{ sel.r6 }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#EBCE8A;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r2 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(192,138,94,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(192,138,94,.8);background:rgba(192,138,94,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #C08A5E;background:linear-gradient(135deg,rgba(165,113,74,.22),transparent 70%)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#A5714A,#4A2F1C)"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9A7052">RANK 02</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#E6C4A6">CLAY SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#9A7052">400 – 799 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(192,138,94,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(192,138,94,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(192,138,94,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(192,138,94,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(192,138,94,.75)"></i>
+          </div>
+          <sc-if value="{{ sel.r2 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#C08A5E;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r7 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(138,130,168,.4);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(138,130,168,.9);background:rgba(138,130,168,.12)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 14px rgba(138,130,168,.4))">
+            <div style="position:absolute;width:100px;height:100px;border-radius:50%;border:1px solid rgba(138,130,168,.45)"></div>
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(138,130,168,.3)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #8A82A8;background:linear-gradient(135deg,rgba(90,84,112,.4),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(138,130,168,.6)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#5A5470,#16131F)"></div>
+            <div style="position:absolute;left:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#8A82A8"></div>
+            <div style="position:absolute;right:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#8A82A8"></div>
+            <div style="position:absolute;left:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#8A82A8"></div>
+            <div style="position:absolute;right:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#8A82A8"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#8A82A8">RANK 07</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#D6D0EA">OBSIDIAN SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#8A82A8">2 600 – 3 199 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,130,168,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,130,168,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,130,168,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,130,168,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(138,130,168,.85)"></i>
+          </div>
+          <sc-if value="{{ sel.r7 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#8A82A8;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r3 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(224,154,92,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(224,154,92,.8);background:rgba(224,154,92,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #E09A5C;background:linear-gradient(135deg,rgba(197,123,69,.24),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(224,154,92,.55)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#C57B45,#5A3016)"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#B0784C">RANK 03</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#F2CBA6">COPPER SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#B0784C">800 – 1 199 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(224,154,92,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(224,154,92,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(224,154,92,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(224,154,92,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(224,154,92,.75)"></i>
+          </div>
+          <sc-if value="{{ sel.r3 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#E09A5C;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r8 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(255,201,120,.4);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(255,201,120,.9);background:rgba(255,201,120,.12)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 18px rgba(240,165,74,.45))">
+            <div style="position:absolute;width:104px;height:2px;background:rgba(255,201,120,.22)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(90deg);background:rgba(255,201,120,.22)"></div>
+            <div style="position:absolute;width:100px;height:100px;border-radius:50%;border:1px solid rgba(255,201,120,.5)"></div>
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(255,201,120,.32)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #FFC978;background:linear-gradient(135deg,rgba(240,165,74,.32),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(255,201,120,.65)"></div>
+            <div style="position:absolute;width:22px;height:22px;transform:rotate(45deg);background:linear-gradient(135deg,#F0A54A,#7A3D0C)"></div>
+            <div style="position:absolute;left:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#FFC978"></div>
+            <div style="position:absolute;right:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#FFC978"></div>
+            <div style="position:absolute;left:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#FFC978"></div>
+            <div style="position:absolute;right:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#FFC978"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#C89A5E">RANK 08</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#FFDCA8">AMBER SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#C89A5E">3 200 – 3 799 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(255,201,120,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(255,201,120,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(255,201,120,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(255,201,120,.85)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(255,201,120,.85)"></i>
+          </div>
+          <sc-if value="{{ sel.r8 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#FFC978;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r4 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(174,185,196,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(174,185,196,.8);background:rgba(174,185,196,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(174,185,196,.28)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #AEB9C4;background:linear-gradient(135deg,rgba(143,154,165,.24),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(174,185,196,.55)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#8F9AA5,#3A424B)"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#8A939C">RANK 04</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#DCE3EA">IRON SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#8A939C">1 200 – 1 599 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(174,185,196,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(174,185,196,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(174,185,196,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(174,185,196,.75)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(174,185,196,.75)"></i>
+          </div>
+          <sc-if value="{{ sel.r4 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#AEB9C4;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r9 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(243,221,164,.45);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:#F3DDA4;background:rgba(243,221,164,.13)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 22px rgba(248,238,214,.5))">
+            <div style="position:absolute;width:104px;height:2px;background:rgba(243,221,164,.26)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(90deg);background:rgba(243,221,164,.26)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(45deg);background:rgba(243,221,164,.18)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(135deg);background:rgba(243,221,164,.18)"></div>
+            <div style="position:absolute;width:100px;height:100px;border-radius:50%;border:1px solid rgba(243,221,164,.55)"></div>
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(243,221,164,.35)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #F3DDA4;background:linear-gradient(135deg,rgba(248,238,214,.3),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);background:linear-gradient(135deg,rgba(248,238,214,.35),rgba(166,128,47,.15));border:1px solid rgba(243,221,164,.7)"></div>
+            <div style="position:absolute;width:24px;height:24px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#A6802F)"></div>
+            <div style="position:absolute;left:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#F3DDA4"></div>
+            <div style="position:absolute;right:9px;top:9px;width:8px;height:8px;transform:rotate(45deg);background:#F3DDA4"></div>
+            <div style="position:absolute;left:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#F3DDA4"></div>
+            <div style="position:absolute;right:9px;bottom:9px;width:8px;height:8px;transform:rotate(45deg);background:#F3DDA4"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#C8A45C">RANK 09</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#F8EED6">RELIC SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#C8A45C">3 800 – 4 499 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #F3DDA4"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #F3DDA4"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #F3DDA4"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #F3DDA4"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #F3DDA4"></i>
+          </div>
+          <sc-if value="{{ sel.r9 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#F3DDA4;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r5 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:rgba(0,0,0,.42);border:1px solid rgba(240,244,248,.35);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(240,244,248,.8);background:rgba(240,244,248,.1)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 12px rgba(214,220,228,.3))">
+            <div style="position:absolute;width:88px;height:88px;border:1px solid rgba(240,244,248,.28)"></div>
+            <div style="position:absolute;width:88px;height:88px;transform:rotate(45deg);border:2px solid #F0F4F8;background:linear-gradient(135deg,rgba(214,220,228,.26),transparent 70%)"></div>
+            <div style="position:absolute;width:52px;height:52px;transform:rotate(45deg);border:1px solid rgba(240,244,248,.6)"></div>
+            <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);background:linear-gradient(135deg,#D6DCE4,#6E7783)"></div>
+            <div style="position:absolute;left:6px;width:8px;height:8px;transform:rotate(45deg);background:#F0F4F8"></div>
+            <div style="position:absolute;right:6px;width:8px;height:8px;transform:rotate(45deg);background:#F0F4F8"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9AA3AE">RANK 05</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#F4F7FA">SILVER SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#9AA3AE">1 600 – 2 099 RP</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(240,244,248,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(240,244,248,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(240,244,248,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(240,244,248,.8)"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid rgba(240,244,248,.8)"></i>
+          </div>
+          <sc-if value="{{ sel.r5 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:#F0F4F8;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+        <button onClick="{{ pick.r10 }}" style="position:relative;box-sizing:border-box;padding:0 20px;text-align:left;background:linear-gradient(120deg,rgba(94,78,140,.28),rgba(0,0,0,.5) 60%);border:2px solid rgba(220,206,248,.6);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:18px;transition:border-color .16s ease-out,box-shadow .16s ease-out" style-hover="border-color:#EFE7FA;box-shadow:0 0 34px rgba(220,206,248,.3)">
+          <div style="position:relative;width:104px;height:104px;flex:none;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 26px rgba(220,206,248,.6))">
+            <div style="position:absolute;width:104px;height:104px;border-radius:50%;border:1px dashed rgba(220,206,248,.35);animation:relSpinSlow 22s linear infinite"></div>
+            <div style="position:absolute;width:104px;height:2px;background:rgba(220,206,248,.3)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(90deg);background:rgba(220,206,248,.3)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(45deg);background:rgba(220,206,248,.2)"></div>
+            <div style="position:absolute;width:104px;height:2px;transform:rotate(135deg);background:rgba(220,206,248,.2)"></div>
+            <div style="position:absolute;width:92px;height:92px;border-radius:50%;border:1px solid rgba(220,206,248,.55)"></div>
+            <div style="position:absolute;width:84px;height:84px;border:1px solid rgba(220,206,248,.4)"></div>
+            <div style="position:absolute;width:84px;height:84px;transform:rotate(45deg);border:2px solid #EFE7FA;background:linear-gradient(135deg,rgba(220,206,248,.34),transparent 70%)"></div>
+            <div style="position:absolute;width:50px;height:50px;transform:rotate(45deg);background:linear-gradient(135deg,rgba(239,231,250,.4),rgba(94,78,140,.2));border:1px solid rgba(239,231,250,.75)"></div>
+            <div style="position:absolute;width:24px;height:24px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#8E6A22);box-shadow:0 0 18px rgba(248,238,214,.7)"></div>
+            <div style="position:absolute;left:8px;top:8px;width:8px;height:8px;transform:rotate(45deg);background:#EFE7FA"></div>
+            <div style="position:absolute;right:8px;top:8px;width:8px;height:8px;transform:rotate(45deg);background:#EFE7FA"></div>
+            <div style="position:absolute;left:8px;bottom:8px;width:8px;height:8px;transform:rotate(45deg);background:#EFE7FA"></div>
+            <div style="position:absolute;right:8px;bottom:8px;width:8px;height:8px;transform:rotate(45deg);background:#EFE7FA"></div>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#B9A3E0">RANK 10 · APEX</span>
+            <span style="font:600 25px/1 'Cinzel',serif;letter-spacing:.04em;color:#F6F1FE">VAULT SEAL</span>
+            <span style="font:400 13px/1 'Spectral',serif;color:#B9A3E0">4 500 RP and above</span>
+          </div>
+          <div style="flex:none;display:flex;gap:6px;padding-right:4px">
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #EFE7FA"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #EFE7FA"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #EFE7FA"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #EFE7FA"></i>
+            <i style="width:9px;height:9px;display:block;transform:rotate(45deg);border:1px solid #EFE7FA"></i>
+          </div>
+          <sc-if value="{{ sel.r10 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:-2px;top:-2px;bottom:-2px;width:4px;background:#EFE7FA;border-radius:8px 0 0 8px"></div></sc-if>
+        </button>
+
+      </div>
+
+      <!-- detail -->
+      <div style="width:620px;flex:none;display:flex;flex-direction:column;gap:20px;--m1:{{ sel.m1 }};--m2:{{ sel.m2 }};--edge:{{ sel.edge }};--soft:{{ sel.soft }}">
+
+        <div style="flex:none;box-sizing:border-box;padding:24px 26px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9C8A6A">SUB-RANKS</span>
+            <span style="font:600 17px/1 'Cinzel',serif;color:#F1DFB8">{{ sel.name }}</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:center;gap:16px;padding:11px 14px;background:rgba(0,0,0,.3);border:1px solid rgba(200,164,92,.16);border-radius:5px">
+              <span style="width:26px;flex:none;font:700 17px/1 'Cinzel',serif;color:var(--edge)">I</span>
+              <div style="flex:none;display:flex;gap:6px">
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+              </div>
+              <div style="flex:1"></div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ sel.t1 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:11px 14px;background:rgba(0,0,0,.3);border:1px solid rgba(200,164,92,.16);border-radius:5px">
+              <span style="width:26px;flex:none;font:700 17px/1 'Cinzel',serif;color:var(--edge)">II</span>
+              <div style="flex:none;display:flex;gap:6px">
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+              </div>
+              <div style="flex:1"></div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ sel.t2 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:11px 14px;background:rgba(0,0,0,.3);border:1px solid rgba(200,164,92,.16);border-radius:5px">
+              <span style="width:26px;flex:none;font:700 17px/1 'Cinzel',serif;color:var(--edge)">III</span>
+              <div style="flex:none;display:flex;gap:6px">
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+              </div>
+              <div style="flex:1"></div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ sel.t3 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:11px 14px;background:rgba(0,0,0,.3);border:1px solid rgba(200,164,92,.16);border-radius:5px">
+              <span style="width:26px;flex:none;font:700 17px/1 'Cinzel',serif;color:var(--edge)">IV</span>
+              <div style="flex:none;display:flex;gap:6px">
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);border:1px solid var(--soft)"></i>
+              </div>
+              <div style="flex:1"></div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ sel.t4 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:11px 14px;background:rgba(0,0,0,.3);border:1px solid var(--soft);border-radius:5px">
+              <span style="width:26px;flex:none;font:700 17px/1 'Cinzel',serif;color:var(--edge)">V</span>
+              <div style="flex:none;display:flex;gap:6px">
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+                <i style="width:10px;height:10px;display:block;transform:rotate(45deg);background:var(--edge)"></i>
+              </div>
+              <div style="flex:1"></div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ sel.t5 }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:none;box-sizing:border-box;padding:24px 26px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;gap:18px">
+          <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9C8A6A">EMBLEM SIZES</span>
+          <div style="display:flex;align-items:flex-end;gap:30px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:96px;height:96px;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;width:82px;height:82px;border:1px solid var(--soft)"></div>
+                <div style="position:absolute;width:82px;height:82px;transform:rotate(45deg);border:2px solid var(--edge)"></div>
+                <div style="position:absolute;width:48px;height:48px;transform:rotate(45deg);border:1px solid var(--soft)"></div>
+                <div style="position:absolute;width:19px;height:19px;transform:rotate(45deg);background:linear-gradient(135deg,var(--m1),var(--m2))"></div>
+              </div>
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#6E6046">96 PX</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;width:41px;height:41px;transform:rotate(45deg);border:2px solid var(--edge)"></div>
+                <div style="position:absolute;width:24px;height:24px;transform:rotate(45deg);border:1px solid var(--soft)"></div>
+                <div style="position:absolute;width:11px;height:11px;transform:rotate(45deg);background:linear-gradient(135deg,var(--m1),var(--m2))"></div>
+              </div>
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#6E6046">48 PX</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:24px;height:24px;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;width:20px;height:20px;transform:rotate(45deg);border:1.5px solid var(--edge)"></div>
+                <div style="position:absolute;width:8px;height:8px;transform:rotate(45deg);background:linear-gradient(135deg,var(--m1),var(--m2))"></div>
+              </div>
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#6E6046">24 PX</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding-bottom:22px">
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#6E6046">HUD CHIP</span>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:rgba(0,0,0,.5);border:1px solid var(--soft);border-radius:5px">
+                <i style="width:11px;height:11px;flex:none;display:block;transform:rotate(45deg);background:linear-gradient(135deg,var(--m1),var(--m2))"></i>
+                <span style="font:600 13px/1 'Cinzel',serif;color:#F1DFB8;white-space:nowrap">{{ sel.chip }}</span>
+              </div>
+            </div>
+          </div>
+          <span style="font:400 13px/1.45 'Spectral',serif;color:#8C7B5F;text-wrap:pretty">At 24 px only the outer diamond and the core survive. Corner pips, rings and spokes drop out below 48 px.</span>
+        </div>
+
+        <div style="flex:1;min-height:0;box-sizing:border-box;padding:22px 24px;background:linear-gradient(180deg,#EBE1C7,#D9CCAB);border:1px solid #8C7440;border-radius:4px;display:flex;flex-direction:column;gap:12px">
+          <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#7A5A1E">PROMOTION</span>
+          <span style="font:400 15px/1.5 'Spectral',serif;color:#2E2417;text-wrap:pretty">Below Gold Seal a win adds 20–25 RP and a loss takes only 15–20, so climbing is faster than falling. From Gold Seal upward it is flat: <strong style="font-weight:600">+25 for a win, −25 for a loss</strong>.</span>
+          <span style="font:400 15px/1.5 'Spectral',serif;color:#2E2417;text-wrap:pretty">Crossing a sub-rank threshold promotes you immediately; there is no series to play.</span>
+          <span style="font:400 15px/1.5 'Spectral',serif;color:#2E2417;text-wrap:pretty">You cannot fall out of a rank once you enter it — Gold Seal I is a floor. Within a rank, sub-ranks can be lost.</span>
+          <span style="font:400 15px/1.5 'Spectral',serif;color:#2E2417;text-wrap:pretty">Vault Seal has no RP ceiling. Its five sub-ranks are cut by leaderboard position instead: V is the top 100, I is everyone above 4 500 RP.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},&quot;selected&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:1,&quot;max&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;}}">
+class Component extends DCLogic {
+  state = { rank: null };
+
+  get rank() { return this.state.rank || this.props.selected || 6; }
+
+  renderVals() {
+    // lo/hi are the rank's RP band; the five sub-ranks cut it into equal steps.
+    const RANKS = [
+      { n: 1, name: 'ASH SEAL', m1: '#6E6A62', m2: '#35322D', edge: '#8A857B', soft: 'rgba(138,133,123,.45)', lo: 0, hi: 400 },
+      { n: 2, name: 'CLAY SEAL', m1: '#A5714A', m2: '#4A2F1C', edge: '#C08A5E', soft: 'rgba(192,138,94,.45)', lo: 400, hi: 800 },
+      { n: 3, name: 'COPPER SEAL', m1: '#C57B45', m2: '#5A3016', edge: '#E09A5C', soft: 'rgba(224,154,92,.45)', lo: 800, hi: 1200 },
+      { n: 4, name: 'IRON SEAL', m1: '#8F9AA5', m2: '#3A424B', edge: '#AEB9C4', soft: 'rgba(174,185,196,.45)', lo: 1200, hi: 1600 },
+      { n: 5, name: 'SILVER SEAL', m1: '#D6DCE4', m2: '#6E7783', edge: '#F0F4F8', soft: 'rgba(240,244,248,.45)', lo: 1600, hi: 2100 },
+      { n: 6, name: 'GOLD SEAL', m1: '#F6E4B4', m2: '#8E6A22', edge: '#EBCE8A', soft: 'rgba(235,206,138,.45)', lo: 2100, hi: 2600 },
+      { n: 7, name: 'OBSIDIAN SEAL', m1: '#5A5470', m2: '#16131F', edge: '#8A82A8', soft: 'rgba(138,130,168,.5)', lo: 2600, hi: 3200 },
+      { n: 8, name: 'AMBER SEAL', m1: '#F0A54A', m2: '#7A3D0C', edge: '#FFC978', soft: 'rgba(255,201,120,.5)', lo: 3200, hi: 3800 },
+      { n: 9, name: 'RELIC SEAL', m1: '#F8EED6', m2: '#A6802F', edge: '#F3DDA4', soft: 'rgba(243,221,164,.55)', lo: 3800, hi: 4500 },
+      { n: 10, name: 'VAULT SEAL', m1: '#EFE7FA', m2: '#5E4E8C', edge: '#EFE7FA', soft: 'rgba(220,206,248,.55)', lo: 4500, hi: null },
+    ];
+
+    const rank = this.rank;
+    const r = RANKS[rank - 1];
+    const num = (v) => v.toLocaleString('en-US').replace(/,/g, ' ');
+    const LEADER = ['top 20 000', 'top 8 000', 'top 2 500', 'top 600', 'top 100'];
+    const step = r.hi ? (r.hi - r.lo) / 5 : 0;
+    const band = (i) => r.hi
+      ? num(r.lo + step * i) + ' – ' + num(r.lo + step * (i + 1) - 1) + ' RP'
+      : LEADER[i];
+
+    const sel = {
+      name: r.name, m1: r.m1, m2: r.m2, edge: r.edge, soft: r.soft,
+      chip: r.name + ' III',
+      t1: band(0), t2: band(1), t3: band(2), t4: band(3), t5: band(4),
+    };
+    const pick = {};
+    for (let i = 1; i <= 10; i++) {
+      sel['r' + i] = rank === i;
+      pick['r' + i] = () => this.setState({ rank: i });
+    }
+    return { sel, pick };
+  }
+}
+
+</script>
+</body>
+</html>

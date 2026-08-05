@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: VampiricChalice
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ArtifactCardData
+  cardName: Vampiric Chalice
+  artwork: {fileID: -8687343629607598871, guid: d4d373204b5e86641aa09a87a812a392, type: 3}
+  rarity: 2
+  effects:
+  - label: Crimson Toll
+    text: 'During your Standby Phase: You can inflict 200 damage to your opponent,
+      and you gain 200 LP.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 6
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 0
+      isCost: 0
+      amount: 200
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 1
+      isCost: 0
+      amount: 200
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  slot: 1
+  atkBonus: 0
+  defBonus: 0
+  protectTypeFromEffectDestruction: 0
+  protectedType: 0

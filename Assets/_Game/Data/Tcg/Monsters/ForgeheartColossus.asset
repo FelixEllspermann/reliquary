@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: ForgeheartColossus
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Forgeheart Colossus
+  artwork: {fileID: -8319382298452678060, guid: b16ad96f0ebef5845b7a824bdeb4a06e, type: 3}
+  rarity: 3
+  effects:
+  - label: Forge Line
+    text: 'When this card is Summoned: You can Special Summon 1 Level 1 "Forgeheart"
+      monster from your hand or Graveyard.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 31
+      isCost: 0
+      amount: 1
+      target: 8
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 1
+      targetCount: 1
+      nameFilter: Forgeheart
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Emberplate
+    text: 'You can pay 2 Mana: This card gains 700 DEF until the end of the turn.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 1
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 30
+      isCost: 0
+      amount: 700
+      target: 15
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 3
+  monsterType: 4
+  atk: 2500
+  def: 2100
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 1
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: HexweaverGrandMagus
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Hexweaver Grand Magus
+  artwork: {fileID: -7804484769600755363, guid: a6e4474bcab32e34c806c46216e9606d, type: 3}
+  rarity: 3
+  effects:
+  - label: Grand Design
+    text: 'When this card is Summoned: You can Set 1 "Hexweaver" Spell from your
+      Deck, then draw 1 card.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 23
+      isCost: 0
+      amount: 1
+      target: 11
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Hexweaver
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 2
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Unravel and Restore
+    text: 'You can pay 3 Mana: Return 1 Spell from your Graveyard to your hand.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 16
+      isCost: 0
+      amount: 1
+      target: 17
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 1
+  monsterType: 1
+  atk: 2100
+  def: 2000
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 1
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotForgeheart
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.DeckDefinition
+  deckName: The Worldanvil Choir
+  playerCard: {fileID: 11400000, guid: 7a0c339fa6bf8ab4b95de7e72a79091b, type: 2}
+  cards:
+  - {fileID: 11400000, guid: e16770333df04c5a9df7d33614c6d095, type: 2}
+  - {fileID: 11400000, guid: e16770333df04c5a9df7d33614c6d095, type: 2}
+  - {fileID: 11400000, guid: e16770333df04c5a9df7d33614c6d095, type: 2}
+  - {fileID: 11400000, guid: 2aff82ab1b8e4ceebbec22a94978687b, type: 2}
+  - {fileID: 11400000, guid: 2aff82ab1b8e4ceebbec22a94978687b, type: 2}
+  - {fileID: 11400000, guid: 2aff82ab1b8e4ceebbec22a94978687b, type: 2}
+  - {fileID: 11400000, guid: d99a2b4918954cea981c8b9d6b9bc2a0, type: 2}
+  - {fileID: 11400000, guid: d99a2b4918954cea981c8b9d6b9bc2a0, type: 2}
+  - {fileID: 11400000, guid: d99a2b4918954cea981c8b9d6b9bc2a0, type: 2}
+  - {fileID: 11400000, guid: 20da69804be248a9b5cb0e0101a0690a, type: 2}
+  - {fileID: 11400000, guid: 20da69804be248a9b5cb0e0101a0690a, type: 2}
+  - {fileID: 11400000, guid: 20da69804be248a9b5cb0e0101a0690a, type: 2}
+  - {fileID: 11400000, guid: 6bdd4faf890c4753a00d3e5bb1e0ab00, type: 2}
+  - {fileID: 11400000, guid: 6bdd4faf890c4753a00d3e5bb1e0ab00, type: 2}
+  - {fileID: 11400000, guid: 6bdd4faf890c4753a00d3e5bb1e0ab00, type: 2}
+  - {fileID: 11400000, guid: 716630bcd05f45a581cf260f83d87a38, type: 2}
+  - {fileID: 11400000, guid: 716630bcd05f45a581cf260f83d87a38, type: 2}
+  - {fileID: 11400000, guid: 716630bcd05f45a581cf260f83d87a38, type: 2}
+  - {fileID: 11400000, guid: eeb03c41e58749ab80fa1ff9e5a96157, type: 2}
+  - {fileID: 11400000, guid: eeb03c41e58749ab80fa1ff9e5a96157, type: 2}
+  - {fileID: 11400000, guid: eeb03c41e58749ab80fa1ff9e5a96157, type: 2}
+  - {fileID: 11400000, guid: 966a605bcc7a45f18e0d42a76f7297ea, type: 2}
+  - {fileID: 11400000, guid: 966a605bcc7a45f18e0d42a76f7297ea, type: 2}
+  - {fileID: 11400000, guid: a2b81560856c4e1c8becb31f12ef6723, type: 2}
+  - {fileID: 11400000, guid: a2b81560856c4e1c8becb31f12ef6723, type: 2}
+  - {fileID: 11400000, guid: a2b81560856c4e1c8becb31f12ef6723, type: 2}
+  - {fileID: 11400000, guid: b267b48feadb449b8a51421065a341bb, type: 2}
+  - {fileID: 11400000, guid: b267b48feadb449b8a51421065a341bb, type: 2}
+  - {fileID: 11400000, guid: 433b609ef33b42bea64e74e10f8069eb, type: 2}
+  - {fileID: 11400000, guid: 433b609ef33b42bea64e74e10f8069eb, type: 2}
+  - {fileID: 11400000, guid: 93f221944604c9449bb94f7b9c3b4e29, type: 2}
+  - {fileID: 11400000, guid: 93f221944604c9449bb94f7b9c3b4e29, type: 2}
+  - {fileID: 11400000, guid: 93f221944604c9449bb94f7b9c3b4e29, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: 2c57bc1f1513414fbda0fd0c852a3862, type: 2}
+  - {fileID: 11400000, guid: 2c57bc1f1513414fbda0fd0c852a3862, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: 708b3cae4e614cc5ed9abcdf7f81a3c6, type: 2}
+  - {fileID: 11400000, guid: 708b3cae4e614cc5ed9abcdf7f81a3c6, type: 2}
+  - {fileID: 11400000, guid: 819c2dbf5f724dd6feabcde08092b4d7, type: 2}
+  - {fileID: 11400000, guid: b4cf1ae28ca540092bdef113b3a5e70a, type: 2}

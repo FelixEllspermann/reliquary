@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: LightningStrike
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Lightning Strike
+  artwork: {fileID: 606989999377294838, guid: bce486688dd4f5140a4754c9e36d6635, type: 3}
+  rarity: 1
+  effects:
+  - label: Bolt
+    text: Pay 1 Mana; 1 opponent's monster permanently loses 800 ATK.
+    isInfused: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 8
+      amount: 800
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Annihilation Bolt
+    text: Pay 3 Mana; destroy 1 opponent's monster.
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 3
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 4
+      amount: 1
+      target: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 1

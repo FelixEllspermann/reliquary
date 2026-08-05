@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: TheCullingSeason
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: The Culling Season
+  artwork: {fileID: -8044844041506656994, guid: 55bc4e55b550e464593bbcc0077c0a56, type: 3}
+  rarity: 3
+  effects:
+  - label: The Culling Season
+    text: 'Pay 4 Mana: Destroy all monsters on the field, except Beasts.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 4
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 25
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 3
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 0

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: LightDragon
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Light Dragon
+  artwork: {fileID: -7284374530135840428, guid: 53cac18299d25aa449f5fd8c64c0792a, type: 3}
+  rarity: 3
+  effects:
+  - label: Light Storm
+    text: 'Once per turn: You can pay 3 Mana; gain 600 LP and inflict 600 damage
+      to your opponent.'
+    isInfused: 1
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    actions:
+    - type: 1
+      amount: 600
+      target: 0
+    - type: 0
+      amount: 600
+      target: 0
+  level: 3
+  attribute: 0
+  monsterType: 0
+  atk: 3000
+  def: 2400

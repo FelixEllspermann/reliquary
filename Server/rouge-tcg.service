@@ -1,0 +1,15 @@
+[Unit]
+Description=Rouge TCG Lobby/Relay Server (Port 7777)
+After=network.target
+
+[Service]
+Type=simple
+User=rouge
+WorkingDirectory=/opt/rouge-tcg
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=3
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target

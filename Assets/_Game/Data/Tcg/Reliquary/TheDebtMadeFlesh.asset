@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: TheDebtMadeFlesh
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ReliquaryCardData
+  cardName: The Debt Made Flesh
+  artwork: {fileID: 8139105625262398161, guid: b9d685b66d132cf4d883baef56571d00, type: 3}
+  rarity: 3
+  effects:
+  - label: Collection Day
+    text: 'When this card is Summoned: Destroy 1 monster your opponent controls.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 1
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 3
+  attribute: 1
+  monsterType: 5
+  atk: 3000
+  def: 2000
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 0
+  summonText: Your LP are 4000 or less. Cost 3 Mana. Banish 2 monsters from your
+    Graveyard.
+  summonManaCost: 3
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 4000
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 2
+  costTributeOtherMonster: 0

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: DragonRider
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.MonsterCardData
+  cardName: Dragon Rider
+  artwork: {fileID: -278507825208542654, guid: 2f44ff5953b4cc0478a0c42d6ae2ca01, type: 3}
+  rarity: 2
+  effects:
+  - label: Soul Toll
+    text: 'If this card is Summoned: Banish 2 cards from either Graveyard.'
+    isInfused: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 21
+      amount: 1
+      target: 9
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 2
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Ride the Lost
+    text: 'Once per turn: You can pay 3 Mana; Special Summon 1 Dragon-Type monster
+      that is currently banished (from either banishment).'
+    isInfused: 1
+    manaCost: 3
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 22
+      amount: 1
+      target: 10
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  level: 2
+  attribute: 0
+  monsterType: 0
+  atk: 1700
+  def: 1300
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1

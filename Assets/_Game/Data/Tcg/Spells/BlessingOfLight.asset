@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: BlessingOfLight
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Blessing of Light
+  artwork: {fileID: -7519763627740705118, guid: b68115bbd75ddca4eafc39679ae15986, type: 3}
+  rarity: 2
+  effects:
+  - label: Blessing
+    text: Pay 2 Mana; gain 1500 LP.
+    isInfused: 0
+    manaCost: 2
+    trigger: 2
+    oncePerTurn: 0
+    actions:
+    - type: 1
+      amount: 1500
+      target: 0
+  - label: Greater Blessing
+    text: Pay 4 Mana; gain 3500 LP.
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 4
+    trigger: 2
+    oncePerTurn: 0
+    actions:
+    - type: 1
+      amount: 3500
+      target: 0
+  speed: 0

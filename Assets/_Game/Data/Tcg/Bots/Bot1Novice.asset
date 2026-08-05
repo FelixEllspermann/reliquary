@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c382f488a06671248bd01bbbb06bdeb5, type: 3}
+  m_Name: Bot1Novice
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.BotOpponentDefinition
+  displayName: The Novice
+  chipNote: "PLAYS OPENLY \xB7 NO TRAPS"
+  blurb: "The Novice never reacts on your turn \u2014 no quick spells, no ambushes.
+    Learn the flow of the vault safely."
+  deck: {fileID: 11400000, guid: 0fa4047d66906f248898e3dfde9171e1, type: 2}
+  lifePointsOverride: 0
+  bonusManaPerTurn: 0
+  noviceMode: 1

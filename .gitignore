@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------
+# Unity — alles, was der Editor selbst wieder herstellt
+# ---------------------------------------------------------------
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Von Unity erzeugte Projektdateien der IDEs
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.idea/
+.vscode/
+
+# Crash-Berichte und Symbole
+sysinfo.txt
+*.stackdump
+crashlytics-build.properties
+
+# Burst-Debugdaten aus dem Player-Build — heisst wörtlich "nicht ausliefern"
+*_BurstDebugInformation_DoNotShip*/
+*_BackUpThisFolder_ButDontShipItWithYourGame/
+
+# ---------------------------------------------------------------
+# Fremdes, das man sich holt statt es mitzuschleppen
+# ---------------------------------------------------------------
+# Steamworks SDK (~195 MB) — bei Valve herunterladen, siehe Server/STEAM-SETUP.md
+/sdk/
+
+# ---------------------------------------------------------------
+# Server
+# ---------------------------------------------------------------
+node_modules/
+Server/duelhost/bin/
+Server/duelhost/obj/
+
+# Live-Daten und Zugangsdaten gehören NIE ins Repo.
+# Der Steam-Web-API-Key liegt auf dem vServer in /etc/rouge-tcg.env (root, 600)
+# und wird ausschliesslich über process.env gelesen.
+*.env
+.env*
+Server/data/accounts.db
+Server/data/*.db
+Server/data/*.sqlite*
+Server/data/feedback/
+
+# ---------------------------------------------------------------
+# Arbeitsreste
+# ---------------------------------------------------------------
+Screenshots/
+*.zip
+*.bak
+*.bak-*
+*.orig
+Thumbs.db
+.DS_Store

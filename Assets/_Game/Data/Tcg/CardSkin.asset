@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65390be944677aa41a4ee181f8a0f621, type: 3}
+  m_Name: CardSkin
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.CardSkin
+  chassisMonster: {fileID: 21300000, guid: 8932bc34367d53643873396386eff3cd, type: 3}
+  chassisSpell: {fileID: 21300000, guid: 9cbac2a523d556540806cf4edd7ae0e0, type: 3}
+  chassisArtifact: {fileID: 21300000, guid: 55f665740e687e24c91fc8fb2b52717b, type: 3}
+  chassisPlayer: {fileID: 21300000, guid: f12d907c4541fc9409257200074e64cf, type: 3}
+  chassisReliquary: {fileID: 21300000, guid: 57edf032041dc4e448f28b10e3a5cb14, type: 3}
+  cardBack: {fileID: 21300000, guid: 1fdd8d314b637ef4d9b2760c1a88a728, type: 3}
+  artworkVignette: {fileID: 21300000, guid: 5361e025e15574b45810f40a60d1032c, type: 3}
+  whiteFrame: {fileID: 21300000, guid: 41435a67ae7bf9e48b0503f2c0c2ef63, type: 3}
+  whiteSquare: {fileID: 21300000, guid: 67cabb8288ebf284596ff24b72bc0edf, type: 3}
+  crestMonster: {fileID: 21300000, guid: 16e9b780c18a9c94a840ae81e3c75b06, type: 3}
+  crestSpell: {fileID: 21300000, guid: 40921bc2d4757f949afca4a9d4ef9285, type: 3}
+  crestArtifact: {fileID: 21300000, guid: de95005274c61824db20edd96b285c2a, type: 3}
+  badgeMonster: {fileID: 21300000, guid: 862c19ba69d54b94e814d1141d471fcd, type: 3}
+  badgeSpell: {fileID: 21300000, guid: fbad44090d73a9240ba3a728a8095c83, type: 3}
+  badgeArtifact: {fileID: 21300000, guid: 54ce169038a7a6c4fba63240894e21da, type: 3}
+  badgeReliquary: {fileID: 21300000, guid: 03e6f1e2802b4e84588f64277314387e, type: 3}
+  coinRelic: {fileID: 21300000, guid: 5ae01d13813b60e4faf6006f0916cbd9, type: 3}
+  coinSeal: {fileID: 21300000, guid: 45070bda8c254b841a15f1acede91c46, type: 3}
+  coinShadow: {fileID: 21300000, guid: 2315540f6df2cfc4e8b9df35eac6d2c1, type: 3}
+  coinDustRing: {fileID: 21300000, guid: befe0ff9d24c569478942b68c736dad7, type: 3}
+  screenVignette: {fileID: 21300000, guid: ca46d26822656b342a99117dc8ca658d, type: 3}
+  cinzelSemiBold: {fileID: 11400000, guid: 614c839197ef96b4595ef41d1b9d46d2, type: 2}
+  cinzelBold: {fileID: 11400000, guid: 401e833221b92174b80e518f866ee1b9, type: 2}
+  oswaldMedium: {fileID: 11400000, guid: 0d9913fbf1a8567449c958ea034d9b61, type: 2}
+  oswaldSemiBold: {fileID: 11400000, guid: e3826e91f4c9ea848865d85db92e4f10, type: 2}
+  spectral: {fileID: 11400000, guid: 61be4bbeea66e4a438d4dd44fc680d84, type: 2}
+  tableBackground: {fileID: 21300000, guid: 5ef7e140816cb8e4891bed23c78f186f, type: 3}
+  railScrim: {fileID: 21300000, guid: d442839f894ce73449bdbf0dcda07f0c, type: 3}
+  opponentTint: {fileID: 21300000, guid: ff0d8533429d6174a8b9b1e7a53cea7d, type: 3}
+  playerTint: {fileID: 21300000, guid: 4e14f6b733ae9c74d8445738445da8be, type: 3}
+  parchmentPanel: {fileID: 21300000, guid: 47ed5f8fe36ccfa41b7a4fe0b028d5e5, type: 3}
+  zoneEmptyMonster: {fileID: 21300000, guid: 013ef430115df26448f1b3b9d89e437d, type: 3}
+  zoneEmptySpell: {fileID: 21300000, guid: 5b8ff88b1dd2e7847827b3981f7bf4c7, type: 3}
+  zoneEmptyArtifact: {fileID: 21300000, guid: 1cc416ff72764d841be5501721431dee, type: 3}
+  zoneDropTarget: {fileID: 21300000, guid: cfbc1355a56db9d46bf5147965d43811, type: 3}
+  pileGraveyard: {fileID: 21300000, guid: 21abf8d576f80e84a81e97647e516eaa, type: 3}
+  pileBanished: {fileID: 21300000, guid: fd4615b1cb09c4c4f9c9ecd907c4b1af, type: 3}
+  pileExtra: {fileID: 21300000, guid: a0bb59870c29d7a4f9d0f1ce47de3eac, type: 3}
+  playerSlotSelf: {fileID: 21300000, guid: caa4e35c32c530c4faeda49911cb68d7, type: 3}
+  playerSlotFoe: {fileID: 21300000, guid: e61f184789130fb4b8d58277ebcd9632, type: 3}
+  compactMonster: {fileID: 21300000, guid: 6a390e15e4e53c4408bb87f50523fb89, type: 3}
+  compactSpell: {fileID: 21300000, guid: 8022e5dc1e8d0fd4599b0748756bf689, type: 3}
+  compactArtifact: {fileID: 21300000, guid: a3df51087b3fd2f48a6f2a2806e97f1d, type: 3}
+  compactPlayer: {fileID: 21300000, guid: 829af8a3cae7b2a46a7b50750726b6a6, type: 3}
+  compactReliquary: {fileID: 21300000, guid: 727efd798ee73b54f8a5ed6c1b6390ab, type: 3}
+  backZone: {fileID: 21300000, guid: 56b5d67c268c05a4fb8cc1999ee2f5ec, type: 3}
+  backHand: {fileID: 21300000, guid: fc8c6047ec233bb45b9e90850e97aeb5, type: 3}
+  shellBackground: {fileID: 21300000, guid: 98b287bb488563e4db7b2da6f2e9c10e, type: 3}
+  relicFill: {fileID: 21300000, guid: aed93c6e3345a7143a1668167c91ae83, type: 3}
+  relicFrame: {fileID: 21300000, guid: 642ffbcc411c2974984a8921f520b621, type: 3}
+  sweepBand: {fileID: 21300000, guid: 8b38573ed188c76439b1bd2d2a5bcab6, type: 3}
+  tilePlay: {fileID: 21300000, guid: 844b1f98e0e6e5d48a59935adb8584a2, type: 3}
+  tileSolo: {fileID: 21300000, guid: 910d0f012c5afd848a5479d524d90feb, type: 3}
+  tileShop: {fileID: 21300000, guid: 67ff87b860844c049b4ce6c6aa6a62b6, type: 3}
+  tileDecks: {fileID: 21300000, guid: 0405631e0eed4e842950d096fe381a69, type: 3}
+  backLogin: {fileID: 21300000, guid: f6c6a4e3c58932a439a521b596018a95, type: 3}
+  backThumb: {fileID: 21300000, guid: 693165f6b66a1c2408eeaa6a00f36be8, type: 3}
+  badgeEmber: {fileID: 21300000, guid: b8370a95a14c72c47b36e095c8268559, type: 3}
+  badgeTeal: {fileID: 21300000, guid: acd1b041f514ffe4fbc80b4697211f0d, type: 3}

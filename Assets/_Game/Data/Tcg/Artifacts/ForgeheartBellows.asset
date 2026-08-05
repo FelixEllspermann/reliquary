@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: ForgeheartBellows
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ArtifactCardData
+  cardName: Forgeheart Bellows
+  artwork: {fileID: -8974334487169732227, guid: be1548fcb426aff409b21230ddc656cb, type: 3}
+  rarity: 2
+  effects:
+  - label: Steady Draft
+    text: 'During your Standby Phase: You can add 1 "Forgeheart" card from your Deck
+      to your hand.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 6
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 17
+      isCost: 0
+      amount: 1
+      target: 12
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Forgeheart
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Roaring Blast
+    text: You can pay 2 Mana and send this card to the Graveyard; Special Summon
+      1 Level 2 "Forgeheart" monster from your hand.
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 24
+      isCost: 1
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 18
+      isCost: 0
+      amount: 1
+      target: 7
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 2
+      targetCount: 1
+      nameFilter: Forgeheart
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  slot: 2
+  atkBonus: 0
+  defBonus: 0
+  protectTypeFromEffectDestruction: 0
+  protectedType: 0

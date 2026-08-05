@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: ManaCrystal
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ArtifactCardData
+  cardName: Mana Crystal
+  artwork: {fileID: 7992302202219167811, guid: 3f75b1b4203397d42b0b36a1dcd96e8a, type: 3}
+  rarity: 2
+  effects:
+  - label: Crystal Flow
+    text: 'During your Standby Phase: You can gain 1 additional Mana this turn.'
+    isInfused: 0
+    manaCost: 0
+    trigger: 6
+    oncePerTurn: 1
+    actions:
+    - type: 3
+      amount: 1
+      target: 0
+  slot: 2
+  atkBonus: 0
+  defBonus: 0

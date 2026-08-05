@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: DragonShrineOffering
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Dragon Shrine Offering
+  artwork: {fileID: 4773786948007847758, guid: 4136aa41b8abe764db55357af78d987c, type: 3}
+  rarity: 2
+  effects:
+  - label: Offering
+    text: Destroy 1 Dragon-Type monster you control, and if you do, draw 2 cards.
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 2
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 2
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 2
+      isCost: 0
+      amount: 2
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Greater Offering
+    text: Destroy 1 Dragon-Type monster you control, and if you do, draw 2 cards,
+      then Special Summon 1 Level 2 Dragon-Type monster from your Graveyard.
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 4
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 2
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 2
+      isCost: 0
+      amount: 2
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 9
+      isCost: 0
+      amount: 1
+      target: 4
+      targetExcludesSelf: 0
+      useTypeFilter: 1
+      typeFilter: 0
+      levelFilter: 2
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 0

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: WarhornOfTheAncients
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.ArtifactCardData
+  cardName: Warhorn of the Ancients
+  artwork: {fileID: -6422258038133554958, guid: 3b309518bf7adc64fa71a7dc8a6cb9df, type: 3}
+  rarity: 3
+  effects:
+  - label: Sound the Ancient Call
+    text: 'You can pay 4 Mana: Special Summon 1 Level 2 monster from your hand.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 4
+    trigger: 0
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 18
+      isCost: 0
+      amount: 1
+      target: 7
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 2
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  slot: 1
+  atkBonus: 0
+  defBonus: 0
+  protectTypeFromEffectDestruction: 0
+  protectedType: 0

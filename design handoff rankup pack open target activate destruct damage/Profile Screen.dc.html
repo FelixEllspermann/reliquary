@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A0705"/><rect x="58" y="58" width="84" height="84" transform="rotate(45 100 100)" fill="none" stroke="#C8A45C" stroke-width="6"/><text x="100" y="113" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#C8A45C" text-anchor="middle">PR</text></svg></template>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#070503; color:#E9E3D6; font-family:'Oswald',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#C8A45C; text-decoration:none; border-bottom:1px solid rgba(200,164,92,.4); }
+  a:hover { color:#E6CD8F; border-bottom-color:#E6CD8F; }
+  @keyframes relPulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(122,205,150,.45) } 60% { opacity:.55; box-shadow:0 0 0 8px rgba(122,205,150,0) } }
+  @keyframes relEmber { 0% { transform:translateY(0) rotate(45deg); opacity:0 } 18% { opacity:.5 } 100% { transform:translateY(-320px) rotate(45deg); opacity:0 } }
+  @keyframes relShimmer { 0% { background-position:0% 50% } 100% { background-position:200% 50% } }
+  @keyframes relFloat { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
+</style>
+</helmet>
+
+<div style="position:relative;width:1920px;height:1080px;overflow:hidden;background:radial-gradient(ellipse 1500px 820px at 50% 40%,#2A1C12,#0A0705 78%);font-family:'Oswald',sans-serif">
+
+  <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px),repeating-linear-gradient(-45deg,rgba(200,164,92,.04) 0 1px,transparent 1px 28px)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.85)"></div>
+  <div style="position:absolute;left:240px;bottom:40px;width:7px;height:7px;transform:rotate(45deg);background:#C8A45C;opacity:0;animation:relEmber 11s linear infinite;pointer-events:none"></div>
+  <div style="position:absolute;left:820px;bottom:60px;width:5px;height:5px;transform:rotate(45deg);background:#EBCE8A;opacity:0;animation:relEmber 13s linear infinite 3.2s;pointer-events:none"></div>
+  <div style="position:absolute;left:1480px;bottom:30px;width:6px;height:6px;transform:rotate(45deg);background:#C8A45C;opacity:0;animation:relEmber 12s linear infinite 6.1s;pointer-events:none"></div>
+
+  <div style="position:relative;height:100%;display:flex;flex-direction:column">
+
+    <!-- ================= top bar ================= -->
+    <div style="height:92px;flex:none;box-sizing:border-box;padding:0 64px;display:flex;align-items:center;gap:26px;border-bottom:1px solid rgba(200,164,92,.2)">
+      <button onClick="{{ goBack }}" style="display:flex;align-items:center;gap:11px;padding:12px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.35);border-radius:6px;color:#C8B189;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.2em;cursor:pointer" style-hover="border-color:#C8A45C;color:#F1DFB8;background:rgba(200,164,92,.14)">◀ MENU</button>
+      <div style="width:1px;height:34px;background:rgba(200,164,92,.24)"></div>
+      <div style="display:flex;align-items:center;gap:13px">
+        <i style="width:9px;height:9px;display:block;background:#C8A45C;transform:rotate(45deg)"></i>
+        <span style="font:500 12px/1 'Oswald',sans-serif;letter-spacing:.4em;color:#9C8A6A">DUELIST RECORD</span>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:11px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.3);border-radius:6px">
+        <i style="width:10px;height:10px;display:block;background:linear-gradient(135deg,#F6E4B4,#8E6A22);transform:rotate(45deg)"></i>
+        <span style="font:600 16px/1 'Cinzel',serif;color:#F1DFB8">12 480</span>
+        <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#9C8A6A">COINS</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;padding:11px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(185,163,224,.3);border-radius:6px">
+        <i style="width:10px;height:10px;display:block;background:linear-gradient(135deg,#DCCEF8,#5E4E8C);transform:rotate(45deg)"></i>
+        <span style="font:600 16px/1 'Cinzel',serif;color:#D8CAF6">340</span>
+        <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.18em;color:#9A8AC4">SHARDS</span>
+      </div>
+    </div>
+
+    <!-- ================= body ================= -->
+    <div style="flex:1;box-sizing:border-box;padding:34px 64px;display:flex;gap:28px;min-height:0">
+
+      <!-- ---------- left: identity ---------- -->
+      <div style="width:520px;flex:none;display:flex;flex-direction:column;gap:20px">
+
+        <div style="position:relative;flex:none;box-sizing:border-box;padding:26px;border-radius:10px;border:2px solid #C8A45C;background:linear-gradient(165deg,#3A2818,#140C07 58%,#291A0C);box-shadow:0 22px 50px rgba(0,0,0,.7);display:flex;flex-direction:column;gap:22px">
+          <div style="position:absolute;inset:6px;border:1px solid rgba(200,164,92,.28);border-radius:5px;pointer-events:none"></div>
+          <div style="position:absolute;left:12px;top:12px;width:11px;height:11px;transform:rotate(45deg);background:#C8A45C"></div>
+          <div style="position:absolute;right:12px;top:12px;width:11px;height:11px;transform:rotate(45deg);background:#C8A45C"></div>
+
+          <div style="position:relative;display:flex;gap:20px;align-items:flex-start">
+            <div style="position:relative;width:148px;height:148px;flex:none">
+              <div style="width:100%;height:100%;box-sizing:border-box;padding:7px;background:linear-gradient(160deg,#3E2C16,#1A1108);border:2px solid #C8A45C">
+                <div style="width:100%;height:100%;box-sizing:border-box;overflow:hidden;border:1px solid rgba(200,164,92,.65);box-shadow:inset 0 0 30px rgba(0,0,0,.55)">
+                  <img src="uploads/artwork-1785612438938.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block" />
+                </div>
+              </div>
+              <div style="position:absolute;right:-14px;bottom:-10px;width:48px;height:52px;background:linear-gradient(160deg,#EBCE8A,#8E6A22);clip-path:polygon(50% 0,100% 20%,100% 66%,50% 100%,0 66%,0 20%);display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;inset:2px;background:linear-gradient(160deg,#3B2A10,#180F04);clip-path:polygon(50% 0,100% 20%,100% 66%,50% 100%,0 66%,0 20%)"></div>
+                <span style="position:relative;font:700 22px/1 'Cinzel',serif;color:#F3DDA4">27</span>
+              </div>
+            </div>
+
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px;padding-top:4px">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9C8A6A">DUELIST</span>
+              <span style="font:700 40px/1 'Cinzel',serif;letter-spacing:.02em;color:#F5EBD4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">DiaPony</span>
+              <span style="font:400 14px/1 'Spectral',serif;color:#8C7B5F">#4417 · joined March 2026</span>
+              <button onClick="{{ toggleTitle }}" style="margin-top:5px;display:flex;align-items:center;gap:10px;padding:9px 13px;background:rgba(200,164,92,.1);border:1px solid rgba(200,164,92,.4);border-radius:5px;cursor:pointer;text-align:left" style-hover="background:rgba(200,164,92,.22);border-color:#C8A45C">
+                <i style="width:8px;height:8px;flex:none;display:block;background:#EBCE8A;transform:rotate(45deg)"></i>
+                <span style="flex:1;font:500 13px/1 'Oswald',sans-serif;letter-spacing:.12em;color:#E4D3AE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ title }}</span>
+                <span style="font:600 11px/1 'Cinzel',serif;color:#9C8A6A">▾</span>
+              </button>
+            </div>
+          </div>
+
+          <sc-if value="{{ titleOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:194px;top:196px;z-index:30;width:300px;box-sizing:border-box;padding:8px;background:linear-gradient(165deg,#3A2818,#140C07);border:1px solid #C8A45C;border-radius:6px;box-shadow:0 24px 50px rgba(0,0,0,.8);display:flex;flex-direction:column;gap:3px">
+            <sc-for list="{{ titles }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.pick }}" style="display:flex;flex-direction:column;gap:4px;padding:10px 12px;background:transparent;border:none;border-radius:4px;cursor:pointer;text-align:left" style-hover="background:rgba(200,164,92,.16)">
+                <span style="font:500 13px/1 'Oswald',sans-serif;letter-spacing:.1em;color:#E4D3AE">{{ t.name }}</span>
+                <span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">{{ t.note }}</span>
+              </button>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,92,.4),transparent)"></div>
+
+          <div style="display:flex;align-items:center;gap:18px">
+            <div style="position:relative;width:66px;height:66px;flex:none;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;inset:0;transform:rotate(45deg);border:2px solid rgba(235,206,138,.6);background:linear-gradient(135deg,rgba(235,206,138,.2),transparent 70%)"></div>
+              <div style="position:absolute;inset:14px;transform:rotate(45deg);border:1px solid rgba(235,206,138,.4)"></div>
+              <span style="position:relative;font:700 22px/1 'Cinzel',serif;color:#F3DDA4">III</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="font:600 21px/1 'Cinzel',serif;letter-spacing:.06em;color:#F1DFB8">GOLD SEAL III</span>
+                <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">1 420 / 1 600 RP</span>
+              </div>
+              <div style="height:9px;background:rgba(200,164,92,.14);border:1px solid rgba(200,164,92,.3);overflow:hidden">
+                <div style="width:88%;height:100%;background:linear-gradient(90deg,#8E6A22,#F3DDA4)"></div>
+              </div>
+              <span style="font:400 13px/1 'Spectral',serif;color:#A2917A">180 RP to Relic Seal I</span>
+            </div>
+          </div>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,92,.4),transparent)"></div>
+
+          <div style="display:flex;gap:10px">
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:rgba(0,0,0,.35);border:1px solid rgba(200,164,92,.22);border-radius:5px">
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">HOURS</span>
+              <span style="font:600 20px/1 'Cinzel',serif;color:#F1DFB8">142</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:rgba(0,0,0,.35);border:1px solid rgba(200,164,92,.22);border-radius:5px">
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">SEALS</span>
+              <span style="font:600 20px/1 'Cinzel',serif;color:#F1DFB8">31 / 60</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:rgba(0,0,0,.35);border:1px solid rgba(200,164,92,.22);border-radius:5px">
+              <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">DECKS</span>
+              <span style="font:600 20px/1 'Cinzel',serif;color:#F1DFB8">4</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:relative;flex:1;min-height:0;box-sizing:border-box;padding:24px;border-radius:10px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.24em;color:#9C8A6A">SHOWCASE</span>
+            <button style="padding:7px 12px;background:transparent;border:1px solid rgba(200,164,92,.35);border-radius:4px;color:#C8B189;font:500 10px/1 'Oswald',sans-serif;letter-spacing:.16em;cursor:pointer" style-hover="border-color:#C8A45C;color:#F1DFB8;background:rgba(200,164,92,.14)">CHANGE</button>
+          </div>
+          <div style="flex:1;display:flex;gap:16px;align-items:stretch">
+            <div style="flex:1;position:relative;border-radius:6px;overflow:hidden;border:2px solid #C8A45C;background:radial-gradient(ellipse at 50% 50%,#4E2A18,#1C0E08 78%);cursor:pointer;transition:transform .16s ease-out,box-shadow .16s ease-out" style-hover="transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,.7),0 0 26px rgba(200,164,92,.3)">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(200,164,92,.13) 0 1px,transparent 1px 11px),repeating-linear-gradient(-45deg,rgba(200,164,92,.13) 0 1px,transparent 1px 11px)"></div>
+              <div style="position:absolute;inset:5px;border:1px solid rgba(200,164,92,.45);border-radius:3px"></div>
+              <div style="position:absolute;left:50%;top:50%;width:82px;height:82px;transform:translate(-50%,-50%) rotate(45deg);border:2px solid rgba(200,164,92,.6)"></div>
+              <div style="position:absolute;left:50%;top:50%;width:40px;height:40px;transform:translate(-50%,-50%) rotate(45deg);background:linear-gradient(135deg,rgba(200,164,92,.35),rgba(200,164,92,.05));border:1px solid rgba(200,164,92,.7)"></div>
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:9px 11px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));display:flex;flex-direction:column;gap:4px">
+                <div style="width:72%;height:5px;background:linear-gradient(90deg,#C8A45Ccc,#C8A45C44)"></div>
+                <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#B79A62">MONSTER · LV 3</span>
+              </div>
+            </div>
+            <div style="flex:1;position:relative;border-radius:6px;overflow:hidden;border:2px solid #8FC6D2;background:radial-gradient(ellipse at 50% 50%,#1B3A43,#07161A 78%);cursor:pointer;transition:transform .16s ease-out,box-shadow .16s ease-out" style-hover="transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,.7),0 0 26px rgba(143,198,210,.3)">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(143,198,210,.13) 0 1px,transparent 1px 11px),repeating-linear-gradient(-45deg,rgba(143,198,210,.13) 0 1px,transparent 1px 11px)"></div>
+              <div style="position:absolute;inset:5px;border:1px solid rgba(143,198,210,.45);border-radius:3px"></div>
+              <div style="position:absolute;left:50%;top:50%;width:82px;height:82px;transform:translate(-50%,-50%) rotate(45deg);border:2px solid rgba(143,198,210,.6)"></div>
+              <div style="position:absolute;left:50%;top:50%;width:40px;height:40px;transform:translate(-50%,-50%) rotate(45deg);background:linear-gradient(135deg,rgba(143,198,210,.35),rgba(143,198,210,.05));border:1px solid rgba(143,198,210,.7)"></div>
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:9px 11px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));display:flex;flex-direction:column;gap:4px">
+                <div style="width:64%;height:5px;background:linear-gradient(90deg,#8FC6D2cc,#8FC6D244)"></div>
+                <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#7FAAB4">SPELL</span>
+              </div>
+            </div>
+            <div style="flex:1;position:relative;border-radius:6px;overflow:hidden;border:2px solid #B9A3E0;background:radial-gradient(ellipse at 50% 50%,#2A2148,#0D0916 78%);cursor:pointer;transition:transform .16s ease-out,box-shadow .16s ease-out" style-hover="transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,.7),0 0 26px rgba(185,163,224,.3)">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(185,163,224,.13) 0 1px,transparent 1px 11px),repeating-linear-gradient(-45deg,rgba(185,163,224,.13) 0 1px,transparent 1px 11px)"></div>
+              <div style="position:absolute;inset:5px;border:1px solid rgba(185,163,224,.45);border-radius:3px"></div>
+              <div style="position:absolute;left:50%;top:50%;width:82px;height:82px;transform:translate(-50%,-50%) rotate(45deg);border:2px solid rgba(185,163,224,.6)"></div>
+              <div style="position:absolute;left:50%;top:50%;width:40px;height:40px;transform:translate(-50%,-50%) rotate(45deg);background:linear-gradient(135deg,rgba(185,163,224,.35),rgba(185,163,224,.05));border:1px solid rgba(185,163,224,.7)"></div>
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:9px 11px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));display:flex;flex-direction:column;gap:4px">
+                <div style="width:80%;height:5px;background:linear-gradient(90deg,#B9A3E0cc,#B9A3E044)"></div>
+                <span style="font:500 9px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#9A8AC4">ARTIFACT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- right: tabbed record ---------- -->
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:20px">
+
+        <div style="height:54px;flex:none;display:flex;align-items:stretch;gap:10px">
+          <sc-if value="{{ overviewOn }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ showOverview }}" style="padding:0 30px;background:linear-gradient(180deg,rgba(200,164,92,.26),rgba(200,164,92,.08));border:1px solid #C8A45C;border-radius:6px;color:#F5EBD4;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer">OVERVIEW</button>
+          </sc-if>
+          <sc-if value="{{ overviewOff }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ showOverview }}" style="padding:0 30px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.25);border-radius:6px;color:#9C8A6A;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer" style-hover="color:#E4D3AE;border-color:rgba(200,164,92,.55)">OVERVIEW</button>
+          </sc-if>
+          <sc-if value="{{ historyOn }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ showHistory }}" style="padding:0 30px;background:linear-gradient(180deg,rgba(200,164,92,.26),rgba(200,164,92,.08));border:1px solid #C8A45C;border-radius:6px;color:#F5EBD4;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer">MATCH HISTORY</button>
+          </sc-if>
+          <sc-if value="{{ historyOff }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ showHistory }}" style="padding:0 30px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.25);border-radius:6px;color:#9C8A6A;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer" style-hover="color:#E4D3AE;border-color:rgba(200,164,92,.55)">MATCH HISTORY</button>
+          </sc-if>
+          <sc-if value="{{ sealsOn }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ showSeals }}" style="padding:0 30px;background:linear-gradient(180deg,rgba(200,164,92,.26),rgba(200,164,92,.08));border:1px solid #C8A45C;border-radius:6px;color:#F5EBD4;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer">SEALS</button>
+          </sc-if>
+          <sc-if value="{{ sealsOff }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ showSeals }}" style="padding:0 30px;background:rgba(0,0,0,.4);border:1px solid rgba(200,164,92,.25);border-radius:6px;color:#9C8A6A;font:600 13px/1 'Cinzel',serif;letter-spacing:.2em;cursor:pointer" style-hover="color:#E4D3AE;border-color:rgba(200,164,92,.55)">SEALS</button>
+          </sc-if>
+          <div style="flex:1"></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:0 18px;background:rgba(0,0,0,.4);border:1px solid rgba(122,205,150,.35);border-radius:6px">
+            <i style="width:7px;height:7px;display:block;border-radius:50%;background:#7ACD96;animation:relPulse 2.4s ease-in-out infinite"></i>
+            <span style="font:400 13px/1 'Spectral',serif;color:#7F9E8A">4 wins in a row</span>
+          </div>
+        </div>
+
+        <!-- ===== OVERVIEW ===== -->
+        <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:20px">
+
+          <div style="height:150px;flex:none;display:flex;gap:20px">
+            <div style="flex:1;box-sizing:border-box;padding:22px 24px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .16s ease-out" style-hover="border-color:rgba(200,164,92,.7)">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#9C8A6A">DUELS PLAYED</span>
+              <span style="font:700 46px/1 'Cinzel',serif;color:#F5EBD4">486</span>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">312 online · 174 solo</span>
+            </div>
+            <div style="flex:1;box-sizing:border-box;padding:22px 24px;background:rgba(0,0,0,.42);border:1px solid rgba(122,205,150,.3);border-radius:8px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .16s ease-out" style-hover="border-color:rgba(122,205,150,.7)">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#7F9E8A">WIN RATE</span>
+              <span style="font:700 46px/1 'Cinzel',serif;color:#A8E4BE">61<span style="font-size:26px">%</span></span>
+              <span style="font:400 13px/1 'Spectral',serif;color:#6F8C7A">297 W · 189 L</span>
+            </div>
+            <div style="flex:1;box-sizing:border-box;padding:22px 24px;background:rgba(0,0,0,.42);border:1px solid rgba(224,96,58,.3);border-radius:8px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .16s ease-out" style-hover="border-color:rgba(224,96,58,.7)">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#C08D74">BEST STREAK</span>
+              <span style="font:700 46px/1 'Cinzel',serif;color:#F3C3A6">14</span>
+              <span style="font:400 13px/1 'Spectral',serif;color:#A57862">set in Season 2</span>
+            </div>
+            <div style="flex:1;box-sizing:border-box;padding:22px 24px;background:rgba(0,0,0,.42);border:1px solid rgba(185,163,224,.3);border-radius:8px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .16s ease-out" style-hover="border-color:rgba(185,163,224,.7)">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#9A8AC4">AVG DUEL</span>
+              <span style="font:700 46px/1 'Cinzel',serif;color:#DCCEF8">8<span style="font-size:26px"> turns</span></span>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8477A8">fastest win: 4 turns</span>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;display:flex;gap:20px">
+
+            <div style="flex:1;box-sizing:border-box;padding:24px 26px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between">
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#9C8A6A">ATTRIBUTE AFFINITY</span>
+                <span style="font:400 12px/1 'Spectral',serif;color:#6E6046">share of cards played</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:11px">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#E0603A;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">FIRE</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:38%;height:100%;background:linear-gradient(90deg,#8A3418,#E0603A)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">38%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#8FC6D2;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">WATER</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:21%;height:100%;background:linear-gradient(90deg,#33616D,#8FC6D2)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">21%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#F3DDA4;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">LIGHT</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:16%;height:100%;background:linear-gradient(90deg,#8E6A22,#F3DDA4)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">16%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#B9A3E0;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">DARK</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:12%;height:100%;background:linear-gradient(90deg,#4E3F78,#B9A3E0)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">12%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#B98A4E;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">EARTH</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:8%;height:100%;background:linear-gradient(90deg,#6A4C22,#B98A4E)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">8%</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <i style="width:10px;height:10px;flex:none;display:block;background:#8FD2A8;transform:rotate(45deg)"></i>
+                  <span style="width:66px;flex:none;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#E4D3AE">WIND</span>
+                  <div style="flex:1;height:12px;background:rgba(200,164,92,.1)"><div style="width:5%;height:100%;background:linear-gradient(90deg,#356B4C,#8FD2A8)"></div></div>
+                  <span style="width:44px;flex:none;text-align:right;font:600 14px/1 'Cinzel',serif;color:#F1DFB8">5%</span>
+                </div>
+              </div>
+              <div style="box-sizing:border-box;padding:11px 14px;background:linear-gradient(180deg,#EBE1C7,#D9CCAB);border:1px solid #8C7440">
+                <span style="font:400 13px/1.35 'Spectral',serif;color:#2E2417">You win most with <strong style="font-weight:600">Fire</strong> — 68% across 184 duels.</span>
+              </div>
+            </div>
+
+            <div style="width:430px;flex:none;box-sizing:border-box;padding:24px 26px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;gap:18px">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#9C8A6A">COLLECTION</span>
+              <div style="display:flex;align-items:baseline;gap:12px">
+                <span style="font:700 52px/1 'Cinzel',serif;color:#F5EBD4">218</span>
+                <span style="font:400 20px/1 'Spectral',serif;color:#8C7B5F">of 340 sealed</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between"><span style="font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#A2917A">COMMON</span><span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">120 / 140</span></div>
+                  <div style="height:8px;background:rgba(200,164,92,.1)"><div style="width:86%;height:100%;background:#A2917A"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between"><span style="font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#8FC6D2">RARE</span><span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">64 / 110</span></div>
+                  <div style="height:8px;background:rgba(200,164,92,.1)"><div style="width:58%;height:100%;background:#8FC6D2"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between"><span style="font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#B9A3E0">EPIC</span><span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">28 / 62</span></div>
+                  <div style="height:8px;background:rgba(200,164,92,.1)"><div style="width:45%;height:100%;background:#B9A3E0"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between"><span style="font:500 11px/1 'Oswald',sans-serif;letter-spacing:.16em;color:#EBCE8A">RELIC</span><span style="font:400 12px/1 'Spectral',serif;color:#8C7B5F">6 / 28</span></div>
+                  <div style="height:8px;background:rgba(200,164,92,.1)"><div style="width:21%;height:100%;background:linear-gradient(90deg,#8E6A22,#F3DDA4)"></div></div>
+                </div>
+              </div>
+              <button style="padding:14px 0;background:rgba(200,164,92,.12);border:1px solid rgba(200,164,92,.45);border-radius:5px;color:#C8B189;font:500 11px/1 'Oswald',sans-serif;letter-spacing:.2em;cursor:pointer" style-hover="background:rgba(200,164,92,.26);color:#F1DFB8;border-color:#C8A45C">OPEN COLLECTION</button>
+            </div>
+          </div>
+
+          <sc-if value="{{ seasonTrack }}" hint-placeholder-val="{{ true }}">
+          <div style="height:132px;flex:none;box-sizing:border-box;padding:22px 26px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.3);border-radius:8px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.22em;color:#9C8A6A">SEASON 3 TRACK</span>
+              <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">Tier 5 of 8 · ends in 11 days</span>
+            </div>
+            <div style="position:relative;flex:1;display:flex;align-items:center">
+              <div style="position:absolute;left:0;right:0;height:2px;background:rgba(200,164,92,.18)"></div>
+              <div style="position:absolute;left:0;width:57%;height:2px;background:linear-gradient(90deg,#8E6A22,#F3DDA4)"></div>
+              <div style="position:relative;flex:1;display:flex;justify-content:space-between">
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22);border:1px solid #EBCE8A"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22);border:1px solid #EBCE8A"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22);border:1px solid #EBCE8A"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:linear-gradient(135deg,#F6E4B4,#8E6A22);border:1px solid #EBCE8A"></div>
+                <div style="width:26px;height:26px;transform:rotate(45deg);background:linear-gradient(135deg,#F8EED6,#C8A45C);border:2px solid #F3DDA4;box-shadow:0 0 22px rgba(235,206,138,.55)"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:rgba(0,0,0,.5);border:1px solid rgba(200,164,92,.4)"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:rgba(0,0,0,.5);border:1px solid rgba(200,164,92,.4)"></div>
+                <div style="width:22px;height:22px;transform:rotate(45deg);background:rgba(0,0,0,.5);border:1px solid rgba(200,164,92,.4)"></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+        </div>
+        </sc-if>
+
+        <!-- ===== MATCH HISTORY ===== -->
+        <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ matches }}" as="m" hint-placeholder-count="7">
+            <div style="flex:1;min-height:0;box-sizing:border-box;padding:0 24px;background:rgba(0,0,0,.42);border:1px solid rgba(200,164,92,.22);border-radius:7px;display:flex;align-items:center;gap:24px;cursor:pointer;transition:border-color .16s ease-out,background .16s ease-out" style-hover="border-color:rgba(200,164,92,.6);background:rgba(200,164,92,.08)">
+              <sc-if value="{{ m.win }}" hint-placeholder-val="{{ true }}">
+                <div style="width:96px;flex:none;display:flex;align-items:center;gap:11px">
+                  <div style="width:4px;height:38px;background:#7ACD96"></div>
+                  <span style="font:700 19px/1 'Cinzel',serif;letter-spacing:.1em;color:#A8E4BE">WIN</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ m.loss }}" hint-placeholder-val="{{ false }}">
+                <div style="width:96px;flex:none;display:flex;align-items:center;gap:11px">
+                  <div style="width:4px;height:38px;background:#C05A44"></div>
+                  <span style="font:700 19px/1 'Cinzel',serif;letter-spacing:.1em;color:#D89282">LOSS</span>
+                </div>
+              </sc-if>
+              <div style="width:1px;height:40px;background:rgba(200,164,92,.18)"></div>
+              <div style="width:270px;flex:none;display:flex;flex-direction:column;gap:6px">
+                <span style="font:600 18px/1 'Cinzel',serif;color:#F1DFB8">{{ m.opp }}</span>
+                <span style="font:400 13px/1 'Spectral',serif;color:#8C7B5F">{{ m.oppRank }}</span>
+              </div>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">YOUR DECK</span>
+                <span style="font:400 15px/1 'Spectral',serif;color:#C8B189;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ m.deck }}</span>
+              </div>
+              <div style="width:130px;flex:none;display:flex;flex-direction:column;gap:6px">
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">LENGTH</span>
+                <span style="font:400 15px/1 'Spectral',serif;color:#C8B189">{{ m.turns }}</span>
+              </div>
+              <div style="width:112px;flex:none;display:flex;flex-direction:column;gap:6px">
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">MODE</span>
+                <span style="font:400 15px/1 'Spectral',serif;color:#C8B189">{{ m.mode }}</span>
+              </div>
+              <div style="width:120px;flex:none;text-align:right;display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#9C8A6A">RP</span>
+                <span style="font:600 16px/1 'Cinzel',serif;color:#E4D3AE">{{ m.rp }}</span>
+              </div>
+              <span style="font:600 17px/1 'Cinzel',serif;color:#6E6046">→</span>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <!-- ===== SEALS ===== -->
+        <sc-if value="{{ isSeals }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:18px">
+          <sc-for list="{{ earned }}" as="s" hint-placeholder-count="5">
+            <div style="position:relative;box-sizing:border-box;padding:22px;border-radius:8px;border:1px solid rgba(235,206,138,.5);background:linear-gradient(165deg,#3A2818,#140C07 62%,#291A0C);display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:transform .16s ease-out,box-shadow .16s ease-out" style-hover="transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.7),0 0 26px rgba(235,206,138,.28)">
+              <div style="position:relative;width:56px;height:56px;flex:none;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;inset:0;transform:rotate(45deg);border:2px solid rgba(235,206,138,.65);background:linear-gradient(135deg,rgba(235,206,138,.22),transparent 70%)"></div>
+                <span style="position:relative;font:700 22px/1 'Cinzel',serif;color:#F3DDA4">{{ s.mark }}</span>
+              </div>
+              <span style="font:600 18px/1.25 'Cinzel',serif;color:#F1DFB8;text-wrap:pretty">{{ s.name }}</span>
+              <span style="flex:1;font:400 14px/1.4 'Spectral',serif;color:#A2917A;text-wrap:pretty">{{ s.note }}</span>
+              <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#7ACD96">{{ s.when }}</span>
+            </div>
+          </sc-for>
+          <sc-for list="{{ locked }}" as="s" hint-placeholder-count="3">
+            <div style="position:relative;box-sizing:border-box;padding:22px;border-radius:8px;border:1px solid rgba(200,164,92,.18);background:rgba(0,0,0,.4);display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:border-color .16s ease-out" style-hover="border-color:rgba(200,164,92,.45)">
+              <div style="position:relative;width:56px;height:56px;flex:none;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;inset:0;transform:rotate(45deg);border:1px solid rgba(200,164,92,.28)"></div>
+                <span style="position:relative;font:700 22px/1 'Cinzel',serif;color:#5C513F">{{ s.mark }}</span>
+              </div>
+              <span style="font:600 18px/1.25 'Cinzel',serif;color:#8C7B5F;text-wrap:pretty">{{ s.name }}</span>
+              <span style="flex:1;font:400 14px/1.4 'Spectral',serif;color:#6E6046;text-wrap:pretty">{{ s.note }}</span>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="height:6px;background:rgba(200,164,92,.1)"><div style="height:100%;background:rgba(200,164,92,.45);width:{{ s.pct }}"></div></div>
+                <span style="font:500 10px/1 'Oswald',sans-serif;letter-spacing:.2em;color:#5C513F">{{ s.progress }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;overview&quot;,&quot;history&quot;,&quot;seals&quot;],&quot;default&quot;:&quot;overview&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Screen&quot;},&quot;historyLength&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7,&quot;min&quot;:4,&quot;max&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;},&quot;seasonTrack&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Screen&quot;}}">
+class Component extends DCLogic {
+  state = { tab: null, titleOpen: false, title: "Warden's Bane" };
+
+  get tab() { return this.state.tab || this.props.defaultTab || 'overview'; }
+
+  renderVals() {
+    const tab = this.tab;
+    const rows = this.props.historyLength ?? 7;
+
+    const titles = [
+      { name: "Warden's Bane", note: 'Beat the Warden without losing a relic' },
+      { name: 'Ash Collector', note: 'Own every card in Tomb of Ash' },
+      { name: 'First Light', note: 'Reached Gold Seal in Season 1' },
+      { name: 'Sealbreaker', note: 'Win 100 online duels' },
+    ].map((t) => ({ ...t, pick: () => this.setState({ title: t.name, titleOpen: false }) }));
+
+    const all = [
+      { win: 1, opp: 'Kestrel_09', oppRank: 'Gold Seal II', deck: 'Pyro Starter', turns: '7 turns', mode: 'Ranked', rp: '+24' },
+      { win: 1, opp: 'MechaTide', oppRank: 'Gold Seal III', deck: 'Pyro Starter', turns: '11 turns', mode: 'Ranked', rp: '+21' },
+      { win: 0, opp: 'nachtfalter', oppRank: 'Relic Seal I', deck: 'Deep Current', turns: '14 turns', mode: 'Ranked', rp: '−18' },
+      { win: 1, opp: 'The Warden', oppRank: 'Trial 7', deck: 'Pyro Starter', turns: '6 turns', mode: 'Solo', rp: '—' },
+      { win: 1, opp: 'Bexley', oppRank: 'Silver Seal I', deck: 'Pyro Starter', turns: '5 turns', mode: 'Friendly', rp: '—' },
+      { win: 0, opp: 'quartzfang', oppRank: 'Gold Seal III', deck: 'Grave Loop', turns: '19 turns', mode: 'Ranked', rp: '−16' },
+      { win: 1, opp: 'Ilse.', oppRank: 'Gold Seal I', deck: 'Pyro Starter', turns: '9 turns', mode: 'Ranked', rp: '+23' },
+      { win: 1, opp: 'ORRIN_VT', oppRank: 'Silver Seal III', deck: 'Deep Current', turns: '8 turns', mode: 'Ranked', rp: '+25' },
+      { win: 0, opp: 'halcyon', oppRank: 'Relic Seal II', deck: 'Pyro Starter', turns: '12 turns', mode: 'Ranked', rp: '−19' },
+      { win: 1, opp: 'The Warden', oppRank: 'Trial 6', deck: 'Grave Loop', turns: '10 turns', mode: 'Solo', rp: '—' },
+    ];
+
+    return {
+      title: this.state.title,
+      titleOpen: this.state.titleOpen,
+      titles,
+      toggleTitle: () => this.setState((s) => ({ titleOpen: !s.titleOpen })),
+      goBack: () => {},
+
+      isOverview: tab === 'overview', overviewOn: tab === 'overview', overviewOff: tab !== 'overview',
+      isHistory: tab === 'history', historyOn: tab === 'history', historyOff: tab !== 'history',
+      isSeals: tab === 'seals', sealsOn: tab === 'seals', sealsOff: tab !== 'seals',
+      showOverview: () => this.setState({ tab: 'overview', titleOpen: false }),
+      showHistory: () => this.setState({ tab: 'history', titleOpen: false }),
+      showSeals: () => this.setState({ tab: 'seals', titleOpen: false }),
+
+      seasonTrack: this.props.seasonTrack ?? true,
+
+      matches: all.slice(0, rows).map((m) => ({ ...m, win: !!m.win, loss: !m.win })),
+
+      earned: [
+        { mark: '✦', name: 'First Seal', note: 'Won your first online duel.', when: 'MARCH 2026' },
+        { mark: '⚔', name: 'Unbroken', note: 'Won 10 duels in a row without changing decks.', when: 'MAY 2026' },
+        { mark: '◈', name: 'Tomb Raider', note: 'Cleared Trial 7 against the Warden.', when: 'JUNE 2026' },
+        { mark: '❖', name: 'Archivist', note: 'Sealed 200 different cards.', when: 'JULY 2026' },
+        { mark: '✧', name: 'Quickdraw', note: 'Won a duel on turn four.', when: 'JULY 2026' },
+      ],
+      locked: [
+        { mark: '✦', name: 'Relic Seal', note: 'Reach Relic Seal I in ranked play.', progress: '1 420 / 1 600 RP', pct: '89%' },
+        { mark: '⚔', name: 'Centurion', note: 'Win 500 duels.', progress: '297 / 500', pct: '59%' },
+        { mark: '❖', name: 'Completionist', note: 'Seal every card in the vault.', progress: '218 / 340', pct: '64%' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

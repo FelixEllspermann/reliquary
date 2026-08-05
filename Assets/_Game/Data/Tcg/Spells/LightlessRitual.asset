@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: LightlessRitual
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.SpellCardData
+  cardName: Lightless Ritual
+  artwork: {fileID: 2672128666436665893, guid: 1a5ba9fe5cf015b4aa4917dd32b4e222, type: 3}
+  rarity: 2
+  effects:
+  - label: Rite of Shadows
+    text: Pay 2 Mana; Special Summon 1 "Lightless" monster from your Graveyard or
+      Banishment, and if you do, your opponent discards 1 random card.
+    isInfused: 0
+    manaCost: 2
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 28
+      amount: 1
+      target: 13
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Lightless
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 14
+      amount: 1
+      target: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  - label: Rite of Usurpation
+    text: 'Pay 4 Mana; Special Summon 1 "Lightless" monster from your Graveyard or
+      Banishment. Then, instead of discarding, a random card from your opponent''s
+      hand: if it is a monster, Special Summon it to YOUR field (it still returns
+      to its owner when it leaves).'
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 4
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    actions:
+    - type: 28
+      amount: 1
+      target: 13
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: Lightless
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+    - type: 29
+      amount: 1
+      target: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      nameFilter: 
+      mentionsFilter: 
+      useAttributeFilter: 0
+      attributeFilter: 0
+  speed: 1
