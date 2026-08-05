@@ -91,6 +91,13 @@ namespace Rouge.Tcg.EditorTools
                     skin.spectral, 13f, TextAlignmentOptions.TopLeft);
                 var effectTmp = effectGo.GetComponent<TextMeshProUGUI>();
                 effectTmp.lineSpacing = 20f;
+                // Wortreiche Karten schrumpfen, statt abgeschnitten zu werden.
+                // Bei fester Grösse verschwand auf Karten mit drei Effekten der
+                // letzte komplett hinter "…" — man konnte der Karte nicht mehr
+                // ansehen, was sie kann. Ellipsis bleibt als letzte Reissleine.
+                effectTmp.enableAutoSizing = true;
+                effectTmp.fontSizeMin = 8f;
+                effectTmp.fontSizeMax = 13f;
                 effectTmp.overflowMode = TextOverflowModes.Ellipsis;
 
                 // Stat-Reihe

@@ -1,4 +1,4 @@
-# Offene Punkte — Stand 2026-08-05
+# Offene Punkte — Stand 2026-08-06
 
 Der letzte Build ist **0.1.0f9** (`Build/Reliquary-0.1.0f9.zip`). Die
 Projektversion steht bereits auf **0.1.0h** — der Build dazu fehlt noch.
@@ -12,7 +12,12 @@ Alles bis `fcec5ec` ist auf `github.com/FelixEllspermann/reliquary` gepusht.
 
 ## Offen
 
-### 1 · Build 0.1.0h fehlt
+### 0 · Artworks fuer 61 neue Karten
+Alle 61 Karten der fuenf neuen Archetypes haben kein Bild. Prompts liegen
+fertig in `AmusePrompts-5-Archetypes.md` (Universal-Negativ + 61 Positiv).
+Danach `Rouge → Card Design → Artworks automatisch zuweisen`.
+
+### 1 · Build fehlt (Stand 0.1.0i gebaut, danach kam noch mehr)
 Die Finishes im Duell und die Deck-Builder-Vorschau sind gebaut und geprüft,
 aber noch in keinem Build. Der Server ist schon aktualisiert — ein alter Client
 verträgt das, das Feld `finish` ist ihm nur unbekannt.
