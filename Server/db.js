@@ -78,6 +78,16 @@ export function openDatabase(dataDir, log = console.log) {
     db.exec("ALTER TABLE accounts ADD COLUMN cosmetics TEXT NOT NULL DEFAULT '{}'");
     log('DB-Migration: Spalte cosmetics ergänzt.');
   }
+  if (!columns.includes('starter_pick')) {
+    // Welches Startdeck der Spieler gewaehlt hat, oder leer.
+    //
+    // Das MUSS eine eigene Spalte sein: loadAll baut das Konto aus benannten
+    // Spalten, nicht aus einem Blob. Ein Feld, das hier fehlt, existiert nach
+    // dem naechsten Serverstart nicht mehr — der Spieler bekaeme die Auswahl
+    // wieder vorgelegt und koennte ein zweites Deck kassieren.
+    db.exec("ALTER TABLE accounts ADD COLUMN starter_pick TEXT NOT NULL DEFAULT ''");
+    log('DB-Migration: Spalte starter_pick ergaenzt.');
+  }
 
   // Karten-Finishes: ein Finish gehört dem Exemplar, also gehört es in den
   // Primärschlüssel. SQLite kann keinen Schlüssel ändern — die Tabelle wird
@@ -110,13 +120,14 @@ export function openDatabase(dataDir, log = console.log) {
     selectAccounts: db.prepare('SELECT * FROM accounts'),
     selectCollection: db.prepare('SELECT account, card, finish, count FROM collection'),
     upsertAccount: db.prepare(`
-      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, created, updated)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, starter_pick, created, updated)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(key) DO UPDATE SET
         name = excluded.name, salt = excluded.salt, hash = excluded.hash,
         coins = excluded.coins, tokens = excluded.tokens, daily = excluded.daily,
         decks = excluded.decks, pack_inv = excluded.pack_inv, steam_id = excluded.steam_id,
-        rank = excluded.rank, cosmetics = excluded.cosmetics, updated = excluded.updated
+        rank = excluded.rank, cosmetics = excluded.cosmetics,
+        starter_pick = excluded.starter_pick, updated = excluded.updated
     `),
     clearCollection: db.prepare('DELETE FROM collection WHERE account = ?'),
     insertCard: db.prepare('INSERT INTO collection (account, card, finish, count) VALUES (?, ?, ?, ?)'),
@@ -144,6 +155,9 @@ export function openDatabase(dataDir, log = console.log) {
         packInv: parse(row.pack_inv, {}),
         steamId: row.steam_id || null,
         collection: {},
+        // Leerer String heisst "noch nicht gewaehlt" — als null zurueck, damit
+        // der Server nur an einer Stelle auf Wahrheit pruefen muss.
+        starterPick: row.starter_pick || null,
         ...parse(row.rank, {}),      // rp, peakRank, season, wins, losses, streak, bestStreak, careerRp
         ...parse(row.cosmetics, {})  // cosmetics, equipped (ein altes shards-Feld wird ignoriert)
       };
@@ -192,6 +206,7 @@ export function openDatabase(dataDir, log = console.log) {
           cosmetics: Array.isArray(account.cosmetics) ? account.cosmetics : [],
           equipped: account.equipped && typeof account.equipped === 'object' ? account.equipped : {}
         }),
+        account.starterPick || '',
         now,
         now
       );
