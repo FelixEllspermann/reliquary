@@ -138,6 +138,12 @@ namespace Rouge.Tcg
                     case EffectActionType.DrainOpponentMana:
                         if (foe.Mana > 0) return true;
                         break;
+                    // Der Übertrag lohnt sich immer: er trifft das nächste
+                    // Auffüllen, nicht den aktuellen Vorrat — der Zustand jetzt
+                    // sagt darüber nichts aus.
+                    case EffectActionType.DrainOpponentManaNextTurn:
+                    case EffectActionType.GainManaNextTurn:
+                        return true;
                     case EffectActionType.BuffTargetAtk:
                     case EffectActionType.BuffTargetAtkUntilEndOfTurn:
                     case EffectActionType.BuffTargetDef:

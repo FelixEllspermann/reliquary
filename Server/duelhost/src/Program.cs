@@ -111,22 +111,36 @@ namespace Rouge.DuelHost
             var deckNames = starter.GetProperty("cards").EnumerateArray().Select(c => c.GetString()).ToList();
             string heroName = starter.TryGetProperty("hero", out var h) ? h.GetString() : null;
 
+            // Extra Deck aus derselben Datei, wenn eines drinsteht. Ohne das kann
+            // der Selftest keine einzige Reliquary erreichen — und damit auch
+            // keine Beschwörungs-Bedingung und keine Beschwörungs-Kosten.
+            var extraNames = starter.TryGetProperty("extra", out var e) && e.ValueKind == JsonValueKind.Array
+                ? e.EnumerateArray().Select(c => c.GetString()).ToList()
+                : new List<string>();
+
             var deckA = library.Catalog.ResolveList(deckNames);
             var deckB = library.Catalog.ResolveList(deckNames);
+            var extraA = library.Catalog.ResolveList(extraNames);
+            var extraB = library.Catalog.ResolveList(extraNames);
             var hero = library.Catalog.FindByName(heroName) as PlayerCardData;
-            var none = new List<CardDefinition>();
 
             var duel = new DuelManager(new DuelConfig { Rules = library.Rules, BotActionDelay = 0f });
             var watch = System.Diagnostics.Stopwatch.StartNew();
             duel.StartServerDuel(7777,
-                "Selftest-A", deckA, none, hero, new BotDuelController(),
-                "Selftest-B", deckB, none, hero, new BotDuelController(),
+                "Selftest-A", deckA, extraA, hero, new BotDuelController(),
+                "Selftest-B", deckB, extraB, hero, new BotDuelController(),
                 true);
             watch.Stop();
 
             Console.WriteLine($"[selftest] Ergebnis: {duel.Result} nach {duel.TurnNumber} Zügen in {watch.ElapsedMilliseconds} ms");
             Console.WriteLine($"[selftest] Logzeilen: {duel.LogHistory.Count}");
-            foreach (var line in duel.LogHistory.Skip(Math.Max(0, duel.LogHistory.Count - 4)))
+
+            // --log gibt das ganze Protokoll aus. Ohne das sieht man nur das Ende,
+            // und ob ein bestimmter Effekt je gefeuert hat, bleibt unsichtbar.
+            var shown = Environment.GetCommandLineArgs().Contains("--log")
+                ? duel.LogHistory
+                : duel.LogHistory.Skip(Math.Max(0, duel.LogHistory.Count - 4));
+            foreach (var line in shown)
                 Console.WriteLine($"[selftest]   {line}");
 
             return duel.Result == DuelResult.None ? 1 : 0;

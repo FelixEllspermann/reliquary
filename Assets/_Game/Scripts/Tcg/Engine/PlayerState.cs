@@ -22,6 +22,18 @@ namespace Rouge.Tcg
         public int Mana;
         public int ManaPerTurn;
         public int BonusManaPerTurn;   // z.B. Solo-Schwierigkeit "Sealed": Bot +2
+
+        /// <summary>
+        /// Mana, das beim NÄCHSTEN Auffüllen fehlt bzw. dazukommt, danach wieder 0.
+        ///
+        /// Ohne diese zwei Zahlen kann es kein Mana-Denial geben: zu Beginn jedes
+        /// Zuges wird der Vorrat komplett neu gesetzt. Wer dem Gegner in seinem
+        /// eigenen Zug Mana abzieht, nimmt ihm nichts — er füllt ohnehin gleich
+        /// wieder auf. Und wer im Gegnerzug Mana gewinnt, verliert es beim eigenen
+        /// Zugbeginn wieder. Erst der Übertrag macht beides spürbar.
+        /// </summary>
+        public int ManaDebt;
+        public int ManaCredit;
         public int NormalSummonsUsed;
         public int TurnsTaken;
 

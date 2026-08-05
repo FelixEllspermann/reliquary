@@ -235,6 +235,7 @@ namespace Rouge.Tcg.UI
                 case EffectTrigger.OnNormalSummonSelf: label = "When this card is Normal Summoned"; break;
                 case EffectTrigger.HandIgnition: label = "Activate from your hand during your Main Phase"; break;
                 case EffectTrigger.GraveyardIgnition: label = "Activate from your Graveyard during your Main Phase"; break;
+                case EffectTrigger.HandQuick: label = "Response from your hand — activate any time"; break;
                 case EffectTrigger.OnFlipFaceUp: label = "FLIP — when this card is turned face-up"; break;
                 default: label = ""; break;
             }

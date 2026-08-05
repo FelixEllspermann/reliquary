@@ -468,7 +468,19 @@ namespace Rouge.Tcg
             player.TurnsTaken++;
             player.NormalSummonsUsed = 0;
             player.ManaPerTurn = Math.Min(rules.manaCap, rules.startMana + (player.TurnsTaken - 1) * rules.manaGrowthPerTurn) + player.BonusManaPerTurn;
-            player.Mana = player.ManaPerTurn;
+
+            // Schulden und Guthaben aus der letzten Runde verrechnen — sie gelten
+            // genau einmal. ManaPerTurn bleibt unangetastet: das ist der normale
+            // Wert dieses Zuges, und die Anzeige soll zeigen, wie weit man darunter
+            // liegt.
+            int carried = player.ManaCredit - player.ManaDebt;
+            player.Mana = Math.Max(0, player.ManaPerTurn + carried);
+            if (carried != 0)
+                Log($"{player.Name} starts with {player.Mana} Mana instead of {player.ManaPerTurn} " +
+                    $"({(carried > 0 ? "+" : "")}{carried}).");
+            player.ManaDebt = 0;
+            player.ManaCredit = 0;
+
             ResetTurnFlags(player);
 
             Log($"— Turn {TurnNumber}: {player.Name} (Mana {player.Mana}) —");

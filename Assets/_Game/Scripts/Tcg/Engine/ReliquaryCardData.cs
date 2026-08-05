@@ -71,5 +71,20 @@ namespace Rouge.Tcg
 
         [Tooltip("Zerstöre 1 anderes Monster, das du kontrollierst")]
         public bool costTributeOtherMonster;
+
+        /// <summary>
+        /// Tribute von BEIDEN Feldern. Damit ist die Beschwörung selbst das
+        /// Removal: sie kostet nicht nur eigene Karten, sie räumt auch drüben ab.
+        ///
+        /// Wer hier etwas einträgt, sollte wissen, was er dem Archetyp antut —
+        /// verlangt eine Reliquary gegnerische Monster, ist sie eine tote Karte,
+        /// solange das andere Feld leer ist. Das ist gewollt, aber es gehört auf
+        /// die Karte geschrieben.
+        /// </summary>
+        [Tooltip("Opfere so viele eigene Monster (zusätzlich zu costTributeOtherMonster; 0 = aus)")]
+        [Range(0, 3)] public int costTributeOwnMonsters;
+
+        [Tooltip("Opfere so viele GEGNERISCHE Monster — die Beschwörung ist damit auch Removal (0 = aus)")]
+        [Range(0, 2)] public int costTributeOpponentMonsters;
     }
 }

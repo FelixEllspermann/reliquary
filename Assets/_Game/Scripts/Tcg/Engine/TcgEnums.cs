@@ -37,7 +37,10 @@ namespace Rouge.Tcg
         OnNormalSummonSelf, // wenn diese Karte als Normalbeschwörung beschworen wird
         HandIgnition,     // aus der eigenen Hand in der Main Phase aktivierbar (Monster-Effekt)
         GraveyardIgnition, // aus dem eigenen Friedhof in der Main Phase aktivierbar
-        OnFlipFaceUp      // wenn diese verdeckte Karte aufgedeckt wird (Flip-Effekt)
+        OnFlipFaceUp,     // wenn diese verdeckte Karte aufgedeckt wird (Flip-Effekt)
+
+        // Nur anhängen, nie dazwischen: Karten-Assets speichern den Zahlenwert.
+        HandQuick         // aus der eigenen Hand, wann immer ein Reaktionsfenster offen ist
     }
 
     public enum EffectActionType
@@ -101,7 +104,13 @@ namespace Rouge.Tcg
         LookAndDiscardChosen,       // Gegnerhand ansehen, 1 Karte wählen, die abgeworfen wird
         CopyTargetStatsThisTurn,    // ATK/DEF der Quellkarte werden bis Zugende die des Ziels
         TakeControlUntilEndOfTurn,  // Kontrolle über ein gegnerisches Monster bis zur End Phase
-        SummonCopyOfTarget          // Kopie des Ziels auf das eigene Feld bis zur End Phase
+        SummonCopyOfTarget,         // Kopie des Ziels auf das eigene Feld bis zur End Phase
+
+        // Mana über die Rundengrenze. DrainOpponentMana trifft nur den aktuellen
+        // Vorrat und ist im eigenen Zug wirkungslos — der Gegner füllt zu
+        // Zugbeginn ohnehin auf. Diese beiden wirken auf das nächste Auffüllen.
+        DrainOpponentManaNextTurn,  // dem Gegner fehlt im nächsten Zug so viel Mana
+        GainManaNextTurn            // du hast in deinem nächsten Zug so viel Mana mehr
     }
 
     public enum TargetKind

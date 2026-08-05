@@ -322,6 +322,14 @@ namespace Rouge.Tcg
                 && player.Graveyard.Count(c => c.MonsterData != null) < data.costBanishMonstersFromGrave) return false;
             if (data.costTributeOtherMonster && player.MonsterCount() < 1) return false;
 
+            // Tribute von beiden Feldern. Zerstörungs-Immunität zählt nicht mit —
+            // sonst böte die Engine eine Beschwörung an, die beim Bezahlen scheitert.
+            int ownNeeded = data.costTributeOwnMonsters + (data.costTributeOtherMonster ? 1 : 0);
+            if (ownNeeded > 0 && player.Monsters().Count(m => !m.CannotBeDestroyedThisTurn) < ownNeeded) return false;
+            if (data.costTributeOpponentMonsters > 0
+                && player.Opponent.Monsters().Count(m => !m.CannotBeDestroyedThisTurn && !m.CannotBeTargetedThisTurn)
+                   < data.costTributeOpponentMonsters) return false;
+
             return true;
         }
 
@@ -348,6 +356,43 @@ namespace Rouge.Tcg
                 yield return DecideRouted(player, tributeRequest);
                 if (tributeRequest.Cancelled || tributeRequest.Result.Count < 1) yield break;
                 tributePick = tributeRequest.Result[0];
+            }
+
+            // Tribute von beiden Feldern — erst wählen, gezahlt wird weiter unten.
+            // Getrennte Abfragen, damit klar bleibt, wessen Monster gerade stirbt:
+            // ein gemeinsamer Dialog liesse einen versehentlich das eigene opfern.
+            var ownTributes = new List<CardInstance>();
+            if (data.costTributeOwnMonsters > 0)
+            {
+                var request = new TargetRequest
+                {
+                    Title = $"Offer {data.costTributeOwnMonsters} of your monsters to {monster.Name}",
+                    Kind = TargetKind.AllyMonster,
+                    Count = data.costTributeOwnMonsters,
+                    AllowCancel = true
+                };
+                request.Candidates.AddRange(player.Monsters()
+                    .Where(m => !m.CannotBeDestroyedThisTurn && m != tributePick));
+                yield return DecideRouted(player, request);
+                if (request.Cancelled || request.Result.Count < data.costTributeOwnMonsters) yield break;
+                ownTributes.AddRange(request.Result);
+            }
+
+            var foeTributes = new List<CardInstance>();
+            if (data.costTributeOpponentMonsters > 0)
+            {
+                var request = new TargetRequest
+                {
+                    Title = $"Claim {data.costTributeOpponentMonsters} of your opponent's monsters for {monster.Name}",
+                    Kind = TargetKind.EnemyMonster,
+                    Count = data.costTributeOpponentMonsters,
+                    AllowCancel = true
+                };
+                request.Candidates.AddRange(player.Opponent.Monsters()
+                    .Where(m => !m.CannotBeDestroyedThisTurn && !m.CannotBeTargetedThisTurn));
+                yield return DecideRouted(player, request);
+                if (request.Cancelled || request.Result.Count < data.costTributeOpponentMonsters) yield break;
+                foeTributes.AddRange(request.Result);
             }
 
             var banishPicks = new List<CardInstance>();
@@ -394,6 +439,17 @@ namespace Rouge.Tcg
                 if (Result != DuelResult.None) yield break;
                 if (IsOnField(tributePick)) { Log("The tribute was not paid — the summon is aborted."); yield break; }
             }
+            // Die Tribute von beiden Feldern. Jede Zerstörung kann Effekte
+            // auslösen, die das Duell beenden — deshalb nach jeder einzelnen
+            // prüfen, statt am Ende einmal.
+            foreach (var pick in ownTributes.Concat(foeTributes))
+            {
+                if (!IsOnField(pick)) continue;   // ein vorheriger Trigger hat sie schon geholt
+                Log($"{monster.Name} claims {pick.Name} from {pick.Owner.Name}.");
+                yield return DestroyCard(pick);
+                if (Result != DuelResult.None) yield break;
+            }
+
             foreach (var pick in banishPicks)
             {
                 MoveToBanished(pick);
@@ -1373,6 +1429,14 @@ yield return RunSummonEvents(target);
                         player.Opponent.Mana -= drained;
                         Log($"{player.Opponent.Name} loses {drained} Mana ({player.Opponent.Mana} Mana).");
                         break;
+                    case EffectActionType.DrainOpponentManaNextTurn:
+                        player.Opponent.ManaDebt += action.amount;
+                        Log($"{player.Opponent.Name} will have {player.Opponent.ManaDebt} less Mana next turn.");
+                        break;
+                    case EffectActionType.GainManaNextTurn:
+                        player.ManaCredit += action.amount;
+                        Log($"{player.Name} will have {player.ManaCredit} more Mana next turn.");
+                        break;
                     case EffectActionType.ReturnFromGraveyardToHand:
                         foreach (var hit in affected)
                         {
@@ -1887,6 +1951,19 @@ yield return RunSummonEvents(target);
                         candidates.Add((card, index));
                 }
             }
+
+            // Karten, die aus der HAND antworten. Bis hierher konnte nur mitreden,
+            // was schon auf dem Feld lag — wer stören wollte, musste eine Runde
+            // vorher etwas hinlegen und es überleben lassen. HandQuick erlaubt
+            // Karten, die ihren ganzen Wert daraus ziehen, dass der Gegner sie
+            // nicht kommen sieht.
+            //
+            // Verdeckte Information bleibt verdeckt: die Kandidaten werden nur
+            // für den Antwortenden selbst gebaut, und der Server maskiert die
+            // Hand des Gegners ohnehin.
+            foreach (var card in responder.Hand)
+                foreach (int index in ActivatableEffects(card, responder, EffectTrigger.HandQuick))
+                    candidates.Add((card, index));
 
             return candidates;
         }
