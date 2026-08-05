@@ -138,7 +138,7 @@ namespace Rouge.Tcg.UI
                 {
                     Definition = definition,
                     Finish = finish,
-                    Instance = new CardInstance(definition, null) { Zone = ZoneType.Hand },
+                    Instance = new CardInstance(definition, null) { Zone = ZoneType.Hand, Finish = finish },
                     Holder = holder,
                     Colour = CollectionRow.RarityStrong(definition.rarity),
                     Pulse = PulseOf(definition.rarity),
@@ -423,12 +423,9 @@ namespace Rouge.Tcg.UI
             {
                 pull.View.Show(pull.Instance, !faceUp, upright: true);
                 pull.FaceUp = faceUp;
-                if (faceUp)
-                {
-                    // Das Finish erscheint im selben Moment wie das Bild
-                    CardFinishOverlay.Apply((RectTransform)pull.View.transform, pull.Finish);
-                    pull.View.SetHighlight(true, pull.Colour);
-                }
+                // Das Finish erscheint im selben Moment wie das Bild — die
+                // Kartenansicht setzt es selbst, sobald sie das Gesicht zeigt.
+                if (faceUp) pull.View.SetHighlight(true, pull.Colour);
             }
             float angle = Motion.Drift(Mathf.Clamp01(flip)) * 180f;
             var viewRect = (RectTransform)pull.View.transform;

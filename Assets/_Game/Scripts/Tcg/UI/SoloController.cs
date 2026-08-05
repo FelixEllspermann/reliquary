@@ -56,6 +56,8 @@ namespace Rouge.Tcg.UI
                 MatchContext.UseCustomLocalDeck = true;
                 MatchContext.LocalDeckCards = new List<string>(deck.Cards);
                 MatchContext.LocalExtraCards = new List<string>(deck.Extra);
+                MatchContext.LocalDeckFinishes = deck.DeckFinishNumbers();
+                MatchContext.LocalExtraFinishes = deck.ExtraFinishNumbers();
                 MatchContext.LocalHero = deck.Hero;
                 MatchContext.LocalName = PlayerProfile.AccountName;
             }

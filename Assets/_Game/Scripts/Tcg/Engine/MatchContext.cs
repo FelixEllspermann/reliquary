@@ -35,6 +35,11 @@ namespace Rouge.Tcg.Net
         public static string LocalHero;
         public static string LocalDeckName;
 
+        // Ausführung je Deck-Platz, gleiche Reihenfolge wie oben. Leer heisst
+        // schlicht — Decks aus der Zeit vor den Finishes bleiben so gültig.
+        public static List<int> LocalDeckFinishes = new List<int>();
+        public static List<int> LocalExtraFinishes = new List<int>();
+
 
         /// <summary>
         /// Was der Gegner an Kosmetik trägt, Fach → Id. Kommt mit der
@@ -75,6 +80,8 @@ namespace Rouge.Tcg.Net
             RemoteCosmetics.Clear();
             LocalDeckCards = new List<string>();
             LocalExtraCards = new List<string>();
+            LocalDeckFinishes = new List<int>();
+            LocalExtraFinishes = new List<int>();
             LocalHero = null;
             LocalDeckName = null;
         }

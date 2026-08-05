@@ -23,9 +23,28 @@ namespace Rouge.Tcg.Net
         public CardFinish ExtraFinishAt(int index) =>
             index >= 0 && index < ExtraFinishes.Count ? ExtraFinishes[index] : CardFinish.Plain;
 
+        /// <summary>Finishes als Zahlen für Netz und Duell — immer genau so lang wie die Kartenliste.</summary>
+        public List<int> DeckFinishNumbers() => Numbers(CardFinishes, Cards.Count);
+        public List<int> ExtraFinishNumbers() => Numbers(ExtraFinishes, Extra.Count);
+
+        private static List<int> Numbers(List<CardFinish> finishes, int count)
+        {
+            var result = new List<int>(count);
+            for (int i = 0; i < count; i++) result.Add(i < finishes.Count ? (int)finishes[i] : 0);
+            return result;
+        }
+
         public RuntimeDeck Clone()
         {
-            return new RuntimeDeck { Name = Name, Hero = Hero, Cards = new List<string>(Cards), Extra = new List<string>(Extra) };
+            return new RuntimeDeck
+            {
+                Name = Name, Hero = Hero,
+                Cards = new List<string>(Cards), Extra = new List<string>(Extra),
+                // Ohne die Finishes wäre eine Kopie ein Deck aus lauter schlichten
+                // Karten — dieselben Namen, aber nicht mehr dieselben Exemplare.
+                CardFinishes = new List<CardFinish>(CardFinishes),
+                ExtraFinishes = new List<CardFinish>(ExtraFinishes)
+            };
         }
     }
 

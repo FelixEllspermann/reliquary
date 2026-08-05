@@ -40,5 +40,37 @@ namespace Rouge.Tcg
             }
             return result;
         }
+
+        /// <summary>
+        /// Wie <see cref="ResolveList(IEnumerable{string})"/>, führt aber die
+        /// Finish-Liste im Gleichschritt mit.
+        ///
+        /// Der Gleichschritt ist der ganze Punkt: ein unbekannter Kartenname fällt
+        /// aus der Liste, und ohne diese Methode bliebe sein Finish stehen. Ab da
+        /// trüge jede folgende Karte die Ausführung ihrer Vorgängerin — aus einem
+        /// fehlenden Namen würde ein Deck voll falscher Effekte.
+        /// </summary>
+        /// <param name="finishes">Zahlenwerte parallel zu <paramref name="names"/>; darf kürzer oder null sein.</param>
+        /// <param name="kept">Nimmt die Finishes der tatsächlich gefundenen Karten auf.</param>
+        public List<CardDefinition> ResolveList(IList<string> names, IList<int> finishes, List<Net.CardFinish> kept)
+        {
+            var result = new List<CardDefinition>();
+            kept?.Clear();
+            if (names == null) return result;
+            for (int i = 0; i < names.Count; i++)
+            {
+                var card = FindByName(names[i]);
+                if (card == null) { Debug.LogWarning($"CardCatalog: Karte '{names[i]}' nicht gefunden!"); continue; }
+                result.Add(card);
+                kept?.Add(FinishAt(finishes, i));
+            }
+            return result;
+        }
+
+        /// <summary>Ein Finish aus einer Zahlenliste — fehlt der Eintrag, ist er schlicht.</summary>
+        private static Net.CardFinish FinishAt(IList<int> finishes, int index) =>
+            finishes != null && index >= 0 && index < finishes.Count
+                ? Net.CardFinishWire.From(finishes[index])
+                : Net.CardFinish.Plain;
     }
 }

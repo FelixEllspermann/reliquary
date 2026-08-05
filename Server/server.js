@@ -409,9 +409,162 @@ function validateDeck(acc, deck) {
   return null;
 }
 
+// ---- Admin-Schnittstelle (Spieler-Editor der Website) ----
+//
+// Die Website darf die Spieldaten NICHT selbst anfassen: die Konten liegen in
+// SQLite, der Server hält sie im Speicher, und zwei Schreiber auf derselben Datei
+// enden in verlorenen Änderungen. Also fragt die Website hier an, und dieser
+// Prozess — der einzige Besitzer der Daten — führt es aus.
+//
+// Drei Riegel, alle drei müssen halten:
+//   1. Nur über die Loopback-Schnittstelle. Website und Spielserver laufen auf
+//      derselben Maschine; von aussen ist der Weg damit gar nicht erst offen.
+//   2. Ein gemeinsames Geheimnis aus der Umgebung. Steht es nicht da, ist die
+//      Schnittstelle KOMPLETT AUS statt offen — im Zweifel lieber unbenutzbar.
+//   3. Vergleich in konstanter Zeit, damit sich das Geheimnis nicht erraten lässt.
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
+
+function isLoopback(req) {
+  const address = req.socket.remoteAddress || '';
+  return address === '127.0.0.1' || address === '::1' || address === '::ffff:127.0.0.1';
+}
+
+function adminAllowed(req) {
+  if (!ADMIN_TOKEN || !isLoopback(req)) return false;
+  const given = Buffer.from(String(req.headers['x-admin-token'] || ''));
+  const want = Buffer.from(ADMIN_TOKEN);
+  return given.length === want.length && crypto.timingSafeEqual(given, want);
+}
+
+function adminJson(res, code, body) {
+  res.writeHead(code, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(body));
+}
+
+/** Was die Website über einen Spieler zu sehen bekommt. */
+function adminPlayerView(acc) {
+  const collection = [];
+  for (const [card, byFinish] of Object.entries(acc.collection || {})) {
+    const counts = Array.isArray(byFinish) ? byFinish : [byFinish | 0];
+    counts.forEach((count, finish) => {
+      if (count > 0) collection.push({ card, finish, count });
+    });
+  }
+  collection.sort((a, b) => a.card.localeCompare(b.card) || a.finish - b.finish);
+  return {
+    name: acc.name,
+    coins: acc.coins | 0,
+    dust: (acc.tokens || []).map(t => t | 0),
+    packs: acc.packInv || {},
+    rank: acc.rank || null,
+    cosmetics: acc.cosmetics || [],
+    decks: (acc.decks || []).map(d => d && d.name).filter(Boolean),
+    cardCount: collection.reduce((sum, e) => sum + e.count, 0),
+    collection
+  };
+}
+
+/**
+ * Führt eine Admin-Änderung aus. Gibt null zurück, wenn es geklappt hat, sonst
+ * den Grund. Jede Änderung landet im Log — wer Spielwerte vergibt, muss das
+ * nachher nachlesen können.
+ */
+function adminApply(acc, body) {
+  const changes = [];
+
+  if (body.coins !== undefined) {
+    const value = Math.max(0, Math.round(Number(body.coins)));
+    if (!Number.isFinite(value)) return 'coins ist keine Zahl.';
+    changes.push(`Coins ${acc.coins | 0} -> ${value}`);
+    acc.coins = value;
+  }
+
+  if (body.dust !== undefined) {
+    if (!Array.isArray(body.dust) || body.dust.length !== (acc.tokens || []).length)
+      return `dust muss ein Array mit ${(acc.tokens || []).length} Werten sein.`;
+    const next = body.dust.map(v => Math.max(0, Math.round(Number(v))));
+    if (next.some(v => !Number.isFinite(v))) return 'dust enthält keine Zahl.';
+    changes.push(`Dust [${acc.tokens.join(',')}] -> [${next.join(',')}]`);
+    acc.tokens = next;
+  }
+
+  if (Array.isArray(body.cards)) {
+    for (const entry of body.cards) {
+      const name = String(entry.card || '');
+      if (cards[name] === undefined) return `Unbekannte Karte: ${name}`;
+      const finish = Math.min(Math.max(entry.finish | 0, 0), finishes.COUNT - 1);
+      const amount = Math.round(Number(entry.count));
+      if (!Number.isFinite(amount) || amount === 0) continue;
+      if (amount > 0) {
+        for (let i = 0; i < amount; i++) finishes.add(acc.collection, name, finish);
+      } else {
+        for (let i = 0; i < -amount; i++) {
+          if (!finishes.owns(acc.collection, name, finish)) break;
+          finishes.remove(acc.collection, name, finish);
+        }
+      }
+      changes.push(`${amount > 0 ? '+' : ''}${amount}x ${name} (${finishes.NAMES[finish]})`);
+    }
+  }
+
+  if (changes.length === 0) return 'Nichts zu ändern.';
+  saveAccount(acc);
+  log(`ADMIN ${acc.name}: ${changes.join(' | ')}`);
+
+  // Sitzt der Spieler gerade im Spiel, sieht er es sofort statt erst nach dem
+  // nächsten Login — sonst wundert er sich, warum die Coins nicht ankommen.
+  for (const client of clients)
+    if (client.account === acc.name.toLowerCase()) sendProfile(client, acc);
+
+  return null;
+}
+
 // ---- HTTP + WebSocket ----
 const server = http.createServer((req, res) => {
   if (req.url === '/healthz') { res.writeHead(200, { 'Content-Type': 'text/plain' }); res.end('ok'); return; }
+
+  if (req.url && req.url.startsWith('/admin/')) {
+    if (!adminAllowed(req)) { res.writeHead(404); res.end(); return; }
+    const url = new URL(req.url, 'http://localhost');
+
+    if (url.pathname === '/admin/players' && req.method === 'GET') {
+      const list = Object.values(accounts)
+        .map(a => ({ name: a.name, coins: a.coins | 0 }))
+        .sort((x, y) => x.name.localeCompare(y.name));
+      return adminJson(res, 200, { players: list });
+    }
+
+    if (url.pathname === '/admin/cards' && req.method === 'GET')
+      return adminJson(res, 200, { cards: Object.keys(cards).sort(), finishes: finishes.NAMES });
+
+    if (url.pathname === '/admin/player' && req.method === 'GET') {
+      const acc = accounts[String(url.searchParams.get('name') || '').toLowerCase()];
+      if (!acc) return adminJson(res, 404, { error: 'Unbekannter Spieler.' });
+      return adminJson(res, 200, adminPlayerView(acc));
+    }
+
+    if (url.pathname === '/admin/player' && req.method === 'POST') {
+      let raw = '';
+      req.on('data', chunk => {
+        raw += chunk;
+        if (raw.length > 200_000) req.destroy();   // kein unbegrenzter Puffer
+      });
+      req.on('end', () => {
+        let body;
+        try { body = JSON.parse(raw); }
+        catch { return adminJson(res, 400, { error: 'Kein gültiges JSON.' }); }
+        const acc = accounts[String(body.name || '').toLowerCase()];
+        if (!acc) return adminJson(res, 404, { error: 'Unbekannter Spieler.' });
+        const problem = adminApply(acc, body);
+        if (problem) return adminJson(res, 400, { error: problem });
+        return adminJson(res, 200, adminPlayerView(acc));
+      });
+      return;
+    }
+
+    return adminJson(res, 404, { error: 'Unbekannter Endpunkt.' });
+  }
+
   res.writeHead(404); res.end();
 });
 const wss = new WebSocketServer({ server });
@@ -553,8 +706,13 @@ function startServerDuel(a, b) {
     op: 'start', duelId,
     seed: Math.floor(Math.random() * 2147483647),
     aStarts: Math.random() < 0.5,
-    a: { name: a.name, deck: deckA.cards, extra: deckA.extra || [], hero: deckA.hero, kind: 'human' },
-    b: { name: b.name, deck: deckB.cards, extra: deckB.extra || [], hero: deckB.hero, kind: 'human' }
+    // Die Finishes gehören zum Exemplar, nicht zur Karte: ohne sie läge im
+    // Duell überall die schlichte Fassung, auch bei wem, der die glänzende
+    // eingebaut hat.
+    a: { name: a.name, deck: deckA.cards, extra: deckA.extra || [], hero: deckA.hero, kind: 'human',
+         deckFinishes: deckA.cardFinishes || [], extraFinishes: deckA.extraFinishes || [] },
+    b: { name: b.name, deck: deckB.cards, extra: deckB.extra || [], hero: deckB.hero, kind: 'human',
+         deckFinishes: deckB.cardFinishes || [], extraFinishes: deckB.extraFinishes || [] }
   });
   send(a, { t: 'sduel_start', duelId, youAre: 'A', opponent: b.name, ...equippedOf(b) });
   send(b, { t: 'sduel_start', duelId, youAre: 'B', opponent: a.name, ...equippedOf(a) });

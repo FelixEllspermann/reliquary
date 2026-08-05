@@ -8,6 +8,15 @@ namespace Rouge.Tcg
         public CardDefinition Definition;
         public PlayerState Owner;
         public ZoneType Zone = ZoneType.Deck;
+
+        /// <summary>
+        /// Welche Ausführung dieses Exemplars auf dem Tisch liegt. Regeltechnisch
+        /// bedeutungslos — die Engine trägt sie nur mit, damit der Client die
+        /// glänzende Kopie auch als glänzende Kopie zeichnet. Wer drei schlichte
+        /// und eine Static im Deck hat, sieht genau eine leuchten.
+        /// </summary>
+        public Net.CardFinish Finish = Net.CardFinish.Plain;
+
         public bool FaceDown;                       // gesetzte Zauber liegen verdeckt
         public BattlePosition Position = BattlePosition.Attack;
         public bool SetThisTurn;                    // in diesem Zug gesetzt (noch nicht aktivierbar)

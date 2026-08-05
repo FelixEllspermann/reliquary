@@ -92,6 +92,12 @@ namespace Rouge.Tcg.UI
         private int attrFilter;   // 0 all, 1..6 = AttrOrder
         private string search = "";
         private CardDefinition selected;
+
+        /// <summary>Welche Ausführung der gewählten Karte rechts steht.</summary>
+        private CardFinish selectedFinish = CardFinish.Plain;
+        private RectTransform finishStrip;
+        private readonly List<FinishChip> finishChips = new List<FinishChip>();
+
         private bool savedState;      // SAVE DECK ↔ SAVED ✓
         private bool awaitingSave;
 
@@ -158,7 +164,7 @@ namespace Rouge.Tcg.UI
             RefreshChips();
             RefreshDeckDropdown();
             RebuildAll();
-            if (pool.Count > 0) Select(pool[0]);
+            if (pool.Count > 0) Select(pool[0], CardFinish.Plain);
         }
 
         private void OnDestroy()
@@ -388,7 +394,7 @@ namespace Rouge.Tcg.UI
             deck.Hero = heroes[index].cardName;
             MarkEdited();
             RefreshHeroChips();
-            Select(heroes[index]);
+            Select(heroes[index], CardFinish.Plain);
         }
 
         private void RefreshHeroChips()
@@ -621,7 +627,7 @@ namespace Rouge.Tcg.UI
                 deck.CardFinishes.Add(finish);
             }
             MarkEdited();
-            Select(card);
+            Select(card, finish);
             RebuildAll();
         }
 
@@ -650,25 +656,160 @@ namespace Rouge.Tcg.UI
         // ---------- Detail-Rail ----------
 
         /// <summary>Setzt die Karte der Detail-Rail — ausgelöst durch einen Klick auf eine Zeile.</summary>
-        private void Select(CardDefinition card)
+        private void Select(CardDefinition card, CardFinish finish)
         {
             selected = card;
-            if (previewView != null && card != null)
-            {
-                previewView.gameObject.SetActive(true);
-                previewView.Show(new CardInstance(card, null), false, upright: true);
-                previewView.SetHighlight(false);
-            }
+            selectedFinish = finish;
+            ShowPreview();
             if (previewEmpty != null) previewEmpty.SetActive(card == null);
             RefreshCardText(card);
             RefreshCraftButtons();
             HighlightSelection();
         }
 
+        /// <summary>Zeichnet die Vorschaukarte in der gerade gewählten Ausführung.</summary>
+        private void ShowPreview()
+        {
+            if (previewView != null && selected != null)
+            {
+                previewView.gameObject.SetActive(true);
+                previewView.Show(new CardInstance(selected, null) { Finish = selectedFinish }, false, upright: true);
+                previewView.SetHighlight(false);
+            }
+            RefreshFinishChips();
+        }
+
         private void HighlightSelection()
         {
-            foreach (var row in poolRows) if (row != null) row.SetSelected(row.Card == selected);
-            foreach (var row in deckRows) if (row != null) row.SetSelected(row.Card == selected);
+            // Die Zeile des angezeigten Exemplars leuchtet, nicht jede Zeile der
+            // Karte — sonst hätte man bei drei Finishes drei helle Zeilen und
+            // wüsste nicht, welche gerade rechts steht.
+            foreach (var row in poolRows)
+                if (row != null) row.SetSelected(row.Card == selected && row.Finish == selectedFinish);
+            foreach (var row in deckRows)
+                if (row != null) row.SetSelected(row.Card == selected && row.Finish == selectedFinish);
+        }
+
+        // ---------- Finish-Umschalter unter der Vorschau ----------
+
+        /// <summary>
+        /// Eine Leiste mit allen vier Ausführungen unter der Vorschaukarte. Sie
+        /// zeigt AUCH die, die man nicht besitzt: erst wer Regenbogen einmal
+        /// gesehen hat, weiss, wofür sich das Öffnen lohnt. Was man hat, steht
+        /// hell und mit Stückzahl da; der Rest bleibt gedämpft.
+        /// </summary>
+        private void RefreshFinishChips()
+        {
+            if (previewView == null) return;
+            if (finishStrip == null) BuildFinishStrip();
+            if (finishStrip == null) return;
+
+            finishStrip.gameObject.SetActive(selected != null && !(selected is PlayerCardData));
+            if (selected == null) return;
+
+            var stock = CollectionMode ? PlayerProfile.StockOf(selected.cardName) : null;
+            for (int i = 0; i < finishChips.Count; i++)
+            {
+                var finish = (CardFinish)i;
+                int owned = stock != null ? stock[finish] : 0;
+                bool active = finish == selectedFinish;
+                bool has = owned > 0 || finish == CardFinish.Plain;
+
+                var accent = CardFinishInfo.Accent(finish);
+                finishChips[i].Background.color = active
+                    ? new Color(accent.r, accent.g, accent.b, 0.22f)
+                    : new Color(0f, 0f, 0f, 0.35f);
+                finishChips[i].Frame.color = active
+                    ? accent
+                    : new Color(accent.r, accent.g, accent.b, has ? 0.4f : 0.16f);
+
+                var label = finishChips[i].Label;
+                label.text = owned > 0
+                    ? $"{CardFinishInfo.Label(finish).ToUpperInvariant()} {owned}"
+                    : CardFinishInfo.Label(finish).ToUpperInvariant();
+                label.color = active ? accent
+                    : new Color(accent.r, accent.g, accent.b, has ? 0.75f : 0.35f);
+            }
+        }
+
+        private void BuildFinishStrip()
+        {
+            // Kind der Vorschaukarte: so sitzt die Leiste immer direkt darunter,
+            // egal wie die Rail gerade aufgeteilt ist, und verschwindet mit ihr.
+            var go = new GameObject("FinishStrip", typeof(RectTransform));
+            finishStrip = (RectTransform)go.transform;
+            finishStrip.SetParent((RectTransform)previewView.transform, false);
+            finishStrip.anchorMin = new Vector2(0f, 0f);
+            finishStrip.anchorMax = new Vector2(1f, 0f);
+            finishStrip.pivot = new Vector2(0.5f, 1f);
+            finishStrip.anchoredPosition = new Vector2(0f, -8f);
+            finishStrip.sizeDelta = new Vector2(0f, 24f);
+
+            var layout = go.AddComponent<HorizontalLayoutGroup>();
+            layout.spacing = 4f;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = true;
+            layout.childControlWidth = true;
+            layout.childControlHeight = true;
+
+            for (int i = 0; i < CardFinishInfo.Count; i++)
+            {
+                var finish = (CardFinish)i;
+                finishChips.Add(BuildFinishChip(finish));
+            }
+        }
+
+        private FinishChip BuildFinishChip(CardFinish finish)
+        {
+            var go = new GameObject(CardFinishInfo.Label(finish), typeof(RectTransform));
+            go.transform.SetParent(finishStrip, false);
+
+            var background = go.AddComponent<Image>();
+            background.color = new Color(0f, 0f, 0f, 0.35f);
+
+            var frameGo = new GameObject("Frame", typeof(RectTransform));
+            var frameRect = (RectTransform)frameGo.transform;
+            frameRect.SetParent(go.transform, false);
+            frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+            frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+            var frame = frameGo.AddComponent<Image>();
+            frame.sprite = skin != null ? skin.whiteFrame : null;
+            frame.type = Image.Type.Sliced;
+            frame.raycastTarget = false;
+
+            var labelGo = new GameObject("Label", typeof(RectTransform));
+            var labelRect = (RectTransform)labelGo.transform;
+            labelRect.SetParent(go.transform, false);
+            labelRect.anchorMin = Vector2.zero; labelRect.anchorMax = Vector2.one;
+            labelRect.offsetMin = Vector2.zero; labelRect.offsetMax = Vector2.zero;
+            var label = labelGo.AddComponent<TextMeshProUGUI>();
+            label.text = CardFinishInfo.Label(finish).ToUpperInvariant();
+            label.fontSize = 11f;
+            label.alignment = TextAlignmentOptions.Center;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = 8f;
+            label.fontSizeMax = 11f;
+            label.raycastTarget = false;
+
+            var button = go.AddComponent<Button>();
+            button.transition = Selectable.Transition.None;
+            button.onClick.AddListener(() =>
+            {
+                SfxManager.Click();
+                selectedFinish = finish;
+                ShowPreview();
+                HighlightSelection();
+            });
+
+            return new FinishChip { Background = background, Frame = frame, Label = label };
+        }
+
+        /// <summary>Die drei Teile eines Umschalt-Chips, damit RefreshFinishChips sie einfärben kann.</summary>
+        private struct FinishChip
+        {
+            public Image Background;
+            public Image Frame;
+            public TMP_Text Label;
         }
 
         /// <summary>Hover-Textbox: Typzeile + kompletter Effekttext der Karte unter dem Cursor.</summary>

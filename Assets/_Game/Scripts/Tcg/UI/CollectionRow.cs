@@ -45,7 +45,7 @@ namespace Rouge.Tcg.UI
         private bool deckSide;
         private Action<CardDefinition, CardFinish> onAdd;
         private Action<CardDefinition, CardFinish> onRemove;
-        private Action<CardDefinition> onSelect;
+        private Action<CardDefinition, CardFinish> onSelect;
         private bool selected;
         private bool hovered;
 
@@ -95,6 +95,9 @@ namespace Rouge.Tcg.UI
 
         public CardDefinition Card => card;
 
+        /// <summary>Die Ausführung, für die diese Zeile steht.</summary>
+        public CardFinish Finish => finish;
+
         /// <summary>Farbe und Wort einer Banlist-Stufe. limit: 0 gebannt, 1 limitiert, 2 semi.</summary>
         public static string RestrictionHex(int limit) => limit <= 0 ? "E0603A" : limit == 1 ? "E8A33D" : "E8D08A";
         public static string RestrictionWord(int limit) => limit <= 0 ? "FORBIDDEN" : limit == 1 ? "LIMITED" : "SEMI-LIMITED";
@@ -112,7 +115,7 @@ namespace Rouge.Tcg.UI
         public void Setup(CardDefinition definition, CardFinish cardFinish, int inDeck, int owned, int maxCopies,
             int copiesOfCard, bool isDeckSide,
             Action<CardDefinition, CardFinish> add, Action<CardDefinition, CardFinish> remove,
-            Action<CardDefinition> select, int banLimit = -1)
+            Action<CardDefinition, CardFinish> select, int banLimit = -1)
         {
             card = definition;
             finish = cardFinish;
@@ -186,12 +189,12 @@ namespace Rouge.Tcg.UI
             if (minusButton != null)
             {
                 minusButton.onClick.RemoveAllListeners();
-                minusButton.onClick.AddListener(() => { onSelect?.Invoke(card); onRemove?.Invoke(card, finish); });
+                minusButton.onClick.AddListener(() => { onSelect?.Invoke(card, finish); onRemove?.Invoke(card, finish); });
             }
             if (plusButton != null)
             {
                 plusButton.onClick.RemoveAllListeners();
-                plusButton.onClick.AddListener(() => { onSelect?.Invoke(card); onAdd?.Invoke(card, finish); });
+                plusButton.onClick.AddListener(() => { onSelect?.Invoke(card, finish); onAdd?.Invoke(card, finish); });
             }
 
             hovered = false;
@@ -285,7 +288,9 @@ namespace Rouge.Tcg.UI
                 else onAdd?.Invoke(card, finish);
                 return;
             }
-            onSelect?.Invoke(card);
+            // Die Vorschau zeigt GENAU dieses Exemplar — wer die Static-Zeile
+            // anklickt, will die Static-Karte sehen und nicht die schlichte.
+            onSelect?.Invoke(card, finish);
         }
     }
 }

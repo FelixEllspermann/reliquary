@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Rouge.Tcg.Net
 {
@@ -52,13 +52,14 @@ namespace Rouge.Tcg.Net
 
         // Server-autoritatives Duell
         public bool sduel;          // hello: Client beherrscht Server-Duelle
-        public string op;           // sduel: state | request | events | log | end
+        public string op;           // sduel: state | request | events | log | waiting | end
         public string duelId;
         public string winner;       // sduel end: "A" | "B"
         public SduelView view;      // sduel state
         public SduelRequest request;// sduel request
         public SduelEvent[] events; // sduel events
         public string[] lines;      // sduel log
+        public string text;         // sduel waiting: was der Gegner gerade tut (leer = fertig)
         public SduelAnswer answer;  // sduel_intent (Client -> Server)
     }
 
@@ -75,6 +76,11 @@ namespace Rouge.Tcg.Net
         public int atk;
         public int def;
         public bool negated;
+
+        // Ausführung des Exemplars (CardFinish). Nur bei sichtbaren Karten
+        // gefüllt — eine verdeckte Karte am Funkeln zu erkennen wäre verraten,
+        // was der Gegner nicht wissen soll.
+        public int finish;
     }
 
     /// <summary>Die Seite eines Spielers; hand/extra sind nur für den Besitzer gefüllt.</summary>

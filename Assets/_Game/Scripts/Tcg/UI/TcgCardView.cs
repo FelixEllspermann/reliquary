@@ -228,6 +228,17 @@ namespace Rouge.Tcg.UI
             if (cardRoot != null) cardRoot.gameObject.SetActive(!compact);
             if (compactRoot != null) compactRoot.gameObject.SetActive(compact);
 
+            // Das Finish liegt auf der Karte selbst, nicht auf dem Layout-Platz —
+            // deshalb an CardRoot und nicht an die Wurzel. Mit der Rückseite
+            // verschwindet es: eine funkelnde Rückseite verriete, was dort liegt.
+            //
+            // Hier steht der einzige Ort, an dem im Spiel Finishes gezeichnet
+            // werden. Jede Ansicht, die eine Karte zeigt — Hand, Feld, Friedhof,
+            // Vorschau, Pack-Reveal — bekommt sie damit von selbst.
+            var finishHost = compact ? compactRoot : cardRoot;
+            if (finishHost != null)
+                CardFinishOverlay.Apply(finishHost, showBack ? Net.CardFinish.Plain : instance.Finish);
+
             if (compact)
             {
                 ShowCompact(instance, showBack);

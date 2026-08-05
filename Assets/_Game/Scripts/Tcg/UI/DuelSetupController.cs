@@ -409,6 +409,8 @@ namespace Rouge.Tcg.UI
             MatchContext.SoloDifficulty = difficulty;
             MatchContext.LocalDeckCards = new List<string>(deck.Cards);
             MatchContext.LocalExtraCards = new List<string>(deck.Extra);
+            MatchContext.LocalDeckFinishes = deck.DeckFinishNumbers();
+            MatchContext.LocalExtraFinishes = deck.ExtraFinishNumbers();
             MatchContext.LocalHero = deck.Hero;
             MatchContext.LocalName = PlayerProfile.LoggedIn ? PlayerProfile.AccountName : "Duelist";
 

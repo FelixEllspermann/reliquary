@@ -162,11 +162,16 @@ namespace Rouge.Tcg
         /// <summary>Solo gegen den Bot mit einem Account-Deck aus dem MatchContext.</summary>
         private void StartSoloDuelFromContext()
         {
-            var deckCards = catalog.ResolveList(Net.MatchContext.LocalDeckCards);
-            var extraCards = catalog.ResolveList(Net.MatchContext.LocalExtraCards);
+            // Die eigenen Finishes kommen mit — solo sieht man die glänzende Kopie
+            // genauso wie online.
+            var deckFinishes = new List<Net.CardFinish>();
+            var extraFinishes = new List<Net.CardFinish>();
+            var deckCards = catalog.ResolveList(Net.MatchContext.LocalDeckCards, Net.MatchContext.LocalDeckFinishes, deckFinishes);
+            var extraCards = catalog.ResolveList(Net.MatchContext.LocalExtraCards, Net.MatchContext.LocalExtraFinishes, extraFinishes);
             var hero = catalog.FindByName(Net.MatchContext.LocalHero) as PlayerCardData;
 
-            Player1 = BuildListPlayer(Net.MatchContext.LocalName, deckCards, extraCards, hero, new HumanDuelController(ui));
+            Player1 = BuildListPlayer(Net.MatchContext.LocalName, deckCards, extraCards, hero,
+                new HumanDuelController(ui), deckFinishes, extraFinishes);
 
             if (!string.IsNullOrEmpty(Net.MatchContext.BotName) && Net.MatchContext.BotDeckCards.Count > 0)
             {
@@ -226,7 +231,9 @@ namespace Rouge.Tcg
         public void StartServerDuel(int seed,
             string nameA, List<CardDefinition> deckA, List<CardDefinition> extraA, PlayerCardData heroA, DuelController controllerA,
             string nameB, List<CardDefinition> deckB, List<CardDefinition> extraB, PlayerCardData heroB, DuelController controllerB,
-            bool aStarts)
+            bool aStarts,
+            List<Net.CardFinish> deckFinishesA = null, List<Net.CardFinish> extraFinishesA = null,
+            List<Net.CardFinish> deckFinishesB = null, List<Net.CardFinish> extraFinishesB = null)
         {
             if (DuelRunning) return;
             if (rules == null)
@@ -237,8 +244,8 @@ namespace Rouge.Tcg
 
             rng = new System.Random(seed);
 
-            Player1 = BuildListPlayer(nameA, deckA, extraA, heroA, controllerA);
-            Player2 = BuildListPlayer(nameB, deckB, extraB, heroB, controllerB);
+            Player1 = BuildListPlayer(nameA, deckA, extraA, heroA, controllerA, deckFinishesA, extraFinishesA);
+            Player2 = BuildListPlayer(nameB, deckB, extraB, heroB, controllerB, deckFinishesB, extraFinishesB);
             Player1.Opponent = Player2;
             Player2.Opponent = Player1;
             // Auf dem Server sitzt niemand — LocalPlayer bleibt leer, damit nichts
@@ -256,8 +263,14 @@ namespace Rouge.Tcg
             runRoutine(RunDuel());
         }
 
-        /// <summary>Baut einen Spieler aus einer Kartenliste (Laufzeit-Deck) mit beliebigem Controller.</summary>
-        private PlayerState BuildListPlayer(string name, List<CardDefinition> deckCards, List<CardDefinition> extraCards, PlayerCardData hero, DuelController controller)
+        /// <summary>
+        /// Baut einen Spieler aus einer Kartenliste (Laufzeit-Deck) mit beliebigem
+        /// Controller. Die Finish-Listen laufen parallel zu den Kartenlisten und
+        /// dürfen fehlen — dann ist jedes Exemplar schlicht.
+        /// </summary>
+        private PlayerState BuildListPlayer(string name, List<CardDefinition> deckCards, List<CardDefinition> extraCards,
+            PlayerCardData hero, DuelController controller,
+            List<Net.CardFinish> deckFinishes = null, List<Net.CardFinish> extraFinishes = null)
         {
             var player = new PlayerState { Name = string.IsNullOrWhiteSpace(name) ? "Player" : name };
             player.Controller = controller;
@@ -265,15 +278,28 @@ namespace Rouge.Tcg
             player.Controller.Duel = this;
 
             if (deckCards != null)
-                foreach (var definition in deckCards)
-                    if (definition != null && !(definition is PlayerCardData) && !(definition is ReliquaryCardData))
-                        player.DeckPile.Add(new CardInstance(definition, player) { Zone = ZoneType.Deck });
+                for (int i = 0; i < deckCards.Count; i++)
+                {
+                    var definition = deckCards[i];
+                    if (definition == null || definition is PlayerCardData || definition is ReliquaryCardData) continue;
+                    player.DeckPile.Add(new CardInstance(definition, player)
+                    {
+                        Zone = ZoneType.Deck,
+                        Finish = FinishOf(deckFinishes, i)
+                    });
+                }
             Shuffle(player.DeckPile);
 
             if (extraCards != null)
-                foreach (var definition in extraCards)
-                    if (definition is ReliquaryCardData)
-                        player.ExtraDeckPile.Add(new CardInstance(definition, player) { Zone = ZoneType.ExtraDeck });
+                for (int i = 0; i < extraCards.Count; i++)
+                {
+                    if (!(extraCards[i] is ReliquaryCardData)) continue;
+                    player.ExtraDeckPile.Add(new CardInstance(extraCards[i], player)
+                    {
+                        Zone = ZoneType.ExtraDeck,
+                        Finish = FinishOf(extraFinishes, i)
+                    });
+                }
 
             if (hero != null)
             {
@@ -286,6 +312,10 @@ namespace Rouge.Tcg
             player.ManaPerTurn = rules.startMana;
             return player;
         }
+
+        /// <summary>Finish an einer Deck-Position — fehlt die Angabe, ist das Exemplar schlicht.</summary>
+        private static Net.CardFinish FinishOf(List<Net.CardFinish> finishes, int index) =>
+            finishes != null && index >= 0 && index < finishes.Count ? finishes[index] : Net.CardFinish.Plain;
 
         /// <summary>Ein Spieler gibt auf (z.B. weil die Verbindung des Gegners abriss).</summary>
         public void Forfeit(PlayerState loser)

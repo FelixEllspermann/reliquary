@@ -2,16 +2,12 @@ using UnityEngine;
 
 namespace Rouge.Tcg.Net
 {
-    /// <summary>
-    /// Ein Finish gehört dem EXEMPLAR, nicht der Karte. Dieselbe Karte kann
-    /// gleichzeitig schlicht, glänzend und regenbogen im Tresor liegen, und jedes
-    /// Exemplar zählt einzeln — im Deck Builder wie in der Sammlung.
-    /// </summary>
-    public enum CardFinish { Plain = 0, Glossy = 1, Rainbow = 2, Static = 3 }
+    // Der Aufzählungstyp CardFinish selbst steht in Engine/CardFinishKind.cs —
+    // dort kommt der DuelHost an ihn heran. Hier liegt alles, was Unity braucht.
 
     public static class CardFinishInfo
     {
-        public const int Count = 4;
+        public const int Count = CardFinishWire.Count;
 
         private static readonly string[] Labels = { "Plain", "Glossy", "Rainbow", "Static" };
 

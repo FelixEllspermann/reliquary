@@ -1,4 +1,4 @@
-// Ein server-autoritatives Duell: hält die Engine (DuelManager), treibt ihre
+﻿// Ein server-autoritatives Duell: hält die Engine (DuelManager), treibt ihre
 // Coroutinen mit einem eigenen Pump (DuelWait/null werden übersprungen, gewartet
 // wird nur auf Client-Intents) und serialisiert Zustand, Ereignisse und Requests
 // PRO SPIELER-SICHT — verdeckte Karten und die Gegnerhand verlassen den Server nie.
@@ -81,25 +81,45 @@ namespace Rouge.DuelHost
             duel.OnLog += line => logLines.Add(line);
             duel.OnDuelEnded += result => ended = result;
 
-            var (nameA, deckA, extraA, heroA, controllerA) = ReadSide(msg.GetProperty("a"), "A");
-            var (nameB, deckB, extraB, heroB, controllerB) = ReadSide(msg.GetProperty("b"), "B");
-            duel.StartServerDuel(seed, nameA, deckA, extraA, heroA, controllerA,
-                nameB, deckB, extraB, heroB, controllerB, aStarts);
+            var a = ReadSide(msg.GetProperty("a"), "A");
+            var b = ReadSide(msg.GetProperty("b"), "B");
+            duel.StartServerDuel(seed,
+                a.Name, a.Deck, a.Extra, a.Hero, a.Controller,
+                b.Name, b.Deck, b.Extra, b.Hero, b.Controller, aStarts,
+                a.DeckFinishes, a.ExtraFinishes, b.DeckFinishes, b.ExtraFinishes);
 
             playerA = duel.Player1;
             playerB = duel.Player2;
         }
 
-        private (string, List<CardDefinition>, List<CardDefinition>, PlayerCardData, DuelController) ReadSide(JsonElement side, string key)
+        /// <summary>Eine Duellseite, wie sie aus der Start-Nachricht kommt.</summary>
+        private sealed class Side
         {
-            string name = side.GetProperty("name").GetString();
-            var deck = library.Catalog.ResolveList(ReadNames(side, "deck"));
-            var extra = library.Catalog.ResolveList(ReadNames(side, "extra"));
-            var hero = side.TryGetProperty("hero", out var h)
-                ? library.Catalog.FindByName(h.GetString()) as PlayerCardData : null;
+            public string Name;
+            public List<CardDefinition> Deck, Extra;
+            public List<Rouge.Tcg.Net.CardFinish> DeckFinishes, ExtraFinishes;
+            public PlayerCardData Hero;
+            public DuelController Controller;
+        }
+
+        private Side ReadSide(JsonElement side, string key)
+        {
+            var deckFinishes = new List<Rouge.Tcg.Net.CardFinish>();
+            var extraFinishes = new List<Rouge.Tcg.Net.CardFinish>();
             bool isBot = side.TryGetProperty("kind", out var k) && k.GetString() == "bot";
-            DuelController controller = isBot ? new BotDuelController() : new WireController(this, key);
-            return (name, deck, extra, hero, controller);
+            return new Side
+            {
+                Name = side.GetProperty("name").GetString(),
+                // Namen und Finishes zusammen auflösen: fällt eine Karte weg,
+                // muss ihre Ausführung mitfallen, sonst verrutscht die ganze Liste.
+                Deck = library.Catalog.ResolveList(ReadNames(side, "deck"), ReadInts(side, "deckFinishes"), deckFinishes),
+                Extra = library.Catalog.ResolveList(ReadNames(side, "extra"), ReadInts(side, "extraFinishes"), extraFinishes),
+                DeckFinishes = deckFinishes,
+                ExtraFinishes = extraFinishes,
+                Hero = side.TryGetProperty("hero", out var h)
+                    ? library.Catalog.FindByName(h.GetString()) as PlayerCardData : null,
+                Controller = isBot ? new BotDuelController() : (DuelController)new WireController(this, key)
+            };
         }
 
         private static List<string> ReadNames(JsonElement parent, string field)
@@ -108,6 +128,16 @@ namespace Rouge.DuelHost
             if (parent.TryGetProperty(field, out var array) && array.ValueKind == JsonValueKind.Array)
                 foreach (var item in array.EnumerateArray()) names.Add(item.GetString());
             return names;
+        }
+
+        /// <summary>Zahlenfeld aus der Nachricht — fehlt es, bleibt die Liste leer (alles schlicht).</summary>
+        private static List<int> ReadInts(JsonElement parent, string field)
+        {
+            var values = new List<int>();
+            if (parent.TryGetProperty(field, out var array) && array.ValueKind == JsonValueKind.Array)
+                foreach (var item in array.EnumerateArray())
+                    values.Add(item.ValueKind == JsonValueKind.Number ? item.GetInt32() : 0);
+            return values;
         }
 
         // ================== PUMP ==================
@@ -140,18 +170,57 @@ namespace Rouge.DuelHost
             pendingRequest = request;
             pendingSide = side;
             nextRequestId++;
+
+            // Der andere sitzt derweil vor einem Brett, auf dem sich nichts rührt,
+            // und weiss nicht, ob er dran ist oder ob es hängt. Also sagen wir es ihm.
+            emit(side == "A" ? "B" : "A", new
+            {
+                op = "waiting",
+                duelId = Id,
+                text = request is YesNoRequest ? "deciding whether to respond"
+                     : request is TargetRequest ? "choosing targets"
+                     : request is ZoneSelectRequest ? "choosing a zone"
+                     : request is BattleActionRequest ? "declaring an attack"
+                     : "thinking"
+            });
         }
 
         public void ApplyIntent(string side, JsonElement intent)
         {
             if (pendingRequest == null || side != pendingSide) return;
             bool valid = ApplyAnswer(pendingRequest, intent);
-            if (!valid) { sentRequestId = 0; return; }   // Request erneut senden
+            if (!valid)
+            {
+                // Abgelehnt: der Request geht erneut raus. Beim dritten Mal ist
+                // klar, dass sich Client und Server über diese Anfrage nicht
+                // einigen — dann wird sie neutral beantwortet.
+                //
+                // Vorher lief das ewig im Kreis: Server schickt, Client antwortet,
+                // Server lehnt ab, Server schickt … Für den Spieler sieht das aus
+                // wie ein eingefrorenes Spiel, und im Log stand kein Wort davon.
+                rejectedAnswers++;
+                logLines.Add($"[sync] Antwort auf {pendingRequest.GetType().Name} abgelehnt (Versuch {rejectedAnswers}).");
+                Console.WriteLine($"[host] Intent abgelehnt: {pendingRequest.GetType().Name} (Versuch {rejectedAnswers}) — {intent}");
+                if (rejectedAnswers < 3) { sentRequestId = 0; return; }
 
+                logLines.Add("[sync] Anfrage konnte nicht beantwortet werden — neutral aufgelöst, das Duell läuft weiter.");
+                Console.WriteLine($"[host] {pendingRequest.GetType().Name} dreimal abgelehnt — neutral beantwortet.");
+                AnswerNeutral(pendingRequest);
+                pendingRequest = null;
+                pendingSide = null;
+                rejectedAnswers = 0;
+                return;
+            }
+
+            rejectedAnswers = 0;
             pendingRequest.Answered = true;
             pendingRequest = null;
+            emit(pendingSide == "A" ? "B" : "A", new { op = "waiting", duelId = Id, text = "" });
             pendingSide = null;
         }
+
+        /// <summary>Wie oft der Client die offene Anfrage schon ungültig beantwortet hat.</summary>
+        private int rejectedAnswers;
 
         /// <summary>Intent gegen den offenen Request prüfen und anwenden. False = ungültig.</summary>
         private bool ApplyAnswer(DuelRequest request, JsonElement intent)
@@ -347,7 +416,10 @@ namespace Rouge.DuelHost
                 position = card.Position == BattlePosition.Defense ? "def" : "atk",
                 atk = visible ? card.CurrentAtk : 0,
                 def = visible ? card.CurrentDef : 0,
-                negated = visible && card.EffectsNegated
+                negated = visible && card.EffectsNegated,
+                // Auch das Aussehen ist verdeckte Information: eine funkelnde
+                // Rückseite verriete, welche Karte dort liegt.
+                finish = visible ? (int)card.Finish : 0
             };
         }
 
