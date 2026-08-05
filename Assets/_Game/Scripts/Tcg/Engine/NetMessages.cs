@@ -27,6 +27,7 @@ namespace Rouge.Tcg.Net
         public string steamName;   // Vorschlag für den Duellisten-Namen (Steam-Persona)
         public string pack;        // buy_pack/open_pack: Packname
         public string card;        // craft/dust: Kartenname
+        public string starter;     // claim_starter: Id des gewählten Startdecks
         public string item;        // buy_cosmetic/equip_cosmetic: Gegenstands-Id
         public string slot;        // equip_cosmetic: Fach
         public bool won;           // duel_result
@@ -197,10 +198,34 @@ namespace Rouge.Tcg.Net
         public int[] extraFinishes;
     }
 
+    /// <summary>
+    /// Ein Startdeck zur Auswahl. Kommt komplett mit Kartenliste, damit der
+    /// Auswahl-Bildschirm jede Karte anzeigen kann, ohne nachzufragen — der
+    /// Spieler soll vor der Entscheidung lesen können, was er bekommt.
+    /// </summary>
+    [Serializable]
+    public class NetStarterDeck
+    {
+        public string id;
+        public string name;
+        public string archetypes;   // "Mechination · Sacrilegion"
+        public string blurb;        // eine Zeile für die Kachel
+        public string description;  // was das Deck tut, mehrere Absätze
+        public string hero;
+        public string[] cards;
+        public string[] extra;
+    }
+
     /// <summary>Konto-Zustand vom Server.</summary>
     [Serializable]
     public class NetProfile
     {
+        /// <summary>Das Konto hat noch kein Startdeck gewählt.</summary>
+        public bool starterPending;
+
+        /// <summary>Die Auswahl — nur gefüllt, solange sie offen ist.</summary>
+        public NetStarterDeck[] starters;
+
         public string account;
         public int coins;
         public int tokensCommon;

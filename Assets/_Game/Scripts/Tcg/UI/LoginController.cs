@@ -50,6 +50,7 @@ namespace Rouge.Tcg.UI
 
         [Header("Einstellungen")]
         [SerializeField] private string mainMenuSceneName = "MainMenu";
+        [SerializeField] private string starterPickSceneName = "StarterPick";
 
         private const string RememberPrefKey = "rouge_remember_name";
 
@@ -92,7 +93,10 @@ namespace Rouge.Tcg.UI
 
             if (PlayerProfile.LoggedIn && network != null && network.IsConnected)
             {
-                SceneManager.LoadScene(mainMenuSceneName);
+                // Auch dieser Abkürzungsweg (schon angemeldet, Login übersprungen)
+                // darf die Startdeck-Wahl nicht überspringen.
+                SceneManager.LoadScene(PlayerProfile.StarterPending && PlayerProfile.StarterDecks.Count > 0
+                    ? starterPickSceneName : mainMenuSceneName);
                 return;
             }
 
@@ -348,6 +352,14 @@ namespace Rouge.Tcg.UI
         /// </summary>
         private void EnterVault()
         {
+            // Wer noch kein Startdeck hat, wählt zuerst. Der Tresor-Übergang würde
+            // hier nur eine Zahl feiern, die noch bei null steht.
+            if (PlayerProfile.StarterPending && PlayerProfile.StarterDecks.Count > 0)
+            {
+                SceneManager.LoadScene(starterPickSceneName);
+                return;
+            }
+
             int cards = 0;
             foreach (var count in PlayerProfile.Collection.Values) cards += count;
             string vaultLine = $"Your vault holds {cards} cards and {PlayerProfile.Decks.Count} "

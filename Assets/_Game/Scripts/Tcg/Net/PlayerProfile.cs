@@ -144,10 +144,19 @@ namespace Rouge.Tcg.Net
         /// <summary>Chronik der Banlist, älteste zuerst (Reihenfolge wie in der Datei).</summary>
         public static readonly List<BanlistRevision> BanlistHistory = new List<BanlistRevision>();
 
+        /// <summary>Der Spieler muss noch ein Startdeck wählen.</summary>
+        public static bool StarterPending;
+
+        /// <summary>Die fünf Decks zur Auswahl — nur gefüllt, solange sie offen ist.</summary>
+        public static readonly List<NetStarterDeck> StarterDecks = new List<NetStarterDeck>();
+
         public static void Apply(NetProfile profile)
         {
             if (profile == null) return;
             LoggedIn = true;
+            StarterPending = profile.starterPending;
+            StarterDecks.Clear();
+            if (profile.starters != null) StarterDecks.AddRange(profile.starters);
             AccountName = profile.account ?? "";
             Coins = profile.coins;
             TokensCommon = profile.tokensCommon;

@@ -223,6 +223,10 @@ namespace Rouge.Tcg.Net
                 result[i] = i < finishes.Count ? (int)finishes[i] : 0;
             return result;
         }
+        /// <summary>Startdeck wählen. Der Server vergibt es genau einmal pro Konto.</summary>
+        public void SendClaimStarter(string deckId) =>
+            SendJson(new NetMessage { t = "claim_starter", starter = deckId });
+
         public void SendDeleteDeck(int index) => SendJson(new NetMessage { t = "delete_deck", deckIndex = index });
         public void SendCraft(string cardName) => SendJson(new NetMessage { t = "craft", card = cardName });
 

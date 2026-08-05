@@ -41,6 +41,9 @@ const cards = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'cards.json'), 'utf
 const packs = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'packs.json'), 'utf8'));        // Name -> {price, cards[]}
 const starter = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'starter.json'), 'utf8'));    // Name -> Anzahl (Start-Sammlung)
 const starterDeck = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'starterdeck.json'), 'utf8')); // {name, hero, cards[]}
+// Die fuenf Decks zur Auswahl beim ersten Start. Erzeugt und geprueft von
+// data/build-starterdecks.py — nie von Hand editieren, die Pruefung faellt sonst weg.
+const starterDecks = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'starterdecks.json'), 'utf8'));
 const rules = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'rules.json'), 'utf8'));        // {maxCopiesPerCard, deckMinSize, deckMaxSize}
 // Spieler-Feedback liegt außerhalb von DATA_DIR in einem Verzeichnis, das sich Spiel-Server
 // und Website (Gruppe 'feedback') teilen — so kommt die Website an die Meldungen, aber
@@ -96,7 +99,16 @@ function migrate(acc) {
   let changed = false;
   if (acc.coins === undefined) { acc.coins = ECON.startCoins; changed = true; }
   if (!acc.packInv) { acc.packInv = {}; changed = true; }
-  if (!acc.decks || acc.decks.length === 0) { acc.decks = [structuredClone(starterDeck)]; changed = true; }
+  // Wer noch nie gewaehlt hat, bekommt die Auswahl beim naechsten Start —
+  // auch Konten, die es lange vor dieser Funktion schon gab.
+  if (acc.starterPick === undefined) { acc.starterPick = null; changed = true; }
+  // Das alte Fix-Deck nur noch fuer Konten, die die Auswahl hinter sich haben.
+  // Sonst bekaeme ein neuer Spieler ein Deck, das er nie ausgesucht hat, und die
+  // Auswahl waere eine Zierde.
+  if (acc.starterPick && (!acc.decks || acc.decks.length === 0)) {
+    acc.decks = [structuredClone(starterDeck)]; changed = true;
+  }
+  if (!acc.decks) { acc.decks = []; changed = true; }
   if (!acc.daily) { acc.daily = { streak: 0, lastClaim: 0 }; changed = true; }
   if ('packs' in acc) { delete acc.packs; changed = true; } // v2-Feld
   // Alte Pack-Namen ins eine "Relic Pack" überführen
@@ -239,10 +251,12 @@ function newAccount(name, pass, steamId = null) {
     steamId,
     coins: ECON.startCoins,
     tokens: [0, 0, 0, 0],
-    collection: Object.fromEntries(
-      Object.entries(starter).map(([name, count]) => [name, finishes.normalise(count)])),
+    // Leer. Die Karten kommen aus dem Startdeck, das der Spieler gleich waehlt —
+    // ein fixes Startpaket obendrauf wuerde die Wahl entwerten.
+    collection: {},
     packInv: {},
-    decks: [structuredClone(starterDeck)],
+    decks: [],
+    starterPick: null,
     daily: { streak: 0, lastClaim: 0 },
     // Jeder fängt ganz unten an
     rp: 0,
@@ -311,8 +325,44 @@ function profileOf(acc) {
     historyNotes: banlistHistory.map(e => e.note || ''),
     historyChanges: banlistHistory.map(e =>
       (Array.isArray(e.changes) ? e.changes : []).map(historyLine).join('\n')),
-    online: clients.size
+    online: clients.size,
+
+    // Solange nicht gewaehlt wurde, reist der ganze Katalog mit. Das sind fuenf
+    // Decks a 40 Karten — einmal beim Login, danach nie wieder.
+    starterPending: !acc.starterPick,
+    starters: acc.starterPick ? [] : starterDecks.map(d => ({
+      id: d.id, name: d.name, archetypes: d.archetypes, blurb: d.blurb,
+      description: d.description, hero: d.hero, cards: d.cards, extra: d.extra
+    }))
   };
+}
+
+/**
+ * Vergibt ein Startdeck: Karten in die Sammlung, Deck in die Deckliste, Haken dran.
+ *
+ * Genau EINMAL pro Konto. Der Haken wird VOR dem Speichern gesetzt, damit zwei
+ * schnell hintereinander eintreffende Anfragen nicht beide durchlaufen — sonst
+ * saehe ein Doppelklick wie zwei Geschenke aus.
+ */
+function grantStarterDeck(acc, id) {
+  if (acc.starterPick) return 'You have already chosen a starter deck.';
+  const deck = starterDecks.find(d => d.id === id);
+  if (!deck) return 'Unknown starter deck.';
+
+  acc.starterPick = deck.id;
+  for (const name of [...deck.cards, ...deck.extra]) {
+    if (cards[name] === undefined) continue;   // Karte aus dem Spiel genommen
+    finishes.add(acc.collection, name, finishes.PLAIN);
+  }
+  acc.decks.push({
+    name: deck.name, hero: deck.hero,
+    cards: [...deck.cards], extra: [...deck.extra],
+    cardFinishes: new Array(deck.cards.length).fill(0),
+    extraFinishes: new Array(deck.extra.length).fill(0)
+  });
+  saveAccount(acc);
+  log(`${acc.name} waehlt das Startdeck "${deck.name}" (${deck.cards.length}+${deck.extra.length} Karten).`);
+  return null;
 }
 
 /** Slot-basierte Pack-Ziehung: pro Slot eine feste Rarity; fehlt sie im Pool,
@@ -912,6 +962,14 @@ wss.on('connection', (ws, req) => {
       }
 
       // ---- Decks ----
+      case 'claim_starter': {
+        if (!acc) { sendError(c, 'Sign in first.'); break; }
+        const problem = grantStarterDeck(acc, String(m.starter || ''));
+        if (problem) { sendError(c, problem); break; }
+        sendProfile(c, acc);
+        break;
+      }
+
       case 'save_deck': {
         if (!acc) { sendError(c, 'Not logged in.'); break; }
         const index = Number(m.deckIndex);
