@@ -121,11 +121,13 @@ namespace Rouge.Tcg.UI
             scaler.matchWidthOrHeight = 0.5f;
             var root = (RectTransform)canvasGo.transform;
 
+            // Das EventSystem steht in der SZENE, nicht hier. Ein zur Laufzeit
+            // gebautes braeuchte ein Eingabe-Modul, und das falsche zu waehlen
+            // ist schlimmer als keines: dieses Projekt laeuft ausschliesslich
+            // auf dem neuen Input System, und ein StandaloneInputModule wirft
+            // dort in JEDEM Bild eine Ausnahme, ohne dass ein Klick ankommt.
             if (FindAnyObjectByType<EventSystem>() == null)
-            {
-                var es = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-                es.transform.SetParent(transform, false);
-            }
+                Debug.LogError("StarterPick: kein EventSystem in der Szene — nichts reagiert auf Klicks.");
 
             var background = Panel(root, "Background", 0f, 0f, 0f, 0f).gameObject.AddComponent<Image>();
             background.sprite = cardSkin != null ? cardSkin.shellBackground : null;
