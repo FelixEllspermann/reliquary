@@ -61,6 +61,11 @@ namespace Rouge.Tcg.UI
         {
             // Der Lade-Übergang liegt noch über allem — die Nachrichten sammeln
             // sich solange im Posteingang, damit die Eröffnung sichtbar bleibt.
+            //
+            // Freigeben muss ihn HIER jemand: bei einem Server-Duell steigt der
+            // DuelHost in Start() vorher aus (er rechnet ja nichts), also käme
+            // seine Freigabe nie — und der Vorhang bliebe für immer stehen.
+            DuelLoadTransition.Release();
             while (DuelLoadTransition.CurtainHolding) yield return null;
 
             while (duel != null && duel.Result == DuelResult.None)
@@ -97,6 +102,12 @@ namespace Rouge.Tcg.UI
                         yield return PlayPendingEvents();
                         duel.MirrorEnd(message.winner == (MatchContext.LocalIsPlayerA ? "A" : "B"));
                         yield break;
+
+                    case "waiting":
+                        // Der Gegner entscheidet gerade — ohne diesen Hinweis sieht
+                        // ein stilles Brett aus wie ein hängendes.
+                        if (ui != null) ui.ShowOpponentThinking(message.text);
+                        break;
 
                     case "error":
                         duel.Log("SERVER ERROR: " + message.msg);
@@ -197,6 +208,15 @@ namespace Rouge.Tcg.UI
 
                 switch (evt.type)
                 {
+                    // Merken, wo die Karte JETZT liegt — der Flug danach startet dort.
+                    // Kein yield: das ist eine Momentaufnahme, keine Animation.
+                    case "remember": if (card != null) presenter.RememberView(card); break;
+                    case "rememberorigin": if (card != null) presenter.RememberOrigin(card); break;
+                    case "moved": if (card != null) yield return presenter.ShowCardMoved(card); break;
+                    // Alte Aktivierungs-Anzeige: es gibt sie nicht mehr, aber ein
+                    // Server auf älterem Stand könnte sie noch schicken
+                    case "activation": if (card != null) yield return presenter.ShowActivationPulse(card, false); break;
+
                     case "banner": yield return presenter.ShowPhaseBanner(evt.text ?? ""); break;
                     case "cointoss": yield return presenter.ShowCoinToss(player); break;
                     case "draw": if (card != null) yield return presenter.ShowCardDrawn(player, card); break;

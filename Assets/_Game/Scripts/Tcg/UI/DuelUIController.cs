@@ -186,6 +186,20 @@ namespace Rouge.Tcg.UI
             }
         }
 
+        /// <summary>
+        /// Zeigt an, dass der Gegner gerade eine Entscheidung trifft. Ein stilles
+        /// Brett und ein hängendes Spiel sehen sonst gleich aus — gerade wenn er
+        /// mitten in DEINEM Zug entscheidet, ob er auf etwas reagiert.
+        /// Leerer Text nimmt den Hinweis wieder weg.
+        /// </summary>
+        public void ShowOpponentThinking(string what)
+        {
+            if (string.IsNullOrEmpty(what)) { SetStatus(""); return; }
+            var bottom = board != null ? board.BottomPlayer : null;
+            string foe = bottom != null && bottom.Opponent != null ? bottom.Opponent.Name : "Opponent";
+            SetStatus($"{foe} is {what}…");
+        }
+
         private void HideAllControls()
         {
             if (battlePhaseButton != null) battlePhaseButton.gameObject.SetActive(false);

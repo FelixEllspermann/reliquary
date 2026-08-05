@@ -1,5 +1,24 @@
 ────────────────────────────────
-0.1.0f9 · ONE COIN TOSS
+0.1.0h · CARDS THAT MOVE
+────────────────────────────────
+
+ONLINE
+  · Cards move again. Playing from your hand to the field teleported the
+    card instead of flying it there — the server recorded the movement,
+    the client had no case for it and threw it away. Same for the moment
+    that remembers where a card started; without it a flight has no
+    starting point and does nothing at all
+  · You can see when your opponent is deciding. A prompt on their side
+    left you looking at a board that would not move, with no way to tell
+    thinking apart from frozen. It now says what they are doing
+
+NO MORE SILENT LOOPS
+  · An answer the server rejected was re-sent forever, and not one line
+    of it reached any log. That is indistinguishable from a freeze. After
+    three rejections the request resolves neutrally and says why
+
+────────────────────────────────
+0.1.0g · ONE COIN TOSS
   · There were two coin tosses in the code — a whole screen for solo and
     an overlay for online. You only ever saw one, but they were two
     things to keep in step, and they had already drifted apart

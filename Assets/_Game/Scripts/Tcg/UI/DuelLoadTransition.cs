@@ -138,14 +138,21 @@ namespace Rouge.Tcg.UI
 
             if (!released)
             {
+                // Notausgang. Wer hier hält, wartet auf eine Freigabe von aussen —
+                // und wenn die ausbleibt, steht das ganze Spiel. Genau das ist schon
+                // passiert. Lieber ein Vorhang, der zu früh hochgeht, als einer, der
+                // nie hochgeht.
+                const float maxHold = 8f;
                 holdNote.gameObject.SetActive(true);
                 float waited = 0f;
-                while (!released)
+                while (!released && waited < maxHold)
                 {
                     waited += Time.unscaledDeltaTime;
                     holdNote.alpha = Mathf.Clamp01((waited - 0.4f) / 0.6f);
                     yield return null;
                 }
+                if (!released)
+                    Debug.LogWarning($"DuelLoadTransition: niemand hat nach {maxHold:0} s freigegeben — Vorhang geht von selbst hoch.");
             }
 
             CurtainHolding = false;

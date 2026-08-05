@@ -30,8 +30,13 @@ namespace Rouge.DuelHost
             yield break;
         }
 
-        public void RememberView(CardInstance card) { }
-        public void RememberOrigin(CardInstance card) { }
+        // Diese beiden merken sich im Client, WO eine Karte gerade liegt — der Flug
+        // danach geht von dort aus. Auf dem Server gibt es keine Position, also wird
+        // nur der Zeitpunkt aufgezeichnet; der Client schaut dann auf seinem Brett
+        // nach. Fehlen sie, hat ShowCardMoved keinen Startpunkt und tut gar nichts:
+        // genau deshalb sind Karten im Online-Duell von der Hand aufs Feld gesprungen.
+        public void RememberView(CardInstance card) => Pending.Add(new DuelEvent { Type = "remember", Card = card });
+        public void RememberOrigin(CardInstance card) => Pending.Add(new DuelEvent { Type = "rememberorigin", Card = card });
 
         public IEnumerator ShowCardMoved(CardInstance card) => Record(new DuelEvent { Type = "moved", Card = card });
         public IEnumerator ShowPhaseBanner(string text, float holdOverride = -1f) => Record(new DuelEvent { Type = "banner", Text = text });
