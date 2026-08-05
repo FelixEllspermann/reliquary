@@ -734,30 +734,39 @@ namespace Rouge.Tcg.UI
 
         private void BuildFinishStrip()
         {
-            // Kind der Vorschaukarte: so sitzt die Leiste immer direkt darunter,
-            // egal wie die Rail gerade aufgeteilt ist, und verschwindet mit ihr.
+            // Hochkant an die rechte Flanke der Karte, NICHT darunter: unter der
+            // Vorschau liegen nur 14 Einheiten Luft, dann kommen schon Dust und
+            // Craft — eine Leiste dort schnitte in die Knöpfe. Neben der Karte
+            // stehen dagegen 139 Einheiten leer.
+            //
+            // Kind der Vorschaukarte, damit die Leiste an deren Rechteck klebt,
+            // wie auch immer die Rail sonst aufgeteilt ist.
             var go = new GameObject("FinishStrip", typeof(RectTransform));
             finishStrip = (RectTransform)go.transform;
             finishStrip.SetParent((RectTransform)previewView.transform, false);
-            finishStrip.anchorMin = new Vector2(0f, 0f);
-            finishStrip.anchorMax = new Vector2(1f, 0f);
-            finishStrip.pivot = new Vector2(0.5f, 1f);
-            finishStrip.anchoredPosition = new Vector2(0f, -8f);
-            finishStrip.sizeDelta = new Vector2(0f, 24f);
+            finishStrip.anchorMin = finishStrip.anchorMax = new Vector2(1f, 0.5f);
+            finishStrip.pivot = new Vector2(0f, 0.5f);
+            finishStrip.anchoredPosition = new Vector2(ChipGap, 0f);
+            finishStrip.sizeDelta = new Vector2(ChipWidth,
+                CardFinishInfo.Count * ChipHeight + (CardFinishInfo.Count - 1) * ChipSpacing);
 
-            var layout = go.AddComponent<HorizontalLayoutGroup>();
-            layout.spacing = 4f;
+            var layout = go.AddComponent<VerticalLayoutGroup>();
+            layout.spacing = ChipSpacing;
             layout.childForceExpandWidth = true;
             layout.childForceExpandHeight = true;
             layout.childControlWidth = true;
             layout.childControlHeight = true;
 
             for (int i = 0; i < CardFinishInfo.Count; i++)
-            {
-                var finish = (CardFinish)i;
-                finishChips.Add(BuildFinishChip(finish));
-            }
+                finishChips.Add(BuildFinishChip((CardFinish)i));
         }
+
+        // Masse der Finish-Leiste. Rechts der Vorschaukarte sind 139 Einheiten
+        // frei — Abstand plus Breite müssen darunter bleiben.
+        private const float ChipGap = 10f;
+        private const float ChipWidth = 118f;
+        private const float ChipHeight = 30f;
+        private const float ChipSpacing = 6f;
 
         private FinishChip BuildFinishChip(CardFinish finish)
         {
@@ -784,11 +793,11 @@ namespace Rouge.Tcg.UI
             labelRect.offsetMin = Vector2.zero; labelRect.offsetMax = Vector2.zero;
             var label = labelGo.AddComponent<TextMeshProUGUI>();
             label.text = CardFinishInfo.Label(finish).ToUpperInvariant();
-            label.fontSize = 11f;
+            label.fontSize = 13f;
             label.alignment = TextAlignmentOptions.Center;
             label.enableAutoSizing = true;
-            label.fontSizeMin = 8f;
-            label.fontSizeMax = 11f;
+            label.fontSizeMin = 9f;
+            label.fontSizeMax = 13f;
             label.raycastTarget = false;
 
             var button = go.AddComponent<Button>();
