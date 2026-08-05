@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinEmberthrone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Kindlekin Emberthrone
-  artwork: {fileID: 0}
+  artwork: {fileID: 7066386057284001981, guid: 1caf2b1c908cb05409b9c7fb852eb06f, type: 3}
   rarity: 2
   effects:
   - label: Call to the Coals
@@ -94,11 +94,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
+  level: 3
+  attribute: 3
   monsterType: 3
-  atk: 1000
-  def: 1000
+  atk: 2400
+  def: 2000
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -109,8 +109,8 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You control 3+ monsters. Cost 2 Mana.
+  summonManaCost: 2
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqControlNoMonsters: 0
-  reqOwnMonstersAtLeast: 0
+  reqOwnMonstersAtLeast: 3
   reqLifeAtMost: 0
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0

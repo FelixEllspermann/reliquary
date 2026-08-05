@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionBrokenVow
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion Broken Vow
-  artwork: {fileID: 0}
+  artwork: {fileID: -6229643207488000079, guid: 21c56f9ba233515418dbd75e67843e96, type: 3}
   rarity: 2
   effects:
   - label: Begin Again
@@ -67,11 +67,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 0
+  monsterType: 0
+  atk: 2600
+  def: 2600
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You control no monsters and 5+ cards in your Graveyard. Cost 3 Mana.
+  summonManaCost: 3
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
-  reqGraveyardAtLeast: 0
-  reqControlNoMonsters: 0
+  reqGraveyardAtLeast: 5
+  reqControlNoMonsters: 1
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0
   reqBanishedAtLeast: 0

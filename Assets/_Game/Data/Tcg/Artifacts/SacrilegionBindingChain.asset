@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionBindingChain
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Sacrilegion Binding Chain
-  artwork: {fileID: 0}
+  artwork: {fileID: 7439053938015929033, guid: a010a53bb3182834fa84a9ba309be35f, type: 3}
   rarity: 1
   effects:
   - label: Bind
@@ -43,8 +43,8 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
   slot: 0
-  atkBonus: 0
-  defBonus: 0
+  atkBonus: 500
+  defBonus: 500
   protectTypeFromEffectDestruction: 0
   protectedType: 0
   redirectDestructionToSelf: 0

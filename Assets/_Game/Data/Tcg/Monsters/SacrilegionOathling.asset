@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: SacrilegionOathling
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Oathling
-  artwork: {fileID: 0}
+  artwork: {fileID: -4480973856532348900, guid: 5be694fecc59e494da45f50dec2254e1, type: 3}
   rarity: 0
   effects: []
   level: 1
-  attribute: 5
-  monsterType: 3
+  attribute: 0
+  monsterType: 0
   atk: 1000
-  def: 1000
-  canSelfSpecialSummon: 0
-  selfSummonRequiresNameOnField: 
+  def: 600
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Sacrilegion
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0

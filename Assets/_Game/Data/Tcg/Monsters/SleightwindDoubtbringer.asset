@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindDoubtbringer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind Doubtbringer
-  artwork: {fileID: 0}
+  artwork: {fileID: -4483138949440501051, guid: 07040f980a9043d4285e5c4f477959d8, type: 3}
   rarity: 2
   effects:
   - label: Second Thoughts
@@ -140,10 +140,10 @@ MonoBehaviour:
       useAttributeFilter: 1
       attributeFilter: 4
   level: 1
-  attribute: 5
-  monsterType: 3
+  attribute: 4
+  monsterType: 5
   atk: 1000
-  def: 1000
+  def: 500
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

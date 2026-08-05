@@ -33,6 +33,17 @@ namespace Rouge.Tcg.EditorTools
             Manacle();
             Sacrilegion();
 
+            // JEDE Karte am Ende als geändert markieren, nicht beim Anlegen.
+            //
+            // AssetDatabase.CreateAsset schreibt die Datei sofort — und zu diesem
+            // Zeitpunkt stehen Level, Attribut, ATK und DEF noch auf ihren
+            // Standardwerten, weil Mon()/Rel() sie erst danach setzen. Ohne
+            // dieses erneute SetDirty hat SaveAssets keinen Anlass, die Datei
+            // noch einmal zu schreiben: die Werte leben nur im Speicher und sind
+            // beim nächsten Skript-Neuladen weg. Genau so ist es passiert — die
+            // Karten sahen richtig aus, bis Unity die Assets neu einlas.
+            foreach (var card in built) EditorUtility.SetDirty(card);
+
             var catalog = AssetDatabase.LoadAssetAtPath<CardCatalog>(CatalogPath);
             int added = 0;
             foreach (var card in built)

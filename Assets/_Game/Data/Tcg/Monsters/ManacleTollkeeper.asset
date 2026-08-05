@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleTollkeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Tollkeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: -3455271577423085085, guid: 1270d733f06af274695d1e745b2157a2, type: 3}
   rarity: 0
   effects:
   - label: The Toll
@@ -43,10 +43,10 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
   level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  attribute: 1
+  monsterType: 7
+  atk: 600
+  def: 900
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

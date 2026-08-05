@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindThornmother
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind Thornmother
-  artwork: {fileID: 0}
+  artwork: {fileID: -622039819117560541, guid: 19da3a9469f16444e8fa5c3a1affef56, type: 3}
   rarity: 1
   effects:
   - label: Creeping Briar
@@ -57,11 +57,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 2
+  attribute: 4
+  monsterType: 5
+  atk: 1400
+  def: 1800
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

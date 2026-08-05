@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindHush
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sleightwind Hush
-  artwork: {fileID: 0}
+  artwork: {fileID: -6103638604376658981, guid: d944e71680f4e5d4ba04fed6a0de6b5f, type: 3}
   rarity: 1
   effects:
   - label: Hush
@@ -41,4 +41,4 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 4
-  speed: 0
+  speed: 1

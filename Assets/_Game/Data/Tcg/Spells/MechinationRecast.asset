@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationRecast
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Recast
-  artwork: {fileID: 0}
+  artwork: {fileID: 762275996496611762, guid: f132411f2780d0f49a5d6acfe4709991, type: 3}
   rarity: 0
   effects:
   - label: Recast

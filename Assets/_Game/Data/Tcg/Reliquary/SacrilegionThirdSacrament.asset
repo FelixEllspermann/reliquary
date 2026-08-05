@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: SacrilegionThirdSacrament
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion Third Sacrament
-  artwork: {fileID: 0}
+  artwork: {fileID: 7222658541251740842, guid: 8698bb886a0aa9e4384c1a91e4096259, type: 3}
   rarity: 2
   effects: []
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 0
+  monsterType: 0
+  atk: 2700
+  def: 2300
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -31,8 +31,9 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: Tribute 1 monster you control and 2 monsters your opponent controls.
+    Cost 4 Mana.
+  summonManaCost: 4
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -50,5 +51,5 @@ MonoBehaviour:
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
-  costTributeOwnMonsters: 0
-  costTributeOpponentMonsters: 0
+  costTributeOwnMonsters: 1
+  costTributeOpponentMonsters: 2

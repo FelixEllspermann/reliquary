@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionRiteofReturn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Rite of Return
-  artwork: {fileID: 0}
+  artwork: {fileID: -3645998981345983480, guid: c12b876b39403524caf3aa53dadbacef, type: 3}
   rarity: 1
   effects:
   - label: Rite of Return

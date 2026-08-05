@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionSecondSacrament
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion Second Sacrament
-  artwork: {fileID: 0}
+  artwork: {fileID: 656466199656702340, guid: 4e2195021fa323143897584f014410a2, type: 3}
   rarity: 2
   effects:
   - label: Return the Least
@@ -68,11 +68,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 0
+  monsterType: 0
+  atk: 2500
+  def: 2000
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -83,8 +83,9 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: Tribute 2 monsters you control and 1 monster your opponent controls.
+    Cost 3 Mana.
+  summonManaCost: 3
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -102,5 +103,5 @@ MonoBehaviour:
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
-  costTributeOwnMonsters: 0
-  costTributeOpponentMonsters: 0
+  costTributeOwnMonsters: 2
+  costTributeOpponentMonsters: 1

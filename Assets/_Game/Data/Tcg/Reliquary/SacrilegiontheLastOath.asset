@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegiontheLastOath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion, the Last Oath
-  artwork: {fileID: 0}
+  artwork: {fileID: 4723193404221873011, guid: 55174b9f59b573d4aaffc1b629129833, type: 3}
   rarity: 3
   effects:
   - label: The Oath Is Kept
@@ -94,11 +94,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 0
+  monsterType: 0
+  atk: 3200
+  def: 2800
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -109,8 +109,9 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: Tribute 2 monsters you control and 1 monster your opponent controls.
+    8+ cards in your Graveyard. Cost 5 Mana.
+  summonManaCost: 5
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -121,12 +122,12 @@ MonoBehaviour:
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
-  reqGraveyardAtLeast: 0
+  reqGraveyardAtLeast: 8
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
-  costTributeOwnMonsters: 0
-  costTributeOpponentMonsters: 0
+  costTributeOwnMonsters: 2
+  costTributeOpponentMonsters: 1

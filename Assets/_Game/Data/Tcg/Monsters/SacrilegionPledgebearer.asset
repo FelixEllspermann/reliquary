@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionPledgebearer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Pledgebearer
-  artwork: {fileID: 0}
+  artwork: {fileID: 4376377126919190630, guid: 47d5ceab1210b19449c78e63a9a17f2c, type: 3}
   rarity: 1
   effects:
   - label: Give the Pledge
@@ -58,10 +58,10 @@ MonoBehaviour:
       useAttributeFilter: 1
       attributeFilter: 0
   level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  attribute: 0
+  monsterType: 0
+  atk: 800
+  def: 800
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

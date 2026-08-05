@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationCogwright
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Cogwright
-  artwork: {fileID: 0}
+  artwork: {fileID: 2120814936858598849, guid: a81274ffc8420f2488b43e8e3e570440, type: 3}
   rarity: 0
   effects:
   - label: Read the Plan
@@ -69,9 +69,9 @@ MonoBehaviour:
       attributeFilter: 5
   level: 1
   attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  monsterType: 4
+  atk: 500
+  def: 900
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

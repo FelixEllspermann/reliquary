@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: KindlekinAshling
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Ashling
-  artwork: {fileID: 0}
+  artwork: {fileID: -1971078411210945678, guid: e339b02a91f8217409562dc21a227e97, type: 3}
   rarity: 0
   effects: []
   level: 1
-  attribute: 5
+  attribute: 3
   monsterType: 3
-  atk: 1000
+  atk: 500
   def: 1000
-  canSelfSpecialSummon: 0
+  canSelfSpecialSummon: 1
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0
   selfSummonRequiredNameCount: 1
-  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresOpponentMonsters: 1
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1

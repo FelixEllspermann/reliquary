@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionSwornOath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Sworn Oath
-  artwork: {fileID: 0}
+  artwork: {fileID: -3771810140369203193, guid: 6e45af0d173afc9409a8e573e561cafd, type: 3}
   rarity: 2
   effects:
   - label: Sworn Oath
@@ -41,4 +41,4 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 0
-  speed: 0
+  speed: 1

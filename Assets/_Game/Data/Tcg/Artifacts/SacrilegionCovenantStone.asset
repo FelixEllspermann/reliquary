@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionCovenantStone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Sacrilegion Covenant Stone
-  artwork: {fileID: 0}
+  artwork: {fileID: 4341333646980653728, guid: 7d018a2876c40ed4a87d9feb301c1645, type: 3}
   rarity: 2
   effects:
   - label: The Stone Remembers
@@ -67,9 +67,9 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 0
-  slot: 0
+  slot: 2
   atkBonus: 0
   defBonus: 0
-  protectTypeFromEffectDestruction: 0
+  protectTypeFromEffectDestruction: 1
   protectedType: 0
   redirectDestructionToSelf: 0

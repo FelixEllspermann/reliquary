@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleLedgerkeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Ledgerkeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: 7130744080276582442, guid: 3b3fcf53682a987469c1f265672675f0, type: 3}
   rarity: 1
   effects:
   - label: Consult the Ledger
@@ -82,11 +82,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 2
+  attribute: 1
+  monsterType: 7
+  atk: 1200
+  def: 1900
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

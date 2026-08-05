@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationOverdrive
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Overdrive
-  artwork: {fileID: 0}
+  artwork: {fileID: 422452038074802036, guid: 5669f9886b02b2a41b5dbedea40b27c2, type: 3}
   rarity: 1
   effects:
   - label: Overdrive
@@ -41,4 +41,4 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  speed: 0
+  speed: 1

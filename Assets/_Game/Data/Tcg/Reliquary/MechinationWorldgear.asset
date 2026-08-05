@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationWorldgear
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Mechination Worldgear
-  artwork: {fileID: 0}
+  artwork: {fileID: 3279658634164018165, guid: 80b6317b3925ae64c8641313df5df5f9, type: 3}
   rarity: 3
   effects:
   - label: The Great Turn
@@ -93,11 +93,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
+  level: 3
   attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  monsterType: 4
+  atk: 3000
+  def: 2600
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -108,8 +108,9 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You control 3+ monsters and 5+ cards in your Graveyard. Cost 3 Mana.
+    Destroy 1 other monster you control.
+  summonManaCost: 3
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -120,12 +121,12 @@ MonoBehaviour:
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
-  reqGraveyardAtLeast: 0
+  reqGraveyardAtLeast: 5
   reqControlNoMonsters: 0
-  reqOwnMonstersAtLeast: 0
+  reqOwnMonstersAtLeast: 3
   reqLifeAtMost: 0
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
-  costTributeOtherMonster: 0
+  costTributeOtherMonster: 1
   costTributeOwnMonsters: 0
   costTributeOpponentMonsters: 0

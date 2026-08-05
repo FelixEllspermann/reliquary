@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationOverseer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Overseer
-  artwork: {fileID: 0}
+  artwork: {fileID: -7903683965362123124, guid: 90eabd2423fcb7547b6b9aecb017cabd, type: 3}
   rarity: 2
   effects:
   - label: Second Shift
@@ -94,11 +94,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
+  level: 3
   attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  monsterType: 4
+  atk: 2200
+  def: 2200
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationAssemblyLine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Mechination Assembly Line
-  artwork: {fileID: 0}
+  artwork: {fileID: 443057307054613394, guid: 3394a7453e12a2e4bb7d9d84c1236bec, type: 3}
   rarity: 1
   effects:
   - label: Night Shift
@@ -68,9 +68,9 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 5
-  slot: 0
+  slot: 2
   atkBonus: 0
   defBonus: 0
-  protectTypeFromEffectDestruction: 0
-  protectedType: 0
+  protectTypeFromEffectDestruction: 1
+  protectedType: 4
   redirectDestructionToSelf: 0

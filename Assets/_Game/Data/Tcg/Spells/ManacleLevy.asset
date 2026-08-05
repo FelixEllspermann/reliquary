@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleLevy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Levy
-  artwork: {fileID: 0}
+  artwork: {fileID: 790834273906644226, guid: 6899bf8d9d5c79a4a819a8d8246c7060, type: 3}
   rarity: 1
   effects:
   - label: Levy
@@ -41,4 +41,4 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  speed: 0
+  speed: 1

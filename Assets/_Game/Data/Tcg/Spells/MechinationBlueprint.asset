@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationBlueprint
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Blueprint
-  artwork: {fileID: 0}
+  artwork: {fileID: -5567490340918716575, guid: 7fd89e34130c29f4d8f213fd7226b14e, type: 3}
   rarity: 0
   effects:
   - label: Blueprint

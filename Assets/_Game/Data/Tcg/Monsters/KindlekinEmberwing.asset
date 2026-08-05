@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinEmberwing
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Emberwing
-  artwork: {fileID: 0}
+  artwork: {fileID: -1127034517505950309, guid: 26e5f9641e920ef4397cb8071c987117, type: 3}
   rarity: 1
   effects:
   - label: Fan the Ashes
@@ -68,16 +68,16 @@ MonoBehaviour:
       useAttributeFilter: 1
       attributeFilter: 3
   level: 1
-  attribute: 5
+  attribute: 3
   monsterType: 3
-  atk: 1000
-  def: 1000
-  canSelfSpecialSummon: 0
-  selfSummonRequiresNameOnField: 
+  atk: 900
+  def: 900
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Kindlekin
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0
-  selfSummonRequiredNameCount: 1
+  selfSummonRequiredNameCount: 2
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationSpindle
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Spindle
-  artwork: {fileID: 0}
+  artwork: {fileID: 145434916533447295, guid: d40a0568f8f843646861f88b47e5b776, type: 3}
   rarity: 0
   effects:
   - label: Unwind
@@ -59,9 +59,9 @@ MonoBehaviour:
       attributeFilter: 0
   level: 1
   attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  monsterType: 4
+  atk: 800
+  def: 400
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

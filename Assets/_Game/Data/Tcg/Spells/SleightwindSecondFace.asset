@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindSecondFace
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sleightwind Second Face
-  artwork: {fileID: 0}
+  artwork: {fileID: -2879683677362057283, guid: d41c4ebd90d5e1a45838c6fe091c9fc0, type: 3}
   rarity: 2
   effects:
   - label: Second Face

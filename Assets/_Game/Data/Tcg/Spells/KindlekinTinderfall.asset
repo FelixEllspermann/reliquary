@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinTinderfall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Kindlekin Tinderfall
-  artwork: {fileID: 0}
+  artwork: {fileID: 5395954160932086723, guid: f93c961d2f6ec144d9f6dcd69c048dba, type: 3}
   rarity: 0
   effects:
   - label: Tinderfall

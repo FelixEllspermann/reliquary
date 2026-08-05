@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleDebtCollector
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Manacle Debt Collector
-  artwork: {fileID: 0}
+  artwork: {fileID: 4871231375585368050, guid: e8c9e1482f4af594c9cd214f8b597c3c, type: 3}
   rarity: 2
   effects:
   - label: Come to Collect
@@ -67,11 +67,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 2
+  attribute: 1
+  monsterType: 7
+  atk: 2100
+  def: 1600
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -82,14 +82,14 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You have 5+ Mana available. Cost 2 Mana.
+  summonManaCost: 2
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
-  reqMinMana: 0
+  reqMinMana: 5
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0

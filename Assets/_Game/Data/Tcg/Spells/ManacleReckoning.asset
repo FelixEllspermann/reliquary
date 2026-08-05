@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleReckoning
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Reckoning
-  artwork: {fileID: 0}
+  artwork: {fileID: 5771288756624245645, guid: 51365f93ff8f3424b9676a6eaedf2e3c, type: 3}
   rarity: 2
   effects:
   - label: Reckoning

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleCoinbiter
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Coinbiter
-  artwork: {fileID: 0}
+  artwork: {fileID: -7090709908350666935, guid: 2a6bde7cc82e34a4a819fe732bf07701, type: 3}
   rarity: 1
   effects:
   - label: Bite the Coin
@@ -67,10 +67,10 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
   level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  attribute: 1
+  monsterType: 7
+  atk: 400
+  def: 1100
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

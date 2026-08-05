@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinSpark
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Spark
-  artwork: {fileID: 0}
+  artwork: {fileID: -2488046263315662788, guid: e9a40c7e68e7fb744814d16e0b79212b, type: 3}
   rarity: 0
   effects:
   - label: Catch
@@ -42,12 +42,12 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
   level: 1
-  attribute: 5
+  attribute: 3
   monsterType: 3
-  atk: 1000
-  def: 1000
-  canSelfSpecialSummon: 0
-  selfSummonRequiresNameOnField: 
+  atk: 800
+  def: 200
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Kindlekin
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0

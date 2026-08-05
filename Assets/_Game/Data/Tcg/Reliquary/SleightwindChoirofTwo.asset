@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindChoirofTwo
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sleightwind Choir of Two
-  artwork: {fileID: 0}
+  artwork: {fileID: -2901442711498316040, guid: 7b278d5d55309fb418c03d1572a932d5, type: 3}
   rarity: 2
   effects:
   - label: Sing It Back
@@ -93,11 +93,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 2
+  attribute: 4
+  monsterType: 5
+  atk: 2100
+  def: 1700
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: 3+ cards in your Graveyard. Cost 2 Mana.
+  summonManaCost: 2
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
-  reqGraveyardAtLeast: 0
+  reqGraveyardAtLeast: 3
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

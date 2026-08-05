@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleCountinghouse
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Manacle Countinghouse
-  artwork: {fileID: 0}
+  artwork: {fileID: 6629000048645744547, guid: bb00afa72da8bb248a6f2797f41041ae, type: 3}
   rarity: 2
   effects:
   - label: The House Always Counts
@@ -66,9 +66,9 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  slot: 0
+  slot: 2
   atkBonus: 0
   defBonus: 0
-  protectTypeFromEffectDestruction: 0
-  protectedType: 0
+  protectTypeFromEffectDestruction: 1
+  protectedType: 7
   redirectDestructionToSelf: 0

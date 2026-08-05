@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacletheFinalLedger
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Manacle, the Final Ledger
-  artwork: {fileID: 0}
+  artwork: {fileID: -1705814855521336827, guid: ec98857c08c49d944955f016ffcf0b5d, type: 3}
   rarity: 3
   effects:
   - label: Close the Book
@@ -108,11 +108,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 1
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 1
+  monsterType: 7
+  atk: 2900
+  def: 2500
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -123,19 +123,19 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You have 7+ Mana available and 6+ cards in your Graveyard. Cost 4 Mana.
+  summonManaCost: 4
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
-  reqMinMana: 0
+  reqMinMana: 7
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
-  reqGraveyardAtLeast: 0
+  reqGraveyardAtLeast: 6
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

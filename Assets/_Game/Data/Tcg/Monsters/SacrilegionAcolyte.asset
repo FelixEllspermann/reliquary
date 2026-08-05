@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionAcolyte
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Acolyte
-  artwork: {fileID: 0}
+  artwork: {fileID: -4722889377875423577, guid: 618f7da1ab132ff4a8d29056eb35e5b2, type: 3}
   rarity: 0
   effects:
   - label: Read the Rite
@@ -68,9 +68,9 @@ MonoBehaviour:
       useAttributeFilter: 1
       attributeFilter: 0
   level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
+  attribute: 0
+  monsterType: 0
+  atk: 600
   def: 1000
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 

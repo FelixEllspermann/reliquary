@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinPyrewhelp
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Pyrewhelp
-  artwork: {fileID: 0}
+  artwork: {fileID: 551976171032176076, guid: a20938a3ca4aea84b9f461edce4b81e6, type: 3}
   rarity: 2
   effects:
   - label: Burst of Cinders
@@ -69,12 +69,12 @@ MonoBehaviour:
       useAttributeFilter: 1
       attributeFilter: 3
   level: 1
-  attribute: 5
+  attribute: 3
   monsterType: 3
-  atk: 1000
-  def: 1000
-  canSelfSpecialSummon: 0
-  selfSummonRequiresNameOnField: 
+  atk: 1200
+  def: 300
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Kindlekin
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0

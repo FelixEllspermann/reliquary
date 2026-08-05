@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleAssessor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Assessor
-  artwork: {fileID: 0}
+  artwork: {fileID: 8586090155528925070, guid: 91eba6e7c15318649958d49cc87767eb, type: 3}
   rarity: 2
   effects:
   - label: Assess
@@ -97,11 +97,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 3
+  attribute: 1
+  monsterType: 7
+  atk: 2300
+  def: 1700
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: SacrilegionFirstSacrament
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion First Sacrament
-  artwork: {fileID: 0}
+  artwork: {fileID: -116673080618794817, guid: 0d2d504f71889734eabc091c4be12a25, type: 3}
   rarity: 1
   effects: []
-  level: 1
-  attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
+  level: 2
+  attribute: 0
+  monsterType: 0
+  atk: 2000
+  def: 1600
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -31,8 +31,9 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: Tribute 1 monster you control and 1 monster your opponent controls.
+    Cost 2 Mana.
+  summonManaCost: 2
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -50,5 +51,5 @@ MonoBehaviour:
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
-  costTributeOwnMonsters: 0
-  costTributeOpponentMonsters: 0
+  costTributeOwnMonsters: 1
+  costTributeOpponentMonsters: 1

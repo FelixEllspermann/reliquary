@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinPyreWarden
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Kindlekin Pyre Warden
-  artwork: {fileID: 0}
+  artwork: {fileID: 2019102373143677198, guid: d55adc59af4ecd74ca7602d751b5eef9, type: 3}
   rarity: 1
   effects:
   - label: Guard the Fire
@@ -68,11 +68,11 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 1
       attributeFilter: 3
-  level: 1
-  attribute: 5
+  level: 2
+  attribute: 3
   monsterType: 3
-  atk: 1000
-  def: 1000
+  atk: 2000
+  def: 1200
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -83,8 +83,8 @@ MonoBehaviour:
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
   selfSummonPosition: 1
-  summonText: 
-  summonManaCost: 0
+  summonText: You control 2+ monsters. Cost 1 Mana.
+  summonManaCost: 1
   reqNamedOnField: 
   reqNamedCount: 1
   reqLifeBelowOpponent: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqControlNoMonsters: 0
-  reqOwnMonstersAtLeast: 0
+  reqOwnMonstersAtLeast: 2
   reqLifeAtMost: 0
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0

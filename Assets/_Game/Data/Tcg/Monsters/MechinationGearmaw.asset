@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationGearmaw
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Gearmaw
-  artwork: {fileID: 0}
+  artwork: {fileID: -4895514459751845380, guid: ad51369d10448444e862bafc83b10302, type: 3}
   rarity: 1
   effects:
   - label: Jam the Works
@@ -42,17 +42,17 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
-  level: 1
+  level: 2
   attribute: 5
-  monsterType: 3
-  atk: 1000
-  def: 1000
-  canSelfSpecialSummon: 0
-  selfSummonRequiresNameOnField: 
+  monsterType: 4
+  atk: 1500
+  def: 1600
+  canSelfSpecialSummon: 1
+  selfSummonRequiresNameOnField: Mechination
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
   selfSummonRequiresArtifact: 0
-  selfSummonRequiredNameCount: 1
+  selfSummonRequiredNameCount: 2
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
