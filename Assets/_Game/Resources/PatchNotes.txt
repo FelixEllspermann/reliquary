@@ -1,6 +1,38 @@
 ────────────────────────────────
-0.1.0i · YOUR COPY, NOT A COPY
+0.1.1 · FIVE NEW WAYS TO PLAY
 ────────────────────────────────
+
+61 NEW CARDS, FIVE ARCHETYPES
+  · MECHINATION (Earth/Mecha) — combo. Every part searches the next
+    one by CATEGORY, not by name, so the chain never runs the same way
+    twice. Feed the pieces to something bigger
+  · SLEIGHTWIND (Wind/Demon) — these monsters are discarded from your
+    HAND during your opponent's turn to stop an attack, negate an
+    effect or bounce a monster. They never need to reach the field
+  · KINDLEKIN (Fire/Beast) — six Level 1 beasts that pull each other
+    out for free. The count is the point, and the count is what the
+    Reliquaries ask for. The last one burns everything but BEAST
+  · MANACLE (Dark/Myth) — takes your opponent's Mana. Coupled effects
+    let you choose: a little right now, or cut their NEXT turn short
+    before it even starts
+  · SACRILEGION (Light/Dragon) — its Sacraments demand monsters from
+    BOTH sides of the field. The summon itself is the removal
+
+CARDS CAN CARRY TWO INFUSED EFFECTS
+  · Until now every card had at most one. Ten of the new ones have two
+    — usually a Coupled upgrade plus an independent Standalone
+  · Coupled effects share one use per turn with the effect above them:
+    the free version OR the expensive one, never both. Standalone
+    effects run alongside everything else
+
+CHOOSE YOUR FIRST DECK
+  · New duelists pick one of five ready-made decks before the main
+    menu, and keep every card in it. Click a deck to read what it does
+    and look through the whole list, card by card, before deciding
+  · Everyone who already has an account gets the choice on their next
+    start. One deck per account
+  · TIDE AND TEMPEST is the gentle one. If you have never played a
+    card game like this, start there
 
 FINISHES REACH THE TABLE
   · A Glossy card in your deck is now Glossy in the duel. Until now a

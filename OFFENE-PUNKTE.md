@@ -1,7 +1,8 @@
 # Offene Punkte — Stand 2026-08-06
 
-Der letzte Build ist **0.1.0f9** (`Build/Reliquary-0.1.0f9.zip`). Die
-Projektversion steht bereits auf **0.1.0h** — der Build dazu fehlt noch.
+Der letzte Build ist **0.1.1** (`Build/Reliquary-0.1.1.zip`, 177 MB gepackt).
+Er enthält die 61 neuen Karten mit Artworks, die Finishes im Duell und die
+Startdeck-Auswahl.
 
 Server (`server.js`, `cosmetics.js`) und DuelHost laufen auf 217.154.212.82 mit
 den passenden Gegenstücken; die Website (`mcweb`) trägt den Spieler-Editor.
@@ -12,15 +13,21 @@ Alles bis `fcec5ec` ist auf `github.com/FelixEllspermann/reliquary` gepusht.
 
 ## Offen
 
-### 0 · Artworks fuer 61 neue Karten
-Alle 61 Karten der fuenf neuen Archetypes haben kein Bild. Prompts liegen
-fertig in `AmusePrompts-5-Archetypes.md` (Universal-Negativ + 61 Positiv).
-Danach `Rouge → Card Design → Artworks automatisch zuweisen`.
+### 1 · Nichts ist im Spiel getestet
+Der Build 0.1.1 ist erzeugt, aber nicht gestartet. Alles darin ist über
+gerenderte Standbilder, Bot-Duelle und Serverprüfungen belegt — **kein einziger
+Klick im laufenden Spiel.** Was als Erstes zu prüfen wäre:
 
-### 1 · Build fehlt (Stand 0.1.0i gebaut, danach kam noch mehr)
-Die Finishes im Duell und die Deck-Builder-Vorschau sind gebaut und geprüft,
-aber noch in keinem Build. Der Server ist schon aktualisiert — ein alter Client
-verträgt das, das Feld `finish` ist ihm nur unbekannt.
+1. Anmelden → Startdeck-Auswahl erscheint, ein Deck nehmen, im Hauptmenü landen
+2. Deck Builder → eine Karte anklicken, Finish-Leiste rechts
+3. Solo-Duell mit dem geschenkten Deck — zeigt Beschwörungen, Effekte, Finishes
+
+**Beim Generieren von Karten-Assets:** `AssetDatabase.CreateAsset` schreibt die
+Datei sofort, mit den Werten von genau diesem Moment. Wer danach noch Felder
+setzt, MUSS `EditorUtility.SetDirty` erneut aufrufen — sonst leben die Werte
+nur im Speicher und sind beim nächsten Skript-Neuladen weg. Genau so haben alle
+61 Karten ihre Level, Attribute und Kampfwerte verloren, ohne dass es jemandem
+auffiel: Export, Zählung und Rendern lasen alle aus dem Speicher.
 
 ### 2 · Nichts davon ist gespielt
 Aktivierung, Zielwahl, Zerstörung, Tresor, Niederlage, die fünf Siegessiegel,
