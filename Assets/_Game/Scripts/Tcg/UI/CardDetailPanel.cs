@@ -206,10 +206,12 @@ namespace Rouge.Tcg.UI
                 string trigger = TriggerLabel(effect);
                 if (effect.isInfused && !coupled)
                     trigger = string.IsNullOrEmpty(trigger) ? "Standalone effect" : trigger + " · standalone";
+                // Bewusst ohne Zahl: eine Gruppe darf mehrere Coupled-Effekte
+                // haben, und "einer von beiden" wäre dann schlicht falsch.
                 if (coupled)
                     trigger = string.IsNullOrEmpty(trigger)
-                        ? "Use this OR the effect above — one of the two per turn"
-                        : trigger + " · this OR the effect above — one per turn";
+                        ? "Only one effect from this group each turn"
+                        : trigger + " · only one from this group per turn";
                 if (!string.IsNullOrEmpty(trigger)) sb.Append($"\n<size=80%><color=#9BA3B8>{trigger}</color></size>");
 
                 if (!string.IsNullOrWhiteSpace(effect.text)) sb.Append('\n').Append(effect.text);

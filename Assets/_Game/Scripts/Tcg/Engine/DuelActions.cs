@@ -925,39 +925,56 @@ namespace Rouge.Tcg
         }
 
         /// <summary>
-        /// Index des gekoppelten Partner-Effekts: Coupled-Infused ↔ vorangehender Normal-Effekt.
-        /// Pro Zug ist nur einer der beiden nutzbar. -1 = kein Partner.
+        /// Alle Effekte, die sich EINE Nutzung pro Zug teilen: ein Normal-Effekt
+        /// und jeder Coupled-Infused-Effekt, der ihm folgt — bis zum nächsten
+        /// Normal-Effekt, der eine neue Gruppe eröffnet.
+        ///
+        /// <para>
+        /// Standalone-Infused-Effekte stehen bewusst NICHT drin. Sie sind eigene
+        /// Fähigkeiten und dürfen neben allem anderen laufen; sie unterbrechen
+        /// die Gruppe aber auch nicht, sondern stehen einfach daneben.
+        /// </para>
+        /// <para>
+        /// <b>Warum eine Liste und kein einzelner Partner.</b> Vorher gab diese
+        /// Methode genau einen Index zurück. Bei zwei Coupled-Effekten unter
+        /// demselben Normal-Effekt sperrte eine Aktivierung nur einen von beiden
+        /// — der zweite blieb nutzbar, und die Karte tat pro Zug zweimal das,
+        /// was sie laut Text nur einmal darf. Solange es je Karte höchstens einen
+        /// Infused-Effekt gab, fiel das nicht auf.
+        /// </para>
+        /// Leere Liste heisst: dieser Effekt teilt sich mit niemandem.
         /// </summary>
-        public int CoupledPartner(CardInstance card, int index)
+        public List<int> CoupledGroup(CardInstance card, int index)
         {
+            var group = new List<int>();
             var effects = card?.Definition?.effects;
-            if (effects == null || index < 0 || index >= effects.Count) return -1;
+            if (effects == null || index < 0 || index >= effects.Count) return group;
+
             var effect = effects[index];
-            if (effect.isInfused)
+            if (effect.isInfused && effect.infusedKind != InfusedKind.Coupled) return group;
+
+            // Gruppenanfang: der Normal-Effekt, unter dem dieser Effekt hängt
+            int start = index;
+            while (start >= 0 && effects[start].isInfused) start--;
+            if (start < 0) return group;   // Coupled ohne Normal-Effekt davor — koppelt an nichts
+
+            group.Add(start);
+            for (int i = start + 1; i < effects.Count; i++)
             {
-                if (effect.infusedKind != InfusedKind.Coupled) return -1;
-                for (int i = index - 1; i >= 0; i--)
-                    if (!effects[i].isInfused) return i;
-                return -1;
+                if (!effects[i].isInfused) break;
+                if (effects[i].infusedKind == InfusedKind.Coupled) group.Add(i);
             }
-            for (int i = index + 1; i < effects.Count; i++)
-            {
-                if (!effects[i].isInfused) break; // nächster Normal-Effekt beendet die Gruppe
-                if (effects[i].infusedKind == InfusedKind.Coupled) return i;
-            }
-            return -1;
+
+            // Ein Normal-Effekt ohne Coupled-Partner teilt sich mit niemandem
+            return group.Count > 1 ? group : new List<int>();
         }
 
-        /// <summary>Sperrt Once-per-Turn-Index und ggf. den gekoppelten Partner für diesen Zug.</summary>
+        /// <summary>Sperrt Once-per-Turn-Index und die ganze gekoppelte Gruppe für diesen Zug.</summary>
         private void LockEffectForTurn(CardInstance card, int effectIndex, EffectDefinition effect)
         {
             if (effect.oncePerTurn) card.OncePerTurnUsed.Add(effectIndex);
-            int partner = CoupledPartner(card, effectIndex);
-            if (partner >= 0)
-            {
-                card.OncePerTurnUsed.Add(effectIndex);
-                card.OncePerTurnUsed.Add(partner);
-            }
+            // Wer einen aus der Gruppe nutzt, verbraucht die ganze Gruppe.
+            foreach (int i in CoupledGroup(card, effectIndex)) card.OncePerTurnUsed.Add(i);
         }
 
         public List<int> ActivatableEffects(CardInstance card, PlayerState player, EffectTrigger trigger)

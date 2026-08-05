@@ -104,7 +104,7 @@ Ohne diese zwei Felder ist Archetype 5 nur ein weiterer Reliquary-Stapel.
 
 ---
 
-# 1 · CHAINWROUGHT — Earth / Mecha
+# 1 · MECHINATION — Earth / Mecha
 
 **15 Karten:** 9 Monster, 2 Reliquary, 1 Feld-Artefakt, 3 Zauber
 
@@ -187,7 +187,7 @@ Züge übersteht, gewinnt das Ressourcenspiel.
 
 ---
 
-# 2 · HOLLOWVEIL — Wind / Demon
+# 2 · SLEIGHTWIND — Wind / Demon
 
 **8 Karten:** 4 Monster, 2 Zauber, 2 Reliquary
 **Braucht Lücke A (`HandQuick`).**
@@ -241,7 +241,7 @@ verschiedene Abwerfer, und man hat immer die falsche auf der Hand.
 
 ---
 
-# 3 · CINDERMOTE — Fire / Beast
+# 3 · KINDLEKIN — Fire / Beast
 
 **10 Karten:** 6 Monster, 3 Reliquary, 1 Zauber
 
@@ -305,7 +305,7 @@ Gegner einzeln abräumt.
 
 ---
 
-# 4 · TITHEWRAITH — Dark / Myth
+# 4 · MANACLE — Dark / Myth
 
 **13 Karten:** 8 Monster, 2 Reliquary, 2 Zauber, 1 Artefakt
 **Hälfte funktioniert heute, die andere braucht Lücke B.**
@@ -372,7 +372,7 @@ man es gewinnt.
 
 ---
 
-# 5 · RUINVOW — Light / Dragon
+# 5 · SACRILEGION — Light / Dragon
 
 **15 Karten:** 6 Monster, 5 Reliquary, 2 Zauber, 2 Artefakte
 **Braucht Lücke C.**
@@ -454,6 +454,124 @@ der nächste Sakrament wieder bezahlbar wird.
 **Die eingebaute Bremse:** Kein Sakrament kann beschworen werden, wenn der
 Gegner **kein** Monster kontrolliert (ausser Broken Vow). Der Archetyp kann ein
 leeres Feld nicht bestrafen — er ist eine Antwort, kein Anfang.
+
+---
+
+---
+
+# Die Infused-Ebene
+
+Die Tabellen oben zeigen, was eine Karte **umsonst** tut. Hier steht, was sie
+zusätzlich kann, wenn du Mana dafür übrig hast. 27 der 61 Karten bekommen eine
+Infused-Ebene — dieselbe Quote wie im bestehenden Set (91 von 223).
+
+**Zwei Arten, und der Unterschied ist wichtig:**
+
+- **Standalone** — eine eigene Fähigkeit. Läuft neben allem anderen auf der
+  Karte, kostet nur Mana.
+- **Coupled** — ein *Upgrade* des Normal-Effekts darüber. Pro Zug nur **einer
+  aus der Gruppe**: entweder das Original umsonst oder die teurere Fassung.
+  Das ist die eigentliche Entscheidung, die diese Karten stellen.
+
+**Neu und in diesem Set zum ersten Mal:** acht Karten tragen **zwei**
+Infused-Effekte — meist ein Coupled-Upgrade plus eine unabhängige Standalone.
+Bis eben konnte die Engine das nicht: sie sperrte bei einer Aktivierung nur
+*einen* gekoppelten Partner, ein zweiter wäre im selben Zug noch nutzbar
+gewesen. Im bestehenden Set trägt keine einzige Karte mehr als einen
+Infused-Effekt, deshalb ist es nie aufgefallen. Ist repariert.
+
+Die betroffenen acht sind unten mit **▲▲** markiert.
+
+## 1 · Mechination
+
+| Karte | Art | Mana | Infused-Effekt |
+|---|---|---|---|
+| **Mechination Cogwright** | Standalone | 2 | Beschwöre 1 Level-1-EARTH-Monster aus deiner Hand. |
+| **Mechination Boltling** | Coupled | 3 | *Statt aus der Hand:* Beschwöre 1 Level-1-Monster aus deinem **Friedhof**. |
+| **Mechination Hammerhand** | Standalone | 2 | Füge 1 Level-1-EARTH-Monster aus deinem Deck deiner Hand hinzu. |
+| **Mechination Gearmaw** | Standalone | 2 | 1 gegnerisches Monster kann diesen Zug nicht angreifen. |
+| **Mechination Kilnwarden** | Coupled | 2 | *Statt einem:* Beschwöre bis zu **2** Level-1-EARTH-Monster aus deinem Friedhof. |
+| **Mechination Pistonlord** | Standalone | 3 | Zerstöre 1 gegnerisches Monster mit höchstens 2500 ATK. |
+| **Mechination Overseer** ▲▲ | Coupled | 4 | *Statt einem:* **Zwei** MECHA-Monster dürfen je ein zweites Mal angreifen. |
+| | Standalone | 2 | 1 MECHA-Monster erhält bis Zugende 600 ATK. |
+| **Mechination Assemblage** | Standalone | 2 | Beschwöre 1 Level-1-EARTH-Monster aus deinem Friedhof. |
+| **Mechination Worldgear** ▲▲ | Coupled | 3 | *Statt Level 1:* Beschwöre bis zu 2 **Level-2**-EARTH-Monster aus deinem Friedhof. |
+| | Standalone | 3 | Zerstöre 1 gegnerische Karte auf dem Feld. |
+| **Mechination Assembly Line** | Standalone | 2 | Füge 1 Level-1-EARTH-Monster aus deinem Deck deiner Hand hinzu. |
+
+*Overseer ist die Karte, an der das Gruppen-Prinzip sichtbar wird: Du kannst
+denselben Zug den Buff für 2 Mana zünden UND den Doppelangriff — aber nicht
+den einfachen und den doppelten Angriff zusammen.*
+
+## 2 · Sleightwind
+
+| Karte | Art | Mana | Infused-Effekt |
+|---|---|---|---|
+| **Sleightwind Whisperer** | Coupled | 2 | *Statt „kann nicht angreifen":* Das Monster kann diesen Zug **weder angreifen noch die Position wechseln**. |
+| **Sleightwind Doubtbringer** ▲▲ | Coupled | 3 | *Statt annullieren:* Annulliere die Effekte **und** senke die ATK des Ziels dauerhaft um 500. |
+| | Standalone | 2 | Gib 1 Level-1-WIND-Monster aus deinem Friedhof auf die Hand zurück. |
+| **Sleightwind Maskbearer** | Standalone | 3 | Verbanne 1 Karte aus dem gegnerischen Friedhof. |
+| **Sleightwind Choir of Two** ▲▲ | Coupled | 3 | *Statt einer:* Gib **2** Karten aus deinem Friedhof auf die Hand zurück. |
+| | Standalone | 2 | 1 gegnerisches Monster kann diesen Zug nicht angreifen. |
+| **Sleightwind the Unwitnessed** ▲▲ | Coupled | 4 | *Statt annullieren:* Annulliere die Effekte **und** gib die Karte auf die Hand ihres Besitzers zurück. |
+| | Standalone | 2 | Gib 1 Level-1-WIND-Monster aus deinem Friedhof auf die Hand zurück. |
+
+*Bei den Handkarten hängt das Upgrade an derselben Abwurf-Kosten — du wirfst
+dieselbe Karte, entscheidest aber, wie hart sie zuschlägt.*
+
+## 3 · Kindlekin
+
+| Karte | Art | Mana | Infused-Effekt |
+|---|---|---|---|
+| **Kindlekin Flickerpaw** | Standalone | 2 | Beschwöre 1 Level-1-FIRE-Monster aus deiner Hand. |
+| **Kindlekin Emberwing** | Coupled | 2 | *Statt einem:* Beschwöre bis zu **2** Level-1-FIRE-Monster aus deinem Friedhof. |
+| **Kindlekin Hearthnurse** | Coupled | 3 | *Statt aus der Hand:* Beschwöre 1 Level-1-FIRE-Monster aus deinem **Deck**. |
+| **Kindlekin Pyrewhelp** | Standalone | 2 | 1 FIRE-Monster erhält bis Zugende 500 ATK. |
+| **Kindlekin Pyre Warden** | Standalone | 2 | Füge 1 Level-1-FIRE-Monster aus deinem Deck deiner Hand hinzu. |
+| **Kindlekin Emberthrone** ▲▲ | Coupled | 3 | *Statt einem:* Beschwöre bis zu **2** Level-1-FIRE-Monster aus deinem Friedhof. |
+| | Standalone | 2 | Alle BEAST-Monster, die du kontrollierst, erhalten bis Zugende 300 ATK. |
+| **Kindlekin, the Last Ember** | Standalone | 3 | Beschwöre bis zu 2 Level-1-FIRE-Monster aus deinem Friedhof. |
+
+*Hearthnurse ist die wichtigste: das Coupled-Upgrade holt aus dem **Deck** statt
+aus der Hand. Ein Mana mehr, und aus einem Extender wird ein Sucher.*
+
+## 4 · Manacle
+
+| Karte | Art | Mana | Infused-Effekt |
+|---|---|---|---|
+| **Manacle Coinbiter** | Coupled | 2 | *Statt 1 Mana jetzt:* Dem Gegner fehlen im **nächsten Zug 2** Mana. |
+| **Manacle Ledgerkeeper** | Standalone | 2 | Der Gegner verliert 1 Mana; du erhältst 1 Mana. |
+| **Manacle Usurer** ▲▲ | Coupled | 3 | *Statt 2 Mana jetzt:* Dem Gegner fehlen im **nächsten Zug 3** Mana. |
+| | Standalone | 2 | Füge 1 Level-1-DARK-Monster aus deinem Deck deiner Hand hinzu. |
+| **Manacle Assessor** | Standalone | 3 | Der Gegner verliert 2 Mana; du hast im nächsten Zug 2 Mana mehr. |
+| **Manacle Bailiff** | Coupled | 3 | *Statt 2:* Dem Gegner fehlen im nächsten Zug **3** Mana, und du hast 1 mehr. |
+| **Manacle Countinghouse** | Standalone | 2 | Der Gegner verliert 1 Mana. |
+| **Manacle Debt Collector** | Standalone | 2 | Der Gegner verliert 2 Mana. |
+| **Manacle, the Final Ledger** ▲▲ | Coupled | 5 | *Statt 3 und 2:* Dem Gegner fehlen im nächsten Zug **5** Mana. |
+| | Standalone | 2 | Füge 1 Level-1-DARK-Monster aus deinem Deck deiner Hand hinzu. |
+
+*Hier trägt das Coupled-Prinzip die ganze Fraktion: **jetzt** wenig klauen oder
+**nächste Runde** viel. Sofort wirkt im Gegnerzug, der Übertrag schneidet ihm
+den Zug ab, bevor er anfängt. Nie beides in derselben Runde.*
+
+## 5 · Sacrilegion
+
+| Karte | Art | Mana | Infused-Effekt |
+|---|---|---|---|
+| **Sacrilegion Acolyte** | Standalone | 2 | Beschwöre 1 Level-1-LIGHT-Monster aus deinem Friedhof. |
+| **Sacrilegion Herald** | Standalone | 2 | Füge 1 Level-1-LIGHT-Monster aus deinem Deck deiner Hand hinzu. |
+| **Sacrilegion Vowkeeper** | Coupled | 3 | *Statt aus dem Friedhof:* Beschwöre 1 Level-1-LIGHT-Monster aus deinem **Deck**. |
+| **Sacrilegion Sanctifier** ▲▲ | Coupled | 3 | *Statt „kann nicht angreifen":* Gib das Monster auf die Hand seines Besitzers zurück. |
+| | Standalone | 2 | Beschwöre 1 Level-1-LIGHT-Monster aus deinem Friedhof. |
+| **Sacrilegion Covenant Stone** | Standalone | 2 | Beschwöre 1 Level-1-LIGHT-Monster aus deinem Friedhof. |
+| **Sacrilegion Second Sacrament** | Coupled | 2 | *Statt einem:* Beschwöre bis zu **2** Level-1-LIGHT-Monster aus deinem Friedhof. |
+| **Sacrilegion Broken Vow** | Standalone | 3 | Verbanne 1 Karte aus einem der beiden Friedhöfe. |
+| **Sacrilegion, the Last Oath** ▲▲ | Coupled | 4 | *Statt Level 1:* Beschwöre bis zu 2 **Level-2**-LIGHT-Monster aus deinem Friedhof. |
+| | Standalone | 3 | 1 gegnerisches Monster kann diesen Zug nicht angreifen. |
+
+*Sanctifier ist das schärfste Upgrade im Set: aus „darf nicht angreifen" wird
+echtes Removal auf die Hand — und weil es gekoppelt ist, verzichtest du dafür
+auf den Gratis-Effekt.*
 
 ---
 
