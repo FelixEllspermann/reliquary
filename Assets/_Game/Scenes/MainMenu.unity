@@ -2200,7 +2200,6 @@ MonoBehaviour:
   dailyResetText: {fileID: 671345484}
   claimButton: {fileID: 930778551}
   claimedChip: {fileID: 400303745}
-  versionText: {fileID: 376910173}
   onlineText: {fileID: 879228378}
   catalog: {fileID: 11400000, guid: 2bd92c956e288a543a5c6209ac08c8fb, type: 2}
   playSceneName: Play
@@ -3550,6 +3549,7 @@ GameObject:
   - component: {fileID: 376910171}
   - component: {fileID: 376910172}
   - component: {fileID: 376910173}
+  - component: {fileID: 376910174}
   m_Layer: 5
   m_Name: VersionText
   m_TagString: Untagged
@@ -3604,7 +3604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "RELIQUARY \xB7 BUILD 1.0"
+  m_text: "RELIQUARY \xB7 BUILD 0.1.0i"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d9913fbf1a8567449c958ea034d9b61, type: 2}
   m_sharedMaterial: {fileID: 1380921073438320166, guid: 0d9913fbf1a8567449c958ea034d9b61, type: 2}
@@ -3676,6 +3676,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &376910174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376910170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ea96df429760744b5e90556fa270e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.UI.VersionLabel
+  target: {fileID: 376910173}
 --- !u!1 &382864399
 GameObject:
   m_ObjectHideFlags: 0

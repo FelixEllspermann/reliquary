@@ -49,7 +49,6 @@ namespace Rouge.Tcg.UI
         [SerializeField] private GameObject claimedChip;
 
         [Header("Meta")]
-        [SerializeField] private TMP_Text versionText;
         [SerializeField] private TMP_Text onlineText;
         [SerializeField] private CardCatalog catalog;
 
@@ -87,7 +86,8 @@ namespace Rouge.Tcg.UI
                 NetworkManager.Instance.OnMessage += HandleMessage;
                 NetworkManager.Instance.OnDisconnected += HandleDisconnected;
             }
-            if (versionText != null) versionText.text = $"RELIQUARY · BUILD {Application.version}";
+            // Die Build-Nummer setzt jetzt VersionLabel am Textfeld selbst —
+            // eine Stelle für alle Screens statt eine pro Controller.
             Refresh();
         }
 

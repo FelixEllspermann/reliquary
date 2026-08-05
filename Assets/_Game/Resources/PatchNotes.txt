@@ -1,4 +1,34 @@
 ────────────────────────────────
+0.1.0i · YOUR COPY, NOT A COPY
+────────────────────────────────
+
+FINISHES REACH THE TABLE
+  · A Glossy card in your deck is now Glossy in the duel. Until now a
+    finish only ever existed while opening a pack — the copy on the
+    table had no finish at all, because nothing carried it there. It
+    now travels the whole way, from the deck list to the board, solo
+    and online alike
+  · It belongs to the copy, not to the card. Own three Plain and one
+    Static and only the one you built in will flicker. Which one you
+    built in is decided by the row you added it from
+  · Your opponent sees yours and you see theirs. Face-down cards show
+    nothing — a shimmering back would give away what is lying there
+
+DECK BUILDER
+  · Clicking a row shows that copy on the right. It used to show the
+    plain version no matter which row you clicked, so a Rainbow you
+    owned was something you could never actually look at
+  · A column beside the preview switches between all four finishes.
+    What you own is lit and counted, the rest stays dimmed but can
+    still be viewed — worth knowing before you open a pack
+  · The highlighted row is now the copy on display. With three
+    finishes all three rows used to light up at once
+
+FIXED
+  · The build number in the shop was typed into the screen and had
+    been wrong for a while. It reads itself now
+
+────────────────────────────────
 0.1.0h · CARDS THAT MOVE
 ────────────────────────────────
 
