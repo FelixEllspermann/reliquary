@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c539b7addb6bca419e69d65c213b4f1, type: 3}
+  m_Name: HeroCache
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.CardPackDefinition
+  packName: Hero Cache
+  description: "One random Player Card you do not own yet. No duplicates, no blanks
+    \u2014 every cache holds a duelist."
+  packColor: {r: 0.5568628, g: 0.41960785, b: 0.78431374, a: 1}
+  price: 5000
+  cardPool:
+  - {fileID: 11400000, guid: 7a0c339fa6bf8ab4b95de7e72a79091b, type: 2}
+  - {fileID: 11400000, guid: 99582c29dd735ee439a83bdc28208604, type: 2}
+  - {fileID: 11400000, guid: fe74f318c2bd1b04297fa255c11d369a, type: 2}
+  - {fileID: 11400000, guid: 4c488dd88a9a95d42987997ff32e794f, type: 2}
+  - {fileID: 11400000, guid: 2a7bc28ba208989419c2eab447a7f8fd, type: 2}
+  - {fileID: 11400000, guid: 06419778ecdc5264eb792cd1d5bc18c6, type: 2}
+  - {fileID: 11400000, guid: a556b545d128df7498999bd8395c83ee, type: 2}
+  - {fileID: 11400000, guid: 2e9cd0887e57d384fb487e58b2b3ff11, type: 2}
+  - {fileID: 11400000, guid: 635ae5b45695a694d866c39ab85fee60, type: 2}
+  - {fileID: 11400000, guid: 09db639910473af48a1070a19de3323d, type: 2}
+  - {fileID: 11400000, guid: b543fff0cfe8acb4599799da12aedb52, type: 2}
+  - {fileID: 11400000, guid: 989c81bef339e42459a4299c8e70133a, type: 2}
+  raritySlots: 03000000
+  legendaryUpgradeChance: 0.15
+  tagline: 

@@ -379,6 +379,12 @@ function grantStarterDeck(acc, id) {
   return null;
 }
 
+/** Karten eines Unique-Packs, die dem Konto noch fehlen. */
+function uniquePool(packDef, acc) {
+  return (packDef.cards || []).filter(name =>
+    cards[name] !== undefined && finishes.total(acc.collection[name]) < 1);
+}
+
 /** Slot-basierte Pack-Ziehung: pro Slot eine feste Rarity; fehlt sie im Pool,
  *  Fallback erst auf niedrigere, dann auf höhere Raritäten.
  *  Der letzte Slot wird mit legendaryChance zur Legendary aufgewertet — ohne das
@@ -884,6 +890,12 @@ wss.on('connection', (ws, req) => {
         if (!acc) { sendError(c, 'Not logged in.'); break; }
         const packDef = packs[String(m.pack || '')];
         if (!packDef) { sendError(c, 'Pack not found.'); break; }
+        // Unique-Packs (Hero Cache) ziehen nur Karten, die dem Konto fehlen.
+        // Wer schon alles hat, soll gar nicht erst zahlen duerfen.
+        if (packDef.unique && uniquePool(packDef, acc).length === 0) {
+          sendError(c, 'You already own every card in this pack.');
+          break;
+        }
         if (acc.coins < packDef.price) { sendError(c, `Not enough coins (${packDef.price} needed).`); break; }
         acc.coins -= packDef.price;
         acc.packInv[m.pack] = (acc.packInv[m.pack] || 0) + 1;
@@ -898,8 +910,27 @@ wss.on('connection', (ws, req) => {
         const packDef = packs[String(m.pack || '')];
         if (!packDef) { sendError(c, 'Pack not found.'); break; }
         if (!acc.packInv[m.pack] || acc.packInv[m.pack] < 1) { sendError(c, 'You do not own this pack.'); break; }
-        acc.packInv[m.pack] -= 1;
-        const drawn = drawFromPack(packDef);
+
+        let drawn;
+        if (packDef.unique) {
+          // Hero Cache: EINE zufällige Karte aus dem Pool, die dem Konto fehlt.
+          // Der Rand-Fall (zwei gekauft, nach dem ersten Öffnen ist alles da)
+          // erstattet den Kaufpreis, statt ein leeres Pack aufzureissen.
+          const pool = uniquePool(packDef, acc);
+          if (pool.length === 0) {
+            acc.packInv[m.pack] -= 1;
+            acc.coins += packDef.price;
+            saveAccount(acc);
+            sendError(c, `Every card in this pack is already yours — ${packDef.price} coins refunded.`);
+            sendProfile(c, acc);
+            break;
+          }
+          acc.packInv[m.pack] -= 1;
+          drawn = [pool[Math.floor(Math.random() * pool.length)]];
+        } else {
+          acc.packInv[m.pack] -= 1;
+          drawn = drawFromPack(packDef);
+        }
         // Jedes Exemplar würfelt sein eigenes Finish — der Client zeigt es beim Aufdecken
         const drawnFinishes = drawn.map(() => finishes.roll());
         for (let i = 0; i < drawn.length; i++) finishes.add(acc.collection, drawn[i], drawnFinishes[i]);

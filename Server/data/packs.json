@@ -293,5 +293,23 @@
    "Sleightwind the Unwitnessed"
   ],
   "legendaryChance": 0.15
+ },
+ "Hero Cache": {
+  "price": 5000,
+  "unique": true,
+  "cards": [
+   "Ignis the Pyromancer",
+   "Lyra the Warden",
+   "Vess the Scrivener",
+   "Nix the Tidecaller",
+   "Otho the Vaultkeep",
+   "Sable the Veilkeeper",
+   "Callis the Exhumer",
+   "Bronn the Relicwright",
+   "Maeva the Pale",
+   "Ryka the Warhorn",
+   "Ossian the Tithekeeper",
+   "Silt the Dredger"
+  ]
  }
 }
