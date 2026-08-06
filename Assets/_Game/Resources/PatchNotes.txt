@@ -1,4 +1,18 @@
 ────────────────────────────────
+0.1.1b · YOU CAN SEE THE CHAIN NOW
+────────────────────────────────
+
+CHAIN TRACKER
+  · When a second effect answers the first, a panel opens on the left
+    and lists the chain in order — card, effect and a colour showing
+    who played it. Yours is teal, theirs is red
+  · While links are still being added the header reads BUILDING CHAIN.
+    Once nobody responds, it pauses, switches to RESOLVING, and works
+    back down link by link. Each one lights up as it resolves and
+    greys out once it is done
+  · A single effect nobody answers is not a chain and stays hidden
+
+────────────────────────────────
 0.1.1 · FIVE NEW WAYS TO PLAY
 ────────────────────────────────
 
