@@ -17,6 +17,7 @@ MonoBehaviour:
     them Rare or better.'
   packColor: {r: 0.78431374, g: 0.6431373, b: 0.36078432, a: 1}
   price: 100
+  uniqueDraw: 0
   cardPool:
   - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
   - {fileID: 11400000, guid: 31de00fffb3c3b844a0f6a97b13281c8, type: 2}
@@ -300,6 +301,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e006c1e1778c694caac912d7e46a5c1, type: 2}
   - {fileID: 11400000, guid: e2738940736086247a6a1fc8d5083879, type: 2}
   - {fileID: 11400000, guid: e864dd4bca9284c4bb27455378e223b8, type: 2}
-  raritySlots: 0000000000000000010000000200000002000000
+  raritySlots: 0000000000000000010000000100000002000000
   legendaryUpgradeChance: 0.15
   tagline: "Every card in the vault \u2014 five per seal"

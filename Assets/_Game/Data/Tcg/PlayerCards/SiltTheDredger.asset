@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SiltTheDredger
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Silt the Dredger
-  artwork: {fileID: 0}
+  artwork: {fileID: -1806080154468708321, guid: e41d9f956902ddc4192a90768032f7ae, type: 3}
   rarity: 3
   effects:
   - label: Dredge

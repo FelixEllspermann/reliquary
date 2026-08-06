@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NixTheTidecaller
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Nix the Tidecaller
-  artwork: {fileID: 0}
+  artwork: {fileID: 892316211255757302, guid: 09a690f3c47d31c4b8ffc87ad0e6b3b7, type: 3}
   rarity: 3
   effects:
   - label: Undertow

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CallisTheExhumer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Callis the Exhumer
-  artwork: {fileID: 0}
+  artwork: {fileID: -773872911876531577, guid: ea59563191cd65846b36438fcdf95758, type: 3}
   rarity: 3
   effects:
   - label: Unearth

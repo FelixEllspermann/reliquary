@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BronnTheRelicwright
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Bronn the Relicwright
-  artwork: {fileID: 0}
+  artwork: {fileID: 4706576644414214205, guid: 4a59ce21a85fc7c4a9762516d70110a8, type: 3}
   rarity: 3
   effects:
   - label: Forgework

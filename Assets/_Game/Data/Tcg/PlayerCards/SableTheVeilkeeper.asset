@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SableTheVeilkeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Sable the Veilkeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: 9210739217516329496, guid: b0afcc11257ea3147a52f7eebcb0ebe4, type: 3}
   rarity: 3
   effects:
   - label: Nightshroud

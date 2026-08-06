@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OthoTheVaultkeep
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Otho the Vaultkeep
-  artwork: {fileID: 0}
+  artwork: {fileID: -2919087462196084211, guid: af80098530fd9b441b0517dae517e4d3, type: 3}
   rarity: 3
   effects:
   - label: Deep Coffers

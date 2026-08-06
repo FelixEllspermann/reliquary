@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaevaThePale
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Maeva the Pale
-  artwork: {fileID: 0}
+  artwork: {fileID: -5525819236950455164, guid: 5f02d2a92f652b9428300949e29fa51e, type: 3}
   rarity: 3
   effects:
   - label: Duskturn

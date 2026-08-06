@@ -83,6 +83,7 @@ namespace Rouge.Tcg.UI
         private NetworkManager network;
         private List<CardDefinition> pool = new List<CardDefinition>();
         private List<PlayerCardData> heroes = new List<PlayerCardData>();
+        private List<PlayerCardData> ownedHeroes = new List<PlayerCardData>();
         private readonly List<CollectionRow> poolRows = new List<CollectionRow>();
         private readonly List<CollectionRow> deckRows = new List<CollectionRow>();
         private readonly List<Button> heroChips = new List<Button>();
@@ -350,7 +351,7 @@ namespace Rouge.Tcg.UI
         private void CreateDeck()
         {
             if (!CollectionMode) return;
-            var fresh = new RuntimeDeck { Name = "Deck " + (PlayerProfile.Decks.Count + 1), Hero = heroes.Count > 0 ? heroes[0].cardName : "" };
+            var fresh = new RuntimeDeck { Name = "Deck " + (PlayerProfile.Decks.Count + 1), Hero = ownedHeroes.Count > 0 ? ownedHeroes[0].cardName : (heroes.Count > 0 ? heroes[0].cardName : "") };
             network.SendSaveDeck(PlayerProfile.Decks.Count, fresh);
             ShowFeedback($"Creating {fresh.Name}…");
         }
@@ -362,47 +363,70 @@ namespace Rouge.Tcg.UI
             ShowFeedback("Deleting deck…");
         }
 
+        /// <summary>
+        /// Nur BESITZENE Helden werden angeboten. Zwölf Chips für zwölf Helden,
+        /// von denen einer dem Spieler gehört, wären elf Sackgassen — wählbar im
+        /// Builder, abgewiesen beim Spielen. Fehlen Chips für den Besitz, werden
+        /// sie als Klone des ersten angelegt; der HorizontalLayoutGroup des
+        /// Containers ordnet sie von selbst.
+        /// </summary>
         private void BuildHeroChips()
         {
             heroChips.Clear();
             if (heroChipContainer == null) return;
+
+            var buttons = new List<Button>();
             foreach (Transform child in heroChipContainer)
             {
                 var button = child.GetComponent<Button>();
-                if (button != null) heroChips.Add(button);
+                if (button != null) buttons.Add(button);
             }
-            for (int i = 0; i < heroChips.Count; i++)
+            if (buttons.Count == 0) return;
+
+            ownedHeroes = heroes.Where(h => PlayerProfile.Owned(h.cardName) > 0).ToList();
+            // Notnagel: ohne Profil (Offline-Kontexte) lieber alle zeigen als keinen
+            if (ownedHeroes.Count == 0) ownedHeroes = new List<PlayerCardData>(heroes);
+
+            var template = buttons[0];
+            while (buttons.Count < ownedHeroes.Count)
+            {
+                var copy = Instantiate(template.gameObject, template.transform.parent);
+                copy.name = "HeroChip_" + buttons.Count;
+                buttons.Add(copy.GetComponent<Button>());
+            }
+
+            for (int i = 0; i < buttons.Count; i++)
             {
                 int index = i;
-                var label = heroChips[i].GetComponentInChildren<TMP_Text>(true);
-                bool exists = i < heroes.Count;
-                heroChips[i].gameObject.SetActive(exists);
+                var button = buttons[i];
+                bool exists = i < ownedHeroes.Count;
+                button.gameObject.SetActive(exists);
+                heroChips.Add(button);
                 if (!exists) continue;
+                var label = button.GetComponentInChildren<TMP_Text>(true);
                 if (label != null)
-                {
-                    string first = heroes[i].cardName.Split(' ')[0];
-                    label.text = first.ToUpperInvariant();
-                }
-                heroChips[i].onClick.AddListener(() => SetHero(index));
+                    label.text = ownedHeroes[index].cardName.Split(' ')[0].ToUpperInvariant();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => SetHero(index));
             }
         }
 
         private void SetHero(int index)
         {
             var deck = CurrentDeck;
-            if (deck == null || index < 0 || index >= heroes.Count) return;
-            deck.Hero = heroes[index].cardName;
+            if (deck == null || index < 0 || index >= ownedHeroes.Count) return;
+            deck.Hero = ownedHeroes[index].cardName;
             MarkEdited();
             RefreshHeroChips();
-            Select(heroes[index], CardFinish.Plain);
+            Select(ownedHeroes[index], CardFinish.Plain);
         }
 
         private void RefreshHeroChips()
         {
             var deck = CurrentDeck;
-            for (int i = 0; i < heroChips.Count && i < heroes.Count; i++)
+            for (int i = 0; i < heroChips.Count && i < ownedHeroes.Count; i++)
             {
-                bool active = deck != null && deck.Hero == heroes[i].cardName;
+                bool active = deck != null && deck.Hero == ownedHeroes[i].cardName;
                 var bg = heroChips[i].GetComponent<Image>();
                 var label = heroChips[i].GetComponentInChildren<TMP_Text>(true);
                 StyleChip(bg, label, active, new Color(200f / 255f, 164f / 255f, 92f / 255f, 1f));

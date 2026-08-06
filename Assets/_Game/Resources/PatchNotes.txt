@@ -1,4 +1,44 @@
 ────────────────────────────────
+0.1.2 · TWELVE WAYS TO LEAD
+────────────────────────────────
+
+TEN NEW PLAYER CARDS
+  · Every hero costs 2 Mana, once per turn — the choice is a playstyle,
+    never a math problem. LP is the price tag: greedy heroes run 7500,
+    the patient Tithekeeper holds 8500
+  · Vess the Scrivener discards one to draw two. Nix the Tidecaller
+    bounces in YOUR opponent's turn — the first hero that answers.
+    Otho banks Mana, Sable sets monsters face-down from hand, Callis
+    digs the graveyard, Bronn sets Artifacts straight from the deck,
+    Maeva turns enemies face-down, Ryka sounds a second charge,
+    Ossian taxes next turn's Mana, Silt dredges your own deck
+  · Heroes never drop from packs and cannot be crafted
+
+HERO CACHE — NEW IN THE SHOP
+  · 5000 coins, one card — always a Player Card you do not own yet.
+    No duplicates, no blanks. Refuses your coins once you own all 12
+
+SHOP, HONEST AND VISIBLE
+  · Pack odds rebalanced: Uncommon is now more common than Rare
+    (slots C·C·U·U·R). The odds page also lists finish chances —
+    Glossy 1 in 12, Rainbow 1 in 60, Static 1 in 240
+  · CONTENTS now shows the actual cards in a scrollable gallery
+    instead of a wall of names
+  · The deck builder only offers heroes you own
+
+NEW COSMETICS
+  · Five painted avatar frames: Rootbound, Gilded Grasp, Stormlace,
+    Pyre Mantle, Fiendwing — framed pictures with their own silhouette
+  · Four profile pictures: Mireback Toad, Ember Imp, Gravemaw Whelp,
+    Bone Colossus. Your portrait, your monster
+
+FIXED
+  · Two Bulwark Prisms could shield each other forever and freeze the
+    duel — a replacement destruction is now final
+  · New accounts were missing their starter deck's hero and could not
+    play — granted on pick, repaired on login for everyone affected
+
+────────────────────────────────
 0.1.1b2 · YOU CAN SEE THE CHAIN NOW
 ────────────────────────────────
 

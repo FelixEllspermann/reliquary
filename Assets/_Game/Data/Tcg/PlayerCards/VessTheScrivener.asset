@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VessTheScrivener
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Vess the Scrivener
-  artwork: {fileID: 0}
+  artwork: {fileID: 5731815989868142276, guid: 2d66c6e917b016748bc7369f2501b1cd, type: 3}
   rarity: 3
   effects:
   - label: Palimpsest

@@ -23,6 +23,11 @@ namespace Rouge.Tcg
         [Tooltip("Preis in Coins (Ingame-Währung)")]
         public int price = 150;
 
+        [Tooltip("Unique-Pack (Hero Cache): zieht genau EINE Karte aus dem Pool, die dem " +
+                 "Konto noch fehlt. Muss zum Flag \"unique\" in Server/data/packs.json passen. " +
+                 "raritySlots und legendaryUpgradeChance sind dann bedeutungslos.")]
+        public bool uniqueDraw;
+
         [Tooltip("Alle Karten, die in diesem Pack gezogen werden können")]
         public List<CardDefinition> cardPool = new List<CardDefinition>();
 

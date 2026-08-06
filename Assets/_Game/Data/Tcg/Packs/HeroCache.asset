@@ -17,6 +17,7 @@ MonoBehaviour:
     \u2014 every cache holds a duelist."
   packColor: {r: 0.5568628, g: 0.41960785, b: 0.78431374, a: 1}
   price: 5000
+  uniqueDraw: 1
   cardPool:
   - {fileID: 11400000, guid: 7a0c339fa6bf8ab4b95de7e72a79091b, type: 2}
   - {fileID: 11400000, guid: 99582c29dd735ee439a83bdc28208604, type: 2}

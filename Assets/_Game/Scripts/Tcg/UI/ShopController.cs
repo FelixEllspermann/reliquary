@@ -76,6 +76,7 @@ namespace Rouge.Tcg.UI
         private GameObject infoOverlay;
         private TMP_Text infoTitle;
         private TMP_Text infoBody;
+        private RectTransform infoGrid;   // Kartengalerie der Contents-Ansicht
         private ScrollRect infoScroll;
 
         private void Start()
@@ -300,9 +301,52 @@ namespace Rouge.Tcg.UI
 
             infoOverlay.SetActive(true);
             if (infoTitle != null)
-                infoTitle.text = odds ? $"{pack.packName.ToUpperInvariant()} · ODDS" : $"{pack.packName.ToUpperInvariant()} · CONTENTS";
-            if (infoBody != null) infoBody.text = odds ? BuildOddsText(pack) : BuildContentsText(pack);
-            if (infoScroll != null) infoScroll.verticalNormalizedPosition = 1f;
+                infoTitle.text = odds
+                    ? $"{pack.packName.ToUpperInvariant()} · ODDS"
+                    : $"{pack.packName.ToUpperInvariant()} · CONTENTS · {pack.cardPool.Count(c => c != null)} CARDS";
+
+            // Odds sind Text, der Inhalt ist eine Galerie echter Karten — der
+            // Scroller bekommt jeweils das passende Content-Rect untergeschoben.
+            bool gallery = !odds;
+            if (infoBody != null)
+            {
+                infoBody.gameObject.SetActive(!gallery);
+                if (odds) infoBody.text = BuildOddsText(pack);
+            }
+            if (infoGrid != null)
+            {
+                infoGrid.gameObject.SetActive(gallery);
+                for (int i = infoGrid.childCount - 1; i >= 0; i--)
+                    Destroy(infoGrid.GetChild(i).gameObject);
+                if (gallery) PopulateContentsGallery(pack);
+            }
+            if (infoScroll != null)
+            {
+                infoScroll.content = gallery && infoGrid != null
+                    ? infoGrid
+                    : (RectTransform)infoBody.transform;
+                infoScroll.verticalNormalizedPosition = 1f;
+            }
+        }
+
+        /// <summary>
+        /// Die Karten des Packs als anfassbare Galerie — jede als echte Karte
+        /// gerendert (unter 200 px Breite schaltet TcgCardView von selbst auf
+        /// die Kompakt-Ansicht). Sortiert von Legendary abwärts, damit das
+        /// Teuerste oben steht.
+        /// </summary>
+        private void PopulateContentsGallery(CardPackDefinition pack)
+        {
+            if (cardViewPrefab == null || infoGrid == null) return;
+            var sorted = pack.cardPool
+                .Where(c => c != null)
+                .OrderByDescending(c => (int)c.rarity)
+                .ThenBy(c => c.cardName, System.StringComparer.Ordinal);
+            foreach (var definition in sorted)
+            {
+                var view = Instantiate(cardViewPrefab, infoGrid);
+                view.Show(new CardInstance(definition, null), false, true);
+            }
         }
 
         private void HideInfo()
@@ -341,8 +385,47 @@ namespace Rouge.Tcg.UI
         /// kann zusätzlich zur Legendary aufgewertet werden — das verschiebt seinen
         /// Anteil von seiner normalen Rarity zu Legendary.
         /// </summary>
+        /// <summary>
+        /// Finish-Chancen, wie sie der Server würfelt. MUSS zu RATES in
+        /// Server/finishes.js passen — sonst zeigt die Odds-Seite Märchen an.
+        /// </summary>
+        private static string FinishOddsText()
+        {
+            var builder = new System.Text.StringBuilder();
+            builder.Append("\n\n<color=#8C7B5F>Every card also rolls a finish on top — pack or cache, same odds:</color>\n");
+            builder.Append("<color=#").Append(ColorUtility.ToHtmlStringRGB(Net.CardFinishInfo.Accent(Net.CardFinish.Glossy)))
+                   .Append(">GLOSSY</color><pos=32%><color=#CFC3AC>1 in 12</color><pos=74%><color=#CFC3AC>8.33 %</color>\n");
+            builder.Append("<color=#").Append(ColorUtility.ToHtmlStringRGB(Net.CardFinishInfo.Accent(Net.CardFinish.Rainbow)))
+                   .Append(">RAINBOW</color><pos=32%><color=#CFC3AC>1 in 60</color><pos=74%><color=#CFC3AC>1.67 %</color>\n");
+            builder.Append("<color=#").Append(ColorUtility.ToHtmlStringRGB(Net.CardFinishInfo.Accent(Net.CardFinish.Static)))
+                   .Append(">STATIC</color><pos=32%><color=#CFC3AC>1 in 240</color><pos=74%><color=#CFC3AC>0.42 %</color>");
+            return builder.ToString();
+        }
+
         private static string BuildOddsText(CardPackDefinition pack)
         {
+            // Unique-Packs (Hero Cache) haben keine Rarity-Slots: sie ziehen genau
+            // EINE Karte aus dem Pool, die dem Konto fehlt — jede fehlende gleich
+            // wahrscheinlich. Die normale Tabelle würde hier nur verwirren.
+            if (pack.uniqueDraw)
+            {
+                int total = pack.cardPool.Count(c => c != null);
+                int missing = pack.cardPool.Count(c => c != null && Net.PlayerProfile.Owned(c.cardName) < 1);
+                var b = new System.Text.StringBuilder();
+                b.Append("<color=#8C7B5F>Every cache contains <color=#F1E7D2>1</color> card — always one you ")
+                 .Append("<color=#F1E7D2>do not own yet</color>. No duplicates, no blanks.</color>\n\n");
+                if (missing > 0)
+                    b.Append("<color=#8C7B5F>You are missing <color=#F1E7D2>").Append(missing)
+                     .Append("</color> of ").Append(total)
+                     .Append(" — each of them is equally likely: <color=#FFC24D>")
+                     .Append((100f / missing).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture))
+                     .Append(" %</color> per card.</color>");
+                else
+                    b.Append("<color=#E9A183>You already own every card in this pack — there is nothing left to pull.</color>");
+                b.Append(FinishOddsText());
+                return b.ToString();
+            }
+
             int slotCount = Mathf.Max(1, pack.raritySlots.Count);
             var expected = new float[4];
             foreach (var rarity in pack.raritySlots) expected[(int)rarity] += 1f;
@@ -389,6 +472,7 @@ namespace Rouge.Tcg.UI
                        .Append(CardDefinition.RarityName(lastSlot)).Append(" is replaced by a Legendary.</color>");
             else
                 builder.Append("\n<color=#E9A183>Legendary cards cannot be pulled from this pack — they come from crafting only.</color>");
+            builder.Append(FinishOddsText());
             return builder.ToString();
         }
 
@@ -489,6 +573,24 @@ namespace Rouge.Tcg.UI
             var fitter = infoBody.gameObject.AddComponent<ContentSizeFitter>();
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             infoScroll.content = bodyRect;
+
+            // Galerie-Container für die Contents-Ansicht: ein Gitter aus echten
+            // Karten. Unter 200 px Zellbreite rendert TcgCardView von selbst
+            // kompakt — genau richtig für eine Übersicht.
+            infoGrid = MakeRect("CardGrid", viewport);
+            infoGrid.anchorMin = new Vector2(0f, 1f);
+            infoGrid.anchorMax = new Vector2(1f, 1f);
+            infoGrid.pivot = new Vector2(0.5f, 1f);
+            infoGrid.offsetMin = Vector2.zero;
+            infoGrid.offsetMax = Vector2.zero;
+            var grid = infoGrid.gameObject.AddComponent<GridLayoutGroup>();
+            grid.cellSize = new Vector2(172f, 240f);
+            grid.spacing = new Vector2(12f, 12f);
+            grid.padding = new RectOffset(8, 8, 8, 8);
+            grid.childAlignment = TextAnchor.UpperCenter;
+            var gridFitter = infoGrid.gameObject.AddComponent<ContentSizeFitter>();
+            gridFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            infoGrid.gameObject.SetActive(false);
 
             if (infoButtonTemplate != null)
             {

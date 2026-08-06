@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RykaTheWarhorn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Ryka the Warhorn
-  artwork: {fileID: 0}
+  artwork: {fileID: 7750546972750607937, guid: d482b14b34243984ea87f94d74e05634, type: 3}
   rarity: 3
   effects:
   - label: Sound the Charge

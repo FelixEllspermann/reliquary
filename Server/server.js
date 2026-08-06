@@ -948,6 +948,13 @@ wss.on('connection', (ws, req) => {
         if (!acc) { sendError(c, 'Not logged in.'); break; }
         const rarity = cards[String(m.card || '')];
         if (rarity === undefined) { sendError(c, 'Unknown card.'); break; }
+        // Helden kommen aus dem Hero Cache, nicht aus der Werkbank — sonst
+        // waere das 5000-Coin-Pack neben 30 Legendary-Dust eine Zierde.
+        const heroPack = packs['Hero Cache'];
+        if (heroPack && Array.isArray(heroPack.cards) && heroPack.cards.includes(String(m.card))) {
+          sendError(c, 'Player Cards cannot be crafted — open a Hero Cache in the shop.');
+          break;
+        }
         const cost = ECON.craftCost[rarity];
         if (acc.tokens[rarity] < cost) { sendError(c, `Not enough dust (${cost} needed).`); break; }
         acc.tokens[rarity] -= cost;

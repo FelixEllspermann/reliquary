@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OssianTheTithekeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
   cardName: Ossian the Tithekeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: 3425151751407242096, guid: 58de37936ea9a19489955d5972797b49, type: 3}
   rarity: 3
   effects:
   - label: Tithe
