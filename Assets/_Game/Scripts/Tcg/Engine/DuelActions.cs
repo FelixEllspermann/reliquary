@@ -2317,12 +2317,18 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
 
                 Log($"{artifact.Name} shatters in place of {card.Name}!");
                 redirected(true);
-                yield return DestroyCard(artifact);
+                // Das Ersatz-Opfer ist ENDGÜLTIG: asReplacement verhindert, dass
+                // ein zweites Schutz-Artefakt auch diese Zerstörung umleitet.
+                // Sonst retten sich zwei Bulwark Prisms gegenseitig bis in alle
+                // Ewigkeit — A zerbricht für X, B für A, A für B, und keines
+                // stirbt je. Zwei Bots, die immer Ja sagen, haben damit den
+                // DuelHost eingefroren.
+                yield return DestroyCard(artifact, asReplacement: true);
                 yield break;
             }
         }
 
-        private IEnumerator DestroyCard(CardInstance card)
+        private IEnumerator DestroyCard(CardInstance card, bool asReplacement = false)
         {
             if (card == null || card.Zone == ZoneType.Graveyard) yield break;
             if (card.CannotBeDestroyedThisTurn)
@@ -2331,9 +2337,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 yield break;
             }
 
-            bool shielded = false;
-            yield return TryRedirectDestruction(card, value => shielded = value);
-            if (shielded) yield break;
+            if (!asReplacement)
+            {
+                bool shielded = false;
+                yield return TryRedirectDestruction(card, value => shielded = value);
+                if (shielded) yield break;
+            }
 
             bool wasMonster = card.MonsterData != null;
             if (presenter != null) yield return presenter.ShowCardDestroyed(card); // Zersplittern + Flug zum Friedhof

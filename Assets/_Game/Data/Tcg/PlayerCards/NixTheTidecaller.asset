@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a4c840b55e62a4cbe96ca4e3f0f102, type: 3}
+  m_Name: NixTheTidecaller
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.PlayerCardData
+  cardName: Nix the Tidecaller
+  artwork: {fileID: 0}
+  rarity: 3
+  effects:
+  - label: Undertow
+    text: 'Quick, once per turn: You can pay 2 Mana; return target monster with 1500
+      ATK or less to its owner''s hand.'
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 1
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    actions:
+    - type: 10
+      isCost: 0
+      amount: 1
+      target: 3
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 1500
+      useAttributeFilter: 0
+      attributeFilter: 0
+  startLifePoints: 8000
