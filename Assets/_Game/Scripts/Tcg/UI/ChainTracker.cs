@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Rouge.Tcg.UI
 {
     /// <summary>
-    /// Die Kettenanzeige an der rechten Seite des Duells.
+    /// Die Kettenanzeige am oberen Bildschirmrand.
     ///
     /// <para>
     /// <b>Warum es die braucht.</b> Die Engine führt keine Kette als Liste: eine
     /// Aktivierung öffnet ein Reaktionsfenster, darin läuft die nächste
     /// Aktivierung vollständig durch, und die Reihenfolge steckt allein im
     /// Aufrufstapel. Für den Spieler passierte dadurch alles auf einmal und in
-    /// einer Reihenfolge, die er nicht sehen konnte. Diese Anzeige ist die
-    /// einzige Stelle, an der die Kette als Kette sichtbar wird.
+    /// einer Reihenfolge, die er nicht sehen konnte.
     /// </para>
     /// <para>
     /// <b>Bauen und Abbauen sind getrennt.</b> Solange Glieder dazukommen, steht
     /// oben BUILDING CHAIN. Sobald das erste Glied auflöst, hält die Anzeige
     /// einen Moment inne, wechselt auf RESOLVING und arbeitet dann von unten
-    /// nach oben ab. Diese Pause ist kein Trick — sie liegt genau dort, wo die
-    /// Engine aufhört zu wachsen und anfängt aufzulösen.
+    /// nach oben ab.
     /// </para>
     /// <para>
-    /// Eine Kette hat höchstens drei Glieder: das Reaktionsfenster steigt bei
-    /// Tiefe 2 aus (<c>DuelActions.OpenResponseWindow</c>). Die Anzeige ist
-    /// darauf ausgelegt, kommt aber auch mit mehr zurecht.
+    /// <b>Warum oben und nicht links.</b> Die linke Leiste sieht leer aus,
+    /// solange man nichts anfasst — sobald man aber eine Karte hovert, steht
+    /// dort ihr Effekttext. Genau dann liest man auch die Kette, und beides
+    /// zugleich geht nicht. Oben liegt nur die gegnerische Hand, und die ist
+    /// verdeckt.
     /// </para>
     /// </summary>
     public class ChainTracker : MonoBehaviour
@@ -39,28 +40,30 @@ namespace Rouge.Tcg.UI
         private const float ResolveHold = 0.35f;
         private const float FadeOut = 0.4f;
 
-        // Masse des Kastens. Die Höhe steht nicht fest — sie folgt der Zahl der
-        // Glieder, sonst klafft unter einer Zweierkette ein leeres Feld.
-        private const float PanelWidth = 292f;
-        private const float HeaderBlock = 52f;   // Kopfzeile bis zur ersten Zeile
-        private const float RowHeight = 52f;
-        private const float RowSpacing = 6f;
-        private const float Padding = 14f;
+        private const float PanelWidth = 640f;
+        private const float HeaderHeight = 42f;
+        private const float RowHeight = 50f;
+        private const float RowSpacing = 5f;
+        private const float Padding = 10f;
 
         private static readonly Color Ink = Hex("#F3DDA4");
         private static readonly Color InkDim = Hex("#7E7059");
         private static readonly Color Gold = Hex("#C8A45C");
         private static readonly Color Mine = Hex("#6FD3E0");
         private static readonly Color Theirs = Hex("#E0603A");
-        private static readonly Color PanelBg = new Color(0.03f, 0.026f, 0.02f, 0.88f);
+        private static readonly Color PanelBg = new Color(0.03f, 0.026f, 0.02f, 0.94f);
+        private static readonly Color HeaderBg = new Color(0.07f, 0.058f, 0.042f, 0.97f);
 
         private RectTransform panel;
         private TMP_Text headerText;
+        private TMP_Text chevron;
         private RectTransform rows;
         private CanvasGroup group;
+        private CardDetailPanel detail;
 
         private readonly List<Row> links = new List<Row>();
         private bool resolving;
+        private bool expanded = true;
 
         /// <summary>Ein Glied: die Zeile und ihre Teile, damit Auflösen sie einfärben kann.</summary>
         private class Row
@@ -80,93 +83,103 @@ namespace Rouge.Tcg.UI
             return c;
         }
 
-        /// <summary>Hängt die Anzeige an einen Canvas. Sie beginnt unsichtbar.</summary>
-        public static ChainTracker Create(RectTransform canvas, CardSkin skin)
+        /// <summary>
+        /// Hängt die Anzeige an einen Canvas. Sie beginnt unsichtbar.
+        /// <paramref name="detailPanel"/> darf null sein — dann gibt es beim
+        /// Hovern über eine Zeile eben keine Kartenvorschau.
+        /// </summary>
+        public static ChainTracker Create(RectTransform canvas, CardDetailPanel detailPanel)
         {
             var go = new GameObject("ChainTracker", typeof(RectTransform));
             var rect = (RectTransform)go.transform;
             rect.SetParent(canvas, false);
-            // Linke Leiste, in die Lücke zwischen Inspect-Karte und Legende.
-            //
-            // Ausgemessen im Duell-Canvas (1920x1080): die Inspect-Karte endet
-            // bei y 600, der Legendentext beginnt bei y 175 — dazwischen ist die
-            // einzige grössere Fläche, die nichts belegt. Rechts geht nicht: die
-            // RightRail liegt dort über die volle Höhe (LP, End Turn, Surrender,
-            // Log), und das sind genau die Knöpfe, die man während einer Kette
-            // braucht. Das PromptPanel (x 690..1230) bleibt ebenfalls frei.
-            // Oben verankert, damit der Kasten nach UNTEN wächst: die Oberkante
-            // bleibt stehen, wo sie ist, und ein neues Glied schiebt nichts weg,
-            // was der Spieler gerade liest.
-            rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
-            rect.pivot = new Vector2(0f, 1f);
-            rect.anchoredPosition = new Vector2(24f, -494f);   // 14 px Luft unter der Inspect-Karte
-            rect.sizeDelta = new Vector2(PanelWidth, HeaderBlock + Padding);
+            // Oben mittig, hängend — der Kasten wächst nach unten, die Oberkante
+            // bleibt stehen. Als letztes Kind des Canvas zeichnet er über allem;
+            // das PromptPanel liegt in der Bildmitte und bleibt frei.
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, -10f);
+            rect.sizeDelta = new Vector2(PanelWidth, HeaderHeight);
             rect.SetAsLastSibling();
 
             var tracker = go.AddComponent<ChainTracker>();
-            tracker.Build(skin);
+            tracker.detail = detailPanel;
+            tracker.Build();
             return tracker;
         }
 
-        private void Build(CardSkin skin)
+        private void Build()
         {
             panel = (RectTransform)transform;
             group = gameObject.AddComponent<CanvasGroup>();
             group.alpha = 0f;
+            // Solange nichts zu sehen ist, darf der Kasten auch keine Klicks
+            // schlucken — er liegt über dem Brett.
             group.blocksRaycasts = false;
-            group.interactable = false;
 
             var bg = NewChild("Backdrop", panel).gameObject.AddComponent<Image>();
             Stretch((RectTransform)bg.transform);
             bg.color = PanelBg;
             bg.raycastTarget = false;
 
-            // Der 9-Slice-Rahmen nur, wenn ein Skin da ist. Ohne Sprite wuerde
-            // ein Sliced-Image als volle Flaeche zeichnen und alles zudecken —
-            // dann lieber eine Goldkante oben.
-            if (skin != null && skin.relicFrame != null)
-            {
-                var frame = NewChild("Frame", panel).gameObject.AddComponent<Image>();
-                Stretch((RectTransform)frame.transform);
-                frame.sprite = skin.relicFrame;
-                frame.type = Image.Type.Sliced;
-                frame.color = new Color(Gold.r, Gold.g, Gold.b, 0.7f);
-                frame.raycastTarget = false;
-            }
-            else
-            {
-                var edge = NewChild("Edge", panel);
-                edge.anchorMin = new Vector2(0f, 1f);
-                edge.anchorMax = new Vector2(1f, 1f);
-                edge.pivot = new Vector2(0.5f, 1f);
-                edge.offsetMin = new Vector2(0f, -3f);
-                edge.offsetMax = Vector2.zero;
-                var line = edge.gameObject.AddComponent<Image>();
-                line.color = new Color(Gold.r, Gold.g, Gold.b, 0.85f);
-                line.raycastTarget = false;
-            }
+            var edge = NewChild("Edge", panel);
+            edge.anchorMin = new Vector2(0f, 0f);
+            edge.anchorMax = new Vector2(1f, 0f);
+            edge.pivot = new Vector2(0.5f, 0f);
+            edge.offsetMin = Vector2.zero;
+            edge.offsetMax = new Vector2(0f, 3f);
+            var line = edge.gameObject.AddComponent<Image>();
+            line.color = new Color(Gold.r, Gold.g, Gold.b, 0.85f);
+            line.raycastTarget = false;
 
+            // ---- Kopfzeile: zugleich der Knopf zum Auf- und Zuklappen ----
             var header = NewChild("Header", panel);
             header.anchorMin = new Vector2(0f, 1f);
             header.anchorMax = new Vector2(1f, 1f);
             header.pivot = new Vector2(0.5f, 1f);
-            header.offsetMin = new Vector2(16f, -46f);
-            header.offsetMax = new Vector2(-16f, -12f);
-            headerText = header.gameObject.AddComponent<TextMeshProUGUI>();
+            header.offsetMin = new Vector2(0f, -HeaderHeight);
+            header.offsetMax = Vector2.zero;
+            var headerBg = header.gameObject.AddComponent<Image>();
+            headerBg.color = HeaderBg;
+            headerBg.raycastTarget = true;
+            var button = header.gameObject.AddComponent<Button>();
+            button.targetGraphic = headerBg;
+            button.onClick.AddListener(Toggle);
+
+            var title = NewChild("Title", header);
+            title.anchorMin = new Vector2(0f, 0f);
+            title.anchorMax = new Vector2(1f, 1f);
+            title.offsetMin = new Vector2(16f, 0f);
+            title.offsetMax = new Vector2(-40f, 0f);
+            headerText = title.gameObject.AddComponent<TextMeshProUGUI>();
             headerText.text = "BUILDING CHAIN";
-            headerText.fontSize = 19f;
-            headerText.characterSpacing = 8f;
+            headerText.fontSize = 18f;
+            headerText.characterSpacing = 7f;
             headerText.color = Gold;
             headerText.alignment = TextAlignmentOptions.Left;
             headerText.raycastTarget = false;
             ApplyFont(headerText);
 
+            var arrow = NewChild("Chevron", header);
+            arrow.anchorMin = new Vector2(1f, 0f);
+            arrow.anchorMax = new Vector2(1f, 1f);
+            arrow.pivot = new Vector2(1f, 0.5f);
+            arrow.offsetMin = new Vector2(-36f, 0f);
+            arrow.offsetMax = new Vector2(-12f, 0f);
+            chevron = arrow.gameObject.AddComponent<TextMeshProUGUI>();
+            chevron.text = "▼";
+            chevron.fontSize = 16f;
+            chevron.color = Gold;
+            chevron.alignment = TextAlignmentOptions.Center;
+            chevron.raycastTarget = false;
+
+            // ---- Die Glieder ----
             rows = NewChild("Links", panel);
             rows.anchorMin = new Vector2(0f, 1f);
             rows.anchorMax = new Vector2(1f, 1f);
             rows.pivot = new Vector2(0.5f, 1f);
-            rows.offsetMin = new Vector2(12f, -(HeaderBlock + RowHeight));
-            rows.offsetMax = new Vector2(-12f, -HeaderBlock);
+            rows.offsetMin = new Vector2(8f, -(HeaderHeight + RowHeight));
+            rows.offsetMax = new Vector2(-8f, -HeaderHeight);
             var layout = rows.gameObject.AddComponent<VerticalLayoutGroup>();
             layout.spacing = RowSpacing;
             layout.childForceExpandHeight = false;
@@ -178,26 +191,37 @@ namespace Rouge.Tcg.UI
 
         // ================== was die Engine ruft ==================
 
-        public IEnumerator AddLink(string cardName, string label, bool mine, int link)
+        public IEnumerator AddLink(CardInstance card, string cardName, string label, bool mine, int link)
         {
-            // Ein einzelner Effekt ohne Antwort ist keine Kette. Das erste Glied
-            // wird gemerkt, aber die Anzeige bleibt zu — erst das zweite macht
-            // daraus etwas, das man erklären muss.
-            if (resolving) { ClearRows(); resolving = false; }
+            // Glied 1 beginnt IMMER eine neue Kette. Was noch steht, gehört zur
+            // vorigen und muss weg — auch wenn ShowChainEnd nie ankam, etwa weil
+            // das Duell mitten in einer Auflösung endete. Ohne diese Zeile hängen
+            // alte Zeilen an der nächsten Kette und die Anzeige öffnet sich für
+            // etwas, das nie passiert ist.
+            if (link <= 1 || resolving) { ClearRows(); resolving = false; }
 
-            var row = BuildRow(cardName, label, mine, link);
+            var row = BuildRow(card, cardName, label, mine, link);
             links.Add(row);
             Resize();
 
+            // Ein einzelner Effekt ohne Antwort ist keine Kette. Das erste Glied
+            // wird gemerkt, aber die Anzeige bleibt zu — erst das zweite macht
+            // daraus etwas, das man erklären muss.
             if (links.Count < 2)
             {
                 group.alpha = 0f;
+                group.blocksRaycasts = false;
                 yield break;
             }
 
-            headerText.text = "BUILDING CHAIN";
-            headerText.color = Gold;
-            if (links.Count == 2) yield return Fade(0f, 1f, 0.18f);
+            SetHeader("BUILDING CHAIN", Gold);
+            if (links.Count == 2)
+            {
+                group.blocksRaycasts = true;
+                yield return Fade(0f, 1f, 0.18f);
+            }
+
+            if (!expanded) yield break;
 
             // Das neue Glied wächst ein
             float t = 0f;
@@ -207,7 +231,7 @@ namespace Rouge.Tcg.UI
                 t += Time.unscaledDeltaTime;
                 float p = Mathf.Clamp01(t / GrowTime);
                 row.Group.alpha = p;
-                row.Rect.localScale = new Vector3(Mathf.Lerp(0.9f, 1f, Ease(p)), 1f, 1f);
+                row.Rect.localScale = new Vector3(Mathf.Lerp(0.94f, 1f, Ease(p)), 1f, 1f);
                 yield return null;
             }
             row.Group.alpha = 1f;
@@ -225,8 +249,7 @@ namespace Rouge.Tcg.UI
             {
                 resolving = true;
                 yield return Wait(SetPause);
-                headerText.text = "RESOLVING";
-                headerText.color = Ink;
+                SetHeader("RESOLVING", Ink);
                 SfxManager.Click();
                 yield return Wait(0.15f);
             }
@@ -267,11 +290,30 @@ namespace Rouge.Tcg.UI
             ClearRows();
             resolving = false;
             group.alpha = 0f;
+            group.blocksRaycasts = false;
+        }
+
+        // ================== Auf- und Zuklappen ==================
+
+        /// <summary>Kopfzeile angeklickt: Glieder ein- oder ausblenden.</summary>
+        public void Toggle()
+        {
+            expanded = !expanded;
+            rows.gameObject.SetActive(expanded);
+            chevron.text = expanded ? "▼" : "▶";
+            Resize();
+            SfxManager.Click();
+        }
+
+        private void SetHeader(string state, Color colour)
+        {
+            headerText.text = links.Count > 1 ? $"{state}   ·   {links.Count} LINKS" : state;
+            headerText.color = colour;
         }
 
         // ================== Bauteile ==================
 
-        private Row BuildRow(string cardName, string label, bool mine, int link)
+        private Row BuildRow(CardInstance card, string cardName, string label, bool mine, int link)
         {
             var go = new GameObject("Link" + link, typeof(RectTransform));
             var rect = (RectTransform)go.transform;
@@ -283,7 +325,13 @@ namespace Rouge.Tcg.UI
             row.Group = go.AddComponent<CanvasGroup>();
             row.Background = go.AddComponent<Image>();
             row.Background.color = new Color(0f, 0f, 0f, 0.34f);
-            row.Background.raycastTarget = false;
+            // Muss Strahlen fangen, sonst kommt kein Hover an
+            row.Background.raycastTarget = true;
+
+            // Über den Namen fahren zeigt die Karte in der linken Vorschau
+            var hover = go.AddComponent<ChainRowHover>();
+            hover.Card = card;
+            hover.Panel = detail;
 
             // Farbstreifen links: wer das Glied gelegt hat, sieht man sofort
             var accent = NewChild("Accent", rect);
@@ -313,19 +361,16 @@ namespace Rouge.Tcg.UI
             var name = NewChild("Name", rect);
             name.anchorMin = new Vector2(0f, 0.5f);
             name.anchorMax = new Vector2(1f, 1f);
-            name.offsetMin = new Vector2(50f, 0f);
-            name.offsetMax = new Vector2(-10f, -6f);
+            name.offsetMin = new Vector2(52f, 0f);
+            name.offsetMax = new Vector2(-12f, -5f);
             row.Name = name.gameObject.AddComponent<TextMeshProUGUI>();
             row.Name.text = cardName;
-            // Auto-Größe statt fester Punktzahl: die Zeile ist nur 208 px breit,
-            // und Kartennamen wie „Sleightwind Cardsharp" sind lang. Lieber ein
-            // Stück kleiner als hinten abgeschnitten.
             row.Name.enableAutoSizing = true;
             row.Name.fontSizeMin = 11f;
             row.Name.fontSizeMax = 16f;
             row.Name.color = Ink;
             row.Name.alignment = TextAlignmentOptions.BottomLeft;
-            // Ohne NoWrap würde die Auto-Größe versuchen, in die 26 px hohe Zeile
+            // Ohne NoWrap würde die Auto-Größe versuchen, in die halbe Zeilenhöhe
             // zu umbrechen, statt schmaler zu werden — und unten abgeschnitten.
             row.Name.textWrappingMode = TextWrappingModes.NoWrap;
             row.Name.overflowMode = TextOverflowModes.Ellipsis;
@@ -335,8 +380,8 @@ namespace Rouge.Tcg.UI
             var lab = NewChild("Label", rect);
             lab.anchorMin = new Vector2(0f, 0f);
             lab.anchorMax = new Vector2(1f, 0.5f);
-            lab.offsetMin = new Vector2(50f, 6f);
-            lab.offsetMax = new Vector2(-10f, 0f);
+            lab.offsetMin = new Vector2(52f, 5f);
+            lab.offsetMax = new Vector2(-12f, 0f);
             row.Label = lab.gameObject.AddComponent<TextMeshProUGUI>();
             row.Label.text = string.IsNullOrEmpty(label) ? (mine ? "your effect" : "their effect") : label;
             row.Label.enableAutoSizing = true;
@@ -360,13 +405,13 @@ namespace Rouge.Tcg.UI
             Resize();
         }
 
-        /// <summary>Der Kasten folgt der Zahl der Glieder statt fester Höhe.</summary>
+        /// <summary>Der Kasten folgt der Zahl der Glieder — und schrumpft zugeklappt auf die Kopfzeile.</summary>
         private void Resize()
         {
-            float rowsHeight = links.Count > 0
-                ? links.Count * RowHeight + (links.Count - 1) * RowSpacing
+            float rowsHeight = expanded && links.Count > 0
+                ? links.Count * RowHeight + (links.Count - 1) * RowSpacing + Padding
                 : 0f;
-            panel.sizeDelta = new Vector2(PanelWidth, HeaderBlock + rowsHeight + Padding);
+            panel.sizeDelta = new Vector2(PanelWidth, HeaderHeight + rowsHeight);
         }
 
         private IEnumerator Fade(float from, float to, float seconds)
@@ -409,6 +454,23 @@ namespace Rouge.Tcg.UI
         {
             var skin = TransitionSkin.Load();
             if (skin != null && skin.oswald != null) label.font = skin.oswald;
+        }
+    }
+
+    /// <summary>
+    /// Zeigt die Karte einer Kettenzeile in der linken Vorschau, solange der
+    /// Zeiger darauf steht. Eigene Klasse, weil ein Kettenglied auch von einer
+    /// Karte stammen kann, die gar nicht auf dem Brett liegt — eine Handkarte
+    /// des Gegners etwa. Über das Brett wäre sie nicht erreichbar.
+    /// </summary>
+    public class ChainRowHover : MonoBehaviour, IPointerEnterHandler
+    {
+        public CardInstance Card;
+        public CardDetailPanel Panel;
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (Card != null && Panel != null) Panel.ShowCard(Card);
         }
     }
 }

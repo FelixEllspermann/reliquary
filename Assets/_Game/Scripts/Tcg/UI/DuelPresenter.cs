@@ -1082,8 +1082,16 @@ namespace Rouge.Tcg.UI
 
         private ChainTracker Chain()
         {
-            if (chain == null && flyLayer != null && flyLayer.parent is RectTransform canvasRoot)
-                chain = ChainTracker.Create(canvasRoot, null);
+            if (chain != null || flyLayer == null) return chain;
+
+            // An die CANVAS-Wurzel, nicht an den PresentationLayer: nur als
+            // letztes Kind des Canvas zeichnet die Kette über allem. Der
+            // PresentationLayer hat noch Geschwister über sich.
+            var canvas = flyLayer.GetComponentInParent<Canvas>();
+            if (canvas == null) return null;
+
+            chain = ChainTracker.Create((RectTransform)canvas.transform,
+                FindAnyObjectByType<CardDetailPanel>(FindObjectsInactive.Include));
             return chain;
         }
 
@@ -1092,7 +1100,7 @@ namespace Rouge.Tcg.UI
             if (!enablePresentations) yield break;
             var tracker = Chain();
             if (tracker == null) yield break;
-            yield return tracker.AddLink(card != null ? card.Name : "?", label,
+            yield return tracker.AddLink(card, card != null ? card.Name : "?", label,
                 owner != null && owner.IsLocal, link);
         }
 

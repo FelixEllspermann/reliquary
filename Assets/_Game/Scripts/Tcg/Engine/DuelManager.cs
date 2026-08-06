@@ -108,6 +108,14 @@ namespace Rouge.Tcg
         private int responseDepth;
         private int activationSerial;   // zählt Effekt-Aktivierungen — erkennt, ob eine Chain entstand
 
+        // Wie tief wir gerade in verschachtelten Aktivierungen stecken. NICHT
+        // dasselbe wie responseDepth: das zählt nur Reaktionsfenster, während
+        // ein Trigger mitten in einer Auflösung ActivateEffect erneut aufruft,
+        // ohne je durch ein Fenster zu gehen. Wer die Kettennummer aus
+        // responseDepth zieht, vergibt zweimal die 1 und schliesst die Anzeige,
+        // während die äussere Aktivierung noch läuft.
+        private int chainDepth;
+
         private PlayerState localPlayer;
 
         /// <summary>Der Spieler, der an diesem Client sitzt (bestimmt die untere Board-Hälfte).</summary>

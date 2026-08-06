@@ -763,7 +763,7 @@ namespace Rouge.Tcg
             else RemoveFromZoneArray(player.SpellZones, spell);
 
             activationSerial++;
-            int chainLink = responseDepth + 1;
+            int chainLink = ++chainDepth;
             Log($"{player.Name} activates {spell.Name}{ActivationLogSuffix(effect)}.");
             if (presenter != null)
                 yield return presenter.ShowChainLink(spell, effect.label, player, chainLink);
@@ -771,12 +771,12 @@ namespace Rouge.Tcg
 
             // Kosten-Aktionen fallen sofort — noch bevor der Gegner reagieren kann
             yield return ResolveEffectActions(spell, effect, player, targets, costsPhase: true);
-            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+            if (Result != DuelResult.None) { yield return CloseChainLink(); yield break; }
 
 
             int chainBefore = activationSerial;
             yield return OpenResponseWindow(player.Opponent, "activation", spell);
-            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+            if (Result != DuelResult.None) { yield return CloseChainLink(); yield break; }
 
             if (presenter != null) yield return presenter.ShowChainResolve(spell, chainLink);
 
@@ -789,7 +789,7 @@ namespace Rouge.Tcg
                 if (activationSerial != chainBefore) Log($"{spell.Name} resolves.");
                 yield return ResolveEffectActions(spell, effect, player, targets);
             }
-            yield return EndChainIfOutermost();
+            yield return CloseChainLink();
             if (spell.Zone != ZoneType.Graveyard && spell.Zone != ZoneType.Banished && presenter != null)
                 yield return presenter.ShowSpellToGrave(spell);
             MoveToGraveyard(spell);
@@ -867,7 +867,7 @@ namespace Rouge.Tcg
             LockEffectForTurn(card, effectIndex, effect);
 
             activationSerial++;
-            int chainLink = responseDepth + 1;
+            int chainLink = ++chainDepth;
             Log($"{player.Name} activates {card.Name}: \"{effect.label}\"{ActivationLogSuffix(effect)}.");
             if (presenter != null)
                 yield return presenter.ShowChainLink(card, effect.label, player, chainLink);
@@ -875,12 +875,12 @@ namespace Rouge.Tcg
 
             // Kosten-Aktionen fallen sofort — noch bevor der Gegner reagieren kann
             yield return ResolveEffectActions(card, effect, player, targets, costsPhase: true);
-            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+            if (Result != DuelResult.None) { yield return CloseChainLink(); yield break; }
 
 
             int chainBefore = activationSerial;
             yield return OpenResponseWindow(player.Opponent, "activation", card);
-            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+            if (Result != DuelResult.None) { yield return CloseChainLink(); yield break; }
 
             if (presenter != null) yield return presenter.ShowChainResolve(card, chainLink);
 
@@ -893,7 +893,7 @@ namespace Rouge.Tcg
                 if (activationSerial != chainBefore) Log($"{card.Name} resolves.");
                 yield return ResolveEffectActions(card, effect, player, targets);
             }
-            yield return EndChainIfOutermost();
+            yield return CloseChainLink();
             BoardChanged();
         }
 
@@ -1854,24 +1854,28 @@ yield return RunSummonEvents(target);
         }
 
         /// <summary>
-        /// Schliesst die Kettenanzeige, sobald das AEUSSERSTE Glied fertig ist.
+        /// Verlaesst ein Glied und schliesst die Anzeige, wenn es das AEUSSERSTE war.
         ///
-        /// Die Engine fuehrt keine Kette als Liste: ActivateSpell ruft ueber das
-        /// Reaktionsfenster wieder ActivateSpell auf, und die Reihenfolge steckt
-        /// allein im Aufrufstapel. responseDepth == 0 heisst deshalb "wir sind
-        /// zurueck auf der untersten Ebene" — genau dann ist die Kette durch.
+        /// Die Engine fuehrt keine Kette als Liste: eine Aktivierung ruft ueber
+        /// das Reaktionsfenster die naechste auf, und die Reihenfolge steckt
+        /// allein im Aufrufstapel. Gezaehlt wird deshalb chainDepth und NICHT
+        /// responseDepth — ein Trigger, der mitten in einer Auflösung feuert,
+        /// ruft ActivateEffect erneut auf, ohne je durch ein Fenster zu gehen.
+        /// Wer auf responseDepth schaut, haelt so eine Verschachtelung faelsch-
+        /// licherweise fuer die unterste Ebene und schliesst die Anzeige,
+        /// waehrend die aeussere Aktivierung noch laeuft.
         /// </summary>
-        private IEnumerator EndChainIfOutermost()
+        private IEnumerator CloseChainLink()
         {
-            if (responseDepth == 0 && presenter != null) yield return presenter.ShowChainEnd();
+            if (chainDepth > 0) chainDepth--;
+            if (chainDepth == 0 && presenter != null) yield return presenter.ShowChainEnd();
         }
 
         /// <summary>Log-Zusatz einer Aktivierung: [Infused]-Tag, explizite Kosten, Chain-Link-Nummer.</summary>
         private string ActivationLogSuffix(EffectDefinition effect)
         {
             string cost = effect.manaCost > 0 ? $" — pays {effect.manaCost} Mana" : "";
-            int chainLink = responseDepth + 1;
-            string chain = chainLink > 1 ? $" (Chain Link {chainLink})" : "";
+            string chain = chainDepth > 1 ? $" (Chain Link {chainDepth})" : "";
             return InfusedTag(effect) + cost + chain;
         }
 
