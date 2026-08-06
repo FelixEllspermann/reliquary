@@ -41,6 +41,22 @@ namespace Rouge.Tcg
         IEnumerator ShowPositionSwitch(CardInstance card);
         IEnumerator ShowCardActivation(CardInstance card, EffectDefinition effect);
         IEnumerator ShowActivationPulse(CardInstance card, bool spin);
+
+        /// <summary>
+        /// Ein Glied kommt an die Kette. <paramref name="link"/> ist 1-basiert.
+        ///
+        /// Die Engine führt keine Kette als Liste — sie ruft sich rekursiv auf,
+        /// und die Reihenfolge ergibt sich aus dem Aufrufstapel. Diese drei
+        /// Meldungen sind die einzige Stelle, an der ein Zuschauer die Kette
+        /// überhaupt als Kette sehen kann.
+        /// </summary>
+        IEnumerator ShowChainLink(CardInstance card, string label, PlayerState owner, int link);
+
+        /// <summary>Dieses Glied wird jetzt aufgelöst — von hinten nach vorn.</summary>
+        IEnumerator ShowChainResolve(CardInstance card, int link);
+
+        /// <summary>Die Kette ist abgearbeitet, die Anzeige darf zu.</summary>
+        IEnumerator ShowChainEnd();
         IEnumerator ShowTargetsFlash(List<CardInstance> targets);
         IEnumerator ShowAttackDeclared(CardInstance attacker, CardInstance target, bool direct);
         IEnumerator ShowAttackImpact(CardInstance attacker, CardInstance target, bool direct);

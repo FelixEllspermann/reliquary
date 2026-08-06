@@ -1071,6 +1071,43 @@ namespace Rouge.Tcg.UI
         /// Zone ein. Getragen wird das von `charge`: Rahmen, Innenschein und
         /// Effektbox hellen gemeinsam auf.
         /// </summary>
+        // ================== Kettenanzeige ==================
+        //
+        // Die Engine kennt keine Kette als Liste — sie ruft sich rekursiv auf.
+        // Diese drei Meldungen sind die einzige Stelle, an der ein Zuschauer die
+        // Kette als Kette sehen kann. Der Tracker entsteht beim ersten Glied,
+        // damit ein Duell ohne Ketten gar nichts davon anlegt.
+
+        private ChainTracker chain;
+
+        private ChainTracker Chain()
+        {
+            if (chain == null && flyLayer != null && flyLayer.parent is RectTransform canvasRoot)
+                chain = ChainTracker.Create(canvasRoot, null);
+            return chain;
+        }
+
+        public IEnumerator ShowChainLink(CardInstance card, string label, PlayerState owner, int link)
+        {
+            if (!enablePresentations) yield break;
+            var tracker = Chain();
+            if (tracker == null) yield break;
+            yield return tracker.AddLink(card != null ? card.Name : "?", label,
+                owner != null && owner.IsLocal, link);
+        }
+
+        public IEnumerator ShowChainResolve(CardInstance card, int link)
+        {
+            if (!enablePresentations || chain == null) yield break;
+            yield return chain.Resolve(link);
+        }
+
+        public IEnumerator ShowChainEnd()
+        {
+            if (chain == null) yield break;
+            yield return chain.Finish();
+        }
+
         public IEnumerator ShowActivationPulse(CardInstance card, bool spin)
         {
             if (!enablePresentations) yield break;

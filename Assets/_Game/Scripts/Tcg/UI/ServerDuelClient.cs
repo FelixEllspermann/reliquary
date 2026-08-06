@@ -217,6 +217,15 @@ namespace Rouge.Tcg.UI
                     // Server auf älterem Stand könnte sie noch schicken
                     case "activation": if (card != null) yield return presenter.ShowActivationPulse(card, false); break;
 
+                    // Kettenanzeige. Der Kartenname kommt mit, weil ein Glied auch
+                    // von einer Karte stammen kann, die der Spiegel nie gesehen
+                    // hat — eine Handkarte des Gegners zum Beispiel.
+                    case "chainlink":
+                        yield return presenter.ShowChainLink(card, evt.text, player, evt.link);
+                        break;
+                    case "chainresolve": yield return presenter.ShowChainResolve(card, evt.link); break;
+                    case "chainend": yield return presenter.ShowChainEnd(); break;
+
                     case "banner": yield return presenter.ShowPhaseBanner(evt.text ?? ""); break;
                     case "cointoss": yield return presenter.ShowCoinToss(player); break;
                     case "draw": if (card != null) yield return presenter.ShowCardDrawn(player, card); break;

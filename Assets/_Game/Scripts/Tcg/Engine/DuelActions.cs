@@ -763,17 +763,22 @@ namespace Rouge.Tcg
             else RemoveFromZoneArray(player.SpellZones, spell);
 
             activationSerial++;
+            int chainLink = responseDepth + 1;
             Log($"{player.Name} activates {spell.Name}{ActivationLogSuffix(effect)}.");
+            if (presenter != null)
+                yield return presenter.ShowChainLink(spell, effect.label, player, chainLink);
             BoardChanged();
 
             // Kosten-Aktionen fallen sofort — noch bevor der Gegner reagieren kann
             yield return ResolveEffectActions(spell, effect, player, targets, costsPhase: true);
-            if (Result != DuelResult.None) yield break;
+            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
 
 
             int chainBefore = activationSerial;
             yield return OpenResponseWindow(player.Opponent, "activation", spell);
-            if (Result != DuelResult.None) yield break;
+            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+
+            if (presenter != null) yield return presenter.ShowChainResolve(spell, chainLink);
 
             if (spell.EffectsNegated)
             {
@@ -784,6 +789,7 @@ namespace Rouge.Tcg
                 if (activationSerial != chainBefore) Log($"{spell.Name} resolves.");
                 yield return ResolveEffectActions(spell, effect, player, targets);
             }
+            yield return EndChainIfOutermost();
             if (spell.Zone != ZoneType.Graveyard && spell.Zone != ZoneType.Banished && presenter != null)
                 yield return presenter.ShowSpellToGrave(spell);
             MoveToGraveyard(spell);
@@ -861,17 +867,22 @@ namespace Rouge.Tcg
             LockEffectForTurn(card, effectIndex, effect);
 
             activationSerial++;
+            int chainLink = responseDepth + 1;
             Log($"{player.Name} activates {card.Name}: \"{effect.label}\"{ActivationLogSuffix(effect)}.");
+            if (presenter != null)
+                yield return presenter.ShowChainLink(card, effect.label, player, chainLink);
             BoardChanged();
 
             // Kosten-Aktionen fallen sofort — noch bevor der Gegner reagieren kann
             yield return ResolveEffectActions(card, effect, player, targets, costsPhase: true);
-            if (Result != DuelResult.None) yield break;
+            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
 
 
             int chainBefore = activationSerial;
             yield return OpenResponseWindow(player.Opponent, "activation", card);
-            if (Result != DuelResult.None) yield break;
+            if (Result != DuelResult.None) { yield return EndChainIfOutermost(); yield break; }
+
+            if (presenter != null) yield return presenter.ShowChainResolve(card, chainLink);
 
             if (card.EffectsNegated)
             {
@@ -882,6 +893,7 @@ namespace Rouge.Tcg
                 if (activationSerial != chainBefore) Log($"{card.Name} resolves.");
                 yield return ResolveEffectActions(card, effect, player, targets);
             }
+            yield return EndChainIfOutermost();
             BoardChanged();
         }
 
@@ -1839,6 +1851,19 @@ yield return RunSummonEvents(target);
         {
             string cost = effect.manaCost > 0 ? $" ({effect.manaCost} Mana)" : "";
             return InfusedTag(effect) + cost;
+        }
+
+        /// <summary>
+        /// Schliesst die Kettenanzeige, sobald das AEUSSERSTE Glied fertig ist.
+        ///
+        /// Die Engine fuehrt keine Kette als Liste: ActivateSpell ruft ueber das
+        /// Reaktionsfenster wieder ActivateSpell auf, und die Reihenfolge steckt
+        /// allein im Aufrufstapel. responseDepth == 0 heisst deshalb "wir sind
+        /// zurueck auf der untersten Ebene" — genau dann ist die Kette durch.
+        /// </summary>
+        private IEnumerator EndChainIfOutermost()
+        {
+            if (responseDepth == 0 && presenter != null) yield return presenter.ShowChainEnd();
         }
 
         /// <summary>Log-Zusatz einer Aktivierung: [Infused]-Tag, explizite Kosten, Chain-Link-Nummer.</summary>

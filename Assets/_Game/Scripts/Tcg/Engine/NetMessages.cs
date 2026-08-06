@@ -126,6 +126,9 @@ namespace Rouge.Tcg.Net
         public bool mine;
         public string text;
         public bool direct;
+
+        /// <summary>Nummer des Kettenglieds (1-basiert), nur bei chain*-Ereignissen.</summary>
+        public int link;
     }
 
     [Serializable]

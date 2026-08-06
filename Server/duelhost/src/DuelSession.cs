@@ -467,7 +467,8 @@ namespace Rouge.DuelHost
             targetId = evt.Zone >= 0 ? evt.Zone : (evt.Target != null ? IdOf(evt.Target) : 0),
             mine = evt.Player != null && evt.Player == viewer,
             text = evt.Text,
-            direct = evt.Direct
+            direct = evt.Direct,
+            link = evt.Amount
         };
 
         private object RequestWire(DuelRequest request)

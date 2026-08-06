@@ -18,6 +18,9 @@ namespace Rouge.DuelHost
         public bool Direct;
         /// <summary>Zonenindex — die Reliquary-Beschwörung braucht ihn als Ziel.</summary>
         public int Zone = -1;
+        /// <summary>Zahl ohne eigene Bedeutung — bisher nur die Nummer eines Kettenglieds.</summary>
+        public int Amount;
+
     }
 
     public class ServerPresenter : IDuelPresenter
@@ -49,6 +52,14 @@ namespace Rouge.DuelHost
         public IEnumerator ShowPositionSwitch(CardInstance card) => Record(new DuelEvent { Type = "position", Card = card });
         public IEnumerator ShowCardActivation(CardInstance card, EffectDefinition effect) => Record(new DuelEvent { Type = "activation", Card = card, Text = effect != null ? effect.label : "" });
         public IEnumerator ShowActivationPulse(CardInstance card, bool spin) => Record(new DuelEvent { Type = "pulse", Card = card });
+
+        // Kettenanzeige. Der Server rechnet, der Client zeigt — ohne diese drei
+        // saehe ein Online-Spieler von der Kette genau nichts.
+        public IEnumerator ShowChainLink(CardInstance card, string label, PlayerState owner, int link) =>
+            Record(new DuelEvent { Type = "chainlink", Card = card, Text = label, Player = owner, Amount = link });
+        public IEnumerator ShowChainResolve(CardInstance card, int link) =>
+            Record(new DuelEvent { Type = "chainresolve", Card = card, Amount = link });
+        public IEnumerator ShowChainEnd() => Record(new DuelEvent { Type = "chainend" });
         public IEnumerator ShowTargetsFlash(List<CardInstance> targets) => Record(new DuelEvent { Type = "targets", Card = targets != null && targets.Count > 0 ? targets[0] : null });
         public IEnumerator ShowAttackDeclared(CardInstance attacker, CardInstance target, bool direct) => Record(new DuelEvent { Type = "attack", Card = attacker, Target = target, Direct = direct });
         public IEnumerator ShowAttackImpact(CardInstance attacker, CardInstance target, bool direct) => Record(new DuelEvent { Type = "impact", Card = attacker, Target = target, Direct = direct });
