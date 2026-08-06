@@ -22,6 +22,12 @@ namespace Rouge.Tcg.Net
         [Tooltip("Adresse des Relay-Servers")]
         [SerializeField] private string serverUrl = "ws://217.154.212.82:7777";
 
+        [Header("Testserver (wirkt NUR im Editor)")]
+        [Tooltip("Im Editor gegen die Testinstanz (7778) spielen statt gegen Produktion. " +
+                 "In Builds wird der Haken ignoriert — vergessen kann ihn niemand ausliefern.")]
+        [SerializeField] private bool useTestServer;
+        [SerializeField] private string testServerUrl = "ws://217.154.212.82:7778";
+
         [Tooltip("Diese Instanz bleibt über Szenenwechsel erhalten")]
         [SerializeField] private bool persistAcrossScenes = true;
 
@@ -46,6 +52,16 @@ namespace Rouge.Tcg.Net
         {
             if (Instance == null) Instance = this;
             if (persistAcrossScenes && Instance == this) DontDestroyOnLoad(gameObject);
+
+            // Der Testserver-Haken wirkt NUR im Editor. Application.isEditor
+            // statt #if UNITY_EDITOR, damit die Prüfung im Build zwar mitkommt,
+            // dort aber immer false ist — ein vergessener Haken in der Szene
+            // kann so nie einen Build auf die Testinstanz schicken.
+            if (useTestServer && Application.isEditor && !string.IsNullOrEmpty(testServerUrl))
+            {
+                serverUrl = testServerUrl;
+                Debug.LogWarning($"NetworkManager: TESTSERVER aktiv — {serverUrl}");
+            }
         }
 
         private void OnDestroy()

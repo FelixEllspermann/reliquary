@@ -660,8 +660,12 @@ let duelHostBuffer = '';
 const serverDuels = new Map();   // duelId -> { a: client, b: client }
 let nextDuelId = 1;
 
+// Testinstanzen bringen ihren eigenen DuelHost mit (7901), damit sie der
+// Produktion nicht die eine Verbindung wegnehmen, die der Host annimmt.
+const DUELHOST_PORT = Number(process.env.DUELHOST_PORT) || 7900;
+
 function connectDuelHost() {
-  const sock = net.createConnection({ host: '127.0.0.1', port: 7900 });
+  const sock = net.createConnection({ host: '127.0.0.1', port: DUELHOST_PORT });
   sock.on('connect', () => { duelHost = sock; duelHostBuffer = ''; log('DuelHost verbunden.'); });
   sock.on('data', chunk => {
     duelHostBuffer += chunk.toString('utf8');
