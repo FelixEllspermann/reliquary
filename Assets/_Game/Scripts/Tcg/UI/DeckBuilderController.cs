@@ -364,11 +364,11 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>
-        /// Nur BESITZENE Helden werden angeboten. Zwölf Chips für zwölf Helden,
-        /// von denen einer dem Spieler gehört, wären elf Sackgassen — wählbar im
-        /// Builder, abgewiesen beim Spielen. Fehlen Chips für den Besitz, werden
-        /// sie als Klone des ersten angelegt; der HorizontalLayoutGroup des
-        /// Containers ordnet sie von selbst.
+        /// Mit zwölf Helden im Spiel taugt die Chip-Reihe nicht mehr: winzige
+        /// Vornamen, kein Effekttext, und Unbekanntes bleibt unsichtbar. Der
+        /// erste Chip wird zum KNOPF, der den Helden-Wähler öffnet — ein Overlay
+        /// mit allen Helden als echte Karten. Besessene sind wählbar, fehlende
+        /// ausgegraut mit Hero-Cache-Hinweis: man sieht, was es zu holen gibt.
         /// </summary>
         private void BuildHeroChips()
         {
@@ -384,53 +384,240 @@ namespace Rouge.Tcg.UI
             if (buttons.Count == 0) return;
 
             ownedHeroes = heroes.Where(h => PlayerProfile.Owned(h.cardName) > 0).ToList();
-            // Notnagel: ohne Profil (Offline-Kontexte) lieber alle zeigen als keinen
             if (ownedHeroes.Count == 0) ownedHeroes = new List<PlayerCardData>(heroes);
 
-            var template = buttons[0];
-            while (buttons.Count < ownedHeroes.Count)
-            {
-                var copy = Instantiate(template.gameObject, template.transform.parent);
-                copy.name = "HeroChip_" + buttons.Count;
-                buttons.Add(copy.GetComponent<Button>());
-            }
-
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                int index = i;
-                var button = buttons[i];
-                bool exists = i < ownedHeroes.Count;
-                button.gameObject.SetActive(exists);
-                heroChips.Add(button);
-                if (!exists) continue;
-                var label = button.GetComponentInChildren<TMP_Text>(true);
-                if (label != null)
-                    label.text = ownedHeroes[index].cardName.Split(' ')[0].ToUpperInvariant();
-                button.onClick.RemoveAllListeners();
-                button.onClick.AddListener(() => SetHero(index));
-            }
+            for (int i = 1; i < buttons.Count; i++) buttons[i].gameObject.SetActive(false);
+            var heroButton = buttons[0];
+            heroButton.gameObject.SetActive(true);
+            heroChips.Add(heroButton);
+            heroButton.onClick.RemoveAllListeners();
+            heroButton.onClick.AddListener(OpenHeroPicker);
+            RefreshHeroChips();
         }
 
-        private void SetHero(int index)
+        private void SetHero(PlayerCardData hero)
         {
             var deck = CurrentDeck;
-            if (deck == null || index < 0 || index >= ownedHeroes.Count) return;
-            deck.Hero = ownedHeroes[index].cardName;
+            if (deck == null || hero == null) return;
+            deck.Hero = hero.cardName;
             MarkEdited();
             RefreshHeroChips();
-            Select(ownedHeroes[index], CardFinish.Plain);
+            Select(hero, CardFinish.Plain);
         }
 
         private void RefreshHeroChips()
         {
+            if (heroChips.Count == 0) return;
             var deck = CurrentDeck;
-            for (int i = 0; i < heroChips.Count && i < ownedHeroes.Count; i++)
+            var bg = heroChips[0].GetComponent<Image>();
+            var label = heroChips[0].GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
             {
-                bool active = deck != null && deck.Hero == ownedHeroes[i].cardName;
-                var bg = heroChips[i].GetComponent<Image>();
-                var label = heroChips[i].GetComponentInChildren<TMP_Text>(true);
-                StyleChip(bg, label, active, new Color(200f / 255f, 164f / 255f, 92f / 255f, 1f));
+                label.text = deck != null && !string.IsNullOrEmpty(deck.Hero)
+                    ? "HERO · " + deck.Hero.ToUpperInvariant()
+                    : "CHOOSE YOUR HERO";
+                label.enableAutoSizing = true;
+                label.fontSizeMin = 9f;
             }
+            StyleChip(bg, label, true, new Color(200f / 255f, 164f / 255f, 92f / 255f, 1f));
+        }
+
+        // ---------- Helden-Wähler ----------
+
+        private GameObject heroPicker;
+        private RectTransform heroPickerGrid;
+
+        private void OpenHeroPicker()
+        {
+            EnsureHeroPicker();
+            if (heroPicker == null) return;
+
+            // Besitz kann sich seit dem Szenenstart geändert haben (Hero Cache)
+            ownedHeroes = heroes.Where(h => PlayerProfile.Owned(h.cardName) > 0).ToList();
+            if (ownedHeroes.Count == 0) ownedHeroes = new List<PlayerCardData>(heroes);
+
+            for (int i = heroPickerGrid.childCount - 1; i >= 0; i--)
+                Destroy(heroPickerGrid.GetChild(i).gameObject);
+
+            var deck = CurrentDeck;
+            // Besessene zuerst, dann der Rest als Schaufenster
+            var sorted = heroes.OrderByDescending(h => PlayerProfile.Owned(h.cardName) > 0)
+                               .ThenBy(h => h.cardName, System.StringComparer.Ordinal);
+            foreach (var hero in sorted)
+            {
+                bool owned = ownedHeroes.Contains(hero);
+                bool current = deck != null && deck.Hero == hero.cardName;
+
+                var cell = new GameObject("Hero_" + hero.cardName, typeof(RectTransform)).GetComponent<RectTransform>();
+                cell.SetParent(heroPickerGrid, false);
+
+                var view = Instantiate(previewView, cell);
+                view.gameObject.SetActive(true);
+                var viewRect = (RectTransform)view.transform;
+                // FESTE Groesse statt Stretch: beim Show() ist die Gitterzelle
+                // noch 0 breit (das Layout laeuft erst danach), und TcgCardView
+                // wuerde bei Breite < 200 in den Kompaktmodus springen.
+                viewRect.anchorMin = viewRect.anchorMax = new Vector2(0.5f, 0.5f);
+                viewRect.pivot = new Vector2(0.5f, 0.5f);
+                viewRect.sizeDelta = new Vector2(320f, 448f);
+                viewRect.anchoredPosition = Vector2.zero;
+                viewRect.localScale = Vector3.one;
+                view.Show(new CardInstance(hero, null), false, true);
+
+                var group = cell.gameObject.AddComponent<CanvasGroup>();
+                group.alpha = owned ? 1f : 0.4f;
+
+                // Rahmen um den aktuell gewählten Helden
+                if (current)
+                {
+                    var mark = new GameObject("Current", typeof(RectTransform)).GetComponent<RectTransform>();
+                    mark.SetParent(cell, false);
+                    mark.anchorMin = Vector2.zero; mark.anchorMax = Vector2.one;
+                    mark.offsetMin = new Vector2(-5f, -5f); mark.offsetMax = new Vector2(5f, 5f);
+                    var outline = mark.gameObject.AddComponent<Image>();
+                    outline.color = new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.9f);
+                    if (skin != null && skin.whiteFrame != null) { outline.sprite = skin.whiteFrame; outline.type = Image.Type.Sliced; }
+                    outline.raycastTarget = false;
+                }
+
+                if (!owned)
+                {
+                    var pill = new GameObject("CachePill", typeof(RectTransform)).GetComponent<RectTransform>();
+                    pill.SetParent(cell, false);
+                    pill.anchorMin = new Vector2(0.5f, 0f); pill.anchorMax = new Vector2(0.5f, 0f);
+                    pill.pivot = new Vector2(0.5f, 0f);
+                    pill.sizeDelta = new Vector2(180f, 34f);
+                    pill.anchoredPosition = new Vector2(0f, 8f);
+                    var pillBg = pill.gameObject.AddComponent<Image>();
+                    pillBg.color = new Color(0f, 0f, 0f, 0.82f);
+                    var pillTextGo = new GameObject("Text", typeof(RectTransform)).GetComponent<RectTransform>();
+                    pillTextGo.SetParent(pill, false);
+                    pillTextGo.anchorMin = Vector2.zero; pillTextGo.anchorMax = Vector2.one;
+                    pillTextGo.offsetMin = Vector2.zero; pillTextGo.offsetMax = Vector2.zero;
+                    var pillText = pillTextGo.gameObject.AddComponent<TextMeshProUGUI>();
+                    pillText.text = "HERO CACHE · SHOP";
+                    pillText.fontSize = 14f;
+                    pillText.alignment = TextAlignmentOptions.Center;
+                    pillText.color = new Color(1f, 194f / 255f, 77f / 255f, 1f);
+                    pillText.raycastTarget = false;
+                }
+
+                var clickGo = new GameObject("Click", typeof(RectTransform)).GetComponent<RectTransform>();
+                clickGo.SetParent(cell, false);
+                clickGo.anchorMin = Vector2.zero; clickGo.anchorMax = Vector2.one;
+                clickGo.offsetMin = Vector2.zero; clickGo.offsetMax = Vector2.zero;
+                var clickImg = clickGo.gameObject.AddComponent<Image>();
+                clickImg.color = Color.clear;
+                var clickBtn = clickGo.gameObject.AddComponent<Button>();
+                clickBtn.transition = Selectable.Transition.None;
+                var chosen = hero;
+                clickBtn.onClick.AddListener(() =>
+                {
+                    if (PlayerProfile.Owned(chosen.cardName) > 0)
+                    {
+                        SetHero(chosen);
+                        CloseHeroPicker();
+                    }
+                    else
+                    {
+                        ShowFeedback("You do not own this hero — open a Hero Cache in the shop.");
+                        Select(chosen, CardFinish.Plain);
+                    }
+                });
+            }
+
+            heroPicker.SetActive(true);
+            heroPicker.transform.SetAsLastSibling();
+        }
+
+        private void CloseHeroPicker()
+        {
+            if (heroPicker != null) heroPicker.SetActive(false);
+        }
+
+        private void EnsureHeroPicker()
+        {
+            if (heroPicker != null) return;
+            var canvas = GetComponentInParent<Canvas>();
+            if (canvas == null) canvas = FindAnyObjectByType<Canvas>();
+            if (canvas == null || previewView == null) return;
+            // An die WURZEL, nicht an den naechstbesten Canvas — nur dort
+            // liegt das Overlay wirklich ueber allen Panels der Szene.
+            canvas = canvas.rootCanvas;
+
+            heroPicker = new GameObject("HeroPickerOverlay", typeof(RectTransform));
+            var overlayRect = (RectTransform)heroPicker.transform;
+            overlayRect.SetParent(canvas.transform, false);
+            overlayRect.anchorMin = Vector2.zero; overlayRect.anchorMax = Vector2.one;
+            overlayRect.offsetMin = Vector2.zero; overlayRect.offsetMax = Vector2.zero;
+
+            // Eigener Canvas mit hoher Ordnung: Geschwister-Reihenfolge allein
+            // ist zerbrechlich — ein spaeter erzeugtes Panel laege sonst drueber.
+            var pickerCanvas = heroPicker.AddComponent<Canvas>();
+            pickerCanvas.overrideSorting = true;
+            pickerCanvas.sortingOrder = 300;
+            heroPicker.AddComponent<GraphicRaycaster>();
+
+            var scrim = new GameObject("Scrim", typeof(RectTransform)).GetComponent<RectTransform>();
+            scrim.SetParent(overlayRect, false);
+            scrim.anchorMin = Vector2.zero; scrim.anchorMax = Vector2.one;
+            scrim.offsetMin = Vector2.zero; scrim.offsetMax = Vector2.zero;
+            var scrimImg = scrim.gameObject.AddComponent<Image>();
+            scrimImg.color = new Color(0f, 0f, 0f, 0.88f);
+            var scrimBtn = scrim.gameObject.AddComponent<Button>();
+            scrimBtn.transition = Selectable.Transition.None;
+            scrimBtn.onClick.AddListener(CloseHeroPicker);
+
+            var title = new GameObject("Title", typeof(RectTransform)).GetComponent<RectTransform>();
+            title.SetParent(overlayRect, false);
+            title.anchorMin = new Vector2(0f, 1f); title.anchorMax = new Vector2(1f, 1f);
+            title.pivot = new Vector2(0.5f, 1f);
+            title.offsetMin = new Vector2(60f, -80f); title.offsetMax = new Vector2(-60f, -30f);
+            var titleText = title.gameObject.AddComponent<TextMeshProUGUI>();
+            titleText.text = "CHOOSE YOUR HERO";
+            titleText.fontSize = 30f;
+            titleText.characterSpacing = 10f;
+            titleText.alignment = TextAlignmentOptions.Center;
+            titleText.color = new Color(241f / 255f, 231f / 255f, 210f / 255f, 1f);
+            titleText.raycastTarget = false;
+
+            var scrollGo = new GameObject("Scroll", typeof(RectTransform)).GetComponent<RectTransform>();
+            scrollGo.SetParent(overlayRect, false);
+            scrollGo.anchorMin = new Vector2(0.5f, 0f); scrollGo.anchorMax = new Vector2(0.5f, 1f);
+            scrollGo.pivot = new Vector2(0.5f, 0.5f);
+            scrollGo.sizeDelta = new Vector2(1360f, 0f);
+            scrollGo.offsetMin = new Vector2(-680f, 40f); scrollGo.offsetMax = new Vector2(680f, -100f);
+            var scroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false; scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 34f;
+
+            var viewport = new GameObject("Viewport", typeof(RectTransform)).GetComponent<RectTransform>();
+            viewport.SetParent(scrollGo, false);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            // Ohne Graphic im Viewport greift das Mausrad ins Leere
+            var vpImg = viewport.gameObject.AddComponent<Image>();
+            vpImg.color = Color.clear;
+            scroll.viewport = viewport;
+
+            heroPickerGrid = new GameObject("Grid", typeof(RectTransform)).GetComponent<RectTransform>();
+            heroPickerGrid.SetParent(viewport, false);
+            heroPickerGrid.anchorMin = new Vector2(0f, 1f);
+            heroPickerGrid.anchorMax = new Vector2(1f, 1f);
+            heroPickerGrid.pivot = new Vector2(0.5f, 1f);
+            heroPickerGrid.offsetMin = Vector2.zero; heroPickerGrid.offsetMax = Vector2.zero;
+            var grid = heroPickerGrid.gameObject.AddComponent<GridLayoutGroup>();
+            grid.cellSize = new Vector2(320f, 448f);   // volle Karte, Effekttext lesbar
+            grid.spacing = new Vector2(16f, 16f);
+            grid.padding = new RectOffset(4, 4, 4, 4);
+            grid.childAlignment = TextAnchor.UpperCenter;
+            var fitter = heroPickerGrid.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            scroll.content = heroPickerGrid;
+
+            heroPicker.SetActive(false);
         }
 
         // ---------- Listen ----------
