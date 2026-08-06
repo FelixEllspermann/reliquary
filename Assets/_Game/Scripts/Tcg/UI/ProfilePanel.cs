@@ -191,19 +191,22 @@ namespace Rouge.Tcg.UI
                 var cosmetic = MakeImage("CosmeticFrame", portrait.rectTransform, Color.white);
                 cosmetic.sprite = equippedFrame;
 
-                if (Rouge.Tcg.Net.CosmeticArt.IsPlaque(Rouge.Tcg.Net.Cosmetics.EquippedIn("avatarFrame")))
+                string frameId = Rouge.Tcg.Net.Cosmetics.EquippedIn("avatarFrame");
+                if (Rouge.Tcg.Net.CosmeticArt.IsPlaque(frameId))
                 {
                     // Bilderrahmen: die Kachel verschwindet (sonst lugt sie an den
-                    // Ecken hervor), der Rahmen bekommt seine echten Proportionen.
-                    // Breite Motive — Schwingen, Panzerhandschuhe — dürfen seitlich
-                    // über die Portraitfläche hinausragen, das ist ihr Auftritt.
+                    // Ecken hervor), und skaliert wird aufs FENSTER — jede Innen-
+                    // fläche erscheint gleich gross, egal wie viel Schmuck darum
+                    // liegt. Breite Motive — Schwingen, Panzerhandschuhe — ragen
+                    // dadurch seitlich über die Portraitfläche hinaus; das ist
+                    // ihr Auftritt.
                     portrait.color = Color.clear;
-                    float aspect = equippedFrame.rect.width / Mathf.Max(equippedFrame.rect.height, 1f);
-                    float width = Mathf.Min(300f, 180f * Mathf.Max(aspect, 1f));
+                    float scale = Rouge.Tcg.Net.CosmeticArt.PlaqueScale(frameId, 126f);
                     var rect = cosmetic.rectTransform;
                     rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
                     rect.pivot = new Vector2(0.5f, 0.5f);
-                    rect.sizeDelta = new Vector2(width, width / aspect);
+                    rect.sizeDelta = new Vector2(
+                        equippedFrame.rect.width * scale, equippedFrame.rect.height * scale);
                     rect.anchoredPosition = Vector2.zero;
                 }
                 else

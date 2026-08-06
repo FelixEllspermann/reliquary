@@ -37,11 +37,26 @@ namespace Rouge.Tcg.Net
         // die Kachel, statt auf ihr zu liegen — sonst lugt sie an den Ecken
         // hervor, und breite Motive (Schwingen, Panzerhandschuhe) würden in
         // das quadratische Feld gequetscht.
-        private static readonly HashSet<string> plaques = new HashSet<string>
-            { "rootbound", "pyre_mantle", "stormlace", "gilded_grasp", "fiendwing" };
+        // Fensterhöhe je Bilderrahmen, in Pixeln der 1024er-Leinwand (per Skript
+        // ausgemessen). Skaliert wird aufs FENSTER, nicht auf die Leinwand:
+        // bei Fiendwing fressen die Schwingen die Breite — wer die Leinwand
+        // normiert, bekommt ein winziges Fenster, und das Portrait dahinter
+        // wirkt je nach Rahmen verschieden gross.
+        private static readonly Dictionary<string, float> plaqueWindow = new Dictionary<string, float>
+        {
+            { "rootbound", 444f }, { "pyre_mantle", 431f }, { "stormlace", 398f },
+            { "gilded_grasp", 311f }, { "fiendwing", 261f },
+        };
 
         /// <summary>Ist dieser Rahmen ein Bilderrahmen (statt eines Rings)?</summary>
-        public static bool IsPlaque(string id) => !string.IsNullOrEmpty(id) && plaques.Contains(id);
+        public static bool IsPlaque(string id) => !string.IsNullOrEmpty(id) && plaqueWindow.ContainsKey(id);
+
+        /// <summary>
+        /// Faktor, mit dem die Leinwand gezeichnet werden muss, damit das
+        /// Fenster <paramref name="targetWindow"/> Pixel hoch erscheint.
+        /// </summary>
+        public static float PlaqueScale(string id, float targetWindow)
+            => plaqueWindow.TryGetValue(id ?? "", out var window) ? targetWindow / window : 1f;
 
         /// <summary>Shop-Icon — jeder Gegenstand hat eines, auch die Titel.</summary>
         public static Sprite Icon(string id) => Load("icon_", id);
