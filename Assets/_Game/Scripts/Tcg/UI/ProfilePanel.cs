@@ -190,7 +190,26 @@ namespace Rouge.Tcg.UI
                 portraitKeyline.gameObject.SetActive(false);
                 var cosmetic = MakeImage("CosmeticFrame", portrait.rectTransform, Color.white);
                 cosmetic.sprite = equippedFrame;
-                Stretch(cosmetic.rectTransform, -16f);
+
+                if (Rouge.Tcg.Net.CosmeticArt.IsPlaque(Rouge.Tcg.Net.Cosmetics.EquippedIn("avatarFrame")))
+                {
+                    // Bilderrahmen: die Kachel verschwindet (sonst lugt sie an den
+                    // Ecken hervor), der Rahmen bekommt seine echten Proportionen.
+                    // Breite Motive — Schwingen, Panzerhandschuhe — dürfen seitlich
+                    // über die Portraitfläche hinausragen, das ist ihr Auftritt.
+                    portrait.color = Color.clear;
+                    float aspect = equippedFrame.rect.width / Mathf.Max(equippedFrame.rect.height, 1f);
+                    float width = Mathf.Min(300f, 180f * Mathf.Max(aspect, 1f));
+                    var rect = cosmetic.rectTransform;
+                    rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+                    rect.pivot = new Vector2(0.5f, 0.5f);
+                    rect.sizeDelta = new Vector2(width, width / aspect);
+                    rect.anchoredPosition = Vector2.zero;
+                }
+                else
+                {
+                    Stretch(cosmetic.rectTransform, -16f);
+                }
             }
             initialText = MakeText("Initial", portrait.rectTransform, skin.cinzel, 64f, Hex("#EBCE8A", 1f));
             initialText.alignment = TextAlignmentOptions.Center;

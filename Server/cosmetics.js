@@ -1,5 +1,5 @@
 /*
- * Kosmetik. Zwanzig Gegenstände in sechs Fächern — nichts davon berührt das Spiel.
+ * Kosmetik. Achtunddreissig Gegenstände in sechs Fächern — nichts davon berührt das Spiel.
  *
  * Eine einzige Währung: COINS. Die verdient man durch Spielen, und wer ein
  * Sonderexemplar zerlegt, bekommt ebenfalls Coins — es gibt also genau einen
@@ -61,7 +61,7 @@ export const ITEMS = [
   { id: 'molten_bit',       slot: 'tossCoin',    name: 'Molten Bit',       rarity: 'epic',   price: 2900, currency: 'coins' },
   { id: 'vault_coin',       slot: 'tossCoin',    name: 'Vault Coin',       rarity: 'relic',  price: 4400, currency: 'coins' },
 
-  // --- Profilrahmen (6) ---
+  // --- Profilrahmen (11) ---
   // Müssen auf 44 px in einer Bestenliste überleben: das Erkennungsmerkmal sitzt
   // in der Silhouette oder im Rand, nie im Detail.
   { id: 'iron_bracket',     slot: 'avatarFrame', name: 'Iron Bracket',     rarity: 'common', price: 700,  currency: 'coins' },
@@ -70,6 +70,15 @@ export const ITEMS = [
   { id: 'gilded_reliquary', slot: 'avatarFrame', name: 'Gilded Reliquary', rarity: 'epic',   price: 2800, currency: 'coins' },
   { id: 'prism_mount',      slot: 'avatarFrame', name: 'Prism Mount',      rarity: 'epic',   price: 3000, currency: 'coins' },
   { id: 'vault_ring',       slot: 'avatarFrame', name: 'Vault Ring',       rarity: 'relic',  price: 4600, currency: 'coins' },
+
+  // Die gemalte Reihe: gerahmte Bilder statt Ringe. Von Efeu gehalten, von
+  // Flammen gefressen, von Blitzen gespannt, von Panzerhandschuhen getragen,
+  // von Schwingen entfuehrt — die Steigerung sitzt in der Dramatik.
+  { id: 'rootbound',        slot: 'avatarFrame', name: 'Rootbound',        rarity: 'rare',   price: 1650, currency: 'coins' },
+  { id: 'gilded_grasp',     slot: 'avatarFrame', name: 'Gilded Grasp',     rarity: 'rare',   price: 1750, currency: 'coins' },
+  { id: 'stormlace',        slot: 'avatarFrame', name: 'Stormlace',        rarity: 'epic',   price: 2850, currency: 'coins' },
+  { id: 'pyre_mantle',      slot: 'avatarFrame', name: 'Pyre Mantle',      rarity: 'epic',   price: 3100, currency: 'coins' },
+  { id: 'fiendwing',        slot: 'avatarFrame', name: 'Fiendwing',        rarity: 'relic',  price: 4900, currency: 'coins' },
 
   // --- Siegessiegel (5) ---
   // Die sozialste Kosmetik im Spiel: beide Spieler sehen sie. Sie unterscheiden

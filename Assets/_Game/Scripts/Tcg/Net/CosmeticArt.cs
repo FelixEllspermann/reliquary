@@ -31,6 +31,18 @@ namespace Rouge.Tcg.Net
         /// <summary>Profilrahmen (Fach „avatarFrame").</summary>
         public static Sprite Frame(string id) => Load("frame_", id);
 
+        // Zwei Bauarten von Rahmen: die alten sind RINGE, die sich über die
+        // Portrait-Kachel legen; die gemalte Reihe sind BILDERRAHMEN mit
+        // eigenem Fenster und eigener Silhouette. Ein Bilderrahmen ersetzt
+        // die Kachel, statt auf ihr zu liegen — sonst lugt sie an den Ecken
+        // hervor, und breite Motive (Schwingen, Panzerhandschuhe) würden in
+        // das quadratische Feld gequetscht.
+        private static readonly HashSet<string> plaques = new HashSet<string>
+            { "rootbound", "pyre_mantle", "stormlace", "gilded_grasp", "fiendwing" };
+
+        /// <summary>Ist dieser Rahmen ein Bilderrahmen (statt eines Rings)?</summary>
+        public static bool IsPlaque(string id) => !string.IsNullOrEmpty(id) && plaques.Contains(id);
+
         /// <summary>Shop-Icon — jeder Gegenstand hat eines, auch die Titel.</summary>
         public static Sprite Icon(string id) => Load("icon_", id);
 
