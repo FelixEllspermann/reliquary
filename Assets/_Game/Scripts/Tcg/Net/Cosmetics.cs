@@ -51,6 +51,7 @@ namespace Rouge.Tcg.Net
         {
             { "sleeve", "Card sleeve" },
             { "avatarFrame", "Avatar frame" },
+            { "avatar", "Profile picture" },
             { "tossCoin", "Toss coin" },
             { "duelMat", "Duel mat" },
             { "title", "Profile title" },

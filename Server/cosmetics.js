@@ -1,5 +1,5 @@
 /*
- * Kosmetik. Achtunddreissig Gegenstände in sechs Fächern — nichts davon berührt das Spiel.
+ * Kosmetik. Zweiundvierzig Gegenstände in sieben Fächern — nichts davon berührt das Spiel.
  *
  * Eine einzige Währung: COINS. Die verdient man durch Spielen, und wer ein
  * Sonderexemplar zerlegt, bekommt ebenfalls Coins — es gibt also genau einen
@@ -12,12 +12,13 @@
  * des Ladens glaubwürdig.
  */
 
-export const SLOTS = ['sleeve', 'avatarFrame', 'tossCoin', 'duelMat', 'title', 'victorySeal'];
+export const SLOTS = ['sleeve', 'avatarFrame', 'avatar', 'tossCoin', 'duelMat', 'title', 'victorySeal'];
 
 /** Anzeigenamen der Fächer, in der Reihenfolge von SLOTS. */
 export const SLOT_NAMES = {
   sleeve: 'Card sleeve',
   avatarFrame: 'Avatar frame',
+  avatar: 'Profile picture',
   tossCoin: 'Toss coin',
   duelMat: 'Duel mat',
   title: 'Profile title',
@@ -79,6 +80,14 @@ export const ITEMS = [
   { id: 'stormlace',        slot: 'avatarFrame', name: 'Stormlace',        rarity: 'epic',   price: 2850, currency: 'coins' },
   { id: 'pyre_mantle',      slot: 'avatarFrame', name: 'Pyre Mantle',      rarity: 'epic',   price: 3100, currency: 'coins' },
   { id: 'fiendwing',        slot: 'avatarFrame', name: 'Fiendwing',        rarity: 'relic',  price: 4900, currency: 'coins' },
+
+  // --- Profilbilder (4) ---
+  // Monster aus dem Spiel als Portraits — wer den Sumpf spielt, zeigt die
+  // Kroete. Ohne Profilbild bleibt die Initiale auf dunkler Kachel.
+  { id: 'mireback_toad',    slot: 'avatar',      name: 'Mireback Toad',    rarity: 'common', price: 750,  currency: 'coins' },
+  { id: 'ember_imp',        slot: 'avatar',      name: 'Ember Imp',        rarity: 'rare',   price: 1600, currency: 'coins' },
+  { id: 'gravemaw_whelp',   slot: 'avatar',      name: 'Gravemaw Whelp',   rarity: 'rare',   price: 1800, currency: 'coins' },
+  { id: 'bone_colossus',    slot: 'avatar',      name: 'Bone Colossus',    rarity: 'epic',   price: 2900, currency: 'coins' },
 
   // --- Siegessiegel (5) ---
   // Die sozialste Kosmetik im Spiel: beide Spieler sehen sie. Sie unterscheiden

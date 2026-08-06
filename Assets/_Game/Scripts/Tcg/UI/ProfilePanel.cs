@@ -168,11 +168,23 @@ namespace Rouge.Tcg.UI
 
             float y = column.sizeDelta.y * 0.5f - 90f;
 
-            // Portrait: Kartenartwork-Rahmen mit der Initiale — es gibt noch keine Avatare
+            // Portrait: Kachel, darauf das Profilbild (falls eines ausgerüstet
+            // ist), darüber der Rahmen. Ohne Profilbild bleibt die Initiale.
             var portrait = MakeImage("Portrait", column, Hex("#3E2C16", 1f));
             portrait.sprite = skin.diagFade;
             portrait.rectTransform.sizeDelta = new Vector2(148f, 148f);
             portrait.rectTransform.anchoredPosition = new Vector2(0f, y);
+
+            // VOR den Rahmen erzeugt, damit jeder Rahmen darueber zeichnet
+            var equippedAvatar = Rouge.Tcg.Net.CosmeticArt.EquippedAvatar();
+            Image avatarImage = null;
+            if (equippedAvatar != null)
+            {
+                avatarImage = MakeImage("Avatar", portrait.rectTransform, Color.white);
+                avatarImage.sprite = equippedAvatar;
+                Stretch(avatarImage.rectTransform);
+            }
+
             portraitFrame = MakeImage("Frame", portrait.rectTransform, Hex("#C8A45C", 1f));
             portraitFrame.sprite = skin.frame; portraitFrame.type = Image.Type.Sliced;
             Stretch(portraitFrame.rectTransform);
@@ -208,6 +220,17 @@ namespace Rouge.Tcg.UI
                     rect.sizeDelta = new Vector2(
                         equippedFrame.rect.width * scale, equippedFrame.rect.height * scale);
                     rect.anchoredPosition = Vector2.zero;
+
+                    // Das Profilbild schrumpft mit ins Fenster — sonst stuende es
+                    // an den Ecken ueber den Rahmen hinaus
+                    if (avatarImage != null)
+                    {
+                        var aRect = avatarImage.rectTransform;
+                        aRect.anchorMin = aRect.anchorMax = new Vector2(0.5f, 0.5f);
+                        aRect.pivot = new Vector2(0.5f, 0.5f);
+                        aRect.sizeDelta = new Vector2(126f, 126f);
+                        aRect.anchoredPosition = Vector2.zero;
+                    }
                 }
                 else
                 {
@@ -446,6 +469,9 @@ namespace Rouge.Tcg.UI
             var rank = PlayerProfile.Rank;
             string name = PlayerProfile.LoggedIn ? PlayerProfile.AccountName : "Wanderer";
 
+            // Ein Profilbild ersetzt die Initiale — beides uebereinander waere
+            // ein Buchstabe mitten im Monstergesicht.
+            initialText.gameObject.SetActive(Rouge.Tcg.Net.CosmeticArt.EquippedAvatar() == null);
             initialText.text = name.Length > 0 ? name.Substring(0, 1).ToUpperInvariant() : "?";
             nameText.text = name;
             handleText.text = PlayerProfile.LoggedIn

@@ -58,6 +58,9 @@ namespace Rouge.Tcg.Net
         public static float PlaqueScale(string id, float targetWindow)
             => plaqueWindow.TryGetValue(id ?? "", out var window) ? targetWindow / window : 1f;
 
+        /// <summary>Profilbild (Fach „avatar") — ersetzt die Initiale auf der Kachel.</summary>
+        public static Sprite Avatar(string id) => Load("avatar_", id);
+
         /// <summary>Shop-Icon — jeder Gegenstand hat eines, auch die Titel.</summary>
         public static Sprite Icon(string id) => Load("icon_", id);
 
@@ -68,6 +71,7 @@ namespace Rouge.Tcg.Net
         public static Sprite EquippedCoinRelic() => CoinRelic(Cosmetics.EquippedIn("tossCoin"));
         public static Sprite EquippedCoinSeal() => CoinSeal(Cosmetics.EquippedIn("tossCoin"));
         public static Sprite EquippedFrame() => Frame(Cosmetics.EquippedIn("avatarFrame"));
+        public static Sprite EquippedAvatar() => Avatar(Cosmetics.EquippedIn("avatar"));
 
         /// <summary>Die Matte des Gegners — sie liegt auf seiner Bretthälfte.</summary>
         public static Sprite RemoteMat() => Mat(MatchContext.RemoteEquipped("duelMat"));

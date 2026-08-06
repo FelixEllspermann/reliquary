@@ -185,6 +185,7 @@ namespace Rouge.Tcg.UI
             ("duelMat", "MATS"),
             ("tossCoin", "COINS"),
             ("avatarFrame", "FRAMES"),
+            ("avatar", "PORTRAITS"),
             ("victorySeal", "SEALS"),
             ("title", "TITLES"),
         };
@@ -574,6 +575,7 @@ namespace Rouge.Tcg.UI
                 case "duelMat": art = CosmeticArt.Mat(item.Id); break;
                 case "tossCoin": art = CosmeticArt.CoinRelic(item.Id); break;
                 case "avatarFrame": art = CosmeticArt.Frame(item.Id); break;
+                case "avatar": art = CosmeticArt.Avatar(item.Id); break;
             }
             if (art == null) art = CosmeticArt.Icon(item.Id);
             if (art == null) { target.color = accent; return; }
