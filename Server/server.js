@@ -108,6 +108,17 @@ function migrate(acc) {
   if (acc.starterPick && (!acc.decks || acc.decks.length === 0)) {
     acc.decks = [structuredClone(starterDeck)]; changed = true;
   }
+  // Reparatur: der Starter-Grant vergass anfangs die Spielerkarte. Wer sein
+  // Startdeck schon gewaehlt hat, aber dessen Hero nicht besitzt, sass in der
+  // Solo- und Deck-Pruefung fest ("cards you do not own"). Einmal nachreichen.
+  if (acc.starterPick) {
+    const picked = starterDecks.find(d => d.id === acc.starterPick);
+    if (picked && cards[picked.hero] !== undefined
+        && finishes.total(acc.collection[picked.hero]) < 1) {
+      finishes.add(acc.collection, picked.hero, finishes.PLAIN);
+      changed = true;
+    }
+  }
   if (!acc.decks) { acc.decks = []; changed = true; }
   if (!acc.daily) { acc.daily = { streak: 0, lastClaim: 0 }; changed = true; }
   if ('packs' in acc) { delete acc.packs; changed = true; } // v2-Feld
@@ -350,7 +361,10 @@ function grantStarterDeck(acc, id) {
   if (!deck) return 'Unknown starter deck.';
 
   acc.starterPick = deck.id;
-  for (const name of [...deck.cards, ...deck.extra]) {
+  // deck.hero gehoert dazu: die Solo- und Deck-Pruefung im Client verlangt
+  // auch die Spielerkarte in der Sammlung. Ohne sie sass ein frischer Account
+  // mit seinem eben gewaehlten Deck fest — "cards you do not own".
+  for (const name of [...deck.cards, ...deck.extra, deck.hero]) {
     if (cards[name] === undefined) continue;   // Karte aus dem Spiel genommen
     finishes.add(acc.collection, name, finishes.PLAIN);
   }
