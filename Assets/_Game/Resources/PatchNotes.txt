@@ -1,16 +1,25 @@
 ────────────────────────────────
-0.1.1b · YOU CAN SEE THE CHAIN NOW
+0.1.1b2 · YOU CAN SEE THE CHAIN NOW
 ────────────────────────────────
 
 CHAIN TRACKER
-  · When a second effect answers the first, a panel opens on the left
-    and lists the chain in order — card, effect and a colour showing
-    who played it. Yours is teal, theirs is red
+  · When a second effect answers the first, a panel drops from the top
+    of the screen and lists the chain in order — card, effect and a
+    colour showing who played it. Yours is teal, theirs is red
   · While links are still being added the header reads BUILDING CHAIN.
     Once nobody responds, it pauses, switches to RESOLVING, and works
     back down link by link. Each one lights up as it resolves and
     greys out once it is done
+  · Click the header to fold the list away — the bar stays
+  · Hover any link to see that card in the panel on the left
   · A single effect nobody answers is not a chain and stays hidden
+
+FIXED
+  · Chains that were never chains. A triggered effect firing in the
+    middle of another one — on destruction, on summon, on flip — was
+    counted as a second link, so the tracker opened for a single
+    effect and closed again mid-resolution. Nesting is now counted
+    properly, which also means link numbers are right
 
 ────────────────────────────────
 0.1.1 · FIVE NEW WAYS TO PLAY
