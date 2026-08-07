@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawBonepicker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gravemaw Bonepicker
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 9d557a88e92447d49896da76ce26142e, type: 3}
   rarity: 2
   effects:
   - label: Pick the Bones
@@ -165,6 +165,8 @@ MonoBehaviour:
   passiveAtkPerCountKind: 0
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 3
   attribute: 1
   monsterType: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CardsontheTable
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Cards on the Table
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 8dd4b18486bec7f4ca879b112edf883a, type: 3}
   rarity: 1
   effects:
   - label: Cards on the Table

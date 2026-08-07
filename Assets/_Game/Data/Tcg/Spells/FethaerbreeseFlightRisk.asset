@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseFlightRisk
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Fethaerbreese Flight Risk
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: bfec91db7d6fddc449d4dc61ca91e61b, type: 3}
   rarity: 1
   effects:
   - label: Flight Risk
@@ -133,4 +133,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

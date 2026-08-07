@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedHand-Me-Down
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Genostitched Hand-Me-Down
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 21d4c670035b7c942bae349edd02c852, type: 3}
   rarity: 0
   effects:
   - label: Hand-Me-Down
@@ -100,6 +100,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 1
   attribute: 1
   monsterType: 4

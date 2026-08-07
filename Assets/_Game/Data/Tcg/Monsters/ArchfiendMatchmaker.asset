@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendMatchmaker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Archfiend Matchmaker
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: acc973bef6a85c743a8da48f60b54716, type: 3}
   rarity: 0
   effects:
   - label: Strike a Match
@@ -117,6 +117,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 1
   attribute: 1
   monsterType: 5

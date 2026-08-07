@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseNestEgg
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Fethaerbreese Nest Egg
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b7075ac549cd6234194b651cc340a928, type: 3}
   rarity: 1
   effects:
   - label: Nest Egg
@@ -116,6 +116,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessClosedCasket
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lightless Closed Casket
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 2e4d8e4481b7e624f8e01d1c768cd068, type: 3}
   rarity: 1
   effects:
   - label: Closed Casket
@@ -116,4 +116,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

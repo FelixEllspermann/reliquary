@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaCurtainCall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lyria Curtain Call
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f6bb5c19aec788e4a8fd6ebd339903e1, type: 3}
   rarity: 2
   effects:
   - label: Curtain Call
@@ -132,6 +132,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 3
   attribute: 0
   monsterType: 1

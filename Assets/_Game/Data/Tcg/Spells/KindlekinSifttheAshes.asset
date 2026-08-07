@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinSifttheAshes
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Kindlekin Sift the Ashes
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: acf954f8e161a05459e5deff910b7899, type: 3}
   rarity: 0
   effects:
   - label: Sift the Ashes
@@ -100,4 +100,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

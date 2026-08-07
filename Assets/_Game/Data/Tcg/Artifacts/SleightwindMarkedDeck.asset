@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindMarkedDeck
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Sleightwind Marked Deck
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: a82734044a89311419e925e1592c38b5, type: 3}
   rarity: 1
   effects:
   - label: Marked Deck

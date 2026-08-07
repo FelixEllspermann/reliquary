@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SmallFavors
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Small Favors
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: e6ba62f084873a344beb92d65acdceeb, type: 3}
   rarity: 0
   effects:
   - label: Small Favors

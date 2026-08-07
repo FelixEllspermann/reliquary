@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendDevilsAdvocate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Archfiend Devil's Advocate
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6ce67fc8cf73e2943b5540cca813202b, type: 3}
   rarity: 1
   effects:
   - label: Devil's Advocate
@@ -133,4 +133,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationNightShift
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Night Shift
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 90eec8fbeb511054499451152e3dd266, type: 3}
   rarity: 2
   effects:
   - label: Night Shift
@@ -133,6 +133,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 3
   attribute: 5
   monsterType: 4

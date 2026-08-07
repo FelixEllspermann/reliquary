@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindCardCounter
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind Card Counter
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b84d1271db7919a468dd8d4a45ff6383, type: 3}
   rarity: 0
   effects:
   - label: Counting Cards

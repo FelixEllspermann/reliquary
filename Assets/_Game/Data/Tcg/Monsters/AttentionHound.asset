@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttentionHound
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Attention Hound
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6bb2e3bdcd4df6d4b981b75ec5740189, type: 3}
   rarity: 1
   effects:
   - label: Good Boy

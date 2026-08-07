@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionColdCongregation
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Cold Congregation
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: aa2ff3209d6441c4a86e2d8c6cc9b014, type: 3}
   rarity: 1
   effects:
   - label: Cold Congregation

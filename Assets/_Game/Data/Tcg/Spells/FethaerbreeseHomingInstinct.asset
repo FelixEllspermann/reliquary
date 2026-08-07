@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseHomingInstinct
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Fethaerbreese Homing Instinct
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 9f68a0d2a8007694db12d01c70b3cafc, type: 3}
   rarity: 0
   effects:
   - label: Homing Instinct
@@ -116,4 +116,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

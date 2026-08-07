@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationTrade-In
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Trade-In
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 091b42a18b4998541b39c2be635046b6, type: 3}
   rarity: 1
   effects:
   - label: Trade-In
@@ -147,4 +147,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyCollectionPlate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Heavenly Collection Plate
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 525c235093ed97d47910ba286c953acf, type: 3}
   rarity: 1
   effects:
   - label: Pass the Plate
@@ -116,6 +116,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

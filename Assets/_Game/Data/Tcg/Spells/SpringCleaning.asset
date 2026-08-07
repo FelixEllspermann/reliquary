@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpringCleaning
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Spring Cleaning
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 7b22913ffa959494e883182ce6331a31, type: 3}
   rarity: 1
   effects:
   - label: Spring Cleaning

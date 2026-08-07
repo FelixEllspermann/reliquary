@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleHiddenFees
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Hidden Fees
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b012be2049a3ea4418c018b6f4cb02d0, type: 3}
   rarity: 1
   effects:
   - label: Hidden Fees

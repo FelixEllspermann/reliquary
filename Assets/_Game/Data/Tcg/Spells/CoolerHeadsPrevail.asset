@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CoolerHeadsPrevail
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Cooler Heads Prevail
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 05fb33ba7df548f4f87d03f69ce62b07, type: 3}
   rarity: 1
   effects:
   - label: Cooler Heads Prevail

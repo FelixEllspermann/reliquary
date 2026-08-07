@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PastYourBedtime
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Past Your Bedtime
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 2e31a70b36ddac94e9d719d87f3873b6, type: 3}
   rarity: 2
   effects:
   - label: Past Your Bedtime

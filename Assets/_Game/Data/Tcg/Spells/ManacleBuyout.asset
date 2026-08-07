@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleBuyout
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Buyout
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6180e1384b6317942875a9b264df143c, type: 3}
   rarity: 2
   effects:
   - label: Buyout

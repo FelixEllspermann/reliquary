@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaHushabye
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lyria Hushabye
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5386f4530878ce34799de42b7e78e602, type: 3}
   rarity: 0
   effects:
   - label: Hushabye
@@ -117,6 +117,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 1
   attribute: 0
   monsterType: 1

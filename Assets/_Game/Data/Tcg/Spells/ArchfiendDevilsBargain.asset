@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendDevilsBargain
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Archfiend Devil's Bargain
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5bb12a26fcd2feb4dbd581a0ffefef3b, type: 3}
   rarity: 2
   effects:
   - label: The Bargain
@@ -148,4 +148,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

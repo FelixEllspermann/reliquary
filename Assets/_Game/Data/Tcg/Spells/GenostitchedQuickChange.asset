@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedQuickChange
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Genostitched Quick Change
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b2eff775701427d409ec8b0d4a736425, type: 3}
   rarity: 1
   effects:
   - label: Quick Change
@@ -100,4 +100,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

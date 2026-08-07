@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckLoad-BearingWall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Barrierstruck Load-Bearing Wall
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6ee884611ac4abd449296749e990d8d8, type: 3}
   rarity: 1
   effects:
   - label: Bear the Load
@@ -67,6 +67,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

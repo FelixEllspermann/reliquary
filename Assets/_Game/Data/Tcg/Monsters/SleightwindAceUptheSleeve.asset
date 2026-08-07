@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindAceUptheSleeve
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind, Ace Up the Sleeve
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5f9e75696bb607c4ea75ce7f8694925a, type: 3}
   rarity: 2
   effects:
   - label: Ace Up the Sleeve

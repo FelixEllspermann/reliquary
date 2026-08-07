@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationRecallNotice
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Recall Notice
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 57075f1a076a3af468e5f51e47eaf798, type: 3}
   rarity: 1
   effects:
   - label: Recall Notice
@@ -147,4 +147,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

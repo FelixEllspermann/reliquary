@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RetailTherapy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Retail Therapy
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 3d8e9b02491574f4bbbe62049a9b18eb, type: 3}
   rarity: 1
   effects:
   - label: Retail Therapy

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckColdShoulder
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Barrierstruck Cold Shoulder
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 694ea3f712e46d64cb4ad3ef55ab4842, type: 3}
   rarity: 1
   effects:
   - label: Cold Shoulder
@@ -133,4 +133,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

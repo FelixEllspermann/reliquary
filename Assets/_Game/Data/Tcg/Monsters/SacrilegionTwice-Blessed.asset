@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionTwice-Blessed
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Twice-Blessed
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f71ac22ee3c1e8e4ebc68fc59ec45289, type: 3}
   rarity: 1
   effects: []
   auraAtkBonus: 0

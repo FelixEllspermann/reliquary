@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseTwo-in-the-Bush
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Fethaerbreese Two-in-the-Bush
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 58761873c0cc2874bac582fa8d24e6ed, type: 3}
   rarity: 2
   effects:
   - label: A Bird in the Hand
@@ -84,6 +84,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 3
   attribute: 4
   monsterType: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaSecondMovement
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lyria Second Movement
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 4309529269d9fe44d86b6a5a3de064be, type: 3}
   rarity: 1
   effects:
   - label: Second Movement
@@ -116,4 +116,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

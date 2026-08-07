@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoralSupport
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Moral Support
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 88cf10fcef585c1438fe8b12488245e9, type: 3}
   rarity: 1
   effects:
   - label: Pep Talk

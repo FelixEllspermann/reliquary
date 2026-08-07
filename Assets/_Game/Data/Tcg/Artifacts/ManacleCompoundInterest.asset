@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleCompoundInterest
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Manacle Compound Interest
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 57bfdc07111936644a92aa3006e7b1ca, type: 3}
   rarity: 1
   effects:
   - label: Compound Interest

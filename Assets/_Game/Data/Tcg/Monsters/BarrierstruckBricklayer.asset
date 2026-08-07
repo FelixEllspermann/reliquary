@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckBricklayer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Barrierstruck Bricklayer
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: a9a5578af2901ee42aeec2dda1842893, type: 3}
   rarity: 0
   effects:
   - label: Lay the Foundation
@@ -99,6 +99,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 1
   attribute: 5
   monsterType: 4

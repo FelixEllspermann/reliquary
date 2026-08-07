@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationCrumpleZone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Mechination Crumple Zone
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c1c1ac79fa2cd7140a80316108616463, type: 3}
   rarity: 1
   effects:
   - label: Reinforced Frame
@@ -67,6 +67,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

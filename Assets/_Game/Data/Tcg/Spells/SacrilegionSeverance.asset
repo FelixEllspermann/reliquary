@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionSeverance
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Severance
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 81754acdb20979f4d993e9a9418fcb77, type: 3}
   rarity: 1
   effects:
   - label: Severance

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OldTricks
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Old Tricks
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5a9f32322b170404cae205fc1d562e2d, type: 3}
   rarity: 1
   effects:
   - label: Old Tricks

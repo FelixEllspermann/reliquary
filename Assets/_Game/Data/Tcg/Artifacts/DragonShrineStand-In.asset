@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonShrineStand-In
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Dragon Shrine Stand-In
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f4b17863de9466a4aac13752a536c1aa, type: 3}
   rarity: 1
   effects:
   - label: Break Character
@@ -84,6 +84,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

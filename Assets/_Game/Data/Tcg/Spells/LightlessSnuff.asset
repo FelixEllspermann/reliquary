@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessSnuff
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lightless Snuff
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 2a93d5ba74853be45936e67ed6add8a9, type: 3}
   rarity: 1
   effects:
   - label: Snuff
@@ -99,4 +99,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AwkwardSilence
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Awkward Silence
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 65ee86fbeb2a97748958c0e64be8521a, type: 3}
   rarity: 1
   effects:
   - label: Awkward Silence

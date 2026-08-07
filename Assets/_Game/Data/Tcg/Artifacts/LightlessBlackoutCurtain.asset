@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessBlackoutCurtain
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Lightless Blackout Curtain
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 8f4e2c9a35b00be4ba592934b99ed65b, type: 3}
   rarity: 2
   effects:
   - label: Draw the Curtain
@@ -67,6 +67,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

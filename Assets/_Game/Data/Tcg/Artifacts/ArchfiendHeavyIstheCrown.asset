@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendHeavyIstheCrown
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Archfiend Heavy Is the Crown
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c4ed0fa549b2bca4ba915988f84d36e9, type: 3}
   rarity: 2
   effects:
   - label: Heavy Is the Crown
@@ -68,6 +68,7 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

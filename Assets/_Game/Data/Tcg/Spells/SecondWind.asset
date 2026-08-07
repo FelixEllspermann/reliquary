@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SecondWind
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Second Wind
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b60f6656e9dfe3c4184f127274dedb43, type: 3}
   rarity: 1
   effects:
   - label: Second Wind

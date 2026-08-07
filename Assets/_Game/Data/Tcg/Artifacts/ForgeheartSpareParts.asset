@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartSpareParts
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Forgeheart Spare Parts
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: e2e491f454bc84841bb868cd83b07b35, type: 3}
   rarity: 1
   effects:
   - label: Spare Parts
@@ -100,6 +100,8 @@ MonoBehaviour:
   passiveAtkPerCountKind: 0
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

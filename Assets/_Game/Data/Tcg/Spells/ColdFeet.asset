@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ColdFeet
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Cold Feet
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 8a6e3d341f0dc454f9d4b526d02b778d, type: 3}
   rarity: 1
   effects:
   - label: Cold Feet

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeatherEye
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Weather Eye
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b97cb7332b221814ca57e7787c284b15, type: 3}
   rarity: 0
   effects:
   - label: Weather Eye

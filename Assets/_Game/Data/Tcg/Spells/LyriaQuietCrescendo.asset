@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaQuietCrescendo
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lyria Quiet Crescendo
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 0f557e3729d09614985c89aaaa59d5dd, type: 3}
   rarity: 1
   effects:
   - label: Quiet Crescendo
@@ -100,4 +100,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 1

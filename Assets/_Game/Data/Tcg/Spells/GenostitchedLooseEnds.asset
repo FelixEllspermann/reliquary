@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedLooseEnds
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Genostitched Loose Ends
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 3a40a928ccb3fef41a3968b978e14ddb, type: 3}
   rarity: 1
   effects:
   - label: Cut the Thread
@@ -148,4 +148,5 @@ MonoBehaviour:
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   speed: 0

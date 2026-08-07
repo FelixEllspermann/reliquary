@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackFetch
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Wyldpack Fetch
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b50e9004740f53c43acb5f1f0e27ae28, type: 3}
   rarity: 1
   effects:
   - label: Fetch!
@@ -100,6 +100,8 @@ MonoBehaviour:
   passiveAtkPerCountKind: 0
   passiveDefPerCount: 0
   passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
   level: 2
   attribute: 4
   monsterType: 3
