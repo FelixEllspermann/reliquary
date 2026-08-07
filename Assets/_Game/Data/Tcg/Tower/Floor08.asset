@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59dde34364dc8344b540bfa7435e706, type: 3}
+  m_Name: Floor08
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerFloorDefinition
+  keeperName: Vezakh, the Pit Legate
+  eyebrow: "FLOOR VIII \xB7 THE COUNTING HOUSE"
+  blurb: Fiend midrange. Vezakh trades early, then crowns the pile with Archfiend
+    Dominus. Never leave two monsters standing.
+  portrait: {fileID: 0}
+  opponent: {fileID: 11400000, guid: eb1260b037197e84fbd1f9bf96ac87ad, type: 2}
+  lifePointsOverride: 0
+  bonusManaPerTurn: 0
+  dialog:
+  - speaker: VEZAKH
+    text: "Before we begin: a contract. You turn around, walk down, and forget the
+      top of this tower. In exchange \u2014 anything."
+  - speaker: YOU
+    text: Why would you offer that?
+  - speaker: VEZAKH
+    text: Because I have read the ledger of this place, and the price of the top
+      floor is not written in coins.
+  - speaker: VEZAKH
+    text: "No? A shame. Then we settle it the old way \u2014 and I collect what the
+      duel is worth."
+  victoryLine: "Paid in full. The contract is void \u2014 climb. But remember on
+    the last stair: I DID offer."

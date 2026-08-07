@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf42bd0d6c78f5f41b85e4e9d62fc4ff, type: 3}
+  m_Name: TheTower
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerDefinition
+  floors:
+  - {fileID: 11400000, guid: 2c691a313049d8344a83eb33a99ba7b3, type: 2}
+  - {fileID: 11400000, guid: d5a712d6f47d0ff4ea5662763524aef9, type: 2}
+  - {fileID: 11400000, guid: 2c7427a346238d7418f3ccf0081214b9, type: 2}
+  - {fileID: 11400000, guid: 4efad482a59a4574caedc0eccdfa8dbd, type: 2}
+  - {fileID: 11400000, guid: 4d3d597111e8c1e4595b3d31093e9778, type: 2}
+  - {fileID: 11400000, guid: a9fbc18aeb27f6f4d861d9e49ca6333f, type: 2}
+  - {fileID: 11400000, guid: 966f38d70ad3fa54e82a21a0ddd594c4, type: 2}
+  - {fileID: 11400000, guid: 6f4525b58097dcd4f85c66f5c014dea8, type: 2}
+  - {fileID: 11400000, guid: 550b9913cc256d847b9908a32860e7c4, type: 2}
+  - {fileID: 11400000, guid: 7c27c3e68256208498500fbc9e90ecc4, type: 2}
+  - {fileID: 11400000, guid: 192533d10b4490742b668815a92d0840, type: 2}
+  - {fileID: 11400000, guid: 4e75d25e5dcd4374fa7f56059d007ca7, type: 2}
+  - {fileID: 11400000, guid: 113651a97f39ed1478a64beb52024a9f, type: 2}
+  - {fileID: 11400000, guid: 13a84fa871c6fd14c958b40fc4dfa9b2, type: 2}
+  - {fileID: 11400000, guid: 0397b82bcc7753844997f5baeae51ed9, type: 2}

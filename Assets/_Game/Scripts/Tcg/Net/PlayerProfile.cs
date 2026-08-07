@@ -60,6 +60,8 @@ namespace Rouge.Tcg.Net
         public static long DailyNextInMs;
         public static int DailyRewardCoins = 150;
         public static int OnlineCount;
+        /// <summary>Höchste erstmals bezwungene Turm-Ebene (0 = noch keine).</summary>
+        public static int TowerFloor;
         public static System.DateTime ProfileReceivedAt; // für Client-seitigen Countdown
         /// <summary>Gesamtzahl je Karte, über alle Finishes.</summary>
         public static readonly Dictionary<string, int> Collection = new Dictionary<string, int>();
@@ -159,6 +161,7 @@ namespace Rouge.Tcg.Net
             if (profile.starters != null) StarterDecks.AddRange(profile.starters);
             AccountName = profile.account ?? "";
             Coins = profile.coins;
+            TowerFloor = profile.towerFloor;
             TokensCommon = profile.tokensCommon;
             TokensUncommon = profile.tokensUncommon;
             TokensRare = profile.tokensRare;

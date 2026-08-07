@@ -19,6 +19,9 @@ namespace Rouge.Tcg.UI
         /// <summary>Vom Hauptmenü gesetzt: true = Solo-Tab vorwählen.</summary>
         public static bool OpenSolo;
 
+        /// <summary>Von der Turm-Rückkehr gesetzt: true = Tower-Tab vorwählen.</summary>
+        public static bool OpenTower;
+
         [Header("Daten")]
         [SerializeField] private CardCatalog catalog;
         [SerializeField] private GameRules rules;
@@ -91,6 +94,9 @@ namespace Rouge.Tcg.UI
         [Header("Solo-Gegner-Roster (ersetzt die statischen Schwierigkeiten)")]
         [SerializeField] private BotOpponentDefinition[] opponents = new BotOpponentDefinition[0];
 
+        [Header("The Tower (Story-Modus)")]
+        [SerializeField] private TowerDefinition tower;
+
         [Header("Illegal-Strip")]
         [SerializeField] private GameObject illegalStrip;
         [SerializeField] private TMP_Text illegalText;
@@ -112,8 +118,23 @@ namespace Rouge.Tcg.UI
 
         private NetworkManager network;
         private readonly List<DeckPickRow> rows = new List<DeckPickRow>();
-        private int mode;             // 0 online, 1 solo
+        private int mode;             // 0 online, 1 solo, 2 tower
         private int selectedDeck;
+
+        // ---- The Tower (alles zur Laufzeit gebaut) ----
+        private Button towerTabButton;
+        private Image towerTabBg;
+        private TMP_Text towerTabLabel;
+        private RectTransform towerGroup;
+        private readonly List<(RectTransform row, Image bg, Image frame, TMP_Text name, TMP_Text state)> towerRows
+            = new List<(RectTransform, Image, Image, TMP_Text, TMP_Text)>();
+        private ScrollRect towerScroll;
+        private int selectedFloor = 1;    // 1-basiert
+        private GameObject dialogOverlay;
+
+        // ---- Dynamische Roster-Liste (ersetzt die festen 5 Chips) ----
+        private readonly List<(Image bg, Image frame, TMP_Text name, TMP_Text note)> rosterRows
+            = new List<(Image, Image, TMP_Text, TMP_Text)>();
         private int difficulty = 1;   // Warden
         private string lobbyCode;
         private bool searching;
@@ -150,11 +171,14 @@ namespace Rouge.Tcg.UI
         private void Start()
         {
             network = NetworkManager.Instance;
-            mode = OpenSolo ? 1 : 0;
+            mode = OpenTower ? 2 : OpenSolo ? 1 : 0;
             OpenSolo = false;
+            OpenTower = false;
 
             if (onlineTabButton != null) onlineTabButton.onClick.AddListener(() => SetMode(0));
             if (soloTabButton != null) soloTabButton.onClick.AddListener(() => SetMode(1));
+            BuildTowerTab();
+            BuildRosterList();
             if (menuButton != null) menuButton.onClick.AddListener(Back);
             if (deckBuilderButton != null) deckBuilderButton.onClick.AddListener(() => SceneManager.LoadScene(decksSceneName));
             if (startButton != null) startButton.onClick.AddListener(PressStart);
@@ -196,6 +220,19 @@ namespace Rouge.Tcg.UI
             int remembered = PlayerPrefs.GetInt(MainMenuController.ActiveDeckPrefKey, -1);
             if (remembered >= 0 && remembered < PlayerProfile.Decks.Count && DeckLegal(PlayerProfile.Decks[remembered]))
                 selectedDeck = remembered;
+
+            // Rückkehr aus einem gewonnenen Turm-Duell: die Siegzeile des Keepers
+            // steht noch aus. Danach ist die nächste Ebene die aktive.
+            if (MatchContext.TowerWon && MatchContext.TowerFloor > 0)
+            {
+                int wonFloor = MatchContext.TowerFloor;
+                MatchContext.TowerWon = false;
+                MatchContext.TowerFloor = 0;
+                selectedFloor = Mathf.Min(wonFloor + 1, TowerFloorCount());
+                ShowVictoryLine(wonFloor);
+            }
+            else selectedFloor = Mathf.Min(PlayerProfile.TowerFloor + 1, Mathf.Max(1, TowerFloorCount()));
+
             RefreshAll();
         }
 
@@ -343,6 +380,9 @@ namespace Rouge.Tcg.UI
                 illegalText.text = !DeckIsOwned(deck)
                     ? $"\"{deck.Name}\" contains cards you no longer own — fix it in the Deck Builder."
                     : $"\"{deck.Name}\" has {deck.Cards.Count} cards — a legal deck needs {DeckMin}–{DeckMax}. Fix it in the Deck Builder.";
+
+            RefreshRosterRows();
+            ApplyTowerMode();
         }
 
         // ---------- Gegner-Roster (Fallback: statische Legacy-Schwierigkeiten) ----------
@@ -398,6 +438,7 @@ namespace Rouge.Tcg.UI
         private void PressStart()
         {
             if (mode == 0) QuickMatch();
+            else if (mode == 2) StartTowerFlow();
             else StartCoroutine(StartSolo());
         }
 
@@ -425,23 +466,7 @@ namespace Rouge.Tcg.UI
             MatchContext.LocalName = PlayerProfile.LoggedIn ? PlayerProfile.AccountName : "Duelist";
 
             // Gewählten Roster-Gegner übergeben (Duel-Szene baut den Bot daraus)
-            var opponent = CurrentOpponent;
-            if (opponent != null && opponent.deck != null)
-            {
-                MatchContext.BotName = opponent.displayName;
-                MatchContext.BotHero = opponent.deck.playerCard != null ? opponent.deck.playerCard.cardName : "";
-                foreach (var card in opponent.deck.cards)
-                {
-                    if (card == null) continue;
-                    if (card is ReliquaryCardData) MatchContext.BotExtraCards.Add(card.cardName);
-                    else MatchContext.BotDeckCards.Add(card.cardName);
-                }
-                foreach (var card in opponent.deck.extraCards)
-                    if (card != null) MatchContext.BotExtraCards.Add(card.cardName);
-                MatchContext.BotLifePoints = opponent.lifePointsOverride;
-                MatchContext.BotBonusMana = opponent.bonusManaPerTurn;
-                MatchContext.BotNovice = opponent.noviceMode;
-            }
+            FillBotContext(CurrentOpponent, null, 0, 0);
             SceneManager.LoadScene(duelSceneName);
         }
 
@@ -685,6 +710,581 @@ namespace Rouge.Tcg.UI
                 new Color(0.635f, 0.541f, 0.412f, 1f), -52f);
 
             return plateRect;
+        }
+
+        // ================== THE TOWER ==================
+
+        private int TowerFloorCount() => tower != null && tower.floors != null ? tower.floors.Count : 0;
+
+        private TowerFloorDefinition FloorAt(int floorNumber) =>
+            tower != null && tower.floors != null && floorNumber >= 1 && floorNumber <= tower.floors.Count
+                ? tower.floors[floorNumber - 1] : null;
+
+        /// <summary>Portrait der Ebene: eigenes Sprite, sonst das Artwork der Heldenkarte des Gegner-Decks.</summary>
+        private static Sprite KeeperPortrait(TowerFloorDefinition floor)
+        {
+            if (floor == null) return null;
+            if (floor.portrait != null) return floor.portrait;
+            var hero = floor.opponent != null && floor.opponent.deck != null ? floor.opponent.deck.playerCard : null;
+            return hero != null ? hero.artwork : null;
+        }
+
+        /// <summary>Gemeinsamer Bot-Kontext für Solo und Turm (Overrides > Gegnerwerte).</summary>
+        private static void FillBotContext(BotOpponentDefinition opponent, string nameOverride, int lpOverride, int manaOverride)
+        {
+            if (opponent == null || opponent.deck == null) return;
+            MatchContext.BotName = string.IsNullOrEmpty(nameOverride) ? opponent.displayName : nameOverride;
+            MatchContext.BotHero = opponent.deck.playerCard != null ? opponent.deck.playerCard.cardName : "";
+            foreach (var card in opponent.deck.cards)
+            {
+                if (card == null) continue;
+                if (card is ReliquaryCardData) MatchContext.BotExtraCards.Add(card.cardName);
+                else MatchContext.BotDeckCards.Add(card.cardName);
+            }
+            foreach (var card in opponent.deck.extraCards)
+                if (card != null) MatchContext.BotExtraCards.Add(card.cardName);
+            MatchContext.BotLifePoints = lpOverride > 0 ? lpOverride : opponent.lifePointsOverride;
+            MatchContext.BotBonusMana = manaOverride > 0 ? manaOverride : opponent.bonusManaPerTurn;
+            MatchContext.BotNovice = opponent.noviceMode;
+        }
+
+        // ---------- Kleine UI-Fabrik (Laufzeit-Elemente im Turm-Stil) ----------
+
+        private static readonly Color TowerGold = new Color32(0xC8, 0xA4, 0x5C, 0xFF);
+        private static readonly Color TowerGoldBright = new Color32(0xEB, 0xCE, 0x8A, 0xFF);
+        private static readonly Color TowerInk = new Color32(0x1E, 0x14, 0x05, 0xFF);
+        private static readonly Color TowerMuted = new Color32(0x8C, 0x7B, 0x5F, 0xFF);
+
+        private static RectTransform MakeUiRect(string name, Transform parent)
+        {
+            var go = new GameObject(name, typeof(RectTransform));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(parent, false);
+            return rect;
+        }
+
+        private static Image MakeUiImage(string name, Transform parent, Color color, Sprite sprite = null, bool sliced = false)
+        {
+            var rect = MakeUiRect(name, parent);
+            var img = rect.gameObject.AddComponent<Image>();
+            img.color = color;
+            img.sprite = sprite;
+            if (sliced && sprite != null) img.type = Image.Type.Sliced;
+            img.raycastTarget = false;
+            return img;
+        }
+
+        private static TMP_Text MakeUiText(string name, Transform parent, TMP_FontAsset font, float size, Color color, string text = "")
+        {
+            var rect = MakeUiRect(name, parent);
+            var tmp = rect.gameObject.AddComponent<TextMeshProUGUI>();
+            tmp.text = text; tmp.fontSize = size; tmp.color = color;
+            tmp.raycastTarget = false;
+            if (font != null) tmp.font = font;
+            return tmp;
+        }
+
+        // ---------- Dritter Tab ----------
+
+        private void BuildTowerTab()
+        {
+            if (soloTabButton == null) return;
+            var template = soloTabButton.gameObject;
+            var clone = Instantiate(template, template.transform.parent);
+            clone.name = "TowerTabButton";
+            var rect = (RectTransform)clone.transform;
+            var src = (RectTransform)template.transform;
+            rect.anchoredPosition = src.anchoredPosition + new Vector2(src.rect.width + 8f, 0f);
+
+            towerTabButton = clone.GetComponent<Button>();
+            towerTabButton.onClick.RemoveAllListeners();
+            towerTabButton.onClick.AddListener(() => SetMode(2));
+            towerTabBg = clone.GetComponent<Image>();
+            towerTabLabel = clone.GetComponentInChildren<TMP_Text>(true);
+            if (towerTabLabel != null)
+            {
+                towerTabLabel.text = "THE TOWER";
+                towerTabLabel.fontSizeMin = 8f;
+                towerTabLabel.enableAutoSizing = true;
+            }
+        }
+
+        // ---------- Dynamische Gegner-Liste (Solo-Tab, alle Roster-Einträge) ----------
+
+        private void BuildRosterList()
+        {
+            if (opponents == null || opponents.Length == 0) return;
+            if (difficultyButtons == null || difficultyButtons.Length == 0 || difficultyButtons[0] == null) return;
+
+            // Fläche = Umriss der bisherigen festen Chips, im selben Elternobjekt
+            var parent = (RectTransform)difficultyButtons[0].transform.parent;
+            Vector2 min = new Vector2(float.MaxValue, float.MaxValue);
+            Vector2 max = new Vector2(float.MinValue, float.MinValue);
+            foreach (var chip in difficultyButtons)
+            {
+                if (chip == null) continue;
+                var r = (RectTransform)chip.transform;
+                Vector2 lo = (Vector2)r.localPosition + r.rect.min;
+                Vector2 hi = (Vector2)r.localPosition + r.rect.max;
+                min = Vector2.Min(min, lo); max = Vector2.Max(max, hi);
+                chip.gameObject.SetActive(false);   // die alten fünf verschwinden
+            }
+
+            var scrollGo = MakeUiRect("RosterScroll", parent);
+            scrollGo.anchorMin = scrollGo.anchorMax = new Vector2(0.5f, 0.5f);
+            scrollGo.sizeDelta = max - min;
+            scrollGo.localPosition = (min + max) * 0.5f;
+            var scroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false; scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 30f;
+            var viewport = MakeUiRect("Viewport", scrollGo);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var catcher = viewport.gameObject.AddComponent<Image>();
+            catcher.color = Color.clear;   // fängt das Mausrad
+            scroll.viewport = viewport;
+
+            var content = MakeUiRect("Content", viewport);
+            content.anchorMin = new Vector2(0f, 1f); content.anchorMax = new Vector2(1f, 1f);
+            content.pivot = new Vector2(0.5f, 1f);
+            scroll.content = content;
+
+            const float rowH = 54f, gap = 6f;
+            rosterRows.Clear();
+            for (int i = 0; i < opponents.Length; i++)
+            {
+                int index = i;
+                var row = MakeUiRect("Opponent_" + i, content);
+                row.anchorMin = new Vector2(0f, 1f); row.anchorMax = new Vector2(1f, 1f);
+                row.pivot = new Vector2(0.5f, 1f);
+                row.sizeDelta = new Vector2(0f, rowH);
+                row.anchoredPosition = new Vector2(0f, -i * (rowH + gap));
+
+                var bg = row.gameObject.AddComponent<Image>();
+                bg.color = new Color(0f, 0f, 0f, 0.4f);
+                var button = row.gameObject.AddComponent<Button>();
+                button.transition = Selectable.Transition.None;
+                button.onClick.AddListener(() => { SfxManager.Click(); difficulty = index; RefreshAll(); });
+
+                var frame = MakeUiImage("Frame", row, Color.white, skin != null ? skin.whiteFrame : null, true);
+                frame.rectTransform.anchorMin = Vector2.zero; frame.rectTransform.anchorMax = Vector2.one;
+                frame.rectTransform.offsetMin = Vector2.zero; frame.rectTransform.offsetMax = Vector2.zero;
+
+                var name = MakeUiText("Name", row, null, 15f, Color.white);
+                name.rectTransform.anchorMin = new Vector2(0f, 0.5f); name.rectTransform.anchorMax = new Vector2(1f, 1f);
+                name.rectTransform.offsetMin = new Vector2(12f, 0f); name.rectTransform.offsetMax = new Vector2(-12f, -4f);
+                name.alignment = TextAlignmentOptions.MidlineLeft;
+                name.enableAutoSizing = true; name.fontSizeMin = 10f; name.fontSizeMax = 15f;
+
+                var note = MakeUiText("Note", row, null, 10f, TowerMuted);
+                note.rectTransform.anchorMin = new Vector2(0f, 0f); note.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+                note.rectTransform.offsetMin = new Vector2(12f, 4f); note.rectTransform.offsetMax = new Vector2(-12f, 0f);
+                note.alignment = TextAlignmentOptions.MidlineLeft;
+                note.characterSpacing = 12f;
+
+                rosterRows.Add((bg, frame, name, note));
+            }
+            content.sizeDelta = new Vector2(0f, opponents.Length * (rowH + gap) - gap);
+            scroll.verticalNormalizedPosition = 1f;
+        }
+
+        private void RefreshRosterRows()
+        {
+            for (int i = 0; i < rosterRows.Count && i < opponents.Length; i++)
+            {
+                bool active = i == difficulty;
+                var (bg, frame, name, note) = rosterRows[i];
+                if (bg != null) bg.color = active ? new Color(143f / 255f, 198f / 255f, 210f / 255f, 0.16f) : new Color(0f, 0f, 0f, 0.4f);
+                if (frame != null) frame.color = active ? new Color32(0x8F, 0xC6, 0xD2, 0xFF) : new Color(143f / 255f, 198f / 255f, 210f / 255f, 0.25f);
+                if (name != null)
+                {
+                    name.text = OppName(i).ToUpperInvariant();
+                    name.color = active ? new Color32(0xE4, 0xF4, 0xF8, 0xFF) : new Color32(0x7E, 0x8E, 0x94, 0xFF);
+                }
+                if (note != null)
+                {
+                    note.text = OppNote(i);
+                    note.color = active ? new Color32(0xB4, 0xE2, 0xEC, 0xC0) : new Color32(0x7E, 0x8E, 0x94, 0xA0);
+                }
+            }
+        }
+
+        // ---------- Turm-Panel (Ebenen-Leiter) ----------
+
+        private void EnsureTowerGroup()
+        {
+            if (towerGroup != null || soloGroup == null) return;
+            var soloRect = (RectTransform)soloGroup.transform;
+            towerGroup = MakeUiRect("TowerGroup", soloRect.parent);
+            towerGroup.anchorMin = soloRect.anchorMin; towerGroup.anchorMax = soloRect.anchorMax;
+            towerGroup.pivot = soloRect.pivot;
+            towerGroup.anchoredPosition = soloRect.anchoredPosition;
+            towerGroup.sizeDelta = soloRect.sizeDelta;
+
+            var scrollGo = MakeUiRect("FloorScroll", towerGroup);
+            scrollGo.anchorMin = Vector2.zero; scrollGo.anchorMax = Vector2.one;
+            scrollGo.offsetMin = new Vector2(0f, 8f); scrollGo.offsetMax = new Vector2(0f, -8f);
+            towerScroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            towerScroll.horizontal = false; towerScroll.vertical = true;
+            towerScroll.movementType = ScrollRect.MovementType.Clamped;
+            towerScroll.scrollSensitivity = 30f;
+            var viewport = MakeUiRect("Viewport", scrollGo);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var catcher = viewport.gameObject.AddComponent<Image>();
+            catcher.color = Color.clear;
+            towerScroll.viewport = viewport;
+
+            var content = MakeUiRect("Content", viewport);
+            content.anchorMin = new Vector2(0f, 1f); content.anchorMax = new Vector2(1f, 1f);
+            content.pivot = new Vector2(0.5f, 1f);
+            towerScroll.content = content;
+
+            // Von OBEN nach unten bauen: Ebene 15 zuoberst, Ebene 1 zuunterst —
+            // der Blick klettert also wirklich den Turm hinauf.
+            int count = TowerFloorCount();
+            const float rowH = 52f, gap = 6f;
+            towerRows.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                int floorNumber = count - i;   // oberste Zeile = höchste Ebene
+                var row = MakeUiRect("Floor_" + floorNumber, content);
+                row.anchorMin = new Vector2(0f, 1f); row.anchorMax = new Vector2(1f, 1f);
+                row.pivot = new Vector2(0.5f, 1f);
+                row.sizeDelta = new Vector2(0f, rowH);
+                row.anchoredPosition = new Vector2(0f, -i * (rowH + gap));
+
+                var bg = row.gameObject.AddComponent<Image>();
+                var button = row.gameObject.AddComponent<Button>();
+                button.transition = Selectable.Transition.None;
+                int captured = floorNumber;
+                button.onClick.AddListener(() =>
+                {
+                    if (captured > PlayerProfile.TowerFloor + 1) return;   // verschlossen
+                    SfxManager.Click();
+                    selectedFloor = captured;
+                    RefreshAll();
+                });
+
+                var frame = MakeUiImage("Frame", row, Color.white, skin != null ? skin.whiteFrame : null, true);
+                frame.rectTransform.anchorMin = Vector2.zero; frame.rectTransform.anchorMax = Vector2.one;
+                frame.rectTransform.offsetMin = Vector2.zero; frame.rectTransform.offsetMax = Vector2.zero;
+
+                var name = MakeUiText("Name", row, null, 14f, Color.white);
+                name.rectTransform.anchorMin = new Vector2(0f, 0f); name.rectTransform.anchorMax = new Vector2(0.72f, 1f);
+                name.rectTransform.offsetMin = new Vector2(12f, 0f); name.rectTransform.offsetMax = Vector2.zero;
+                name.alignment = TextAlignmentOptions.MidlineLeft;
+                name.enableAutoSizing = true; name.fontSizeMin = 9f; name.fontSizeMax = 14f;
+
+                var state = MakeUiText("State", row, null, 10f, TowerMuted);
+                state.rectTransform.anchorMin = new Vector2(0.72f, 0f); state.rectTransform.anchorMax = new Vector2(1f, 1f);
+                state.rectTransform.offsetMin = Vector2.zero; state.rectTransform.offsetMax = new Vector2(-12f, 0f);
+                state.alignment = TextAlignmentOptions.MidlineRight;
+                state.characterSpacing = 14f;
+
+                towerRows.Add((row, bg, frame, name, state));
+            }
+            content.sizeDelta = new Vector2(0f, count * (rowH + gap) - gap);
+        }
+
+        private void RefreshTowerRows()
+        {
+            int count = TowerFloorCount();
+            int cleared = PlayerProfile.TowerFloor;
+            for (int i = 0; i < towerRows.Count; i++)
+            {
+                int floorNumber = count - i;
+                var floor = FloorAt(floorNumber);
+                var (row, bg, frame, name, state) = towerRows[i];
+                bool sealedFloor = floorNumber <= cleared;
+                bool active = floorNumber == cleared + 1;
+                bool selected = floorNumber == selectedFloor;
+                bool locked = floorNumber > cleared + 1;
+
+                if (name != null)
+                {
+                    string keeper = floor != null ? floor.keeperName : "???";
+                    name.text = $"FLOOR {ToRoman(floorNumber)} — {(locked ? "SEALED ABOVE" : keeper.ToUpperInvariant())}";
+                    name.color = locked ? new Color32(0x4C, 0x42, 0x33, 0xFF)
+                        : selected ? TowerGoldBright
+                        : sealedFloor ? new Color32(0xA8, 0x93, 0x66, 0xFF)
+                        : new Color32(0xE8, 0xD5, 0xA8, 0xFF);
+                }
+                if (state != null)
+                {
+                    state.text = sealedFloor ? "SEAL RENEWED" : active ? "AWAKE" : "";
+                    state.color = sealedFloor ? new Color32(0x7A, 0xCD, 0x96, 0xC0) : TowerGoldBright;
+                    if (active)
+                    {
+                        float pulse = 0.6f + 0.4f * Mathf.PingPong(Time.unscaledTime * 1.6f, 1f);
+                        state.color = new Color(TowerGoldBright.r, TowerGoldBright.g, TowerGoldBright.b, pulse);
+                    }
+                }
+                if (bg != null)
+                    bg.color = selected ? new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.18f)
+                        : locked ? new Color(0f, 0f, 0f, 0.55f) : new Color(0f, 0f, 0f, 0.38f);
+                if (frame != null)
+                    frame.color = selected ? TowerGoldBright
+                        : locked ? new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.12f)
+                        : new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.3f);
+            }
+        }
+
+        private static string ToRoman(int number)
+        {
+            string[] ones = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            string[] tens = { "", "X", "XX" };
+            return number >= 1 && number <= 29 ? tens[number / 10] + ones[number % 10] : number.ToString();
+        }
+
+        /// <summary>Übermalt Banner, Start-Button und Gruppen, wenn der Turm-Tab aktiv ist.</summary>
+        private void ApplyTowerMode()
+        {
+            bool towerMode = mode == 2;
+
+            // Tab-Styling (der Turm ist gold — die Geschichte des Gewölbes)
+            if (towerTabBg != null)
+            {
+                towerTabBg.sprite = towerMode && skin != null ? skin.badgeMonster : null;
+                towerTabBg.color = towerMode ? Color.white : Color.clear;
+            }
+            if (towerTabLabel != null) towerTabLabel.color = towerMode ? TowerInk : TowerMuted;
+
+            if (towerGroup == null && towerMode) EnsureTowerGroup();
+            if (towerGroup != null) towerGroup.gameObject.SetActive(towerMode);
+            if (!towerMode) return;
+
+            if (soloGroup != null) soloGroup.SetActive(false);
+            if (onlineGroup != null) onlineGroup.SetActive(false);
+            RefreshTowerRows();
+
+            int count = TowerFloorCount();
+            int cleared = PlayerProfile.TowerFloor;
+            var floor = FloorAt(selectedFloor);
+            bool topReached = cleared >= count && count > 0;
+            bool replay = selectedFloor <= cleared;
+
+            if (bannerBg != null) bannerBg.color = new Color32(0x22, 0x18, 0x0A, 0xF2);
+            if (bannerFrame != null) bannerFrame.color = TowerGold;
+            if (bannerKeyline != null) bannerKeyline.color = new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.25f);
+            if (bannerDeco != null) bannerDeco.color = new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.4f);
+            if (opponentCard != null) opponentCard.color = new Color32(0xE8, 0xD5, 0xA8, 0xFF);
+            if (opponentGem != null) opponentGem.color = TowerGoldBright;
+            if (bannerEyebrow != null)
+            {
+                bannerEyebrow.text = $"THE TOWER · FLOOR {ToRoman(selectedFloor)} OF {ToRoman(Mathf.Max(count, 1))}";
+                bannerEyebrow.color = new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.85f);
+            }
+            if (bannerTitle != null) bannerTitle.text = floor != null ? floor.keeperName : "The Tower";
+            if (bannerBlurb != null)
+                bannerBlurb.text = topReached && selectedFloor > count
+                    ? "Every seal is renewed. The Tower is quiet — for now."
+                    : floor != null ? floor.blurb : "";
+            if (stat1Label != null) stat1Label.text = "FIRST-CLEAR REWARD";
+            if (stat1Value != null) stat1Value.text = replay ? "—" : "+5 PACKS";
+            if (stat2Label != null) stat2Label.text = "SEALS RENEWED";
+            if (stat2Value != null) stat2Value.text = $"{Mathf.Min(cleared, count)}/{count}";
+
+            var deck = SelectedDeck;
+            bool legal = DeckLegal(deck);
+            bool canStart = legal && floor != null && selectedFloor <= cleared + 1;
+            if (startButton != null) startButton.interactable = canStart;
+            if (startBg != null)
+            {
+                startBg.sprite = canStart && skin != null ? skin.badgeMonster : null;
+                startBg.color = canStart ? Color.white : new Color(0f, 0f, 0f, 0.4f);
+            }
+            if (startFrame != null) startFrame.color = canStart ? TowerGoldBright : new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.2f);
+            if (startDiamond != null) startDiamond.color = canStart ? TowerInk : new Color32(0x5C, 0x51, 0x3F, 0xFF);
+            if (startTitle != null)
+            {
+                startTitle.text = replay ? "DUEL AGAIN" : "ENTER THE FLOOR";
+                startTitle.color = canStart ? TowerInk : new Color32(0x5C, 0x51, 0x3F, 0xFF);
+            }
+            if (startSub != null)
+            {
+                startSub.text = floor != null
+                    ? $"{floor.keeperName.ToUpperInvariant()} · {(replay ? "SEAL ALREADY RENEWED" : "+5 RELIC PACKS ON FIRST CLEAR")}"
+                    : "THE TOWER IS QUIET";
+                startSub.color = canStart ? new Color(TowerInk.r, TowerInk.g, TowerInk.b, 0.75f) : new Color32(0x5C, 0x51, 0x3F, 0xB0);
+            }
+        }
+
+        // ---------- Dialog → Duell ----------
+
+        private void StartTowerFlow()
+        {
+            var floor = FloorAt(selectedFloor);
+            if (floor == null || !DeckLegal(SelectedDeck)) return;
+            bool replay = selectedFloor <= PlayerProfile.TowerFloor;
+            if (replay || floor.dialog == null || floor.dialog.Count == 0)
+            {
+                StartCoroutine(LaunchTowerDuel(floor));
+                return;
+            }
+            ShowTowerDialog(floor, floor.keeperName, floor.dialog, "BEGIN THE DUEL",
+                () => StartCoroutine(LaunchTowerDuel(floor)));
+        }
+
+        private IEnumerator LaunchTowerDuel(TowerFloorDefinition floor)
+        {
+            var deck = SelectedDeck;
+            if (deck == null || floor == null || floor.opponent == null) yield break;
+            yield return null;
+            MatchContext.Clear();
+            MatchContext.UseCustomLocalDeck = true;
+            MatchContext.TowerFloor = selectedFloor;
+            MatchContext.LocalDeckCards = new List<string>(deck.Cards);
+            MatchContext.LocalExtraCards = new List<string>(deck.Extra);
+            MatchContext.LocalDeckFinishes = deck.DeckFinishNumbers();
+            MatchContext.LocalExtraFinishes = deck.ExtraFinishNumbers();
+            MatchContext.LocalHero = deck.Hero;
+            MatchContext.LocalName = PlayerProfile.LoggedIn ? PlayerProfile.AccountName : "Duelist";
+            FillBotContext(floor.opponent, floor.keeperName, floor.lifePointsOverride, floor.bonusManaPerTurn);
+            SceneManager.LoadScene(duelSceneName);
+        }
+
+        private void ShowVictoryLine(int wonFloor)
+        {
+            var floor = FloorAt(wonFloor);
+            if (floor == null || string.IsNullOrEmpty(floor.victoryLine)) return;
+            var line = new List<TowerLine> { new TowerLine { speaker = floor.keeperName.ToUpperInvariant(), text = floor.victoryLine } };
+            ShowTowerDialog(floor, floor.keeperName, line, "CONTINUE", null);
+            SetMode(2);
+        }
+
+        /// <summary>
+        /// Dialog-Overlay im Reliquary-Stil: Portrait links, Textplatte unten,
+        /// Klick blättert; die letzte Zeile trägt den Abschluss-Knopf.
+        /// </summary>
+        private void ShowTowerDialog(TowerFloorDefinition floor, string keeperName, List<TowerLine> lines, string finishLabel, System.Action onFinish)
+        {
+            if (dialogOverlay != null) Destroy(dialogOverlay);
+            var deco = TransitionSkin.Load();
+
+            dialogOverlay = new GameObject("~TowerDialog", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
+            var canvas = dialogOverlay.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 530;
+            var root = (RectTransform)dialogOverlay.transform;
+
+            var scrim = MakeUiImage("Scrim", root, new Color(0.01f, 0.008f, 0.005f, 0.94f));
+            scrim.rectTransform.anchorMin = Vector2.zero; scrim.rectTransform.anchorMax = Vector2.one;
+            scrim.rectTransform.offsetMin = Vector2.zero; scrim.rectTransform.offsetMax = Vector2.zero;
+            scrim.raycastTarget = true;
+
+            // Portrait links — dein Bild, sobald es zugewiesen ist; bis dahin der Held des Decks
+            var portraitSprite = KeeperPortrait(floor);
+            if (portraitSprite != null)
+            {
+                var portrait = MakeUiImage("Portrait", root, Color.white);
+                portrait.sprite = portraitSprite;
+                portrait.preserveAspect = true;
+                portrait.rectTransform.anchorMin = new Vector2(0f, 0f);
+                portrait.rectTransform.anchorMax = new Vector2(0.42f, 1f);
+                portrait.rectTransform.offsetMin = new Vector2(40f, 40f);
+                portrait.rectTransform.offsetMax = new Vector2(0f, -40f);
+            }
+
+            var plate = MakeUiImage("Plate", root, new Color(0.055f, 0.045f, 0.03f, 0.97f));
+            plate.rectTransform.anchorMin = new Vector2(0.5f, 0f);
+            plate.rectTransform.anchorMax = new Vector2(0.5f, 0f);
+            plate.rectTransform.pivot = new Vector2(0.5f, 0f);
+            plate.rectTransform.sizeDelta = new Vector2(860f, 190f);
+            plate.rectTransform.anchoredPosition = new Vector2(90f, 46f);
+            if (deco != null && deco.frame != null)
+            {
+                var frame = MakeUiImage("Frame", plate.rectTransform, TowerGold, deco.frame, true);
+                frame.rectTransform.anchorMin = Vector2.zero; frame.rectTransform.anchorMax = Vector2.one;
+                frame.rectTransform.offsetMin = Vector2.zero; frame.rectTransform.offsetMax = Vector2.zero;
+            }
+
+            var speaker = MakeUiText("Speaker", plate.rectTransform, deco != null ? deco.oswald : null, 14f, TowerGoldBright);
+            speaker.rectTransform.anchorMin = new Vector2(0f, 1f); speaker.rectTransform.anchorMax = new Vector2(1f, 1f);
+            speaker.rectTransform.pivot = new Vector2(0.5f, 1f);
+            speaker.rectTransform.sizeDelta = new Vector2(-48f, 26f);
+            speaker.rectTransform.anchoredPosition = new Vector2(0f, -16f);
+            speaker.characterSpacing = 26f;
+            speaker.alignment = TextAlignmentOptions.MidlineLeft;
+
+            var body = MakeUiText("Body", plate.rectTransform, deco != null ? deco.spectral : null, 19f, new Color32(0xE8, 0xDC, 0xC2, 0xFF));
+            body.rectTransform.anchorMin = new Vector2(0f, 0f); body.rectTransform.anchorMax = new Vector2(1f, 1f);
+            body.rectTransform.offsetMin = new Vector2(24f, 50f); body.rectTransform.offsetMax = new Vector2(-24f, -48f);
+            body.alignment = TextAlignmentOptions.TopLeft;
+
+            var hint = MakeUiText("Hint", plate.rectTransform, deco != null ? deco.oswald : null, 12f, TowerMuted);
+            hint.rectTransform.anchorMin = new Vector2(0f, 0f); hint.rectTransform.anchorMax = new Vector2(1f, 0f);
+            hint.rectTransform.pivot = new Vector2(0.5f, 0f);
+            hint.rectTransform.sizeDelta = new Vector2(-48f, 22f);
+            hint.rectTransform.anchoredPosition = new Vector2(0f, 12f);
+            hint.characterSpacing = 24f;
+            hint.alignment = TextAlignmentOptions.MidlineRight;
+            hint.text = "CLICK TO CONTINUE";
+
+            // LEAVE oben rechts — man kann den Keeper stehen lassen
+            var leaveGo = MakeUiRect("Leave", root);
+            leaveGo.anchorMin = leaveGo.anchorMax = new Vector2(1f, 1f);
+            leaveGo.pivot = new Vector2(1f, 1f);
+            leaveGo.sizeDelta = new Vector2(120f, 40f);
+            leaveGo.anchoredPosition = new Vector2(-24f, -24f);
+            var leaveBg = leaveGo.gameObject.AddComponent<Image>();
+            leaveBg.color = new Color(0f, 0f, 0f, 0.5f);
+            var leaveButton = leaveGo.gameObject.AddComponent<Button>();
+            leaveButton.onClick.AddListener(() => { SfxManager.Click(); Destroy(dialogOverlay); dialogOverlay = null; });
+            var leaveLabel = MakeUiText("Label", leaveGo, deco != null ? deco.oswald : null, 13f, TowerMuted, "LEAVE");
+            leaveLabel.rectTransform.anchorMin = Vector2.zero; leaveLabel.rectTransform.anchorMax = Vector2.one;
+            leaveLabel.rectTransform.offsetMin = Vector2.zero; leaveLabel.rectTransform.offsetMax = Vector2.zero;
+            leaveLabel.alignment = TextAlignmentOptions.Center;
+            leaveLabel.characterSpacing = 20f;
+
+            int lineIndex = 0;
+            Button finishButton = null;
+            void ShowLine()
+            {
+                var line = lines[lineIndex];
+                speaker.text = string.IsNullOrEmpty(line.speaker) ? keeperName.ToUpperInvariant() : line.speaker;
+                speaker.color = line.speaker == "YOU" ? new Color32(0x8F, 0xC6, 0xD2, 0xFF) : TowerGoldBright;
+                body.text = line.text;
+                bool last = lineIndex >= lines.Count - 1;
+                hint.gameObject.SetActive(!last);
+                if (last)
+                {
+                    var buttonGo = MakeUiRect("FinishButton", plate.rectTransform);
+                    buttonGo.anchorMin = new Vector2(1f, 0f); buttonGo.anchorMax = new Vector2(1f, 0f);
+                    buttonGo.pivot = new Vector2(1f, 0f);
+                    buttonGo.sizeDelta = new Vector2(240f, 44f);
+                    buttonGo.anchoredPosition = new Vector2(-16f, 12f);
+                    var buttonBg = buttonGo.gameObject.AddComponent<Image>();
+                    buttonBg.color = new Color(0.784f, 0.643f, 0.361f, 0.96f);
+                    finishButton = buttonGo.gameObject.AddComponent<Button>();
+                    finishButton.onClick.AddListener(() =>
+                    {
+                        SfxManager.Click();
+                        Destroy(dialogOverlay); dialogOverlay = null;
+                        onFinish?.Invoke();
+                    });
+                    var label = MakeUiText("Label", buttonGo, deco != null ? deco.oswald : null, 16f, TowerInk, finishLabel);
+                    label.rectTransform.anchorMin = Vector2.zero; label.rectTransform.anchorMax = Vector2.one;
+                    label.rectTransform.offsetMin = Vector2.zero; label.rectTransform.offsetMax = Vector2.zero;
+                    label.alignment = TextAlignmentOptions.Center;
+                    label.characterSpacing = 10f;
+                }
+            }
+
+            var advance = scrim.gameObject.AddComponent<Button>();
+            advance.transition = Selectable.Transition.None;
+            advance.onClick.AddListener(() =>
+            {
+                if (lineIndex >= lines.Count - 1) return;   // letzte Zeile: nur der Knopf schliesst
+                SfxManager.Click();
+                lineIndex++;
+                ShowLine();
+            });
+
+            ShowLine();
         }
 
     }

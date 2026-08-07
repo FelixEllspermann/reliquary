@@ -165,6 +165,17 @@ namespace Rouge.Tcg.UI
             {
                 Rouge.Tcg.Net.NetworkManager.Instance.SendSoloResult(victory);
                 reward = "+50 COINS SEALED INTO YOUR VAULT";
+
+                // Turm-Duell: Erstsieg meldet die Ebene (Server vergibt 5 Packs +
+                // ggf. Titel und prüft die Reihenfolge — Doppelmeldungen verpuffen).
+                int towerFloor = Rouge.Tcg.Net.MatchContext.TowerFloor;
+                if (towerFloor > 0 && victory)
+                {
+                    Rouge.Tcg.Net.MatchContext.TowerWon = true;
+                    bool firstClear = towerFloor > Rouge.Tcg.Net.PlayerProfile.TowerFloor;
+                    Rouge.Tcg.Net.NetworkManager.Instance.SendTowerProgress(towerFloor);
+                    if (firstClear) reward = "+5 RELIC PACKS — THE SEAL IS RENEWED";
+                }
             }
             if (rewardStrip != null) rewardStrip.SetActive(reward != null);
             if (rewardText != null && reward != null) rewardText.text = reward;
@@ -175,7 +186,9 @@ namespace Rouge.Tcg.UI
             // ---- 5: Der Continue-Knopf. Online gibt es genau einen Weg (weiter,
             // ggf. durch den Rank-Up, dann Menü); Solo behält "nochmal".
             bool network = Rouge.Tcg.Net.MatchContext.IsServerMatch;
-            if (restartLabel != null) restartLabel.text = network ? "CONTINUE" : "DUEL AGAIN";
+            bool towerReturn = Rouge.Tcg.Net.MatchContext.TowerFloor > 0 && victory;
+            if (restartLabel != null)
+                restartLabel.text = network ? "CONTINUE" : towerReturn ? "RETURN TO THE TOWER" : "DUEL AGAIN";
             if (deckEditorButton != null) deckEditorButton.gameObject.SetActive(!network);
 
             if (panelGroup == null) yield break;
@@ -198,6 +211,15 @@ namespace Rouge.Tcg.UI
                 // ---- 6+7: steht ein Aufstieg an, laeuft er jetzt — mit eigenem
                 // Continue am Ende — und erst dann faellt das Hauptmenue.
                 AfterRankUp(() => SceneManager.LoadScene(mainMenuSceneName));
+                return;
+            }
+            // Turm-Sieg: zurück in den Turm (Play-Szene, Tower-Tab) — die Ebene
+            // ist versiegelt, „nochmal" ergäbe hier keinen Sinn. TowerWon bleibt
+            // gesetzt, damit der Turm die Siegzeile des Keepers zeigen kann.
+            if (Rouge.Tcg.Net.MatchContext.TowerFloor > 0 && Rouge.Tcg.Net.MatchContext.TowerWon)
+            {
+                DuelSetupController.OpenTower = true;
+                AfterRankUp(() => SceneManager.LoadScene("Play"));
                 return;
             }
             // Solo/Offline: auch hier erst der Aufstieg (Solo-Siege geben RP),

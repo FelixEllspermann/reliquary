@@ -656,6 +656,9 @@ namespace Rouge.Tcg.UI
                 case "sealbreaker": return "Sealbreaker";
                 case "ash_collector": return "Ash Collector";
                 case "wardens_bane": return "Warden's Bane";
+                case "tower_initiate": return "Tower Initiate";
+                case "renewer_of_seals": return "Renewer of Seals";
+                case "towers_answer": return "The Tower's Answer";
                 default: return key;
             }
         }

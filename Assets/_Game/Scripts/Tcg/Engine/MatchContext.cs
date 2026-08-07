@@ -25,6 +25,11 @@ namespace Rouge.Tcg.Net
         public static bool BotNovice;
         public static bool LocalIsPlayerA;
 
+        /// <summary>Laufendes Turm-Duell: die Ebene (1-basiert), 0 = kein Turm.</summary>
+        public static int TowerFloor;
+        /// <summary>Vom GameOver gesetzt: das Turm-Duell wurde gewonnen (für die Rückkehr-Szene).</summary>
+        public static bool TowerWon;
+
         public static bool LocalStarts = true;
 
         public static string LocalName = "Du";
@@ -66,6 +71,8 @@ namespace Rouge.Tcg.Net
             IsServerMatch = false;
             UseCustomLocalDeck = false;
             SoloDifficulty = 1;
+            TowerFloor = 0;
+            TowerWon = false;
             BotName = "";
             BotDeckCards = new List<string>();
             BotExtraCards = new List<string>();

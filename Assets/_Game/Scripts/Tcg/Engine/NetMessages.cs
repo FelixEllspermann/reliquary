@@ -32,6 +32,7 @@ namespace Rouge.Tcg.Net
         public string item;        // buy_cosmetic/equip_cosmetic: Gegenstands-Id
         public string slot;        // equip_cosmetic: Fach
         public bool won;           // duel_result
+        public int floor;          // tower_progress: erstmals bezwungene Turm-Ebene
 
         // rank_change: kommt am Duellende, wenn sich der Rang bewegt hat
         public int rankDelta;      // RP-Änderung, kann negativ sein
@@ -248,6 +249,9 @@ namespace Rouge.Tcg.Net
         public string[] packNames;   // Pack-Inventar (ungeöffnete Packs)
         public int[] packCounts;
         public NetDeck[] decks;      // Account-Decks
+
+        /// <summary>Höchste erstmals bezwungene Turm-Ebene (0 = noch keine).</summary>
+        public int towerFloor;
 
         // Daily-Siegel + Server-Status (Shell-Screens)
         public int dailyStreak;      // aktuelle Serien-Länge (0 = nie geclaimt)

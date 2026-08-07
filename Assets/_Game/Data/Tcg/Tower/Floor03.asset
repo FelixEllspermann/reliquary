@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59dde34364dc8344b540bfa7435e706, type: 3}
+  m_Name: Floor03
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerFloorDefinition
+  keeperName: Fenn, the Pack Alpha
+  eyebrow: "FLOOR III \xB7 THE KENNELS"
+  blurb: "Wyldpack aggro. Fenn floods the board with beasts and turns three of them
+    into an Ur-Alpha \u2014 clear the small ones early."
+  portrait: {fileID: 0}
+  opponent: {fileID: 11400000, guid: 57098b3d32dc8db4da65b64f99a2f312, type: 2}
+  lifePointsOverride: 0
+  bonusManaPerTurn: 0
+  dialog:
+  - speaker: FENN
+    text: FINALLY. Do you know how long a hundred years is when everyone around you
+      is ASLEEP?
+  - speaker: FENN
+    text: "The pack woke me an hour ago. Something climbed past us \u2014 no scent,
+      no sound. The pups are furious."
+  - speaker: YOU
+    text: Then let me pass. I am hunting it.
+  - speaker: FENN
+    text: "Oh, you will pass. AFTER we raise the seal properly \u2014 with teeth.
+      The pack insists."
+  victoryLine: "HA! Good bones, good teeth. Go on then \u2014 and if you find the
+    scentless thing, bite it once for the pack."

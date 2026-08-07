@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c382f488a06671248bd01bbbb06bdeb5, type: 3}
+  m_Name: Bot13FirstWarden
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.BotOpponentDefinition
+  displayName: The First Warden
+  chipNote: THE TOP OF THE TOWER
+  blurb: "The one who lit the windows. Twelve thousand Life Points, two extra Mana
+    every turn, and a Reliquary for every occasion \u2014 the Tower does not want
+    you to leave."
+  deck: {fileID: 11400000, guid: b36b2ae6d0038464aa51516d3a91a5e2, type: 2}
+  lifePointsOverride: 12000
+  bonusManaPerTurn: 2
+  noviceMode: 0

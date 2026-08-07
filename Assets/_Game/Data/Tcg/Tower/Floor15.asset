@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59dde34364dc8344b540bfa7435e706, type: 3}
+  m_Name: Floor15
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerFloorDefinition
+  keeperName: The First Warden
+  eyebrow: "FLOOR XV \xB7 THE TOP OF THE TOWER"
+  blurb: The one who lit the windows. 12 000 Life Points, two extra Mana every turn,
+    and a Reliquary for every occasion.
+  portrait: {fileID: 0}
+  opponent: {fileID: 11400000, guid: 6515a18490294b748ab3468ba5202037, type: 2}
+  lifePointsOverride: 0
+  bonusManaPerTurn: 0
+  dialog:
+  - speaker: FIRST WARDEN
+    text: Fourteen seals renewed. Fourteen Keepers measured you and were made whole
+      again. You have been thorough.
+  - speaker: YOU
+    text: Where is the one who climbed ahead of me?
+  - speaker: FIRST WARDEN
+    text: No one climbed, child. I lit the windows myself. A tower is a lighthouse,
+      if you need a duelist to come to you.
+  - speaker: FIRST WARDEN
+    text: A seal unanswered for a hundred years is not a seal. It is a tomb. I wanted
+      an answer. You are the answer.
+  - speaker: YOU
+    text: Then here it is.
+  - speaker: FIRST WARDEN
+    text: "One duel more, duelist. Win, and the Tower is yours \u2014 to keep sealed,
+      or to open. I only ever wanted someone worthy of that choice."
+  victoryLine: "Keep them or free them \u2014 the Tower obeys you now. ...Odd. The
+    door below stands open. I did not open it."

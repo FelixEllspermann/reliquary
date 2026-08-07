@@ -326,6 +326,7 @@ function profileOf(acc) {
     rankLosses: seal.losses,
     rankBestStreak: seal.bestStreak,
     titles: acc.titles && acc.titles.length ? acc.titles : [cosmetics.STARTER_TITLE],
+    towerFloor: acc.towerFloor | 0,
     ...cosmetics.stateOf(acc),
     ...cosmetics.catalog(),
     banlistNames: Object.keys(banlist),
@@ -1120,6 +1121,27 @@ wss.on('connection', (ws, req) => {
         saveAccount(acc);
         sendProfile(c, acc);
         log(`${acc.name}: Daily-Siegel Tag ${acc.daily.streak} → ${acc.coins} Coins`);
+        break;
+      }
+
+      // Turm-Fortschritt: monoton, eine Ebene nach der anderen. Dadurch gibt es
+      // die Erstsieg-Belohnung (5 Relic Packs + Meilenstein-Titel) automatisch
+      // nur einmal pro Ebene — Wiederholungssiege laufen ins Leere.
+      case 'tower_progress': {
+        if (!acc) break;
+        const floor = m.floor | 0;
+        const cleared = acc.towerFloor | 0;
+        if (floor !== cleared + 1 || floor < 1 || floor > 15) { sendProfile(c, acc); break; }
+        acc.towerFloor = floor;
+        acc.packInv['Relic Pack'] = (acc.packInv['Relic Pack'] || 0) + 5;
+        acc.cosmetics = Array.isArray(acc.cosmetics) ? acc.cosmetics : [];
+        const towerTitle = floor === 1 ? 'tower_initiate'
+          : floor === 10 ? 'renewer_of_seals'
+          : floor === 15 ? 'towers_answer' : null;
+        if (towerTitle && !acc.cosmetics.includes(towerTitle)) acc.cosmetics.push(towerTitle);
+        saveAccount(acc);
+        sendProfile(c, acc);
+        log(`${acc.name}: Turm-Ebene ${floor} versiegelt (+5 Relic Packs${towerTitle ? `, Titel ${towerTitle}` : ''})`);
         break;
       }
 

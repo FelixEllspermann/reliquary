@@ -104,6 +104,14 @@ export const ITEMS = [
   { id: 'ash_collector',    slot: 'title',       name: 'Ash Collector',    rarity: 'rare',   price: 1400, currency: 'coins' },
   { id: 'wardens_bane',     slot: 'title',       name: "Warden's Bane",    rarity: 'relic',  price: null, currency: null,
     unlock: 'Beat the Warden without losing a Reliquary.' },
+
+  // --- Turm-Titel (nur ueber The Tower, Ebenen 1/10/15) ---
+  { id: 'tower_initiate',   slot: 'title',       name: 'Tower Initiate',   rarity: 'common', price: null, currency: null,
+    unlock: 'Renew the first seal of the Tower.' },
+  { id: 'renewer_of_seals', slot: 'title',       name: 'Renewer of Seals', rarity: 'rare',   price: null, currency: null,
+    unlock: 'Renew ten seals of the Tower.' },
+  { id: 'towers_answer',    slot: 'title',       name: "The Tower's Answer", rarity: 'relic', price: null, currency: null,
+    unlock: 'Reach the top of the Tower.' },
 ];
 
 /** Jeder Early-Access-Spieler startet mit diesem Titel. */

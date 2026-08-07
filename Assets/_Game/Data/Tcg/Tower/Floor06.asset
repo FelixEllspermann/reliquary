@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59dde34364dc8344b540bfa7435e706, type: 3}
+  m_Name: Floor06
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerFloorDefinition
+  keeperName: Nerea, the Veiled
+  eyebrow: "FLOOR VI \xB7 THE HALL OF VEILS"
+  blurb: "Flip control. Everything Nerea plays is face-down \u2014 flip her cards
+    on your terms or Lyria rises from the dark."
+  portrait: {fileID: 0}
+  opponent: {fileID: 11400000, guid: 8589552c12a6c3648bf16f359e18f190, type: 2}
+  lifePointsOverride: 0
+  bonusManaPerTurn: 0
+  dialog:
+  - speaker: NEREA
+    text: Do you know what climbed past this floor, duelist?
+  - speaker: YOU
+    text: No. Do you?
+  - speaker: NEREA
+    text: Is a thing that no one has seen a thing at all? Is a seal that no one challenges
+      still a seal?
+  - speaker: NEREA
+    text: Show me your answer face-down, and I will show you mine. That is the only
+      honest way to speak.
+  victoryLine: "Interesting. You turn cards the way some people tell the truth \u2014
+    reluctantly, and at the worst moment. Go up. The answer is above."

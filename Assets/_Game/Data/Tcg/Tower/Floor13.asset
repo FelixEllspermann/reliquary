@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59dde34364dc8344b540bfa7435e706, type: 3}
+  m_Name: Floor13
+  m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.TowerFloorDefinition
+  keeperName: The Tower's Left Hand
+  eyebrow: "FLOOR XIII \xB7 THE ARMORY"
+  blurb: An empty warden's armor, moved by the Tower itself. It plays the Pit Legate's
+    deck with more Mana and more Life.
+  portrait: {fileID: 0}
+  opponent: {fileID: 11400000, guid: eb1260b037197e84fbd1f9bf96ac87ad, type: 2}
+  lifePointsOverride: 10000
+  bonusManaPerTurn: 1
+  dialog:
+  - speaker: THE LEFT HAND
+    text: ...
+  - speaker: THE LEFT HAND
+    text: MEASURE. THE. CLIMBER.
+  - speaker: YOU
+    text: There is no one in that armor.
+  victoryLine: The armor folds itself onto its stand and is still. Somewhere above,
+    something writes a number down.
