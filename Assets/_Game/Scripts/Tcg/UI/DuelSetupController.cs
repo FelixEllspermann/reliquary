@@ -789,24 +789,44 @@ namespace Rouge.Tcg.UI
         private void BuildTowerTab()
         {
             if (soloTabButton == null) return;
-            var template = soloTabButton.gameObject;
-            var clone = Instantiate(template, template.transform.parent);
+            var soloRect = (RectTransform)soloTabButton.transform;
+            var container = (RectTransform)soloRect.parent;   // „Tabs" — der Rahmen wächst mit
+
+            // Die Leiste von zwei Hälften auf drei Drittel: der Rahmen wird um
+            // die halbe Breite länger, die Szenen-Tabs rücken in ihre Drittel,
+            // und der Turm-Tab ist eine exakte Kopie des Solo-Tabs im letzten.
+            container.sizeDelta = new Vector2(container.sizeDelta.x * 1.5f, container.sizeDelta.y);
+            if (onlineTabButton != null)
+            {
+                var onlineRect = (RectTransform)onlineTabButton.transform;
+                onlineRect.anchorMin = new Vector2(0f, 0f);
+                onlineRect.anchorMax = new Vector2(1f / 3f, 1f);
+            }
+            soloRect.anchorMin = new Vector2(1f / 3f, 0f);
+            soloRect.anchorMax = new Vector2(2f / 3f, 1f);
+
+            var clone = Instantiate(soloTabButton.gameObject, container);
             clone.name = "TowerTabButton";
             var rect = (RectTransform)clone.transform;
-            var src = (RectTransform)template.transform;
-            rect.anchoredPosition = src.anchoredPosition + new Vector2(src.rect.width + 8f, 0f);
+            rect.anchorMin = new Vector2(2f / 3f, 0f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = soloRect.pivot;
+            rect.sizeDelta = soloRect.sizeDelta;
+            rect.anchoredPosition = soloRect.anchoredPosition;
+
+            // Geerbtes Knopf-Feedback abstreifen — der Installer verpasst dem
+            // Klon sonst doppelten Glanz
+            var inheritedFx = clone.GetComponent<UiButtonFx>();
+            if (inheritedFx != null) Destroy(inheritedFx);
+            var fxGlow = clone.transform.Find("~FxGlow");
+            if (fxGlow != null) Destroy(fxGlow.gameObject);
 
             towerTabButton = clone.GetComponent<Button>();
             towerTabButton.onClick.RemoveAllListeners();
             towerTabButton.onClick.AddListener(() => SetMode(2));
             towerTabBg = clone.GetComponent<Image>();
             towerTabLabel = clone.GetComponentInChildren<TMP_Text>(true);
-            if (towerTabLabel != null)
-            {
-                towerTabLabel.text = "THE TOWER";
-                towerTabLabel.fontSizeMin = 8f;
-                towerTabLabel.enableAutoSizing = true;
-            }
+            if (towerTabLabel != null) towerTabLabel.text = "THE TOWER";
         }
 
         // ---------- Dynamische Gegner-Liste (Solo-Tab, alle Roster-Einträge) ----------
@@ -866,6 +886,9 @@ namespace Rouge.Tcg.UI
                 bg.color = new Color(0f, 0f, 0f, 0.4f);
                 var button = row.gameObject.AddComponent<Button>();
                 button.transition = Selectable.Transition.None;
+                // Kein Hover-Grow: die Zeile lebt in einer Scroll-Maske und würde
+                // beim Skalieren an den Seiten abgeschnitten
+                row.gameObject.AddComponent<UiFxIgnore>();
                 button.onClick.AddListener(() => { SfxManager.Click(); difficulty = index; RefreshAll(); });
 
                 var frame = MakeUiImage("Frame", row, Color.white, skin != null ? skin.whiteFrame : null, true);
@@ -960,6 +983,9 @@ namespace Rouge.Tcg.UI
                 var bg = row.gameObject.AddComponent<Image>();
                 var button = row.gameObject.AddComponent<Button>();
                 button.transition = Selectable.Transition.None;
+                // Kein Hover-Grow in der Scroll-Maske — sonst werden die Zeilen
+                // beim Hovern an den Seiten abgeschnitten
+                row.gameObject.AddComponent<UiFxIgnore>();
                 int captured = floorNumber;
                 button.onClick.AddListener(() =>
                 {
