@@ -20,7 +20,7 @@ namespace Rouge.Tcg.UI
         [SerializeField] private Button banlistButton;
 
         [Tooltip("Einladung zur Community — leer = kein Discord-Knopf")]
-        [SerializeField] private string discordUrl = "https://discord.gg/E2vnf2PyP";
+        [SerializeField] private string discordUrl = "https://discord.gg/wdzu3SBbtK";
 
         [Tooltip("Katalog, um Banlist-Einträge nach Kartentyp einzufärben")]
         [SerializeField] private CardCatalog catalog;
