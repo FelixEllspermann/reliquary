@@ -1,4 +1,42 @@
 ────────────────────────────────
+0.1.2c · TEN AT A TIME
+────────────────────────────────
+
+OPEN THEM ALL
+  · Own two or more packs? A wide OPEN ×N button opens up to ten
+    at once — every pull lands in one scrollable gallery, sorted
+    by rarity, with a CONTINUE button when you are done looking
+  · Hover any pulled card to read its full effects on the spot
+
+BALANCE
+  · Tidebound, the Returning Sea — the summon effect now costs
+    2 Mana and returns 1 enemy monster to the hand (was 2 for free)
+
+THE COIN
+  · The toss coin is always YOUR equipped coin — on both screens
+  · Losing the toss no longer lands the coin on its edge. It lies
+    flat, like a coin should
+
+REMEMBERED
+  · Play and Solo preselect the deck you last dueled with
+  · The deck builder reopens the deck you last worked on
+
+COSMETICS, EVERYWHERE
+  · The cosmetics shop shows four big tiles per row — the art
+    finally has room to breathe
+  · The main menu crest wears your equipped frame and portrait
+  · Equipping cosmetics updates the profile and menu instantly —
+    no scene reload needed
+
+SMALL BUT IMPORTANT
+  · The center status line now lives inside the field divider,
+    where the old phase label sat — nothing covers your zones
+  · The Life Point BAR drains gradually, in step with the number
+  · An open Extra Deck viewer no longer freezes the duel at the
+    start of your turn
+  · The deck builder scroll wheel actually scrolls now
+
+────────────────────────────────
 0.1.2b · A PROPER ENDING
 ────────────────────────────────
 
