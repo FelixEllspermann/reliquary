@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR XV \xB7 THE TOP OF THE TOWER"
   blurb: The one who lit the windows. 12 000 Life Points, two extra Mana every turn,
     and a Reliquary for every occasion.
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 7b77e335d691c8a4fa2634b0d68f7015, type: 3}
   opponent: {fileID: 11400000, guid: 6515a18490294b748ab3468ba5202037, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

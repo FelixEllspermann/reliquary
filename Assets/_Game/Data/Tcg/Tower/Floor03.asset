@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR III \xB7 THE KENNELS"
   blurb: "Wyldpack aggro. Fenn floods the board with beasts and turns three of them
     into an Ur-Alpha \u2014 clear the small ones early."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 2b88440e6df544c46b09d68dfc5e40b6, type: 3}
   opponent: {fileID: 11400000, guid: 57098b3d32dc8db4da65b64f99a2f312, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

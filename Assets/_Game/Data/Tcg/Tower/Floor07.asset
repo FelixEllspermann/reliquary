@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR VII \xB7 THE OPEN GALLERY"
   blurb: "Wind tempo. Aliya cycles fast and strikes from above \u2014 interrupt her
     draws or the Held Breath ends it in one gust."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: be8dd24aa434388478d7a2edb8cc17f6, type: 3}
   opponent: {fileID: 11400000, guid: d97d6d069049e2c4ca2351a74b254acf, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

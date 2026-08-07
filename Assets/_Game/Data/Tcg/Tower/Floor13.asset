@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR XIII \xB7 THE ARMORY"
   blurb: An empty warden's armor, moved by the Tower itself. It plays the Pit Legate's
     deck with more Mana and more Life.
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: d8d9fd49c00eeb04884285866b62d305, type: 3}
   opponent: {fileID: 11400000, guid: eb1260b037197e84fbd1f9bf96ac87ad, type: 2}
   lifePointsOverride: 10000
   bonusManaPerTurn: 1

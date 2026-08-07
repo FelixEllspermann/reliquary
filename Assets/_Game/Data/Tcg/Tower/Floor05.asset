@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR V \xB7 THE OSSUARY"
   blurb: Gravemaw recursion. Morwen fills the graveyards fast and summons the Bottomless
     from four banished monsters.
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: b17307f48364a934b9ef8e53862585b2, type: 3}
   opponent: {fileID: 11400000, guid: 6a5c9a3b5693e5f4b885eef24210b7af, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

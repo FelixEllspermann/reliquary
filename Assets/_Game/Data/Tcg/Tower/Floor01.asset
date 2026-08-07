@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR I \xB7 THE DOORSTEP"
   blurb: "The first seal is a lesson. The Gatekeeper plays openly and never reacts
     on your turn \u2014 learn the Tower's rhythm."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 1d01baf947854e24c8bc780dd281006c, type: 3}
   opponent: {fileID: 11400000, guid: b69aeb951e5b4ca408875ccaa5c4d000, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

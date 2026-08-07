@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR IX \xB7 THE COLD FORGE"
   blurb: "Forgeheart artifacts. Brann builds his board like a machine \u2014 break
     the Artifacts before the Worldanvil drops."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 1b597b39d4abd804791ca21be45a05c5, type: 3}
   opponent: {fileID: 11400000, guid: 85b729fee322f88449ed67dffaf1b5c9, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

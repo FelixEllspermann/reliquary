@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR VI \xB7 THE HALL OF VEILS"
   blurb: "Flip control. Everything Nerea plays is face-down \u2014 flip her cards
     on your terms or Lyria rises from the dark."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: c30c0ba74d92ef747ac68ad2442031f0, type: 3}
   opponent: {fileID: 11400000, guid: 8589552c12a6c3648bf16f359e18f190, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

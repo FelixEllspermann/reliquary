@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR IV \xB7 THE DROWNED HALL"
   blurb: Tidebound control. Maren bounces your monsters back to your hand and lets
     the empty board drown you.
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: c3e831d43ac1d1c48b024c92368d3a77, type: 3}
   opponent: {fileID: 11400000, guid: 0eca8d60b53353a48a2b60d7df77d1ee, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   eyebrow: "FLOOR XII \xB7 THE LIGHT WELL"
   blurb: "Heavenly control. The Seraph stalls behind high DEF and crowns the board
     with the Empyrean \u2014 bring answers for 3200 ATK."
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 218573f29e3016146a764d20f68fb78c, type: 3}
   opponent: {fileID: 11400000, guid: 30c49eac0dcc0884a8e2a8a1830794ce, type: 2}
   lifePointsOverride: 0
   bonusManaPerTurn: 0
