@@ -784,6 +784,39 @@ namespace Rouge.Tcg.UI
             return tmp;
         }
 
+        /// <summary>
+        /// Hover für Listenzeilen in Scroll-Masken: heller Wash + Hover-Sound,
+        /// bewusst OHNE Skalierung — das Standard-Feedback (UiButtonFx) vergrößert
+        /// die Zeile, und die Maske schneidet sie dann an den Seiten ab.
+        /// </summary>
+        private class RowHover : MonoBehaviour, UnityEngine.EventSystems.IPointerEnterHandler,
+            UnityEngine.EventSystems.IPointerExitHandler
+        {
+            public Image glow;
+            public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData _)
+            {
+                if (glow != null) glow.enabled = true;
+                SfxManager.Hover(0.8f);
+            }
+            public void OnPointerExit(UnityEngine.EventSystems.PointerEventData _)
+            {
+                if (glow != null) glow.enabled = false;
+            }
+        }
+
+        private static void AddRowHover(RectTransform row, Color washColor)
+        {
+            var glowRect = MakeUiRect("~Hover", row);
+            glowRect.anchorMin = Vector2.zero; glowRect.anchorMax = Vector2.one;
+            glowRect.offsetMin = Vector2.zero; glowRect.offsetMax = Vector2.zero;
+            var glow = glowRect.gameObject.AddComponent<Image>();
+            glow.color = washColor;
+            glow.raycastTarget = false;
+            glow.enabled = false;
+            var hover = row.gameObject.AddComponent<RowHover>();
+            hover.glow = glow;
+        }
+
         // ---------- Dritter Tab ----------
 
         private void BuildTowerTab()
@@ -886,9 +919,7 @@ namespace Rouge.Tcg.UI
                 bg.color = new Color(0f, 0f, 0f, 0.4f);
                 var button = row.gameObject.AddComponent<Button>();
                 button.transition = Selectable.Transition.None;
-                // Kein Hover-Grow: die Zeile lebt in einer Scroll-Maske und würde
-                // beim Skalieren an den Seiten abgeschnitten
-                row.gameObject.AddComponent<UiFxIgnore>();
+                row.gameObject.AddComponent<UiFxIgnore>();   // Standard-Grow würde in der Maske clippen
                 button.onClick.AddListener(() => { SfxManager.Click(); difficulty = index; RefreshAll(); });
 
                 var frame = MakeUiImage("Frame", row, Color.white, skin != null ? skin.whiteFrame : null, true);
@@ -908,6 +939,7 @@ namespace Rouge.Tcg.UI
                 note.characterSpacing = 12f;
 
                 rosterRows.Add((bg, frame, name, note));
+                AddRowHover(row, new Color(143f / 255f, 198f / 255f, 210f / 255f, 0.10f));
             }
             content.sizeDelta = new Vector2(0f, opponents.Length * (rowH + gap) - gap);
             scroll.verticalNormalizedPosition = 1f;
@@ -1012,6 +1044,7 @@ namespace Rouge.Tcg.UI
                 state.characterSpacing = 14f;
 
                 towerRows.Add((row, bg, frame, name, state));
+                AddRowHover(row, new Color(TowerGoldBright.r, TowerGoldBright.g, TowerGoldBright.b, 0.10f));
             }
             content.sizeDelta = new Vector2(0f, count * (rowH + gap) - gap);
         }
