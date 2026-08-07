@@ -161,6 +161,7 @@ namespace Rouge.Tcg.Net
         public string question;    // yesno
         public int cardId;         // yesno/option: Kontext-Karte
         public bool isPhaseWindow; // yesno
+        public bool isResponse;    // yesno: Reaktionsangebot (Toggle darf ablehnen)
         public SduelMainOption[] mainOptions;
         public SduelBattleOption[] battleOptions;
         public string[] choices;   // option

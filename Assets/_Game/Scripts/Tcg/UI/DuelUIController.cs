@@ -52,6 +52,8 @@ namespace Rouge.Tcg.UI
             if (surrenderButton != null) surrenderButton.onClick.AddListener(OnSurrenderButton);
 
             BuildConfirmButton();
+            BuildResponseToggle();
+            StrengthenStatusText();
 
             // Die Duell-Knöpfe tragen die wichtigsten Entscheidungen — deutlich kräftigeres Feedback
             Strengthen(battlePhaseButton);
@@ -213,6 +215,54 @@ namespace Rouge.Tcg.UI
         private void SetStatus(string text)
         {
             if (statusText != null) statusText.text = CardLinkText.Linkify(text);
+            if (statusPlate != null) statusPlate.SetActive(!string.IsNullOrEmpty(text));
+        }
+
+        // ================== STATUS-PLATTE ==================
+
+        private GameObject statusPlate;
+
+        /// <summary>
+        /// Der Status in der Bildmitte war klein und gold auf buntem Brett — die
+        /// wichtigste Zeile des Duells ("Gegner reagiert", "klicke eine Zone")
+        /// verschwand optisch. Eine dunkle Platte dahinter und eine Stufe mehr
+        /// Schrift machen sie zur Ansage.
+        /// </summary>
+        private void StrengthenStatusText()
+        {
+            if (statusText == null) return;
+
+            statusText.fontSize = Mathf.Max(statusText.fontSize + 5f, 22f);
+            statusText.color = new Color(0.953f, 0.867f, 0.643f, 1f);   // #F3DDA4
+
+            var textRect = (RectTransform)statusText.transform;
+            statusPlate = new GameObject("StatusPlate", typeof(RectTransform));
+            var plateRect = (RectTransform)statusPlate.transform;
+            plateRect.SetParent(textRect.parent, false);
+            plateRect.anchorMin = textRect.anchorMin;
+            plateRect.anchorMax = textRect.anchorMax;
+            plateRect.pivot = textRect.pivot;
+            plateRect.anchoredPosition = textRect.anchoredPosition;
+            plateRect.sizeDelta = textRect.sizeDelta + new Vector2(36f, 14f);
+            plateRect.SetSiblingIndex(textRect.GetSiblingIndex());   // hinter den Text
+
+            var plate = statusPlate.AddComponent<UnityEngine.UI.Image>();
+            plate.color = new Color(0.04f, 0.032f, 0.024f, 0.86f);
+            plate.raycastTarget = false;
+
+            var keyline = new GameObject("Keyline", typeof(RectTransform));
+            var keyRect = (RectTransform)keyline.transform;
+            keyRect.SetParent(plateRect, false);
+            keyRect.anchorMin = new Vector2(0f, 0f);
+            keyRect.anchorMax = new Vector2(1f, 0f);
+            keyRect.pivot = new Vector2(0.5f, 0f);
+            keyRect.offsetMin = Vector2.zero;
+            keyRect.offsetMax = new Vector2(0f, 2f);
+            var keyImg = keyline.AddComponent<UnityEngine.UI.Image>();
+            keyImg.color = new Color(0.784f, 0.643f, 0.361f, 0.8f);
+            keyImg.raycastTarget = false;
+
+            statusPlate.SetActive(false);
         }
 
         // ================== REQUEST-HANDLER ==================
@@ -265,6 +315,16 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(YesNoRequest request)
         {
+            // Reaktions-Toggle: Wer nicht reagieren will, wird nicht gefragt.
+            // Gilt NUR für Reaktionsangebote — eigene Trigger und Phasenfenster
+            // fragen weiterhin.
+            if (request.IsResponse && !ResponsesEnabled)
+            {
+                request.Result = false;
+                request.Answered = true;
+                yield break;
+            }
+
             if (request.Card != null && detailPanel != null) detailPanel.ShowCard(request.Card);
             TcgCardView askedView = null;
             if (request.Card != null && board.TryGetView(request.Card, out askedView))
@@ -280,6 +340,70 @@ namespace Rouge.Tcg.UI
             while (!done) yield return null;
 
             if (askedView != null) askedView.SetHighlight(false);
+        }
+
+        // ================== REAKTIONS-TOGGLE ==================
+
+        /// <summary>Bietet das Duell Reaktionsfenster an? Umschaltbar unten links.</summary>
+        public static bool ResponsesEnabled { get; private set; } = true;
+
+        private UnityEngine.UI.Image responseToggleBg;
+        private TMP_Text responseToggleLabel;
+
+        /// <summary>Kleiner Schalter unten links: REACTIONS ON/OFF.</summary>
+        private void BuildResponseToggle()
+        {
+            var canvas = GetComponentInParent<Canvas>();
+            if (canvas == null) return;
+            ResponsesEnabled = true;   // jede Partie beginnt gesprächsbereit
+
+            var go = new GameObject("ResponseToggle", typeof(RectTransform));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(canvas.rootCanvas.transform, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, 0f);
+            rect.pivot = new Vector2(0f, 0f);
+            rect.anchoredPosition = new Vector2(24f, 20f);
+            rect.sizeDelta = new Vector2(196f, 40f);
+
+            responseToggleBg = go.AddComponent<UnityEngine.UI.Image>();
+            responseToggleBg.color = new Color(0.10f, 0.16f, 0.12f, 0.92f);
+            var button = go.AddComponent<UnityEngine.UI.Button>();
+            button.targetGraphic = responseToggleBg;
+            button.onClick.AddListener(() =>
+            {
+                ResponsesEnabled = !ResponsesEnabled;
+                RefreshResponseToggle();
+                SfxManager.Click();
+            });
+
+            var labelGo = new GameObject("Label", typeof(RectTransform));
+            var labelRect = (RectTransform)labelGo.transform;
+            labelRect.SetParent(rect, false);
+            labelRect.anchorMin = Vector2.zero; labelRect.anchorMax = Vector2.one;
+            labelRect.offsetMin = Vector2.zero; labelRect.offsetMax = Vector2.zero;
+            responseToggleLabel = labelGo.AddComponent<TextMeshProUGUI>();
+            responseToggleLabel.fontSize = 15f;
+            responseToggleLabel.characterSpacing = 5f;
+            responseToggleLabel.alignment = TextAlignmentOptions.Center;
+            responseToggleLabel.raycastTarget = false;
+            var skin = TransitionSkin.Load();
+            if (skin != null && skin.oswald != null) responseToggleLabel.font = skin.oswald;
+            RefreshResponseToggle();
+        }
+
+        private void RefreshResponseToggle()
+        {
+            if (responseToggleLabel != null)
+            {
+                responseToggleLabel.text = ResponsesEnabled ? "REACTIONS · ON" : "REACTIONS · OFF";
+                responseToggleLabel.color = ResponsesEnabled
+                    ? new Color(0.56f, 0.90f, 0.66f, 1f)
+                    : new Color(0.72f, 0.55f, 0.45f, 1f);
+            }
+            if (responseToggleBg != null)
+                responseToggleBg.color = ResponsesEnabled
+                    ? new Color(0.08f, 0.16f, 0.10f, 0.92f)
+                    : new Color(0.16f, 0.10f, 0.07f, 0.92f);
         }
 
         public IEnumerator Handle(OptionRequest request)
@@ -448,6 +572,20 @@ namespace Rouge.Tcg.UI
             int slotIndex = GetSlotIndexUnder(ZoneType.MonsterZone, screenPosition);
             if (slotIndex >= 0)
             {
+                // Belegte Slots sind kein Ziel — auch dann nicht, wenn Tribute
+                // sie gleich freimachen wuerden. Wohin die Karte kommt, ist die
+                // Frage NACH dem Opfern; wer auf ein stehendes Monster zieht,
+                // bekommt eine Ansage statt einer stillen Fehlbeschwörung.
+                var localSide = board != null && board.Duel != null
+                    ? (board.Duel.LocalPlayer ?? board.Duel.Player1) : null;
+                var occupant = localSide != null && slotIndex < localSide.MonsterZones.Length
+                    ? localSide.MonsterZones[slotIndex] : null;
+                if (occupant != null)
+                {
+                    SetStatus($"That zone is occupied by {occupant.Name} — drop onto an empty slot.");
+                    SfxManager.Hover(0.6f);
+                    return;
+                }
                 indices = OptionIndicesFor(request, instance, MainActionKind.SummonMonster, MainActionKind.SpecialSummonSelf);
             }
             else

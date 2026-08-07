@@ -95,46 +95,47 @@ namespace Rouge.Tcg.UI
 
         private IEnumerator ShowRoutine(DuelResult result)
         {
-            yield return new WaitForSeconds(showDelay);
-
             var local = duel.LocalPlayer != null ? duel.LocalPlayer : duel.Player1;
             bool localIsPlayer1 = local == duel.Player1;
             bool victory = (result == DuelResult.Player1Wins) == localIsPlayer1;
             string opponent = local != null && local.Opponent != null ? local.Opponent.Name : "the opponent";
+            var loser = victory ? local.Opponent : local;
 
-            // Bei einer Niederlage läuft erst die Sequenz (Handoff „Animations",
-            // Abschnitt 5) — sie bringt ihren eigenen Abspann mit. Das Panel kommt
-            // danach, für die Knöpfe.
-            if (!victory)
+            // ---- 1+2: Der finale Schlag darf ausklingen, die LP ticken zu Ende.
+            // Keine feste Wartezeit: die Sequenz beginnt, wenn die Null wirklich
+            // auf dem Schirm steht — vorher wirkt jedes Ende abgehackt.
+            yield return new WaitForSeconds(Mathf.Max(0.35f, showDelay * 0.3f));
+            var board = FindAnyObjectByType<DuelBoardRenderer>();
+            float safety = 4f;
+            while (board != null && !board.LpSettled && safety > 0f)
             {
-                bool done = false;
-                PlayerDefeatSequence.Play(opponent, duel.TurnNumber,
-                    Rouge.Tcg.Net.PlayerProfile.TakeRpDelta(),
-                    Mathf.Max(0, lastLifeBeforeHit), Mathf.Max(1, lastHit),
-                    () => done = true);
-                while (!done) yield return null;
-
-                // Danach das Siegel des Gegners: es ist seine Unterschrift unter
-                // den Sieg, und eine Unterschrift, die nur er selbst sieht, ist
-                // keine. Nach der Niederlage-Sequenz, nicht über ihr.
-                bool sealed_ = false;
-                VictorySealSequence.PlayForLoser(
-                    Rouge.Tcg.Net.MatchContext.RemoteEquipped("victorySeal"),
-                    opponent, duel.TurnNumber, () => sealed_ = true);
-                while (!sealed_) yield return null;
+                safety -= Time.deltaTime;
+                yield return null;
             }
-            else
-            {
-                // Beim Sieg landet das ausgerüstete Siegel (Handoff „Cosmetics",
-                // Abschnitt 6). Ohne Ausrüstung läuft still das Grundsiegel.
-                bool done = false;
+            yield return new WaitForSeconds(0.45f);   // kurzer Halt auf der Null
+
+            // ---- 3: Die Spielerkarte des Verlierers zerspringt — auf BEIDEN
+            // Clients dasselbe Bild, an derselben Stelle des Bretts.
+            var presenter = duelHost != null ? duelHost.ScenePresenter : null;
+            if (presenter != null && loser != null)
+                yield return presenter.ShowPlayerCardShatter(loser);
+
+            // ---- 4: Das Siegel des SIEGERS, für beide. Der Sieger liest
+            // VICTORY, der Verlierer LOSS — Sieg und Unterschrift gehören dem,
+            // der gewonnen hat. Ohne Ausrüstung läuft still das Grundsiegel
+            // (Solo-Bots tragen keines).
+            bool sealDone = false;
+            if (victory)
                 VictorySealSequence.Play(
                     Rouge.Tcg.Net.Cosmetics.EquippedIn("victorySeal"),
                     opponent, duel.TurnNumber,
                     Rouge.Tcg.Net.PlayerProfile.TakeRpDelta(),
-                    () => done = true);
-                while (!done) yield return null;
-            }
+                    () => sealDone = true);
+            else
+                VictorySealSequence.PlayForLoser(
+                    Rouge.Tcg.Net.MatchContext.RemoteEquipped("victorySeal"),
+                    opponent, duel.TurnNumber, () => sealDone = true);
+            while (!sealDone) yield return null;
 
             // Sieg = Gold mit Shimmer, Niederlage = Ember
             Color accent = victory ? new Color32(0xC8, 0xA4, 0x5C, 0xFF) : new Color32(0xC9, 0x7A, 0x5C, 0xFF);
@@ -171,9 +172,10 @@ namespace Rouge.Tcg.UI
             if (subtitleText != null)
                 subtitleText.text = victory ? $"You defeated {opponent}." : $"{opponent} defeated you.";
 
-            // Button-Beschriftung: im Netz-/Server-Match führt "Nochmal" ohnehin ins Menü
+            // ---- 5: Der Continue-Knopf. Online gibt es genau einen Weg (weiter,
+            // ggf. durch den Rank-Up, dann Menü); Solo behält "nochmal".
             bool network = Rouge.Tcg.Net.MatchContext.IsServerMatch;
-            if (restartLabel != null) restartLabel.text = network ? "RETURN TO MENU" : "DUEL AGAIN";
+            if (restartLabel != null) restartLabel.text = network ? "CONTINUE" : "DUEL AGAIN";
             if (deckEditorButton != null) deckEditorButton.gameObject.SetActive(!network);
 
             if (panelGroup == null) yield break;
@@ -193,11 +195,15 @@ namespace Rouge.Tcg.UI
             if (Rouge.Tcg.Net.MatchContext.IsServerMatch)
             {
                 LeaveNetworkMatch();
+                // ---- 6+7: steht ein Aufstieg an, laeuft er jetzt — mit eigenem
+                // Continue am Ende — und erst dann faellt das Hauptmenue.
                 AfterRankUp(() => SceneManager.LoadScene(mainMenuSceneName));
                 return;
             }
-            // Solo/Offline: gleiche Aufstellung nochmal (MatchContext bleibt erhalten)
-            SceneManager.LoadScene(gameObject.scene.name);
+            // Solo/Offline: auch hier erst der Aufstieg (Solo-Siege geben RP),
+            // dann dieselbe Aufstellung nochmal (MatchContext bleibt erhalten)
+            string sceneName = gameObject.scene.name;
+            AfterRankUp(() => SceneManager.LoadScene(sceneName));
         }
 
         private void OpenDeckEditor()

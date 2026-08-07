@@ -579,6 +579,59 @@ namespace Rouge.Tcg.UI
         /// Die Umkehrung in Gather ist der Kern: eine zerstörte Karte wird zu
         /// einer anonymen Karte. Genau das hält der Friedhof.
         /// </summary>
+        /// <summary>
+        /// Die Spielerkarte des Verlierers zerspringt an Ort und Stelle — Teil
+        /// der End-Sequenz, auf BEIDEN Clients. Anders als ShowCardDestroyed
+        /// gibt es keinen Flug zum Friedhof: der Held fällt, er zieht nicht um.
+        /// Die Keile bersten und verglimmen, die Ansicht bleibt aus.
+        /// </summary>
+        public IEnumerator ShowPlayerCardShatter(PlayerState loser)
+        {
+            var card = loser?.PlayerCard;
+            if (card == null || board == null || flyLayer == null) yield break;
+            if (!board.TryGetView(card, out var view) || view == null) yield break;
+
+            SfxManager.Destroyed();
+            ScreenShake.Shake(0.03f, 1f, 16f);
+
+            var rect = (RectTransform)view.transform;
+            var fromPos = rect.position;
+            var size = rect.rect.size;
+            var shatter = CardShatter.Build(flyLayer, view, card, size);
+            shatter.Rect.position = fromPos;
+            view.gameObject.SetActive(false);
+
+            try
+            {
+                // Einschlag und Risse
+                for (float t = 0f; t < 0.3f; t += Time.deltaTime)
+                {
+                    float p = Mathf.Clamp01(t / 0.3f);
+                    shatter.Apply(0f, 0f, 1f, Motion.Seg(p, 0.4f, 1f) * 0.3f, 1f);
+                    yield return null;
+                }
+                // Bersten — weiter auseinander als eine normale Zerstörung
+                for (float t = 0f; t < 0.55f; t += Time.deltaTime)
+                {
+                    float p = Mathf.Clamp01(t / 0.55f);
+                    float out01 = Motion.Enter(p);
+                    shatter.Apply(out01 * 220f, out01, 1f, 1f, 1f);
+                    yield return null;
+                }
+                // Verglimmen an Ort und Stelle
+                for (float t = 0f; t < 0.5f; t += Time.deltaTime)
+                {
+                    float p = Mathf.Clamp01(t / 0.5f);
+                    shatter.Apply(Motion.Mix(220f, 260f, p), 1f, 1f, 1f, 1f - Motion.Enter(p));
+                    yield return null;
+                }
+            }
+            finally
+            {
+                if (shatter != null) Destroy(shatter.gameObject);
+            }
+        }
+
         public IEnumerator ShowCardDestroyed(CardInstance card)
         {
             if (!enablePresentations) yield break;

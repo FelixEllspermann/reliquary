@@ -787,7 +787,9 @@ namespace Rouge.Tcg
             else
             {
                 if (activationSerial != chainBefore) Log($"{spell.Name} resolves.");
+                resolvingChain++;
                 yield return ResolveEffectActions(spell, effect, player, targets);
+                resolvingChain--;
             }
             yield return CloseChainLink();
             if (spell.Zone != ZoneType.Graveyard && spell.Zone != ZoneType.Banished && presenter != null)
@@ -891,7 +893,9 @@ namespace Rouge.Tcg
             else
             {
                 if (activationSerial != chainBefore) Log($"{card.Name} resolves.");
+                resolvingChain++;
                 yield return ResolveEffectActions(card, effect, player, targets);
+                resolvingChain--;
             }
             yield return CloseChainLink();
             BoardChanged();
@@ -1938,6 +1942,11 @@ yield return RunSummonEvents(target);
         private IEnumerator OpenResponseWindow(PlayerState firstPriority, string context, CardInstance contextCard, bool isPhaseWindow = false)
         {
             if (responseDepth >= 2) yield break;
+            // Waehrend eine Kette sich ABBAUT, geht kein neues Fenster auf: was
+            // ein aufloesender Effekt anstoesst (Beschwoerungen, Artefakte),
+            // laeuft durch, ohne dass jemand hineingraetschen kann. Reagiert
+            // wird auf Aktivierungen, nicht in deren Aufloesung.
+            if (resolvingChain > 0) yield break;
             responseDepth++;
 
             foreach (var responder in new[] { firstPriority, firstPriority.Opponent })
@@ -1958,6 +1967,7 @@ yield return RunSummonEvents(target);
                         Title = isPhaseWindow ? context : $"Response to {context}",
                         Card = card,
                         IsPhaseWindow = isPhaseWindow,
+                        IsResponse = !isPhaseWindow,
                         Question = $"{card.Name}: Activate \"{effect.label}\" {(isPhaseWindow ? "now?" : "in response?")}{DescribeActivation(effect)}"
                     };
                     yield return DecideRouted(responder, request);

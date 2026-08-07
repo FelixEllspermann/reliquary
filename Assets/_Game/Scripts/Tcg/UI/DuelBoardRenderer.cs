@@ -278,6 +278,16 @@ namespace Rouge.Tcg.UI
             else detailPanel.ShowCard(view.Instance);
         }
 
+        /// <summary>
+        /// Sind die angezeigten LP bei den echten Werten angekommen? Die End-
+        /// Sequenz wartet darauf — der Kartensprung darf erst kommen, wenn die
+        /// Null wirklich auf dem Schirm steht.
+        /// </summary>
+        public bool LpSettled =>
+            duel == null || duel.Player1 == null
+            || (Mathf.Approximately(p1DisplayedLp, BottomPlayer.LifePoints)
+                && Mathf.Approximately(p2DisplayedLp, BottomPlayer.Opponent.LifePoints));
+
         /// <summary>Lässt die angezeigten LP animiert zum echten Wert ticken.</summary>
         private void Update()
         {
@@ -408,8 +418,10 @@ namespace Rouge.Tcg.UI
         private static string FormatLogLine(string message)
         {
             if (message.StartsWith("—") || message.StartsWith("Duel:"))
-                return $"\n<color=#6E4E0E><b>{message}</b></color>";
-            return $"<color=#A07C34>◆</color> <indent=14><color=#3A3020>{message}</color></indent>";
+                return $"\n<color=#4A3608><b>{message}</b></color>";
+            // Dunkle Tinte auf dem hellen Pergament — #3A3020 war zu blass,
+            // gerade bei kleinen Grössen. Lesbarkeit schlaegt Eleganz.
+            return $"<color=#8A6A28>◆</color> <indent=14><color=#1E1508>{message}</color></indent>";
         }
     }
 }

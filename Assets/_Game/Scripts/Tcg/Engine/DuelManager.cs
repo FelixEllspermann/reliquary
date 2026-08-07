@@ -116,6 +116,10 @@ namespace Rouge.Tcg
         // während die äussere Aktivierung noch läuft.
         private int chainDepth;
 
+        // > 0, solange irgendein Ketten-Glied AUFLOEST. In dieser Zeit öffnen
+        // sich keine neuen Reaktionsfenster — in einen Abbau grätscht niemand.
+        private int resolvingChain;
+
         private PlayerState localPlayer;
 
         /// <summary>Der Spieler, der an diesem Client sitzt (bestimmt die untere Board-Hälfte).</summary>
@@ -263,6 +267,8 @@ namespace Rouge.Tcg
 
             TurnNumber = 0;
             responseDepth = 0;
+            chainDepth = 0;
+            resolvingChain = 0;
             Result = DuelResult.None;
             DuelRunning = true;
 

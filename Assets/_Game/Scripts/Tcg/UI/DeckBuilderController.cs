@@ -100,6 +100,12 @@ namespace Rouge.Tcg.UI
         private readonly List<FinishChip> finishChips = new List<FinishChip>();
 
         private bool savedState;      // SAVE DECK ↔ SAVED ✓
+
+        // Das Deck mit ungespeicherten Aenderungen. Jede Server-Nachricht mit
+        // Profil ERSETZT PlayerProfile.Decks durch frische Objekte — wer gerade
+        // baut, verlor dabei alles seit dem letzten Save (ein Craft genuegte).
+        // Die Arbeitskopie wird nach dem Apply zurueckgelegt.
+        private RuntimeDeck editedDeck;
         private bool awaitingSave;
 
         private bool CollectionMode => PlayerProfile.LoggedIn && network != null && network.IsConnected;
@@ -179,7 +185,17 @@ namespace Rouge.Tcg.UI
             {
                 case "profile":
                 case "auth_ok":
-                    if (awaitingSave) { awaitingSave = false; savedState = true; }
+                case "craft_result":
+                case "pack_result":
+                    bool justSaved = awaitingSave;
+                    if (justSaved) { awaitingSave = false; savedState = true; editedDeck = null; }
+                    // Craft/Pack aendern die SAMMLUNG, nicht das Deck — der Server
+                    // schickt aber das ganze Profil, und Apply hat die Deck-Liste
+                    // frisch ersetzt. Die ungespeicherte Arbeitskopie kommt zurueck
+                    // an ihren Platz, sonst waere sie mit jedem Craft weg.
+                    if (!justSaved && editedDeck != null
+                        && CurrentIndex >= 0 && CurrentIndex < PlayerProfile.Decks.Count)
+                        PlayerProfile.Decks[CurrentIndex] = editedDeck;
                     RefreshDeckDropdown();
                     RebuildAll();
                     break;
@@ -326,6 +342,8 @@ namespace Rouge.Tcg.UI
 
         private void OnDeckSelected()
         {
+            editedDeck = null;   // Wechsel verwirft die Arbeitskopie — wie bisher
+
             savedState = false;
             if (deckNameInput != null) deckNameInput.SetTextWithoutNotify(CurrentDeck != null ? CurrentDeck.Name : "");
             RebuildAll();
@@ -1185,6 +1203,7 @@ namespace Rouge.Tcg.UI
         private void MarkEdited()
         {
             savedState = false;
+            editedDeck = CurrentDeck;
             RefreshSaveButton();
         }
 

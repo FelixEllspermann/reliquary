@@ -512,8 +512,12 @@ namespace Rouge.Tcg.UI
             // Auf dem Niederlage-Bildschirm gehört die Bühne dem Gegner: sein
             // Siegel, sein Name. Wer verliert, soll sehen, womit unterschrieben
             // wurde — sonst wäre die halbe Kosmetik unsichtbar.
-            headline.text = asOpponent ? opponent.ToUpperInvariant() : "VICTORY";
-            eyebrow.text = asOpponent ? "SEALED THE DUEL" : "THE VAULT REMEMBERS YOUR NAME";
+            // Der Sieger liest VICTORY, der Verlierer LOSS — dasselbe Siegel,
+            // zwei Wahrheiten. Wessen Zeichen es ist, sagt die Zeile darüber.
+            headline.text = asOpponent ? "LOSS" : "VICTORY";
+            eyebrow.text = asOpponent
+                ? $"{opponent.ToUpperInvariant()} SEALED THE DUEL"
+                : "THE VAULT REMEMBERS YOUR NAME";
             eyebrow.color = tone;
             chipLabel.text = asOpponent
                 ? $"TURN {turn}"

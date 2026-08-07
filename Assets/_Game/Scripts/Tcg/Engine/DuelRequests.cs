@@ -23,6 +23,10 @@ namespace Rouge.Tcg
 
         /// <summary>True, wenn die Frage aus einem Phasenwechsel-Priority-Fenster stammt (kein konkretes Ereignis).</summary>
         public bool IsPhaseWindow;
+
+        /// <summary>True, wenn die Frage eine REAKTION anbietet (Reaktionsfenster).
+        /// Der Client darf solche Fragen per Toggle automatisch verneinen.</summary>
+        public bool IsResponse;
     }
 
     public class OptionRequest : DuelRequest

@@ -457,11 +457,36 @@ namespace Rouge.DuelHost
             foe = SideView(foe, viewer)
         };
 
+        /// <summary>
+        /// Manche Ereignisse SIND die Enthüllung: wer aus der Hand aktiviert oder
+        /// aus dem Extra Deck beschwört, zeigt die Karte damit beiden Spielern —
+        /// auch wenn sie im Moment des Events noch in einer verdeckten Zone
+        /// liegt. Ohne diese Regel sah der Gegner nur "?" mit Kartenrücken.
+        /// </summary>
+        private static bool EventReveals(DuelEvent evt)
+        {
+            switch (evt.Type)
+            {
+                case "activation":
+                case "pulse":
+                case "chainlink":
+                case "chainresolve":
+                case "reliquarysummon":
+                    return true;
+                case "summon":
+                    // Face-up-Beschwörungen zeigen sich; verdeckte bleiben verdeckt
+                    return evt.Card != null && !evt.Card.FaceDown;
+                default:
+                    return false;
+            }
+        }
+
         private object EventWire(DuelEvent evt, PlayerState viewer) => new
         {
             type = evt.Type,
             cardId = evt.Card != null ? IdOf(evt.Card) : 0,
-            cardName = evt.Card != null && VisibleTo(evt.Card, viewer) ? evt.Card.Name : null,
+            cardName = evt.Card != null && (EventReveals(evt) || VisibleTo(evt.Card, viewer))
+                ? evt.Card.Name : null,
             // Bei der Reliquary-Beschwörung trägt targetId die ZONE, nicht eine
             // Karte — die Karte liegt zu dem Zeitpunkt noch gar nicht im Feld.
             targetId = evt.Zone >= 0 ? evt.Zone : (evt.Target != null ? IdOf(evt.Target) : 0),
@@ -498,6 +523,7 @@ namespace Rouge.DuelHost
                     common["question"] = yesNo.Question;
                     common["cardId"] = IdOf(yesNo.Card);
                     common["isPhaseWindow"] = yesNo.IsPhaseWindow;
+                    common["isResponse"] = yesNo.IsResponse;
                     break;
                 case OptionRequest option:
                     common["type"] = "option";

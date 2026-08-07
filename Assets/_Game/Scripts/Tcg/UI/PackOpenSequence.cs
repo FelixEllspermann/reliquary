@@ -627,6 +627,12 @@ namespace Rouge.Tcg.UI
             group.alpha = 0f;
             stage = (RectTransform)canvasGo.transform;
 
+            // Deckender Boden ZUERST: der Tisch-Glow darüber ist ein radialer
+            // Sprite und an den Rändern durchsichtig — ohne diese Platte schien
+            // der Shop durch und machte die Sequenz schwer lesbar.
+            var floor = Make("Floor", stage, Hex("#120E09"));
+            Stretch(floor.rectTransform, -60f);
+
             tableGlow = Make("TableGlow", stage, Hex("#2A1C12"));
             tableGlow.sprite = skin.glow;
             Stretch(tableGlow.rectTransform, -60f);

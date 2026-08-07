@@ -172,7 +172,16 @@ namespace Rouge.Tcg
         public CardInstance MirrorEventCard(int id, string cardName, PlayerState owner)
         {
             if (id == 0) return null;
-            if (mirrorCards.TryGetValue(id, out var known)) return known;
+            if (mirrorCards.TryGetValue(id, out var known))
+            {
+                // Der Spiegel kennt die Karte vielleicht nur als Rueckseite —
+                // eine Handkarte des Gegners etwa. Bringt das Ereignis jetzt
+                // einen Namen mit (Aktivierung = Enthuellung), wird er
+                // nachgereicht, sonst zeigte die Animation weiter nur "?".
+                if (known.Definition == null && !string.IsNullOrEmpty(cardName) && catalog != null)
+                    known.Definition = catalog.FindByName(cardName);
+                return known;
+            }
             return MirrorResolve(
                 new Net.SduelCard { id = id, name = cardName },
                 owner ?? Player1,
@@ -223,7 +232,8 @@ namespace Rouge.Tcg
                         Title = wire.title ?? "",
                         Question = wire.question ?? "",
                         Card = MirrorCard(wire.cardId),
-                        IsPhaseWindow = wire.isPhaseWindow
+                        IsPhaseWindow = wire.isPhaseWindow,
+                        IsResponse = wire.isResponse
                     };
 
                 case "option":

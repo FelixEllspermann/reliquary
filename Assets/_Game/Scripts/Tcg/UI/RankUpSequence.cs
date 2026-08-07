@@ -163,11 +163,50 @@ namespace Rouge.Tcg.UI
                 Frame(scene, 1f);   // Schlussbild sauber setzen, sonst springt die Naht
             }
 
+            // Das Schlussbild gehoert dem Spieler: es bleibt stehen, bis er
+            // weiterklickt. Ein Aufstieg, der sich selbst wegraeumt, fuehlt
+            // sich an wie einer, den niemand gesehen hat.
+            yield return HoldForContinue();
+
             gameObject.SetActive(false);
             Playing = false;
             var callback = finished;
             finished = null;
             callback?.Invoke();
+        }
+
+        /// <summary>Pulsierender CONTINUE-Hinweis; weiter per Klick oder Taste.</summary>
+        private IEnumerator HoldForContinue()
+        {
+            var go = new GameObject("Continue", typeof(RectTransform));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(group.transform, false);
+            rect.anchorMin = new Vector2(0.5f, 0f);
+            rect.anchorMax = new Vector2(0.5f, 0f);
+            rect.pivot = new Vector2(0.5f, 0f);
+            rect.sizeDelta = new Vector2(400f, 44f);
+            rect.anchoredPosition = new Vector2(0f, 46f);
+            var label = go.AddComponent<TMPro.TextMeshProUGUI>();
+            label.text = "CLICK TO CONTINUE";
+            label.fontSize = 20f;
+            label.characterSpacing = 9f;
+            label.alignment = TMPro.TextAlignmentOptions.Center;
+            label.raycastTarget = false;
+
+            float t = 0f;
+            while (true)
+            {
+                t += Time.unscaledDeltaTime;
+                label.color = Motion.Alpha(new Color(0.92f, 0.85f, 0.66f, 1f),
+                    0.45f + 0.4f * Mathf.PingPong(t * 1.6f, 1f));
+                var mouse = UnityEngine.InputSystem.Mouse.current;
+                var keyboard = UnityEngine.InputSystem.Keyboard.current;
+                bool clicked = (mouse != null && mouse.leftButton.wasPressedThisFrame)
+                    || (keyboard != null && keyboard.anyKey.wasPressedThisFrame);
+                if (t > 0.4f && clicked) break;
+                yield return null;
+            }
+            Destroy(go);
         }
 
         private void Frame(int scene, float p)

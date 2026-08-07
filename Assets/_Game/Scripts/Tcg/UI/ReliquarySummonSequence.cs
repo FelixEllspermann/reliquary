@@ -399,12 +399,14 @@ namespace Rouge.Tcg.UI
                 bool used = i < texts.Count;
                 chips[i].gameObject.SetActive(used);
                 if (!used) continue;
-                chips[i].GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f * alpha);
-                chips[i].Find("Frame").GetComponent<Image>().color = Motion.Alpha(Violet, 0.5f * alpha);
+                // Deckende Plaketten: bei 50 % Schwarz mischte sich das Duell-Feld
+                // in die Schrift und die Stats waren praktisch unlesbar.
+                chips[i].GetComponent<Image>().color = new Color(0.055f, 0.045f, 0.035f, 0.96f * alpha);
+                chips[i].Find("Frame").GetComponent<Image>().color = Motion.Alpha(Violet, 0.85f * alpha);
                 chips[i].Find("Gem").GetComponent<Image>().color = Motion.Alpha(Violet, alpha);
                 var text = chips[i].Find("Label").GetComponent<TMP_Text>();
                 text.text = texts[i];
-                text.color = Motion.Alpha(Gold, alpha);
+                text.color = Motion.Alpha(new Color(0.953f, 0.867f, 0.643f), alpha);
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(chipRow);
         }
