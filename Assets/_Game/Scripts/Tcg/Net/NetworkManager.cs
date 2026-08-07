@@ -216,7 +216,8 @@ namespace Rouge.Tcg.Net
 
         public void SendOpenPack(string packName, int count = 1) =>
             SendJson(new NetMessage { t = "open_pack", pack = packName, packCount = count });
-        public void SendBuyPack(string packName) => SendJson(new NetMessage { t = "buy_pack", pack = packName });
+        public void SendBuyPack(string packName, int count = 1) =>
+            SendJson(new NetMessage { t = "buy_pack", pack = packName, packCount = Mathf.Clamp(count, 1, 10) });
         public void SendSaveDeck(int index, RuntimeDeck deck) => SendJson(new NetMessage
         {
             t = "save_deck",

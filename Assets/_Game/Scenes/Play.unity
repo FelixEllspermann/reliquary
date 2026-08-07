@@ -12401,6 +12401,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a5c9a3b5693e5f4b885eef24210b7af, type: 2}
   - {fileID: 11400000, guid: 85b729fee322f88449ed67dffaf1b5c9, type: 2}
   - {fileID: 11400000, guid: 30c49eac0dcc0884a8e2a8a1830794ce, type: 2}
+  - {fileID: 11400000, guid: 0eca8d60b53353a48a2b60d7df77d1ee, type: 2}
+  - {fileID: 11400000, guid: 57098b3d32dc8db4da65b64f99a2f312, type: 2}
+  - {fileID: 11400000, guid: eb1260b037197e84fbd1f9bf96ac87ad, type: 2}
+  - {fileID: 11400000, guid: 4241b871e764c45458be7359b00adee6, type: 2}
   illegalStrip: {fileID: 1044176727}
   illegalText: {fileID: 463546717}
   overlay: {fileID: 1021866853}

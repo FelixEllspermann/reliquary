@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotWyldpack
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.DeckDefinition
+  deckName: Pack Alpha
+  playerCard: {fileID: 11400000, guid: 09db639910473af48a1070a19de3323d, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 5309fe1564a941b3b19ebf02a5d32a3d, type: 2}
+  - {fileID: 11400000, guid: 5309fe1564a941b3b19ebf02a5d32a3d, type: 2}
+  - {fileID: 11400000, guid: 5309fe1564a941b3b19ebf02a5d32a3d, type: 2}
+  - {fileID: 11400000, guid: 27e0a9d975f146ada602062108a258a6, type: 2}
+  - {fileID: 11400000, guid: 27e0a9d975f146ada602062108a258a6, type: 2}
+  - {fileID: 11400000, guid: 27e0a9d975f146ada602062108a258a6, type: 2}
+  - {fileID: 11400000, guid: 6885443885154199978d998cded0aa69, type: 2}
+  - {fileID: 11400000, guid: 6885443885154199978d998cded0aa69, type: 2}
+  - {fileID: 11400000, guid: 6885443885154199978d998cded0aa69, type: 2}
+  - {fileID: 11400000, guid: cf424ef323b34b06b4f153b479eae1c1, type: 2}
+  - {fileID: 11400000, guid: cf424ef323b34b06b4f153b479eae1c1, type: 2}
+  - {fileID: 11400000, guid: cf424ef323b34b06b4f153b479eae1c1, type: 2}
+  - {fileID: 11400000, guid: 980e5c489c2c4540a2718cf34ace7567, type: 2}
+  - {fileID: 11400000, guid: 980e5c489c2c4540a2718cf34ace7567, type: 2}
+  - {fileID: 11400000, guid: 980e5c489c2c4540a2718cf34ace7567, type: 2}
+  - {fileID: 11400000, guid: ecfeadaeac0c48158e0a35dfe1f8818d, type: 2}
+  - {fileID: 11400000, guid: ecfeadaeac0c48158e0a35dfe1f8818d, type: 2}
+  - {fileID: 11400000, guid: ecfeadaeac0c48158e0a35dfe1f8818d, type: 2}
+  - {fileID: 11400000, guid: 52e340ea0964bf94d971a77bf8e0d54a, type: 2}
+  - {fileID: 11400000, guid: 52e340ea0964bf94d971a77bf8e0d54a, type: 2}
+  - {fileID: 11400000, guid: 52e340ea0964bf94d971a77bf8e0d54a, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: df02b9ed236ac88488d3720ca6ea8674, type: 2}
+  - {fileID: 11400000, guid: df02b9ed236ac88488d3720ca6ea8674, type: 2}
+  - {fileID: 11400000, guid: df02b9ed236ac88488d3720ca6ea8674, type: 2}
+  - {fileID: 11400000, guid: 7ee81700c40437d4ead2efb5d78004e3, type: 2}
+  - {fileID: 11400000, guid: 7ee81700c40437d4ead2efb5d78004e3, type: 2}
+  - {fileID: 11400000, guid: 7ee81700c40437d4ead2efb5d78004e3, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: e5f5fb760a274cda86898ed02b360e33, type: 2}
+  - {fileID: 11400000, guid: 1b964d2c8a2d45849a59ced79942c1f6, type: 2}
+  - {fileID: 11400000, guid: 1b964d2c8a2d45849a59ced79942c1f6, type: 2}
+  - {fileID: 11400000, guid: a2d70bcb0fa846147afd7f6fb0231952, type: 2}
+  - {fileID: 11400000, guid: a2d70bcb0fa846147afd7f6fb0231952, type: 2}
+  - {fileID: 11400000, guid: a2d70bcb0fa846147afd7f6fb0231952, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: 5e6b5a8c2c4f4fa3cb7e9abd5d6f81a4, type: 2}
+  - {fileID: 11400000, guid: 5e6b5a8c2c4f4fa3cb7e9abd5d6f81a4, type: 2}
+  - {fileID: 11400000, guid: 5e6b5a8c2c4f4fa3cb7e9abd5d6f81a4, type: 2}
+  - {fileID: 11400000, guid: fea9be2c24fea03c6089bbddd4f81a04, type: 2}
+  - {fileID: 11400000, guid: fea9be2c24fea03c6089bbddd4f81a04, type: 2}
+  - {fileID: 11400000, guid: 9dcc6a5d438780747b75fd9aabc2729a, type: 2}
+  - {fileID: 11400000, guid: 4adbdf84bd2fb1d4fb4fadd6517a735b, type: 2}
+  - {fileID: 11400000, guid: 4adbdf84bd2fb1d4fb4fadd6517a735b, type: 2}

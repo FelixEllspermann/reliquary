@@ -75,6 +75,8 @@ namespace Rouge.Tcg.UI
         private Button infoButtonTemplate;
         private readonly List<(CardPackDefinition pack, Button button, TMP_Text label)> openAllButtons
             = new List<(CardPackDefinition, Button, TMP_Text)>();
+        private readonly List<(CardPackDefinition pack, Button button, TMP_Text label)> buyTenButtons
+            = new List<(CardPackDefinition, Button, TMP_Text)>();
         private GameObject infoOverlay;
         private TMP_Text infoTitle;
         private TMP_Text infoBody;
@@ -178,6 +180,14 @@ namespace Rouge.Tcg.UI
                 if (tile.openGlow != null) tile.openGlow.gameObject.SetActive(openable);
             }
 
+            // Zehnerkauf: immer sichtbar, aktiv sobald die Coins reichen
+            foreach (var (pack, button, label) in buyTenButtons)
+            {
+                if (button == null) continue;
+                button.interactable = online && PlayerProfile.Coins >= pack.price * 10;
+                if (label != null) label.text = $"BUY ×10 · {pack.price * 10}";
+            }
+
             // Massen-Öffnung erst zeigen, wenn sie etwas bündelt (ab 2 Packs)
             foreach (var (pack, button, label) in openAllButtons)
             {
@@ -214,6 +224,14 @@ namespace Rouge.Tcg.UI
             openingPackName = pack.packName;
             network.SendOpenPack(pack.packName);
             ShowFeedback($"Unsealing {pack.packName}…");
+        }
+
+        /// <summary>Kauft 10 Packs auf einmal — ein Server-Roundtrip, ein Profil-Update.</summary>
+        private void BuyTenPacks(CardPackDefinition pack)
+        {
+            if (network == null || pack == null) return;
+            network.SendBuyPack(pack.packName, 10);
+            ShowFeedback($"Buying 10× {pack.packName} for {pack.price * 10} coins…");
         }
 
         /// <summary>Öffnet bis zu 10 Packs auf einmal — der Server zieht, das Grid zeigt alles.</summary>
@@ -266,19 +284,23 @@ namespace Rouge.Tcg.UI
                     if (odds != null) odds.onClick.AddListener(() => ShowPackInfo(pack, true));
                 }
 
-                // Massen-Öffnung: voll breiter Balken über CARDS/ODDS, nur sichtbar ab 2 Packs
-                var openAll = CloneTileButton(tile.buyButton, (RectTransform)tile.buyButton.transform, "OpenAllButton", "OPEN ×10", 0f);
-                if (openAll != null)
+                // Mengen-Reihe über CARDS/ODDS, spiegelt die Spalten darunter:
+                // links BUY ×10, rechts OPEN ×N (letzterer nur sichtbar ab 2 Packs)
+                var buyTen = CloneTileButton(tile.buyButton, (RectTransform)tile.buyButton.transform, "BuyTenButton", "BUY ×10", infoButtonOffsetY * 2f);
+                if (buyTen != null)
                 {
-                    var rect = (RectTransform)openAll.transform;
-                    rect.anchorMin = new Vector2(0f, 0f);
-                    rect.anchorMax = new Vector2(1f, 0f);
-                    rect.pivot = new Vector2(0.5f, 0f);
-                    rect.sizeDelta = new Vector2(-24f, 48f);
-                    rect.anchoredPosition = new Vector2(0f, 14f + infoButtonOffsetY * 2f);
-                    openAll.onClick.AddListener(() => OpenAllPacks(pack));
-                    openAllButtons.Add((pack, openAll, openAll.GetComponentInChildren<TMP_Text>(true)));
-                    openAll.gameObject.SetActive(false);   // Rebuild entscheidet
+                    buyTen.onClick.AddListener(() => BuyTenPacks(pack));
+                    buyTenButtons.Add((pack, buyTen, buyTen.GetComponentInChildren<TMP_Text>(true)));
+                }
+                if (placement != null)
+                {
+                    var openAll = CloneTileButton(tile.buyButton, placement, "OpenAllButton", "OPEN ×10", infoButtonOffsetY * 2f);
+                    if (openAll != null)
+                    {
+                        openAll.onClick.AddListener(() => OpenAllPacks(pack));
+                        openAllButtons.Add((pack, openAll, openAll.GetComponentInChildren<TMP_Text>(true)));
+                        openAll.gameObject.SetActive(false);   // Rebuild entscheidet
+                    }
                 }
 
                 // Die Kachelzeile nennt eine feste Kartenzahl — die stammt aus der Anfangszeit

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotArchfiend
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.DeckDefinition
+  deckName: Pit Legate
+  playerCard: {fileID: 11400000, guid: b543fff0cfe8acb4599799da12aedb52, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 41c682a6a6364a3fa7a25990ff311d16, type: 2}
+  - {fileID: 11400000, guid: 41c682a6a6364a3fa7a25990ff311d16, type: 2}
+  - {fileID: 11400000, guid: 41c682a6a6364a3fa7a25990ff311d16, type: 2}
+  - {fileID: 11400000, guid: 64b571ac2cf24c37b9da4cd821fd2e37, type: 2}
+  - {fileID: 11400000, guid: 64b571ac2cf24c37b9da4cd821fd2e37, type: 2}
+  - {fileID: 11400000, guid: 64b571ac2cf24c37b9da4cd821fd2e37, type: 2}
+  - {fileID: 11400000, guid: 5f8d398cc7894e13a692b3600c8077cd, type: 2}
+  - {fileID: 11400000, guid: 5f8d398cc7894e13a692b3600c8077cd, type: 2}
+  - {fileID: 11400000, guid: 5f8d398cc7894e13a692b3600c8077cd, type: 2}
+  - {fileID: 11400000, guid: cf013b9aca2e40cb987dc7932e31b874, type: 2}
+  - {fileID: 11400000, guid: cf013b9aca2e40cb987dc7932e31b874, type: 2}
+  - {fileID: 11400000, guid: cf013b9aca2e40cb987dc7932e31b874, type: 2}
+  - {fileID: 11400000, guid: 230490bce75846489c7ad34a099f3e19, type: 2}
+  - {fileID: 11400000, guid: 230490bce75846489c7ad34a099f3e19, type: 2}
+  - {fileID: 11400000, guid: 230490bce75846489c7ad34a099f3e19, type: 2}
+  - {fileID: 11400000, guid: c279e42136a848dbb7e33ab5455dc977, type: 2}
+  - {fileID: 11400000, guid: c279e42136a848dbb7e33ab5455dc977, type: 2}
+  - {fileID: 11400000, guid: c279e42136a848dbb7e33ab5455dc977, type: 2}
+  - {fileID: 11400000, guid: 7e1502cdd33f8b24ab377ff7f18964ff, type: 2}
+  - {fileID: 11400000, guid: 7e1502cdd33f8b24ab377ff7f18964ff, type: 2}
+  - {fileID: 11400000, guid: 7e1502cdd33f8b24ab377ff7f18964ff, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: 582dc393437f430ab255f70e3bc33d7a, type: 2}
+  - {fileID: 11400000, guid: 582dc393437f430ab255f70e3bc33d7a, type: 2}
+  - {fileID: 11400000, guid: 846b01d9c9614f3182aa3e4c9e4b86ae, type: 2}
+  - {fileID: 11400000, guid: 846b01d9c9614f3182aa3e4c9e4b86ae, type: 2}
+  - {fileID: 11400000, guid: 018e18f7877c783459c4721c14852b04, type: 2}
+  - {fileID: 11400000, guid: 018e18f7877c783459c4721c14852b04, type: 2}
+  - {fileID: 11400000, guid: 018e18f7877c783459c4721c14852b04, type: 2}
+  - {fileID: 11400000, guid: 86dcd7c168104ebba31cab04a13bab92, type: 2}
+  - {fileID: 11400000, guid: 86dcd7c168104ebba31cab04a13bab92, type: 2}
+  - {fileID: 11400000, guid: 50936830a4182d341bddb3868f40eab1, type: 2}
+  - {fileID: 11400000, guid: 50936830a4182d341bddb3868f40eab1, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: 966a605bcc7a45f18e0d42a76f7297ea, type: 2}
+  - {fileID: 11400000, guid: 966a605bcc7a45f18e0d42a76f7297ea, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: a3be0fd17b944ff81acdef02a294d6f9, type: 2}
+  - {fileID: 11400000, guid: a3be0fd17b944ff81acdef02a294d6f9, type: 2}
+  - {fileID: 11400000, guid: a3be0fd17b944ff81acdef02a294d6f9, type: 2}
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: cbd68bf9f1cb77093d56e88aca1c5e71, type: 2}
+  - {fileID: 11400000, guid: cbd68bf9f1cb77093d56e88aca1c5e71, type: 2}
+  - {fileID: 11400000, guid: d6e13ca4ac7622b4de01f335d5c7092c, type: 2}

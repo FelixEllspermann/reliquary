@@ -896,9 +896,11 @@ wss.on('connection', (ws, req) => {
           sendError(c, 'You already own every card in this pack.');
           break;
         }
-        if (acc.coins < packDef.price) { sendError(c, `Not enough coins (${packDef.price} needed).`); break; }
-        acc.coins -= packDef.price;
-        acc.packInv[m.pack] = (acc.packInv[m.pack] || 0) + 1;
+        const toBuy = Math.min(10, Math.max(1, m.packCount | 0 || 1));
+        const totalPrice = packDef.price * toBuy;
+        if (acc.coins < totalPrice) { sendError(c, `Not enough coins (${totalPrice} needed).`); break; }
+        acc.coins -= totalPrice;
+        acc.packInv[m.pack] = (acc.packInv[m.pack] || 0) + toBuy;
         saveAccount(acc);
         sendProfile(c, acc);
         log(`${acc.name} kauft '${m.pack}' (${packDef.price} Coins)`);

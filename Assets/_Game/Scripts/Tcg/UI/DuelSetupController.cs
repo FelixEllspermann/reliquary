@@ -588,7 +588,7 @@ namespace Rouge.Tcg.UI
                     MatchContext.LocalName = PlayerProfile.AccountName;
                     MatchContext.RemoteName = string.IsNullOrEmpty(message.opponent) ? "Opponent" : message.opponent;
                     MatchContext.SetRemoteCosmetics(message.oppSlots, message.oppIds);
-                    ShowOverlay("Duelist found", $"{MatchContext.RemoteName} steps to the board…");
+                    HideOverlay();
                     StartCoroutine(EnterDuel());
                     break;
             }
@@ -596,18 +596,95 @@ namespace Rouge.Tcg.UI
 
 
         /// <summary>
-        /// Der Lade-Übergang (Handoff „Duel Load"), dann das Brett. Der Vorhang hält,
-        /// bis der DuelHost ihn freigibt — vorher tat das die CoinToss-Szene, die es
-        /// nicht mehr gibt.
+        /// Erst der Moment: „MATCH FOUND" steht kurz im Raum, dann der Lade-Übergang
+        /// (Handoff „Duel Load") und das Brett. Der Vorhang hält, bis der DuelHost
+        /// ihn freigibt.
         /// </summary>
         private IEnumerator EnterDuel()
         {
+            var plate = BuildMatchFoundPopup();
+            SfxManager.Claim();
+            // kurzer Punch beim Erscheinen, dann stehen lassen
+            for (float t = 0f; t < 0.18f; t += Time.unscaledDeltaTime)
+            {
+                if (plate != null) plate.localScale = Vector3.one * Mathf.Lerp(0.92f, 1f, t / 0.18f);
+                yield return null;
+            }
+            if (plate != null) plate.localScale = Vector3.one;
+            yield return new WaitForSecondsRealtime(1.4f);
+
             var deck = SelectedDeck;
             int deckCount = deck != null ? deck.Cards.Count : 40;
             DuelLoadTransition.Play(null, MatchContext.RemoteName,
                 deck != null ? deck.Name : "", deckCount > 0 ? deckCount : 40);
             yield return null;
             SceneManager.LoadScene("Duel");
+        }
+
+        /// <summary>Zentrales „MATCH FOUND"-Popup auf eigenem Canvas über allem.</summary>
+        private RectTransform BuildMatchFoundPopup()
+        {
+            var deco = TransitionSkin.Load();   // Fonts + Rahmen; das Feld `skin` ist der Karten-Skin
+            var host = new GameObject("~MatchFound", typeof(RectTransform), typeof(Canvas), typeof(UnityEngine.UI.GraphicRaycaster));
+            var canvas = host.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 520;
+            var root = (RectTransform)host.transform;
+
+            var scrim = new GameObject("Scrim", typeof(RectTransform), typeof(Image));
+            var scrimRect = (RectTransform)scrim.transform;
+            scrimRect.SetParent(root, false);
+            scrimRect.anchorMin = Vector2.zero; scrimRect.anchorMax = Vector2.one;
+            scrimRect.offsetMin = Vector2.zero; scrimRect.offsetMax = Vector2.zero;
+            var scrimImg = scrim.GetComponent<Image>();
+            scrimImg.color = new Color(0f, 0f, 0f, 0.78f);
+
+            var plate = new GameObject("Plate", typeof(RectTransform), typeof(Image));
+            var plateRect = (RectTransform)plate.transform;
+            plateRect.SetParent(root, false);
+            plateRect.anchorMin = plateRect.anchorMax = new Vector2(0.5f, 0.5f);
+            plateRect.sizeDelta = new Vector2(560f, 200f);
+            var plateImg = plate.GetComponent<Image>();
+            plateImg.color = new Color(0.055f, 0.071f, 0.106f, 0.97f);
+
+            if (deco != null && deco.frame != null)
+            {
+                var frame = new GameObject("Frame", typeof(RectTransform), typeof(Image));
+                var frameRect = (RectTransform)frame.transform;
+                frameRect.SetParent(plateRect, false);
+                frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+                frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+                var frameImg = frame.GetComponent<Image>();
+                frameImg.sprite = deco.frame; frameImg.type = Image.Type.Sliced;
+                frameImg.color = new Color(0.784f, 0.643f, 0.361f, 1f);
+                frameImg.raycastTarget = false;
+            }
+
+            TMP_Text MakeLine(string name, string text, TMPro.TMP_FontAsset font, float size, float spacing, Color color, float y)
+            {
+                var go = new GameObject(name, typeof(RectTransform));
+                var rect = (RectTransform)go.transform;
+                rect.SetParent(plateRect, false);
+                rect.anchorMin = new Vector2(0f, 0.5f); rect.anchorMax = new Vector2(1f, 0.5f);
+                rect.sizeDelta = new Vector2(0f, size * 1.6f);
+                rect.anchoredPosition = new Vector2(0f, y);
+                var tmp = go.AddComponent<TextMeshProUGUI>();
+                tmp.text = text; tmp.fontSize = size; tmp.characterSpacing = spacing;
+                tmp.alignment = TextAlignmentOptions.Center;
+                tmp.color = color; tmp.raycastTarget = false;
+                if (font != null) tmp.font = font;
+                return tmp;
+            }
+
+            MakeLine("Eyebrow", "CASUAL DUEL", deco != null ? deco.oswald : null, 13f, 40f,
+                new Color(0.612f, 0.541f, 0.416f, 1f), 62f);
+            MakeLine("Headline", "MATCH FOUND", deco != null ? deco.cinzel : null, 46f, 8f,
+                new Color(0.922f, 0.808f, 0.541f, 1f), 8f);
+            MakeLine("Sub", $"{MatchContext.RemoteName} steps to the board…",
+                deco != null ? deco.spectral : null, 18f, 0f,
+                new Color(0.635f, 0.541f, 0.412f, 1f), -52f);
+
+            return plateRect;
         }
 
     }
