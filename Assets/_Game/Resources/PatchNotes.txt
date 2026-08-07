@@ -1,4 +1,36 @@
 ────────────────────────────────
+0.1.3 · THE TOWER
+────────────────────────────────
+
+CLIMB THE TOWER — A STORY MODE
+  · A new tab beside Solo Trial: fifteen floors, fifteen Keepers,
+    one Tower that woke up overnight. Talk to every Keeper, renew
+    every seal, and find out who lit the windows
+  · Every floor pays 5 Relic Packs on your FIRST clear — 75 packs
+    from bottom to top. Replays still earn the usual +50 coins
+  · Three account titles wait on the climb: Tower Initiate
+    (Floor I), Renewer of Seals (Floor X), and The Tower's Answer
+    (Floor XV) — the last one speaks for itself
+  · The First Warden holds the top: 12 000 LP, two extra Mana
+    every turn, and a Reliquary for every occasion
+
+SEVEN NEW KEEPERS IN SOLO
+  · Maren (Tidebound bounce), Fenn (Wyldpack swarm), Vezakh
+    (Archfiend midrange), Odile (Hexweaver mana control), Nerea
+    (face-down flip control), Aliya (Fethaerbreese tempo) and
+    Grett (Genostitched equips) — all with FULL Extra Decks
+  · The Solo roster is now a scrollable list: 13 opponents
+
+SHOP & MULTIPLAYER
+  · BUY ×10: purchase ten packs in one click, right above CARDS
+  · MATCH FOUND — quick search now announces your opponent for a
+    breath before the board loads
+
+COMMUNITY
+  · A DISCORD button sits beside the Daily Seal — the vault now
+    has a common room. Come say hello
+
+────────────────────────────────
 0.1.2c · TEN AT A TIME
 ────────────────────────────────
 
