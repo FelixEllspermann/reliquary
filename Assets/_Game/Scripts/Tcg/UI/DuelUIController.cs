@@ -235,10 +235,13 @@ namespace Rouge.Tcg.UI
             statusText.fontSize = Mathf.Max(statusText.fontSize + 5f, 22f);
             statusText.color = new Color(0.953f, 0.867f, 0.643f, 1f);   // #F3DDA4
 
-            // StatusText teilt sich das 44px-Divider-Band mit der Phasen-Zeile — die
-            // Platte deckte sie ab. Als Anhänger unters Band gehängt, mit Luft für 22pt.
+            // Die Status-Zeile ÜBERNIMMT das 44px-Divider-Band: die alte Phasen-Zeile
+            // dort fliegt raus (die Phase steht weiter rechts im Turn-Panel und im
+            // Phasen-Banner). Ein Anhänger unterm Band deckte sonst die Monsterzonen.
             var textRect = (RectTransform)statusText.transform;
-            textRect.anchoredPosition = new Vector2(textRect.anchoredPosition.x, -46f);
+            var oldPhaseLine = textRect.parent.Find("DividerPhaseText");
+            if (oldPhaseLine != null) oldPhaseLine.gameObject.SetActive(false);
+            textRect.anchoredPosition = new Vector2(textRect.anchoredPosition.x, 0f);
             textRect.sizeDelta = new Vector2(textRect.sizeDelta.x, 26f);
             statusPlate = new GameObject("StatusPlate", typeof(RectTransform));
             var plateRect = (RectTransform)statusPlate.transform;
