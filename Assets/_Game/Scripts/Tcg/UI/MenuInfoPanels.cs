@@ -19,6 +19,9 @@ namespace Rouge.Tcg.UI
         [SerializeField] private Button newsButton;
         [SerializeField] private Button banlistButton;
 
+        [Tooltip("Einladung zur Community — leer = kein Discord-Knopf")]
+        [SerializeField] private string discordUrl = "https://discord.gg/E2vnf2PyP";
+
         [Tooltip("Katalog, um Banlist-Einträge nach Kartentyp einzufärben")]
         [SerializeField] private CardCatalog catalog;
 
@@ -42,6 +45,45 @@ namespace Rouge.Tcg.UI
             if (newsButton != null) newsButton.onClick.AddListener(ShowNews);
             if (banlistButton != null) banlistButton.onClick.AddListener(ShowBanlist);
             if (buttonTemplate == null) buttonTemplate = newsButton;
+            BuildDiscordButton();
+        }
+
+        /// <summary>
+        /// DISCORD-Knopf links neben BANLIST — Klon des News-Knopfs, damit er
+        /// automatisch im Topbar-Stil sitzt. Öffnet die Einladung im Browser.
+        /// </summary>
+        private void BuildDiscordButton()
+        {
+            if (string.IsNullOrEmpty(discordUrl) || banlistButton == null || newsButton == null) return;
+            // Unten in die BottomRail, direkt rechts neben das Daily-Claim-Panel
+            var dailyPanel = GameObject.Find("DailyPanel");
+            var parent = dailyPanel != null ? dailyPanel.transform.parent : newsButton.transform.parent;
+            var clone = Instantiate(newsButton.gameObject, parent);
+            clone.name = "DiscordButton";
+            var rect = (RectTransform)clone.transform;
+            rect.anchorMin = new Vector2(0f, 0f);
+            rect.anchorMax = new Vector2(0f, 0f);
+            rect.pivot = new Vector2(0f, 0.5f);
+            rect.sizeDelta = new Vector2(128f, 48f);
+            if (dailyPanel != null)
+            {
+                var daily = (RectTransform)dailyPanel.transform;
+                rect.anchoredPosition = new Vector2(
+                    daily.anchoredPosition.x + daily.sizeDelta.x + 16f,
+                    daily.anchoredPosition.y + daily.sizeDelta.y * 0.5f);
+            }
+            else rect.anchoredPosition = new Vector2(640f, 72f);
+
+            var label = clone.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) label.text = "DISCORD";
+            var button = clone.GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
+            string url = discordUrl;
+            button.onClick.AddListener(() =>
+            {
+                SfxManager.Click();
+                Application.OpenURL(url);
+            });
         }
 
         // ================== INHALTE ==================
