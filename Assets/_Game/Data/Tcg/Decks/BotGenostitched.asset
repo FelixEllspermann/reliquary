@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotGenostitched
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.DeckDefinition
+  deckName: Flesh Binder
+  playerCard: {fileID: 11400000, guid: 2e9cd0887e57d384fb487e58b2b3ff11, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 38ec3bf84a534daeb658400a1a50d6b2, type: 2}
+  - {fileID: 11400000, guid: 38ec3bf84a534daeb658400a1a50d6b2, type: 2}
+  - {fileID: 11400000, guid: 38ec3bf84a534daeb658400a1a50d6b2, type: 2}
+  - {fileID: 11400000, guid: c02b4f25c5334f71a846bacb4acaca45, type: 2}
+  - {fileID: 11400000, guid: c02b4f25c5334f71a846bacb4acaca45, type: 2}
+  - {fileID: 11400000, guid: c02b4f25c5334f71a846bacb4acaca45, type: 2}
+  - {fileID: 11400000, guid: 36cdff4a09214bd3aec3c6f954556dfa, type: 2}
+  - {fileID: 11400000, guid: 36cdff4a09214bd3aec3c6f954556dfa, type: 2}
+  - {fileID: 11400000, guid: 36cdff4a09214bd3aec3c6f954556dfa, type: 2}
+  - {fileID: 11400000, guid: c9ae5ef8bc53423e859031ea6d8dfc51, type: 2}
+  - {fileID: 11400000, guid: c9ae5ef8bc53423e859031ea6d8dfc51, type: 2}
+  - {fileID: 11400000, guid: c9ae5ef8bc53423e859031ea6d8dfc51, type: 2}
+  - {fileID: 11400000, guid: ddd89a40193f4dfebc92284b1aa8da24, type: 2}
+  - {fileID: 11400000, guid: ddd89a40193f4dfebc92284b1aa8da24, type: 2}
+  - {fileID: 11400000, guid: ddd89a40193f4dfebc92284b1aa8da24, type: 2}
+  - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
+  - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
+  - {fileID: 11400000, guid: ca4f8d4647b9ba74d905ef007a1a27af, type: 2}
+  - {fileID: 11400000, guid: 50741168d5b6b884c9de443cd51cc8be, type: 2}
+  - {fileID: 11400000, guid: 50741168d5b6b884c9de443cd51cc8be, type: 2}
+  - {fileID: 11400000, guid: 144f61e7f5ca00746806d8c574b61a4e, type: 2}
+  - {fileID: 11400000, guid: 144f61e7f5ca00746806d8c574b61a4e, type: 2}
+  - {fileID: 11400000, guid: 05fb62841a514e14d96fa68b03fe1975, type: 2}
+  - {fileID: 11400000, guid: 05fb62841a514e14d96fa68b03fe1975, type: 2}
+  - {fileID: 11400000, guid: 2391588f5ce4436fa6145ed8f5f9a8be, type: 2}
+  - {fileID: 11400000, guid: 2391588f5ce4436fa6145ed8f5f9a8be, type: 2}
+  - {fileID: 11400000, guid: b267b48feadb449b8a51421065a341bb, type: 2}
+  - {fileID: 11400000, guid: b267b48feadb449b8a51421065a341bb, type: 2}
+  - {fileID: 11400000, guid: 1b964d2c8a2d45849a59ced79942c1f6, type: 2}
+  - {fileID: 11400000, guid: 1b964d2c8a2d45849a59ced79942c1f6, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: 266f53afb09d23347a5a6c8350befbea, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: b0fcde4b8c748ef42957620832f15a07, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: 957a6c2a9f3a4a39b8a62734e1852c79, type: 2}
+  - {fileID: 11400000, guid: a2d70bcb0fa846147afd7f6fb0231952, type: 2}
+  - {fileID: 11400000, guid: a2d70bcb0fa846147afd7f6fb0231952, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: 819c2dbf5f724dd6feabcde08092b4d7, type: 2}
+  - {fileID: 11400000, guid: 819c2dbf5f724dd6feabcde08092b4d7, type: 2}
+  - {fileID: 11400000, guid: 819c2dbf5f724dd6feabcde08092b4d7, type: 2}
+  - {fileID: 11400000, guid: b4cf1ae28ca540092bdef113b3a5e70a, type: 2}
+  - {fileID: 11400000, guid: b4cf1ae28ca540092bdef113b3a5e70a, type: 2}
+  - {fileID: 11400000, guid: 708b3cae4e614cc5ed9abcdf7f81a3c6, type: 2}
+  - {fileID: 11400000, guid: 708b3cae4e614cc5ed9abcdf7f81a3c6, type: 2}
+  - {fileID: 11400000, guid: 4adbdf84bd2fb1d4fb4fadd6517a735b, type: 2}

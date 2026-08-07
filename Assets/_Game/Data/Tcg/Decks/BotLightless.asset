@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2146401e1c506c4ab871e02d8f3daf5, type: 3}
+  m_Name: BotLightless
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.DeckDefinition
+  deckName: The Veiled
+  playerCard: {fileID: 11400000, guid: 06419778ecdc5264eb792cd1d5bc18c6, type: 2}
+  cards:
+  - {fileID: 11400000, guid: f453549ca218ded49a76a1a4bf3a8376, type: 2}
+  - {fileID: 11400000, guid: f453549ca218ded49a76a1a4bf3a8376, type: 2}
+  - {fileID: 11400000, guid: f453549ca218ded49a76a1a4bf3a8376, type: 2}
+  - {fileID: 11400000, guid: 188fd7ee6495bc745b6981f79245dbc4, type: 2}
+  - {fileID: 11400000, guid: 188fd7ee6495bc745b6981f79245dbc4, type: 2}
+  - {fileID: 11400000, guid: 188fd7ee6495bc745b6981f79245dbc4, type: 2}
+  - {fileID: 11400000, guid: cac9531876424c62bfcb8b296bfa9938, type: 2}
+  - {fileID: 11400000, guid: cac9531876424c62bfcb8b296bfa9938, type: 2}
+  - {fileID: 11400000, guid: cac9531876424c62bfcb8b296bfa9938, type: 2}
+  - {fileID: 11400000, guid: b5bc6bf8638441db8316380252d4b8dc, type: 2}
+  - {fileID: 11400000, guid: b5bc6bf8638441db8316380252d4b8dc, type: 2}
+  - {fileID: 11400000, guid: b5bc6bf8638441db8316380252d4b8dc, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: 95b9f387b065425199ef41f8b8172c9e, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: c0286e7a7d36c9449ba5a7ecb2f6f6c7, type: 2}
+  - {fileID: 11400000, guid: 60df61c068a84b3ca2acec3c08fb5448, type: 2}
+  - {fileID: 11400000, guid: 60df61c068a84b3ca2acec3c08fb5448, type: 2}
+  - {fileID: 11400000, guid: 60df61c068a84b3ca2acec3c08fb5448, type: 2}
+  - {fileID: 11400000, guid: 55bbe8ba03663404e865fe5dd472d9d5, type: 2}
+  - {fileID: 11400000, guid: 55bbe8ba03663404e865fe5dd472d9d5, type: 2}
+  - {fileID: 11400000, guid: 55bbe8ba03663404e865fe5dd472d9d5, type: 2}
+  - {fileID: 11400000, guid: aa4b4058927ab9a4bbd02ca3f72dee7c, type: 2}
+  - {fileID: 11400000, guid: aa4b4058927ab9a4bbd02ca3f72dee7c, type: 2}
+  - {fileID: 11400000, guid: aa4b4058927ab9a4bbd02ca3f72dee7c, type: 2}
+  - {fileID: 11400000, guid: 5f71b3074a60cc849a952e13bd5ffc24, type: 2}
+  - {fileID: 11400000, guid: 5f71b3074a60cc849a952e13bd5ffc24, type: 2}
+  - {fileID: 11400000, guid: 8b1c43d35d864d85a7868dedc0bf5f22, type: 2}
+  - {fileID: 11400000, guid: 8b1c43d35d864d85a7868dedc0bf5f22, type: 2}
+  - {fileID: 11400000, guid: 62474896f52948c0aacc575778f83b51, type: 2}
+  - {fileID: 11400000, guid: 62474896f52948c0aacc575778f83b51, type: 2}
+  - {fileID: 11400000, guid: ef6a3de1c8f04b9d9ee68ccea8fbddbe, type: 2}
+  - {fileID: 11400000, guid: ef6a3de1c8f04b9d9ee68ccea8fbddbe, type: 2}
+  - {fileID: 11400000, guid: ef6a3de1c8f04b9d9ee68ccea8fbddbe, type: 2}
+  - {fileID: 11400000, guid: 7846e769d5a34e15a125a6fc419a42ed, type: 2}
+  - {fileID: 11400000, guid: 7846e769d5a34e15a125a6fc419a42ed, type: 2}
+  - {fileID: 11400000, guid: 76c031dd9cd10bd4aa3e7abdd19451db, type: 2}
+  - {fileID: 11400000, guid: 76c031dd9cd10bd4aa3e7abdd19451db, type: 2}
+  extraCards:
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: 1a2f9c4d8e0b4b6f9d3a5c7e1f2b4d60, type: 2}
+  - {fileID: 11400000, guid: 92ad1ec06a834ee70fbcdef19183c5e8, type: 2}
+  - {fileID: 11400000, guid: 92ad1ec06a834ee70fbcdef19183c5e8, type: 2}
+  - {fileID: 11400000, guid: a9b46fd7dfa955e71b34c668a8fa3c5f, type: 2}
+  - {fileID: 11400000, guid: a9b46fd7dfa955e71b34c668a8fa3c5f, type: 2}
+  - {fileID: 11400000, guid: 05d0a5f7c5ca31440b0cff336e08be66, type: 2}
