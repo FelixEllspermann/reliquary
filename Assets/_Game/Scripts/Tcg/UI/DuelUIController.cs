@@ -235,7 +235,11 @@ namespace Rouge.Tcg.UI
             statusText.fontSize = Mathf.Max(statusText.fontSize + 5f, 22f);
             statusText.color = new Color(0.953f, 0.867f, 0.643f, 1f);   // #F3DDA4
 
+            // StatusText teilt sich das 44px-Divider-Band mit der Phasen-Zeile — die
+            // Platte deckte sie ab. Als Anhänger unters Band gehängt, mit Luft für 22pt.
             var textRect = (RectTransform)statusText.transform;
+            textRect.anchoredPosition = new Vector2(textRect.anchoredPosition.x, -46f);
+            textRect.sizeDelta = new Vector2(textRect.sizeDelta.x, 26f);
             statusPlate = new GameObject("StatusPlate", typeof(RectTransform));
             var plateRect = (RectTransform)statusPlate.transform;
             plateRect.SetParent(textRect.parent, false);
@@ -269,6 +273,7 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(MainActionRequest request)
         {
+            if (pileViewer != null) pileViewer.CloseIfBrowsing();
             currentMain = request;
             SetStatus("Your Main Phase — click a card or drag it onto a zone.");
             if (battlePhaseButton != null)
@@ -286,6 +291,7 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(BattleActionRequest request)
         {
+            if (pileViewer != null) pileViewer.CloseIfBrowsing();
             currentBattle = request;
             pendingAttacker = null;
             pendingAttackOptions.Clear();
@@ -325,6 +331,7 @@ namespace Rouge.Tcg.UI
                 yield break;
             }
 
+            if (pileViewer != null) pileViewer.CloseIfBrowsing();
             if (request.Card != null && detailPanel != null) detailPanel.ShowCard(request.Card);
             TcgCardView askedView = null;
             if (request.Card != null && board.TryGetView(request.Card, out askedView))
@@ -408,6 +415,7 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(OptionRequest request)
         {
+            if (pileViewer != null) pileViewer.CloseIfBrowsing();
             if (request.Card != null && detailPanel != null) detailPanel.ShowCard(request.Card);
             bool done = false;
             promptPanel.ShowOptions(request.Title, "", request.Options, request.AllowCancel, result =>
@@ -421,6 +429,7 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(ZoneSelectRequest request)
         {
+            if (pileViewer != null) pileViewer.CloseIfBrowsing();
             // Zonen-Wahl gilt nur für die eigene (untere) Board-Hälfte
             if (request.ForPlayer != board.BottomPlayer)
             {

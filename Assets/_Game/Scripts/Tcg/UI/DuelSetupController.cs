@@ -189,9 +189,13 @@ namespace Rouge.Tcg.UI
             if (lobbyActive != null) lobbyActive.SetActive(false);
 
             BuildRows();
-            // Erstes legales Deck vorwählen
+            // Erstes legales Deck vorwählen — es sei denn, das zuletzt gespielte
+            // (gemerkt über Play/Solo/Builder hinweg) ist legal, dann das.
             for (int i = 0; i < PlayerProfile.Decks.Count; i++)
                 if (DeckLegal(PlayerProfile.Decks[i])) { selectedDeck = i; break; }
+            int remembered = PlayerPrefs.GetInt(MainMenuController.ActiveDeckPrefKey, -1);
+            if (remembered >= 0 && remembered < PlayerProfile.Decks.Count && DeckLegal(PlayerProfile.Decks[remembered]))
+                selectedDeck = remembered;
             RefreshAll();
         }
 
@@ -223,7 +227,13 @@ namespace Rouge.Tcg.UI
                     : deck.Cards.Count > DeckMax ? "TOO MANY CARDS" : "UNOWNED CARDS";
                 var row = Instantiate(rowPrefab, deckListContent);
                 int index = i;
-                row.Setup(deck, i, legal, label, catalog, () => { selectedDeck = index; RefreshAll(); });
+                row.Setup(deck, i, legal, label, catalog, () =>
+                {
+                    selectedDeck = index;
+                    PlayerPrefs.SetInt(MainMenuController.ActiveDeckPrefKey, index);
+                    PlayerPrefs.Save();
+                    RefreshAll();
+                });
                 rows.Add(row);
             }
             if (deckHeaderInfo != null)

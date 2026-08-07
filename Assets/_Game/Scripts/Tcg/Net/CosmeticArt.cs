@@ -76,25 +76,15 @@ namespace Rouge.Tcg.Net
         /// <summary>Die Matte des Gegners — sie liegt auf seiner Bretthälfte.</summary>
         public static Sprite RemoteMat() => Mat(MatchContext.RemoteEquipped("duelMat"));
 
-        // ---- Die Wurfmünze gehört beiden ----
+        // ---- Die Wurfmünze ----
         //
-        // Anders als die Matte lässt sich die Münze nicht teilen: es fliegt genau
-        // eine, und beide sehen dieselbe. Also entscheidet eine feste Regel —
-        // <b>Spieler A gewinnt</b>, immer. Eine Regel, die man einmal lernt, ist
-        // besser als eine, die mal so und mal anders ausgeht; und beide Clients
-        // kommen so ohne Absprache auf dasselbe Bild.
+        // Jeder sieht die EIGENE Münze: die Cutscene läuft ohnehin auf jedem
+        // Client lokal, nur das Ergebnis kommt aus dem geteilten Seed. Wer sich
+        // eine Münze kauft, soll sie in jedem Duell fliegen sehen — nicht nur,
+        // wenn er zufällig Spieler A ist.
 
-        private static string HostSide(string slot)
-        {
-            bool network = MatchContext.IsServerMatch;
-            if (!network) return Cosmetics.EquippedIn(slot);
-            return MatchContext.LocalIsPlayerA
-                ? Cosmetics.EquippedIn(slot)
-                : MatchContext.RemoteEquipped(slot);
-        }
-
-        public static Sprite MatchCoinRelic() => CoinRelic(HostSide("tossCoin"));
-        public static Sprite MatchCoinSeal() => CoinSeal(HostSide("tossCoin"));
+        public static Sprite MatchCoinRelic() => CoinRelic(Cosmetics.EquippedIn("tossCoin"));
+        public static Sprite MatchCoinSeal() => CoinSeal(Cosmetics.EquippedIn("tossCoin"));
 
         private static Sprite Load(string prefix, string id, string suffix = "")
         {

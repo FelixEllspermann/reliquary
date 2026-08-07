@@ -38,6 +38,16 @@ namespace Rouge.Tcg.UI
             {
                 deckDropdown.ClearOptions();
                 deckDropdown.AddOptions(PlayerProfile.Decks.ConvertAll(d => d.Name));
+                // Zuletzt gespieltes Deck vorwählen — ein Schlüssel für Play, Solo und Builder
+                deckDropdown.SetValueWithoutNotify(Mathf.Clamp(
+                    PlayerPrefs.GetInt(MainMenuController.ActiveDeckPrefKey, 0),
+                    0, Mathf.Max(0, PlayerProfile.Decks.Count - 1)));
+                deckDropdown.RefreshShownValue();
+                deckDropdown.onValueChanged.AddListener(v =>
+                {
+                    PlayerPrefs.SetInt(MainMenuController.ActiveDeckPrefKey, v);
+                    PlayerPrefs.Save();
+                });
             }
             if (quickMatchButton != null) quickMatchButton.onClick.AddListener(QuickMatch);
             if (createButton != null) createButton.onClick.AddListener(CreateLobby);

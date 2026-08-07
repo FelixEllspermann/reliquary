@@ -196,7 +196,7 @@ namespace Rouge.Tcg.UI
         private ScrollRect gridScroll;
         private float cellWidth, cellHeight, gridWidth;
 
-        private const int GridColumns = 5;
+        private const int GridColumns = 4;
         private const float GridGap = 12f;
 
         private void BuildGrid()
@@ -240,7 +240,10 @@ namespace Rouge.Tcg.UI
             gridScroll.content = grid;
 
             cellWidth = (gridWidth - (GridColumns - 1) * GridGap) / GridColumns;
-            cellHeight = (viewHeight - 3 * GridGap) / 4f;   // vier Reihen bleiben sichtbar
+            // ~2,6 Reihen sichtbar: fast alle zusätzliche Höhe geht in die Kunstfläche
+            // (die Textzeilen darunter sind fix 96px hoch), der Anschnitt zeigt „hier
+            // geht es weiter".
+            cellHeight = (viewHeight - 2f * GridGap) / 2.6f;
 
             foreach (var item in Cosmetics.Catalog)
                 tiles.Add(BuildTile(item, 0f, 0f, cellWidth, cellHeight));
@@ -388,10 +391,10 @@ namespace Rouge.Tcg.UI
 
             float below = top - 22f - swatchHeight;   // Unterkante des Farbfelds
 
-            var name = MakeText("Name", root, skin.cinzel, 15f, Hex("#F1DFB8", 1f));
+            var name = MakeText("Name", root, skin.cinzel, 17f, Hex("#F1DFB8", 1f));
             name.text = item.Name;
             name.alignment = TextAlignmentOptions.Center;
-            name.enableAutoSizing = true; name.fontSizeMin = 10f; name.fontSizeMax = 15f;
+            name.enableAutoSizing = true; name.fontSizeMin = 11f; name.fontSizeMax = 17f;
             Strip((RectTransform)name.transform, width - 16f, 20f, below - 16f);
 
             var slot = MakeText("Slot", root, skin.oswald, 9f, Hex("#8C7B5F", 1f));

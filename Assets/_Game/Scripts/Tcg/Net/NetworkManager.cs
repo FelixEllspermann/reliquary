@@ -214,7 +214,8 @@ namespace Rouge.Tcg.Net
         // Steam-Accounts und Passwort-Accounts sind getrennt — es gibt bewusst keine
         // Verknüpfung und kein nachträgliches Passwort.
 
-        public void SendOpenPack(string packName) => SendJson(new NetMessage { t = "open_pack", pack = packName });
+        public void SendOpenPack(string packName, int count = 1) =>
+            SendJson(new NetMessage { t = "open_pack", pack = packName, packCount = count });
         public void SendBuyPack(string packName) => SendJson(new NetMessage { t = "buy_pack", pack = packName });
         public void SendSaveDeck(int index, RuntimeDeck deck) => SendJson(new NetMessage
         {

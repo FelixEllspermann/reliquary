@@ -928,8 +928,10 @@ namespace Rouge.Tcg.UI
             try
             {
                 const float duration = 3.4f;
-                // Eine ganze Drehung ist Pi — bei geradem Vielfachen liegt RELIC oben
-                float finalSpin = localWins ? 8f : 8.5f;
+                // Eine halbe Drehung ist Pi: gerades Vielfaches = RELIC oben,
+                // UNGERADES = SEAL oben. 8.5 war der Kanten-Bug — cos(8.5π) = 0,
+                // die Münze blieb hochkant als Strich stehen.
+                float finalSpin = localWins ? 8f : 9f;
 
                 for (float t = 0f; t < duration; t += Time.deltaTime)
                 {

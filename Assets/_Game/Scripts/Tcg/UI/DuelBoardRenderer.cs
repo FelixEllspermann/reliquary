@@ -362,7 +362,7 @@ namespace Rouge.Tcg.UI
                 binding.lpValue.text = $"<color={lpColor}>{lp}</color>";
             }
             if (binding.lpBarFill != null && maxLp > 0)
-                binding.lpBarFill.fillAmount = Mathf.Clamp01(player.LifePoints / (float)maxLp);
+                binding.lpBarFill.fillAmount = Mathf.Clamp01(lp / (float)maxLp);   // tickt mit der Zahl
             if (binding.manaContainer != null)
             {
                 for (int i = 0; i < binding.manaContainer.childCount; i++)

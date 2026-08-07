@@ -73,6 +73,8 @@ namespace Rouge.Tcg.UI
         private string openingPackName;
 
         private Button infoButtonTemplate;
+        private readonly List<(CardPackDefinition pack, Button button, TMP_Text label)> openAllButtons
+            = new List<(CardPackDefinition, Button, TMP_Text)>();
         private GameObject infoOverlay;
         private TMP_Text infoTitle;
         private TMP_Text infoBody;
@@ -176,6 +178,18 @@ namespace Rouge.Tcg.UI
                 if (tile.openGlow != null) tile.openGlow.gameObject.SetActive(openable);
             }
 
+            // Massen-Öffnung erst zeigen, wenn sie etwas bündelt (ab 2 Packs)
+            foreach (var (pack, button, label) in openAllButtons)
+            {
+                if (button == null) continue;
+                int owned = PlayerProfile.PacksOf(pack.packName);
+                bool show = owned >= 2;
+                if (button.gameObject.activeSelf != show) button.gameObject.SetActive(show);
+                if (!show) continue;
+                button.interactable = online;
+                if (label != null) label.text = $"OPEN ×{Mathf.Min(10, owned)}";
+            }
+
             // Die Kachel zeigt denselben Zähler wie die Packs daneben: was man schon hat
             if (cosmeticsOwnedText != null)
                 cosmeticsOwnedText.text = $"×{Cosmetics.Owned.Count}";
@@ -200,6 +214,17 @@ namespace Rouge.Tcg.UI
             openingPackName = pack.packName;
             network.SendOpenPack(pack.packName);
             ShowFeedback($"Unsealing {pack.packName}…");
+        }
+
+        /// <summary>Öffnet bis zu 10 Packs auf einmal — der Server zieht, das Grid zeigt alles.</summary>
+        private void OpenAllPacks(CardPackDefinition pack)
+        {
+            if (network == null || pack == null) return;
+            int batch = Mathf.Min(10, PlayerProfile.PacksOf(pack.packName));
+            if (batch < 1) return;
+            openingPackName = pack.packName;
+            network.SendOpenPack(pack.packName, batch);
+            ShowFeedback($"Unsealing {batch}× {pack.packName}…");
         }
 
         // ================== ÖFFNUNGS-SEQUENZ ==================
@@ -239,6 +264,21 @@ namespace Rouge.Tcg.UI
                 {
                     var odds = CloneTileButton(tile.buyButton, placement, "OddsButton", "ODDS", infoButtonOffsetY);
                     if (odds != null) odds.onClick.AddListener(() => ShowPackInfo(pack, true));
+                }
+
+                // Massen-Öffnung: voll breiter Balken über CARDS/ODDS, nur sichtbar ab 2 Packs
+                var openAll = CloneTileButton(tile.buyButton, (RectTransform)tile.buyButton.transform, "OpenAllButton", "OPEN ×10", 0f);
+                if (openAll != null)
+                {
+                    var rect = (RectTransform)openAll.transform;
+                    rect.anchorMin = new Vector2(0f, 0f);
+                    rect.anchorMax = new Vector2(1f, 0f);
+                    rect.pivot = new Vector2(0.5f, 0f);
+                    rect.sizeDelta = new Vector2(-24f, 48f);
+                    rect.anchoredPosition = new Vector2(0f, 14f + infoButtonOffsetY * 2f);
+                    openAll.onClick.AddListener(() => OpenAllPacks(pack));
+                    openAllButtons.Add((pack, openAll, openAll.GetComponentInChildren<TMP_Text>(true)));
+                    openAll.gameObject.SetActive(false);   // Rebuild entscheidet
                 }
 
                 // Die Kachelzeile nennt eine feste Kartenzahl — die stammt aus der Anfangszeit

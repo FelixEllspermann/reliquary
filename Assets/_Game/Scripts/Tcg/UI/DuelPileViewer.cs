@@ -158,6 +158,18 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>
+        /// Schliesst das STÖBER-Overlay, lässt eine laufende Kartenwahl in Ruhe.
+        /// Anfragen rufen das, bevor sie den Spieler brauchen — ein offener
+        /// Extra-Deck-Blick beim Rundenstart blockierte sonst die komplette
+        /// Prompt-UI, und das Duell stand scheinbar in der Draw Phase fest.
+        /// </summary>
+        public void CloseIfBrowsing()
+        {
+            if (picking) return;
+            if (panel != null && panel.activeSelf) Close();
+        }
+
+        /// <summary>
         /// Karten-Auswahl für unsichtbare Kandidaten (Deck-/Friedhof-Suchen): scrollbares
         /// Karten-Grid im Pile-Overlay, Klick wählt (Gold-Markierung, abwählbar), der
         /// Close-Button bricht ab, wenn der Request das erlaubt.

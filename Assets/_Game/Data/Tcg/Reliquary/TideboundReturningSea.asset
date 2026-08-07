@@ -17,11 +17,11 @@ MonoBehaviour:
   rarity: 3
   effects:
   - label: The Sea Reclaims
-    text: 'When this card is Summoned: Return up to 2 monsters your opponent controls
-      to the hand.'
+    text: 'When this card is Summoned: You can pay 2 Mana; return 1 monster your
+      opponent controls to the hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 2
     trigger: 3
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
-      targetCount: 2
-      upToTargets: 1
+      targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
       maxAtkFilter: 0
@@ -76,3 +76,5 @@ MonoBehaviour:
   reqBanishedAtLeast: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0

@@ -26,6 +26,7 @@ namespace Rouge.Tcg.Net
         public string steamTicket;
         public string steamName;   // Vorschlag für den Duellisten-Namen (Steam-Persona)
         public string pack;        // buy_pack/open_pack: Packname
+        public int packCount;      // open_pack: wie viele auf einmal (0/1 = eines)
         public string card;        // craft/dust: Kartenname
         public string starter;     // claim_starter: Id des gewählten Startdecks
         public string item;        // buy_cosmetic/equip_cosmetic: Gegenstands-Id

@@ -198,6 +198,78 @@ namespace Rouge.Tcg.UI
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Legt Profilbild und Kosmetik-Rahmen über das Wappen der Topbar —
+        /// dieselbe Schichtung wie im Profil-Screen, aufs 42px-Fenster verkleinert.
+        /// Idempotent: Refresh läuft bei jedem Profil-Update erneut.
+        /// </summary>
+        private void DecorateCrest(bool online)
+        {
+            if (playerInitial == null) return;
+            var crest = playerInitial.transform.parent as RectTransform;
+            if (crest == null) return;
+
+            for (int i = crest.childCount - 1; i >= 0; i--)
+            {
+                var child = crest.GetChild(i);
+                if (child.name == "MiniAvatar" || child.name == "MiniFrame") Destroy(child.gameObject);
+            }
+
+            var crestImage = crest.GetComponent<Image>();
+            if (crestImage != null) crestImage.enabled = true;
+            bool showInitial = true;
+
+            if (online)
+            {
+                float window = crest.rect.height > 0f ? crest.rect.height : 42f;
+                var avatarSprite = CosmeticArt.EquippedAvatar();
+                if (avatarSprite != null)
+                {
+                    var avatar = new GameObject("MiniAvatar", typeof(RectTransform), typeof(Image));
+                    var aRect = (RectTransform)avatar.transform;
+                    aRect.SetParent(crest, false);
+                    aRect.anchorMin = aRect.anchorMax = new Vector2(0.5f, 0.5f);
+                    aRect.pivot = new Vector2(0.5f, 0.5f);
+                    aRect.sizeDelta = new Vector2(window, window);
+                    var aImg = avatar.GetComponent<Image>();
+                    aImg.sprite = avatarSprite;
+                    aImg.raycastTarget = false;
+                    showInitial = false;
+                }
+
+                var frameSprite = CosmeticArt.EquippedFrame();
+                if (frameSprite != null)
+                {
+                    var frame = new GameObject("MiniFrame", typeof(RectTransform), typeof(Image));
+                    var fRect = (RectTransform)frame.transform;
+                    fRect.SetParent(crest, false);
+                    fRect.anchorMin = fRect.anchorMax = new Vector2(0.5f, 0.5f);
+                    fRect.pivot = new Vector2(0.5f, 0.5f);
+                    var fImg = frame.GetComponent<Image>();
+                    fImg.sprite = frameSprite;
+                    fImg.raycastTarget = false;
+
+                    string frameId = Cosmetics.EquippedIn("avatarFrame");
+                    if (CosmeticArt.IsPlaque(frameId))
+                    {
+                        // Bilderrahmen: aufs Fenster skaliert, die eckige Wappenplatte
+                        // verschwindet dahinter — ihre Ecken lugten sonst hervor.
+                        if (crestImage != null) crestImage.enabled = false;
+                        float scale = CosmeticArt.PlaqueScale(frameId, window);
+                        fRect.sizeDelta = new Vector2(
+                            frameSprite.rect.width * scale, frameSprite.rect.height * scale);
+                    }
+                    else
+                    {
+                        fRect.sizeDelta = new Vector2(window + 8f, window + 8f);
+                        fImg.preserveAspect = true;
+                    }
+                }
+            }
+
+            playerInitial.gameObject.SetActive(showInitial);
+        }
+
         private void Refresh()
         {
             bool online = PlayerProfile.LoggedIn && NetworkManager.Instance != null && NetworkManager.Instance.IsConnected;
@@ -209,6 +281,7 @@ namespace Rouge.Tcg.UI
             // Spieler-Plate + Pills
             string name = online ? PlayerProfile.AccountName : "Wanderer";
             if (playerInitial != null) playerInitial.text = name.Length > 0 ? name.Substring(0, 1).ToUpperInvariant() : "?";
+            DecorateCrest(online);
             if (playerName != null) playerName.text = name;
             if (playerRank != null)
                 playerRank.text = online

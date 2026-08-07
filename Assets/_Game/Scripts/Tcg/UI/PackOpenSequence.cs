@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Rouge.Tcg.Net;
 using TMPro;
 using UnityEngine;
@@ -111,9 +112,18 @@ namespace Rouge.Tcg.UI
             finished = onDone;
             packName = string.IsNullOrEmpty(pack) ? "Sealed Pack" : pack;
             skipRequested = false;
-            BuildPulls(cardNames, finishes);
             gameObject.SetActive(true);
             transform.SetAsLastSibling();
+
+            // Mehr als ein Pack (mehr als fünf Karten): die Kino-Sequenz ist für
+            // fünf gebaut — Sammel-Öffnungen bekommen die Galerie mit allen
+            // Karten auf einmal, sortiert und in Ruhe inspizierbar.
+            if (cardNames.Length > 5)
+            {
+                StartCoroutine(GridReveal(cardNames, finishes));
+                return;
+            }
+            BuildPulls(cardNames, finishes);
             StartCoroutine(Run());
         }
 
@@ -215,6 +225,243 @@ namespace Rouge.Tcg.UI
                 Frame(scene, 1f);
             }
 
+            // Das Schlussbild gehört dem Spieler: Hover zeigt die Effekte jeder
+            // gezogenen Karte, und weiter geht es erst per CONTINUE — nicht mehr
+            // von selbst, während man noch liest.
+            foreach (var pull in pulls)
+                if (pull.Holder != null && pull.Definition != null)
+                    AddHoverDetail(pull.Holder, pull.Definition);
+            yield return HoldForContinue();
+
+            CleanupInspect();
+            gameObject.SetActive(false);
+            Playing = false;
+            var callback = finished;
+            finished = null;
+            callback?.Invoke();
+        }
+
+        // ================== INSPEKTION (Hover + Continue) ==================
+
+        private RectTransform detailPlate;
+        private TMP_Text detailText;
+        private GameObject continueGo;
+        private bool continuePressed;
+
+        /// <summary>Karte + Effekte als lesbarer Block für die Hover-Tafel.</summary>
+        private static string DescribeCard(CardDefinition definition)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append("<size=130%><b>").Append(definition.cardName).Append("</b></size>\n");
+            switch (definition)
+            {
+                case ReliquaryCardData r:
+                    sb.Append($"<color=#C8A45C>RELIQUARY · LV {r.level} · {r.attribute} / {r.monsterType} · {r.atk} ATK / {r.def} DEF</color>");
+                    break;
+                case MonsterCardData m:
+                    sb.Append($"<color=#C8A45C>MONSTER · LV {m.level} · {m.attribute} / {m.monsterType} · {m.atk} ATK / {m.def} DEF</color>");
+                    break;
+                case SpellCardData sp:
+                    sb.Append($"<color=#8FC6D2>SPELL{(sp.speed == SpellSpeed.Quick ? " · QUICK" : "")}</color>");
+                    break;
+                case ArtifactCardData:
+                    sb.Append("<color=#B9A3E0>ARTIFACT</color>");
+                    break;
+                case PlayerCardData hero:
+                    sb.Append($"<color=#C8A45C>PLAYER CARD · {hero.startLifePoints} LP</color>");
+                    break;
+            }
+            sb.Append("\n\n").Append(CardDetailPanel.BuildFormattedRulesText(definition));
+            return sb.ToString();
+        }
+
+        private void EnsureDetailPlate()
+        {
+            if (detailPlate != null) return;
+            detailPlate = MakeRect("DetailPlate", stage);
+            detailPlate.anchorMin = new Vector2(1f, 0.5f);
+            detailPlate.anchorMax = new Vector2(1f, 0.5f);
+            detailPlate.pivot = new Vector2(1f, 0.5f);
+            detailPlate.sizeDelta = new Vector2(316f, 420f);
+            detailPlate.anchoredPosition = new Vector2(-18f, 0f);
+            var bg = detailPlate.gameObject.AddComponent<Image>();
+            bg.color = new Color(0.05f, 0.04f, 0.03f, 0.96f);
+            bg.raycastTarget = false;
+            var edge = MakeRect("Edge", detailPlate);
+            edge.anchorMin = new Vector2(0f, 0f); edge.anchorMax = new Vector2(0f, 1f);
+            edge.pivot = new Vector2(0f, 0.5f);
+            edge.offsetMin = Vector2.zero; edge.offsetMax = new Vector2(3f, 0f);
+            var edgeImg = edge.gameObject.AddComponent<Image>();
+            edgeImg.color = new Color(0.784f, 0.643f, 0.361f, 0.85f);
+            edgeImg.raycastTarget = false;
+
+            var textRect = MakeRect("Text", detailPlate);
+            textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = new Vector2(18f, 14f); textRect.offsetMax = new Vector2(-14f, -14f);
+            detailText = textRect.gameObject.AddComponent<TextMeshProUGUI>();
+            detailText.fontSize = 15f;
+            detailText.color = new Color(0.905f, 0.855f, 0.737f, 1f);
+            detailText.alignment = TextAlignmentOptions.TopLeft;
+            detailText.raycastTarget = false;
+            if (skin != null && skin.spectral != null) detailText.font = skin.spectral;
+            detailPlate.gameObject.SetActive(false);
+        }
+
+        /// <summary>Hover über einer aufgedeckten Karte zeigt Name, Werte und Effekte.</summary>
+        private void AddHoverDetail(RectTransform holder, CardDefinition definition)
+        {
+            EnsureDetailPlate();
+            var catcher = holder.gameObject.GetComponent<Image>();
+            if (catcher == null)
+            {
+                catcher = holder.gameObject.AddComponent<Image>();
+                catcher.color = Color.clear;
+            }
+            catcher.raycastTarget = true;
+
+            var trigger = holder.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>();
+            if (trigger == null) trigger = holder.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            trigger.triggers.Clear();
+            var enter = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter };
+            enter.callback.AddListener(_ =>
+            {
+                detailText.text = DescribeCard(definition);
+                detailPlate.gameObject.SetActive(true);
+            });
+            var exit = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit };
+            exit.callback.AddListener(_ => detailPlate.gameObject.SetActive(false));
+            trigger.triggers.Add(enter);
+            trigger.triggers.Add(exit);
+        }
+
+        private IEnumerator HoldForContinue()
+        {
+            continuePressed = false;
+            continueGo = new GameObject("Continue", typeof(RectTransform));
+            var rect = (RectTransform)continueGo.transform;
+            rect.SetParent(stage, false);
+            rect.anchorMin = new Vector2(0.5f, 0f);
+            rect.anchorMax = new Vector2(0.5f, 0f);
+            rect.pivot = new Vector2(0.5f, 0f);
+            rect.sizeDelta = new Vector2(260f, 52f);
+            rect.anchoredPosition = new Vector2(0f, 26f);
+            var bg = continueGo.AddComponent<Image>();
+            bg.color = new Color(0.784f, 0.643f, 0.361f, 0.95f);
+            var button = continueGo.AddComponent<Button>();
+            button.targetGraphic = bg;
+            button.onClick.AddListener(() => continuePressed = true);
+            var labelGo = new GameObject("Label", typeof(RectTransform));
+            var labelRect = (RectTransform)labelGo.transform;
+            labelRect.SetParent(rect, false);
+            labelRect.anchorMin = Vector2.zero; labelRect.anchorMax = Vector2.one;
+            labelRect.offsetMin = Vector2.zero; labelRect.offsetMax = Vector2.zero;
+            var label = labelGo.AddComponent<TextMeshProUGUI>();
+            label.text = "CONTINUE";
+            label.fontSize = 20f;
+            label.characterSpacing = 8f;
+            label.alignment = TextAlignmentOptions.Center;
+            label.color = new Color(0.12f, 0.08f, 0.02f, 1f);
+            label.raycastTarget = false;
+            if (skin != null && skin.oswald != null) label.font = skin.oswald;
+
+            while (!continuePressed) yield return null;
+            SfxManager.Click();
+        }
+
+        private void CleanupInspect()
+        {
+            if (continueGo != null) { Destroy(continueGo); continueGo = null; }
+            if (detailPlate != null) { Destroy(detailPlate.gameObject); detailPlate = null; detailText = null; }
+        }
+
+        // ================== GALERIE (Mehrfach-Öffnung) ==================
+
+        /// <summary>
+        /// Sammel-Öffnung: alle Karten auf einmal, nach Seltenheit sortiert, in
+        /// einem scrollbaren Gitter — mit Hover-Details und CONTINUE. Zehn Kino-
+        /// Sequenzen hintereinander wären keine Belohnung, sondern eine Strafe.
+        /// </summary>
+        private IEnumerator GridReveal(string[] cardNames, int[] finishArr)
+        {
+            Playing = true;
+            group.alpha = 1f;
+            group.blocksRaycasts = true;
+            Clear();   // Kino-Ebenen aus
+
+            var gridRoot = MakeRect("GridReveal", stage);
+            gridRoot.anchorMin = Vector2.zero; gridRoot.anchorMax = Vector2.one;
+            gridRoot.offsetMin = Vector2.zero; gridRoot.offsetMax = Vector2.zero;
+
+            var title = MakeRect("Title", gridRoot);
+            title.anchorMin = new Vector2(0f, 1f); title.anchorMax = new Vector2(1f, 1f);
+            title.pivot = new Vector2(0.5f, 1f);
+            title.offsetMin = new Vector2(40f, -64f); title.offsetMax = new Vector2(-40f, -16f);
+            var titleText = title.gameObject.AddComponent<TextMeshProUGUI>();
+            titleText.text = $"{packName.ToUpperInvariant()} · {cardNames.Length} CARDS PULLED";
+            titleText.fontSize = 26f;
+            titleText.characterSpacing = 9f;
+            titleText.alignment = TextAlignmentOptions.Center;
+            titleText.color = new Color(0.945f, 0.906f, 0.824f, 1f);
+            titleText.raycastTarget = false;
+            if (skin != null && skin.cinzel != null) titleText.font = skin.cinzel;
+
+            var scrollGo = MakeRect("Scroll", gridRoot);
+            scrollGo.anchorMin = new Vector2(0.5f, 0f); scrollGo.anchorMax = new Vector2(0.5f, 1f);
+            scrollGo.pivot = new Vector2(0.5f, 0.5f);
+            scrollGo.offsetMin = new Vector2(-470f, 92f); scrollGo.offsetMax = new Vector2(470f, -72f);
+            var scroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false; scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 40f;
+            var viewport = MakeRect("Viewport", scrollGo);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var vpImg = viewport.gameObject.AddComponent<Image>();
+            vpImg.color = Color.clear;
+            scroll.viewport = viewport;
+
+            var grid = MakeRect("Grid", viewport);
+            grid.anchorMin = new Vector2(0f, 1f); grid.anchorMax = new Vector2(1f, 1f);
+            grid.pivot = new Vector2(0.5f, 1f);
+            grid.offsetMin = Vector2.zero; grid.offsetMax = Vector2.zero;
+            var layout = grid.gameObject.AddComponent<GridLayoutGroup>();
+            layout.cellSize = new Vector2(172f, 240f);
+            layout.spacing = new Vector2(12f, 12f);
+            layout.padding = new RectOffset(6, 6, 6, 6);
+            layout.childAlignment = TextAnchor.UpperCenter;
+            var fitter = grid.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            scroll.content = grid;
+
+            // Nach Seltenheit absteigend, Duplikate nebeneinander
+            var order = Enumerable.Range(0, cardNames.Length)
+                .Select(i => new { Name = cardNames[i], Finish = finishArr != null && i < finishArr.Length ? finishArr[i] : 0 })
+                .Select(x => new { x.Name, x.Finish, Def = catalog.FindByName(x.Name) })
+                .Where(x => x.Def != null)
+                .OrderByDescending(x => (int)x.Def.rarity)
+                .ThenBy(x => x.Name, StringComparer.Ordinal)
+                .ToList();
+            foreach (var entry in order)
+            {
+                var cell = MakeRect("Card_" + entry.Name, grid);
+                var view = Instantiate(cardPrefab, cell);
+                view.gameObject.SetActive(true);
+                var viewRect = (RectTransform)view.transform;
+                viewRect.anchorMin = viewRect.anchorMax = new Vector2(0.5f, 0.5f);
+                viewRect.pivot = new Vector2(0.5f, 0.5f);
+                viewRect.sizeDelta = new Vector2(172f, 240f);
+                viewRect.anchoredPosition = Vector2.zero;
+                var instance = new CardInstance(entry.Def, null)
+                { Finish = (CardFinish)Mathf.Clamp(entry.Finish, 0, CardFinishInfo.Count - 1) };
+                view.Show(instance, false, true);
+                AddHoverDetail(cell, entry.Def);
+            }
+
+            yield return HoldForContinue();
+
+            CleanupInspect();
+            Destroy(gridRoot.gameObject);
             gameObject.SetActive(false);
             Playing = false;
             var callback = finished;

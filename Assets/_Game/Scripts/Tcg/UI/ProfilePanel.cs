@@ -153,44 +153,37 @@ namespace Rouge.Tcg.UI
         private TMP_Text nameText, handleText, titleChip, rankNameText, rankStepText, factCards, factDecks, factSeason;
         private RectTransform rankEmblemSlot;
         private Image rpBarFill;
-        private Image portraitFrame, portraitKeyline;
+        private Image portraitImage, portraitFrame, portraitKeyline;
         private TMP_Text initialText;
-        private readonly List<TMP_Text> tierPips = new List<TMP_Text>();
-        private RectTransform pipRow;
 
-        private void BuildIdentity()
+        /// <summary>
+        /// Baut die Kosmetik-Schichten des Portraits (Profilbild + Rahmen) neu.
+        /// Läuft bei jedem Profil-Update — wer im Kosmetik-Laden umrüstet, sieht
+        /// es sofort, ohne die Szene neu zu laden.
+        /// </summary>
+        private void RefreshPortraitCosmetics()
         {
-            var column = MakeRect("Identity", panel);
-            column.sizeDelta = new Vector2(LeftWidth, PanelHeight - 80f);
-            column.anchorMin = column.anchorMax = new Vector2(0f, 0.5f);
-            column.pivot = new Vector2(0f, 0.5f);
-            column.anchoredPosition = new Vector2(46f, 0f);
+            if (portraitImage == null) return;
+            var host = portraitImage.rectTransform;
+            for (int i = host.childCount - 1; i >= 0; i--)
+            {
+                var child = host.GetChild(i);
+                if (child.name == "Avatar" || child.name == "CosmeticFrame") Destroy(child.gameObject);
+            }
 
-            float y = column.sizeDelta.y * 0.5f - 90f;
+            // Grundzustand, bevor die Ausrüstung entscheidet
+            portraitImage.color = Hex("#3E2C16", 1f);
+            portraitFrame.gameObject.SetActive(true);
+            portraitKeyline.gameObject.SetActive(true);
 
-            // Portrait: Kachel, darauf das Profilbild (falls eines ausgerüstet
-            // ist), darüber der Rahmen. Ohne Profilbild bleibt die Initiale.
-            var portrait = MakeImage("Portrait", column, Hex("#3E2C16", 1f));
-            portrait.sprite = skin.diagFade;
-            portrait.rectTransform.sizeDelta = new Vector2(148f, 148f);
-            portrait.rectTransform.anchoredPosition = new Vector2(0f, y);
-
-            // VOR den Rahmen erzeugt, damit jeder Rahmen darueber zeichnet
             var equippedAvatar = Rouge.Tcg.Net.CosmeticArt.EquippedAvatar();
             Image avatarImage = null;
             if (equippedAvatar != null)
             {
-                avatarImage = MakeImage("Avatar", portrait.rectTransform, Color.white);
+                avatarImage = MakeImage("Avatar", host, Color.white);
                 avatarImage.sprite = equippedAvatar;
                 Stretch(avatarImage.rectTransform);
             }
-
-            portraitFrame = MakeImage("Frame", portrait.rectTransform, Hex("#C8A45C", 1f));
-            portraitFrame.sprite = skin.frame; portraitFrame.type = Image.Type.Sliced;
-            Stretch(portraitFrame.rectTransform);
-            portraitKeyline = MakeImage("Keyline", portrait.rectTransform, Hex("#C8A45C", 0.65f));
-            portraitKeyline.sprite = skin.frame; portraitKeyline.type = Image.Type.Sliced;
-            Stretch(portraitKeyline.rectTransform, 7f);
 
             // Ein ausgerüsteter Profilrahmen legt sich über beide Zierlinien und
             // darf über die Portraitkante hinausragen — bei Thorn Setting und
@@ -200,7 +193,7 @@ namespace Rouge.Tcg.UI
             {
                 portraitFrame.gameObject.SetActive(false);
                 portraitKeyline.gameObject.SetActive(false);
-                var cosmetic = MakeImage("CosmeticFrame", portrait.rectTransform, Color.white);
+                var cosmetic = MakeImage("CosmeticFrame", host, Color.white);
                 cosmetic.sprite = equippedFrame;
 
                 string frameId = Rouge.Tcg.Net.Cosmetics.EquippedIn("avatarFrame");
@@ -212,7 +205,7 @@ namespace Rouge.Tcg.UI
                     // liegt. Breite Motive — Schwingen, Panzerhandschuhe — ragen
                     // dadurch seitlich über die Portraitfläche hinaus; das ist
                     // ihr Auftritt.
-                    portrait.color = Color.clear;
+                    portraitImage.color = Color.clear;
                     float scale = Rouge.Tcg.Net.CosmeticArt.PlaqueScale(frameId, 126f);
                     var rect = cosmetic.rectTransform;
                     rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -237,9 +230,42 @@ namespace Rouge.Tcg.UI
                     Stretch(cosmetic.rectTransform, -16f);
                 }
             }
-            initialText = MakeText("Initial", portrait.rectTransform, skin.cinzel, 64f, Hex("#EBCE8A", 1f));
+
+            // Die Initiale bleibt die oberste Schicht (sichtbar nur ohne Profilbild)
+            if (initialText != null) initialText.transform.SetAsLastSibling();
+        }
+        private readonly List<TMP_Text> tierPips = new List<TMP_Text>();
+        private RectTransform pipRow;
+
+        private void BuildIdentity()
+        {
+            var column = MakeRect("Identity", panel);
+            column.sizeDelta = new Vector2(LeftWidth, PanelHeight - 80f);
+            column.anchorMin = column.anchorMax = new Vector2(0f, 0.5f);
+            column.pivot = new Vector2(0f, 0.5f);
+            column.anchoredPosition = new Vector2(46f, 0f);
+
+            float y = column.sizeDelta.y * 0.5f - 90f;
+
+            // Portrait: Kachel, darauf das Profilbild (falls eines ausgerüstet
+            // ist), darüber der Rahmen. Ohne Profilbild bleibt die Initiale.
+            portraitImage = MakeImage("Portrait", column, Hex("#3E2C16", 1f));
+            portraitImage.sprite = skin.diagFade;
+            portraitImage.rectTransform.sizeDelta = new Vector2(148f, 148f);
+            portraitImage.rectTransform.anchoredPosition = new Vector2(0f, y);
+
+            portraitFrame = MakeImage("Frame", portraitImage.rectTransform, Hex("#C8A45C", 1f));
+            portraitFrame.sprite = skin.frame; portraitFrame.type = Image.Type.Sliced;
+            Stretch(portraitFrame.rectTransform);
+            portraitKeyline = MakeImage("Keyline", portraitImage.rectTransform, Hex("#C8A45C", 0.65f));
+            portraitKeyline.sprite = skin.frame; portraitKeyline.type = Image.Type.Sliced;
+            Stretch(portraitKeyline.rectTransform, 7f);
+
+            initialText = MakeText("Initial", portraitImage.rectTransform, skin.cinzel, 64f, Hex("#EBCE8A", 1f));
             initialText.alignment = TextAlignmentOptions.Center;
             Strip((RectTransform)initialText.transform, 148f, 90f, 0f);
+
+            RefreshPortraitCosmetics();
 
             y -= 108f;
             var eyebrow = MakeText("Eyebrow", column, skin.oswald, 12f, Hex("#9C8A6A", 1f));
@@ -468,6 +494,9 @@ namespace Rouge.Tcg.UI
         {
             var rank = PlayerProfile.Rank;
             string name = PlayerProfile.LoggedIn ? PlayerProfile.AccountName : "Wanderer";
+
+            // Kosmetik kann sich seit dem Aufbau geändert haben (Laden nebenan)
+            RefreshPortraitCosmetics();
 
             // Ein Profilbild ersetzt die Initiale — beides uebereinander waere
             // ein Buchstabe mitten im Monstergesicht.

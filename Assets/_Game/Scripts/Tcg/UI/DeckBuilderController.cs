@@ -107,6 +107,7 @@ namespace Rouge.Tcg.UI
         // Die Arbeitskopie wird nach dem Apply zurueckgelegt.
         private RuntimeDeck editedDeck;
         private bool awaitingSave;
+        private bool restoredDeckIndex;   // Pref nur beim ersten Befüllen anwenden
 
         private bool CollectionMode => PlayerProfile.LoggedIn && network != null && network.IsConnected;
         private int MaxCopies => rules != null ? rules.maxCopiesPerCard : 3;
@@ -143,6 +144,16 @@ namespace Rouge.Tcg.UI
             }
 
             if (searchInput != null) searchInput.onValueChanged.AddListener(value => { search = value ?? ""; RebuildPool(); });
+
+            // Die Listen-ScrollRects stehen in der Szene auf Empfindlichkeit 1 —
+            // ein Radklick bewegte kaum eine Zeile. Hier hochgedreht statt in der
+            // Szene, damit es für Pool UND Deck gilt und im Diff sichtbar ist.
+            foreach (var content in new[] { poolContent, deckContent })
+            {
+                var listScroll = content != null ? content.GetComponentInParent<ScrollRect>(true) : null;
+                if (listScroll != null) listScroll.scrollSensitivity = 45f;
+            }
+
             BuildReliquaryChip();
             for (int i = 0; i < typeChipButtons.Length; i++)
             {
@@ -327,6 +338,13 @@ namespace Rouge.Tcg.UI
             deckDropdown.AddOptions(CollectionMode && PlayerProfile.Decks.Count > 0
                 ? PlayerProfile.Decks.ConvertAll(d => d.Name)
                 : new List<string> { "—" });
+            // Beim ersten echten Befüllen das zuletzt benutzte Deck wiederherstellen,
+            // danach hält `previous` die Auswahl über Profil-Updates hinweg stabil.
+            if (!restoredDeckIndex && CollectionMode && PlayerProfile.Decks.Count > 0)
+            {
+                restoredDeckIndex = true;
+                previous = PlayerPrefs.GetInt(MainMenuController.ActiveDeckPrefKey, previous);
+            }
             deckDropdown.SetValueWithoutNotify(Mathf.Clamp(previous, 0, Mathf.Max(0, deckDropdown.options.Count - 1)));
 
             bool online = CollectionMode;
@@ -343,6 +361,8 @@ namespace Rouge.Tcg.UI
         private void OnDeckSelected()
         {
             editedDeck = null;   // Wechsel verwirft die Arbeitskopie — wie bisher
+            PlayerPrefs.SetInt(MainMenuController.ActiveDeckPrefKey, CurrentIndex);
+            PlayerPrefs.Save();
 
             savedState = false;
             if (deckNameInput != null) deckNameInput.SetTextWithoutNotify(CurrentDeck != null ? CurrentDeck.Name : "");

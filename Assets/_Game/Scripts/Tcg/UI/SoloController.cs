@@ -30,6 +30,19 @@ namespace Rouge.Tcg.UI
                 deckDropdown.AddOptions(hasAccountDecks
                     ? PlayerProfile.Decks.ConvertAll(d => d.Name)
                     : new List<string> { "Pyro Starter (default)" });
+                if (hasAccountDecks)
+                {
+                    // Zuletzt gespieltes Deck vorwählen — gleicher Schlüssel wie Play/Builder
+                    deckDropdown.SetValueWithoutNotify(Mathf.Clamp(
+                        PlayerPrefs.GetInt(MainMenuController.ActiveDeckPrefKey, 0),
+                        0, PlayerProfile.Decks.Count - 1));
+                    deckDropdown.RefreshShownValue();
+                    deckDropdown.onValueChanged.AddListener(v =>
+                    {
+                        PlayerPrefs.SetInt(MainMenuController.ActiveDeckPrefKey, v);
+                        PlayerPrefs.Save();
+                    });
+                }
             }
             if (startButton != null) startButton.onClick.AddListener(StartSolo);
             if (backButton != null) backButton.onClick.AddListener(() => SceneManager.LoadScene(mainMenuSceneName));
