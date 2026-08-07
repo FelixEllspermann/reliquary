@@ -228,6 +228,7 @@ namespace Rouge.Tcg.UI
             // Das Schlussbild gehört dem Spieler: Hover zeigt die Effekte jeder
             // gezogenen Karte, und weiter geht es erst per CONTINUE — nicht mehr
             // von selbst, während man noch liest.
+            detailRailMode = false;
             foreach (var pull in pulls)
                 if (pull.Holder != null && pull.Definition != null)
                     AddHoverDetail(pull.Holder, pull.Definition);
@@ -245,8 +246,27 @@ namespace Rouge.Tcg.UI
 
         private RectTransform detailPlate;
         private TMP_Text detailText;
+        private ScrollRect detailScroll;
+        private bool detailRailMode;      // true = feste Spalte rechts (Galerie)
         private GameObject continueGo;
         private bool continuePressed;
+
+        private const string DetailPlaceholder =
+            "<color=#7A6B52>Hover a card to read its full effects.</color>";
+
+        /// <summary>
+        /// Nur Enter/Exit, bewusst KEIN EventTrigger: der implementiert alle
+        /// Event-Interfaces auf einmal — auch IScrollHandler — und schluckte
+        /// damit das Mausrad über jeder Karte. So läuft Scroll ungestört zum
+        /// ScrollRect durch.
+        /// </summary>
+        private class HoverRelay : MonoBehaviour, UnityEngine.EventSystems.IPointerEnterHandler,
+            UnityEngine.EventSystems.IPointerExitHandler
+        {
+            public System.Action OnEnter;
+            public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData _) => OnEnter?.Invoke();
+            public void OnPointerExit(UnityEngine.EventSystems.PointerEventData _) { }
+        }
 
         /// <summary>Karte + Effekte als lesbarer Block für die Hover-Tafel.</summary>
         private static string DescribeCard(CardDefinition definition)
@@ -275,15 +295,34 @@ namespace Rouge.Tcg.UI
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Die Effekt-Tafel. Galerie: feste Spalte rechts neben dem Gitter —
+        /// eigener Bereich, eigenes Text-Scrollen (Rad über der Spalte scrollt
+        /// den Text, Rad über den Karten das Gitter; nichts überlappt mehr).
+        /// Fünfer-Öffnung: schmale Tafel am rechten Rand, ebenfalls scrollbar.
+        /// Der Text bleibt nach dem Verlassen der Karte STEHEN — sonst käme
+        /// man nie mit der Maus zur Spalte, um lange Effekte zu lesen.
+        /// </summary>
         private void EnsureDetailPlate()
         {
             if (detailPlate != null) return;
             detailPlate = MakeRect("DetailPlate", stage);
-            detailPlate.anchorMin = new Vector2(1f, 0.5f);
-            detailPlate.anchorMax = new Vector2(1f, 0.5f);
-            detailPlate.pivot = new Vector2(1f, 0.5f);
-            detailPlate.sizeDelta = new Vector2(316f, 420f);
-            detailPlate.anchoredPosition = new Vector2(-18f, 0f);
+            if (detailRailMode)
+            {
+                detailPlate.anchorMin = new Vector2(0.5f, 0f);
+                detailPlate.anchorMax = new Vector2(0.5f, 1f);
+                detailPlate.pivot = new Vector2(0.5f, 0.5f);
+                detailPlate.offsetMin = new Vector2(108f, 92f);
+                detailPlate.offsetMax = new Vector2(616f, -72f);
+            }
+            else
+            {
+                detailPlate.anchorMin = new Vector2(1f, 0.5f);
+                detailPlate.anchorMax = new Vector2(1f, 0.5f);
+                detailPlate.pivot = new Vector2(1f, 0.5f);
+                detailPlate.sizeDelta = new Vector2(316f, 460f);
+                detailPlate.anchoredPosition = new Vector2(-18f, 0f);
+            }
             var bg = detailPlate.gameObject.AddComponent<Image>();
             bg.color = new Color(0.05f, 0.04f, 0.03f, 0.96f);
             bg.raycastTarget = false;
@@ -295,16 +334,49 @@ namespace Rouge.Tcg.UI
             edgeImg.color = new Color(0.784f, 0.643f, 0.361f, 0.85f);
             edgeImg.raycastTarget = false;
 
-            var textRect = MakeRect("Text", detailPlate);
-            textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one;
-            textRect.offsetMin = new Vector2(18f, 14f); textRect.offsetMax = new Vector2(-14f, -14f);
+            // Scrollbarer Textbereich — lange Effekte werden nicht mehr geclippt
+            var scrollGo = MakeRect("TextScroll", detailPlate);
+            scrollGo.anchorMin = Vector2.zero; scrollGo.anchorMax = Vector2.one;
+            scrollGo.offsetMin = new Vector2(18f, 14f); scrollGo.offsetMax = new Vector2(-14f, -14f);
+            detailScroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            detailScroll.horizontal = false;
+            detailScroll.vertical = true;
+            detailScroll.movementType = ScrollRect.MovementType.Clamped;
+            detailScroll.scrollSensitivity = 32f;
+
+            var viewport = MakeRect("Viewport", scrollGo);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var vpImg = viewport.gameObject.AddComponent<Image>();
+            vpImg.color = Color.clear;   // raycastTarget bleibt an: fängt das Rad
+            detailScroll.viewport = viewport;
+
+            var textRect = MakeRect("Text", viewport);
+            textRect.anchorMin = new Vector2(0f, 1f);
+            textRect.anchorMax = new Vector2(1f, 1f);
+            textRect.pivot = new Vector2(0.5f, 1f);
+            textRect.offsetMin = Vector2.zero; textRect.offsetMax = Vector2.zero;
             detailText = textRect.gameObject.AddComponent<TextMeshProUGUI>();
-            detailText.fontSize = 15f;
+            detailText.fontSize = detailRailMode ? 16f : 15f;
             detailText.color = new Color(0.905f, 0.855f, 0.737f, 1f);
             detailText.alignment = TextAlignmentOptions.TopLeft;
             detailText.raycastTarget = false;
             if (skin != null && skin.spectral != null) detailText.font = skin.spectral;
-            detailPlate.gameObject.SetActive(false);
+            var fitter = textRect.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            detailScroll.content = textRect;
+
+            detailText.text = DetailPlaceholder;
+            detailPlate.gameObject.SetActive(true);
+        }
+
+        private void ShowDetail(CardDefinition definition)
+        {
+            if (detailText == null) return;
+            detailText.text = DescribeCard(definition);
+            Canvas.ForceUpdateCanvases();
+            if (detailScroll != null) detailScroll.verticalNormalizedPosition = 1f;   // oben anfangen
         }
 
         /// <summary>Hover über einer aufgedeckten Karte zeigt Name, Werte und Effekte.</summary>
@@ -319,19 +391,9 @@ namespace Rouge.Tcg.UI
             }
             catcher.raycastTarget = true;
 
-            var trigger = holder.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>();
-            if (trigger == null) trigger = holder.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
-            trigger.triggers.Clear();
-            var enter = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter };
-            enter.callback.AddListener(_ =>
-            {
-                detailText.text = DescribeCard(definition);
-                detailPlate.gameObject.SetActive(true);
-            });
-            var exit = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit };
-            exit.callback.AddListener(_ => detailPlate.gameObject.SetActive(false));
-            trigger.triggers.Add(enter);
-            trigger.triggers.Add(exit);
+            var relay = holder.gameObject.GetComponent<HoverRelay>();
+            if (relay == null) relay = holder.gameObject.AddComponent<HoverRelay>();
+            relay.OnEnter = () => ShowDetail(definition);
         }
 
         private IEnumerator HoldForContinue()
@@ -371,7 +433,7 @@ namespace Rouge.Tcg.UI
         private void CleanupInspect()
         {
             if (continueGo != null) { Destroy(continueGo); continueGo = null; }
-            if (detailPlate != null) { Destroy(detailPlate.gameObject); detailPlate = null; detailText = null; }
+            if (detailPlate != null) { Destroy(detailPlate.gameObject); detailPlate = null; detailText = null; detailScroll = null; }
         }
 
         // ================== GALERIE (Mehrfach-Öffnung) ==================
@@ -405,10 +467,13 @@ namespace Rouge.Tcg.UI
             titleText.raycastTarget = false;
             if (skin != null && skin.cinzel != null) titleText.font = skin.cinzel;
 
+            // Karten links (4 Spalten), Effekt-Spalte rechts daneben — getrennte
+            // Bereiche, getrenntes Scrollen. Der Scroll-Bereich reicht über die
+            // Karten hinaus, damit das Rad auch neben den Karten greift.
             var scrollGo = MakeRect("Scroll", gridRoot);
             scrollGo.anchorMin = new Vector2(0.5f, 0f); scrollGo.anchorMax = new Vector2(0.5f, 1f);
             scrollGo.pivot = new Vector2(0.5f, 0.5f);
-            scrollGo.offsetMin = new Vector2(-470f, 92f); scrollGo.offsetMax = new Vector2(470f, -72f);
+            scrollGo.offsetMin = new Vector2(-628f, 92f); scrollGo.offsetMax = new Vector2(84f, -72f);
             var scroll = scrollGo.gameObject.AddComponent<ScrollRect>();
             scroll.horizontal = false; scroll.vertical = true;
             scroll.movementType = ScrollRect.MovementType.Clamped;
@@ -418,7 +483,7 @@ namespace Rouge.Tcg.UI
             viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
             viewport.gameObject.AddComponent<RectMask2D>();
             var vpImg = viewport.gameObject.AddComponent<Image>();
-            vpImg.color = Color.clear;
+            vpImg.color = Color.clear;   // raycastTarget an: fängt das Rad im ganzen Bereich
             scroll.viewport = viewport;
 
             var grid = MakeRect("Grid", viewport);
@@ -430,9 +495,15 @@ namespace Rouge.Tcg.UI
             layout.spacing = new Vector2(12f, 12f);
             layout.padding = new RectOffset(6, 6, 6, 6);
             layout.childAlignment = TextAnchor.UpperCenter;
+            layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            layout.constraintCount = 3;   // weniger Spalten, dafür Platz für die Effekt-Spalte
             var fitter = grid.gameObject.AddComponent<ContentSizeFitter>();
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             scroll.content = grid;
+
+            // Effekt-Spalte gleich aufbauen — von Anfang an sichtbar, mit Hinweis
+            detailRailMode = true;
+            EnsureDetailPlate();
 
             // Nach Seltenheit absteigend, Duplikate nebeneinander
             var order = Enumerable.Range(0, cardNames.Length)
