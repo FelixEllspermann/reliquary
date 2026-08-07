@@ -1,4 +1,37 @@
 ────────────────────────────────
+0.1.2b · A PROPER ENDING
+────────────────────────────────
+
+THE END OF A DUEL, DONE RIGHT
+  · The final attack lands, the Life Points tick to zero — and only
+    then does the loser's Player Card shatter, on BOTH screens
+  · The winner's Victory Seal plays for both players: VICTORY on the
+    winner's screen, LOSS on the loser's
+  · Continue → Rank Up animation (if you climbed) → Continue → menu.
+    The Rank Up now holds its final frame until you click
+  · Solo victories run through the Rank Up too
+
+CHAINS
+  · While a chain is RESOLVING, no new response windows open. You
+    respond to activations — not to their resolution
+
+NO MORE MYSTERY CARDS
+  · Cards activated from the opponent's hand are revealed the moment
+    they activate — no more "?" with a card back
+  · Extra Deck summons show the summoned Reliquary to both players
+
+QUALITY OF LIFE
+  · REACTIONS toggle, bottom left: switch it off and response offers
+    are declined automatically. Your own triggers still ask
+  · Deck builder: crafted cards appear instantly, and unsaved deck
+    changes survive crafting. No more silent resets
+  · Dragging a summon onto an occupied zone now tells you why not
+  · Pack opening plays on a solid backdrop — no more shop bleeding
+    through
+  · The duel log is darker and readable; Reliquary summon stat chips
+    are opaque; the center status line sits on a dark plate
+
+────────────────────────────────
 0.1.2 · TWELVE WAYS TO LEAD
 ────────────────────────────────
 
