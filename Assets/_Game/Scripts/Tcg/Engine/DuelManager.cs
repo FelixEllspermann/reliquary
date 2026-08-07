@@ -563,6 +563,7 @@ namespace Rouge.Tcg
         {
             foreach (var player in new[] { Player1, Player2 })
             {
+                player.SpellsCastThisTurn = 0; // Erster-Zauber-Rabatt gilt je Zug neu
                 foreach (var card in player.FieldCards())
                 {
                     card.SetThisTurn = false;

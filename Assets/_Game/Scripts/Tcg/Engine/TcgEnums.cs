@@ -40,7 +40,15 @@ namespace Rouge.Tcg
         OnFlipFaceUp,     // wenn diese verdeckte Karte aufgedeckt wird (Flip-Effekt)
 
         // Nur anhängen, nie dazwischen: Karten-Assets speichern den Zahlenwert.
-        HandQuick         // aus der eigenen Hand, wann immer ein Reaktionsfenster offen ist
+        HandQuick,        // aus der eigenen Hand, wann immer ein Reaktionsfenster offen ist
+
+        // --- Batch August 2026 ---
+        OnTributedSelf,        // wenn DIESE Karte als Tribut gezahlt wird (Willing Lamb)
+        OnOwnMonsterTributed,  // wenn irgendein eigenes Monster getributet wird (Blood Dividend)
+        OnOwnMonsterBounced,   // wenn ein eigenes Monster vom Feld auf die Hand zurückkehrt (Nest Egg)
+        OnEnemyCardBounced,    // wenn eine gegnerische Feldkarte auf die Hand zurückkehrt (Finders Keepers)
+        OnBearerBattleKill,    // auf Karte/Ausrüstung: der (Träger) zerstört ein Monster im Kampf (Extra Reach)
+        OnOwnMonsterDestroyed  // wenn irgendein eigenes Monster zerstört wird (Warm Memories)
     }
 
     public enum EffectActionType
@@ -110,7 +118,39 @@ namespace Rouge.Tcg
         // Vorrat und ist im eigenen Zug wirkungslos — der Gegner füllt zu
         // Zugbeginn ohnehin auf. Diese beiden wirken auf das nächste Auffüllen.
         DrainOpponentManaNextTurn,  // dem Gegner fehlt im nächsten Zug so viel Mana
-        GainManaNextTurn            // du hast in deinem nächsten Zug so viel Mana mehr
+        GainManaNextTurn,           // du hast in deinem nächsten Zug so viel Mana mehr
+
+        // --- Batch August 2026 ---
+        ReturnTargetCardToHand,     // beliebige Feldkarte (Monster/Zauber/Artefakt) auf die Hand des Besitzers
+        ProtectTargetThisTurn,      // Ziel kann diesen Zug nicht zerstört werden
+        SwitchTargetToDefense,      // Zielmonster in Verteidigungsposition drehen
+        SwitchAllToDefense,         // amount 0 = alle Monster beider Felder, 1 = nur gegnerische
+        DrawUntilMatchOpponentHand, // ziehen bis Handkarten-Gleichstand (amount = Obergrenze)
+        ReturnSelfFromGraveToHand,  // Quellkarte aus dem Friedhof auf die Hand (Bad Penny)
+        SpecialSummonTargetFromGraveFaceDown, // Ziel aus dem eigenen Friedhof verdeckt beschwören
+        MillAndSalvage,             // amount Karten millen; Treffer (nameFilter) bis targetCount auf die Hand
+        BuffSelfAtkPerCount,        // Quellkarte: +amount ATK dauerhaft pro gezählter Karte (countKind)
+        BuffSelfDefPerCount,        // Quellkarte: +amount DEF dauerhaft pro gezählter Karte (countKind)
+        RevealTopMayBottom,         // oberste Deckkarte zeigen; Aktivierender darf sie nach unten legen
+        ReturnBanishedToGraveyard,  // verbannte Zielkarte(n) zurück in den Friedhof ihres Besitzers (Gravemaw)
+        PlaceTargetArtifactFromGraveyard, // Ziel-Artefakt aus dem eigenen Friedhof in die Artefakt-Zone legen
+        MoveTargetArtifactToStrongestMonster, // Ziel-Artefakt ans eigene Monster mit höchstem ATK; amount>0 = EOT-ATK-Bonus für den neuen Träger
+        SendTargetFromDeckToGraveyard, // Zielkarte aus dem eigenen Deck in den Friedhof (Foolish Burial)
+        BuffTargetAtkPerCountEot,   // Ziel: +amount ATK bis Zugende pro gezählter Karte (countKind)
+        BuffTargetAtkPerCountPermanent // Ziel: +amount ATK dauerhaft pro gezählter Karte (countKind)
+    }
+
+    /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
+    public enum EffectCountKind
+    {
+        OwnArtifactsOnField,    // eigene Artefakte auf dem Feld
+        OwnGraveyardArtifacts,  // Artefakte im eigenen Friedhof
+        OwnFaceDownMonsters,    // eigene verdeckte Monster
+        OwnBanishedMonsters,    // eigene verbannte Monster
+        OwnGraveyardCards,      // Karten im eigenen Friedhof
+        OwnMonstersOnField,     // eigene Monster auf dem Feld
+        EquippedArtifactsOnSelf, // an DIESER Karte ausgerüstete Artefakte (nur Passiv-Skalierung)
+        OpponentFaceDownMonsters // verdeckte Monster des Gegners (Night Terror)
     }
 
     public enum TargetKind
@@ -143,7 +183,14 @@ namespace Rouge.Tcg
 
         // --- neu; nur anhängen, siehe Hinweis bei EffectActionType ---
         HandCardSelf,              // beliebige Karte in der eigenen Hand
-        HandCardOpponent           // beliebige Karte in der gegnerischen Hand (aufgedeckt gewählt)
+        HandCardOpponent,          // beliebige Karte in der gegnerischen Hand (aufgedeckt gewählt)
+
+        // --- Batch August 2026 ---
+        EnemySpellOrArtifact,      // gegnerischer Zauber oder gegnerisches Artefakt auf dem Feld
+        BanishedMonsterSelf,       // Monster in der eigenen Verbannung
+        BanishedCardSelf,          // beliebige Karte in der eigenen Verbannung
+        GraveyardCardOpponent,     // beliebige Karte im gegnerischen Friedhof
+        AllySpellOrArtifact        // eigener Zauber (auch gesetzt) oder eigenes Artefakt auf dem Feld
     }
 
     /// <summary>

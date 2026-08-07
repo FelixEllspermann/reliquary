@@ -175,8 +175,13 @@ namespace Rouge.Tcg.UI
                 if (!string.IsNullOrEmpty(condition))
                     aura = $"<color=#7ACD96><b>SPECIAL SUMMON</b></color>\n{condition}";
             }
-            else if (definition is ArtifactCardData artifactData && artifactData.protectTypeFromEffectDestruction)
-                aura = $"<color=#B08CFF><b>PASSIVE</b></color>\n{artifactData.protectedType}-Type monsters you control cannot be destroyed by your opponent's card effects.";
+            // Dauerhafte Passiv-Fähigkeiten (Aura, Spott, Kampf-Schild, Rabatt ...)
+            var passiveLines = definition.BuildPassiveLines();
+            if (passiveLines.Count > 0)
+            {
+                string block = $"<color=#B08CFF><b>PASSIVE</b></color>\n{string.Join("\n", passiveLines)}";
+                aura = string.IsNullOrEmpty(aura) ? block : aura + "\n<color=#454B60>- - - - - - - - - - - - - -</color>\n" + block;
+            }
 
             if (definition.effects == null || definition.effects.Count == 0)
                 return string.IsNullOrEmpty(aura) ? "<i>No effect.</i>" : aura;

@@ -56,6 +56,9 @@ namespace Rouge.Tcg
 
         [Tooltip("Erlaubtes Attribut (wenn Filter aktiv)")]
         public MonsterAttribute attributeFilter = MonsterAttribute.Light;
+
+        [Tooltip("Zählbasis für ...PerCount-Aktionen")]
+        public EffectCountKind countKind = EffectCountKind.OwnArtifactsOnField;
     }
 
     [Serializable]
@@ -90,6 +93,25 @@ namespace Rouge.Tcg
 
         [Tooltip("Nur aktivierbar, wenn diese Karte ein Artefakt ausgerüstet hat (Genostitched)")]
         public bool requiresEquippedArtifact;
+
+        [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
+        [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]
+        public int minMana;
+
+        [Tooltip("Nur aktivierbar mit mindestens so vielen eigenen Monstern auf dem Feld")]
+        public int minOwnMonsters;
+
+        [Tooltip("Nur aktivierbar mit mindestens so vielen eigenen verdeckten Monstern")]
+        public int minOwnFaceDownMonsters;
+
+        [Tooltip("Nur aktivierbar mit mindestens so vielen Karten im eigenen Friedhof")]
+        public int minOwnGraveyardCards;
+
+        [Tooltip("Nur aktivierbar, wenn der Gegner mehr Handkarten hat als du")]
+        public bool requireOpponentMoreHandCards;
+
+        [Tooltip("Nur aktivierbar, wenn der Gegner mehr Monster kontrolliert als du")]
+        public bool requireOpponentMoreMonsters;
 
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();

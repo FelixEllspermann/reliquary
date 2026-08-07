@@ -70,7 +70,7 @@ namespace Rouge.Tcg
         {
             get
             {
-                int value = BaseAtk + PermanentAtkBonus + TempAtkBonus;
+                int value = BaseAtk + PermanentAtkBonus + TempAtkBonus + AuraBonus(atk: true) + PerCountBonus(atk: true);
                 foreach (var artifact in EquippedArtifacts)
                     if (artifact.ArtifactData != null) value += artifact.ArtifactData.atkBonus;
                 return value < 0 ? 0 : value;
@@ -81,11 +81,99 @@ namespace Rouge.Tcg
         {
             get
             {
-                int value = BaseDef + PermanentDefBonus + TempDefBonus;
+                int value = BaseDef + PermanentDefBonus + TempDefBonus + AuraBonus(atk: false) + PerCountBonus(atk: false);
                 foreach (var artifact in EquippedArtifacts)
                     if (artifact.ArtifactData != null) value += artifact.ArtifactData.defBonus;
                 return value < 0 ? 0 : value;
             }
+        }
+
+        /// <summary>
+        /// Selbst-Skalierung (Weight of Evidence): dauerhaft +N ATK/DEF pro gezählter
+        /// Karte — wie die Aura ein Live-Scan statt Buchhaltung.
+        /// </summary>
+        private int PerCountBonus(bool atk)
+        {
+            if (Definition == null || Owner == null || Zone != ZoneType.MonsterZone) return 0;
+            int per = atk ? Definition.passiveAtkPerCount : Definition.passiveDefPerCount;
+            if (per <= 0) return 0;
+            var kind = atk ? Definition.passiveAtkPerCountKind : Definition.passiveDefPerCountKind;
+            if (kind == EffectCountKind.EquippedArtifactsOnSelf) return per * EquippedArtifacts.Count;
+            return per * CountOn(Owner, kind);
+        }
+
+        /// <summary>Zählbasis der PerCount-Fähigkeiten — geteilt mit den ...PerCount-Aktionen der Engine.</summary>
+        public static int CountOn(PlayerState player, EffectCountKind kind)
+        {
+            switch (kind)
+            {
+                case EffectCountKind.OwnArtifactsOnField:
+                {
+                    int artifacts = 0;
+                    foreach (var a in player.ArtifactZones) if (a != null) artifacts++;
+                    return artifacts;
+                }
+                case EffectCountKind.OwnGraveyardArtifacts:
+                {
+                    int graveArtifacts = 0;
+                    foreach (var c in player.Graveyard) if (c.ArtifactData != null) graveArtifacts++;
+                    return graveArtifacts;
+                }
+                case EffectCountKind.OwnFaceDownMonsters:
+                {
+                    int faceDown = 0;
+                    foreach (var m in player.MonsterZones) if (m != null && m.FaceDown) faceDown++;
+                    return faceDown;
+                }
+                case EffectCountKind.OwnBanishedMonsters:
+                {
+                    int banished = 0;
+                    foreach (var c in player.Banished) if (c.MonsterData != null) banished++;
+                    return banished;
+                }
+                case EffectCountKind.OwnGraveyardCards: return player.Graveyard.Count;
+                case EffectCountKind.OwnMonstersOnField: return player.MonsterCount();
+                case EffectCountKind.OpponentFaceDownMonsters:
+                {
+                    if (player.Opponent == null) return 0;
+                    int foeFaceDown = 0;
+                    foreach (var m in player.Opponent.MonsterZones) if (m != null && m.FaceDown) foeFaceDown++;
+                    return foeFaceDown;
+                }
+                default: return 0;
+            }
+        }
+
+        /// <summary>
+        /// Summe aller Dauer-Auren, die auf DIESES Monster wirken: eigene offene
+        /// Feldkarten (Monster + Artefakte) mit Aura-Werten, deren Filter passen.
+        /// Bewusst als Live-Scan statt Buchhaltung — Auren erscheinen und
+        /// verschwinden mit ihrer Quelle, ohne Auf-/Abbau-Hooks.
+        /// </summary>
+        private int AuraBonus(bool atk)
+        {
+            if (Owner == null || Zone != ZoneType.MonsterZone || MonsterData == null) return 0;
+            int total = 0;
+            for (int zone = 0; zone < 2; zone++)
+            {
+                var sources = zone == 0 ? Owner.MonsterZones : Owner.ArtifactZones;
+                foreach (var source in sources)
+                {
+                    var def = source != null ? source.Definition : null;
+                    if (def == null) continue;
+                    if (source.FaceDown) continue;                      // verdeckte Quellen strahlen nicht
+                    if (def.auraExcludesSelf && source == this) continue;
+                    int bonus = atk ? def.auraAtkBonus : def.auraDefBonus;
+                    if (bonus == 0) continue;
+                    if (!string.IsNullOrEmpty(def.auraNameFilter)
+                        && (Definition == null || !Definition.cardName.Contains(def.auraNameFilter))) continue;
+                    if (def.auraUseTypeFilter && MonsterData.monsterType != def.auraTypeFilter) continue;
+                    if (def.auraLevelFilter > 0 && MonsterData.level != def.auraLevelFilter) continue;
+                    if (def.auraOnlyFaceDown && !FaceDown) continue;
+                    total += bonus;
+                }
+            }
+            return total;
         }
 
         /// <summary>Der ursprüngliche Besitzer — dahin kehrt die Karte zurück (Friedhof/Hand/Verbannung), auch wenn sie gerade kontrolliert wird.</summary>

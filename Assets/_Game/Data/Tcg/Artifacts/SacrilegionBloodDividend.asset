@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73663bf717b591f4e9241eb02d62fdb2, type: 3}
+  m_Name: SacrilegionBloodDividend
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
+  cardName: Sacrilegion Blood Dividend
+  artwork: {fileID: 0}
+  rarity: 2
+  effects:
+  - label: Blood Dividend
+    text: 'Once per turn, when a monster you control is Tributed: Gain 300 LP.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 14
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    actions:
+    - type: 1
+      isCost: 0
+      amount: 300
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+  - label: Special Dividend
+    text: 'Instead, pay 1 Mana: Also draw 1 card.'
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 1
+    trigger: 14
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    actions:
+    - type: 1
+      isCost: 0
+      amount: 300
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+    - type: 2
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  slot: 2
+  atkBonus: 0
+  defBonus: 0
+  protectTypeFromEffectDestruction: 0
+  protectedType: 0
+  redirectDestructionToSelf: 0
+  countsAsNameOnField: 
+  firstSpellDiscountPerTurn: 0
+  protectsFaceDownWhileNamedFaceUp: 

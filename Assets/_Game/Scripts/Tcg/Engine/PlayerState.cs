@@ -42,6 +42,10 @@ namespace Rouge.Tcg
         public bool NoBattleDamageThisTurn;     // erleidet diesen Zug keinen Kampfschaden
         public bool CannotSpecialSummonThisTurn;
 
+        /// <summary>Ausgespielte Zauber in diesem Zug — für den Erster-Zauber-Rabatt
+        /// (Bargain Bobbin). Reset in ResetTurnFlags(), für beide Spieler.</summary>
+        public int SpellsCastThisTurn;
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

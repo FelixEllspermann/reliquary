@@ -507,9 +507,12 @@ namespace Rouge.Tcg.UI
                 string condition = monsterData.SelfSummonConditionText();
                 if (!string.IsNullOrEmpty(condition)) prefix = $"<b>SUMMON:</b> {condition}";
             }
-            else if (definition is ArtifactCardData aura && aura.protectTypeFromEffectDestruction)
+            // Dauerhafte Passiv-Fähigkeiten (Aura, Spott, Kampf-Schild, Rabatt ...)
+            var passives = definition.BuildPassiveLines();
+            if (passives.Count > 0)
             {
-                prefix = $"<b>PASSIVE:</b> {aura.protectedType}-Type monsters you control cannot be destroyed by your opponent's card effects.";
+                string block = "<b>PASSIVE:</b> " + string.Join(" ", passives);
+                prefix = prefix.Length > 0 ? prefix + "\n" + block : block;
             }
 
             string list = definition.effects == null || definition.effects.Count == 0 ? "" : BuildEffectList(definition);
