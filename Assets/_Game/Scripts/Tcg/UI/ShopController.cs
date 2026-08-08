@@ -308,7 +308,7 @@ namespace Rouge.Tcg.UI
                 var kicker = tile.buyButton.transform.parent.Find("Kicker");
                 var kickerText = kicker != null ? kicker.GetComponent<TMP_Text>() : null;
                 if (kickerText != null)
-                    kickerText.text = $"ALL {pack.cardPool.Count} CARDS · {Mathf.Max(1, pack.raritySlots.Count)} PER SEAL";
+                    kickerText.text = $"ALL {pack.ResolvePool(catalog).Count} CARDS · {Mathf.Max(1, pack.raritySlots.Count)} PER SEAL";
             }
         }
 
@@ -362,10 +362,11 @@ namespace Rouge.Tcg.UI
             if (infoOverlay == null) return;
 
             infoOverlay.SetActive(true);
+            var pool = pack.ResolvePool(catalog);
             if (infoTitle != null)
                 infoTitle.text = odds
                     ? $"{pack.packName.ToUpperInvariant()} · ODDS"
-                    : $"{pack.packName.ToUpperInvariant()} · CONTENTS · {pack.cardPool.Count(c => c != null)} CARDS";
+                    : $"{pack.packName.ToUpperInvariant()} · CONTENTS · {pool.Count(c => c != null)} CARDS";
 
             // Odds sind Text, der Inhalt ist eine Galerie echter Karten — der
             // Scroller bekommt jeweils das passende Content-Rect untergeschoben.
@@ -373,7 +374,7 @@ namespace Rouge.Tcg.UI
             if (infoBody != null)
             {
                 infoBody.gameObject.SetActive(!gallery);
-                if (odds) infoBody.text = BuildOddsText(pack);
+                if (odds) infoBody.text = BuildOddsText(pack, pool);
             }
             if (infoGrid != null)
             {
@@ -400,7 +401,7 @@ namespace Rouge.Tcg.UI
         private void PopulateContentsGallery(CardPackDefinition pack)
         {
             if (cardViewPrefab == null || infoGrid == null) return;
-            var sorted = pack.cardPool
+            var sorted = pack.ResolvePool(catalog)
                 .Where(c => c != null)
                 .OrderByDescending(c => (int)c.rarity)
                 .ThenBy(c => c.cardName, System.StringComparer.Ordinal);
@@ -464,15 +465,15 @@ namespace Rouge.Tcg.UI
             return builder.ToString();
         }
 
-        private static string BuildOddsText(CardPackDefinition pack)
+        private static string BuildOddsText(CardPackDefinition pack, System.Collections.Generic.List<CardDefinition> pool)
         {
             // Unique-Packs (Hero Cache) haben keine Rarity-Slots: sie ziehen genau
             // EINE Karte aus dem Pool, die dem Konto fehlt — jede fehlende gleich
             // wahrscheinlich. Die normale Tabelle würde hier nur verwirren.
             if (pack.uniqueDraw)
             {
-                int total = pack.cardPool.Count(c => c != null);
-                int missing = pack.cardPool.Count(c => c != null && Net.PlayerProfile.Owned(c.cardName) < 1);
+                int total = pool.Count(c => c != null);
+                int missing = pool.Count(c => c != null && Net.PlayerProfile.Owned(c.cardName) < 1);
                 var b = new System.Text.StringBuilder();
                 b.Append("<color=#8C7B5F>Every cache contains <color=#F1E7D2>1</color> card — always one you ")
                  .Append("<color=#F1E7D2>do not own yet</color>. No duplicates, no blanks.</color>\n\n");
@@ -496,7 +497,7 @@ namespace Rouge.Tcg.UI
             float upgrade = Mathf.Clamp01(pack.legendaryUpgradeChance);
             bool upgrades = upgrade > 0.0001f
                 && lastSlot != CardRarity.Legendary
-                && pack.cardPool.Any(c => c != null && c.rarity == CardRarity.Legendary);
+                && pool.Any(c => c != null && c.rarity == CardRarity.Legendary);
             if (upgrades)
             {
                 expected[(int)lastSlot] -= upgrade;
@@ -514,7 +515,7 @@ namespace Rouge.Tcg.UI
             foreach (var rarity in order)
             {
                 float perPack = expected[(int)rarity];
-                int inPool = pack.cardPool.Count(c => c != null && c.rarity == rarity);
+                int inPool = pool.Count(c => c != null && c.rarity == rarity);
                 float perCard = inPool > 0 ? 100f * perPack / inPool : 0f;
                 string hex = ColorUtility.ToHtmlStringRGB(CollectionRow.RarityStrong(rarity));
                 string ink = perPack > 0.0001f ? "CFC3AC" : "6A6152";

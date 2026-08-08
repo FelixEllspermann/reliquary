@@ -39,6 +39,21 @@ const ECON = {
 // ---- Spieldaten (aus Unity exportiert) ----
 const cards = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'cards.json'), 'utf8'));        // Name -> Rarity 0-3
 const packs = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'packs.json'), 'utf8'));        // Name -> {price, cards[]}
+
+// "cards": "all" — das Pack enthält IMMER alle Karten des Spiels, außer denen aus
+// Unique-Packs (Hero Cache). Neue Karten-Batches landen damit automatisch im Pool,
+// ohne dass packs.json je wieder gepflegt werden muss. Die alte handgepflegte Liste
+// war bei drei Batches in Folge nicht mitgewachsen — 203 Karten droppten nie.
+{
+  const uniqueNames = new Set();
+  for (const def of Object.values(packs))
+    if (def.unique && Array.isArray(def.cards)) for (const n of def.cards) uniqueNames.add(n);
+  for (const [name, def] of Object.entries(packs)) {
+    if (def.cards !== 'all') continue;
+    def.cards = Object.keys(cards).filter(n => !uniqueNames.has(n));
+    log(`Pack "${name}": Pool automatisch = ${def.cards.length} Karten (alle ausser Unique-Pack-Karten)`);
+  }
+}
 const starter = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'starter.json'), 'utf8'));    // Name -> Anzahl (Start-Sammlung)
 const starterDeck = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'starterdeck.json'), 'utf8')); // {name, hero, cards[]}
 // Die fuenf Decks zur Auswahl beim ersten Start. Erzeugt und geprueft von

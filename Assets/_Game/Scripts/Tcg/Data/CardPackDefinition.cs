@@ -28,8 +28,29 @@ namespace Rouge.Tcg
                  "raritySlots und legendaryUpgradeChance sind dann bedeutungslos.")]
         public bool uniqueDraw;
 
-        [Tooltip("Alle Karten, die in diesem Pack gezogen werden können")]
+        [Tooltip("Alle Karten, die in diesem Pack gezogen werden können. LEER lassen = das Pack " +
+                 "enthält automatisch IMMER alle Karten des Katalogs außer Helden (Relic Pack).")]
         public List<CardDefinition> cardPool = new List<CardDefinition>();
+
+        [System.NonSerialized] private List<CardDefinition> resolvedAllCache;
+
+        /// <summary>
+        /// Der effektive Karten-Pool. Ein LEERER cardPool bedeutet: dieses Pack enthält
+        /// immer ALLE Karten des Katalogs (außer Helden-Karten) — neue Sets landen damit
+        /// automatisch im Pack, ohne dass die Liste je wieder gepflegt werden muss.
+        /// Muss zur "cards": "all"-Auflösung in Server/server.js passen.
+        /// </summary>
+        public List<CardDefinition> ResolvePool(CardCatalog catalog)
+        {
+            if (cardPool != null && cardPool.Count > 0) return cardPool;
+            if (resolvedAllCache == null && catalog != null)
+            {
+                resolvedAllCache = new List<CardDefinition>();
+                foreach (var card in catalog.cards)
+                    if (card != null && !(card is PlayerCardData)) resolvedAllCache.Add(card);
+            }
+            return resolvedAllCache ?? cardPool;
+        }
 
         [Tooltip("Rarity pro Karten-Slot einer Öffnung (Reihenfolge = Aufdeck-Reihenfolge). " +
                  "Fehlt eine Rarity im Pool, fällt der Server auf die nächste verfügbare zurück.")]
