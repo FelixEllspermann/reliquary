@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineBearHug
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Bear Hug
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: d855c78495926d5418c8b98a58e89144, type: 3}
   rarity: 1
   effects:
   - label: Bear Hug

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnugglettheWholeSquish
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Snugglet, the Whole Squish
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: bb0a06bb6381f3340ba1c53e736491fa, type: 3}
   rarity: 3
   effects:
   - label: The Whole Family

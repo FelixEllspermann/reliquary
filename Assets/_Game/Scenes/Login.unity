@@ -4095,7 +4095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rouge.Tcg.Net.NetworkManager
   serverUrl: ws://217.154.212.82:7777
-  useTestServer: 1
+  useTestServer: 0
   testServerUrl: ws://217.154.212.82:7778
   persistAcrossScenes: 1
 --- !u!4 &1037874239

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletCuddlepileThreeDeep
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Snugglet Cuddlepile, Three Deep
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 4207168f178aae24c9d074aec4998864, type: 3}
   rarity: 2
   effects:
   - label: Room for One More

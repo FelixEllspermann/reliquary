@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegBlastplate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Powderkeg Blastplate
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 4b24abca54fdbab4fb0bda92056536ff, type: 3}
   rarity: 1
   effects:
   - label: Shrapnel

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorFreedomofInformation
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Redactor Freedom of Information
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 586397c0166e0da44a70ee9dfb308081, type: 3}
   rarity: 1
   effects:
   - label: Freedom of Information

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorFinalEdition
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Redactor, Final Edition
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: deff25e2d719bb94b881c7eab063506a, type: 3}
   rarity: 2
   effects:
   - label: Print Deadline

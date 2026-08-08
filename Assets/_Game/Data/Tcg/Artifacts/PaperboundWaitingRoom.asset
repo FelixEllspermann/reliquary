@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundWaitingRoom
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Paperbound Waiting Room
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 41cd21dc06e922c489d9a9ba5a808775, type: 3}
   rarity: 1
   effects:
   - label: Please Hold

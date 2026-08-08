@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorCensor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Redactor Censor
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 89e4a20b1f5b5fb4291658124343b949, type: 3}
   rarity: 1
   effects:
   - label: Strike That

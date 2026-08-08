@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundFileClerk
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Paperbound File Clerk
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5e216ae7d7afe9a4894fa8fd5707fe19, type: 3}
   rarity: 0
   effects:
   - label: Take a Number

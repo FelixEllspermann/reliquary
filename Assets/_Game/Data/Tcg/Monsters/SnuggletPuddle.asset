@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletPuddle
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Snugglet Puddle
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: d9494840c4d285843beb71d9bf2109d4, type: 3}
   rarity: 1
   effects:
   - label: Happy Splash

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineWeaver
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Trapline Weaver
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: a5f98115dd1e4a149b96043e7695ed49, type: 3}
   rarity: 0
   effects:
   - label: Spin the Line

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineRowofTeeth
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Row of Teeth
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c2e1dce54cd49794eb7526b329b837f0, type: 3}
   rarity: 2
   effects:
   - label: Row of Teeth

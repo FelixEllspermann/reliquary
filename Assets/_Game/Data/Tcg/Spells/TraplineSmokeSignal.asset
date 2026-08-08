@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineSmokeSignal
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Smoke Signal
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 91eb47f1083ae6942961de69770d237c, type: 3}
   rarity: 0
   effects:
   - label: Smoke Signal

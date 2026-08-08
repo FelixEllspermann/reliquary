@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletWhiskers
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Snugglet Whiskers
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: af1a60e4873af4b48ae603aecc261111, type: 3}
   rarity: 1
   effects:
   - label: Pounce

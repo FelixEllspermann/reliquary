@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegShellcrate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Powderkeg Shellcrate
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c4be84995f920614aaf13a422b874fb6, type: 3}
   rarity: 0
   effects:
   - label: Propellant

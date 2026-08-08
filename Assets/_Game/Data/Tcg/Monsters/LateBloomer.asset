@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LateBloomer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Late Bloomer
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 9d3ccdb63e7d48a48b949daef8a7ed87, type: 3}
   rarity: 1
   effects:
   - label: ...Bloomer
@@ -26,6 +26,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -49,6 +50,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Full Bloom
     text: 'Instead, pay 2 Mana: Draw 2 cards.'
     isInfused: 1
@@ -59,6 +61,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -82,6 +85,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -102,6 +106,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 1
+  fieldLimitName: 
+  fieldLimitCount: 0
   level: 3
   attribute: 5
   monsterType: 1

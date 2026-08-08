@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MethodActor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Method Actor
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 25eb69d2f3f873946bba9ac5bd3f57e9, type: 3}
   rarity: 1
   effects:
   - label: Method Acting
@@ -27,6 +27,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Scene Stealer
     text: 'Instead, pay 1 Mana: It also gains 300 ATK on top.'
     isInfused: 1
@@ -60,6 +62,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 7
       isCost: 0
       amount: 300
@@ -99,6 +103,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -119,6 +124,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   level: 2
   attribute: 1
   monsterType: 1

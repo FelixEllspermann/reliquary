@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineDoubleBack
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Double Back
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: cba3022ea8ea2694da12a6c05db634f7, type: 3}
   rarity: 1
   effects:
   - label: Double Back

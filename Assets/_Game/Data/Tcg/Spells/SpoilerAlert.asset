@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpoilerAlert
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Spoiler Alert
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5707fc78509f9bc41917768401dc2b31, type: 3}
   rarity: 1
   effects:
   - label: Spoiler Alert
@@ -26,6 +26,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -49,6 +50,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Read the Ending
     text: 'Instead, pay 3 Mana: Also reveal the top card of your Deck; you may put
       it on the bottom.'
@@ -60,6 +62,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 69
       isCost: 0
       amount: 1
@@ -99,6 +103,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -119,4 +124,6 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   speed: 0

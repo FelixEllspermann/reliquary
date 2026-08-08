@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletBlanketFortress
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Snugglet Blanket Fortress
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c6f97f5e5fc4aff4a9106f690e7f12ea, type: 3}
   rarity: 2
   effects:
   - label: Pull the Blanket Tight

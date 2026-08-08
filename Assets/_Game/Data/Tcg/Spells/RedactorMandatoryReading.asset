@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorMandatoryReading
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Redactor Mandatory Reading
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 2b5ec822ace524741bde8ae1313abdd3, type: 3}
   rarity: 1
   effects:
   - label: Mandatory Reading

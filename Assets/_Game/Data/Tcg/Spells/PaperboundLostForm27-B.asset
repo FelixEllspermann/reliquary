@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundLostForm27-B
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Paperbound Lost Form 27-B
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 1483579181a4dc347a7a42f353549c64, type: 3}
   rarity: 2
   effects:
   - label: Lost in Filing

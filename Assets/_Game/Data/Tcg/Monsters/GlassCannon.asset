@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlassCannon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Glass Cannon
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 4c3632b55c783904996d9475fcf5f1c6, type: 3}
   rarity: 0
   effects: []
   auraAtkBonus: 0
@@ -36,6 +36,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   level: 2
   attribute: 3
   monsterType: 4

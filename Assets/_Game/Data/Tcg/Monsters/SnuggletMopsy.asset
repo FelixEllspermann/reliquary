@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletMopsy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Snugglet Mopsy
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: a3fe7d6d6a369f04c989017b98de748e, type: 3}
   rarity: 0
   effects:
   - label: Lucky Foot

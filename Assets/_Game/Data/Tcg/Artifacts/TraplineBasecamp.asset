@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineBasecamp
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Trapline Basecamp
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b4074e6cfca48b74d9a8ab262cbb9261, type: 3}
   rarity: 1
   effects:
   - label: Restock the Line

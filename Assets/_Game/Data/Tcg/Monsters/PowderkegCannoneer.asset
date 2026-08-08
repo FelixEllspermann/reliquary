@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegCannoneer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Powderkeg Cannoneer
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 2bb1876bf2f8499449ff2e8035685657, type: 3}
   rarity: 1
   effects:
   - label: Return Fire

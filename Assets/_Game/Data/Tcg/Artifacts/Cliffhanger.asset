@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cliffhanger
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Cliffhanger
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: e3f4fb269e5054e459dc2813486bd791, type: 3}
   rarity: 0
   effects:
   - label: To Be Continued
@@ -27,6 +27,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Skip to the Good Part
     text: 'Once per turn: Pay 1 Mana; send the top card of your Deck to the Graveyard;
       draw 1 card.'
@@ -61,6 +63,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -84,6 +87,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 1
@@ -100,6 +104,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -120,6 +125,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

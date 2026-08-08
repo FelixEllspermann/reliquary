@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegQuartermaster
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Powderkeg Quartermaster
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: d01ada4566dc68e45ac6f57f759904bf, type: 3}
   rarity: 2
   effects:
   - label: Requisition

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplinethePatientJaw
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Trapline, the Patient Jaw
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 1c29bff05f3c16d49a80555b6485d64c, type: 3}
   rarity: 2
   effects:
   - label: Sprung Steel

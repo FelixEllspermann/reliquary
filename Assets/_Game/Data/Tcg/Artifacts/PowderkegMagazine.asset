@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegMagazine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Powderkeg Magazine
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 8f7651911f9614b4ca9628d1fece8a95, type: 3}
   rarity: 0
   effects:
   - label: Stockpile

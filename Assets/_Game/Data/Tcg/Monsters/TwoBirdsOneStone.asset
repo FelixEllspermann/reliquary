@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TwoBirdsOneStone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Two Birds, One Stone
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f84cb83b759829f43be0d1ec5781f087, type: 3}
   rarity: 1
   effects: []
   auraAtkBonus: 0
@@ -36,6 +36,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   level: 2
   attribute: 4
   monsterType: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ParticipationTrophy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Participation Trophy
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 9502873b91fe0264eb34f8a13c8862b6, type: 3}
   rarity: 0
   effects:
   - label: Celebrate Anyway
@@ -27,6 +27,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -70,6 +72,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   slot: 0
   atkBonus: 300
   defBonus: 300

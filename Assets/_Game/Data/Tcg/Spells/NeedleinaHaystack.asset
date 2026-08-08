@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NeedleinaHaystack
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Needle in a Haystack
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: cadc2dd2751c7124a98569de1df0d543, type: 3}
   rarity: 0
   effects:
   - label: Needle in a Haystack
@@ -27,6 +27,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Magnet
     text: 'Instead, pay 1 Mana: Top 5 cards; add up to 2 Level 1 monsters among them.'
     isInfused: 1
@@ -60,6 +62,7 @@ MonoBehaviour:
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
+    quickWindow: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -103,4 +107,6 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
   speed: 0
