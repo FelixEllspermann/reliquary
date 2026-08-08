@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
+  m_Name: RedactorMinisterofRecords
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
+  cardName: Redactor Minister of Records
+  artwork: {fileID: 0}
+  rarity: 2
+  effects:
+  - label: State Secret
+    text: 'Once per turn, when your opponent draws outside their Draw Phase: They
+      discard 1 random card.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 19
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    actions:
+    - type: 14
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+  - label: Sealed by the State
+    text: 'Instead, pay 2 Mana: They also have 1 less Mana during their next turn.'
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 2
+    trigger: 19
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    actions:
+    - type: 14
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+    - type: 57
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  level: 3
+  attribute: 1
+  monsterType: 1
+  atk: 2200
+  def: 2600
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonPosition: 1

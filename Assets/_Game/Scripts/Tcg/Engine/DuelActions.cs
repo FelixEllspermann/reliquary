@@ -45,7 +45,8 @@ namespace Rouge.Tcg
                     int tributes = rules.TributesForLevel(card.MonsterData.level);
                     bool canSummon = player.NormalSummonsUsed < rules.normalSummonsPerTurn + player.ExtraNormalSummons
                                      && player.MonsterCount() >= tributes
-                                     && (tributes > 0 || player.FreeMonsterZones() > 0);
+                                     && (tributes > 0 || player.FreeMonsterZones() > 0)
+                                     && !FieldLimitReached(player, card.Definition);
                     if (canSummon)
                     {
                         string tributeInfo = tributes > 0 ? $" ({tributes} tribute{(tributes > 1 ? "s" : "")})" : "";
@@ -59,7 +60,8 @@ namespace Rouge.Tcg
 
                     // Selbst-Spezialbeschwörung (z.B. "wenn du/der Gegner ein bestimmtes Monster kontrolliert)
                     var monsterData = card.MonsterData;
-                    if (monsterData.canSelfSpecialSummon && player.FreeMonsterZones() > 0)
+                    if (monsterData.canSelfSpecialSummon && player.FreeMonsterZones() > 0
+                        && !FieldLimitReached(player, card.Definition))
                     {
                         var checkedSide = monsterData.selfSummonChecksOpponentField ? player.Opponent : player;
                         var pool = checkedSide.Monsters().Where(m => !m.FaceDown).ToList();
@@ -98,6 +100,8 @@ namespace Rouge.Tcg
                 {
                     foreach (int index in ActivatableEffects(card, player, EffectTrigger.OnActivate))
                     {
+                        // Fallen (AttackResponse/SummonResponse) sind nie offen aus der Hand spielbar
+                        if (card.Definition.effects[index].quickWindow != QuickWindow.Any) continue;
                         request.Options.Add(new MainActionOption
                         {
                             Kind = MainActionKind.ActivateSpellFromHand,
@@ -174,6 +178,8 @@ namespace Rouge.Tcg
                 if (spell.SetThisTurn) continue;
                 foreach (int index in ActivatableEffects(spell, player, EffectTrigger.OnActivate))
                 {
+                    // Fallen warten auf ihr Fenster — in der Main Phase bleiben sie liegen
+                    if (spell.Definition.effects[index].quickWindow != QuickWindow.Any) continue;
                     request.Options.Add(new MainActionOption
                     {
                         Kind = MainActionKind.ActivateSetSpell,
@@ -726,6 +732,11 @@ namespace Rouge.Tcg
                 Log($"{player.Name} cannot Special Summon this turn — {monster.Name} stays where it is.");
                 yield break;
             }
+            if (FieldLimitReached(player, monster.Definition))
+            {
+                Log($"{player.Name} already controls the maximum number of \"{monster.Definition.fieldLimitName}\" monsters — {monster.Name} stays where it is.");
+                yield break;
+            }
 
             int zoneIndex = -1;
             yield return ChooseZone(player, player.MonsterZones, ZoneType.MonsterZone,
@@ -1080,6 +1091,9 @@ namespace Rouge.Tcg
             foreach (var action in effect.actions)
             {
                 if (action.target == TargetKind.None || action.target == TargetKind.SelfCard) continue;
+                // "Bis zu"-Aktionen sind optional: null Kandidaten blockieren die
+                // Aktivierung nicht (Trapline: "then Set 1 ... from your hand").
+                if (action.upToTargets) continue;
                 if (BuildTargetCandidates(action, player, source).Count == 0) return false;
             }
             return true;
@@ -1227,10 +1241,16 @@ namespace Rouge.Tcg
                     candidates.AddRange(player.SpellsOnField());
                     candidates.AddRange(player.ArtifactsOnField());
                     break;
+                case TargetKind.HandSpellFiltered:
+                    candidates.AddRange(player.Hand.Where(c => c.SpellData != null));
+                    break;
                 // TargetKind.SelfCard: kein Auswahl-Dialog — wird in ResolveEffectActions direkt zur Quellkarte.
             }
             if (ActionHasFilter(action)) candidates.RemoveAll(c => !MatchesFilter(action, c));
             if (action.targetExcludesSelf && source != null) candidates.Remove(source);
+            // Trapline: "mit anderem Namen" — gleichnamige Karten sind kein Ziel
+            if (action.excludeSameName && source != null)
+                candidates.RemoveAll(c => c != null && c.Name == source.Name);
             // Ziel-Immunität gilt nur gegen den Gegner — eigene Effekte dürfen weiter anvisieren
             candidates.RemoveAll(c => c != null && c.CannotBeTargetedThisTurn && c.Owner != player);
             // Heavenly Bodyguard: benannte Karten sind für den Gegner kein gültiges Ziel
@@ -1249,7 +1269,9 @@ namespace Rouge.Tcg
                 if (candidates.Count == 0) continue;
 
                 int targetCount = Math.Clamp(action.targetCount, 1, candidates.Count);
-                bool upTo = action.upToTargets && targetCount > 1;
+                // upTo gilt auch bei Einzelzielen: eine optionale Zusatz-Aktion
+                // ("then Set 1 from your hand") darf mit 0 Zielen enden.
+                bool upTo = action.upToTargets;
                 var request = new TargetRequest
                 {
                     Title = targetCount > 1
@@ -1320,6 +1342,8 @@ namespace Rouge.Tcg
                     case EffectActionType.DrawCards:
                         if (!TryDraw(player, action.amount)) yield break;
                         yield return PresentDraws(player);
+                        yield return FireOpponentDrawTriggers(player);
+                        if (Result != DuelResult.None) yield break;
                         break;
                     case EffectActionType.GainMana:
                         player.Mana += action.amount;
@@ -1411,6 +1435,7 @@ namespace Rouge.Tcg
                         {
                             if (pick == null || pick.MonsterData == null
                                 || (pick.Zone != ZoneType.Hand && pick.Zone != ZoneType.Deck)) continue;
+                            if (FieldLimitReached(player, pick.Definition)) continue; // Snugglet: Sofa voll
                             int fdZone = player.FirstFreeZoneIndex(player.MonsterZones);
                             if (fdZone < 0) { Log("No free monster zone — the set fizzles."); break; }
                             bool fromDeckSet = pick.Zone == ZoneType.Deck;
@@ -1494,6 +1519,7 @@ namespace Rouge.Tcg
                                 Log($"{player.Name} cannot Special Summon this turn — {pick.Name} stays in the graveyard.");
                                 break;
                             }
+                            if (FieldLimitReached(player, pick.Definition)) continue; // Snugglet: Sofa voll
                             int zoneIndex = -1;
                             yield return ChooseZone(player, player.MonsterZones, ZoneType.MonsterZone,
                                 $"Choose a zone for {pick.Name}", -1, index => zoneIndex = index);
@@ -1630,11 +1656,14 @@ namespace Rouge.Tcg
                         }
                         break;
                     case EffectActionType.SpecialSummonTargetFromHandOrGrave:
-                        if (target != null && target.MonsterData != null
-                            && (target.Zone == ZoneType.Hand || target.Zone == ZoneType.Graveyard))
+                        // Schleife statt Einzelziel — "bis zu 2 aus Hand oder Friedhof" (Snugglet Pile-Up)
+                        foreach (var pick in affected)
                         {
-                            string summonOrigin = target.Zone == ZoneType.Graveyard ? "from the graveyard" : "from the hand";
-                            yield return SpecialSummonToField(player, target, summonOrigin);
+                            if (pick == null || pick.MonsterData == null
+                                || (pick.Zone != ZoneType.Hand && pick.Zone != ZoneType.Graveyard)) continue;
+                            if (player.FreeMonsterZones() <= 0) { Log("No free monster zone — no further summons."); break; }
+                            string summonOrigin = pick.Zone == ZoneType.Graveyard ? "from the graveyard" : "from the hand";
+                            yield return SpecialSummonToField(player, pick, summonOrigin);
                             if (Result != DuelResult.None) yield break;
                         }
                         break;
@@ -1952,6 +1981,8 @@ namespace Rouge.Tcg
                         {
                             if (!TryDraw(player, toDraw)) yield break;
                             yield return PresentDraws(player);
+                            yield return FireOpponentDrawTriggers(player);
+                            if (Result != DuelResult.None) yield break;
                         }
                         else Log($"{player.Name} already holds at least as many cards — nothing is drawn.");
                         break;
@@ -1977,6 +2008,7 @@ namespace Rouge.Tcg
                                 Log($"{player.Name} cannot Special Summon this turn — the monster stays in the graveyard.");
                                 break;
                             }
+                            if (FieldLimitReached(player, pick.Definition)) continue; // Snugglet: Sofa voll
                             int fdGraveZone = player.FirstFreeZoneIndex(player.MonsterZones);
                             if (fdGraveZone < 0) { Log("No free monster zone — the summon fizzles."); break; }
                             pick.Owner.Graveyard.Remove(pick);
@@ -2076,6 +2108,86 @@ namespace Rouge.Tcg
                             hit.Zone = ZoneType.ArtifactZone;
                             hit.FaceDown = false;
                             Log($"{player.Name} places {hit.Name} from the Graveyard onto the field.");
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.OpponentDraws:
+                        // Mandatory Reading: der GEGNER zieht — und füttert damit
+                        // jeden OnOpponentDraw-Lauscher des Aktivierenden.
+                        if (!TryDraw(player.Opponent, Math.Max(1, action.amount)))
+                        {
+                            if (Result != DuelResult.None) yield break; // Deckout durch Zwangslektüre
+                        }
+                        else
+                        {
+                            Log($"{player.Opponent.Name} is forced to draw {Math.Max(1, action.amount)} card(s).");
+                            yield return PresentDraws(player.Opponent);
+                            yield return FireOpponentDrawTriggers(player.Opponent);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+
+                    case EffectActionType.DestroyAllEnemyAttackMonsters:
+                        foreach (var monster in player.Opponent.Monsters().ToArray())
+                        {
+                            if (Result != DuelResult.None) yield break;
+                            if (monster.FaceDown || monster.Position != BattlePosition.Attack) continue;
+                            if (IsProtectedFromEffectDestruction(monster, player))
+                            {
+                                Log($"{monster.Name} is protected and cannot be destroyed by card effects.");
+                                continue;
+                            }
+                            Log($"{source.Name} snaps shut on {monster.Name}!");
+                            yield return DestroyCard(monster);
+                        }
+                        break;
+
+                    case EffectActionType.DestroyTargetAndSameLevelDefense:
+                        if (target != null && target.MonsterData != null && IsOnField(target))
+                        {
+                            int trapLevel = target.MonsterData.level;
+                            if (IsProtectedFromEffectDestruction(target, player))
+                            {
+                                Log($"{target.Name} is protected and cannot be destroyed by card effects.");
+                            }
+                            else
+                            {
+                                Log($"{source.Name} destroys {target.Name}.");
+                                yield return DestroyCard(target);
+                                if (Result != DuelResult.None) yield break;
+                                // ... und alle Verteidiger desselben Levels auf BEIDEN Feldern
+                                foreach (var duelist in new[] { player, player.Opponent })
+                                    foreach (var monster in duelist.Monsters().ToArray())
+                                    {
+                                        if (Result != DuelResult.None) yield break;
+                                        if (monster.Position != BattlePosition.Defense) continue;
+                                        if (monster.MonsterData == null || monster.MonsterData.level != trapLevel) continue;
+                                        if (IsProtectedFromEffectDestruction(monster, player))
+                                        {
+                                            Log($"{monster.Name} is protected and cannot be destroyed by card effects.");
+                                            continue;
+                                        }
+                                        Log($"{source.Name} drags {monster.Name} down as well.");
+                                        yield return DestroyCard(monster);
+                                    }
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.SetTargetSpellFromHand:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.SpellData == null || hit.Zone != ZoneType.Hand) continue;
+                            int handSetZone = player.FirstFreeZoneIndex(player.SpellZones);
+                            if (handSetZone < 0) { Log("No free spell zone — the set fizzles."); break; }
+                            player.Hand.Remove(hit);
+                            player.SpellZones[handSetZone] = hit;
+                            hit.Owner = player;
+                            hit.Zone = ZoneType.SpellZone;
+                            hit.FaceDown = true;
+                            hit.SetThisTurn = false; // die Falle ist sofort scharf
+                            Log($"{player.Name} sets a card from the hand face-down.");
                             BoardChanged();
                         }
                         break;
@@ -2275,6 +2387,20 @@ namespace Rouge.Tcg
             monster?.Definition != null ? Math.Max(1, monster.Definition.tributeWorth) : 1;
 
         /// <summary>
+        /// Feld-Limit (Snugglet): true, wenn diese Karte wegen "max N gleichnamige"
+        /// gerade NICHT beschworen/gesetzt werden darf.
+        /// </summary>
+        private static bool FieldLimitReached(PlayerState player, CardDefinition definition)
+        {
+            if (definition == null || definition.fieldLimitCount <= 0
+                || string.IsNullOrEmpty(definition.fieldLimitName)) return false;
+            int named = 0;
+            foreach (var monster in player.Monsters())
+                if (monster.Name.Contains(definition.fieldLimitName)) named++;
+            return named >= definition.fieldLimitCount;
+        }
+
+        /// <summary>
         /// Offene Monster mit passendem Namen auf einem Feld — plus Artefakte, die per
         /// countsAsNameOnField als solches Monster gelten (Dragon Shrine Replica).
         /// </summary>
@@ -2389,6 +2515,29 @@ namespace Rouge.Tcg
                 if (Result != DuelResult.None) yield break;
                 yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnOwnMonsterTributed);
             }
+        }
+
+        /// <summary>
+        /// Redactor: der Gegner des Ziehenden hört mit, wenn AUSSERHALB der Draw Phase
+        /// gezogen wird (nur Standby/Main — der normale Rundenzug bleibt straffrei).
+        /// Der Reentry-Guard verhindert, dass Draw-Trigger, die selbst ziehen
+        /// (Archivist), eine Endloskette aus gegenseitigen Triggern starten.
+        /// </summary>
+        private bool firingDrawTriggers;
+        private IEnumerator FireOpponentDrawTriggers(PlayerState drawer)
+        {
+            if (firingDrawTriggers || drawer == null || responseDepth >= 2) yield break;
+            if (Phase != DuelPhase.Standby && Phase != DuelPhase.Main) yield break;
+            var listener = drawer.Opponent;
+            if (listener == null) yield break;
+
+            firingDrawTriggers = true;
+            foreach (var card in TriggerScanCandidates(listener).ToArray())
+            {
+                if (Result != DuelResult.None) break;
+                yield return OfferTriggeredEffects(listener, card, EffectTrigger.OnOpponentDraw);
+            }
+            firingDrawTriggers = false;
         }
 
         /// <summary>
@@ -2597,7 +2746,13 @@ namespace Rouge.Tcg
                 if (spell.SetThisTurn || spell.SpellData == null) continue;
                 if (spell.SpellData.speed != SpellSpeed.Quick) continue;
                 foreach (int index in ActivatableEffects(spell, responder, EffectTrigger.OnActivate))
+                {
+                    // Trapline: Angriffs-/Beschwörungs-Fallen zünden NUR im passenden Fenster
+                    var window = spell.Definition.effects[index].quickWindow;
+                    if (window == QuickWindow.AttackResponse && context != "attack") continue;
+                    if (window == QuickWindow.SummonResponse && context != "summon") continue;
                     candidates.Add((spell, index));
+                }
             }
 
             foreach (var card in responder.FieldCards())
@@ -2733,6 +2888,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             if (attacker.Zone != ZoneType.MonsterZone)
             {
                 Log("The attacker left the field — attack cancelled.");
+                yield break;
+            }
+            if (attacker.FaceDown)
+            {
+                // Bear Hug: eine Falle hat den Angreifer verdeckt gelegt — der Angriff verpufft
+                Log("The attacker was turned face-down — attack cancelled.");
                 yield break;
             }
 

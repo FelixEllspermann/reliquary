@@ -48,7 +48,8 @@ namespace Rouge.Tcg
         OnOwnMonsterBounced,   // wenn ein eigenes Monster vom Feld auf die Hand zurückkehrt (Nest Egg)
         OnEnemyCardBounced,    // wenn eine gegnerische Feldkarte auf die Hand zurückkehrt (Finders Keepers)
         OnBearerBattleKill,    // auf Karte/Ausrüstung: der (Träger) zerstört ein Monster im Kampf (Extra Reach)
-        OnOwnMonsterDestroyed  // wenn irgendein eigenes Monster zerstört wird (Warm Memories)
+        OnOwnMonsterDestroyed, // wenn irgendein eigenes Monster zerstört wird (Warm Memories)
+        OnOpponentDraw         // wenn der Gegner AUSSERHALB seiner Draw Phase zieht (Redactor; nur Standby/Main)
     }
 
     public enum EffectActionType
@@ -137,7 +138,11 @@ namespace Rouge.Tcg
         MoveTargetArtifactToStrongestMonster, // Ziel-Artefakt ans eigene Monster mit höchstem ATK; amount>0 = EOT-ATK-Bonus für den neuen Träger
         SendTargetFromDeckToGraveyard, // Zielkarte aus dem eigenen Deck in den Friedhof (Foolish Burial)
         BuffTargetAtkPerCountEot,   // Ziel: +amount ATK bis Zugende pro gezählter Karte (countKind)
-        BuffTargetAtkPerCountPermanent // Ziel: +amount ATK dauerhaft pro gezählter Karte (countKind)
+        BuffTargetAtkPerCountPermanent, // Ziel: +amount ATK dauerhaft pro gezählter Karte (countKind)
+        OpponentDraws,              // der GEGNER zieht amount Karten (Redactor Mandatory Reading)
+        DestroyAllEnemyAttackMonsters, // alle Monster des Gegners in Angriffsposition zerstören (Row of Teeth)
+        DestroyTargetAndSameLevelDefense, // Ziel zerstören + alle DEF-Monster gleichen Levels beider Felder (Warm Welcome)
+        SetTargetSpellFromHand      // Ziel-Zauber aus der EIGENEN Hand verdeckt setzen (sofort aktivierbar; Trapline)
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
@@ -190,7 +195,8 @@ namespace Rouge.Tcg
         BanishedMonsterSelf,       // Monster in der eigenen Verbannung
         BanishedCardSelf,          // beliebige Karte in der eigenen Verbannung
         GraveyardCardOpponent,     // beliebige Karte im gegnerischen Friedhof
-        AllySpellOrArtifact        // eigener Zauber (auch gesetzt) oder eigenes Artefakt auf dem Feld
+        AllySpellOrArtifact,       // eigener Zauber (auch gesetzt) oder eigenes Artefakt auf dem Feld
+        HandSpellFiltered          // Zauber in der eigenen Hand (Filter der Action beachten)
     }
 
     /// <summary>
@@ -198,4 +204,11 @@ namespace Rouge.Tcg
     /// Coupled = Upgrade des vorangehenden Normal-Effekts — pro Zug nur einer von beiden.
     /// </summary>
     public enum InfusedKind { Standalone, Coupled }
+
+    /// <summary>
+    /// In welchem Reaktionsfenster ein gesetzter Quick-Zauber zünden darf (Trapline).
+    /// Any = überall (auch offen in der Main Phase spielbar). AttackResponse/SummonResponse =
+    /// NUR im jeweiligen Fenster — solche Fallen müssen gesetzt sein und warten.
+    /// </summary>
+    public enum QuickWindow { Any, AttackResponse, SummonResponse }
 }

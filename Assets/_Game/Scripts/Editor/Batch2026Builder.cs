@@ -18,6 +18,7 @@ namespace Rouge.Tcg.EditorTools
         private const string MonsterDir  = "Assets/_Game/Data/Tcg/Monsters";
         private const string SpellDir    = "Assets/_Game/Data/Tcg/Spells";
         private const string ArtifactDir = "Assets/_Game/Data/Tcg/Artifacts";
+        private const string RelicDir    = "Assets/_Game/Data/Tcg/Reliquary";
         private const string CatalogPath = "Assets/_Game/Data/Tcg/CardCatalog.asset";
 
         private static readonly List<CardDefinition> built = new List<CardDefinition>();
@@ -80,6 +81,18 @@ namespace Rouge.Tcg.EditorTools
             Finish("Loose Set");
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — 5 Archetypes (Stun+Traps+...)")]
+        public static void BuildFiveArchetypes()
+        {
+            built.Clear();
+            Paperbound();
+            Powderkeg();
+            Trapline();
+            Redactor();
+            Snugglet();
+            Finish("5 Archetypes");
+        }
+
         /// <summary>SetDirty am Ende (CreateAsset schreibt sofort — siehe NewArchetypeBuilder) + Katalog.</summary>
         private static void Finish(string stage)
         {
@@ -103,18 +116,54 @@ namespace Rouge.Tcg.EditorTools
             MonsterAttribute? attribute = null, MonsterType? monsterType = null,
             int targetCount = 1, bool upTo = false, int maxAtk = 0, bool isCost = false,
             bool excludeSelf = false, string nameFilter = "", string mentions = "",
-            EffectCountKind countKind = EffectCountKind.OwnArtifactsOnField)
+            EffectCountKind countKind = EffectCountKind.OwnArtifactsOnField,
+            bool excludeSameName = false)
         {
             var action = new EffectAction
             {
                 type = type, amount = amount, target = target, levelFilter = level,
                 targetCount = targetCount, upToTargets = upTo, maxAtkFilter = maxAtk,
                 isCost = isCost, targetExcludesSelf = excludeSelf,
-                nameFilter = nameFilter, mentionsFilter = mentions, countKind = countKind
+                nameFilter = nameFilter, mentionsFilter = mentions, countKind = countKind,
+                excludeSameName = excludeSameName
             };
             if (attribute.HasValue) { action.useAttributeFilter = true; action.attributeFilter = attribute.Value; }
             if (monsterType.HasValue) { action.useTypeFilter = true; action.typeFilter = monsterType.Value; }
             return action;
+        }
+
+        /// <summary>Fenster-Beschränkung für Fallen-Zauber (AttackResponse/SummonResponse).</summary>
+        private static EffectDefinition InWindow(this EffectDefinition effect, QuickWindow window)
+        {
+            effect.quickWindow = window;
+            return effect;
+        }
+
+        /// <summary>Der "Set die nächste Falle"-Baustein: optional (upTo), anderer Name.</summary>
+        private static EffectAction SetNextTrap() =>
+            Act(EffectActionType.SetTargetSpellFromHand, 1, TargetKind.HandSpellFiltered,
+                upTo: true, nameFilter: "Trapline", excludeSameName: true);
+
+        private static ReliquaryCardData Rel(string name, CardRarity rarity, int level,
+            MonsterAttribute attribute, MonsterType type, int atk, int def,
+            string summonText, int manaCost, params EffectDefinition[] effects)
+        {
+            var card = Make<ReliquaryCardData>(RelicDir, name, rarity, effects);
+            card.level = level; card.attribute = attribute; card.monsterType = type;
+            card.atk = atk; card.def = def;
+            card.summonText = summonText; card.summonManaCost = manaCost;
+            // Alles zurücksetzen, damit ein zweiter Lauf keine alten Bedingungen erbt
+            card.reqNamedOnField = ""; card.reqNamedCount = 1;
+            card.reqLifeBelowOpponent = false; card.reqOpponentMoreMonsters = false;
+            card.reqOpponentMonstersAtLeast = 0; card.reqMinMana = 0;
+            card.reqOwnArtifactsOnField = 0; card.reqOwnArtifactsInGrave = 0;
+            card.reqOwnFaceDownMonsters = 0; card.reqMonsterWithEquip = false;
+            card.reqGraveyardAtLeast = 0; card.reqControlNoMonsters = false;
+            card.reqOwnMonstersAtLeast = 0; card.reqLifeAtMost = 0; card.reqBanishedAtLeast = 0;
+            card.costBanishMonstersFromGrave = 0; card.costTributeOtherMonster = false;
+            card.costTributeOwnMonsters = 0; card.costTributeOpponentMonsters = 0;
+            card.canSelfSpecialSummon = false;
+            return card;
         }
 
         private static EffectDefinition Fx(string label, string text, EffectTrigger trigger,
@@ -1521,6 +1570,583 @@ namespace Rouge.Tcg.EditorTools
                     EffectTrigger.Ignition, 2, true,
                     Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.AllyMonster),
                     Act(EffectActionType.DrawCards, 1)));
+        }
+
+        // ================== PAPERBOUND (Dark / Human) · Stun ==================
+
+        private static void Paperbound()
+        {
+            Mon("Paperbound File Clerk", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Human, 600, 1200,
+                Fx("Take a Number", "When this card is Summoned: 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)),
+                Inf("Wait Here, Please", "Instead, pay 2 Mana: It also cannot change its battle position this turn.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Mon("Paperbound Rubber Stamp", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Human, 900, 700,
+                Fx("Stamped and Filed", "When this card is Summoned: Change 1 monster your opponent controls to Defense Position.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SwitchTargetToDefense, 1, TargetKind.EnemyMonster)),
+                Inf("Filed Forever", "Instead, pay 1 Mana: It also cannot change its position this turn.",
+                    EffectTrigger.OnSummonSelf, 1, true,
+                    Act(EffectActionType.SwitchTargetToDefense, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Mon("Paperbound Auditor", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Human, 1500, 1600,
+                Fx("Surprise Audit", "Once per turn: Pay 2 Mana; negate the effects of 1 card your opponent controls until the end of this turn.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField)),
+                Inf("Discrepancy Found", "Instead, pay 4 Mana: It also loses 500 ATK until the end of this turn.",
+                    EffectTrigger.Ignition, 4, true,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField),
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, -500, TargetKind.EnemyMonster)));
+
+            Mon("Paperbound Commissioner", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Human, 2300, 2400,
+                Fx("Closed for Lunch", "When this card is Summoned: Change ALL your opponent's monsters to Defense Position.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SwitchAllToDefense, 1)),
+                Inf("Closed Indefinitely", "Instead, pay 3 Mana: Also turn 1 of them face-down.",
+                    EffectTrigger.OnSummonSelf, 3, true,
+                    Act(EffectActionType.SwitchAllToDefense, 1),
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster)),
+                Fx("Not My Department", "Once per turn, during either player's turn: Pay 2 Mana; 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Spell("Paperbound Red Tape", CardRarity.Uncommon, true,
+                Fx("Red Tape", "Pay 1 Mana: 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)),
+                Inf("Miles of It", "Instead, pay 2 Mana: Up to 2 monsters.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster, targetCount: 2, upTo: true)));
+
+            Spell("Paperbound In Triplicate", CardRarity.Uncommon, false,
+                Fx("In Triplicate", "Pay 2 Mana: Change up to 3 of your opponent's monsters to Defense Position.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.SwitchTargetToDefense, 1, TargetKind.EnemyMonster, targetCount: 3, upTo: true)),
+                Inf("Notarized", "Instead, pay 4 Mana: They also cannot change their position this turn.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster, targetCount: 3, upTo: true),
+                    Act(EffectActionType.SwitchTargetToDefense, 1, TargetKind.EnemyMonster, targetCount: 3, upTo: true)));
+
+            Spell("Paperbound Lost Form 27-B", CardRarity.Rare, false,
+                Fx("Lost in Filing", "Pay 2 Mana: Turn 1 face-up monster your opponent controls face-down.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster)),
+                Inf("Never Existed", "Instead, pay 4 Mana: Up to 2.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster, targetCount: 2, upTo: true)));
+
+            Spell("Paperbound Office Hours", CardRarity.Uncommon, true,
+                Fx("Office Hours", "Pay 1 Mana: Your opponent cannot Special Summon for the rest of this turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1)),
+                Inf("By Appointment Only", "Instead, pay 2 Mana: Also, 1 monster they control cannot attack this turn.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1),
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Artifact("Paperbound Waiting Room", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Please Hold", "Once per turn: Pay 2 Mana; 1 monster your opponent controls cannot attack and cannot change its position this turn.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster)),
+                Inf("Estimated Wait: Forever", "Instead, pay 3 Mana: Also, your opponent cannot Special Summon this turn.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1)));
+
+            var rejection = Rel("Paperbound, the Final Rejection", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Human, 2600, 2600,
+                "You control 2+ monsters and have 4+ cards in your Graveyard. Cost 3 Mana.", 3,
+                Fx("Application Denied", "When this card is Summoned: Change all your opponent's monsters to Defense Position.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SwitchAllToDefense, 1)),
+                Inf("Denied With Prejudice", "Instead, pay 2 Mana: Also, up to 2 of them cannot attack this turn.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.SwitchAllToDefense, 1),
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster, targetCount: 2, upTo: true)),
+                Fx("Rejected", "Once per turn, during either player's turn: Pay 2 Mana; negate the effects of 1 card on the field until the end of this turn.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField)));
+            rejection.reqOwnMonstersAtLeast = 2;
+            rejection.reqGraveyardAtLeast = 4;
+
+            // Sanity: Karten geben dem Beschwörer keinen Kartenvorteil — Paperbound
+            // gewinnt über verlorene GEGNER-Züge, nicht über eigene Ressourcen.
+        }
+
+        // ================== POWDERKEG (Fire / Mecha) · Artefakt-Munition ==================
+
+        private static void Powderkeg()
+        {
+            Mon("Powderkeg Loader", CardRarity.Common, 1, MonsterAttribute.Fire, MonsterType.Mecha, 800, 900,
+                Fx("Load the Rack", "When this card is Summoned: Place 1 \"Powderkeg\" Artifact from your Deck into your Artifact Zone.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Powderkeg")),
+                Inf("Double Load", "Instead, pay 2 Mana: Also add 1 more to your hand.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Powderkeg"),
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Powderkeg")));
+
+            Mon("Powderkeg Sparkplug", CardRarity.Common, 1, MonsterAttribute.Fire, MonsterType.Mecha, 1000, 500,
+                Fx("Short Fuse", "Once per turn: Pay 1 Mana; destroy 1 Artifact you control; draw 1 card.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DrawCards, 1)),
+                Inf("Chain Reaction", "Instead, pay 2 Mana: Draw 2 cards.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DrawCards, 2)));
+
+            Mon("Powderkeg Cannoneer", CardRarity.Uncommon, 2, MonsterAttribute.Fire, MonsterType.Mecha, 1700, 1300,
+                Fx("Return Fire", "During either player's turn: Destroy 1 Artifact you control; destroy 1 monster your opponent controls with 1000 or less ATK. (No once-per-turn limit — ammunition is the limit.)",
+                    EffectTrigger.Quick, 0, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster, maxAtk: 1000)),
+                Inf("Heavy Shot", "Instead, pay 3 Mana: 2000 or less.",
+                    EffectTrigger.Quick, 3, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster, maxAtk: 2000)));
+
+            var quartermaster = Mon("Powderkeg Quartermaster", CardRarity.Rare, 3, MonsterAttribute.Fire, MonsterType.Mecha, 2400, 2000,
+                Fx("Requisition", "When this card is Summoned: Place up to 2 \"Powderkeg\" Artifacts from your Deck into your Artifact Zone.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, targetCount: 2, upTo: true, nameFilter: "Powderkeg")),
+                Inf("Full Manifest", "Instead, pay 3 Mana: Also draw 1 card.",
+                    EffectTrigger.OnSummonSelf, 3, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, targetCount: 2, upTo: true, nameFilter: "Powderkeg"),
+                    Act(EffectActionType.DrawCards, 1)));
+            quartermaster.passiveAtkPerCount = 200;
+            quartermaster.passiveAtkPerCountKind = EffectCountKind.OwnArtifactsOnField;
+
+            Artifact("Powderkeg Magazine", CardRarity.Common, ArtifactSlot.Field, 0, 0,
+                Fx("Stockpile", "Once per turn: Pay 1 Mana; place 1 other \"Powderkeg\" Artifact from your Deck into your Artifact Zone.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Powderkeg", excludeSameName: true)),
+                Fx("Cook-Off", "When this card is destroyed: Draw 1 card.",
+                    EffectTrigger.OnDestroyedSelf, 0, false,
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Artifact("Powderkeg Shellcrate", CardRarity.Common, ArtifactSlot.Field, 0, 0,
+                Fx("Propellant", "When this card is destroyed: Gain 1 Mana.",
+                    EffectTrigger.OnDestroyedSelf, 0, false,
+                    Act(EffectActionType.GainMana, 1)));
+
+            Artifact("Powderkeg Blastplate", CardRarity.Uncommon, ArtifactSlot.Monster, 400, 400,
+                Fx("Shrapnel", "When this card is destroyed: 1 monster you control gains 400 ATK until the end of this turn.",
+                    EffectTrigger.OnDestroyedSelf, 0, false,
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, 400, TargetKind.AllyMonster)));
+
+            Spell("Powderkeg Point-Blank", CardRarity.Rare, true,
+                Fx("Point-Blank", "Pay 1 Mana: Destroy 1 Artifact you control; destroy 1 card your opponent controls. (No once-per-turn limit.)",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyCardOnField)),
+                Inf("Full Broadside", "Instead, pay 3 Mana: Destroy 2 of your Artifacts; destroy up to 2 of your opponent's cards.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, targetCount: 2, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyCardOnField, targetCount: 2, upTo: true)));
+
+            Spell("Powderkeg Misfire", CardRarity.Uncommon, false,
+                Fx("Misfire", "Destroy 1 Artifact you control; draw 2 cards.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DrawCards, 2)),
+                Inf("Salvage the Barrel", "Instead, pay 1 Mana: Also gain 1 Mana.",
+                    EffectTrigger.OnActivate, 1, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DrawCards, 2),
+                    Act(EffectActionType.GainMana, 1)));
+
+            Spell("Powderkeg Brass Sweep", CardRarity.Uncommon, false,
+                Fx("Brass Sweep", "Pay 1 Mana: Return up to 2 \"Powderkeg\" Artifacts from your Graveyard to your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardArtifactSelf, targetCount: 2, upTo: true, nameFilter: "Powderkeg")),
+                Inf("Clean Sweep", "Instead, pay 2 Mana: Up to 3 Artifacts of ANY name.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardArtifactSelf, targetCount: 3, upTo: true)));
+
+            var firstSpark = Rel("Powderkeg, First Spark", CardRarity.Uncommon, 2, MonsterAttribute.Fire, MonsterType.Mecha, 2100, 1600,
+                "You control 1+ Artifact and have 2+ cards in your Graveyard. Cost 2 Mana.", 2,
+                Fx("Opening Shot", "When this card is Summoned: Place 1 \"Powderkeg\" Artifact from your Deck into your Artifact Zone.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Powderkeg")),
+                Fx("Warning Shot", "Once per turn, during either player's turn: Destroy 1 Artifact you control; negate the effects of 1 card on the field until the end of this turn.",
+                    EffectTrigger.Quick, 0, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField)));
+            firstSpark.reqOwnArtifactsOnField = 1;
+            firstSpark.reqGraveyardAtLeast = 2;
+
+            var lastSalvo = Rel("Powderkeg, the Last Salvo", CardRarity.Legendary, 3, MonsterAttribute.Fire, MonsterType.Mecha, 2800, 2200,
+                "You control 2 Artifacts and have 3+ Artifacts in your Graveyard. Cost 3 Mana.", 3,
+                Fx("Fire at Will", "During either player's turn: Destroy 1 Artifact you control; destroy 1 card your opponent controls. (No once-per-turn limit — ammunition is the limit.)",
+                    EffectTrigger.Quick, 0, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.AllyArtifact, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyCardOnField)),
+                Fx("Reload", "Once per turn: Pay 2 Mana; place 1 \"Powderkeg\" Artifact from your Graveyard back into your Artifact Zone.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.PlaceTargetArtifactFromGraveyard, 1, TargetKind.GraveyardArtifactSelf, nameFilter: "Powderkeg")));
+            lastSalvo.reqOwnArtifactsOnField = 2;
+            lastSalvo.reqOwnArtifactsInGrave = 3;
+        }
+
+        // ================== TRAPLINE (Earth / Human) · Fallen-Ketten ==================
+
+        private static void Trapline()
+        {
+            Mon("Trapline Warden", CardRarity.Uncommon, 2, MonsterAttribute.Earth, MonsterType.Human, 1400, 1600,
+                Fx("Lay the Line", "When this card is Summoned: Set 1 \"Trapline\" Spell from your Deck face-down (usable this turn).",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered, nameFilter: "Trapline")),
+                Inf("Cover the Valley", "Instead, pay 2 Mana: Set 2.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered, targetCount: 2, nameFilter: "Trapline")));
+
+            Mon("Trapline Weaver", CardRarity.Common, 1, MonsterAttribute.Earth, MonsterType.Human, 700, 1100,
+                Fx("Spin the Line", "Once per turn: Pay 1 Mana; Set 1 \"Trapline\" Quick Spell from your hand face-down; draw 1 card.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.SetTargetSpellFromHand, 1, TargetKind.HandSpellFiltered, nameFilter: "Trapline"),
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Spell("Trapline Tripwire", CardRarity.Common, true,
+                Fx("Tripwire", "When an attack is declared: Pay 1 Mana; the attacking monster loses 800 ATK until the end of this turn; then you may Set 1 \"Trapline\" with a different name from your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, -800, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse),
+                Inf("Tangled", "Instead, pay 2 Mana: It also cannot attack again this turn.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, -800, TargetKind.EnemyMonster),
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse));
+
+            Spell("Trapline Row of Teeth", CardRarity.Rare, true,
+                Fx("Row of Teeth", "When an attack is declared: Pay 4 Mana; destroy ALL Attack Position monsters your opponent controls; then you may Set 1 \"Trapline\" with a different name from your hand.",
+                    EffectTrigger.OnActivate, 4, false,
+                    Act(EffectActionType.DestroyAllEnemyAttackMonsters, 1),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse),
+                Inf("The Whole Row", "Instead, pay 5 Mana: Set up to 2 \"Trapline\" cards from your hand afterwards.",
+                    EffectTrigger.OnActivate, 5, true,
+                    Act(EffectActionType.DestroyAllEnemyAttackMonsters, 1),
+                    Act(EffectActionType.SetTargetSpellFromHand, 1, TargetKind.HandSpellFiltered, targetCount: 2, upTo: true, nameFilter: "Trapline", excludeSameName: true)).InWindow(QuickWindow.AttackResponse));
+
+            Spell("Trapline Warm Welcome", CardRarity.Rare, true,
+                Fx("Warm Welcome", "When your opponent Summons a monster: Pay 3 Mana; destroy 1 monster they control, then destroy all Defense Position monsters on the field with the same Level; then you may Set 1 \"Trapline\" from your hand.",
+                    EffectTrigger.OnActivate, 3, false,
+                    Act(EffectActionType.DestroyTargetAndSameLevelDefense, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.SummonResponse),
+                Inf("Overstayed Welcome", "Instead, pay 4 Mana: Also, your opponent cannot Special Summon for the rest of this turn.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.DestroyTargetAndSameLevelDefense, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1),
+                    SetNextTrap()).InWindow(QuickWindow.SummonResponse));
+
+            Spell("Trapline Bear Hug", CardRarity.Uncommon, true,
+                Fx("Bear Hug", "When an attack is declared: Pay 2 Mana; turn the attacking monster face-down (the attack is cancelled); then you may Set 1 \"Trapline\" from your hand.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse),
+                Inf("Crushing Embrace", "Instead, pay 3 Mana: It also cannot change its position this turn.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse));
+
+            Spell("Trapline Pitfall", CardRarity.Uncommon, true,
+                Fx("Pitfall", "When your opponent Summons a monster: Pay 2 Mana; return 1 monster they control to the hand; then you may Set 1 \"Trapline\" from your hand.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.SummonResponse),
+                Inf("No Bottom", "Instead, pay 4 Mana: Shuffle it into the Deck instead.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.ShuffleTargetIntoDeck, 1, TargetKind.EnemyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.SummonResponse));
+
+            Spell("Trapline Decoy", CardRarity.Common, true,
+                Fx("Decoy", "When an attack is declared: Pay 1 Mana; 1 monster you control cannot be destroyed this turn; then you may Set 1 \"Trapline\" from your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse),
+                Inf("Convincing Decoy", "Instead, pay 2 Mana: You also take no battle damage this turn.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster),
+                    Act(EffectActionType.PreventBattleDamageThisTurn, 1),
+                    SetNextTrap()).InWindow(QuickWindow.AttackResponse));
+
+            Spell("Trapline Double Back", CardRarity.Uncommon, true,
+                Fx("Double Back", "Pay 1 Mana: Return 1 \"Trapline\" Quick Spell from your Graveyard to your hand; then you may Set 1 \"Trapline\" from your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardSpellSelf, nameFilter: "Trapline"),
+                    SetNextTrap()),
+                Inf("Retrace the Line", "Instead, pay 2 Mana: Return 2.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardSpellSelf, targetCount: 2, nameFilter: "Trapline"),
+                    SetNextTrap()));
+
+            Spell("Trapline Smoke Signal", CardRarity.Common, true,
+                Fx("Smoke Signal", "Draw 1 card; then you may Set 1 \"Trapline\" Quick Spell with a different name from your hand.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.DrawCards, 1),
+                    SetNextTrap()),
+                Inf("Signal Fire", "Instead, pay 1 Mana: Also gain 1 Mana.",
+                    EffectTrigger.OnActivate, 1, true,
+                    Act(EffectActionType.DrawCards, 1),
+                    Act(EffectActionType.GainMana, 1),
+                    SetNextTrap()));
+
+            Artifact("Trapline Basecamp", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Restock the Line", "During your Standby Phase: Set 1 \"Trapline\" Spell from your Deck face-down.",
+                    EffectTrigger.StandbyPhase, 0, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered, nameFilter: "Trapline")),
+                Inf("Salvage Run", "Once per turn: Pay 2 Mana; return 1 \"Trapline\" Spell from your Graveyard to your hand.",
+                    EffectTrigger.Ignition, 2, false,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardSpellSelf, nameFilter: "Trapline")));
+
+            var snares = Rel("Trapline, Season of Snares", CardRarity.Uncommon, 2, MonsterAttribute.Earth, MonsterType.Human, 2000, 1800,
+                "3+ cards in your Graveyard. Cost 2 Mana.", 2,
+                Fx("Harvest the Line", "When this card is Summoned: Return up to 2 \"Trapline\" Spells from your Graveyard to your hand.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardSpellSelf, targetCount: 2, upTo: true, nameFilter: "Trapline")),
+                Fx("Quick Snare", "Once per turn, during either player's turn: Pay 2 Mana; 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)));
+            snares.reqGraveyardAtLeast = 3;
+
+            var patientJaw = Rel("Trapline, the Patient Jaw", CardRarity.Rare, 3, MonsterAttribute.Earth, MonsterType.Human, 2500, 2300,
+                "4+ cards in your Graveyard. Cost 3 Mana.", 3,
+                Fx("Sprung Steel", "When this card is Summoned: Destroy 1 monster your opponent controls with 2000 or less ATK.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster, maxAtk: 2000)),
+                Fx("Reset the Trap", "Once per turn, during either player's turn: Pay 1 Mana; Set 1 \"Trapline\" Quick Spell from your hand face-down.",
+                    EffectTrigger.Quick, 1, true,
+                    Act(EffectActionType.SetTargetSpellFromHand, 1, TargetKind.HandSpellFiltered, nameFilter: "Trapline")));
+            patientJaw.reqGraveyardAtLeast = 4;
+        }
+
+        // ================== REDACTOR (Dark / Human) · Anti-Draw ==================
+
+        private static void Redactor()
+        {
+            Mon("Redactor Inkling", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Human, 700, 800,
+                Fx("Every Word Costs", "Once per turn, when your opponent draws outside their Draw Phase: This card gains 200 ATK permanently.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.BuffTargetAtk, 200, TargetKind.SelfCard)),
+                Inf("Every Letter, Too", "Instead, pay 1 Mana: 200 ATK and 200 DEF.",
+                    EffectTrigger.OnOpponentDraw, 1, true,
+                    Act(EffectActionType.BuffTargetAtk, 200, TargetKind.SelfCard),
+                    Act(EffectActionType.BuffTargetDef, 200, TargetKind.SelfCard)));
+
+            Mon("Redactor Censor", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Human, 1500, 1400,
+                Fx("Strike That", "Once per turn, when your opponent draws outside their Draw Phase: Send the top card of their Deck to the Graveyard.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.MillOpponent, 1)),
+                Inf("Strike It All", "Instead, pay 2 Mana: The top 2.",
+                    EffectTrigger.OnOpponentDraw, 2, true,
+                    Act(EffectActionType.MillOpponent, 2)));
+
+            Mon("Redactor Archivist", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Human, 1200, 1800,
+                Fx("Reading Over Your Shoulder", "Once per turn, when your opponent draws outside their Draw Phase: Pay 1 Mana; draw 1 card.",
+                    EffectTrigger.OnOpponentDraw, 1, true,
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Mon("Redactor Blackbar", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Human, 2400, 2200,
+                Fx("Heavily Redacted", "Once per turn, when your opponent draws outside their Draw Phase: 1 monster they control loses 300 ATK permanently.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.DebuffTargetAtk, 300, TargetKind.EnemyMonster)),
+                Inf("Nothing Left to Read", "Instead, pay 2 Mana: 500.",
+                    EffectTrigger.OnOpponentDraw, 2, true,
+                    Act(EffectActionType.DebuffTargetAtk, 500, TargetKind.EnemyMonster)),
+                Fx("Expunge", "Once per turn: Pay 2 Mana; banish 1 card from your opponent's Graveyard.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent)));
+
+            Mon("Redactor Minister of Records", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Human, 2200, 2600,
+                Fx("State Secret", "Once per turn, when your opponent draws outside their Draw Phase: They discard 1 random card.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.DiscardOpponentRandom, 1)),
+                Inf("Sealed by the State", "Instead, pay 2 Mana: They also have 1 less Mana during their next turn.",
+                    EffectTrigger.OnOpponentDraw, 2, true,
+                    Act(EffectActionType.DiscardOpponentRandom, 1),
+                    Act(EffectActionType.DrainOpponentManaNextTurn, 1)));
+
+            Spell("Redactor Classified", CardRarity.Uncommon, false,
+                Fx("Classified", "Pay 2 Mana: 1 face-up monster your opponent controls cannot change its position this turn; then turn it face-down.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster)),
+                Inf("Above Your Clearance", "Instead, pay 4 Mana: Up to 2.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster, targetCount: 2, upTo: true),
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster, targetCount: 2, upTo: true)));
+
+            Spell("Redactor Burn Before Reading", CardRarity.Uncommon, true,
+                Fx("Burn Before Reading", "Pay 2 Mana: Send the top 3 cards of your opponent's Deck to the Graveyard.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.MillOpponent, 3)),
+                Inf("Ashes to Archives", "Instead, pay 3 Mana: Also banish 1 card from their Graveyard.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.MillOpponent, 3),
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent)));
+
+            Spell("Redactor Freedom of Information", CardRarity.Uncommon, false,
+                Fx("Freedom of Information", "Pay 1 Mana: Discard 1 card; draw 2 cards.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.DiscardFromHandCost, 1, TargetKind.HandCardSelf, isCost: true, excludeSelf: true),
+                    Act(EffectActionType.DrawCards, 2)),
+                Inf("Full Disclosure", "Instead, pay 2 Mana: Draw 3 cards.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.DiscardFromHandCost, 1, TargetKind.HandCardSelf, isCost: true, excludeSelf: true),
+                    Act(EffectActionType.DrawCards, 3)));
+
+            Spell("Redactor Mandatory Reading", CardRarity.Uncommon, false,
+                Fx("Mandatory Reading", "Pay 1 Mana: Your opponent draws 1 card.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.OpponentDraws, 1)),
+                Inf("Assigned Homework", "Instead, pay 2 Mana: You draw 1 card as well.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.OpponentDraws, 1),
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Artifact("Redactor Ministry Seal", CardRarity.Rare, ArtifactSlot.Field, 0, 0,
+                Fx("Official Secrets", "Once per turn, when your opponent draws outside their Draw Phase: They have 1 less Mana during their next turn.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.DrainOpponentManaNextTurn, 1)),
+                Inf("Top Secret", "Instead, pay 2 Mana: Also send the top card of their Deck to the Graveyard.",
+                    EffectTrigger.OnOpponentDraw, 2, true,
+                    Act(EffectActionType.DrainOpponentManaNextTurn, 1),
+                    Act(EffectActionType.MillOpponent, 1)));
+
+            var finalEdition = Rel("Redactor, Final Edition", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Human, 2700, 2300,
+                "5+ cards in your Graveyard. Tribute 1 monster you control. Cost 3 Mana.", 3,
+                Fx("Print Deadline", "Once per turn, when your opponent draws outside their Draw Phase: They discard 1 random card.",
+                    EffectTrigger.OnOpponentDraw, 0, true,
+                    Act(EffectActionType.DiscardOpponentRandom, 1)),
+                Inf("Stop the Presses", "Instead, pay 2 Mana: Also send the top 2 cards of their Deck to the Graveyard.",
+                    EffectTrigger.OnOpponentDraw, 2, true,
+                    Act(EffectActionType.DiscardOpponentRandom, 1),
+                    Act(EffectActionType.MillOpponent, 2)),
+                Fx("Pulp the Archives", "Once per turn: Pay 2 Mana; banish up to 3 cards from your opponent's Graveyard.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent, targetCount: 3, upTo: true)));
+            finalEdition.reqGraveyardAtLeast = 5;
+            finalEdition.costTributeOtherMonster = true;
+        }
+
+        // ================== SNUGGLET (bunt / Animal+Beast) · Kuschel-Trio ==================
+
+        private static void Snugglet()
+        {
+            // Der Aura-Ring: Bumble→Mopsy→Pebble→Whiskers→Puddle→Acorn→Bumble.
+            // Jedes Tierchen trägt das 3er-Feldlimit — nur drei passen aufs Sofa.
+            System.Action<MonsterCardData> limit = pet =>
+            {
+                pet.fieldLimitName = "Snugglet";
+                pet.fieldLimitCount = 3;
+            };
+
+            var bumble = Mon("Snugglet Bumble", CardRarity.Common, 1, MonsterAttribute.Wind, MonsterType.Animal, 600, 600,
+                Fx("Buzz Around", "When this card is Summoned: Add 1 \"Snugglet\" monster from your Deck to your hand.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckMonsterFiltered, nameFilter: "Snugglet")),
+                Inf("Busy Bee", "Instead, pay 2 Mana: Also add 1 \"Snugglet\" Spell.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckMonsterFiltered, nameFilter: "Snugglet"),
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckSpellFiltered, nameFilter: "Snugglet")));
+            bumble.auraAtkBonus = 400; bumble.auraNameFilter = "Snugglet Mopsy"; limit(bumble);
+
+            var mopsy = Mon("Snugglet Mopsy", CardRarity.Common, 1, MonsterAttribute.Earth, MonsterType.Animal, 800, 500,
+                Fx("Lucky Foot", "When this card is Summoned: Gain 1 Mana.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.GainMana, 1)),
+                Inf("Lucky Streak", "Instead, pay 1 Mana: Also 1 more during your next turn.",
+                    EffectTrigger.OnSummonSelf, 1, true,
+                    Act(EffectActionType.GainMana, 1),
+                    Act(EffectActionType.GainManaNextTurn, 1)));
+            mopsy.auraDefBonus = 400; mopsy.auraNameFilter = "Snugglet Pebble"; limit(mopsy);
+
+            var pebble = Mon("Snugglet Pebble", CardRarity.Common, 1, MonsterAttribute.Water, MonsterType.Beast, 400, 1200);
+            pebble.auraAtkBonus = 400; pebble.auraNameFilter = "Snugglet Whiskers";
+            pebble.passiveTaunt = true; limit(pebble);
+
+            var whiskers = Mon("Snugglet Whiskers", CardRarity.Uncommon, 1, MonsterAttribute.Dark, MonsterType.Beast, 900, 400,
+                Fx("Pounce", "Once per turn: Pay 1 Mana; 1 monster your opponent controls loses 400 ATK until the end of this turn.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, -400, TargetKind.EnemyMonster)));
+            whiskers.auraAtkBonus = 300; whiskers.auraDefBonus = 300; whiskers.auraNameFilter = "Snugglet Puddle"; limit(whiskers);
+
+            var puddle = Mon("Snugglet Puddle", CardRarity.Uncommon, 1, MonsterAttribute.Water, MonsterType.Animal, 500, 900,
+                Fx("Happy Splash", "When this card is Summoned, if you control 3 monsters: Draw 1 card.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.DrawCards, 1)).Needs(minOwnMonsters: 3),
+                Inf("Cannonball!", "Instead, pay 1 Mana: Draw 2 cards.",
+                    EffectTrigger.OnSummonSelf, 1, true,
+                    Act(EffectActionType.DrawCards, 2)).Needs(minOwnMonsters: 3));
+            puddle.auraAtkBonus = 400; puddle.auraNameFilter = "Snugglet Acorn"; limit(puddle);
+
+            var acorn = Mon("Snugglet Acorn", CardRarity.Uncommon, 1, MonsterAttribute.Light, MonsterType.Animal, 700, 700,
+                Fx("Stash", "Once per turn: Pay 1 Mana; return 1 \"Snugglet\" monster from your Graveyard to your hand.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardMonsterSelf, nameFilter: "Snugglet")));
+            acorn.auraAtkBonus = 400; acorn.auraNameFilter = "Snugglet Bumble"; limit(acorn);
+
+            Spell("Snugglet Pile-Up", CardRarity.Uncommon, false,
+                Fx("Pile-Up", "Pay 1 Mana: Special Summon up to 2 \"Snugglet\" monsters from your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.HandMonsterFiltered, targetCount: 2, upTo: true, nameFilter: "Snugglet")),
+                Inf("Everybody In", "Instead, pay 3 Mana: From your hand or Graveyard.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.SpecialSummonTargetFromHandOrGrave, 1, TargetKind.HandOrGraveMonsterFiltered, targetCount: 2, upTo: true, nameFilter: "Snugglet")));
+
+            Spell("Snugglet Nap Time", CardRarity.Common, true,
+                Fx("Nap Time", "Pay 1 Mana: Up to 3 of your \"Snugglet\" monsters cannot be destroyed this turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster, targetCount: 3, upTo: true, nameFilter: "Snugglet")),
+                Inf("Deep Sleep", "Instead, pay 2 Mana: They also gain 300 DEF until the end of this turn.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster, targetCount: 3, upTo: true, nameFilter: "Snugglet"),
+                    Act(EffectActionType.BuffTargetDefUntilEndOfTurn, 300, TargetKind.AllyMonster, targetCount: 3, upTo: true, nameFilter: "Snugglet")));
+
+            var sofa = Artifact("Snugglet Sofa", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Scooch Over", "Once per turn: Pay 2 Mana; Special Summon 1 \"Snugglet\" monster from your Graveyard.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.SpecialSummonFromGraveyard, 1, TargetKind.GraveyardMonsterSelf, nameFilter: "Snugglet")));
+            sofa.auraAtkBonus = 200; sofa.auraDefBonus = 200; sofa.auraNameFilter = "Snugglet";
+
+            var cuddlepile = Rel("Snugglet Cuddlepile, Three Deep", CardRarity.Rare, 2, MonsterAttribute.Light, MonsterType.Beast, 2200, 2200,
+                "You control 3 \"Snugglet\" monsters. Tribute 1 monster you control. Cost 2 Mana.", 2,
+                Fx("Room for One More", "When this card is Summoned: Special Summon 1 \"Snugglet\" monster from your Graveyard.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SpecialSummonFromGraveyard, 1, TargetKind.GraveyardMonsterSelf, nameFilter: "Snugglet")));
+            cuddlepile.reqNamedOnField = "Snugglet"; cuddlepile.reqNamedCount = 3;
+            cuddlepile.costTributeOtherMonster = true;
+            cuddlepile.auraAtkBonus = 300; cuddlepile.auraDefBonus = 300; cuddlepile.auraNameFilter = "Snugglet"; cuddlepile.auraExcludesSelf = true;
+
+            var fortress = Rel("Snugglet Blanket Fortress", CardRarity.Rare, 3, MonsterAttribute.Light, MonsterType.Beast, 2500, 2800,
+                "You control 3 \"Snugglet\" monsters and have 3+ cards in your Graveyard. Tribute 1 monster you control. Cost 3 Mana.", 3,
+                Fx("Pull the Blanket Tight", "Once per turn, during either player's turn: Pay 2 Mana; 1 \"Snugglet\" monster you control cannot be destroyed this turn.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster, nameFilter: "Snugglet")));
+            fortress.reqNamedOnField = "Snugglet"; fortress.reqNamedCount = 3;
+            fortress.reqGraveyardAtLeast = 3;
+            fortress.costTributeOtherMonster = true;
+            fortress.protectsNamedFromTargeting = "Snugglet";
+
+            var squish = Rel("Snugglet, the Whole Squish", CardRarity.Legendary, 3, MonsterAttribute.Light, MonsterType.Beast, 3000, 3000,
+                "You control 3 \"Snugglet\" monsters and have 5+ cards in your Graveyard. Tribute 2 monsters you control. Cost 4 Mana.", 4,
+                Fx("The Whole Family", "When this card is Summoned: Special Summon up to 2 \"Snugglet\" monsters from your Graveyard.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SpecialSummonFromGraveyard, 1, TargetKind.GraveyardMonsterSelf, targetCount: 2, upTo: true, nameFilter: "Snugglet")),
+                Inf("Group Hug", "Once per turn: Pay 2 Mana; up to 3 \"Snugglet\" monsters you control gain 400 ATK until the end of this turn.",
+                    EffectTrigger.Ignition, 2, false,
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, 400, TargetKind.AllyMonster, targetCount: 3, upTo: true, nameFilter: "Snugglet")));
+            squish.reqNamedOnField = "Snugglet"; squish.reqNamedCount = 3;
+            squish.reqGraveyardAtLeast = 5;
+            squish.costTributeOwnMonsters = 2;
+            squish.auraAtkBonus = 300; squish.auraDefBonus = 300; squish.auraNameFilter = "Snugglet"; squish.auraExcludesSelf = true;
         }
     }
 }

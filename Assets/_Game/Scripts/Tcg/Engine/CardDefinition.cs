@@ -66,6 +66,12 @@ namespace Rouge.Tcg
         [Tooltip("Dieses Monster kann im Zug seiner Beschwörung nicht angreifen (Slow to Anger)")]
         public bool passiveNoAttackOnSummonTurn;
 
+        [Tooltip("Feld-Limit (Snugglet): dieses Monster ist nicht beschwörbar/setzbar, solange du " +
+                 "bereits N Monster kontrollierst, deren Name diesen Text enthält (leer = kein Limit)")]
+        public string fieldLimitName = "";
+        [Tooltip("Das N zum Feld-Limit (0 = aus)")]
+        public int fieldLimitCount;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -133,6 +139,8 @@ namespace Rouge.Tcg
                 lines.Add($"Your other \"{protectsNamedFromTargeting}\" cards cannot be targeted by your opponent's effects.");
             if (conditionalDoubleAttack)
                 lines.Add($"Can attack twice each Battle Phase while you control another face-up {doubleAttackAttribute.ToString().ToUpperInvariant()} monster.");
+            if (fieldLimitCount > 0 && !string.IsNullOrEmpty(fieldLimitName))
+                lines.Add($"You cannot Summon or Set this card while you control {fieldLimitCount} \"{fieldLimitName}\" monsters.");
 
             return lines;
         }

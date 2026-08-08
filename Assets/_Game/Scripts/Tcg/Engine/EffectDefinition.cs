@@ -59,6 +59,10 @@ namespace Rouge.Tcg
 
         [Tooltip("Zählbasis für ...PerCount-Aktionen")]
         public EffectCountKind countKind = EffectCountKind.OwnArtifactsOnField;
+
+        [Tooltip("Karten mit demselben NAMEN wie die Quellkarte sind kein gültiges Ziel " +
+                 "(Trapline: \"mit anderem Namen\")")]
+        public bool excludeSameName;
     }
 
     [Serializable]
@@ -98,6 +102,11 @@ namespace Rouge.Tcg
                  "(Elephant in the Room). Der Aktivierende zahlt und profitiert; einmal pro Zug " +
                  "gilt für die Karte insgesamt, egal wer sie anspricht.")]
         public bool eitherPlayerMayActivate;
+
+        [Tooltip("Fenster-Beschränkung für gesetzte Quick-Zauber (Trapline-Fallen): " +
+                 "AttackResponse/SummonResponse zünden NUR im jeweiligen Reaktionsfenster " +
+                 "und sind nicht offen aus der Hand spielbar.")]
+        public QuickWindow quickWindow = QuickWindow.Any;
 
         [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
         [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]
