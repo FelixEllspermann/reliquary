@@ -200,6 +200,26 @@ namespace Rouge.Tcg
                 }
             }
 
+            // Elephant in the Room: Ignition-Effekte auf GEGNERISCHEN Karten, die
+            // ausdrücklich beide Spieler ansprechen dürfen. Der Aktivierende zahlt
+            // sein Mana und zieht seine Karten — die Once-per-Turn-Sperre liegt
+            // auf der Karte selbst und gilt damit für beide gemeinsam.
+            foreach (var card in player.Opponent.FieldCards())
+            {
+                if (card.SpellData != null || card.FaceDown) continue;
+                foreach (int index in ActivatableEffects(card, player, EffectTrigger.Ignition))
+                {
+                    if (!card.Definition.effects[index].eitherPlayerMayActivate) continue;
+                    request.Options.Add(new MainActionOption
+                    {
+                        Kind = MainActionKind.ActivateFieldEffect,
+                        Card = card,
+                        EffectIndex = index,
+                        Label = $"{card.Name} (opponent's): {EffectChoiceLabel(card, index)}"
+                    });
+                }
+            }
+
             // Friedhof-Effekte (z.B. "verbannen: ...")
             foreach (var card in player.Graveyard.ToArray())
             {
@@ -2978,15 +2998,21 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             Log($"{card.Name} is destroyed.");
             BoardChanged();
 
-            if (wasMonster && responseDepth < 2)
+            if (responseDepth < 2)
             {
+                // OnDestroyedSelf gilt für JEDE Karte — auch Artefakte (Fall Guy,
+                // Bulwark Prism). Vorher feuerte er nur für Monster, womit
+                // Artefakt-Sterbenseffekte stillschweigend nie liefen.
                 yield return OfferTriggeredEffects(card.Owner, card, EffectTrigger.OnDestroyedSelf);
                 if (Result != DuelResult.None) yield break;
-                // Warm Memories: Feld/Hand des Besitzers hört mit, wenn ein eigenes Monster fällt
-                foreach (var listener in TriggerScanCandidates(card.Owner).ToArray())
+                if (wasMonster)
                 {
-                    if (Result != DuelResult.None) yield break;
-                    yield return OfferTriggeredEffects(card.Owner, listener, EffectTrigger.OnOwnMonsterDestroyed);
+                    // Warm Memories: Feld/Hand des Besitzers hört mit, wenn ein eigenes Monster fällt
+                    foreach (var listener in TriggerScanCandidates(card.Owner).ToArray())
+                    {
+                        if (Result != DuelResult.None) yield break;
+                        yield return OfferTriggeredEffects(card.Owner, listener, EffectTrigger.OnOwnMonsterDestroyed);
+                    }
                 }
             }
         }

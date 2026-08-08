@@ -69,6 +69,17 @@ namespace Rouge.Tcg.EditorTools
             Finish("Stage 4");
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Loose Set (Puns)")]
+        public static void BuildLooseSet()
+        {
+            built.Clear();
+            LooseSetBodies();
+            LooseSetTricks();
+            LooseSetEconomy();
+            LooseSetArtifacts();
+            Finish("Loose Set");
+        }
+
         /// <summary>SetDirty am Ende (CreateAsset schreibt sofort — siehe NewArchetypeBuilder) + Katalog.</summary>
         private static void Finish(string stage)
         {
@@ -1271,6 +1282,244 @@ namespace Rouge.Tcg.EditorTools
                     EffectTrigger.OnActivate, 4, true,
                     Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckArtifactFiltered),
                     Act(EffectActionType.HealSelf, 600),
+                    Act(EffectActionType.DrawCards, 1)));
+        }
+
+        // ================== LOOSE SET · „PUNS & PURPOSE" ==================
+
+        private static void LooseSetBodies()
+        {
+            // Kein Effekt — der Name ist das Regelwerk. Gegenstück zu Immovable Object.
+            Mon("Glass Cannon", CardRarity.Common, 2, MonsterAttribute.Fire, MonsterType.Mecha, 2200, 0);
+
+            var address = Fx("Address the Elephant", "Once per turn, EITHER player may pay 2 Mana: that player draws 1 card.",
+                EffectTrigger.Ignition, 2, true,
+                Act(EffectActionType.DrawCards, 1));
+            address.eitherPlayerMayActivate = true;
+            var elephant = Mon("Elephant in the Room", CardRarity.Rare, 3, MonsterAttribute.Earth, MonsterType.Animal, 2500, 2500, address);
+            elephant.passiveTaunt = true;
+
+            var bloomer = Mon("Late Bloomer", CardRarity.Uncommon, 3, MonsterAttribute.Earth, MonsterType.Human, 2400, 2000,
+                Fx("...Bloomer", "When this card is Summoned: Draw 1 card.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.DrawCards, 1)),
+                Inf("Full Bloom", "Instead, pay 2 Mana: Draw 2 cards.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.DrawCards, 2)));
+            bloomer.passiveNoAttackOnSummonTurn = true;
+
+            Mon("Method Actor", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Human, 1200, 1200,
+                Fx("Method Acting", "When this card is Summoned: Its ATK and DEF become those of 1 monster on the field until the end of this turn.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster, excludeSelf: true)),
+                Inf("Scene Stealer", "Instead, pay 1 Mana: It also gains 300 ATK on top.",
+                    EffectTrigger.OnSummonSelf, 1, true,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster, excludeSelf: true),
+                    Act(EffectActionType.BuffTargetAtkUntilEndOfTurn, 300, TargetKind.SelfCard)));
+
+            var twoBirds = Mon("Two Birds, One Stone", CardRarity.Uncommon, 2, MonsterAttribute.Wind, MonsterType.Animal, 1400, 1000);
+            twoBirds.conditionalDoubleAttack = true;
+            twoBirds.doubleAttackAttribute = MonsterAttribute.Earth;
+
+            Mon("Trophy Hunter", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Human, 1700, 1200,
+                Fx("Fair Game", "Once per turn, when this card destroys a monster in battle: Draw 1 card.",
+                    EffectTrigger.OnBearerBattleKill, 0, true,
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Mon("Grief Counselor", CardRarity.Uncommon, 2, MonsterAttribute.Light, MonsterType.Human, 1100, 1700,
+                Fx("Processing Loss", "Once per turn, when a monster you control is destroyed: Draw 1 card.",
+                    EffectTrigger.OnOwnMonsterDestroyed, 0, true,
+                    Act(EffectActionType.DrawCards, 1)),
+                Fx("Counseling Session", "Once per turn: Pay 1 Mana; gain 400 LP.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.HealSelf, 400)));
+
+            var ham = Mon("Sacrificial Ham", CardRarity.Uncommon, 1, MonsterAttribute.Light, MonsterType.Beast, 500, 900,
+                Fx("Dies Beautifully", "When this card is Tributed: Gain 300 LP.",
+                    EffectTrigger.OnTributedSelf, 0, false,
+                    Act(EffectActionType.HealSelf, 300)));
+            ham.tributeWorth = 2;
+
+            Mon("Night Owl", CardRarity.Uncommon, 1, MonsterAttribute.Wind, MonsterType.Animal, 800, 600,
+                Fx("Night Shift", "When this card is flipped face-up: Return 1 monster your opponent controls with 1500 or less ATK to the hand.",
+                    EffectTrigger.OnFlipFaceUp, 0, false,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.EnemyMonster, maxAtk: 1500)));
+
+            var bench = Mon("Bench Warmer", CardRarity.Uncommon, 1, MonsterAttribute.Earth, MonsterType.Beast, 400, 1400);
+            bench.passiveCannotAttack = true;
+            bench.auraDefBonus = 200;
+            bench.auraExcludesSelf = true;
+
+            var manager = Mon("Middle Management", CardRarity.Uncommon, 2, MonsterAttribute.Light, MonsterType.Human, 1300, 1300,
+                Fx("Delegate", "Once per turn: Pay 1 Mana; Special Summon 1 Level 1 monster from your hand.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.HandMonsterFiltered, level: 1)));
+            manager.auraAtkBonus = 200;
+            manager.auraDefBonus = 200;
+            manager.auraLevelFilter = 1;
+        }
+
+        private static void LooseSetTricks()
+        {
+            Spell("Lost in the Shuffle", CardRarity.Uncommon, true,
+                Fx("Lost in the Shuffle", "Pay 2 Mana: Shuffle 1 monster with 1500 or less ATK into its owner's Deck.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.ShuffleTargetIntoDeck, 1, TargetKind.AnyMonster, maxAtk: 1500)),
+                Inf("Never Seen Again", "Instead, pay 4 Mana: Any ATK.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.ShuffleTargetIntoDeck, 1, TargetKind.AnyMonster)));
+
+            Spell("Cease and Desist", CardRarity.Rare, true,
+                Fx("Cease", "Pay 2 Mana: Negate the effects of 1 card your opponent controls until the end of this turn.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField)),
+                Inf("and Desist", "Instead, pay 4 Mana: Also, 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyCardOnField),
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Spell("Head Over Heels", CardRarity.Uncommon, true,
+                Fx("Head Over Heels", "Pay 1 Mana: 1 monster on the field swaps its ATK and DEF until the end of this turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SwapAtkDefThisTurn, 1, TargetKind.AnyMonster)),
+                Inf("Topsy-Turvy", "Instead, pay 2 Mana: Up to 2 monsters.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.SwapAtkDefThisTurn, 1, TargetKind.AnyMonster, targetCount: 2, upTo: true)));
+
+            Spell("Borrowed Time", CardRarity.Rare, false,
+                Fx("Borrowed Time", "Pay 4 Mana: Take control of 1 monster your opponent controls until the End Phase.",
+                    EffectTrigger.OnActivate, 4, false,
+                    Act(EffectActionType.TakeControlUntilEndOfTurn, 1, TargetKind.EnemyMonster)),
+                Inf("Interest Accrues", "Instead, pay 5 Mana: Also draw 1 card.",
+                    EffectTrigger.OnActivate, 5, true,
+                    Act(EffectActionType.TakeControlUntilEndOfTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Spell("Open Book Test", CardRarity.Uncommon, false,
+                Fx("Open Book", "Pay 2 Mana: Look at your opponent's hand and choose 1 card; they discard it.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.LookAndDiscardChosen, 1, TargetKind.HandCardOpponent)),
+                Inf("Pop Quiz", "Instead, pay 4 Mana: Choose 2 cards.",
+                    EffectTrigger.OnActivate, 4, true,
+                    Act(EffectActionType.LookAndDiscardChosen, 1, TargetKind.HandCardOpponent, targetCount: 2)));
+
+            Spell("Five-Finger Discount", CardRarity.Rare, false,
+                Fx("Sticky Fingers", "Pay 4 Mana: Your opponent discards 1 random card.",
+                    EffectTrigger.OnActivate, 4, false,
+                    Act(EffectActionType.DiscardOpponentRandom, 1)),
+                Inf("Five-Finger Discount", "Instead, pay 6 Mana: Reveal 1 random card from their hand — if it is a monster, Special Summon it to YOUR field; otherwise they discard it.",
+                    EffectTrigger.OnActivate, 6, true,
+                    Act(EffectActionType.OpponentRandomToFieldOrDiscard, 1)));
+
+            Spell("Velvet Rope", CardRarity.Uncommon, true,
+                Fx("Not on the List", "Pay 2 Mana: Your opponent cannot Special Summon for the rest of this turn.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1)),
+                Inf("Dress Code", "Instead, pay 3 Mana: Also, 1 monster they control cannot attack this turn.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.OpponentSummonLockThisTurn, 1),
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Spell("Pillow Fort", CardRarity.Common, true,
+                Fx("Pillow Fort", "Pay 1 Mana: You take no battle damage for the rest of this turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.PreventBattleDamageThisTurn, 1)),
+                Inf("Reinforced Cushions", "Instead, pay 2 Mana: Also, 1 monster you control gains 500 DEF until the end of this turn.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.PreventBattleDamageThisTurn, 1),
+                    Act(EffectActionType.BuffTargetDefUntilEndOfTurn, 500, TargetKind.AllyMonster)));
+        }
+
+        private static void LooseSetEconomy()
+        {
+            Spell("Sleep On It", CardRarity.Common, false,
+                Fx("Sleep On It", "You have 2 more Mana during your next turn.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.GainManaNextTurn, 2)),
+                Inf("Slept Like a Rock", "Instead, pay 1 Mana: 3 more.",
+                    EffectTrigger.OnActivate, 1, true,
+                    Act(EffectActionType.GainManaNextTurn, 3)));
+
+            Spell("Needle in a Haystack", CardRarity.Common, false,
+                Fx("Needle in a Haystack", "Send the top 3 cards of your Deck to the Graveyard; add 1 Level 1 monster among them to your hand.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.MillAndSalvage, 3, targetCount: 1, level: 1)),
+                Inf("Magnet", "Instead, pay 1 Mana: Top 5 cards; add up to 2 Level 1 monsters among them.",
+                    EffectTrigger.OnActivate, 1, true,
+                    Act(EffectActionType.MillAndSalvage, 5, targetCount: 2, level: 1)));
+
+            Spell("Back in Style", CardRarity.Uncommon, false,
+                Fx("Back in Style", "Pay 1 Mana: Shuffle up to 3 cards from your Graveyard into your Deck; draw 1 card.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.ShuffleGraveyardIntoDeck, 1, TargetKind.GraveyardCardSelf, targetCount: 3, upTo: true),
+                    Act(EffectActionType.DrawCards, 1)),
+                Inf("Full Comeback", "Instead, pay 2 Mana: Up to 5 cards; draw 1.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.ShuffleGraveyardIntoDeck, 1, TargetKind.GraveyardCardSelf, targetCount: 5, upTo: true),
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Spell("Silver Lining", CardRarity.Uncommon, false,
+                Fx("Silver Lining", "If your opponent controls more monsters than you: Draw 2 cards.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.DrawCards, 2)).Needs(oppMoreMonsters: true),
+                Inf("Break in the Clouds", "Instead, pay 2 Mana: Also gain 2 Mana.",
+                    EffectTrigger.OnActivate, 2, true,
+                    Act(EffectActionType.DrawCards, 2),
+                    Act(EffectActionType.GainMana, 2)).Needs(oppMoreMonsters: true));
+
+            Spell("Spoiler Alert", CardRarity.Uncommon, false,
+                Fx("Spoiler Alert", "Pay 2 Mana: Set 1 Spell from your Deck face-down (usable this turn).",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered)),
+                Inf("Read the Ending", "Instead, pay 3 Mana: Also reveal the top card of your Deck; you may put it on the bottom.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered),
+                    Act(EffectActionType.RevealTopMayBottom, 1)));
+        }
+
+        private static void LooseSetArtifacts()
+        {
+            var fallGuy = Artifact("Fall Guy", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Stuntman's Fee", "When this card is destroyed: Draw 1 card.",
+                    EffectTrigger.OnDestroyedSelf, 0, false,
+                    Act(EffectActionType.DrawCards, 1)));
+            fallGuy.redirectDestructionToSelf = true;
+
+            Artifact("Snooze Button", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Five More Minutes", "Once per turn: Pay 2 Mana; 1 monster your opponent controls cannot attack this turn.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster)),
+                Inf("Do Not Disturb", "Instead, pay 3 Mana: It also cannot change its battle position this turn.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.CannotAttackThisTurn, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.LockPositionThisTurn, 1, TargetKind.EnemyMonster)));
+
+            Artifact("Cliffhanger", CardRarity.Common, ArtifactSlot.Field, 0, 0,
+                Fx("To Be Continued", "During your Standby Phase: Reveal the top card of your Deck; you may put it on the bottom.",
+                    EffectTrigger.StandbyPhase, 0, true,
+                    Act(EffectActionType.RevealTopMayBottom, 1)),
+                Fx("Skip to the Good Part", "Once per turn: Pay 1 Mana; send the top card of your Deck to the Graveyard; draw 1 card.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.MillSelf, 1),
+                    Act(EffectActionType.DrawCards, 1)));
+
+            Artifact("Participation Trophy", CardRarity.Common, ArtifactSlot.Monster, 300, 300,
+                Fx("Celebrate Anyway", "Once per turn, when the equipped monster destroys a monster in battle: Gain 300 LP.",
+                    EffectTrigger.OnBearerBattleKill, 0, true,
+                    Act(EffectActionType.HealSelf, 300)));
+
+            Artifact("Security Blanket", CardRarity.Uncommon, ArtifactSlot.Monster, 0, 600,
+                Fx("Tucked In", "When played: 1 monster you control cannot be destroyed this turn.",
+                    EffectTrigger.OnActivate, 0, false,
+                    Act(EffectActionType.ProtectTargetThisTurn, 1, TargetKind.AllyMonster)));
+
+            Artifact("Fire Escape", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Fire Escape", "Once per turn: Pay 1 Mana; return 1 monster you control to your hand.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.AllyMonster)),
+                Inf("Orderly Evacuation", "Instead, pay 2 Mana: Also draw 1 card.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.AllyMonster),
                     Act(EffectActionType.DrawCards, 1)));
         }
     }

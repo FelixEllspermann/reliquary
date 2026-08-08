@@ -94,6 +94,11 @@ namespace Rouge.Tcg
         [Tooltip("Nur aktivierbar, wenn diese Karte ein Artefakt ausgerüstet hat (Genostitched)")]
         public bool requiresEquippedArtifact;
 
+        [Tooltip("AUCH der Gegner darf diesen Ignition-Effekt in seiner Main Phase aktivieren " +
+                 "(Elephant in the Room). Der Aktivierende zahlt und profitiert; einmal pro Zug " +
+                 "gilt für die Karte insgesamt, egal wer sie anspricht.")]
+        public bool eitherPlayerMayActivate;
+
         [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
         [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]
         public int minMana;
