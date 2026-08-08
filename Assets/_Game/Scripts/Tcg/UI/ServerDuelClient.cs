@@ -25,7 +25,6 @@ namespace Rouge.Tcg.UI
         private readonly List<SduelEvent> pendingEvents = new List<SduelEvent>();
         private DuelManager duel;
         private DuelPresenter presenter;
-        private bool subscribed;
 
         /// <summary>Die gerade offene Anfrage (für Debug-Werkzeuge und Tests).</summary>
         public DuelRequest CurrentRequest { get; private set; }
@@ -37,24 +36,20 @@ namespace Rouge.Tcg.UI
             duel = duelHost.Duel;
             presenter = duelHost.ScenePresenter;
             duel.MirrorBegin(MatchContext.LocalName, MatchContext.RemoteName);
-
-            if (NetworkManager.Instance != null)
-            {
-                NetworkManager.Instance.OnMessage += OnMessage;
-                subscribed = true;
-            }
             StartCoroutine(Pipeline());
         }
 
-        private void OnDestroy()
+        /// <summary>
+        /// Holt alle inzwischen eingetroffenen Server-Duell-Nachrichten aus dem
+        /// NetworkManager-Puffer. Der überlebt den Szenenwechsel — so geht die
+        /// Eröffnung (Münzwurf + Startwahl) nicht mehr verloren, die der DuelHost
+        /// schickt, während der Client noch im Match-Found-Popup steht.
+        /// </summary>
+        private void DrainNetworkInbox()
         {
-            if (subscribed && NetworkManager.Instance != null)
-                NetworkManager.Instance.OnMessage -= OnMessage;
-        }
-
-        private void OnMessage(NetMessage message)
-        {
-            if (message.t == "sduel") inbox.Enqueue(message);
+            var network = NetworkManager.Instance;
+            if (network == null) return;
+            while (network.TryDequeueSduel(out var message)) inbox.Enqueue(message);
         }
 
         private IEnumerator Pipeline()
@@ -70,6 +65,7 @@ namespace Rouge.Tcg.UI
 
             while (duel != null && duel.Result == DuelResult.None)
             {
+                DrainNetworkInbox();
                 if (inbox.Count == 0) { yield return null; continue; }
                 var message = inbox.Dequeue();
                 switch (message.op)

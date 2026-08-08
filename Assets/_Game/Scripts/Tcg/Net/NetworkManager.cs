@@ -43,6 +43,16 @@ namespace Rouge.Tcg.Net
         private CancellationTokenSource cancel;
         private readonly ConcurrentQueue<string> inbox = new ConcurrentQueue<string>();
         private readonly Queue<NetData> answerQueue = new Queue<NetData>();
+
+        /// <summary>
+        /// Puffer für Server-Duell-Nachrichten. Der DuelHost schickt seine Eröffnung
+        /// (Münzwurf + Startwahl-Anfrage) SOFORT beim Match — der Client steckt da
+        /// aber noch im „Match found"-Popup und Szenenwechsel, der ServerDuelClient
+        /// existiert noch gar nicht. OnMessage feuert nur an aktuelle Abonnenten;
+        /// ohne Puffer ging genau diese Eröffnung verloren, der Server wartete ewig
+        /// auf die Antwort, und beide Spieler sahen ein totes Brett.
+        /// </summary>
+        private readonly Queue<NetMessage> sduelInbox = new Queue<NetMessage>();
         private readonly SemaphoreSlim sendLock = new SemaphoreSlim(1, 1);
         private bool connectedFlagPending;
         private string disconnectReason;
@@ -150,6 +160,12 @@ namespace Rouge.Tcg.Net
 
                 if (message.t == "peer_left") PeerLeft = true;
 
+                // Server-Duell: puffern statt feuern — die Duel-Szene holt sie
+                // per TryDequeueSduel ab, egal wie lange Popup und Laden dauern.
+                if (message.t == "sduel") { sduelInbox.Enqueue(message); continue; }
+                // Ein neues Duell beginnt: Reste eines vorigen gehören nicht hinein.
+                if (message.t == "sduel_start") sduelInbox.Clear();
+
                 // Ein Hauptrang-Aufstieg wird gemerkt, nicht sofort gezeigt —
                 // erst muss der Ergebnis-Bildschirm durch sein.
                 if (message.t == "rank_change") PlayerProfile.QueueRpDelta(message.rankDelta);
@@ -178,6 +194,14 @@ namespace Rouge.Tcg.Net
         {
             if (answerQueue.Count > 0) { data = answerQueue.Dequeue(); return true; }
             data = null;
+            return false;
+        }
+
+        /// <summary>Nächste gepufferte Server-Duell-Nachricht (siehe sduelInbox).</summary>
+        public bool TryDequeueSduel(out NetMessage message)
+        {
+            if (sduelInbox.Count > 0) { message = sduelInbox.Dequeue(); return true; }
+            message = null;
             return false;
         }
 
