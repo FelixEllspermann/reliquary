@@ -10,10 +10,15 @@ using Rouge.Tcg.Net;
 namespace Rouge.Tcg.UI
 {
     /// <summary>
-    /// Deck Builder im Collection-Design: Pool mit Suche + Typ-/Attribut-Filtern,
+    /// Deck Builder im Collection-Design: Pool als Kartenbild-Gitter mit Suche,
+    /// Typ-/Attribut-Filtern, Sortier-Dropdown und Besitz-Filter (ALL/OWNED/MISSING),
     /// Deck-Liste mit Hero-Chips und Legalitäts-Bar, Detail-Rail mit Kartenvorschau,
     /// Dust/Craft, abgeleiteter Deck-Balance und Advice-Strip. Server-Fluss wie gehabt
     /// (save_deck/delete_deck/craft/dust über den NetworkManager).
+    ///
+    /// Der Pool zeigt je Karte eine Kachel pro besessenem Finish (CollectionCardTile,
+    /// recycelt statt neu gebaut); die Deck-Liste bleibt bei den kompakten Zeilen
+    /// (CollectionRow) — 40 Karten überblickt man dort als Liste besser.
     /// </summary>
     public class DeckBuilderController : MonoBehaviour
     {
@@ -84,7 +89,7 @@ namespace Rouge.Tcg.UI
         private List<CardDefinition> pool = new List<CardDefinition>();
         private List<PlayerCardData> heroes = new List<PlayerCardData>();
         private List<PlayerCardData> ownedHeroes = new List<PlayerCardData>();
-        private readonly List<CollectionRow> poolRows = new List<CollectionRow>();
+        private readonly List<CollectionCardTile> poolTiles = new List<CollectionCardTile>();
         private readonly List<CollectionRow> deckRows = new List<CollectionRow>();
         private readonly List<Button> heroChips = new List<Button>();
         private GameObject extraHeader;  // Laufzeit-Trenner "EXTRA DECK x/20"
@@ -92,6 +97,23 @@ namespace Rouge.Tcg.UI
         private int typeFilter;   // 0 all, 1 monster, 2 spell, 3 artifact, 4 reliquary
         private int attrFilter;   // 0 all, 1..6 = AttrOrder
         private string search = "";
+
+        // ---- Sortierung + Besitz-Filter der Pool-Werkzeugleiste ----
+        private int sortMode;             // Index in SortOptionNames
+        private bool sortAscending = true;
+        private int ownedFilter;          // 0 alle, 1 nur besessene, 2 nur fehlende
+        private TMP_Dropdown sortDropdown;
+        private Image sortDirBg;
+        private TMP_Text sortDirLabel;
+        private readonly GameObject[] ownedChips = new GameObject[3];
+        private readonly Image[] ownedChipBgs = new Image[3];
+        private readonly TMP_Text[] ownedChipLabels = new TMP_Text[3];
+
+        private const string SortModePref = "deckpool_sort";
+        private const string SortDirPref = "deckpool_dir";
+
+        /// <summary>Das Deck-Panel als Drop-Ziel für gezogene Pool-Kacheln (und Grenze fürs Herausziehen).</summary>
+        private RectTransform deckDropArea;
         private CardDefinition selected;
 
         /// <summary>Welche Ausführung der gewählten Karte rechts steht.</summary>
@@ -153,6 +175,15 @@ namespace Rouge.Tcg.UI
                 var listScroll = content != null ? content.GetComponentInParent<ScrollRect>(true) : null;
                 if (listScroll != null) listScroll.scrollSensitivity = 45f;
             }
+
+            // Zuletzt gewählte Sortierung wiederherstellen (der Besitz-Filter
+            // startet bewusst auf ALL — ein vergessener MISSING-Filter sähe
+            // sonst nach verschwundener Sammlung aus).
+            sortMode = Mathf.Clamp(PlayerPrefs.GetInt(SortModePref, 0), 0, SortOptionNames.Length - 1);
+            sortAscending = PlayerPrefs.GetInt(SortDirPref, SortDefaultAscending[sortMode] ? 1 : 0) == 1;
+            BuildPoolToolbar();
+            ConvertPoolToGrid();
+            ResolveDeckDropArea();
 
             BuildReliquaryChip();
             for (int i = 0; i < typeChipButtons.Length; i++)
@@ -300,6 +331,237 @@ namespace Rouge.Tcg.UI
             }
         }
 
+        // ---------- Pool-Werkzeugleiste (Sortierung + Besitz-Filter) ----------
+
+        private static readonly string[] SortOptionNames = { "TYPE", "NAME", "LEVEL", "ATK", "DEF", "RARITY", "OWNED" };
+
+        /// <summary>Natürliche Richtung je Sortierung — Stats und Rarity wollen absteigend starten.</summary>
+        private static readonly bool[] SortDefaultAscending = { true, true, false, false, false, false, false };
+
+        /// <summary>
+        /// Der Pool zeigt Kartenbilder statt Zeilen: die alte VerticalLayoutGroup
+        /// des Contents weicht einem Gitter. Zur Laufzeit statt in der Szene,
+        /// damit der Umbau im Diff sichtbar ist — wie schon die Scroll-Empfindlichkeit.
+        /// </summary>
+        private void ConvertPoolToGrid()
+        {
+            if (poolContent == null) return;
+            var vertical = poolContent.GetComponent<VerticalLayoutGroup>();
+            if (vertical != null) DestroyImmediate(vertical);
+            var grid = poolContent.GetComponent<GridLayoutGroup>();
+            if (grid == null) grid = poolContent.gameObject.AddComponent<GridLayoutGroup>();
+            // 4 Spalten: 4×134 + 3×8 = 560 = Viewport 588 minus Polster 12+16
+            grid.cellSize = new Vector2(CollectionCardTile.Width, CollectionCardTile.Height);
+            grid.spacing = new Vector2(8f, 10f);
+            grid.padding = new RectOffset(12, 16, 10, 10);
+            grid.childAlignment = TextAnchor.UpperLeft;
+        }
+
+        /// <summary>
+        /// Baut die Leiste zwischen Pool-Header und Liste: Sortier-Dropdown
+        /// (Klon des Deck-Dropdowns), Richtungs-Chip und die Besitz-Chips
+        /// ALL/OWNED/MISSING. Die Liste rückt dafür um die Leistenhöhe nach unten —
+        /// im Header selbst ist kein Platz mehr.
+        /// </summary>
+        private void BuildPoolToolbar()
+        {
+            if (poolContent == null || deckDropdown == null) return;
+            var viewportRect = poolContent.parent as RectTransform;
+            var scrollRect = viewportRect != null ? viewportRect.parent as RectTransform : null;
+            var panelRect = scrollRect != null ? scrollRect.parent as RectTransform : null;
+            if (panelRect == null) return;
+
+            const float toolbarHeight = 44f;
+            float listTop = scrollRect.offsetMax.y;
+            scrollRect.offsetMax = new Vector2(scrollRect.offsetMax.x, listTop - toolbarHeight);
+
+            var row = new GameObject("PoolToolbar", typeof(RectTransform));
+            var rowRect = (RectTransform)row.transform;
+            rowRect.SetParent(panelRect, false);
+            rowRect.anchorMin = new Vector2(0f, 1f);
+            rowRect.anchorMax = new Vector2(1f, 1f);
+            rowRect.pivot = new Vector2(0.5f, 1f);
+            rowRect.offsetMin = new Vector2(14f, listTop - toolbarHeight + 4f);
+            rowRect.offsetMax = new Vector2(-14f, listTop - 2f);
+            var layout = row.AddComponent<HorizontalLayoutGroup>();
+            layout.spacing = 6f;
+            layout.childControlWidth = true;
+            layout.childControlHeight = true;
+            layout.childForceExpandWidth = false;
+            layout.childForceExpandHeight = true;
+
+            // Sortier-Dropdown — Klon des Deck-Dropdowns, damit der Stil exakt passt
+            sortDropdown = Instantiate(deckDropdown, rowRect);
+            sortDropdown.name = "SortDropdown";
+            var dropdownLayout = sortDropdown.GetComponent<LayoutElement>();
+            if (dropdownLayout == null) dropdownLayout = sortDropdown.gameObject.AddComponent<LayoutElement>();
+            dropdownLayout.preferredWidth = 168f;
+            dropdownLayout.flexibleWidth = 0f;
+            sortDropdown.onValueChanged.RemoveAllListeners();
+            sortDropdown.ClearOptions();
+            sortDropdown.AddOptions(new List<string>(SortOptionNames));
+            sortDropdown.SetValueWithoutNotify(sortMode);
+            sortDropdown.onValueChanged.AddListener(OnSortModeChanged);
+
+            var dirChip = CloneToolbarChip("SortDirChip", "DESC", 64f, rowRect, out sortDirBg, out sortDirLabel);
+            if (dirChip != null)
+                dirChip.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    sortAscending = !sortAscending;
+                    SaveSortPrefs();
+                    RefreshPoolToolbar();
+                    RebuildPool();
+                });
+
+            var spacer = new GameObject("Spacer", typeof(RectTransform), typeof(LayoutElement));
+            spacer.transform.SetParent(rowRect, false);
+            spacer.GetComponent<LayoutElement>().flexibleWidth = 1f;
+
+            string[] ownedNames = { "ALL", "OWNED", "MISSING" };
+            for (int i = 0; i < ownedNames.Length; i++)
+            {
+                int index = i;
+                var chip = CloneToolbarChip("OwnedChip" + ownedNames[i], ownedNames[i],
+                    i == 2 ? 84f : 74f, rowRect, out ownedChipBgs[i], out ownedChipLabels[i]);
+                ownedChips[i] = chip;
+                if (chip != null)
+                    chip.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        ownedFilter = index;
+                        RefreshPoolToolbar();
+                        RebuildPool();
+                    });
+            }
+
+            RefreshPoolToolbar();
+        }
+
+        /// <summary>
+        /// Löst das Deck-Panel als Drop-Ziel auf (deckContent → Viewport →
+        /// ScrollView → Panel) und ergänzt den Leerzustands-Hinweis ums Ziehen.
+        /// </summary>
+        private void ResolveDeckDropArea()
+        {
+            if (deckContent == null) return;
+            var viewport = deckContent.parent as RectTransform;
+            var scroll = viewport != null ? viewport.parent as RectTransform : null;
+            var panel = scroll != null ? scroll.parent as RectTransform : null;
+            deckDropArea = panel != null ? panel : deckContent as RectTransform;
+
+            if (emptyState != null)
+            {
+                foreach (var text in emptyState.GetComponentsInChildren<TMP_Text>(true))
+                    if (text.text.Contains("double-click"))
+                    {
+                        text.text = "Click a card to inspect it — double-click, drag it over, or use + to seal it into this deck.";
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>Klont einen Typ-Chip als Werkzeugleisten-Knopf (Stil bleibt, Verhalten neu).</summary>
+        private GameObject CloneToolbarChip(string name, string text, float width, RectTransform parent,
+            out Image bg, out TMP_Text label)
+        {
+            bg = null;
+            label = null;
+            var template = typeChipButtons != null && typeChipButtons.Length > 0 ? typeChipButtons[0] : null;
+            if (template == null) return null;
+
+            var copy = Instantiate(template.gameObject, parent);
+            copy.name = name;
+            var layoutElement = copy.GetComponent<LayoutElement>();
+            if (layoutElement == null) layoutElement = copy.AddComponent<LayoutElement>();
+            layoutElement.preferredWidth = width;
+            layoutElement.flexibleWidth = 0f;
+            bg = copy.GetComponent<Image>();
+            label = copy.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                label.text = text;
+                label.enableAutoSizing = true;
+                label.fontSizeMin = 8f;
+            }
+            var button = copy.GetComponent<Button>();
+            if (button != null) button.onClick.RemoveAllListeners();
+            return copy;
+        }
+
+        private void OnSortModeChanged(int mode)
+        {
+            sortMode = Mathf.Clamp(mode, 0, SortOptionNames.Length - 1);
+            // Jede Sortierung startet in ihrer natürlichen Richtung
+            sortAscending = SortDefaultAscending[sortMode];
+            SaveSortPrefs();
+            RefreshPoolToolbar();
+            RebuildPool();
+        }
+
+        private void SaveSortPrefs()
+        {
+            PlayerPrefs.SetInt(SortModePref, sortMode);
+            PlayerPrefs.SetInt(SortDirPref, sortAscending ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+
+        private void RefreshPoolToolbar()
+        {
+            var gold = new Color(200f / 255f, 164f / 255f, 92f / 255f, 1f);
+            if (sortDirLabel != null)
+            {
+                sortDirLabel.text = sortAscending ? "ASC" : "DESC";
+                StyleChip(sortDirBg, sortDirLabel, true, gold);
+            }
+            // Ohne Sammlung (offline/Sandbox) gibt es keinen Besitz zu filtern
+            if (!CollectionMode && ownedFilter != 0) ownedFilter = 0;
+            for (int i = 0; i < ownedChips.Length; i++)
+            {
+                if (ownedChips[i] == null) continue;
+                ownedChips[i].SetActive(CollectionMode);
+                StyleChip(ownedChipBgs[i], ownedChipLabels[i], ownedFilter == i, gold);
+            }
+        }
+
+        /// <summary>Besitz über alle Finishes hinweg — für Sortierung und Zähler.</summary>
+        private int TotalOwned(CardDefinition card) =>
+            CollectionMode ? PlayerProfile.Owned(card.cardName) : 0;
+
+        /// <summary>
+        /// Sortiert den gefilterten Pool nach der gewählten Ordnung. Bei Stat-
+        /// Sortierungen bleiben Nicht-Monster hinten — ein Zauber hat kein ATK,
+        /// egal in welche Richtung man dreht. Namensgleichstand entscheidet
+        /// immer alphabetisch.
+        /// </summary>
+        private List<CardDefinition> SortedPool(List<CardDefinition> cards)
+        {
+            int dir = sortAscending ? 1 : -1;
+            System.Func<CardDefinition, int> stat = null;
+            IOrderedEnumerable<CardDefinition> ordered;
+            switch (sortMode)
+            {
+                case 1: // NAME — der Name ist hier der Erstschlüssel
+                    return (sortAscending
+                        ? cards.OrderBy(c => c.cardName, System.StringComparer.OrdinalIgnoreCase)
+                        : cards.OrderByDescending(c => c.cardName, System.StringComparer.OrdinalIgnoreCase)).ToList();
+                case 2: stat = c => c is MonsterCardData m ? m.level : 0; goto default;
+                case 3: stat = c => c is MonsterCardData m ? m.atk : 0; goto default;
+                case 4: stat = c => c is MonsterCardData m ? m.def : 0; goto default;
+                case 5: // RARITY
+                    ordered = cards.OrderBy(c => dir * (int)c.rarity);
+                    break;
+                case 6: // OWNED — bei Gleichstand die wertvollere Karte zuerst
+                    ordered = cards.OrderBy(c => dir * TotalOwned(c)).ThenByDescending(c => (int)c.rarity);
+                    break;
+                default:
+                    ordered = stat != null
+                        ? cards.OrderBy(c => c is MonsterCardData ? 0 : 1).ThenBy(c => dir * stat(c))
+                        : cards.OrderBy(c => dir * (int)c.Kind) // TYPE — die bisherige Ordnung
+                            .ThenBy(c => dir * (c is MonsterCardData m ? m.level : 0));
+                    break;
+            }
+            return ordered.ThenBy(c => c.cardName, System.StringComparer.OrdinalIgnoreCase).ToList();
+        }
+
         private bool PassesFilter(CardDefinition card)
         {
             // MONSTER meint das Hauptdeck — Reliquarys haben ihren eigenen Filter
@@ -307,6 +569,13 @@ namespace Rouge.Tcg.UI
             if (typeFilter == 2 && !(card is SpellCardData)) return false;
             if (typeFilter == 3 && !(card is ArtifactCardData)) return false;
             if (typeFilter == 4 && !(card is ReliquaryCardData)) return false;
+            if (ownedFilter > 0 && CollectionMode)
+            {
+                // Besitz zählt über alle Finishes — wer nur die Glossy hat, "besitzt" die Karte
+                bool has = PlayerProfile.Owned(card.cardName) > 0;
+                if (ownedFilter == 1 && !has) return false;
+                if (ownedFilter == 2 && has) return false;
+            }
             if (attrFilter > 0)
             {
                 var monster = card as MonsterCardData;
@@ -715,6 +984,7 @@ namespace Rouge.Tcg.UI
 
         private void RebuildAll()
         {
+            RefreshPoolToolbar();
             RebuildPool();
             RebuildDeck();
             RefreshHeroChips();
@@ -725,27 +995,51 @@ namespace Rouge.Tcg.UI
 
         private void RebuildPool()
         {
-            foreach (var row in poolRows) if (row != null) Destroy(row.gameObject);
-            poolRows.Clear();
-            if (poolContent == null || rowPrefab == null) return;
+            if (poolContent == null) return;
 
-            var filtered = pool.Where(c => c != null && PassesFilter(c))
-                .OrderBy(c => c.Kind).ThenBy(c => c is MonsterCardData m ? m.level : 0).ThenBy(c => c.cardName)
-                .ToList();
+            var filtered = pool.Where(c => c != null && PassesFilter(c)).ToList();
+            var sorted = SortedPool(filtered);
 
-            // Je Karte eine Zeile pro besessenem Finish — so lassen sich gezielt die
-            // zwei Static einbauen statt der schlichten Exemplare.
-            foreach (var card in filtered)
+            // Je Karte eine Kachel pro besessenem Finish — so lassen sich gezielt
+            // die zwei Static einbauen statt der schlichten Exemplare. Kacheln
+            // werden recycelt: bei ~500 Karten wäre Zerstören und Neubauen bei
+            // jedem Tastendruck im Suchfeld unbezahlbar.
+            int used = 0;
+            foreach (var card in sorted)
                 foreach (var finish in FinishRowsFor(card))
                 {
-                    var row = Instantiate(rowPrefab, poolContent);
-                    row.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
-                        AllowedCopies(card), CountInDeck(card), false,
-                        AddCard, RemoveCard, Select, BanLimitOf(card));
-                    poolRows.Add(row);
+                    var tile = used < poolTiles.Count ? poolTiles[used] : CreatePoolTile();
+                    if (tile == null) break;
+                    tile.gameObject.SetActive(true);
+                    tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
+                        AllowedCopies(card), CountInDeck(card),
+                        AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode);
+                    used++;
                 }
-            if (poolCountText != null) poolCountText.text = $"{filtered.Count} of {pool.Count} cards";
+            for (int i = used; i < poolTiles.Count; i++)
+                if (poolTiles[i] != null) poolTiles[i].gameObject.SetActive(false);
+
+            if (poolCountText != null)
+            {
+                // In der Sammlung steht dazu, wie viele verschiedene Karten man schon hat
+                string ownedInfo = CollectionMode
+                    ? $" · <color=#F3DDA4>{pool.Count(c => c != null && PlayerProfile.Owned(c.cardName) > 0)}</color> owned"
+                    : "";
+                poolCountText.text = $"{filtered.Count} of {pool.Count} cards{ownedInfo}";
+            }
             HighlightSelection();
+        }
+
+        private CollectionCardTile CreatePoolTile()
+        {
+            if (previewView == null) return null;
+            var go = new GameObject("CardTile", typeof(RectTransform));
+            go.transform.SetParent(poolContent, false);
+            var tile = go.AddComponent<CollectionCardTile>();
+            tile.Build(previewView, skin);
+            tile.SetDropTarget(deckDropArea);
+            poolTiles.Add(tile);
+            return tile;
         }
 
         private void RebuildDeck()
@@ -770,6 +1064,7 @@ namespace Rouge.Tcg.UI
                     row.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
                         AllowedCopies(card), CountInDeck(card), true,
                         AddCard, RemoveCard, Select, BanLimitOf(card));
+                    row.SetDragArea(deckDropArea);
                     deckRows.Add(row);
                 }
 
@@ -790,6 +1085,7 @@ namespace Rouge.Tcg.UI
                         row.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
                             AllowedCopies(card), CountInDeck(card), true,
                             AddCard, RemoveCard, Select, BanLimitOf(card));
+                        row.SetDragArea(deckDropArea);
                         deckRows.Add(row);
                     }
             }
@@ -930,11 +1226,12 @@ namespace Rouge.Tcg.UI
 
         private void HighlightSelection()
         {
-            // Die Zeile des angezeigten Exemplars leuchtet, nicht jede Zeile der
-            // Karte — sonst hätte man bei drei Finishes drei helle Zeilen und
+            // Die Kachel des angezeigten Exemplars leuchtet, nicht jede Kachel der
+            // Karte — sonst hätte man bei drei Finishes drei helle Kacheln und
             // wüsste nicht, welche gerade rechts steht.
-            foreach (var row in poolRows)
-                if (row != null) row.SetSelected(row.Card == selected && row.Finish == selectedFinish);
+            foreach (var tile in poolTiles)
+                if (tile != null && tile.gameObject.activeSelf)
+                    tile.SetSelected(tile.Card == selected && tile.Finish == selectedFinish);
             foreach (var row in deckRows)
                 if (row != null) row.SetSelected(row.Card == selected && row.Finish == selectedFinish);
         }
