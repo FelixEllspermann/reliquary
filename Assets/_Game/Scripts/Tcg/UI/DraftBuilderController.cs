@@ -390,9 +390,10 @@ namespace Rouge.Tcg.UI
                 if (tile == null) break;
                 used++;
                 tile.gameObject.SetActive(true);
-                // owned = gezogen, maxCopies = gezogen: die einzige Grenze ist der Pool
+                // owned = gezogen, maxCopies = gezogen: die einzige Grenze ist der Pool.
+                // Kein Select-Callback: die große Ansicht hängt am Inspect (nur Einzelklick).
                 tile.Setup(card, CardFinish.Plain, inDeck, pulled, pulled, inDeck,
-                    AddCard, RemoveCard, ShowPreview, -1, true, false);
+                    AddCard, RemoveCard, null, -1, true, false);
             }
             for (int i = used; i < poolTiles.Count; i++)
                 if (poolTiles[i] != null) poolTiles[i].gameObject.SetActive(false);
@@ -421,7 +422,7 @@ namespace Rouge.Tcg.UI
                 int inDeck = deck.Cards.Count(n => n == card.cardName);
                 int pulled = PoolCount(card.cardName);
                 tile.Setup(card, CardFinish.Plain, inDeck, pulled, pulled, inDeck,
-                    AddCard, RemoveCard, ShowPreview, -1, true, true);
+                    AddCard, RemoveCard, null, -1, true, true);
             }
             foreach (var card in extraCards)
             {
@@ -432,7 +433,7 @@ namespace Rouge.Tcg.UI
                 int inDeck = deck.Extra.Count(n => n == card.cardName);
                 int pulled = PoolCount(card.cardName);
                 tile.Setup(card, CardFinish.Plain, inDeck, pulled, pulled, inDeck,
-                    AddCard, RemoveCard, ShowPreview, -1, true, true);
+                    AddCard, RemoveCard, null, -1, true, true);
             }
             for (int i = used; i < deckTiles.Count; i++)
                 if (deckTiles[i] != null) deckTiles[i].gameObject.SetActive(false);
@@ -460,6 +461,7 @@ namespace Rouge.Tcg.UI
             var tile = go.AddComponent<CollectionCardTile>();
             tile.Build(cardViewPrefab, skin);
             tile.SetDropTarget(deckPanel);
+            tile.SetInspect(ShowPreview);
             list.Add(tile);
             return tile;
         }

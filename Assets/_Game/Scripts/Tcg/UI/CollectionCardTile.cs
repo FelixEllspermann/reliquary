@@ -57,6 +57,7 @@ namespace Rouge.Tcg.UI
         private Action<CardDefinition, CardFinish> onAdd;
         private Action<CardDefinition, CardFinish> onRemove;
         private Action<CardDefinition, CardFinish> onSelect;
+        private Action<CardDefinition, CardFinish> onInspect;
         private bool selected;
         private bool hovered;
 
@@ -399,6 +400,15 @@ namespace Rouge.Tcg.UI
             ApplyFrame();
         }
 
+        /// <summary>
+        /// Trennt „Karte ansehen" von „Auswahl folgt der Aktion": ist ein
+        /// Inspect-Handler gesetzt, feuert er NUR beim einfachen Klick auf die
+        /// Kachel — nicht bei −/+ und nicht am Ende eines Drags. Der Draft-
+        /// Builder hängt hier sein großes Karten-Overlay an; ohne diese
+        /// Trennung ploppte es bei jedem Knopfdruck und jedem Ziehen auf.
+        /// </summary>
+        public void SetInspect(Action<CardDefinition, CardFinish> handler) => onInspect = handler;
+
         public void OnPointerClick(PointerEventData eventData)
         {
             // −/+ verschlucken ihre Klicks selbst; hier landen Kartenbild und Leiste
@@ -410,7 +420,8 @@ namespace Rouge.Tcg.UI
                 else onAdd?.Invoke(card, finish);
                 return;
             }
-            onSelect?.Invoke(card, finish);
+            if (onInspect != null) onInspect(card, finish);
+            else onSelect?.Invoke(card, finish);
         }
 
         // ================== DRAG & DROP ==================
