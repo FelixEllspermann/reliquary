@@ -554,8 +554,34 @@ namespace Rouge.Tcg
             if (CheckWin()) yield break;
             yield return ResolvePhaseTriggers(player, EffectTrigger.EndPhase);
             if (CheckWin()) yield break;
+
+            // Deckay: Endphasen-Trigger, die in JEDEM bzw. im GEGNERISCHEN Zug
+            // feuern — erst der Zugspieler, dann der Gegner (dessen Fiend opfert
+            // sich hier, dessen Maggot millt trotzdem).
+            yield return ResolvePhaseTriggers(player, EffectTrigger.EitherEndPhase);
+            if (CheckWin()) yield break;
+            yield return ResolvePhaseTriggers(player.Opponent, EffectTrigger.OpponentEndPhase);
+            if (CheckWin()) yield break;
+            yield return ResolvePhaseTriggers(player.Opponent, EffectTrigger.EitherEndPhase);
+            if (CheckWin()) yield break;
+
+            // Vulture-Konter-Reliquary: das geliehene Reliquary des ZUGSPIELERS
+            // hat seine End Phase erreicht — es geht ins Grab, nicht zurück.
+            foreach (var borrowed in new List<CardInstance>(player.Monsters()))
+            {
+                if (!borrowed.TempReliquaryUntilEndPhase) continue;
+                borrowed.TempReliquaryUntilEndPhase = false;
+                Log($"{borrowed.Name}'s borrowed time runs out — it is sent to the Graveyard.");
+                MoveToGraveyardWithEquips(borrowed);
+                BoardChanged();
+            }
+            yield return FirePendingGraveTriggers();
+            if (CheckWin()) yield break;
+
             ClearTempModifiers();
             yield return EnforceHandLimit(player);
+            // Handlimit-Abwürfe können Friedhofs-Trigger tragen (Deckay Vulture)
+            yield return FirePendingGraveTriggers();
             BoardChanged();
         }
 
@@ -564,6 +590,13 @@ namespace Rouge.Tcg
             foreach (var player in new[] { Player1, Player2 })
             {
                 player.SpellsCastThisTurn = 0; // Erster-Zauber-Rabatt gilt je Zug neu
+                if (player == turnPlayer)
+                {
+                    // Deckay: "letzte Runde gemillt" — der Zähler rutscht beim
+                    // eigenen Zugbeginn weiter (Mills im Gegnerzug zählten mit)
+                    player.MilledLastTurn = player.MilledThisTurn;
+                    player.MilledThisTurn = false;
+                }
                 foreach (var card in player.FieldCards())
                 {
                     card.SetThisTurn = false;
@@ -596,6 +629,7 @@ namespace Rouge.Tcg
                     card.CannotAttackThisTurn = false;
                     card.PositionLockedThisTurn = false;
                     card.CannotBeTargetedThisTurn = false;
+                    card.ImmuneToOpponentThisTurn = false;
                     card.MustBeAttackedThisTurn = false;
                     card.StatsSwappedThisTurn = false;
                     card.StatsOverriddenThisTurn = false;

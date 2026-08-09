@@ -49,7 +49,14 @@ namespace Rouge.Tcg
         OnEnemyCardBounced,    // wenn eine gegnerische Feldkarte auf die Hand zurückkehrt (Finders Keepers)
         OnBearerBattleKill,    // auf Karte/Ausrüstung: der (Träger) zerstört ein Monster im Kampf (Extra Reach)
         OnOwnMonsterDestroyed, // wenn irgendein eigenes Monster zerstört wird (Warm Memories)
-        OnOpponentDraw         // wenn der Gegner AUSSERHALB seiner Draw Phase zieht (Redactor; nur Standby/Main)
+        OnOpponentDraw,        // wenn der Gegner AUSSERHALB seiner Draw Phase zieht (Redactor; nur Standby/Main)
+
+        // --- Deckay (Mill-Archetype) ---
+        EitherEndPhase,        // End Phase JEDES Zuges (eigener und gegnerischer)
+        OpponentEndPhase,      // End Phase des GEGNERISCHEN Zuges
+        OnMilledSelf,          // DIESE Karte wandert vom DECK in den Friedhof (gemillt)
+        OnDiscardedOrMilledSelf, // DIESE Karte wandert aus HAND oder DECK in den Friedhof
+        OnSentToGraveyardSelf  // DIESE Karte landet im Friedhof — egal woher (Feld/Hand/Deck)
     }
 
     public enum EffectActionType
@@ -142,7 +149,12 @@ namespace Rouge.Tcg
         OpponentDraws,              // der GEGNER zieht amount Karten (Redactor Mandatory Reading)
         DestroyAllEnemyAttackMonsters, // alle Monster des Gegners in Angriffsposition zerstören (Row of Teeth)
         DestroyTargetAndSameLevelDefense, // Ziel zerstören + alle DEF-Monster gleichen Levels beider Felder (Warm Welcome)
-        SetTargetSpellFromHand      // Ziel-Zauber aus der EIGENEN Hand verdeckt setzen (sofort aktivierbar; Trapline)
+        SetTargetSpellFromHand,     // Ziel-Zauber aus der EIGENEN Hand verdeckt setzen (sofort aktivierbar; Trapline)
+
+        // --- Deckay (Mill-Archetype) ---
+        ImmuneTargetThisTurn,       // Ziel ist bis Zugende unberührbar für gegnerische Effekt-AKTIONEN (und kein Ziel)
+        SummonReliquaryFromExtraSuppressed, // Reliquary aus dem Extra Deck ohne Bedingungen (Mana fällig), ohne On-Summon; stirbt in der eigenen End Phase
+        DestroyAllOthersSelfDamagePer // ALLE anderen Feldkarten zerstören; amount Selbstschaden je zerstörter Karte
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>

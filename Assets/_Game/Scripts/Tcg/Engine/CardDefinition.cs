@@ -72,6 +72,10 @@ namespace Rouge.Tcg
         [Tooltip("Das N zum Feld-Limit (0 = aus)")]
         public int fieldLimitCount;
 
+        [Tooltip(">0 (King of Deckay): jedes Mal, wenn der Besitzer 1+ Karten millt, erleidet " +
+                 "der Gegner so viel Schaden — solange diese Karte offen auf dem Feld liegt")]
+        public int passiveBurnPerMill;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -141,6 +145,8 @@ namespace Rouge.Tcg
                 lines.Add($"Can attack twice each Battle Phase while you control another face-up {doubleAttackAttribute.ToString().ToUpperInvariant()} monster.");
             if (fieldLimitCount > 0 && !string.IsNullOrEmpty(fieldLimitName))
                 lines.Add($"You cannot Summon or Set this card while you control {fieldLimitCount} \"{fieldLimitName}\" monsters.");
+            if (passiveBurnPerMill > 0)
+                lines.Add($"Every time you mill 1 or more cards: deal {passiveBurnPerMill} damage to your opponent.");
 
             return lines;
         }

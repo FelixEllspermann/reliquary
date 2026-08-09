@@ -338,6 +338,8 @@ namespace Rouge.Tcg
                 && player.Monsters().Count(m => m.FaceDown) < data.reqOwnFaceDownMonsters) return false;
             if (data.reqMonsterWithEquip && !player.Monsters().Any(m => m.EquippedArtifacts.Count > 0)) return false;
             if (data.reqGraveyardAtLeast > 0 && player.Graveyard.Count < data.reqGraveyardAtLeast) return false;
+            if (data.reqGraveyardMonstersAtLeast > 0
+                && player.Graveyard.Count(c => c.MonsterData != null) < data.reqGraveyardMonstersAtLeast) return false;
             if (data.reqControlNoMonsters && player.MonsterCount() > 0) return false;
             if (data.reqOwnMonstersAtLeast > 0 && player.MonsterCount() < data.reqOwnMonstersAtLeast) return false;
             if (data.reqLifeAtMost > 0 && player.LifePoints > data.reqLifeAtMost) return false;
@@ -955,6 +957,9 @@ namespace Rouge.Tcg
             }
             yield return CloseChainLink();
             BoardChanged();
+            // Deckay: was diese Aktivierung ins Grab geschickt hat (Discards,
+            // Kosten, Feld-Abgänge), meldet sich jetzt — nicht mitten in der Kette.
+            yield return FirePendingGraveTriggers();
         }
 
         /// <summary>Deckt ein verdecktes Monster auf und löst seinen Flip-Effekt aus.</summary>
@@ -1083,6 +1088,15 @@ namespace Rouge.Tcg
             if (effect.minOwnGraveyardCards > 0 && player.Graveyard.Count < effect.minOwnGraveyardCards) return false;
             if (effect.requireOpponentMoreHandCards && player.Opponent.Hand.Count <= player.Hand.Count) return false;
             if (effect.requireOpponentMoreMonsters && player.Opponent.MonsterCount() <= player.MonsterCount()) return false;
+            if (effect.requireMilledLastTurn && !player.MilledThisTurn && !player.MilledLastTurn) return false;
+            if (effect.minOwnGraveyardNamed > 0)
+            {
+                int named = 0;
+                foreach (var card in player.Graveyard)
+                    if (!string.IsNullOrEmpty(effect.graveyardNamedFilter)
+                        && card.Name.Contains(effect.graveyardNamedFilter)) named++;
+                if (named < effect.minOwnGraveyardNamed) return false;
+            }
             return true;
         }
 
@@ -1252,7 +1266,7 @@ namespace Rouge.Tcg
             if (action.excludeSameName && source != null)
                 candidates.RemoveAll(c => c != null && c.Name == source.Name);
             // Ziel-Immunität gilt nur gegen den Gegner — eigene Effekte dürfen weiter anvisieren
-            candidates.RemoveAll(c => c != null && c.CannotBeTargetedThisTurn && c.Owner != player);
+            candidates.RemoveAll(c => c != null && (c.CannotBeTargetedThisTurn || c.ImmuneToOpponentThisTurn) && c.Owner != player);
             // Heavenly Bodyguard: benannte Karten sind für den Gegner kein gültiges Ziel
             candidates.RemoveAll(c => c != null && c.Owner != player && IsGuardedFromTargeting(c));
             return candidates;
@@ -1328,6 +1342,14 @@ namespace Rouge.Tcg
                 var affected = new List<CardInstance>();
                 if (action.target == TargetKind.SelfCard) affected.Add(source);
                 else if (chosen != null) affected.AddRange(chosen);
+
+                // Deckay-Immunität: gegnerische Effekt-Aktionen prallen bis Zugende
+                // ab — zentral HIER, damit jede Aktionsart abgedeckt ist (auch
+                // solche, die NACH der Zielwahl markiert wurden).
+                int shrugged = affected.RemoveAll(hit =>
+                    hit != null && hit.ImmuneToOpponentThisTurn && hit.Owner != player);
+                if (shrugged > 0)
+                    Log($"{shrugged} card(s) shrug off {source.Name}'s effect (immune this turn).");
 
                 switch (action.type)
                 {
@@ -1779,11 +1801,19 @@ namespace Rouge.Tcg
                     // ================== NEUE BAUSTEINE ==================
 
                     case EffectActionType.MillSelf:
-                        MillDeck(player, Math.Max(1, action.amount));
+                    {
+                        int milled = MillDeck(player, Math.Max(1, action.amount));
+                        yield return ApplyMillBurn(player, milled);
+                        yield return FirePendingGraveTriggers();
                         break;
+                    }
                     case EffectActionType.MillOpponent:
-                        MillDeck(player.Opponent, Math.Max(1, action.amount));
+                    {
+                        int milled = MillDeck(player.Opponent, Math.Max(1, action.amount));
+                        yield return ApplyMillBurn(player.Opponent, milled);
+                        yield return FirePendingGraveTriggers();
                         break;
+                    }
 
                     case EffectActionType.ShuffleTargetIntoDeck:
                         foreach (var hit in affected)
@@ -2053,7 +2083,13 @@ namespace Rouge.Tcg
                             Log($"{player.Name} salvages {milled.Name} from the milled cards.");
                             salvaged++;
                         }
-                        if (millCount > 0) BoardChanged();
+                        if (millCount > 0)
+                        {
+                            player.MilledThisTurn = true;
+                            BoardChanged();
+                            yield return ApplyMillBurn(player, millCount);
+                            yield return FirePendingGraveTriggers();
+                        }
                         break;
                     }
 
@@ -2192,6 +2228,85 @@ namespace Rouge.Tcg
                         }
                         break;
 
+                    // ================== DECKAY ==================
+
+                    case EffectActionType.ImmuneTargetThisTurn:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone == ZoneType.Graveyard) continue;
+                            hit.ImmuneToOpponentThisTurn = true;
+                            hit.CannotBeTargetedThisTurn = true;
+                            Log($"{hit.Name} cannot be targeted and is unaffected by the opponent's effects this turn.");
+                        }
+                        break;
+
+                    case EffectActionType.SummonReliquaryFromExtraSuppressed:
+                    {
+                        // Vulture-Konter: Reliquary aus dem Extra Deck OHNE Bedingungen,
+                        // aber die Mana-Beschwörungskosten fallen an. Kein On-Summon-
+                        // Effekt; die Karte fällt in der eigenen End Phase ins Grab.
+                        var options = player.ExtraDeckPile
+                            .Where(r => r?.MonsterData is ReliquaryCardData rd && player.Mana >= rd.summonManaCost)
+                            .ToList();
+                        if (options.Count == 0) { Log("No Reliquary in the Extra Deck can answer the call."); break; }
+                        int freeZone = player.FirstFreeZoneIndex(player.MonsterZones);
+                        if (freeZone < 0) { Log("No free Monster Zone — the call fizzles."); break; }
+
+                        var pick = new OptionRequest { Title = "Summon which Reliquary?", Card = source, AllowCancel = true };
+                        foreach (var r in options)
+                            pick.Options.Add($"{r.Name} ({((ReliquaryCardData)r.MonsterData).summonManaCost} Mana)");
+                        yield return DecideRouted(player, pick);
+                        if (pick.Result < 0 || pick.Result >= options.Count) break;
+
+                        var reliquary = options[pick.Result];
+                        var relData = (ReliquaryCardData)reliquary.MonsterData;
+                        player.Mana -= relData.summonManaCost;
+                        player.ExtraDeckPile.Remove(reliquary);
+                        player.MonsterZones[freeZone] = reliquary;
+                        reliquary.Zone = ZoneType.MonsterZone;
+                        reliquary.Owner = player;
+                        reliquary.FaceDown = false;
+                        reliquary.Position = BattlePosition.Attack;
+                        reliquary.WasSpecialSummoned = true;
+                        reliquary.SummonedThisTurn = true;
+                        reliquary.TempReliquaryUntilEndPhase = true;
+                        Log($"{player.Name} calls {reliquary.Name} from the Extra Deck in response — it will not survive the next End Phase.");
+                        if (presenter != null) yield return presenter.ShowSummon(reliquary);
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.DestroyAllOthersSelfDamagePer:
+                    {
+                        // King of Deckay: alles außer der Quellkarte fällt; jeder
+                        // Fall kostet den Aktivierenden amount LP.
+                        var doomed = new List<CardInstance>();
+                        foreach (var side in new[] { player, player.Opponent })
+                        {
+                            foreach (var m in side.MonsterZones) if (m != null && m != source) doomed.Add(m);
+                            foreach (var s in side.SpellZones) if (s != null && s != source) doomed.Add(s);
+                            foreach (var a in side.ArtifactZones) if (a != null && a != source) doomed.Add(a);
+                        }
+                        int fallen = 0;
+                        foreach (var victim in doomed)
+                        {
+                            if (Result != DuelResult.None) yield break;
+                            if (victim.Zone == ZoneType.Graveyard) continue;   // schon mitgerissen (Equips)
+                            if (victim.ImmuneToOpponentThisTurn && victim.Owner != player) continue;
+                            yield return DestroyCard(victim);
+                            fallen++;
+                        }
+                        if (fallen > 0 && action.amount > 0)
+                        {
+                            int selfDamage = fallen * action.amount;
+                            player.LifePoints -= selfDamage;
+                            Log($"{player.Name} takes {selfDamage} damage ({fallen} × {action.amount}) for the devastation.");
+                            OnLifeChanged?.Invoke(player, -selfDamage);
+                            BoardChanged();
+                        }
+                        break;
+                    }
+
                     case EffectActionType.MoveTargetArtifactToStrongestMonster:
                         foreach (var hit in affected)
                         {
@@ -2283,7 +2398,7 @@ namespace Rouge.Tcg
 
         /// <summary>Oberste Karten eines Decks in den Friedhof. Ein leeres Deck verliert
         /// erst beim nächsten Ziehen — Millen allein beendet das Duell nicht.</summary>
-        private void MillDeck(PlayerState player, int count)
+        private int MillDeck(PlayerState player, int count)
         {
             int actual = Math.Min(count, player.DeckPile.Count);
             for (int i = 0; i < actual; i++)
@@ -2292,9 +2407,31 @@ namespace Rouge.Tcg
                 player.DeckPile.RemoveAt(0);
                 MoveToGraveyard(card);
             }
+            if (actual > 0) player.MilledThisTurn = true;   // Deckay: "hast du gemillt?"
             Log(actual == 0
                 ? $"{player.Name}'s Deck is already empty."
                 : $"{player.Name} sends the top {actual} card(s) of the Deck to the Graveyard ({player.DeckPile.Count} left).");
+            return actual;
+        }
+
+        /// <summary>
+        /// King of Deckay: liegt beim Besitzer des gemillten Decks ein offenes
+        /// Monster mit Mill-Brand, brennt jeder Mill-VORGANG (nicht jede Karte)
+        /// den Gegner. Nach dem Schaden entscheidet CheckWin der Aufrufer.
+        /// </summary>
+        private IEnumerator ApplyMillBurn(PlayerState miller, int milledCount)
+        {
+            if (milledCount <= 0) yield break;
+            foreach (var monster in miller.Monsters().ToArray())
+            {
+                if (monster.FaceDown || monster.Definition == null) continue;
+                int burn = monster.Definition.passiveBurnPerMill;
+                if (burn <= 0 || monster.EffectsNegated) continue;
+                miller.Opponent.LifePoints -= burn;
+                Log($"{monster.Name} sears {miller.Opponent.Name} for {burn} (mill).");
+                if (presenter != null) yield return presenter.ShowActivationPulse(monster, false);
+                BoardChanged();
+            }
         }
 
         /// <summary>Nimmt eine Karte aus der Zone, in der sie gerade liegt.</summary>
@@ -2501,6 +2638,52 @@ namespace Rouge.Tcg
         /// Tribut-Trigger: erst die getributete Karte selbst (Willing Lamb, OnTributedSelf),
         /// dann Feld/Hand ihres Besitzers (Blood Dividend, OnOwnMonsterTributed).
         /// </summary>
+        // ---- Deckay: Friedhofs-Ankunfts-Trigger ----
+        // MoveToGraveyard ist synchron und läuft mitten in Auflösungen — die
+        // Trigger sammeln sich deshalb hier und feuern an der nächsten Naht
+        // (Ende einer Aktivierung, nach Zerstörungen, nach dem Handlimit).
+        private readonly List<(CardInstance card, ZoneType fromZone)> pendingGraveTriggers
+            = new List<(CardInstance, ZoneType)>();
+        private bool firingGraveTriggers;
+
+        private static bool HasGraveArrivalTrigger(CardInstance card)
+        {
+            if (card?.Definition?.effects == null) return false;
+            foreach (var effect in card.Definition.effects)
+                if (effect != null && (effect.trigger == EffectTrigger.OnMilledSelf
+                    || effect.trigger == EffectTrigger.OnDiscardedOrMilledSelf
+                    || effect.trigger == EffectTrigger.OnSentToGraveyardSelf))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Arbeitet alle gesammelten Friedhofs-Trigger ab. Effekte können dabei
+        /// weitere Karten ins Grab schicken — die Schleife läuft, bis nichts
+        /// mehr ansteht; der Guard verhindert eine Verschachtelung in sich selbst.
+        /// </summary>
+        private IEnumerator FirePendingGraveTriggers()
+        {
+            if (firingGraveTriggers || pendingGraveTriggers.Count == 0) yield break;
+            firingGraveTriggers = true;
+            int safety = 40;   // gegen pathologische Endlos-Ketten
+            while (pendingGraveTriggers.Count > 0 && safety-- > 0 && Result == DuelResult.None)
+            {
+                var (card, fromZone) = pendingGraveTriggers[0];
+                pendingGraveTriggers.RemoveAt(0);
+                if (card == null || card.Zone != ZoneType.Graveyard) continue;   // schon weitergewandert
+                var owner = card.Owner;
+
+                if (fromZone == ZoneType.Deck)
+                    yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnMilledSelf);
+                if (fromZone == ZoneType.Deck || fromZone == ZoneType.Hand)
+                    yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnDiscardedOrMilledSelf);
+                yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnSentToGraveyardSelf);
+            }
+            pendingGraveTriggers.Clear();
+            firingGraveTriggers = false;
+        }
+
         private IEnumerator FireTributeTriggers(CardInstance tributed)
         {
             if (tributed == null || responseDepth >= 2) yield break;
@@ -2638,6 +2821,20 @@ namespace Rouge.Tcg
         private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger)
         {
             var activatable = ActivatableEffects(card, owner, trigger);
+            if (activatable.Count == 0) yield break;
+
+            // PFLICHT-Effekte (Deckay) feuern ohne Nachfrage — der Reihe nach,
+            // bevor die freiwilligen ihre Frage stellen.
+            for (int i = activatable.Count - 1; i >= 0; i--)
+            {
+                var forced = GetEffect(card, activatable[i]);
+                if (forced == null || !forced.mandatory) continue;
+                int index = activatable[i];
+                activatable.RemoveAt(i);
+                Log($"{card.Name}: \"{forced.label}\" activates (mandatory).");
+                yield return ActivateTriggered(owner, card, index);
+                if (Result != DuelResult.None) yield break;
+            }
             if (activatable.Count == 0) yield break;
 
             if (activatable.Count == 1)
@@ -2780,6 +2977,15 @@ namespace Rouge.Tcg
             foreach (var card in responder.Hand)
                 foreach (int index in ActivatableEffects(card, responder, EffectTrigger.HandQuick))
                     candidates.Add((card, index));
+
+            // Deckay Fiend/Vulture: Antworten, die NUR auf ein Reliquary-Summon
+            // zünden — zentral gefiltert, damit jeder Sammelweg oben es erbt.
+            bool reliquarySummon = context == "summon" && contextCard?.Definition is ReliquaryCardData;
+            candidates.RemoveAll(pair =>
+            {
+                var fx = GetEffect(pair.Item1, pair.Item2);
+                return fx != null && fx.onlyReliquarySummonResponse && !reliquarySummon;
+            });
 
             return candidates;
         }
@@ -3046,6 +3252,13 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
 
         public void MoveToGraveyard(CardInstance card)
         {
+            // Deckay: Karten mit Friedhofs-Triggern merken sich ihre Herkunft —
+            // die Trigger feuern gesammelt an der nächsten Naht (FirePendingGraveTriggers),
+            // denn dieser Umzug hier ist synchron und kann keine Kette starten.
+            var fromZone = card.Zone;
+            if (HasGraveArrivalTrigger(card))
+                pendingGraveTriggers.Add((card, fromZone));
+
             // Reliquarys landen wie jede andere Karte im Friedhof — nur Hand-Rückgaben
             // schicken sie zurück ins Extra Deck (siehe ReturnToExtraDeck).
             RemoveFromCurrentZone(card);
@@ -3175,6 +3388,8 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                         yield return OfferTriggeredEffects(card.Owner, listener, EffectTrigger.OnOwnMonsterDestroyed);
                     }
                 }
+                // Deckay: der Friedhofs-Ankunfts-Trigger der zerstörten Karte
+                yield return FirePendingGraveTriggers();
             }
         }
     }

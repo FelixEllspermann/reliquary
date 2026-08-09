@@ -53,6 +53,9 @@ namespace Rouge.Tcg
         [Tooltip("Mindestens so viele Karten in deinem Friedhof (0 = aus)")]
         [Range(0, 20)] public int reqGraveyardAtLeast;
 
+        [Tooltip("Nur beschwörbar mit mindestens so vielen MONSTERN im eigenen Friedhof (King of Deckay)")]
+        [Range(0, 20)] public int reqGraveyardMonstersAtLeast;
+
         [Tooltip("Bedingung: Du kontrollierst KEIN Monster")]
         public bool reqControlNoMonsters;
 

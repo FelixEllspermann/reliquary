@@ -108,6 +108,14 @@ namespace Rouge.Tcg
                  "und sind nicht offen aus der Hand spielbar.")]
         public QuickWindow quickWindow = QuickWindow.Any;
 
+        [Tooltip("PFLICHT-Trigger (Deckay): feuert ohne Nachfrage, sobald der Auslöser eintritt. " +
+                 "Gilt nur für Ereignis-/Phasen-Trigger — Ignition-Effekte bleiben freiwillig.")]
+        public bool mandatory;
+
+        [Tooltip("Dieser Reaktions-Effekt ist NUR anwählbar, wenn das auslösende Summon ein " +
+                 "Reliquary war (Deckay Fiend/Vulture).")]
+        public bool onlyReliquarySummonResponse;
+
         [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
         [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]
         public int minMana;
@@ -126,6 +134,16 @@ namespace Rouge.Tcg
 
         [Tooltip("Nur aktivierbar, wenn der Gegner mehr Monster kontrolliert als du")]
         public bool requireOpponentMoreMonsters;
+
+        [Tooltip("Nur aktivierbar, wenn du in DIESEM oder dem VORHERIGEN Zug gemillt hast (Deckay)")]
+        public bool requireMilledLastTurn;
+
+        [Tooltip(">0: nur aktivierbar mit mindestens so vielen Friedhofskarten, deren Name den " +
+                 "Namensfilter unten enthält (Deckay Vulture: 5+ \"Deckay\")")]
+        public int minOwnGraveyardNamed;
+
+        [Tooltip("Namensfilter für die Bedingung darüber")]
+        public string graveyardNamedFilter = "";
 
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();

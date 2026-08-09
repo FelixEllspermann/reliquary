@@ -36,6 +36,8 @@ namespace Rouge.Tcg
         public bool CannotAttackThisTurn;           // darf diesen Zug nicht angreifen
         public bool PositionLockedThisTurn;         // darf diesen Zug die Position nicht wechseln
         public bool CannotBeTargetedThisTurn;       // kein gültiges Ziel für gegnerische Effekte
+        public bool ImmuneToOpponentThisTurn;       // gegnerische Effekt-Aktionen prallen bis Zugende ab (Deckay)
+        public bool TempReliquaryUntilEndPhase;     // Vulture-Konter-Summon: stirbt in der End Phase des Besitzers
         public bool MustBeAttackedThisTurn;         // Spott: Angriffe müssen hierhin
         public bool StatsSwappedThisTurn;           // ATK und DEF sind vertauscht
         public bool StatsOverriddenThisTurn;        // ATK/DEF von einer anderen Karte kopiert

@@ -46,6 +46,12 @@ namespace Rouge.Tcg
         /// (Bargain Bobbin). Reset in ResetTurnFlags(), für beide Spieler.</summary>
         public int SpellsCastThisTurn;
 
+        // Deckay: hat dieser Spieler in diesem/dem vorherigen Zug-Zyklus gemillt?
+        // "ThisTurn" zählt ab dem eigenen Zugbeginn (auch Mills im Gegnerzug);
+        // beim nächsten eigenen Zugbeginn rutscht der Wert nach "LastTurn".
+        public bool MilledThisTurn;
+        public bool MilledLastTurn;
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

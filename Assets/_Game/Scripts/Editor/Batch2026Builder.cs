@@ -93,6 +93,151 @@ namespace Rouge.Tcg.EditorTools
             Finish("5 Archetypes");
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Deckay (Mill)")]
+        public static void BuildDeckay()
+        {
+            built.Clear();
+            Deckay();
+            Finish("Deckay");
+        }
+
+        // ---- DECKAY (Dark / Mill) · „Das Deck verfault, und genau davon lebt es" ----
+        //
+        // Alle Endphasen-Mills sind PFLICHT (mandatory) — der Motor läuft, ob man
+        // will oder nicht. Die Mill-Trigger (OnMilledSelf & Co.) sind die Ernte.
+        private static void Deckay()
+        {
+            Mon("Deckay Maggot", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Animal, 300, 400,
+                Fx("Grave Tithe", "During either player's End Phase: mill 2 cards.",
+                    EffectTrigger.EitherEndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 2)).Mand(),
+                Fx("Scent of Rot", "If this card is sent from the Deck to the Graveyard: you can add 1 \"Deckay\" Spell from your Deck to your hand.",
+                    EffectTrigger.OnMilledSelf, 0, false,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckSpellFiltered, nameFilter: "Deckay")));
+
+            Mon("Deckay Moth", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Animal, 400, 300,
+                Fx("Dust Tithe", "During either player's End Phase: mill 1 card.",
+                    EffectTrigger.EitherEndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 1)).Mand(),
+                Fx("Hatch from Ruin", "If this card is sent from the Deck to the Graveyard — pay 1 Mana: you can Special Summon 1 Level 1 \"Deckay\" monster with a different name from your Deck.",
+                    EffectTrigger.OnMilledSelf, 1, false,
+                    Act(EffectActionType.SpecialSummonTargetFromDeck, 1, TargetKind.DeckMonsterFiltered,
+                        level: 1, nameFilter: "Deckay", excludeSameName: true)),
+                Inf("Cocoon Curse", "Banish this card from your Graveyard: Set 1 monster your opponent controls in face-down Defense Position.",
+                    EffectTrigger.GraveyardIgnition, 2, false,
+                    Act(EffectActionType.BanishSelf, isCost: true),
+                    Act(EffectActionType.SetTargetFaceDownDefense, 1, TargetKind.EnemyMonster)));
+
+            Mon("Deckay Fiend", CardRarity.Uncommon, 1, MonsterAttribute.Dark, MonsterType.Demon, 500, 500,
+                Fx("Feast of Endings", "During your opponent's End Phase: send this card from the field to the Graveyard, then mill 3 cards.",
+                    EffectTrigger.OpponentEndPhase, 0, false,
+                    Act(EffectActionType.SendSelfToGraveyard),
+                    Act(EffectActionType.MillSelf, 3)).Mand(),
+                Fx("Parting Spite", "If this card is sent to the Graveyard from anywhere — pay 1 Mana: burn 2 Mana from your opponent.",
+                    EffectTrigger.OnSentToGraveyardSelf, 1, false,
+                    Act(EffectActionType.DrainOpponentMana, 2)),
+                Inf("Sweeter Spite", "Pay 2 Mana instead: gain 1000 LP.",
+                    EffectTrigger.OnSentToGraveyardSelf, 2, true,
+                    Act(EffectActionType.HealSelf, 1000)),
+                Inf("Choke the Vault", "When your opponent Special Summons a Reliquary — discard this card: negate that Reliquary's effects for the rest of this turn.",
+                    EffectTrigger.HandQuick, 2, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyMonster)).OnRelicSummon());
+
+            Mon("Deckay Leech", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Animal, 700, 900,
+                Fx("Crawl from the Wreck", "If you milled this or last turn: you can Special Summon this card from your hand.",
+                    EffectTrigger.HandIgnition, 0, true,
+                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.SelfCard)).NeedsMilled(),
+                Fx("Gorge Tithe", "During your End Phase: mill 4 cards.",
+                    EffectTrigger.EndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 4)).Mand(),
+                Fx("Burrowed Loot", "If this card is sent from the Deck to the Graveyard — pay 1 Mana: add 1 \"Deckay\" Artifact from your Deck to your hand.",
+                    EffectTrigger.OnMilledSelf, 1, false,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Deckay")),
+                Inf("Unearth and Arm", "Pay 2 Mana instead: place it directly onto the field.",
+                    EffectTrigger.OnMilledSelf, 2, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Deckay")));
+
+            Mon("Deckay Vulture", CardRarity.Rare, 2, MonsterAttribute.Dark, MonsterType.Animal, 900, 700,
+                Fx("Descend on Carrion", "If you have 5+ \"Deckay\" cards in your Graveyard: you can Special Summon this card from your hand.",
+                    EffectTrigger.HandIgnition, 0, true,
+                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.SelfCard)).NeedsGraveNamed(5, "Deckay"),
+                Fx("Wing Tithe", "During either player's End Phase: mill 3 cards.",
+                    EffectTrigger.EitherEndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 3)).Mand(),
+                Fx("Feathered Ward", "If this card is sent from the Deck or your hand to the Graveyard: 1 monster you control cannot be targeted and is unaffected by your opponent's effects this turn.",
+                    EffectTrigger.OnDiscardedOrMilledSelf, 0, false,
+                    Act(EffectActionType.ImmuneTargetThisTurn, 1, TargetKind.AllyMonster, upTo: true)),
+                Inf("Answer in Kind", "When your opponent Summons a Reliquary — discard this card: Special Summon 1 Reliquary from your Extra Deck (ignoring its Summon conditions, paying its Mana cost). It cannot use its On-Summon effects and is sent to the Graveyard during your next End Phase.",
+                    EffectTrigger.HandQuick, 2, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.SummonReliquaryFromExtraSuppressed)).OnRelicSummon());
+
+            Spell("Deckay Rot", CardRarity.Rare, true,
+                Fx("Spread the Rot", "Mill 5 cards. If a \"Deckay\" monster lies in your Graveyard afterwards, you can destroy 1 monster your opponent controls.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.MillSelf, 5),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster, upTo: true)),
+                Inf("Bloom from Below", "Banish this card from your Graveyard: Special Summon 1 Level 2 or lower \"Deckay\" monster from your hand or Graveyard.",
+                    EffectTrigger.GraveyardIgnition, 3, false,
+                    Act(EffectActionType.BanishSelf, isCost: true),
+                    Act(EffectActionType.SpecialSummonTargetFromHandOrGrave, 1, TargetKind.HandOrGraveMonsterFiltered,
+                        nameFilter: "Deckay", maxAtk: 900)));
+
+            Artifact("Signs of Deckay", CardRarity.Rare, ArtifactSlot.Field, 0, 0,
+                Fx("Reclaim the Lost", "During your Standby Phase: you can shuffle up to 2 cards from your Graveyard into your Deck.",
+                    EffectTrigger.StandbyPhase, 0, false,
+                    Act(EffectActionType.ShuffleGraveyardIntoDeck, 2, TargetKind.GraveyardCardSelf,
+                        targetCount: 2, upTo: true)));
+
+            var king = Rel("King of Deckay", CardRarity.Legendary, 3,
+                MonsterAttribute.Dark, MonsterType.Demon, 2600, 2000,
+                "8+ monsters in your Graveyard and 5+ Mana available — the Summon itself costs nothing.", 0,
+                Fx("Coronation of Rot", "If this card is Summoned: mill 10 cards.",
+                    EffectTrigger.OnSummonSelf, 0, false,
+                    Act(EffectActionType.MillSelf, 10)).Mand(),
+                Fx("Rot Consumes All", "Destroy all other cards on the field. Take 200 damage for each card destroyed.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.DestroyAllOthersSelfDamagePer, 200)),
+                Inf("Crowned in Filth", "If you milled this or last turn: this card cannot be targeted and is unaffected by your opponent's effects this turn.",
+                    EffectTrigger.Ignition, 4, false,
+                    Act(EffectActionType.ImmuneTargetThisTurn, 1, TargetKind.SelfCard)).NeedsMilled());
+            king.reqGraveyardMonstersAtLeast = 8;
+            king.reqMinMana = 5;
+            king.passiveBurnPerMill = 200;
+        }
+
+        // ---- Deckay-Feinwürze für Effekt-Definitionen ----
+
+        /// <summary>PFLICHT-Trigger: feuert ohne Nachfrage (Deckay-Endphasen-Mills).</summary>
+        private static EffectDefinition Mand(this EffectDefinition effect)
+        {
+            effect.mandatory = true;
+            return effect;
+        }
+
+        /// <summary>Reaktion NUR auf ein Reliquary-Summon des Gegners.</summary>
+        private static EffectDefinition OnRelicSummon(this EffectDefinition effect)
+        {
+            effect.onlyReliquarySummonResponse = true;
+            return effect;
+        }
+
+        /// <summary>Bedingung: in diesem oder dem vorherigen Zug gemillt.</summary>
+        private static EffectDefinition NeedsMilled(this EffectDefinition effect)
+        {
+            effect.requireMilledLastTurn = true;
+            return effect;
+        }
+
+        /// <summary>Bedingung: mindestens N Friedhofskarten mit diesem Namensteil.</summary>
+        private static EffectDefinition NeedsGraveNamed(this EffectDefinition effect, int count, string filter)
+        {
+            effect.minOwnGraveyardNamed = count;
+            effect.graveyardNamedFilter = filter;
+            return effect;
+        }
+
         /// <summary>SetDirty am Ende (CreateAsset schreibt sofort — siehe NewArchetypeBuilder) + Katalog.</summary>
         private static void Finish(string stage)
         {
@@ -231,6 +376,7 @@ namespace Rouge.Tcg.EditorTools
             card.conditionalDoubleAttack = false;
             card.passiveAtkPerCount = 0; card.passiveDefPerCount = 0;
             card.passiveCannotAttack = false; card.passiveNoAttackOnSummonTurn = false;
+            card.passiveBurnPerMill = 0;
 
             if (fresh) AssetDatabase.CreateAsset(card, path);
             else EditorUtility.SetDirty(card);
