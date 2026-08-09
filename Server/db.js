@@ -88,6 +88,15 @@ export function openDatabase(dataDir, log = console.log) {
     db.exec("ALTER TABLE accounts ADD COLUMN starter_pick TEXT NOT NULL DEFAULT ''");
     log('DB-Migration: Spalte starter_pick ergaenzt.');
   }
+  if (!columns.includes('progress')) {
+    // Spielfortschritt jenseits der Sammlung: Turm-Ebene, laufender Draft,
+    // Draft-Abschluesse — als JSON-Block, damit neue Modi keine Migration
+    // brauchen. Bis hierher lebte towerFloor NUR im Speicher: jeder Neustart
+    // warf alle Spieler zurueck auf Ebene 0 (und oeffnete die Erstsieg-Packs
+    // erneut). Ab jetzt ueberlebt der Fortschritt.
+    db.exec("ALTER TABLE accounts ADD COLUMN progress TEXT NOT NULL DEFAULT '{}'");
+    log('DB-Migration: Spalte progress ergaenzt (Turm & Draft ueberleben Neustarts).');
+  }
 
   // Karten-Finishes: ein Finish gehört dem Exemplar, also gehört es in den
   // Primärschlüssel. SQLite kann keinen Schlüssel ändern — die Tabelle wird
@@ -120,14 +129,14 @@ export function openDatabase(dataDir, log = console.log) {
     selectAccounts: db.prepare('SELECT * FROM accounts'),
     selectCollection: db.prepare('SELECT account, card, finish, count FROM collection'),
     upsertAccount: db.prepare(`
-      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, starter_pick, created, updated)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, starter_pick, progress, created, updated)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(key) DO UPDATE SET
         name = excluded.name, salt = excluded.salt, hash = excluded.hash,
         coins = excluded.coins, tokens = excluded.tokens, daily = excluded.daily,
         decks = excluded.decks, pack_inv = excluded.pack_inv, steam_id = excluded.steam_id,
         rank = excluded.rank, cosmetics = excluded.cosmetics,
-        starter_pick = excluded.starter_pick, updated = excluded.updated
+        starter_pick = excluded.starter_pick, progress = excluded.progress, updated = excluded.updated
     `),
     clearCollection: db.prepare('DELETE FROM collection WHERE account = ?'),
     insertCard: db.prepare('INSERT INTO collection (account, card, finish, count) VALUES (?, ?, ?, ?)'),
@@ -159,7 +168,8 @@ export function openDatabase(dataDir, log = console.log) {
         // der Server nur an einer Stelle auf Wahrheit pruefen muss.
         starterPick: row.starter_pick || null,
         ...parse(row.rank, {}),      // rp, peakRank, season, wins, losses, streak, bestStreak, careerRp
-        ...parse(row.cosmetics, {})  // cosmetics, equipped (ein altes shards-Feld wird ignoriert)
+        ...parse(row.cosmetics, {}), // cosmetics, equipped (ein altes shards-Feld wird ignoriert)
+        ...parse(row.progress, {})   // towerFloor, draft, draftClears
       };
     }
     for (const row of statements.selectCollection.all()) {
@@ -207,6 +217,11 @@ export function openDatabase(dataDir, log = console.log) {
           equipped: account.equipped && typeof account.equipped === 'object' ? account.equipped : {}
         }),
         account.starterPick || '',
+        JSON.stringify({
+          towerFloor: account.towerFloor | 0,
+          draft: account.draft || null,
+          draftClears: account.draftClears | 0
+        }),
         now,
         now
       );

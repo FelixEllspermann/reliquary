@@ -112,6 +112,10 @@ export const ITEMS = [
     unlock: 'Renew ten seals of the Tower.' },
   { id: 'towers_answer',    slot: 'title',       name: "The Tower's Answer", rarity: 'relic', price: null, currency: null,
     unlock: 'Reach the top of the Tower.' },
+
+  // --- Draft-Titel (nur ueber den Draft-Turm der Challenges) ---
+  { id: 'draft_sovereign',  slot: 'title',       name: 'Draft Sovereign',  rarity: 'relic',  price: null, currency: null,
+    unlock: 'Conquer the Tower with a drafted deck.' },
 ];
 
 /** Jeder Early-Access-Spieler startet mit diesem Titel. */

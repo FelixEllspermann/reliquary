@@ -69,6 +69,16 @@ try { reliquaries = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reliquary.js
 const reliquarySet = new Set(reliquaries);
 const EXTRA_MAX = rules.extraDeckMaxSize || 20;
 
+// ---- Draft-Modus (Challenges): 20 Packs ziehen, temporäres Deck, Turm-Lauf ----
+// Der Pool wird serverseitig gewürfelt (sonst wäre er erfunden), das Deck darf
+// NUR daraus bestehen — ohne Kopienlimit und ohne Banlist. Nichts davon wird
+// der Sammlung gutgeschrieben; nach Abschluss oder Abbruch ist alles weg.
+const DRAFT_PACKS = 20;
+const DRAFT_PACK_NAME = 'Relic Pack';
+const DRAFT_REWARD_PACKS = 10;
+const DRAFT_FLOORS = 15;
+const DRAFT_TITLE = 'draft_sovereign';
+
 // Banlist: Kartenname -> erlaubte Kopien (0 = gebannt, 1 = limitiert, 2 = semi-limitiert).
 // Nicht gelistete Karten dürfen maxCopiesPerCard mal ins Deck.
 let banlist = {};
@@ -342,6 +352,16 @@ function profileOf(acc) {
     rankBestStreak: seal.bestStreak,
     titles: acc.titles && acc.titles.length ? acc.titles : [cosmetics.STARTER_TITLE],
     towerFloor: acc.towerFloor | 0,
+    // Laufender Draft (falls einer offen ist): Pool, Deck und Turm-Stand reisen
+    // im Profil mit, damit ein Relog den Draft genau dort wiederfindet.
+    draftActive: !!acc.draft,
+    draftFloor: acc.draft ? acc.draft.floor | 0 : 0,
+    draftClears: acc.draftClears | 0,
+    draftPoolNames: acc.draft ? Object.keys(acc.draft.pool) : [],
+    draftPoolCounts: acc.draft ? Object.keys(acc.draft.pool).map(n => acc.draft.pool[n]) : [],
+    draftDeckCards: acc.draft && acc.draft.deck ? acc.draft.deck.cards : [],
+    draftDeckExtra: acc.draft && acc.draft.deck ? acc.draft.deck.extra : [],
+    draftDeckHero: acc.draft && acc.draft.deck ? acc.draft.deck.hero || '' : '',
     ...cosmetics.stateOf(acc),
     ...cosmetics.catalog(),
     banlistNames: Object.keys(banlist),
@@ -492,6 +512,38 @@ function validateDeck(acc, deck) {
 
   if (deck.hero && cards[deck.hero] === undefined) return 'Unknown player card.';
   if (deck.hero && finishes.total(acc.collection[deck.hero]) < 1) return 'Player card not owned.';
+  return null;
+}
+
+/**
+ * Prüft ein DRAFT-Deck: nur gegen den gezogenen Pool, ohne Kopienlimit und
+ * ohne Banlist — wer eine Karte achtmal gezogen hat, darf sie achtmal spielen.
+ * Der Held ist frei wählbar (das Deck ist temporär, gutgeschrieben wird nichts).
+ */
+function validateDraftDeck(draft, deck) {
+  if (!draft || !draft.pool) return 'No draft is running.';
+  if (!deck || !Array.isArray(deck.cards)) return 'Invalid deck data.';
+  if (deck.cards.length > rules.deckMaxSize) return `Maximum ${rules.deckMaxSize} cards.`;
+
+  const counts = {};
+  for (const cardName of deck.cards) {
+    if (cards[cardName] === undefined) return `Unknown card: ${cardName}`;
+    if (reliquarySet.has(cardName)) return `${cardName} is a Reliquary — it belongs in the Extra Deck.`;
+    counts[cardName] = (counts[cardName] || 0) + 1;
+    if (counts[cardName] > (draft.pool[cardName] | 0))
+      return `Not in your draft pool: ${cardName} ×${counts[cardName]}`;
+  }
+
+  const extra = Array.isArray(deck.extra) ? deck.extra : [];
+  if (extra.length > EXTRA_MAX) return `Extra Deck: maximum ${EXTRA_MAX} cards.`;
+  for (const cardName of extra) {
+    if (!reliquarySet.has(cardName)) return `${cardName} is not a Reliquary card.`;
+    counts[cardName] = (counts[cardName] || 0) + 1;
+    if (counts[cardName] > (draft.pool[cardName] | 0))
+      return `Not in your draft pool: ${cardName} ×${counts[cardName]}`;
+  }
+
+  if (deck.hero && cards[deck.hero] === undefined) return 'Unknown player card.';
   return null;
 }
 
@@ -1157,6 +1209,79 @@ wss.on('connection', (ws, req) => {
         saveAccount(acc);
         sendProfile(c, acc);
         log(`${acc.name}: Turm-Ebene ${floor} versiegelt (+5 Relic Packs${towerTitle ? `, Titel ${towerTitle}` : ''})`);
+        break;
+      }
+
+      // ---- Draft-Modus (Challenges) ----
+      // Startet einen Draft: 20 Packs werden hier gewürfelt und als Pool am
+      // Konto hinterlegt. Nichts davon landet in der Sammlung.
+      case 'draft_start': {
+        if (!acc) { sendError(c, 'Not logged in.'); break; }
+        if (acc.draft) { sendError(c, 'A draft is already running.'); break; }
+        const packDef = packs[DRAFT_PACK_NAME];
+        if (!packDef) { sendError(c, 'Draft pack missing.'); break; }
+        const pool = {};
+        for (let i = 0; i < DRAFT_PACKS; i++)
+          for (const cardName of drawFromPack(packDef))
+            pool[cardName] = (pool[cardName] || 0) + 1;
+        acc.draft = { pool, deck: null, floor: 0 };
+        saveAccount(acc);
+        sendProfile(c, acc);
+        const total = Object.values(pool).reduce((a, b) => a + b, 0);
+        log(`${acc.name}: Draft gestartet (${DRAFT_PACKS} Packs, ${total} Karten, ${Object.keys(pool).length} verschiedene)`);
+        break;
+      }
+
+      case 'draft_save_deck': {
+        if (!acc) { sendError(c, 'Not logged in.'); break; }
+        if (!acc.draft) { sendError(c, 'No draft is running.'); break; }
+        const deck = { cards: m.cards, extra: m.extra, hero: m.hero };
+        const problem = validateDraftDeck(acc.draft, deck);
+        if (problem) { sendError(c, problem); break; }
+        acc.draft.deck = {
+          cards: [...deck.cards],
+          extra: Array.isArray(deck.extra) ? [...deck.extra] : [],
+          hero: typeof deck.hero === 'string' ? deck.hero : ''
+        };
+        saveAccount(acc);
+        sendProfile(c, acc);
+        log(`${acc.name}: Draft-Deck gespeichert (${acc.draft.deck.cards.length}+${acc.draft.deck.extra.length})`);
+        break;
+      }
+
+      // Draft-Turm: gleicher Monotonie-Wächter wie der normale Turm, aber mit
+      // eigenem Zähler. Ebene 15 schließt den Draft ab: +10 Relic Packs (jedes
+      // Mal), beim ersten Abschluss der Titel — und der Draft samt Deck ist weg.
+      case 'draft_progress': {
+        if (!acc || !acc.draft) break;
+        const floor = m.floor | 0;
+        if (floor !== (acc.draft.floor | 0) + 1 || floor < 1 || floor > DRAFT_FLOORS) { sendProfile(c, acc); break; }
+        acc.draft.floor = floor;
+        let note = '';
+        if (floor === DRAFT_FLOORS) {
+          acc.packInv[DRAFT_PACK_NAME] = (acc.packInv[DRAFT_PACK_NAME] || 0) + DRAFT_REWARD_PACKS;
+          acc.draftClears = (acc.draftClears | 0) + 1;
+          acc.cosmetics = Array.isArray(acc.cosmetics) ? acc.cosmetics : [];
+          if (acc.draftClears === 1 && !acc.cosmetics.includes(DRAFT_TITLE)) {
+            acc.cosmetics.push(DRAFT_TITLE);
+            note = `, Titel ${DRAFT_TITLE}`;
+          }
+          acc.draft = null;   // das Deck war geliehen — der Turm nimmt es zurück
+          note = ` — Draft abgeschlossen (+${DRAFT_REWARD_PACKS} Relic Packs${note})`;
+        }
+        saveAccount(acc);
+        sendProfile(c, acc);
+        log(`${acc.name}: Draft-Ebene ${floor} versiegelt${note}`);
+        break;
+      }
+
+      case 'draft_abandon': {
+        if (!acc) { sendError(c, 'Not logged in.'); break; }
+        if (!acc.draft) { sendProfile(c, acc); break; }
+        acc.draft = null;
+        saveAccount(acc);
+        sendProfile(c, acc);
+        log(`${acc.name}: Draft verworfen`);
         break;
       }
 
