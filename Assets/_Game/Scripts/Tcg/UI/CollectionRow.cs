@@ -15,11 +15,8 @@ namespace Rouge.Tcg.UI
     /// Bedienung: einfacher Klick wählt die Karte für die Detail-Rail, Doppelklick
     /// legt sie ins Deck (Pool) bzw. nimmt sie heraus (Deck-Liste); dafür gibt es
     /// außerdem die −/+ Knöpfe. Bloßes Überfahren ändert die Auswahl nicht mehr.
-    /// Deck-Zeilen lassen sich zusätzlich aus dem Deck-Panel HERAUSZIEHEN —
-    /// loslassen außerhalb nimmt das Exemplar aus dem Deck (SetDragArea).
     /// </summary>
-    public class CollectionRow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
-        IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class CollectionRow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [Header("Referenzen (vom Builder verdrahtet)")]
         [SerializeField] private Image background;
@@ -51,11 +48,6 @@ namespace Rouge.Tcg.UI
         private Action<CardDefinition, CardFinish> onSelect;
         private bool selected;
         private bool hovered;
-
-        // ---- Herausziehen aus dem Deck (nur wenn dragArea gesetzt ist) ----
-        private RectTransform dragArea;
-        private GameObject dragGhost;
-        private CanvasGroup dragGhostGroup;
 
         // ---- Design-Farben (README-collection-screens) ----
         public static Color RarityInk(CardRarity rarity)
@@ -299,76 +291,6 @@ namespace Rouge.Tcg.UI
             // Die Vorschau zeigt GENAU dieses Exemplar — wer die Static-Zeile
             // anklickt, will die Static-Karte sehen und nicht die schlichte.
             onSelect?.Invoke(card, finish);
-        }
-
-        // ================== HERAUSZIEHEN ==================
-
-        /// <summary>
-        /// Aktiviert das Herausziehen: wird die Zeile außerhalb dieses Rechtecks
-        /// (des Deck-Panels) losgelassen, fliegt das Exemplar aus dem Deck.
-        /// Ohne diesen Aufruf bleibt die Zeile unziehbar — die Listen im Shop
-        /// und im Pack-Reveal wollen davon nichts wissen.
-        /// </summary>
-        public void SetDragArea(RectTransform area) => dragArea = area;
-
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            if (!deckSide || dragArea == null || card == null) return;
-            var canvas = GetComponentInParent<Canvas>();
-            if (canvas == null) return;
-
-            // Der Geist ist eine Kopie der Zeile selbst — inert, ohne Raycasts
-            var size = ((RectTransform)transform).rect.size;
-            dragGhost = Instantiate(gameObject, canvas.rootCanvas.transform);
-            dragGhost.name = "RowDragGhost";
-            var ghostRect = (RectTransform)dragGhost.transform;
-            ghostRect.anchorMin = ghostRect.anchorMax = new Vector2(0.5f, 0.5f);
-            ghostRect.pivot = new Vector2(0.5f, 0.5f);
-            ghostRect.sizeDelta = size;
-            ghostRect.localScale = Vector3.one;
-            dragGhostGroup = dragGhost.GetComponent<CanvasGroup>();
-            if (dragGhostGroup == null) dragGhostGroup = dragGhost.AddComponent<CanvasGroup>();
-            dragGhostGroup.blocksRaycasts = false;
-            dragGhostGroup.alpha = 0.85f;
-            MoveGhost(eventData);
-        }
-
-        public void OnDrag(PointerEventData eventData) => MoveGhost(eventData);
-
-        private void MoveGhost(PointerEventData eventData)
-        {
-            if (dragGhost == null) return;
-            var ghostRect = (RectTransform)dragGhost.transform;
-            var canvasRect = (RectTransform)ghostRect.parent;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                canvasRect, eventData.position, eventData.pressEventCamera, out var local);
-            ghostRect.anchoredPosition = local;
-            // Außerhalb des Decks färbt sich der Geist rot an — gleich fliegt die Karte raus
-            bool outside = !IsInsideDeck(eventData);
-            dragGhostGroup.alpha = outside ? 1f : 0.7f;
-            var ghostBg = dragGhost.GetComponent<Image>();
-            if (ghostBg != null)
-                ghostBg.color = outside
-                    ? new Color(224f / 255f, 96f / 255f, 58f / 255f, 0.35f)
-                    : new Color(0f, 0f, 0f, 0.38f);
-        }
-
-        private bool IsInsideDeck(PointerEventData eventData) =>
-            dragArea != null &&
-            RectTransformUtility.RectangleContainsScreenPoint(dragArea, eventData.position, eventData.pressEventCamera);
-
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            bool removed = dragGhost != null && !IsInsideDeck(eventData);
-            if (dragGhost != null) Destroy(dragGhost);
-            dragGhost = null;
-            dragGhostGroup = null;
-            if (removed)
-            {
-                SfxManager.Click();
-                onSelect?.Invoke(card, finish);
-                onRemove?.Invoke(card, finish);
-            }
         }
     }
 }

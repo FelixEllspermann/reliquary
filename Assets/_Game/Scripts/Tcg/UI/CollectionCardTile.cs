@@ -8,17 +8,19 @@ using UnityEngine.UI;
 namespace Rouge.Tcg.UI
 {
     /// <summary>
-    /// Eine Pool-Kachel des Deck Builders: das Kartenbild als Kompakt-Rendition
-    /// (unter 200 px Breite schaltet TcgCardView von selbst um) statt der alten
-    /// Text-Zeile. Overlays erzählen den Rest: Banlist-Marke oben links,
-    /// „im Deck"-Abzeichen oben rechts, Rarity-Raute und Besitz in der
+    /// Eine Karten-Kachel des Deck Builders (Pool UND Deck-Liste): das Kartenbild
+    /// als Kompakt-Rendition (unter 200 px Breite schaltet TcgCardView von selbst
+    /// um) statt der alten Text-Zeile. Overlays erzählen den Rest: Banlist-Marke
+    /// oben links, „im Deck"-Abzeichen oben rechts, Rarity-Raute und Besitz in der
     /// Zähl-Leiste darunter, Dunkelschleier über allem, was man nicht besitzt.
     ///
     /// Bedienung wie die alten Zeilen: Klick wählt für die Detail-Rail,
-    /// Doppelklick legt ins Deck, dazu −/+ in der Leiste — und die Kachel
-    /// lässt sich als Geisterkarte ins Deck-Panel ZIEHEN (Drop = einbauen).
+    /// Doppelklick legt ins Deck (Pool) bzw. nimmt heraus (Deck-Seite), dazu −/+
+    /// in der Leiste — und die Kachel lässt sich als Geisterkarte ZIEHEN:
+    /// Pool-Kacheln ins Deck-Panel (Drop = einbauen), Deck-Kacheln aus dem
+    /// Deck-Panel heraus (der Geist färbt sich rot, Drop = entfernen).
     /// Gebaut wird die Kachel EINMAL (Build), danach nur noch befüllt (Setup) —
-    /// der Pool recycelt seine Kacheln bei jedem Rebuild, statt sie neu zu erzeugen.
+    /// beide Listen recyceln ihre Kacheln bei jedem Rebuild, statt sie neu zu erzeugen.
     /// </summary>
     public class CollectionCardTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
         IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -50,16 +52,18 @@ namespace Rouge.Tcg.UI
 
         private CardDefinition card;
         private CardFinish finish;
+        private bool deckSide;
         private Action<CardDefinition, CardFinish> onAdd;
         private Action<CardDefinition, CardFinish> onRemove;
         private Action<CardDefinition, CardFinish> onSelect;
         private bool selected;
         private bool hovered;
 
-        // ---- Drag & Drop: Kachel ins Deck-Panel ziehen ----
+        // ---- Drag & Drop: Pool-Kachel INS Deck-Panel, Deck-Kachel HERAUS ----
         private RectTransform dropTarget;
         private TcgCardView dragGhost;
         private CanvasGroup dragGhostGroup;
+        private Image dragGhostTint;   // roter Schleier: gleich fliegt die Karte raus
 
         public CardDefinition Card => card;
 
@@ -252,10 +256,12 @@ namespace Rouge.Tcg.UI
         public void Setup(CardDefinition definition, CardFinish cardFinish, int inDeck, int owned,
             int maxCopies, int copiesOfCard,
             Action<CardDefinition, CardFinish> add, Action<CardDefinition, CardFinish> remove,
-            Action<CardDefinition, CardFinish> select, int banLimit, bool collectionMode)
+            Action<CardDefinition, CardFinish> select, int banLimit, bool collectionMode,
+            bool isDeckSide = false)
         {
             card = definition;
             finish = cardFinish;
+            deckSide = isDeckSide;
             onAdd = add;
             onRemove = remove;
             onSelect = select;
@@ -379,7 +385,9 @@ namespace Rouge.Tcg.UI
             SfxManager.Click();
             if (eventData.clickCount >= 2)
             {
-                onAdd?.Invoke(card, finish);
+                // Doppelklick betrifft genau das Exemplar dieser Kachel
+                if (deckSide) onRemove?.Invoke(card, finish);
+                else onAdd?.Invoke(card, finish);
                 return;
             }
             onSelect?.Invoke(card, finish);
@@ -387,7 +395,11 @@ namespace Rouge.Tcg.UI
 
         // ================== DRAG & DROP ==================
 
-        /// <summary>Wohin gezogen werden darf (das Deck-Panel) — vom Controller gesetzt.</summary>
+        /// <summary>
+        /// Das Deck-Panel — vom Controller gesetzt. Für Pool-Kacheln ist es das
+        /// Drop-ZIEL (hineinziehen = einbauen), für Deck-Kacheln die GRENZE
+        /// (hinausziehen = entfernen).
+        /// </summary>
         public void SetDropTarget(RectTransform target) => dropTarget = target;
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -410,6 +422,18 @@ namespace Rouge.Tcg.UI
             if (dragGhostGroup == null) dragGhostGroup = dragGhost.gameObject.AddComponent<CanvasGroup>();
             dragGhostGroup.blocksRaycasts = false;
             dragGhostGroup.alpha = 0.85f;
+
+            // Roter Schleier für die Deck-Seite: sichtbar, sobald der Drop entfernt
+            var tintRect = MakeRect(dragGhost.transform, "RemoveTint");
+            tintRect.anchorMin = Vector2.zero;
+            tintRect.anchorMax = Vector2.one;
+            tintRect.offsetMin = Vector2.zero;
+            tintRect.offsetMax = Vector2.zero;
+            dragGhostTint = tintRect.gameObject.AddComponent<Image>();
+            dragGhostTint.color = new Color(224f / 255f, 96f / 255f, 58f / 255f, 0.35f);
+            dragGhostTint.raycastTarget = false;
+            dragGhostTint.gameObject.SetActive(false);
+
             SfxManager.Hover(SfxManager.ButtonHoverGain);
             MoveGhost(eventData);
         }
@@ -424,25 +448,34 @@ namespace Rouge.Tcg.UI
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvasRect, eventData.position, eventData.pressEventCamera, out var local);
             ghostRect.anchoredPosition = local;
-            // Über dem Deck wird der Geist satt — man sieht, dass der Drop zählt
-            dragGhostGroup.alpha = IsOverDrop(eventData) ? 1f : 0.6f;
+            // Wo der Drop WIRKT, wird der Geist satt: für Pool-Kacheln über dem
+            // Deck, für Deck-Kacheln außerhalb davon — dort zusätzlich rot.
+            bool effective = DropEffective(eventData);
+            dragGhostGroup.alpha = effective ? 1f : 0.6f;
+            if (dragGhostTint != null) dragGhostTint.gameObject.SetActive(deckSide && effective);
         }
 
         private bool IsOverDrop(PointerEventData eventData) =>
             dropTarget != null &&
             RectTransformUtility.RectangleContainsScreenPoint(dropTarget, eventData.position, eventData.pressEventCamera);
 
+        /// <summary>Würde Loslassen an dieser Zeigerposition etwas bewirken?</summary>
+        private bool DropEffective(PointerEventData eventData) =>
+            deckSide ? !IsOverDrop(eventData) : IsOverDrop(eventData);
+
         public void OnEndDrag(PointerEventData eventData)
         {
-            bool dropped = dragGhost != null && IsOverDrop(eventData);
+            bool effective = dragGhost != null && DropEffective(eventData);
             if (dragGhost != null) Destroy(dragGhost.gameObject);
             dragGhost = null;
             dragGhostGroup = null;
-            if (dropped)
+            dragGhostTint = null;
+            if (effective)
             {
                 SfxManager.Click();
                 onSelect?.Invoke(card, finish);
-                onAdd?.Invoke(card, finish);
+                if (deckSide) onRemove?.Invoke(card, finish);
+                else onAdd?.Invoke(card, finish);
             }
         }
     }

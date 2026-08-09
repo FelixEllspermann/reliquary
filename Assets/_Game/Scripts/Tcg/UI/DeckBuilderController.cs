@@ -16,9 +16,10 @@ namespace Rouge.Tcg.UI
     /// Dust/Craft, abgeleiteter Deck-Balance und Advice-Strip. Server-Fluss wie gehabt
     /// (save_deck/delete_deck/craft/dust über den NetworkManager).
     ///
-    /// Der Pool zeigt je Karte eine Kachel pro besessenem Finish (CollectionCardTile,
-    /// recycelt statt neu gebaut); die Deck-Liste bleibt bei den kompakten Zeilen
-    /// (CollectionRow) — 40 Karten überblickt man dort als Liste besser.
+    /// Pool UND Deck-Liste zeigen je Karte eine Kachel pro besessenem Finish
+    /// (CollectionCardTile, recycelt statt neu gebaut). Die Deck-Seite besteht
+    /// aus zwei Gittern (Hauptdeck, Extra Deck) mit dem alten Trenner dazwischen;
+    /// Kacheln lassen sich hinein- und herausziehen.
     /// </summary>
     public class DeckBuilderController : MonoBehaviour
     {
@@ -90,9 +91,11 @@ namespace Rouge.Tcg.UI
         private List<PlayerCardData> heroes = new List<PlayerCardData>();
         private List<PlayerCardData> ownedHeroes = new List<PlayerCardData>();
         private readonly List<CollectionCardTile> poolTiles = new List<CollectionCardTile>();
-        private readonly List<CollectionRow> deckRows = new List<CollectionRow>();
+        private readonly List<CollectionCardTile> deckTiles = new List<CollectionCardTile>();
         private readonly List<Button> heroChips = new List<Button>();
         private GameObject extraHeader;  // Laufzeit-Trenner "EXTRA DECK x/20"
+        private RectTransform deckMainGrid;   // Kachel-Gitter Hauptdeck
+        private RectTransform deckExtraGrid;  // Kachel-Gitter Extra Deck
 
         private int typeFilter;   // 0 all, 1 monster, 2 spell, 3 artifact, 4 reliquary
         private int attrFilter;   // 0 all, 1..6 = AttrOrder
@@ -184,6 +187,7 @@ namespace Rouge.Tcg.UI
             BuildPoolToolbar();
             ConvertPoolToGrid();
             ResolveDeckDropArea();
+            ConvertDeckToGrids();
 
             BuildReliquaryChip();
             for (int i = 0; i < typeChipButtons.Length; i++)
@@ -1044,11 +1048,9 @@ namespace Rouge.Tcg.UI
 
         private void RebuildDeck()
         {
-            foreach (var row in deckRows) if (row != null) Destroy(row.gameObject);
-            deckRows.Clear();
             if (extraHeader != null) { Destroy(extraHeader); extraHeader = null; }
             var deck = CurrentDeck;
-            if (deckContent == null || rowPrefab == null) return;
+            if (deckContent == null || deckMainGrid == null) return;
 
             var inDeck = deck == null
                 ? new List<CardDefinition>()
@@ -1056,19 +1058,24 @@ namespace Rouge.Tcg.UI
                     .OrderBy(c => c.Kind).ThenBy(c => c is MonsterCardData m ? m.level : 0).ThenBy(c => c.cardName)
                     .ToList();
 
+            // Kacheln wie im Pool recycelt; die Position im jeweiligen Gitter wird
+            // explizit gesetzt, weil eine Kachel beim Wiederverwenden auch die
+            // Seite wechseln kann (Hauptdeck <-> Extra).
+            int used = 0, mainTiles = 0, extraTiles = 0;
             foreach (var card in inDeck)
                 foreach (var finish in FinishRowsFor(card))
                 {
                     if (CountInDeck(card, finish) <= 0) continue;
-                    var row = Instantiate(rowPrefab, deckContent);
-                    row.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
-                        AllowedCopies(card), CountInDeck(card), true,
-                        AddCard, RemoveCard, Select, BanLimitOf(card));
-                    row.SetDragArea(deckDropArea);
-                    deckRows.Add(row);
+                    var tile = used < deckTiles.Count ? deckTiles[used] : CreateDeckTile();
+                    if (tile == null) break;
+                    used++;
+                    PlaceDeckTile(tile, deckMainGrid, mainTiles++);
+                    tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
+                        AllowedCopies(card), CountInDeck(card),
+                        AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode, true);
                 }
 
-            // Extra-Deck-Sektion: Trenner-Header + Reliquary-Zeilen unter der Hauptliste
+            // Extra-Deck-Sektion: Trenner-Header + Reliquary-Gitter unter dem Hauptgitter
             var inExtra = deck == null
                 ? new List<CardDefinition>()
                 : pool.Where(c => c is ReliquaryCardData && CountInDeck(c) > 0)
@@ -1077,18 +1084,26 @@ namespace Rouge.Tcg.UI
             if (extraCount > 0 || inExtra.Count > 0)
             {
                 extraHeader = BuildExtraHeader(extraCount);
+                // Der Trenner gehört ZWISCHEN die Gitter: Main — Header — Extra
+                extraHeader.transform.SetSiblingIndex(deckExtraGrid.GetSiblingIndex());
                 foreach (var card in inExtra)
                     foreach (var finish in FinishRowsFor(card))
                     {
                         if (CountInDeck(card, finish) <= 0) continue;
-                        var row = Instantiate(rowPrefab, deckContent);
-                        row.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
-                            AllowedCopies(card), CountInDeck(card), true,
-                            AddCard, RemoveCard, Select, BanLimitOf(card));
-                        row.SetDragArea(deckDropArea);
-                        deckRows.Add(row);
+                        var tile = used < deckTiles.Count ? deckTiles[used] : CreateDeckTile();
+                        if (tile == null) break;
+                        used++;
+                        PlaceDeckTile(tile, deckExtraGrid, extraTiles++);
+                        tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
+                            AllowedCopies(card), CountInDeck(card),
+                            AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode, true);
                     }
             }
+
+            for (int i = used; i < deckTiles.Count; i++)
+                if (deckTiles[i] != null) deckTiles[i].gameObject.SetActive(false);
+            SizeDeckGrid(deckMainGrid, mainTiles);
+            SizeDeckGrid(deckExtraGrid, extraTiles);
 
             if (emptyState != null) emptyState.SetActive(inDeck.Count == 0 && inExtra.Count == 0);
 
@@ -1101,11 +1116,80 @@ namespace Rouge.Tcg.UI
             HighlightSelection();
         }
 
-        /// <summary>Laufzeit-Header "EXTRA DECK x/20" zwischen Haupt- und Reliquary-Zeilen.</summary>
+        /// <summary>
+        /// Auch die Deck-Liste zeigt Kartenbilder: zwei Gitter-Container unter der
+        /// bestehenden VerticalLayoutGroup des Contents — so bleibt der
+        /// "EXTRA DECK"-Trenner eine normale Zeile dazwischen. Die Layout-Gruppe
+        /// steuert nur die Breite der Container; ihre Höhe rechnet SizeDeckGrid
+        /// aus der Kachelzahl aus.
+        /// </summary>
+        private void ConvertDeckToGrids()
+        {
+            if (deckContent == null) return;
+            deckMainGrid = BuildDeckGrid("DeckMainGrid");
+            deckExtraGrid = BuildDeckGrid("DeckExtraGrid");
+        }
+
+        private RectTransform BuildDeckGrid(string name)
+        {
+            var go = new GameObject(name, typeof(RectTransform));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(deckContent, false);
+            var grid = go.AddComponent<GridLayoutGroup>();
+            grid.cellSize = new Vector2(CollectionCardTile.Width, CollectionCardTile.Height);
+            grid.spacing = new Vector2(8f, 10f);
+            grid.padding = new RectOffset(0, 0, 0, 0);   // den Rand macht schon die VerticalLayoutGroup
+            grid.childAlignment = TextAnchor.UpperLeft;
+            return rect;
+        }
+
+        private CollectionCardTile CreateDeckTile()
+        {
+            if (previewView == null || deckMainGrid == null) return null;
+            var go = new GameObject("DeckTile", typeof(RectTransform));
+            go.transform.SetParent(deckMainGrid, false);
+            var tile = go.AddComponent<CollectionCardTile>();
+            tile.Build(previewView, skin);
+            tile.SetDropTarget(deckDropArea);
+            deckTiles.Add(tile);
+            return tile;
+        }
+
+        /// <summary>
+        /// Hängt eine recycelte Kachel ins richtige Gitter und an die richtige
+        /// Stelle. Deaktivierte Rest-Kacheln rutschen dabei nach hinten — fürs
+        /// GridLayout zählen nur die aktiven, aber deren Reihenfolge muss stimmen.
+        /// </summary>
+        private static void PlaceDeckTile(CollectionCardTile tile, RectTransform gridParent, int position)
+        {
+            tile.gameObject.SetActive(true);
+            if (tile.transform.parent != gridParent) tile.transform.SetParent(gridParent, false);
+            tile.transform.SetSiblingIndex(Mathf.Min(position, gridParent.childCount - 1));
+        }
+
+        /// <summary>Gitterhöhe aus der Kachelzahl — leere Gitter verschwinden ganz.</summary>
+        private void SizeDeckGrid(RectTransform gridRect, int tiles)
+        {
+            if (gridRect == null) return;
+            gridRect.gameObject.SetActive(tiles > 0);
+            if (tiles <= 0) return;
+            float width = ((RectTransform)deckContent).rect.width - 12f - 16f;   // Polster der VerticalLayoutGroup
+            int columns = width > CollectionCardTile.Width
+                ? Mathf.Max(1, Mathf.FloorToInt((width + 8f) / (CollectionCardTile.Width + 8f)))
+                : 4;   // vor dem ersten Layout-Pass ist die Breite noch 0
+            int rows = (tiles + columns - 1) / columns;
+            float height = rows * CollectionCardTile.Height + (rows - 1) * 10f;
+            gridRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+        }
+
+        /// <summary>Laufzeit-Header "EXTRA DECK x/20" zwischen Haupt- und Reliquary-Gitter.</summary>
         private GameObject BuildExtraHeader(int extraCount)
         {
             var header = new GameObject("ExtraDeckHeader", typeof(RectTransform));
             header.transform.SetParent(deckContent, false);
+            // Die Layout-Gruppe steuert nur die Breite (childControlHeight aus) —
+            // die Höhe muss am Rechteck selbst stehen, sonst stapelt sie mit 0.
+            ((RectTransform)header.transform).sizeDelta = new Vector2(0f, 36f);
             var layout = header.AddComponent<LayoutElement>();
             layout.minHeight = 36f;
             layout.preferredHeight = 36f;
@@ -1232,8 +1316,9 @@ namespace Rouge.Tcg.UI
             foreach (var tile in poolTiles)
                 if (tile != null && tile.gameObject.activeSelf)
                     tile.SetSelected(tile.Card == selected && tile.Finish == selectedFinish);
-            foreach (var row in deckRows)
-                if (row != null) row.SetSelected(row.Card == selected && row.Finish == selectedFinish);
+            foreach (var tile in deckTiles)
+                if (tile != null && tile.gameObject.activeSelf)
+                    tile.SetSelected(tile.Card == selected && tile.Finish == selectedFinish);
         }
 
         // ---------- Finish-Umschalter unter der Vorschau ----------
