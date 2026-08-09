@@ -161,7 +161,8 @@ namespace Rouge.Tcg.UI
             body.text =
                 "Draw <color=#BDF0D4><b>20 packs</b></color> and build a deck from nothing but what you pull.\n\n" +
                 "No copy limits — pulled a card eight times, play it eight times. No banlist. Any hero.\n\n" +
-                "The deck is <b>borrowed</b>: the cards are not added to your collection, and when the run ends, the deck is gone.\n\n" +
+                "The deck is <b>borrowed</b>: the cards are not added to your collection. " +
+                "<b>One defeat ends the run</b> — deck and pool dissolve, the next draft starts fresh.\n\n" +
                 "Conquer all 15 floors of the Tower to earn <color=#BDF0D4><b>+10 Relic Packs</b></color> — every single run. " +
                 "The first conquest seals the title <color=#BDF0D4><b>Draft Sovereign</b></color> into your name.";
 
@@ -257,7 +258,7 @@ namespace Rouge.Tcg.UI
             hint.text = "Click a card to inspect it.\nDouble-click or drag to move it between pool and deck.\n\n" +
                         "The deck must hold " + DeckMin + "–" + DeckMax + " cards.\n" +
                         "Reliquaries go to the Extra Deck (max " + ExtraMax + ").\n\n" +
-                        "Losing a floor costs nothing — enter again.";
+                        "One defeat ends the run — the draft dissolves.";
         }
 
         /// <summary>Scroll-Fläche für Kartengitter innerhalb eines Panels.</summary>

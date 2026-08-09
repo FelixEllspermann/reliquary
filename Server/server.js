@@ -1320,6 +1320,20 @@ wss.on('connection', (ws, req) => {
         break;
       }
 
+      // Eine Niederlage beendet den Lauf: Pool und Deck sind weg, der nächste
+      // Draft zieht frisch. Gleicher Effekt wie das Verwerfen, aber mit
+      // eigener Spur im Log — so bleibt lesbar, WIE Läufe enden.
+      case 'draft_defeat': {
+        if (!acc) break;
+        if (!acc.draft) { sendProfile(c, acc); break; }
+        const lostAt = (acc.draft.floor | 0) + 1;
+        acc.draft = null;
+        saveAccount(acc);
+        sendProfile(c, acc);
+        log(`${acc.name}: Draft-Lauf auf Ebene ${lostAt} gescheitert — Deck und Pool verworfen`);
+        break;
+      }
+
       case 'solo_result': {
         if (!acc) break;
         const now = Date.now();

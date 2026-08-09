@@ -310,6 +310,9 @@ namespace Rouge.Tcg.Net
         public void SendDraftProgress(int floor) => SendJson(new NetMessage { t = "draft_progress", floor = floor });
 
         public void SendDraftAbandon() => SendJson(new NetMessage { t = "draft_abandon" });
+
+        /// <summary>Eine Niederlage beendet den Draft-Lauf — Pool und Deck sind weg.</summary>
+        public void SendDraftDefeat() => SendJson(new NetMessage { t = "draft_defeat" });
         public void SendClaimDaily() => SendJson(new NetMessage { t = "claim_daily" });
 
         /// <summary>Spieler-Feedback an den Server (landet dort in data/feedback.jsonl).</summary>
