@@ -126,7 +126,6 @@ namespace Rouge.Tcg.UI
         private Image towerTabBg;
         private TMP_Text towerTabLabel;
         private RectTransform towerGroup;
-        private TMP_Text draftEntryNote;   // Statuszeile der Draft-Tür im Turm-Tab
         private readonly List<(RectTransform row, Image bg, Image frame, TMP_Text name, TMP_Text state)> towerRows
             = new List<(RectTransform, Image, Image, TMP_Text, TMP_Text)>();
         private ScrollRect towerScroll;
@@ -827,24 +826,54 @@ namespace Rouge.Tcg.UI
             var soloRect = (RectTransform)soloTabButton.transform;
             var container = (RectTransform)soloRect.parent;   // „Tabs" — der Rahmen wächst mit
 
-            // Die Leiste von zwei Hälften auf drei Drittel: der Rahmen wird um
-            // die halbe Breite länger, die Szenen-Tabs rücken in ihre Drittel,
-            // und der Turm-Tab ist eine exakte Kopie des Solo-Tabs im letzten.
-            container.sizeDelta = new Vector2(container.sizeDelta.x * 1.5f, container.sizeDelta.y);
+            // Die Leiste von zwei Hälften auf vier Viertel: der Rahmen wird
+            // doppelt so lang, die Szenen-Tabs rücken in ihre Viertel, Turm-
+            // und Draft-Tab sind exakte Kopien des Solo-Tabs dahinter.
+            container.sizeDelta = new Vector2(container.sizeDelta.x * 2f, container.sizeDelta.y);
             if (onlineTabButton != null)
             {
                 var onlineRect = (RectTransform)onlineTabButton.transform;
                 onlineRect.anchorMin = new Vector2(0f, 0f);
-                onlineRect.anchorMax = new Vector2(1f / 3f, 1f);
+                onlineRect.anchorMax = new Vector2(0.25f, 1f);
             }
-            soloRect.anchorMin = new Vector2(1f / 3f, 0f);
-            soloRect.anchorMax = new Vector2(2f / 3f, 1f);
+            soloRect.anchorMin = new Vector2(0.25f, 0f);
+            soloRect.anchorMax = new Vector2(0.5f, 1f);
 
+            var clone = CloneTabButton(container, soloRect, "TowerTabButton", 0.5f, 0.75f);
+            towerTabButton = clone.GetComponent<Button>();
+            towerTabButton.onClick.RemoveAllListeners();
+            towerTabButton.onClick.AddListener(() => SetMode(2));
+            towerTabBg = clone.GetComponent<Image>();
+            towerTabLabel = clone.GetComponentInChildren<TMP_Text>(true);
+            if (towerTabLabel != null) towerTabLabel.text = "THE TOWER";
+
+            // Vierter Tab: DRAFT. Er schaltet keinen Modus um, sondern führt
+            // direkt in die Draft-Szene — dort liegt der Start (DRAW 20 PACKS)
+            // samt Pool, Deck und Turm-Lauf. Smaragd, wie die Challenges-Welt.
+            var draftClone = CloneTabButton(container, soloRect, "DraftTabButton", 0.75f, 1f);
+            var draftButton = draftClone.GetComponent<Button>();
+            draftButton.onClick.RemoveAllListeners();
+            draftButton.onClick.AddListener(() =>
+            {
+                SfxManager.Click();
+                SceneManager.LoadScene("DraftBuilder");
+            });
+            var draftLabel = draftClone.GetComponentInChildren<TMP_Text>(true);
+            if (draftLabel != null)
+            {
+                draftLabel.text = "DRAFT";
+                draftLabel.color = new Color32(0x6F, 0xBF, 0x9A, 0xFF);
+            }
+        }
+
+        /// <summary>Kopie des Solo-Tabs an eine Viertel-Position, ohne geerbtes Knopf-Feedback.</summary>
+        private GameObject CloneTabButton(RectTransform container, RectTransform soloRect, string name, float anchorFrom, float anchorTo)
+        {
             var clone = Instantiate(soloTabButton.gameObject, container);
-            clone.name = "TowerTabButton";
+            clone.name = name;
             var rect = (RectTransform)clone.transform;
-            rect.anchorMin = new Vector2(2f / 3f, 0f);
-            rect.anchorMax = new Vector2(1f, 1f);
+            rect.anchorMin = new Vector2(anchorFrom, 0f);
+            rect.anchorMax = new Vector2(anchorTo, 1f);
             rect.pivot = soloRect.pivot;
             rect.sizeDelta = soloRect.sizeDelta;
             rect.anchoredPosition = soloRect.anchoredPosition;
@@ -855,13 +884,7 @@ namespace Rouge.Tcg.UI
             if (inheritedFx != null) Destroy(inheritedFx);
             var fxGlow = clone.transform.Find("~FxGlow");
             if (fxGlow != null) Destroy(fxGlow.gameObject);
-
-            towerTabButton = clone.GetComponent<Button>();
-            towerTabButton.onClick.RemoveAllListeners();
-            towerTabButton.onClick.AddListener(() => SetMode(2));
-            towerTabBg = clone.GetComponent<Image>();
-            towerTabLabel = clone.GetComponentInChildren<TMP_Text>(true);
-            if (towerTabLabel != null) towerTabLabel.text = "THE TOWER";
+            return clone;
         }
 
         // ---------- Dynamische Gegner-Liste (Solo-Tab, alle Roster-Einträge) ----------
@@ -980,37 +1003,9 @@ namespace Rouge.Tcg.UI
             towerGroup.anchoredPosition = soloRect.anchoredPosition;
             towerGroup.sizeDelta = soloRect.sizeDelta;
 
-            // Draft-Einstieg über der Ebenen-Leiter: der eigentliche Draft lebt
-            // in seiner eigenen Szene (Pool, Deck, Turm-Lauf) — hier steht nur
-            // die Tür mit dem aktuellen Stand darauf.
-            var draftEntry = MakeUiRect("DraftEntry", towerGroup);
-            draftEntry.anchorMin = new Vector2(0f, 1f); draftEntry.anchorMax = new Vector2(1f, 1f);
-            draftEntry.pivot = new Vector2(0.5f, 1f);
-            draftEntry.sizeDelta = new Vector2(0f, 52f);
-            draftEntry.anchoredPosition = new Vector2(0f, -6f);
-            var draftBg = draftEntry.gameObject.AddComponent<Image>();
-            draftBg.color = new Color(0.05f, 0.14f, 0.09f, 0.75f);   // Smaragd wie die Challenges-Kachel
-            var draftButton = draftEntry.gameObject.AddComponent<Button>();
-            draftButton.transition = Selectable.Transition.None;
-            draftButton.onClick.AddListener(() => { SfxManager.Click(); SceneManager.LoadScene("DraftBuilder"); });
-            var draftFrame = MakeUiImage("Frame", draftEntry, new Color(0.25f, 0.81f, 0.55f, 0.55f), skin != null ? skin.whiteFrame : null, true);
-            draftFrame.rectTransform.anchorMin = Vector2.zero; draftFrame.rectTransform.anchorMax = Vector2.one;
-            draftFrame.rectTransform.offsetMin = Vector2.zero; draftFrame.rectTransform.offsetMax = Vector2.zero;
-            var draftTitle = MakeUiText("Title", draftEntry, null, 15f, new Color32(0xBD, 0xF0, 0xD4, 0xFF));
-            draftTitle.rectTransform.anchorMin = new Vector2(0f, 0.5f); draftTitle.rectTransform.anchorMax = new Vector2(1f, 1f);
-            draftTitle.rectTransform.offsetMin = new Vector2(14f, 0f); draftTitle.rectTransform.offsetMax = new Vector2(-14f, -4f);
-            draftTitle.alignment = TextAlignmentOptions.MidlineLeft;
-            draftTitle.fontStyle = FontStyles.Bold;
-            draftTitle.text = "DRAFT MODE";
-            draftEntryNote = MakeUiText("Note", draftEntry, null, 11f, new Color32(0x6F, 0xBF, 0x9A, 0xE0));
-            draftEntryNote.rectTransform.anchorMin = new Vector2(0f, 0f); draftEntryNote.rectTransform.anchorMax = new Vector2(1f, 0.5f);
-            draftEntryNote.rectTransform.offsetMin = new Vector2(14f, 4f); draftEntryNote.rectTransform.offsetMax = new Vector2(-14f, 0f);
-            draftEntryNote.alignment = TextAlignmentOptions.MidlineLeft;
-            AddRowHover(draftEntry, new Color(0.25f, 0.81f, 0.55f, 0.10f));
-
             var scrollGo = MakeUiRect("FloorScroll", towerGroup);
             scrollGo.anchorMin = Vector2.zero; scrollGo.anchorMax = Vector2.one;
-            scrollGo.offsetMin = new Vector2(0f, 8f); scrollGo.offsetMax = new Vector2(0f, -66f);
+            scrollGo.offsetMin = new Vector2(0f, 8f); scrollGo.offsetMax = new Vector2(0f, -8f);
             towerScroll = scrollGo.gameObject.AddComponent<ScrollRect>();
             towerScroll.horizontal = false; towerScroll.vertical = true;
             towerScroll.movementType = ScrollRect.MovementType.Clamped;
@@ -1149,12 +1144,6 @@ namespace Rouge.Tcg.UI
             if (soloGroup != null) soloGroup.SetActive(false);
             if (onlineGroup != null) onlineGroup.SetActive(false);
             RefreshTowerRows();
-
-            // Statuszeile der Draft-Tür: laufender Draft zeigt seine nächste Ebene
-            if (draftEntryNote != null)
-                draftEntryNote.text = !PlayerProfile.LoggedIn ? "REQUIRES AN ACCOUNT — LOG IN FIRST"
-                    : PlayerProfile.DraftActive ? $"DRAFT RUNNING — NEXT: FLOOR {PlayerProfile.DraftFloor + 1} OF 15"
-                    : "DRAW 20 PACKS · BUILD A ONE-RUN DECK · +10 PACKS PER CLEAR";
 
             int count = TowerFloorCount();
             int cleared = PlayerProfile.TowerFloor;
