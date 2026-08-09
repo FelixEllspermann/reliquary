@@ -41,6 +41,7 @@ namespace Rouge.Tcg.UI
         private TMP_Text banText;
         private GameObject deckBadge;
         private Image deckBadgeBg;
+        private Image deckBadgeFrame;
         private TMP_Text deckBadgeText;
         private TMP_Text countLabel;
         private Button minusButton;
@@ -128,15 +129,30 @@ namespace Rouge.Tcg.UI
             banChip = banRect.gameObject;
 
             // „Im Deck"-Abzeichen rechts auf der Karte — ebenfalls unter der
-            // Namenszeile, dort sitzt sonst schon das Level-Wappen
+            // Namenszeile, dort sitzt sonst schon das Level-Wappen. Dunkles
+            // Plättchen mit Gold-Keyline statt heller Fläche: auf goldenen
+            // Artworks (Münzen, Licht) ging die helle Variante einfach unter.
             var badgeRect = MakeRect(transform, "DeckBadge");
             badgeRect.anchorMin = badgeRect.anchorMax = new Vector2(1f, 1f);
             badgeRect.pivot = new Vector2(1f, 1f);
-            badgeRect.anchoredPosition = new Vector2(-4f, -26f);
-            badgeRect.sizeDelta = new Vector2(36f, 22f);
+            badgeRect.anchoredPosition = new Vector2(-3f, -25f);
+            badgeRect.sizeDelta = new Vector2(46f, 28f);
             deckBadgeBg = badgeRect.gameObject.AddComponent<Image>();
+            deckBadgeBg.color = new Color(0.05f, 0.04f, 0.02f, 0.92f);
             deckBadgeBg.raycastTarget = false;
-            deckBadgeText = MakeText(badgeRect, "Label", 13f, TextAlignmentOptions.Center, fontSource);
+            var badgeFrameRect = MakeRect(badgeRect, "Frame");
+            badgeFrameRect.anchorMin = Vector2.zero;
+            badgeFrameRect.anchorMax = Vector2.one;
+            badgeFrameRect.offsetMin = Vector2.zero;
+            badgeFrameRect.offsetMax = Vector2.zero;
+            deckBadgeFrame = badgeFrameRect.gameObject.AddComponent<Image>();
+            if (skin != null && skin.whiteFrame != null)
+            {
+                deckBadgeFrame.sprite = skin.whiteFrame;
+                deckBadgeFrame.type = Image.Type.Sliced;
+            }
+            deckBadgeFrame.raycastTarget = false;
+            deckBadgeText = MakeText(badgeRect, "Label", 17f, TextAlignmentOptions.Center, fontSource);
             deckBadgeText.fontStyle = FontStyles.Bold;
             deckBadge = badgeRect.gameObject;
 
@@ -285,12 +301,16 @@ namespace Rouge.Tcg.UI
             if (deckBadge != null) deckBadge.SetActive(inDeck > 0);
             if (inDeck > 0)
             {
+                // Zu viele Kopien (etwa nach einer neuen Banlist) schlagen rot an
                 if (deckBadgeText != null)
                 {
                     deckBadgeText.text = "×" + inDeck;
-                    deckBadgeText.color = overLimit ? Color.white : Hex("#1E1405");
+                    deckBadgeText.color = overLimit ? Hex("#E0603A") : Hex("#F3DDA4");
                 }
-                if (deckBadgeBg != null) deckBadgeBg.color = overLimit ? Hex("#E0603A") : Hex("#F3DDA4");
+                if (deckBadgeFrame != null)
+                    deckBadgeFrame.color = overLimit
+                        ? Hex("#E0603A")
+                        : new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.9f);
             }
 
             if (countLabel != null)
