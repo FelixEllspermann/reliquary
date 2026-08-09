@@ -29,6 +29,8 @@ namespace Rouge.Tcg.Net
         public static int TowerFloor;
         /// <summary>Vom GameOver gesetzt: das Turm-Duell wurde gewonnen (für die Rückkehr-Szene).</summary>
         public static bool TowerWon;
+        /// <summary>Dieses Turm-Duell gehört zum DRAFT (temporäres Deck, eigener Fortschritt).</summary>
+        public static bool DraftRun;
 
         public static bool LocalStarts = true;
 
@@ -73,6 +75,7 @@ namespace Rouge.Tcg.Net
             SoloDifficulty = 1;
             TowerFloor = 0;
             TowerWon = false;
+            DraftRun = false;
             BotName = "";
             BotDeckCards = new List<string>();
             BotExtraCards = new List<string>();

@@ -253,6 +253,19 @@ namespace Rouge.Tcg.Net
         /// <summary>Höchste erstmals bezwungene Turm-Ebene (0 = noch keine).</summary>
         public int towerFloor;
 
+        // Draft-Modus (Challenges): der laufende Draft reist komplett im Profil
+        // mit, damit ein Relog genau dort weitermacht. Pool als parallele Arrays
+        // (Name + gezogene Anzahl), das Deck als einfache Kartenlisten — Finishes
+        // gibt es im Draft nicht, alles ist schlicht und temporär.
+        public bool draftActive;
+        public int draftFloor;       // versiegelte Draft-Ebenen (0 = noch keine)
+        public int draftClears;      // wie oft der Draft-Turm je abgeschlossen wurde
+        public string[] draftPoolNames;
+        public int[] draftPoolCounts;
+        public string[] draftDeckCards;
+        public string[] draftDeckExtra;
+        public string draftDeckHero;
+
         // Daily-Siegel + Server-Status (Shell-Screens)
         public int dailyStreak;      // aktuelle Serien-Länge (0 = nie geclaimt)
         public bool dailyClaimable;  // Siegel bereit?

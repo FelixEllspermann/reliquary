@@ -126,6 +126,7 @@ namespace Rouge.Tcg.UI
         private Image towerTabBg;
         private TMP_Text towerTabLabel;
         private RectTransform towerGroup;
+        private TMP_Text draftEntryNote;   // Statuszeile der Draft-Tür im Turm-Tab
         private readonly List<(RectTransform row, Image bg, Image frame, TMP_Text name, TMP_Text state)> towerRows
             = new List<(RectTransform, Image, Image, TMP_Text, TMP_Text)>();
         private ScrollRect towerScroll;
@@ -730,7 +731,8 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Gemeinsamer Bot-Kontext für Solo und Turm (Overrides > Gegnerwerte).</summary>
-        private static void FillBotContext(BotOpponentDefinition opponent, string nameOverride, int lpOverride, int manaOverride)
+        /// <summary>Auch der Draft-Builder stellt so seine Turm-Gegner auf.</summary>
+        public static void FillBotContext(BotOpponentDefinition opponent, string nameOverride, int lpOverride, int manaOverride)
         {
             if (opponent == null || opponent.deck == null) return;
             MatchContext.BotName = string.IsNullOrEmpty(nameOverride) ? opponent.displayName : nameOverride;
@@ -978,9 +980,37 @@ namespace Rouge.Tcg.UI
             towerGroup.anchoredPosition = soloRect.anchoredPosition;
             towerGroup.sizeDelta = soloRect.sizeDelta;
 
+            // Draft-Einstieg über der Ebenen-Leiter: der eigentliche Draft lebt
+            // in seiner eigenen Szene (Pool, Deck, Turm-Lauf) — hier steht nur
+            // die Tür mit dem aktuellen Stand darauf.
+            var draftEntry = MakeUiRect("DraftEntry", towerGroup);
+            draftEntry.anchorMin = new Vector2(0f, 1f); draftEntry.anchorMax = new Vector2(1f, 1f);
+            draftEntry.pivot = new Vector2(0.5f, 1f);
+            draftEntry.sizeDelta = new Vector2(0f, 52f);
+            draftEntry.anchoredPosition = new Vector2(0f, -6f);
+            var draftBg = draftEntry.gameObject.AddComponent<Image>();
+            draftBg.color = new Color(0.05f, 0.14f, 0.09f, 0.75f);   // Smaragd wie die Challenges-Kachel
+            var draftButton = draftEntry.gameObject.AddComponent<Button>();
+            draftButton.transition = Selectable.Transition.None;
+            draftButton.onClick.AddListener(() => { SfxManager.Click(); SceneManager.LoadScene("DraftBuilder"); });
+            var draftFrame = MakeUiImage("Frame", draftEntry, new Color(0.25f, 0.81f, 0.55f, 0.55f), skin != null ? skin.whiteFrame : null, true);
+            draftFrame.rectTransform.anchorMin = Vector2.zero; draftFrame.rectTransform.anchorMax = Vector2.one;
+            draftFrame.rectTransform.offsetMin = Vector2.zero; draftFrame.rectTransform.offsetMax = Vector2.zero;
+            var draftTitle = MakeUiText("Title", draftEntry, null, 15f, new Color32(0xBD, 0xF0, 0xD4, 0xFF));
+            draftTitle.rectTransform.anchorMin = new Vector2(0f, 0.5f); draftTitle.rectTransform.anchorMax = new Vector2(1f, 1f);
+            draftTitle.rectTransform.offsetMin = new Vector2(14f, 0f); draftTitle.rectTransform.offsetMax = new Vector2(-14f, -4f);
+            draftTitle.alignment = TextAlignmentOptions.MidlineLeft;
+            draftTitle.fontStyle = FontStyles.Bold;
+            draftTitle.text = "DRAFT MODE";
+            draftEntryNote = MakeUiText("Note", draftEntry, null, 11f, new Color32(0x6F, 0xBF, 0x9A, 0xE0));
+            draftEntryNote.rectTransform.anchorMin = new Vector2(0f, 0f); draftEntryNote.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+            draftEntryNote.rectTransform.offsetMin = new Vector2(14f, 4f); draftEntryNote.rectTransform.offsetMax = new Vector2(-14f, 0f);
+            draftEntryNote.alignment = TextAlignmentOptions.MidlineLeft;
+            AddRowHover(draftEntry, new Color(0.25f, 0.81f, 0.55f, 0.10f));
+
             var scrollGo = MakeUiRect("FloorScroll", towerGroup);
             scrollGo.anchorMin = Vector2.zero; scrollGo.anchorMax = Vector2.one;
-            scrollGo.offsetMin = new Vector2(0f, 8f); scrollGo.offsetMax = new Vector2(0f, -8f);
+            scrollGo.offsetMin = new Vector2(0f, 8f); scrollGo.offsetMax = new Vector2(0f, -66f);
             towerScroll = scrollGo.gameObject.AddComponent<ScrollRect>();
             towerScroll.horizontal = false; towerScroll.vertical = true;
             towerScroll.movementType = ScrollRect.MovementType.Clamped;
@@ -1119,6 +1149,12 @@ namespace Rouge.Tcg.UI
             if (soloGroup != null) soloGroup.SetActive(false);
             if (onlineGroup != null) onlineGroup.SetActive(false);
             RefreshTowerRows();
+
+            // Statuszeile der Draft-Tür: laufender Draft zeigt seine nächste Ebene
+            if (draftEntryNote != null)
+                draftEntryNote.text = !PlayerProfile.LoggedIn ? "REQUIRES AN ACCOUNT — LOG IN FIRST"
+                    : PlayerProfile.DraftActive ? $"DRAFT RUNNING — NEXT: FLOOR {PlayerProfile.DraftFloor + 1} OF 15"
+                    : "DRAW 20 PACKS · BUILD A ONE-RUN DECK · +10 PACKS PER CLEAR";
 
             int count = TowerFloorCount();
             int cleared = PlayerProfile.TowerFloor;

@@ -62,6 +62,19 @@ namespace Rouge.Tcg.Net
         public static int OnlineCount;
         /// <summary>Höchste erstmals bezwungene Turm-Ebene (0 = noch keine).</summary>
         public static int TowerFloor;
+
+        // ---- Draft-Modus (Challenges) ----
+        /// <summary>Läuft gerade ein Draft? Pool, Deck und Ebene kommen mit dem Profil.</summary>
+        public static bool DraftActive;
+        /// <summary>Versiegelte Ebenen des laufenden Draft-Turms (0 = noch keine).</summary>
+        public static int DraftFloor;
+        /// <summary>Wie oft der Draft-Turm je abgeschlossen wurde.</summary>
+        public static int DraftClears;
+        /// <summary>Gezogener Draft-Pool: Kartenname -> Anzahl (temporär, nicht die Sammlung).</summary>
+        public static readonly Dictionary<string, int> DraftPool = new Dictionary<string, int>();
+        /// <summary>Das gespeicherte Draft-Deck, oder null solange keines gespeichert ist.</summary>
+        public static RuntimeDeck DraftDeck;
+
         public static System.DateTime ProfileReceivedAt; // für Client-seitigen Countdown
         /// <summary>Gesamtzahl je Karte, über alle Finishes.</summary>
         public static readonly Dictionary<string, int> Collection = new Dictionary<string, int>();
@@ -162,6 +175,24 @@ namespace Rouge.Tcg.Net
             AccountName = profile.account ?? "";
             Coins = profile.coins;
             TowerFloor = profile.towerFloor;
+
+            DraftActive = profile.draftActive;
+            DraftFloor = profile.draftFloor;
+            DraftClears = profile.draftClears;
+            DraftPool.Clear();
+            if (profile.draftPoolNames != null && profile.draftPoolCounts != null)
+                for (int i = 0; i < profile.draftPoolNames.Length && i < profile.draftPoolCounts.Length; i++)
+                    DraftPool[profile.draftPoolNames[i]] = profile.draftPoolCounts[i];
+            DraftDeck = null;
+            if (profile.draftActive && profile.draftDeckCards != null && profile.draftDeckCards.Length > 0)
+            {
+                // Finishes gibt es im Draft nicht — alles schlicht
+                DraftDeck = new RuntimeDeck { Name = "Draft Deck", Hero = profile.draftDeckHero ?? "" };
+                DraftDeck.Cards.AddRange(profile.draftDeckCards);
+                if (profile.draftDeckExtra != null) DraftDeck.Extra.AddRange(profile.draftDeckExtra);
+                for (int i = 0; i < DraftDeck.Cards.Count; i++) DraftDeck.CardFinishes.Add(CardFinish.Plain);
+                for (int i = 0; i < DraftDeck.Extra.Count; i++) DraftDeck.ExtraFinishes.Add(CardFinish.Plain);
+            }
             TokensCommon = profile.tokensCommon;
             TokensUncommon = profile.tokensUncommon;
             TokensRare = profile.tokensRare;
@@ -291,6 +322,11 @@ namespace Rouge.Tcg.Net
             Collection.Clear();
             PackInventory.Clear();
             Decks.Clear();
+            DraftActive = false;
+            DraftFloor = 0;
+            DraftClears = 0;
+            DraftPool.Clear();
+            DraftDeck = null;
         }
 
         public static int Owned(string cardName) =>

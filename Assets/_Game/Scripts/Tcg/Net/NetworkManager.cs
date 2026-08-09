@@ -290,6 +290,26 @@ namespace Rouge.Tcg.Net
 
         /// <summary>Meldet den ersten Sieg auf einer Turm-Ebene (Server prüft die Reihenfolge).</summary>
         public void SendTowerProgress(int floor) => SendJson(new NetMessage { t = "tower_progress", floor = floor });
+
+        // ---- Draft-Modus (Challenges) ----
+        public void SendDraftStart() => SendJson(new NetMessage { t = "draft_start" });
+
+        /// <summary>Das Draft-Deck — validiert der Server nur gegen den gezogenen Pool.</summary>
+        public void SendDraftSaveDeck(RuntimeDeck deck) => SendJson(new NetMessage
+        {
+            t = "draft_save_deck",
+            deck = new NetDeck
+            {
+                name = "Draft",
+                hero = deck.Hero,
+                cards = deck.Cards.ToArray(),
+                extra = deck.Extra.ToArray()
+            }
+        });
+
+        public void SendDraftProgress(int floor) => SendJson(new NetMessage { t = "draft_progress", floor = floor });
+
+        public void SendDraftAbandon() => SendJson(new NetMessage { t = "draft_abandon" });
         public void SendClaimDaily() => SendJson(new NetMessage { t = "claim_daily" });
 
         /// <summary>Spieler-Feedback an den Server (landet dort in data/feedback.jsonl).</summary>

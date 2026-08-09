@@ -1235,7 +1235,10 @@ wss.on('connection', (ws, req) => {
       case 'draft_save_deck': {
         if (!acc) { sendError(c, 'Not logged in.'); break; }
         if (!acc.draft) { sendError(c, 'No draft is running.'); break; }
-        const deck = { cards: m.cards, extra: m.extra, hero: m.hero };
+        // Der Unity-Client schickt das Deck genestet (wie save_deck), Werkzeuge
+        // dürfen die Felder auch flach legen — beides zählt.
+        const wire = m.deck && typeof m.deck === 'object' ? m.deck : m;
+        const deck = { cards: wire.cards, extra: wire.extra, hero: wire.hero };
         const problem = validateDraftDeck(acc.draft, deck);
         if (problem) { sendError(c, problem); break; }
         acc.draft.deck = {

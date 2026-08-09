@@ -169,7 +169,18 @@ namespace Rouge.Tcg.UI
                 // Turm-Duell: Erstsieg meldet die Ebene (Server vergibt 5 Packs +
                 // ggf. Titel und prüft die Reihenfolge — Doppelmeldungen verpuffen).
                 int towerFloor = Rouge.Tcg.Net.MatchContext.TowerFloor;
-                if (towerFloor > 0 && victory)
+                if (towerFloor > 0 && victory && Rouge.Tcg.Net.MatchContext.DraftRun)
+                {
+                    // Draft-Turm: eigener Fortschritt, Belohnung erst ganz oben —
+                    // Ebene 15 bringt 10 Packs (jedes Mal) und beim ersten Mal den Titel.
+                    Rouge.Tcg.Net.MatchContext.TowerWon = true;
+                    Rouge.Tcg.Net.NetworkManager.Instance.SendDraftProgress(towerFloor);
+                    if (towerFloor >= 15)
+                        reward = Rouge.Tcg.Net.PlayerProfile.DraftClears == 0
+                            ? "THE DRAFT IS CONQUERED — +10 RELIC PACKS & A NEW TITLE"
+                            : "THE DRAFT IS CONQUERED — +10 RELIC PACKS";
+                }
+                else if (towerFloor > 0 && victory)
                 {
                     Rouge.Tcg.Net.MatchContext.TowerWon = true;
                     bool firstClear = towerFloor > Rouge.Tcg.Net.PlayerProfile.TowerFloor;
@@ -187,8 +198,11 @@ namespace Rouge.Tcg.UI
             // ggf. durch den Rank-Up, dann Menü); Solo behält "nochmal".
             bool network = Rouge.Tcg.Net.MatchContext.IsServerMatch;
             bool towerReturn = Rouge.Tcg.Net.MatchContext.TowerFloor > 0 && victory;
+            bool draftReturn = towerReturn && Rouge.Tcg.Net.MatchContext.DraftRun;
             if (restartLabel != null)
-                restartLabel.text = network ? "CONTINUE" : towerReturn ? "RETURN TO THE TOWER" : "DUEL AGAIN";
+                restartLabel.text = network ? "CONTINUE"
+                    : draftReturn ? "RETURN TO THE DRAFT"
+                    : towerReturn ? "RETURN TO THE TOWER" : "DUEL AGAIN";
             if (deckEditorButton != null) deckEditorButton.gameObject.SetActive(!network);
 
             if (panelGroup == null) yield break;
@@ -211,6 +225,13 @@ namespace Rouge.Tcg.UI
                 // ---- 6+7: steht ein Aufstieg an, laeuft er jetzt — mit eigenem
                 // Continue am Ende — und erst dann faellt das Hauptmenue.
                 AfterRankUp(() => SceneManager.LoadScene(mainMenuSceneName));
+                return;
+            }
+            // Draft-Sieg: zurück in den Draft-Builder — dort wartet die nächste
+            // Ebene (oder, nach Ebene 15, der Startbildschirm eines neuen Drafts).
+            if (Rouge.Tcg.Net.MatchContext.DraftRun && Rouge.Tcg.Net.MatchContext.TowerWon)
+            {
+                AfterRankUp(() => SceneManager.LoadScene("DraftBuilder"));
                 return;
             }
             // Turm-Sieg: zurück in den Turm (Play-Szene, Tower-Tab) — die Ebene
