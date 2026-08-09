@@ -76,6 +76,13 @@ namespace Rouge.Tcg.UI
 
             var label = clone.GetComponentInChildren<TMP_Text>(true);
             if (label != null) label.text = "DISCORD";
+
+            // Discord-Blau statt Topbar-Rot: gedreht wird nur der rote Farbton
+            // (beide Fenster, weil Rot im Farbkreis um die Null liegt) — das
+            // Gold der übrigen Topbar bleibt außen vor.
+            MainMenuController.SwapHue(clone, 0f, 0.08f, 0.635f);
+            MainMenuController.SwapHue(clone, 0.92f, 1f, 0.635f);
+
             var button = clone.GetComponent<Button>();
             button.onClick.RemoveAllListeners();
             string url = discordUrl;
