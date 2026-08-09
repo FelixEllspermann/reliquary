@@ -21,6 +21,7 @@ namespace Rouge.Tcg.UI
         [Header("Navigation (im Inspector verdrahten)")]
         [SerializeField] private Button playButton;
         [SerializeField] private Button soloButton;
+        [SerializeField] private Button challengesButton;
         [SerializeField] private Button shopButton;
         [SerializeField] private Button decksButton;
         [SerializeField] private Button logoutButton;
@@ -37,6 +38,7 @@ namespace Rouge.Tcg.UI
         [Header("Tile-Strips (Pergament, lebender Kontext)")]
         [SerializeField] private TMP_Text playStrip;
         [SerializeField] private TMP_Text soloStrip;
+        [SerializeField] private TMP_Text challengesStrip;
         [SerializeField] private TMP_Text shopStrip;
         [SerializeField] private TMP_Text decksStrip;
 
@@ -67,16 +69,16 @@ namespace Rouge.Tcg.UI
         private float displayedCoins = -1f;
         private static readonly Color SegmentEmpty = new Color(0.784f, 0.643f, 0.361f, 0.16f);
 
-        // ---- Laufzeit-Kachel CHALLENGES (Klon der SOLO-Kachel) ----
-        private Button challengesButton;
-        private TMP_Text challengesStrip;
-
         private void Start()
         {
-            BuildChallengesTile();
             if (playButton != null) playButton.onClick.AddListener(() =>
             {
                 DuelSetupController.OpenSolo = false;
+                SceneManager.LoadScene(playSceneName);
+            });
+            if (challengesButton != null) challengesButton.onClick.AddListener(() =>
+            {
+                DuelSetupController.OpenTower = true;
                 SceneManager.LoadScene(playSceneName);
             });
             if (soloButton != null) soloButton.onClick.AddListener(() =>
@@ -109,16 +111,12 @@ namespace Rouge.Tcg.UI
             }
         }
 
-        /// <summary>Farbton der CHALLENGES-Kachel: Smaragdgrün, klar getrennt vom Solo-Teal (0.52).</summary>
-        private const float ChallengesHue = 0.36f;
-
-        /// <summary>Vom Teal-Bereich der Solo-Kachel getauscht wird nur dieses Fenster — Gold bleibt.</summary>
-        private const float TealMin = 0.38f, TealMax = 0.72f;
-
         /// <summary>
         /// Dreht den Farbton aller Grafiken unter root ins Ziel — Sättigung,
         /// Helligkeit und Alpha jeder Fläche bleiben, so überleben Gradient und
         /// Glow. Getauscht wird nur, was im Quell-Farbtonfenster liegt.
+        /// (Die CHALLENGES-Kachel selbst steht inzwischen fest in der Szene —
+        /// hiermit färbt sich nur noch der Discord-Knopf.)
         /// </summary>
         public static void SwapHue(GameObject root, float fromMin, float fromMax, float targetHue)
         {
@@ -131,106 +129,6 @@ namespace Rouge.Tcg.UI
                 var swapped = Color.HSVToRGB(targetHue, s, v);
                 graphic.color = new Color(swapped.r, swapped.g, swapped.b, alpha);
             }
-        }
-
-        /// <summary>
-        /// Baut die CHALLENGES-Kachel als Klon der SOLO-Kachel: Teal wird per
-        /// Farbton-Tausch zu Smaragdgrün (alles Gold/Parchment bleibt unberührt),
-        /// Titel und Kicker werden ersetzt, und die ganze Reihe rückt von vier
-        /// auf fünf Plätze zusammen — gleicher Takt, gleiche Größe. Der Klick
-        /// öffnet den Setup-Screen direkt auf dem Tower-Tab; dort ziehen später
-        /// weitere Herausforderungen ein.
-        /// </summary>
-        private void BuildChallengesTile()
-        {
-            if (soloButton == null || challengesButton != null) return;
-            var template = soloButton.gameObject;
-            var clone = Instantiate(template, template.transform.parent);
-            clone.name = "ChallengesButton";
-            clone.transform.SetSiblingIndex(template.transform.GetSiblingIndex() + 1);
-
-            // Vektor-Elemente (Emblem, Glow, Kicker) tragen den Ton als Farbe …
-            SwapHue(clone, TealMin, TealMax, ChallengesHue);
-            // … der Kachel-Hintergrund aber hat ihn im Sprite gebacken
-            var rootImage = clone.GetComponent<Image>();
-            if (rootImage != null && rootImage.sprite != null)
-                rootImage.sprite = ChallengesTileSprite(rootImage.sprite);
-
-            var title = clone.transform.Find("Title") != null
-                ? clone.transform.Find("Title").GetComponentInChildren<TMP_Text>(true) : null;
-            if (title != null)
-            {
-                title.text = "CHALLENGES";
-                // Zehn Zeichen statt vier — lieber schrumpfen als abschneiden
-                title.enableAutoSizing = true;
-                title.fontSizeMax = title.fontSize;
-                title.fontSizeMin = 20f;
-            }
-            var kicker = clone.transform.Find("Kicker") != null
-                ? clone.transform.Find("Kicker").GetComponentInChildren<TMP_Text>(true) : null;
-            if (kicker != null) kicker.text = "THE TOWER";
-            challengesStrip = clone.transform.Find("Strip") != null
-                ? clone.transform.Find("Strip").GetComponentInChildren<TMP_Text>(true) : null;
-
-            challengesButton = clone.GetComponent<Button>();
-            if (challengesButton != null)
-            {
-                challengesButton.onClick.RemoveAllListeners();
-                challengesButton.onClick.AddListener(() =>
-                {
-                    DuelSetupController.OpenTower = true;
-                    SceneManager.LoadScene(playSceneName);
-                });
-            }
-
-            // Fünf Kacheln im 346er-Takt: PLAY · SOLO · CHALLENGES · SHOP · DECKS
-            var row = new[] { playButton, soloButton, challengesButton, shopButton, decksButton };
-            for (int i = 0; i < row.Length; i++)
-            {
-                var rect = row[i] != null ? row[i].transform as RectTransform : null;
-                if (rect != null) rect.anchoredPosition = new Vector2((i - 2) * 346f, rect.anchoredPosition.y);
-            }
-        }
-
-        // Einmal umgefärbt, für alle Menü-Besuche: ohne Cache entstünde bei
-        // jedem Szenenwechsel eine neue Textur, die niemand mehr aufräumt.
-        private static Sprite challengesTileSprite;
-
-        /// <summary>
-        /// Das Kachel-Sprite der Solo-Vorlage mit getauschtem Farbton: die Textur
-        /// wird über eine RenderTexture kopiert (das Original ist nicht lesbar),
-        /// dann werden die Teal-Pixel auf Smaragdgrün gedreht.
-        /// </summary>
-        private static Sprite ChallengesTileSprite(Sprite source)
-        {
-            if (challengesTileSprite != null) return challengesTileSprite;
-
-            var texture = source.texture;
-            var rented = RenderTexture.GetTemporary(texture.width, texture.height, 0);
-            Graphics.Blit(texture, rented);
-            var previous = RenderTexture.active;
-            RenderTexture.active = rented;
-            var readable = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
-            readable.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-            RenderTexture.active = previous;
-            RenderTexture.ReleaseTemporary(rented);
-
-            var pixels = readable.GetPixels();
-            for (int i = 0; i < pixels.Length; i++)
-            {
-                Color.RGBToHSV(pixels[i], out float h, out float s, out float v);
-                if (s < 0.06f || h < TealMin || h > TealMax) continue;
-                var swapped = Color.HSVToRGB(ChallengesHue, s, v);
-                pixels[i] = new Color(swapped.r, swapped.g, swapped.b, pixels[i].a);
-            }
-            readable.SetPixels(pixels);
-            readable.Apply();
-
-            challengesTileSprite = Sprite.Create(readable, source.rect,
-                new Vector2(source.pivot.x / source.rect.width, source.pivot.y / source.rect.height),
-                source.pixelsPerUnit, 0, SpriteMeshType.FullRect, source.border);
-            challengesTileSprite.name = "TileChallenges (runtime)";
-            return challengesTileSprite;
         }
 
         /// <summary>Ohne Offline-Modus führt ein Verbindungsabbruch zurück zum Login.</summary>
