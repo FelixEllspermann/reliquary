@@ -74,6 +74,7 @@ const EXTRA_MAX = rules.extraDeckMaxSize || 20;
 // NUR daraus bestehen — ohne Kopienlimit und ohne Banlist. Nichts davon wird
 // der Sammlung gutgeschrieben; nach Abschluss oder Abbruch ist alles weg.
 const DRAFT_PACKS = 20;
+const DRAFT_POOL_SIZE = 100;          // 20 Packs à 5 Karten
 const DRAFT_PACK_NAME = 'Relic Pack';
 const DRAFT_REWARD_PACKS = 10;
 const DRAFT_FLOORS = 15;
@@ -1221,14 +1222,45 @@ wss.on('connection', (ws, req) => {
         const packDef = packs[DRAFT_PACK_NAME];
         if (!packDef) { sendError(c, 'Draft pack missing.'); break; }
         const pool = {};
-        for (let i = 0; i < DRAFT_PACKS; i++)
-          for (const cardName of drawFromPack(packDef))
+        let total = 0;
+
+        // Garantierte Stapel, damit jeder Draft echte Build-Arounds hat: eine
+        // Karte 4-6x, eine 3-5x, drei weitere je 4x. Gezogen aus Common bis
+        // Rare des Pack-Pools — keine Reliquaries (Stapel gehören ins
+        // Hauptdeck) und keine Legendaries (sechsmal dasselbe Bossmonster
+        // würde jeden Lauf dominieren; Legendaries kommen weiter über die
+        // normalen Züge). Zufallszüge obendrauf können die Stapel noch erhöhen.
+        const stackable = packDef.cards.filter(name =>
+          cards[name] !== undefined && cards[name] < 3 && !reliquarySet.has(name));
+        const stackSizes = [
+          4 + Math.floor(Math.random() * 3),   // 4-6
+          3 + Math.floor(Math.random() * 3),   // 3-5
+          4, 4, 4
+        ];
+        const stacked = [];
+        for (const size of stackSizes) {
+          if (stackable.length <= stacked.length) break;
+          let name;
+          do { name = stackable[Math.floor(Math.random() * stackable.length)]; }
+          while (pool[name] !== undefined);
+          pool[name] = size;
+          total += size;
+          stacked.push(`${name} ×${size}`);
+        }
+
+        // Rest bis zur vollen Pool-Größe aus der normalen Pack-Ziehung
+        while (total < DRAFT_POOL_SIZE) {
+          for (const cardName of drawFromPack(packDef)) {
+            if (total >= DRAFT_POOL_SIZE) break;
             pool[cardName] = (pool[cardName] || 0) + 1;
+            total++;
+          }
+        }
+
         acc.draft = { pool, deck: null, floor: 0 };
         saveAccount(acc);
         sendProfile(c, acc);
-        const total = Object.values(pool).reduce((a, b) => a + b, 0);
-        log(`${acc.name}: Draft gestartet (${DRAFT_PACKS} Packs, ${total} Karten, ${Object.keys(pool).length} verschiedene)`);
+        log(`${acc.name}: Draft gestartet (${DRAFT_PACKS} Packs, ${total} Karten, ${Object.keys(pool).length} verschiedene; Stapel: ${stacked.join(', ')})`);
         break;
       }
 
