@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayVulture
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Vulture
-  artwork: {fileID: 0}
+  artwork: {fileID: 5315287596684343480, guid: 8d8d02c75ee4da04f90f7801b5e0957f, type: 3}
   rarity: 2
   effects:
   - label: Descend on Carrion

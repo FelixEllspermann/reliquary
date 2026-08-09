@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KingofDeckay
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: King of Deckay
-  artwork: {fileID: 0}
+  artwork: {fileID: 3696799885954725524, guid: 8e860a3b607d589469799441cd309f8e, type: 3}
   rarity: 3
   effects:
   - label: Coronation of Rot

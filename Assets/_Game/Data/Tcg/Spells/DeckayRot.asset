@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayRot
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deckay Rot
-  artwork: {fileID: 0}
+  artwork: {fileID: -4015755889498819629, guid: aebd1bf5ccb323f4c80efd2dead1597e, type: 3}
   rarity: 2
   effects:
   - label: Spread the Rot

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayLeech
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Leech
-  artwork: {fileID: 0}
+  artwork: {fileID: -3327282095260382265, guid: 6de3a5efdaf699f42ad3a7e04404cb27, type: 3}
   rarity: 1
   effects:
   - label: Crawl from the Wreck

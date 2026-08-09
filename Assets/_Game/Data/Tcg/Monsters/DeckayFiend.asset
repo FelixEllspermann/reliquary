@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayFiend
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Fiend
-  artwork: {fileID: 0}
+  artwork: {fileID: 7480873479946632233, guid: e33653368109ab641b9d299e28197e6d, type: 3}
   rarity: 1
   effects:
   - label: Feast of Endings

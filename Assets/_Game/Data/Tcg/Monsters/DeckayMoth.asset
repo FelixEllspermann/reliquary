@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayMoth
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Moth
-  artwork: {fileID: 0}
+  artwork: {fileID: -2903241345517697376, guid: e6a19c6efd5cd3c4d9ddaac252285ca0, type: 3}
   rarity: 0
   effects:
   - label: Dust Tithe

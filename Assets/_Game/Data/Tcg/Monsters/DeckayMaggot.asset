@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayMaggot
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Maggot
-  artwork: {fileID: 0}
+  artwork: {fileID: -4655966207092344695, guid: 0765e5dab03d594468c4f6eeb158f0b6, type: 3}
   rarity: 0
   effects:
   - label: Grave Tithe

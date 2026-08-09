@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SignsofDeckay
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Signs of Deckay
-  artwork: {fileID: 0}
+  artwork: {fileID: -1628371454467795086, guid: bd3f920903cf9a144b8307d5739cb95d, type: 3}
   rarity: 2
   effects:
   - label: Reclaim the Lost
