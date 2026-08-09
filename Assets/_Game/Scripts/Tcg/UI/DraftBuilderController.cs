@@ -378,7 +378,10 @@ namespace Rouge.Tcg.UI
             var cards = PlayerProfile.DraftPool.Keys
                 .Select(name => catalog != null ? catalog.FindByName(name) : null)
                 .Where(c => c != null)
-                .OrderBy(c => c.Kind).ThenBy(c => c is MonsterCardData m ? m.level : 0).ThenBy(c => c.cardName)
+                // Die garantierten Stapel (3+ Exemplare) zuerst — sie sind das
+                // Rückgrat des Decks und sollen nicht in der Namenswand versinken
+                .OrderByDescending(c => PoolCount(c.cardName) >= 3 ? PoolCount(c.cardName) : 0)
+                .ThenBy(c => c.Kind).ThenBy(c => c is MonsterCardData m ? m.level : 0).ThenBy(c => c.cardName)
                 .ToList();
 
             int used = 0;
