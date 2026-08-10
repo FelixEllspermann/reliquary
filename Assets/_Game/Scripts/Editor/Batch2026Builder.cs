@@ -210,6 +210,47 @@ namespace Rouge.Tcg.EditorTools
             king.reqGraveyardMonstersAtLeast = 8;
             king.reqMinMana = 5;
             king.passiveBurnPerMill = 200;
+
+            // ---- Erweiterung August 2026: 5 neue Deckay (approved) ----
+
+            Mon("Deckay Worm", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Animal, 400, 200,
+                Fx("Writhe Back", "Pay 1 Mana and banish 1 other \"Deckay\" card from your Graveyard: Special Summon this card from your Graveyard.",
+                    EffectTrigger.GraveyardIgnition, 1, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardSelf,
+                        nameFilter: "Deckay", excludeSelf: true, isCost: true),
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.SelfCard)));
+
+            Mon("Deckay Broodmother", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Animal, 500, 1200,
+                Fx("Tend the Brood", "During your End Phase: mill 2 cards.",
+                    EffectTrigger.EndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 2)).Mand(),
+                Fx("Renew the Nest", "If this card is sent from the Deck to the Graveyard: shuffle up to 3 cards from your Graveyard into your Deck.",
+                    EffectTrigger.OnMilledSelf, 0, true,
+                    Act(EffectActionType.ShuffleGraveyardIntoDeck, 3, TargetKind.GraveyardCardSelf,
+                        targetCount: 3, upTo: true)));
+
+            var glutton = Mon("Deckay Glutton", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Demon, 1200, 800,
+                Fx("Endless Hunger", "During your End Phase: mill 2 cards.",
+                    EffectTrigger.EndPhase, 0, false,
+                    Act(EffectActionType.MillSelf, 2)).Mand());
+            glutton.canSelfSpecialSummon = true;
+            glutton.selfSummonRequiresGraveNamedCount = 10;   // leerer Filter = alle Karten
+            glutton.selfSummonPosition = BattlePosition.Attack;
+            glutton.passiveAtkPerCount = 100;
+            glutton.passiveAtkPerCountKind = EffectCountKind.OwnBanishedMonsters;
+            UnityEditor.EditorUtility.SetDirty(glutton);
+
+            Spell("Deckay Swarm", CardRarity.Rare, true,
+                Fx("Blot the Sky", "Mill 3 cards. Then you can have 1 monster your opponent controls lose 800 ATK.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.MillSelf, 3),
+                    Act(EffectActionType.DebuffTargetAtk, 800, TargetKind.EnemyMonster, upTo: true)));
+
+            Spell("Feast of Deckay", CardRarity.Common, false,
+                Fx("First Course", "Mill 2 cards. Draw 1 card.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.MillSelf, 2),
+                    Act(EffectActionType.DrawCards, 1)));
         }
 
         // ---- Deckay-Feinwürze für Effekt-Definitionen ----
@@ -408,6 +449,8 @@ namespace Rouge.Tcg.EditorTools
             card.selfSummonRequiresGraveNamedCount = 0;
             card.selfSummonRequiresGraveNamed = "";
             card.selfSummonPosition = BattlePosition.Defense;
+            card.passiveAtkPerCount = 0;
+            card.passiveDefPerCount = 0;
             return card;
         }
 

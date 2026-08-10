@@ -95,8 +95,10 @@ namespace Rouge.Tcg
                 parts.Add($"your opponent controls {selfSummonRequiresOpponentMonsters}+ monsters");
             if (selfSummonRequiresMilled)
                 parts.Add("you milled this or last turn");
-            if (selfSummonRequiresGraveNamedCount > 0 && !string.IsNullOrEmpty(selfSummonRequiresGraveNamed))
-                parts.Add($"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
+            if (selfSummonRequiresGraveNamedCount > 0)
+                parts.Add(string.IsNullOrEmpty(selfSummonRequiresGraveNamed)
+                    ? $"you have {selfSummonRequiresGraveNamedCount}+ cards in your Graveyard"
+                    : $"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
 
             string position = selfSummonPosition == BattlePosition.Defense ? " in Defense Position" : "";
             if (parts.Count == 0)

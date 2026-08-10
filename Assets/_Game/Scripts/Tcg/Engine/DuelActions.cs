@@ -79,10 +79,11 @@ namespace Rouge.Tcg
                         // "N+ benannte Karten im Friedhof" (Vulture) als BEDINGUNG
                         bool milledOk = !monsterData.selfSummonRequiresMilled
                             || player.MilledThisTurn || player.MilledLastTurn;
+                        // Leerer Namensfilter = ALLE Friedhofskarten zählen (Deckay Glutton)
                         bool graveNamedOk = monsterData.selfSummonRequiresGraveNamedCount <= 0
-                            || string.IsNullOrEmpty(monsterData.selfSummonRequiresGraveNamed)
                             || player.Graveyard.Count(c =>
-                                   c.Name.Contains(monsterData.selfSummonRequiresGraveNamed))
+                                   string.IsNullOrEmpty(monsterData.selfSummonRequiresGraveNamed)
+                                   || c.Name.Contains(monsterData.selfSummonRequiresGraveNamed))
                                >= monsterData.selfSummonRequiresGraveNamedCount;
                         if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk)
                             request.Options.Add(new MainActionOption
@@ -2843,9 +2844,14 @@ namespace Rouge.Tcg
                 {
                     var (owner, card, trigger) = pendingOffers[0];
                     pendingOffers.RemoveAt(0);
-                    // Karte inzwischen weg vom Brett? Dann verfällt das Angebot —
-                    // Friedhofs-Ankünfte haben ihre eigene Pipeline.
-                    if (card == null || card.Zone == ZoneType.Graveyard || card.Zone == ZoneType.Banished)
+                    if (card == null) continue;
+                    // Friedhofs-Trigger (OnMilledSelf & Co.) ERWARTEN die Karte im
+                    // Friedhof — nur Feld-Trigger verfallen, wenn die Karte weg ist.
+                    bool graveTrigger = trigger == EffectTrigger.OnMilledSelf
+                        || trigger == EffectTrigger.OnDiscardedOrMilledSelf
+                        || trigger == EffectTrigger.OnSentToGraveyardSelf;
+                    if (graveTrigger && card.Zone != ZoneType.Graveyard) continue;
+                    if (!graveTrigger && (card.Zone == ZoneType.Graveyard || card.Zone == ZoneType.Banished))
                         continue;
                     yield return OfferTriggeredEffects(owner, card, trigger);
                 }

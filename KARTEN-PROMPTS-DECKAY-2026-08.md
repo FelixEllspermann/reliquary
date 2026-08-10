@@ -53,6 +53,35 @@ solo, towering demon king on a throne built from millions of compressed rotting 
 
 ---
 
+## Erweiterung (5 neue Karten)
+
+## 9. Deckay Worm (Common · DARK/Animal)
+```
+solo, no humans, pale segmented worm bursting halfway out of a grave mound of shredded cards, glistening wet body, tiny blind head with open ring maw, disturbed earth and torn card scraps flying, sickly green underglow, purple night fog, dark fantasy, macro detail, dramatic low angle, masterpiece, best quality, very aesthetic, absurdres, newest
+```
+
+## 10. Deckay Broodmother (Uncommon · DARK/Animal)
+```
+solo, no humans, bloated pale moth-queen resting on a nest woven from rotting cards, clusters of glowing eggs tucked into the paper folds, tattered wings folded like a cloak, caring posture, sickly green nest-light, deep purple crypt shadows, dark fantasy, intricate texture, soft eerie glow, masterpiece, best quality, very aesthetic, absurdres, newest
+```
+
+## 11. Deckay Glutton (Rare · DARK/Demon)
+```
+solo, obese slouching demon with a vast distended belly, skin stitched with banished card fragments, small greedy eyes, licking crooked teeth, sitting amid heaps of devoured card sleeves, faint green ghost-lights orbiting its gut, oppressive dark larder, purple gloom, dark fantasy, grotesque detail, dramatic side light, masterpiece, best quality, very aesthetic, absurdres, newest
+```
+
+## 12. Deckay Swarm (Rare · Quickplay Spell)
+```
+no humans, a black cloud of moths and maggot-flies erupting across a battlefield sky, wings scattering shredded card confetti, the swarm forming a descending wave over a lone silhouetted monster, sickly green moonbeams cut by wings, deep purple storm light, dark fantasy, motion blur, dramatic scale, masterpiece, best quality, very aesthetic, absurdres, newest
+```
+
+## 13. Feast of Deckay (Common · Spell)
+```
+no humans, a long rotten banquet table set with plates of torn glowing cards, candles with sickly green flames, small maggots and moths dining politely, one plate freshly served with a bright new card as dessert, purple velvet dark hall, dark fantasy, whimsical macabre, rich detail, masterpiece, best quality, very aesthetic, absurdres, newest
+```
+
+---
+
 ## Negativ-Prompt (für alle)
 ```
 nsfw, lowres, (bad), text, error, fewer, extra, missing, worst quality, jpeg artifacts, low quality, watermark, unfinished, displeasing, oldest, early, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]
