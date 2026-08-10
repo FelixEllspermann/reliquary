@@ -154,7 +154,11 @@ namespace Rouge.Tcg
         // --- Deckay (Mill-Archetype) ---
         ImmuneTargetThisTurn,       // Ziel ist bis Zugende unberührbar für gegnerische Effekt-AKTIONEN (und kein Ziel)
         SummonReliquaryFromExtraSuppressed, // Reliquary aus dem Extra Deck ohne Bedingungen (Mana fällig), ohne On-Summon; stirbt in der eigenen End Phase
-        DestroyAllOthersSelfDamagePer // ALLE anderen Feldkarten zerstören; amount Selbstschaden je zerstörter Karte
+        DestroyAllOthersSelfDamagePer, // ALLE anderen Feldkarten zerstören; amount Selbstschaden je zerstörter Karte
+
+        // --- Apocrypha (Chain-Negate) ---
+        NegateRestOfChain,          // annulliert alle FRÜHEREN Glieder der laufenden Kette (Apocrypha, the Unwritten)
+        AttackAgainSelf             // Quellkarte darf diese Battle Phase erneut angreifen (Chimera Infused)
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>

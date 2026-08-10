@@ -214,6 +214,92 @@ namespace Rouge.Tcg.EditorTools
             unsigned.passiveAtkPerCountKind = EffectCountKind.OwnGraveyardCards;
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Apocrypha (Myth)")]
+        public static void BuildApocrypha()
+        {
+            built.Clear();
+            Apocrypha();
+            Finish("Apocrypha");
+        }
+
+        // ---- APOCRYPHA (Light / Myth) · „Aus dem Buch gestrichen" ----
+        //
+        // Sphinx, Hydra, Chimera — Mythen, die die Chronisten verworfen haben.
+        // Kontroll-Archetype: Bounce, Hand-Blick, Wiedergänger. Der Endboss
+        // reißt mit NegateRestOfChain die komplette Kette unter sich aus dem
+        // Buch — das letzte Wort hat immer die ungeschriebene Seite.
+        private static void Apocrypha()
+        {
+            Mon("Apocrypha Roc", CardRarity.Common, 1, MonsterAttribute.Light, MonsterType.Myth, 900, 500,
+                Fx("Carried Off", "Pay 1 Mana: return 1 monster on the field to its owner's hand.",
+                    EffectTrigger.Ignition, 1, false,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.AnyMonster)),
+                Inf("Storm of Wings", "Pay 3 Mana instead: return up to 2 monsters.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.ReturnTargetToHand, 1, TargetKind.AnyMonster,
+                        targetCount: 2, upTo: true)));
+
+            Mon("Apocrypha Sphinx", CardRarity.Uncommon, 2, MonsterAttribute.Light, MonsterType.Myth, 1200, 1200,
+                Fx("First Riddle", "When this card is Summoned: look at your opponent's hand and choose 1 card; they discard it.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.LookAndDiscardChosen, 1, TargetKind.HandCardOpponent)),
+                Inf("Second Riddle", "Pay 2 Mana and banish this card from your Graveyard: look at your opponent's hand and choose 1 card; they discard it.",
+                    EffectTrigger.GraveyardIgnition, 2, false,
+                    Act(EffectActionType.BanishSelf, isCost: true),
+                    Act(EffectActionType.LookAndDiscardChosen, 1, TargetKind.HandCardOpponent)));
+
+            Mon("Apocrypha Chimera", CardRarity.Uncommon, 2, MonsterAttribute.Light, MonsterType.Myth, 1300, 900,
+                Fx("Borrowed Shape", "Pay 1 Mana: copy the ATK and DEF of 1 monster on the field until the end of the turn.",
+                    EffectTrigger.Quick, 1, false,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster)),
+                Inf("Second Head", "Pay 2 Mana instead: copy, and this card can attack once more this Battle Phase.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster),
+                    Act(EffectActionType.AttackAgainSelf)));
+
+            Mon("Apocrypha Hydra", CardRarity.Rare, 3, MonsterAttribute.Light, MonsterType.Myth, 1800, 1200,
+                Fx("Grow Back", "When this card is destroyed: you can Special Summon 1 \"Apocrypha\" monster from your Graveyard.",
+                    EffectTrigger.OnDestroyedSelf, 0, true,
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterSelf,
+                        nameFilter: "Apocrypha")),
+                Inf("Two Heads", "Pay 2 Mana: Special Summon up to 2 instead.",
+                    EffectTrigger.OnDestroyedSelf, 2, true,
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterSelf,
+                        nameFilter: "Apocrypha", targetCount: 2, upTo: true)));
+
+            Spell("Apocrypha Fable", CardRarity.Common, false,
+                Fx("Retell the Tale", "Add 1 \"Apocrypha\" card from your Deck to your hand.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckCardFiltered,
+                        nameFilter: "Apocrypha")));
+
+            var cartographer = Mon("Apocrypha Cartographer", CardRarity.Rare, 2, MonsterAttribute.Light, MonsterType.Myth, 1100, 1400,
+                Fx("Chart the Lost", "Pay 2 Mana and banish 1 card from your Graveyard: draw 1 card.",
+                    EffectTrigger.Ignition, 2, false,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardSelf, isCost: true),
+                    Act(EffectActionType.DrawCards, 1)));
+            cartographer.passiveAtkPerCount = 200;
+            cartographer.passiveAtkPerCountKind = EffectCountKind.OwnBanishedMonsters;
+
+            var unwritten = Rel("Apocrypha, the Unwritten", CardRarity.Legendary, 3,
+                MonsterAttribute.Light, MonsterType.Myth, 2500, 2100,
+                "3+ monsters in your Graveyard and 4+ Mana available — pay 2 Mana.", 2,
+                Fx("The Last Word", "Pay 2 Mana: negate all previous links of the current chain.",
+                    EffectTrigger.Quick, 2, true,
+                    Act(EffectActionType.NegateRestOfChain)));
+            unwritten.reqGraveyardMonstersAtLeast = 3;
+            unwritten.reqMinMana = 4;
+
+            var colophon = Rel("Apocrypha, Torn Colophon", CardRarity.Rare, 2,
+                MonsterAttribute.Light, MonsterType.Myth, 1900, 1700,
+                "Your opponent controls 2+ monsters — pay 2 Mana.", 2,
+                Fx("Missing Page", "If this card is Summoned: return 1 card your opponent controls to its owner's hand.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.ReturnTargetCardToHand, 1, TargetKind.EnemyCardOnField)).Mand());
+            colophon.reqOpponentMonstersAtLeast = 2;
+            colophon.passiveTaunt = true;
+        }
+
         // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
         // rastet die nächste ein" ----
         //

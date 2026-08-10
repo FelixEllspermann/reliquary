@@ -116,6 +116,15 @@ namespace Rouge.Tcg
         // während die äussere Aktivierung noch läuft.
         private int chainDepth;
 
+        // Die Karten der offenen Kettenglieder, außen → innen. Die Kette selbst
+        // lebt nur im Aufrufstapel (siehe chainDepth) — diese Liste ist der
+        // einzige Zugriff von innen nach außen, den NegateRestOfChain braucht.
+        private readonly List<CardInstance> chainCards = new List<CardInstance>();
+
+        // Von NegateRestOfChain annullierte Glieder: die Annullierung gilt dem
+        // Kettenglied, nicht der Karte — am Kettenende wird sie aufgehoben.
+        private readonly List<CardInstance> chainNegatedCards = new List<CardInstance>();
+
         // > 0, solange irgendein Ketten-Glied AUFLOEST. In dieser Zeit öffnen
         // sich keine neuen Reaktionsfenster — in einen Abbau grätscht niemand.
         private int resolvingChain;
@@ -268,6 +277,8 @@ namespace Rouge.Tcg
             TurnNumber = 0;
             responseDepth = 0;
             chainDepth = 0;
+            chainCards.Clear();
+            chainNegatedCards.Clear();
             resolvingChain = 0;
             Result = DuelResult.None;
             DuelRunning = true;

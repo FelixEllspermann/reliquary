@@ -841,6 +841,7 @@ namespace Rouge.Tcg
 
             activationSerial++;
             int chainLink = ++chainDepth;
+            chainCards.Add(spell);
             Log($"{player.Name} activates {spell.Name}{ActivationLogSuffix(effect)}.");
             if (presenter != null)
                 yield return presenter.ShowChainLink(spell, effect.label, player, chainLink);
@@ -948,6 +949,7 @@ namespace Rouge.Tcg
 
             activationSerial++;
             int chainLink = ++chainDepth;
+            chainCards.Add(card);
             Log($"{player.Name} activates {card.Name}: \"{effect.label}\"{ActivationLogSuffix(effect)}.");
             if (presenter != null)
                 yield return presenter.ShowChainLink(card, effect.label, player, chainLink);
@@ -1087,11 +1089,24 @@ namespace Rouge.Tcg
                 if (effect.onlyIfSpecialSummoned && !card.WasSpecialSummoned) continue;
                 if (effect.requiresEquippedArtifact && card.EquippedArtifacts.Count == 0) continue;
                 if (card.EffectsNegated) continue; // annullierte Karte kann nichts aktivieren
+                if (RequiresOpenChain(effect) && chainCards.Count == 0) continue;
                 if (!MeetsConditions(effect, player)) continue;
                 if (!HasValidTargets(effect, player, card)) continue;
                 result.Add(i);
             }
             return result;
+        }
+
+        /// <summary>
+        /// NegateRestOfChain braucht eine offene Kette: als Glied 1 (etwa im
+        /// Beschwörungs-Fenster) gäbe es nichts zu annullieren — der Effekt
+        /// wird dann gar nicht erst angeboten.
+        /// </summary>
+        private static bool RequiresOpenChain(EffectDefinition effect)
+        {
+            foreach (var action in effect.actions)
+                if (action.type == EffectActionType.NegateRestOfChain) return true;
+            return false;
         }
 
         /// <summary>Aktivierungs-Bedingungen des Effekts (minMana, Feld-/Hand-Vergleiche).</summary>
@@ -1525,6 +1540,35 @@ namespace Rouge.Tcg
                             if (hit == null || !IsOnField(hit)) continue;
                             hit.EffectsNegated = true;
                             Log($"{hit.Name}'s effects are negated until the end of the turn!");
+                            BoardChanged();
+                        }
+                        break;
+                    case EffectActionType.NegateRestOfChain:
+                    {
+                        // Die äußeren Glieder warten im Aufrufstapel und prüfen
+                        // EffectsNegated erst, wenn sie selbst auflösen — markieren
+                        // reicht. Das letzte Element ist die Quelle dieses Effekts.
+                        int torn = 0;
+                        for (int li = 0; li < chainCards.Count - 1; li++)
+                        {
+                            var link = chainCards[li];
+                            if (link == null || link.EffectsNegated) continue;
+                            link.EffectsNegated = true;
+                            chainNegatedCards.Add(link);
+                            torn++;
+                            Log($"{source.Name} negates {link.Name}'s activation!");
+                        }
+                        if (torn == 0) Log($"{source.Name}: no earlier chain links to negate.");
+                        BoardChanged();
+                        break;
+                    }
+                    case EffectActionType.AttackAgainSelf:
+                        // BonusAttacks ist die native Schiene für Zweitangriffe
+                        // (Battle-Checks und Bot-KI kennen sie bereits).
+                        if (IsOnField(source) && source.MonsterData != null)
+                        {
+                            source.BonusAttacks++;
+                            Log($"{source.Name} readies another attack!");
                             BoardChanged();
                         }
                         break;
@@ -2821,8 +2865,17 @@ namespace Rouge.Tcg
         private IEnumerator CloseChainLink()
         {
             if (chainDepth > 0) chainDepth--;
+            if (chainCards.Count > 0) chainCards.RemoveAt(chainCards.Count - 1);
             if (chainDepth == 0)
             {
+                // NegateRestOfChain traf die GLIEDER, nicht die Karten: nach der
+                // Kette ist eine so annullierte Karte wieder voll funktionsfähig.
+                // Muss VOR FlushPendingOffers passieren, sonst starten die
+                // nachgeholten Trigger mit fälschlich annullierten Karten.
+                foreach (var negated in chainNegatedCards)
+                    if (negated != null) negated.EffectsNegated = false;
+                chainNegatedCards.Clear();
+                chainCards.Clear();
                 if (presenter != null) yield return presenter.ShowChainEnd();
                 yield return FlushPendingOffers();
             }
@@ -2847,9 +2900,13 @@ namespace Rouge.Tcg
                     if (card == null) continue;
                     // Friedhofs-Trigger (OnMilledSelf & Co.) ERWARTEN die Karte im
                     // Friedhof — nur Feld-Trigger verfallen, wenn die Karte weg ist.
+                    // Auch Zerstörungs- und Tribut-Trigger gehören dazu: die Karte
+                    // liegt beim Nachholen zwangsläufig im Grab (Apocrypha Hydra).
                     bool graveTrigger = trigger == EffectTrigger.OnMilledSelf
                         || trigger == EffectTrigger.OnDiscardedOrMilledSelf
-                        || trigger == EffectTrigger.OnSentToGraveyardSelf;
+                        || trigger == EffectTrigger.OnSentToGraveyardSelf
+                        || trigger == EffectTrigger.OnDestroyedSelf
+                        || trigger == EffectTrigger.OnTributedSelf;
                     if (graveTrigger && card.Zone != ZoneType.Graveyard) continue;
                     if (!graveTrigger && (card.Zone == ZoneType.Graveyard || card.Zone == ZoneType.Banished))
                         continue;
