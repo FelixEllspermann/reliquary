@@ -10,60 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
-  m_Name: DeckayMaggot
+  m_Name: DeathpoemCalligrapher
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
-  cardName: Deckay Maggot
-  artwork: {fileID: -4655966207092344695, guid: 0765e5dab03d594468c4f6eeb158f0b6, type: 3}
-  rarity: 0
+  cardName: Deathpoem Calligrapher
+  artwork: {fileID: 0}
+  rarity: 1
   effects:
-  - label: Grave Tithe
-    text: 'During either player''s End Phase: mill 2 cards.'
+  - label: Ink for the Fallen
+    text: 'If this card is sent to the Graveyard: add 1 "Deathpoem" card from your
+      Deck to your hand.'
     isInfused: 0
     infusedKind: 0
     manaCost: 0
-    trigger: 20
-    oncePerTurn: 0
-    onlyIfSpecialSummoned: 0
-    requiresEquippedArtifact: 0
-    eitherPlayerMayActivate: 0
-    quickWindow: 0
-    mandatory: 1
-    onlyReliquarySummonResponse: 0
-    minMana: 0
-    minOwnMonsters: 0
-    minOwnFaceDownMonsters: 0
-    minOwnGraveyardCards: 0
-    requireOpponentMoreHandCards: 0
-    requireOpponentMoreMonsters: 0
-    requireMilledLastTurn: 0
-    minOwnGraveyardNamed: 0
-    graveyardNamedFilter: 
-    actions:
-    - type: 40
-      isCost: 0
-      amount: 2
-      target: 0
-      targetExcludesSelf: 0
-      useTypeFilter: 0
-      typeFilter: 0
-      levelFilter: 0
-      targetCount: 1
-      upToTargets: 0
-      nameFilter: 
-      mentionsFilter: 
-      maxAtkFilter: 0
-      useAttributeFilter: 0
-      attributeFilter: 0
-      countKind: 0
-      excludeSameName: 0
-  - label: Scent of Rot
-    text: 'If this card is sent from the Deck to the Graveyard: you can add 1 "Deckay"
-      Spell from your Deck to your hand.'
-    isInfused: 0
-    infusedKind: 0
-    manaCost: 0
-    trigger: 22
-    oncePerTurn: 0
+    trigger: 24
+    oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
@@ -83,28 +43,28 @@ MonoBehaviour:
     - type: 17
       isCost: 0
       amount: 1
-      target: 11
+      target: 12
       targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
       upToTargets: 0
-      nameFilter: Deckay
+      nameFilter: Deathpoem
       mentionsFilter: 
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
       excludeSameName: 0
-  auraAtkBonus: 0
+  auraAtkBonus: 200
   auraDefBonus: 0
-  auraNameFilter: 
+  auraNameFilter: Deathpoem
   auraUseTypeFilter: 0
   auraTypeFilter: 3
   auraLevelFilter: 0
   auraOnlyFaceDown: 0
-  auraExcludesSelf: 0
+  auraExcludesSelf: 1
   passiveTaunt: 0
   battleShieldMinOwnArtifacts: 0
   tributeWorth: 1
@@ -121,10 +81,10 @@ MonoBehaviour:
   fieldLimitCount: 0
   passiveBurnPerMill: 0
   level: 1
-  attribute: 1
-  monsterType: 2
-  atk: 300
-  def: 400
+  attribute: 3
+  monsterType: 1
+  atk: 600
+  def: 600
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0

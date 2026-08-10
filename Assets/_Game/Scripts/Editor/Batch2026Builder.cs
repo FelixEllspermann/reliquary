@@ -109,6 +109,111 @@ namespace Rouge.Tcg.EditorTools
             Finish("Failsafe");
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Deathpoem (Samurai)")]
+        public static void BuildDeathpoem()
+        {
+            built.Clear();
+            Deathpoem();
+            Finish("Deathpoem");
+        }
+
+        // ---- DEATHPOEM (Fire / Samurai) · „Das Opfer IST der Effekt" ----
+        //
+        // Samurai schrieben vor dem Tod ihr Jisei, das Todesgedicht. Jeder
+        // Deathpoem fällt von eigener Hand (Tribute als Kosten) und reißt dabei
+        // etwas mit. Der Friedhof füllt sich — Vow, Duelist und die Reliquaries
+        // leben davon.
+        private static void Deathpoem()
+        {
+            Mon("Deathpoem Initiate", CardRarity.Common, 1, MonsterAttribute.Fire, MonsterType.Human, 800, 400,
+                Fx("Opening Verse", "Pay 1 Mana and tribute this card: destroy 1 monster with 1500 or less ATK.",
+                    EffectTrigger.Ignition, 1, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster, maxAtk: 1500)),
+                Inf("Perfect Cut", "Pay 3 Mana instead: destroy 1 monster (no ATK limit).",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster)));
+
+            Mon("Deathpoem Duelist", CardRarity.Uncommon, 2, MonsterAttribute.Fire, MonsterType.Human, 1400, 200,
+                Fx("Second Verse", "Pay 2 Mana and tribute this card: destroy 1 monster.",
+                    EffectTrigger.Ignition, 2, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster)),
+                Inf("Echo of the Blade", "Pay 2 Mana and banish this card from your Graveyard: Special Summon 1 Level 1 \"Deathpoem\" monster from your Graveyard.",
+                    EffectTrigger.GraveyardIgnition, 2, false,
+                    Act(EffectActionType.BanishSelf, isCost: true),
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterSelf,
+                        level: 1, nameFilter: "Deathpoem")));
+
+            var calligrapher = Mon("Deathpoem Calligrapher", CardRarity.Uncommon, 1, MonsterAttribute.Fire, MonsterType.Human, 600, 600,
+                Fx("Ink for the Fallen", "If this card is sent to the Graveyard: add 1 \"Deathpoem\" card from your Deck to your hand.",
+                    EffectTrigger.OnSentToGraveyardSelf, 0, true,
+                    Act(EffectActionType.AddTargetFromDeckToHand, 1, TargetKind.DeckCardFiltered,
+                        nameFilter: "Deathpoem")));
+            calligrapher.auraAtkBonus = 200;
+            calligrapher.auraNameFilter = "Deathpoem";
+            calligrapher.auraExcludesSelf = true;
+
+            Mon("Deathpoem Housebane", CardRarity.Rare, 3, MonsterAttribute.Fire, MonsterType.Human, 2000, 1000,
+                Fx("Verse of Ruin", "Pay 3 Mana and tribute this card: destroy up to 2 monsters.",
+                    EffectTrigger.Ignition, 3, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster,
+                        targetCount: 2, upTo: true)),
+                Inf("Verse of Silence", "Pay 5 Mana instead: destroy up to 2 monsters AND return up to 1 Spell or Artifact on the field to its owner's hand.",
+                    EffectTrigger.Ignition, 5, true,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster,
+                        targetCount: 2, upTo: true),
+                    Act(EffectActionType.ReturnTargetCardToHand, 1, TargetKind.EnemySpellOrArtifact, upTo: true)));
+
+            Spell("Deathpoem Vow", CardRarity.Common, false,
+                Fx("Recite the Verse", "Special Summon 1 \"Deathpoem\" monster from your Graveyard.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterSelf,
+                        nameFilter: "Deathpoem")),
+                Inf("Recite the Anthology", "Pay 3 Mana instead: Special Summon up to 2.",
+                    EffectTrigger.OnActivate, 3, true,
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterSelf,
+                        nameFilter: "Deathpoem", targetCount: 2, upTo: true)));
+
+            var finalVerse = Mon("Deathpoem, the Final Verse", CardRarity.Rare, 3, MonsterAttribute.Fire, MonsterType.Human, 1800, 1600,
+                Fx("Closing Line", "Pay 2 Mana and tribute this card: destroy 1 monster and return up to 1 Spell or Artifact to its owner's hand.",
+                    EffectTrigger.Ignition, 2, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.ReturnTargetCardToHand, 1, TargetKind.EnemySpellOrArtifact, upTo: true)));
+            finalVerse.canSelfSpecialSummon = true;
+            finalVerse.selfSummonRequiresGraveNamedCount = 3;
+            finalVerse.selfSummonRequiresGraveNamed = "Deathpoem";
+            finalVerse.selfSummonPosition = BattlePosition.Attack;
+
+            var stanza = Rel("Deathpoem, the Hundredth Stanza", CardRarity.Legendary, 3,
+                MonsterAttribute.Fire, MonsterType.Human, 2400, 1800,
+                "5+ monsters in your Graveyard — pay 3 Mana.", 3,
+                Fx("Hundred Blades Falling", "If this card is Summoned: you can destroy up to 2 monsters your opponent controls.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster,
+                        targetCount: 2, upTo: true)),
+                Fx("The Book Closes", "Pay 3 Mana and tribute this card: destroy up to 3 monsters.",
+                    EffectTrigger.Ignition, 3, false,
+                    Act(EffectActionType.SendSelfToGraveyard, isCost: true),
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster,
+                        targetCount: 3, upTo: true)));
+            stanza.reqGraveyardMonstersAtLeast = 5;
+
+            var unsigned = Rel("Deathpoem, Unsigned Verse", CardRarity.Rare, 2,
+                MonsterAttribute.Fire, MonsterType.Human, 1000, 1500,
+                "Your Graveyard holds 6+ cards — pay 2 Mana.", 2,
+                Inf("Unwritten Ending", "Pay 2 Mana: this card cannot be destroyed this turn.",
+                    EffectTrigger.Quick, 2, false,
+                    Act(EffectActionType.ProtectSelfThisTurn)));
+            unsigned.reqGraveyardAtLeast = 6;
+            unsigned.passiveAtkPerCount = 100;
+            unsigned.passiveAtkPerCountKind = EffectCountKind.OwnGraveyardCards;
+        }
+
         // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
         // rastet die nächste ein" ----
         //

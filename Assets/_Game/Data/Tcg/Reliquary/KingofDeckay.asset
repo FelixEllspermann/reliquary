@@ -174,6 +174,9 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
   summonText: "8+ monsters in your Graveyard and 5+ Mana available \u2014 the Summon
     itself costs nothing."

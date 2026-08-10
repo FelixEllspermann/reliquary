@@ -9,25 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3738c6c4395e4ca47b77949457853ce9, type: 3}
-  m_Name: DeckayMaggot
-  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
-  cardName: Deckay Maggot
-  artwork: {fileID: -4655966207092344695, guid: 0765e5dab03d594468c4f6eeb158f0b6, type: 3}
-  rarity: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: DeathpoemtheHundredthStanza
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
+  cardName: Deathpoem, the Hundredth Stanza
+  artwork: {fileID: 0}
+  rarity: 3
   effects:
-  - label: Grave Tithe
-    text: 'During either player''s End Phase: mill 2 cards.'
+  - label: Hundred Blades Falling
+    text: 'If this card is Summoned: you can destroy up to 2 monsters your opponent
+      controls.'
     isInfused: 0
     infusedKind: 0
     manaCost: 0
-    trigger: 20
-    oncePerTurn: 0
+    trigger: 3
+    oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
-    mandatory: 1
+    mandatory: 0
     onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
@@ -39,16 +40,16 @@ MonoBehaviour:
     minOwnGraveyardNamed: 0
     graveyardNamedFilter: 
     actions:
-    - type: 40
+    - type: 4
       isCost: 0
-      amount: 2
-      target: 0
+      amount: 1
+      target: 1
       targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
-      targetCount: 1
-      upToTargets: 0
+      targetCount: 2
+      upToTargets: 1
       nameFilter: 
       mentionsFilter: 
       maxAtkFilter: 0
@@ -56,13 +57,12 @@ MonoBehaviour:
       attributeFilter: 0
       countKind: 0
       excludeSameName: 0
-  - label: Scent of Rot
-    text: 'If this card is sent from the Deck to the Graveyard: you can add 1 "Deckay"
-      Spell from your Deck to your hand.'
+  - label: The Book Closes
+    text: 'Pay 3 Mana and tribute this card: destroy up to 3 monsters.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
-    trigger: 22
+    manaCost: 3
+    trigger: 0
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
@@ -80,17 +80,34 @@ MonoBehaviour:
     minOwnGraveyardNamed: 0
     graveyardNamedFilter: 
     actions:
-    - type: 17
-      isCost: 0
+    - type: 24
+      isCost: 1
       amount: 1
-      target: 11
+      target: 0
       targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
       upToTargets: 0
-      nameFilter: Deckay
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+    - type: 4
+      isCost: 0
+      amount: 1
+      target: 1
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 3
+      upToTargets: 1
+      nameFilter: 
       mentionsFilter: 
       maxAtkFilter: 0
       useAttributeFilter: 0
@@ -120,11 +137,11 @@ MonoBehaviour:
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0
-  level: 1
-  attribute: 1
-  monsterType: 2
-  atk: 300
-  def: 400
+  level: 3
+  attribute: 3
+  monsterType: 1
+  atk: 2400
+  def: 1800
   canSelfSpecialSummon: 0
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
@@ -138,3 +155,25 @@ MonoBehaviour:
   selfSummonRequiresGraveNamedCount: 0
   selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
+  summonText: "5+ monsters in your Graveyard \u2014 pay 3 Mana."
+  summonManaCost: 3
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqGraveyardMonstersAtLeast: 5
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0
