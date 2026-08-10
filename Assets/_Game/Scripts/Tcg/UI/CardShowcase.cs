@@ -25,7 +25,7 @@ namespace Rouge.Tcg.UI
                 var withArt = new List<CardDefinition>();
                 foreach (var card in randomCatalog.cards)
                 {
-                    if (card == null || card is PlayerCardData) continue;
+                    if (card == null || card is PlayerCardData || card.isToken) continue;
                     pool.Add(card);
                     if (card.artwork != null) withArt.Add(card);
                 }

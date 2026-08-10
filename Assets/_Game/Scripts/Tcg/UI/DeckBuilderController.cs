@@ -164,7 +164,7 @@ namespace Rouge.Tcg.UI
             network = NetworkManager.Instance;
             if (catalog != null)
             {
-                pool = catalog.cards.Where(c => c != null && !(c is PlayerCardData)).ToList();
+                pool = catalog.cards.Where(c => c != null && !(c is PlayerCardData) && !c.isToken).ToList();
                 heroes = catalog.cards.OfType<PlayerCardData>().ToList();
             }
 

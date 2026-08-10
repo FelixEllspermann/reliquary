@@ -22,8 +22,10 @@ MonoBehaviour:
   normalSummonsPerTurn: 1
   tributesForLevel2: 1
   tributesForLevel3: 2
+  illusionToken: {fileID: 11400000, guid: e099286fb70f081409d671ac94ec6f9e, type: 2}
   deckMinSize: 40
   deckMaxSize: 80
   handLimit: 8
   maxCopiesPerCard: 3
+  extraDeckMaxSize: 20
   positionChangesPerTurn: 1

@@ -35,6 +35,9 @@ namespace Rouge.Tcg
         [Tooltip("Der Gegner kontrolliert mindestens so viele Monster (0 = aus)")]
         [Range(0, 5)] public int reqOpponentMonstersAtLeast;
 
+        [Tooltip("Der Gegner kontrolliert mindestens 1 Monster, dessen Name diesen Text enthält (leer = aus)")]
+        public string reqOpponentNamedOnField = "";
+
         [Tooltip("Du hast mindestens so viel Mana verfügbar (Bedingung, keine Kosten; 0 = aus)")]
         [Range(0, 10)] public int reqMinMana;
 

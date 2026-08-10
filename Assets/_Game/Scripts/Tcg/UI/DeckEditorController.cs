@@ -92,7 +92,7 @@ namespace Rouge.Tcg.UI
             // Pool und Helden-Liste immer aus dem Katalog ableiten — neue Karten erscheinen automatisch
             if (catalog != null)
             {
-                cardPool = catalog.cards.Where(c => c != null && !(c is PlayerCardData)).ToList();
+                cardPool = catalog.cards.Where(c => c != null && !(c is PlayerCardData) && !c.isToken).ToList();
                 playerCards = catalog.cards.OfType<PlayerCardData>().ToList();
             }
 

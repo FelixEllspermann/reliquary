@@ -38,6 +38,12 @@ namespace Rouge.Tcg
         [Tooltip("Tribute für ein Level-3-Monster")]
         [Range(0, 4)] public int tributesForLevel3 = 2;
 
+        [Header("Tokens")]
+        [Tooltip("Definition des Illusion-Tokens (Gaslight). Unity: Inspector-Referenz; " +
+                 "Server: wird nach dem CardLibrary-Load per Name gesetzt. " +
+                 "Der Export überspringt Unity-Objekt-Referenzen automatisch.")]
+        public MonsterCardData illusionToken;
+
         [Header("Deck & Hand")]
         [Tooltip("Minimale Deckgröße")]
         public int deckMinSize = 40;

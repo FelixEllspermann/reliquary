@@ -51,10 +51,14 @@ namespace Rouge.Tcg.EditorTools
             System.IO.File.WriteAllText(fullPath, full.ToString(), new UTF8Encoding(false));
 
             // ---- cards.json (Name -> Rarity) ----
+            // Tokens bleiben draußen: node speist daraus Pack-, Draft- und
+            // Craft-Pools — ein Token ist nicht sammelbar. (cards-full.json
+            // behält ihn, der DuelHost braucht die Definition.)
+            var collectible = cards.Where(c => !c.isToken).ToList();
             var legacy = new StringBuilder("{\n");
-            for (int i = 0; i < cards.Count; i++)
-                legacy.Append(' ').Append(Quote(cards[i].cardName)).Append(": ")
-                      .Append((int)cards[i].rarity).Append(i < cards.Count - 1 ? ",\n" : "\n");
+            for (int i = 0; i < collectible.Count; i++)
+                legacy.Append(' ').Append(Quote(collectible[i].cardName)).Append(": ")
+                      .Append((int)collectible[i].rarity).Append(i < collectible.Count - 1 ? ",\n" : "\n");
             legacy.Append("}\n");
             System.IO.File.WriteAllText(System.IO.Path.Combine(dataDir, "cards.json"),
                 legacy.ToString(), new UTF8Encoding(false));

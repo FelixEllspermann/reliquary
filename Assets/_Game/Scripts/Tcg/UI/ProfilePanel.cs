@@ -578,7 +578,7 @@ namespace Rouge.Tcg.UI
             var owned = new int[4];
             foreach (var card in catalog.cards)
             {
-                if (card == null) continue;
+                if (card == null || card.isToken) continue; // Tokens sind nicht sammelbar
                 int slot = Mathf.Clamp((int)card.rarity, 0, 3);
                 total[slot]++;
                 if (PlayerProfile.Collection.ContainsKey(card.cardName)) owned[slot]++;

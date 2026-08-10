@@ -47,7 +47,7 @@ namespace Rouge.Tcg
             {
                 resolvedAllCache = new List<CardDefinition>();
                 foreach (var card in catalog.cards)
-                    if (card != null && !(card is PlayerCardData)) resolvedAllCache.Add(card);
+                    if (card != null && !(card is PlayerCardData) && !card.isToken) resolvedAllCache.Add(card);
             }
             return resolvedAllCache ?? cardPool;
         }

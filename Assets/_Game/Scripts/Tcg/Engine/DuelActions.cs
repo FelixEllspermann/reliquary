@@ -340,6 +340,8 @@ namespace Rouge.Tcg
             if (data.reqLifeBelowOpponent && player.LifePoints >= opponent.LifePoints) return false;
             if (data.reqOpponentMoreMonsters && opponent.MonsterCount() <= player.MonsterCount()) return false;
             if (data.reqOpponentMonstersAtLeast > 0 && opponent.MonsterCount() < data.reqOpponentMonstersAtLeast) return false;
+            if (!string.IsNullOrEmpty(data.reqOpponentNamedOnField)
+                && !opponent.Monsters().Any(m => !m.FaceDown && m.Name.Contains(data.reqOpponentNamedOnField))) return false;
             if (data.reqOwnArtifactsOnField > 0
                 && player.ArtifactZones.Count(a => a != null) < data.reqOwnArtifactsOnField) return false;
             if (data.reqOwnArtifactsInGrave > 0
@@ -1572,6 +1574,58 @@ namespace Rouge.Tcg
                             BoardChanged();
                         }
                         break;
+
+                    case EffectActionType.SummonIllusionTokensToOpponent:
+                        yield return SpawnIllusionTokens(player.Opponent, Math.Max(1, action.amount));
+                        break;
+
+                    case EffectActionType.DestroyIllusionTokensDrawPer:
+                    {
+                        // Bis zu amount gegnerische Illusion-Tokens zerstören,
+                        // je 1 Karte ziehen — gedeckelt auf targetCount Draws.
+                        int destroyed = 0;
+                        int maxDestroy = Math.Max(1, action.amount);
+                        foreach (var zone in player.Opponent.MonsterZones.ToArray())
+                        {
+                            if (destroyed >= maxDestroy) break;
+                            if (zone == null || zone.Definition == null || !zone.Definition.isToken) continue;
+                            yield return DestroyCard(zone);
+                            if (Result != DuelResult.None) yield break;
+                            destroyed++;
+                        }
+                        int draws = Math.Min(destroyed, Math.Max(1, action.targetCount));
+                        if (destroyed == 0) Log($"{player.Name} finds no Illusion Token to shatter.");
+                        else if (draws > 0)
+                        {
+                            if (!TryDraw(player, draws)) yield break;
+                            yield return PresentDraws(player);
+                            yield return FireOpponentDrawTriggers(player);
+                        }
+                        if (Result != DuelResult.None) yield break;
+                        break;
+                    }
+
+                    case EffectActionType.DestroyAllIllusionTokensDebuffTargetPer:
+                    {
+                        int shattered = 0;
+                        foreach (var duelist in new[] { player, player.Opponent })
+                            foreach (var zone in duelist.MonsterZones.ToArray())
+                            {
+                                if (zone == null || zone.Definition == null || !zone.Definition.isToken) continue;
+                                yield return DestroyCard(zone);
+                                if (Result != DuelResult.None) yield break;
+                                shattered++;
+                            }
+                        int debuff = shattered * action.amount;
+                        if (shattered == 0) Log($"{source.Name}: no Illusion Tokens on the field — nothing happens.");
+                        else if (target != null && IsOnField(target) && target.MonsterData != null && debuff > 0)
+                        {
+                            target.PermanentAtkBonus -= debuff;
+                            Log($"{target.Name} loses {debuff} ATK ({shattered} Illusion Token{(shattered == 1 ? "" : "s")} shattered).");
+                            BoardChanged();
+                        }
+                        break;
+                    }
                     case EffectActionType.ProtectSelfThisTurn:
                         if (IsOnField(source))
                         {
@@ -1641,6 +1695,7 @@ namespace Rouge.Tcg
                         {
                             var target2 = hit;
                             if (!IsOnField(target2)) continue;
+                            if (DissolveIfToken(target2)) continue; // Illusionen kehren nirgendwohin zurück
                             if (ReturnToExtraDeck(target2)) // Reliquarys kehren ins Extra Deck zurück
                             {
                                 yield return FireBounceTriggers(target2, wasMonster: true);
@@ -2009,6 +2064,7 @@ namespace Rouge.Tcg
                         foreach (var hit in affected)
                         {
                             if (!IsOnField(hit)) continue;
+                            if (DissolveIfToken(hit)) continue; // Illusionen kehren nirgendwohin zurück
                             bool bouncedMonster = hit.MonsterData != null;
                             if (ReturnToExtraDeck(hit)) // Reliquarys kehren ins Extra Deck zurück
                             {
@@ -3394,8 +3450,65 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             monster.EquippedArtifacts.Clear();
         }
 
+        /// <summary>
+        /// Löst ein Token auf, statt es in eine Ablage zu bewegen. Danach liegt es
+        /// in KEINER Liste mehr (Zone-Tag Banished nur als "weg"-Markierung,
+        /// ohne Banished-Eintrag) — Friedhofs-/Banish-Bedingungen sehen es nie.
+        /// </summary>
+        private bool DissolveIfToken(CardInstance card)
+        {
+            if (card?.Definition == null || !card.Definition.isToken) return false;
+            RemoveFromCurrentZone(card);
+            card.Zone = ZoneType.Banished;
+            Log($"{card.Name} dissolves into nothing.");
+            BoardChanged();
+            return true;
+        }
+
+        /// <summary>
+        /// Gaslight: Platziert bis zu count Illusion-Tokens auf FREIE Monster-Zonen
+        /// des Empfängers — offen in Verteidigung. Bewusst KEINE Summon-Trigger und
+        /// kein Reaktionsfenster: die Platzierung ist Teil einer Effekt-Auflösung
+        /// und gilt nicht als Beschwörung (sonst Mirrorwalk-Endlosschleife).
+        /// </summary>
+        private IEnumerator SpawnIllusionTokens(PlayerState receiver, int count)
+        {
+            var tokenDef = rules != null ? rules.illusionToken : null;
+            if (tokenDef == null)
+            {
+                Log("No Illusion Token definition configured — nothing happens.");
+                yield break;
+            }
+            int placed = 0;
+            for (int i = 0; i < count; i++)
+            {
+                int free = receiver.FirstFreeZoneIndex(receiver.MonsterZones);
+                if (free < 0) break;
+                var token = new CardInstance(tokenDef, receiver)
+                {
+                    Zone = ZoneType.MonsterZone,
+                    Position = BattlePosition.Defense,
+                    SummonedThisTurn = true,
+                    WasSpecialSummoned = true
+                };
+                receiver.MonsterZones[free] = token;
+                placed++;
+                BoardChanged();
+                if (presenter != null) yield return presenter.ShowSummon(token);
+            }
+            if (placed > 0)
+                Log($"{placed} Illusion Token{(placed == 1 ? "" : "s")} appear{(placed == 1 ? "s" : "")} on {receiver.Name}'s field.");
+            else
+                Log($"{receiver.Name} has no free Monster Zone — no Illusion Token appears.");
+        }
+
         public void MoveToGraveyard(CardInstance card)
         {
+            // Tokens sind Illusionen: statt in den Friedhof zu wandern, lösen sie
+            // sich auf — sie liegen danach in KEINER Liste und zählen für keine
+            // Friedhofs-Bedingung.
+            if (DissolveIfToken(card)) return;
+
             // Deckay: Karten mit Friedhofs-Triggern merken sich ihre Herkunft —
             // die Trigger feuern gesammelt an der nächsten Naht (FirePendingGraveTriggers),
             // denn dieser Umzug hier ist synchron und kann keine Kette starten.
@@ -3443,6 +3556,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
 
         private void MoveToBanished(CardInstance card)
         {
+            if (DissolveIfToken(card)) return;
             DetachEquipsToGraveyard(card);
             RemoveFromCurrentZone(card);
             if (card.OriginalOwner != null) card.Owner = card.OriginalOwner; // zurück zum Besitzer

@@ -16,6 +16,9 @@ namespace Rouge.Tcg
         [Tooltip("Seltenheit — bestimmt Pack-Ziehungen und Craft-Kosten")]
         public CardRarity rarity = CardRarity.Common;
 
+        [Tooltip("Token: nur von Effekten erzeugt — nicht sammelbar, nicht im Deck, löst sich beim Verlassen des Feldes auf")]
+        public bool isToken;
+
         [Header("Effekte (Normal & Infused)")]
         [Tooltip("Alle Effekte dieser Karte. Infused-Effekte werden auf der Karte getrennt dargestellt und kosten Mana.")]
         public List<EffectDefinition> effects = new List<EffectDefinition>();
@@ -165,6 +168,7 @@ namespace Rouge.Tcg
                 case EffectCountKind.OwnGraveyardCards: return "the cards in your Graveyard";
                 case EffectCountKind.EquippedArtifactsOnSelf: return "its equipped Artifacts";
                 case EffectCountKind.OpponentFaceDownMonsters: return "your opponent's face-down monsters";
+                case EffectCountKind.OpponentIllusionTokens: return "the Illusion Tokens your opponent controls";
                 default: return "your monsters on the field";
             }
         }

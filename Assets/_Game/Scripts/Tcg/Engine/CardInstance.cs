@@ -142,6 +142,14 @@ namespace Rouge.Tcg
                     foreach (var m in player.Opponent.MonsterZones) if (m != null && m.FaceDown) foeFaceDown++;
                     return foeFaceDown;
                 }
+                case EffectCountKind.OpponentIllusionTokens:
+                {
+                    if (player.Opponent == null) return 0;
+                    int tokens = 0;
+                    foreach (var m in player.Opponent.MonsterZones)
+                        if (m != null && m.Definition != null && m.Definition.isToken) tokens++;
+                    return tokens;
+                }
                 default: return 0;
             }
         }

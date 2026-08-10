@@ -35,6 +35,12 @@ namespace Rouge.DuelHost
                 if (string.IsNullOrEmpty(card.cardName)) card.cardName = entry.Name;
                 library.Catalog.cards.Add(card);
             }
+
+            // Karten-Referenzen überleben den JSON-Weg nicht (der Export überspringt
+            // Unity-Objekte) — nach dem Laden per Name nachziehen.
+            library.Rules.illusionToken = library.Catalog.cards
+                .Find(c => c.cardName == "Illusion Token") as MonsterCardData;
+
             return library;
         }
 

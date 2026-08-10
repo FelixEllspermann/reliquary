@@ -158,7 +158,12 @@ namespace Rouge.Tcg
 
         // --- Apocrypha (Chain-Negate) ---
         NegateRestOfChain,          // annulliert alle FRÜHEREN Glieder der laufenden Kette (Apocrypha, the Unwritten)
-        AttackAgainSelf             // Quellkarte darf diese Battle Phase erneut angreifen (Chimera Infused)
+        AttackAgainSelf,            // Quellkarte darf diese Battle Phase erneut angreifen (Chimera Infused)
+
+        // --- Gaslight (Illusion-Tokens) ---
+        SummonIllusionTokensToOpponent,   // amount Illusion-Tokens (0/0, DEF) auf FREIE Gegner-Zonen; keine Summon-Trigger
+        DestroyIllusionTokensDrawPer,     // bis zu amount gegnerische Illusion-Tokens zerstören; je 1 Karte ziehen (Cap: targetCount)
+        DestroyAllIllusionTokensDebuffTargetPer // ALLE Illusion-Tokens zerstören; Ziel-Monster verliert amount ATK je Token
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
@@ -171,7 +176,8 @@ namespace Rouge.Tcg
         OwnGraveyardCards,      // Karten im eigenen Friedhof
         OwnMonstersOnField,     // eigene Monster auf dem Feld
         EquippedArtifactsOnSelf, // an DIESER Karte ausgerüstete Artefakte (nur Passiv-Skalierung)
-        OpponentFaceDownMonsters // verdeckte Monster des Gegners (Night Terror)
+        OpponentFaceDownMonsters, // verdeckte Monster des Gegners (Night Terror)
+        OpponentIllusionTokens  // Illusion-Tokens auf dem gegnerischen Feld (Gaslight Charlatan)
     }
 
     public enum TargetKind

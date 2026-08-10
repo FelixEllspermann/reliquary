@@ -300,6 +300,97 @@ namespace Rouge.Tcg.EditorTools
             colophon.passiveTaunt = true;
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Gaslight (Illusion)")]
+        public static void BuildGaslight()
+        {
+            built.Clear();
+            Gaslight();
+            Finish("Gaslight");
+
+            // Token-Referenz im Regelwerk verankern — die Engine spawnt darüber
+            // (Server setzt sie nach dem CardLibrary-Load per Name).
+            var rules = AssetDatabase.LoadAssetAtPath<GameRules>("Assets/_Game/Data/Tcg/GameRules.asset");
+            var token = built.Find(c => c != null && c.isToken) as MonsterCardData;
+            if (rules != null && token != null && rules.illusionToken != token)
+            {
+                rules.illusionToken = token;
+                EditorUtility.SetDirty(rules);
+                AssetDatabase.SaveAssets();
+            }
+        }
+
+        // ---- GASLIGHT (Dark / Myth) · „Das eingeredete Feld" ----
+        //
+        // Illusionisten, die dem Gegner 0/0-Trugbilder aufs Feld reden: Die
+        // Tokens verstopfen seine Zonen, und Gaslight-Karten ernten sie —
+        // als Kartenvorteil, ATK-Skalierung oder Debuff. Tokens lösen sich
+        // beim Verlassen des Feldes auf und zählen nie im Friedhof.
+        private static void Gaslight()
+        {
+            var token = Mon("Illusion Token", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Myth, 0, 0);
+            token.isToken = true;
+
+            Mon("Gaslight Lanternist", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Myth, 700, 700,
+                Fx("Remember This?", "When this card is Summoned: Summon 1 Illusion Token (0/0) to your opponent's field.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 1)),
+                Inf("Remember Both?", "Pay 2 Mana instead: Summon 2.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 2)));
+
+            Spell("Gaslight Usher", CardRarity.Common, false,
+                Fx("Right This Way", "Summon 2 Illusion Tokens (0/0) to your opponent's field.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 2)));
+
+            Mon("Gaslight Mesmer", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Myth, 1100, 900,
+                Fx("Shatter the Doubt", "Pay 1 Mana: destroy 1 Illusion Token your opponent controls; draw 1 card.",
+                    EffectTrigger.Ignition, 1, false,
+                    Act(EffectActionType.DestroyIllusionTokensDrawPer, 1, targetCount: 1)),
+                Inf("Shatter It All", "Pay 2 Mana instead: destroy up to 2; draw 1 for each.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.DestroyIllusionTokensDrawPer, 2, targetCount: 2)));
+
+            Spell("Gaslight Mirrorwalk", CardRarity.Uncommon, true,
+                Fx("And Another One", "When your opponent Summons a monster: Summon 1 Illusion Token (0/0) to their field.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 1)).InWindow(QuickWindow.SummonResponse));
+
+            var charlatan = Mon("Gaslight Charlatan", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Myth, 1600, 1200,
+                Inf("Nothing Up My Sleeve", "Pay 2 Mana: this card cannot be targeted by your opponent's effects this turn.",
+                    EffectTrigger.Quick, 2, false,
+                    Act(EffectActionType.ImmuneTargetThisTurn, 1, TargetKind.SelfCard)));
+            charlatan.passiveAtkPerCount = 300;
+            charlatan.passiveAtkPerCountKind = EffectCountKind.OpponentIllusionTokens;
+
+            Spell("Gaslight Curtain Call", CardRarity.Rare, false,
+                Fx("The Reveal", "Destroy all Illusion Tokens your opponent controls; draw 1 card for each (max 3).",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.DestroyIllusionTokensDrawPer, 99, targetCount: 3)));
+
+            var premiere = Rel("Gaslight, the Grand Premiere", CardRarity.Legendary, 3,
+                MonsterAttribute.Dark, MonsterType.Myth, 2200, 2000,
+                "Your opponent controls 3+ monsters — pay 3 Mana.", 3,
+                Fx("Full House", "If this card is Summoned: fill your opponent's empty Monster Zones with Illusion Tokens (0/0).",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 5)),
+                Fx("Lights Down", "Pay 3 Mana: destroy all Illusion Tokens; 1 monster your opponent controls loses 400 ATK for each.",
+                    EffectTrigger.Ignition, 3, false,
+                    Act(EffectActionType.DestroyAllIllusionTokensDebuffTargetPer, 400, TargetKind.EnemyMonster)));
+            premiere.reqOpponentMonstersAtLeast = 3;
+
+            var ovation = Rel("Gaslight, Standing Ovation", CardRarity.Rare, 2,
+                MonsterAttribute.Dark, MonsterType.Myth, 1700, 1600,
+                "Your opponent controls an Illusion Token — pay 2 Mana.", 2,
+                Fx("Encore", "If this card is Summoned: Summon 1 Illusion Token (0/0) to your opponent's field.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SummonIllusionTokensToOpponent, 1)));
+            ovation.reqOpponentNamedOnField = "Illusion Token";
+            ovation.auraAtkBonus = 300;
+            ovation.auraNameFilter = "Gaslight";
+            ovation.auraExcludesSelf = true;
+        }
+
         // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
         // rastet die nächste ein" ----
         //
@@ -678,6 +769,7 @@ namespace Rouge.Tcg.EditorTools
             // schon zugewiesenen Bilder verlieren.
 
             // Alle Passiv-Felder zurücksetzen, damit ein zweiter Lauf nichts erbt
+            card.isToken = false;
             card.auraAtkBonus = 0; card.auraDefBonus = 0; card.auraNameFilter = "";
             card.auraUseTypeFilter = false; card.auraLevelFilter = 0;
             card.auraOnlyFaceDown = false; card.auraExcludesSelf = false;
