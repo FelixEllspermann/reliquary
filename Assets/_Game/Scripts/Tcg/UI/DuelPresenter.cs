@@ -1171,7 +1171,7 @@ namespace Rouge.Tcg.UI
             yield return chain.Finish();
         }
 
-        public IEnumerator ShowActivationPulse(CardInstance card, bool spin)
+        public IEnumerator ShowActivationPulse(CardInstance card, bool spin, EffectDefinition effect = null)
         {
             if (!enablePresentations) yield break;
             SfxManager.CardActivate();
@@ -1208,6 +1208,21 @@ namespace Rouge.Tcg.UI
                     yield return null;
                 }
 
+                // ---- Hold: die Karte steht gross, das Panel darunter erklärt den
+                // Effekt (Kartentext). Nur bei echten Aktivierungen — der kleine
+                // Passiv-Puls (Mill-Burn) kommt ohne Effekt und ohne Haltezeit. ----
+                if (effect != null && activationHoldDuration > 0f)
+                {
+                    ShowEffectCaption(card, effect);
+                    for (float t = 0f; t < activationHoldDuration; t += Time.deltaTime)
+                    {
+                        SetBoardDim(0.45f);
+                        if (captionGroup != null)
+                            captionGroup.alpha = Mathf.Clamp01(t / Mathf.Max(0.05f, fadeDuration));
+                        yield return null;
+                    }
+                }
+
                 // ---- Activate: Aufschlag mit Ringen, Blitz und Erschütterung ----
                 float activate = activateDuration;
                 for (float t = 0f; t < activate; t += Time.deltaTime)
@@ -1217,6 +1232,8 @@ namespace Rouge.Tcg.UI
                     rect.position = Vector3.Lerp(centre, homePosition, slam);
                     rect.localScale = homeScale * Motion.Mix(1.62f, 1f, slam);
                     view.SetCharge(Motion.Mix(0.4f, 1f, Motion.Enter(Motion.Seg(p, 0f, 0.6f))));
+                    if (captionGroup != null && captionGroup.gameObject.activeSelf)
+                        captionGroup.alpha = 1f - Motion.Enter(Motion.Seg(p, 0f, 0.45f));
                     // Das Brett hellt wieder auf, während der Zauber greift
                     SetBoardDim(0.45f * (1f - Motion.Enter(Motion.Seg(p, 0.5f, 1f))));
                     if (p >= 0.46f && p <= 0.48f) ScreenShake.Shake(0.018f, 0.7f, 16f);
@@ -1234,7 +1251,119 @@ namespace Rouge.Tcg.UI
                 rect.position = homePosition;
                 view.ClearCharge();
                 SetBoardDim(0f);
+                HideEffectCaption();
             }
+        }
+
+        // ================== EFFEKT-PANEL UNTER DEM PULS ==================
+        // Laufzeit-gebaut, einmalig, dann recycelt. Liegt im flyLayer unter der
+        // gehobenen Karte und zeigt Label + Kartentext des aktivierten Effekts.
+
+        private RectTransform captionRoot;
+        private CanvasGroup captionGroup;
+        private TMP_Text captionTitle;
+        private TMP_Text captionBody;
+
+        private void EnsureCaption()
+        {
+            if (captionRoot != null) return;
+            var parentLayer = flyLayer != null ? flyLayer : (RectTransform)transform;
+
+            var rootGo = new GameObject("EffectCaption", typeof(RectTransform), typeof(CanvasGroup));
+            captionRoot = (RectTransform)rootGo.transform;
+            captionRoot.SetParent(parentLayer, false);
+            captionRoot.anchorMin = captionRoot.anchorMax = new Vector2(0.5f, 0.5f);
+            captionRoot.pivot = new Vector2(0.5f, 1f);
+            captionGroup = rootGo.GetComponent<CanvasGroup>();
+            captionGroup.blocksRaycasts = false;
+            captionGroup.interactable = false;
+
+            var frame = new GameObject("Frame", typeof(RectTransform), typeof(Image));
+            var frameRect = (RectTransform)frame.transform;
+            frameRect.SetParent(captionRoot, false);
+            frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+            frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+            frame.GetComponent<Image>().color = new Color(0.79f, 0.66f, 0.42f, 0.55f);
+
+            var plate = new GameObject("Plate", typeof(RectTransform), typeof(Image));
+            var plateRect = (RectTransform)plate.transform;
+            plateRect.SetParent(captionRoot, false);
+            plateRect.anchorMin = Vector2.zero; plateRect.anchorMax = Vector2.one;
+            plateRect.offsetMin = new Vector2(1.5f, 1.5f); plateRect.offsetMax = new Vector2(-1.5f, -1.5f);
+            plate.GetComponent<Image>().color = new Color(0.055f, 0.045f, 0.03f, 0.95f);
+
+            captionTitle = BuildCaptionText("Title", 23f, new Color(0.87f, 0.74f, 0.47f), FontStyles.Bold);
+            captionBody = BuildCaptionText("Body", 20f, new Color(0.92f, 0.88f, 0.8f), FontStyles.Normal);
+
+            captionRoot.gameObject.SetActive(false);
+        }
+
+        private TMP_Text BuildCaptionText(string name, float size, Color color, FontStyles style)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(TextMeshProUGUI));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(captionRoot, false);
+            rect.anchorMin = new Vector2(0f, 1f); rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            var text = go.GetComponent<TextMeshProUGUI>();
+            if (showcaseBanner != null) text.font = showcaseBanner.font;
+            text.fontSize = size;
+            text.color = color;
+            text.fontStyle = style;
+            text.alignment = TextAlignmentOptions.Center;
+            text.textWrappingMode = TextWrappingModes.Normal;
+            text.raycastTarget = false;
+            return text;
+        }
+
+        /// <summary>Füllt das Panel mit Label + Kartentext und legt es unter die Karte.</summary>
+        private void ShowEffectCaption(CardInstance card, EffectDefinition effect)
+        {
+            EnsureCaption();
+            if (captionRoot == null || captionTitle == null || captionBody == null) return;
+
+            string title = !string.IsNullOrWhiteSpace(effect.label) ? effect.label : card.Name;
+            string kind = effect.isInfused
+                ? (effect.infusedKind == InfusedKind.Coupled ? "  ·  INFUSED UPGRADE" : "  ·  INFUSED")
+                : "";
+            string cost = effect.manaCost > 0 ? $"[{effect.manaCost} Mana]  " : "";
+            string body = string.IsNullOrWhiteSpace(effect.text) ? "" : effect.text.Trim();
+
+            captionTitle.text = $"„{title}“{kind}";
+            captionBody.text = cost + body;
+
+            const float width = 640f, padX = 24f, padY = 14f, gap = 7f;
+            float innerWidth = width - padX * 2f;
+            float titleHeight = captionTitle.GetPreferredValues(captionTitle.text, innerWidth, 0f).y;
+            float bodyHeight = captionBody.text.Length > 0
+                ? captionBody.GetPreferredValues(captionBody.text, innerWidth, 0f).y : 0f;
+            float height = padY * 2f + titleHeight + (bodyHeight > 0f ? gap + bodyHeight : 0f);
+
+            captionRoot.sizeDelta = new Vector2(width, height);
+            // Pivot oben-Mitte: Oberkante 168 px unter der Bildschirmmitte — knapp
+            // unter der grössten gehobenen Karte (Handkarte 168 px × 1.62 / 2 ≈ 136)
+            captionRoot.anchoredPosition = new Vector2(0f, -168f);
+
+            var titleRect = (RectTransform)captionTitle.transform;
+            titleRect.offsetMin = new Vector2(padX, 0f); titleRect.offsetMax = new Vector2(-padX, 0f);
+            titleRect.anchoredPosition = new Vector2(0f, -padY);
+            titleRect.sizeDelta = new Vector2(-padX * 2f, titleHeight);
+
+            var bodyRect = (RectTransform)captionBody.transform;
+            bodyRect.offsetMin = new Vector2(padX, 0f); bodyRect.offsetMax = new Vector2(-padX, 0f);
+            bodyRect.anchoredPosition = new Vector2(0f, -(padY + titleHeight + gap));
+            bodyRect.sizeDelta = new Vector2(-padX * 2f, bodyHeight);
+
+            captionGroup.alpha = 0f;
+            captionRoot.SetAsLastSibling();
+            captionRoot.gameObject.SetActive(true);
+        }
+
+        private void HideEffectCaption()
+        {
+            if (captionRoot == null) return;
+            captionGroup.alpha = 0f;
+            captionRoot.gameObject.SetActive(false);
         }
 
         /// <summary>

@@ -131,6 +131,12 @@ namespace Rouge.Tcg.Net
 
         /// <summary>Nummer des Kettenglieds (1-basiert), nur bei chain*-Ereignissen.</summary>
         public int link;
+
+        // Effekt-Anzeige beim "pulse": text = Label, dazu Kartentext + Kosten,
+        // damit der Client das Panel unter der gehobenen Karte füllen kann.
+        public string effectText;
+        public int effectCost;
+        public int effectInfused; // 0 = nein, 1 = Standalone, 2 = Coupled
     }
 
     [Serializable]

@@ -38,6 +38,13 @@ namespace Rouge.Tcg.UI
         [SerializeField] private GameObject bottomExtraRoot;
         [SerializeField] private GameObject topExtraRoot;
 
+        [Header("Deck-Stapel (auf dem Feld)")]
+        [SerializeField] private TMP_Text bottomDeckCount;
+        [SerializeField] private TMP_Text topDeckCount;
+        [Tooltip("Gestaffelte Kartenrücken des Stapels, Index 0 = unterste Lage — die Dicke folgt der Deckgröße")]
+        [SerializeField] private Image[] bottomDeckLayers = new Image[0];
+        [SerializeField] private Image[] topDeckLayers = new Image[0];
+
         [Header("Overlay")]
         [SerializeField] private GameObject panel;
         [SerializeField] private TMP_Text titleText;
@@ -51,9 +58,11 @@ namespace Rouge.Tcg.UI
         private bool pickCancelled;
         private int lastBottomGrave = -1, lastBottomBanish = -1, lastTopGrave = -1, lastTopBanish = -1;
         private int lastBottomExtra = -1, lastTopExtra = -1;
+        private int lastBottomDeck = -1, lastTopDeck = -1;
 
         private void Start()
         {
+            ApplyDeckSleeves();
             if (bottomGraveButton != null) bottomGraveButton.onClick.AddListener(() => Open(true, PileKind.Graveyard));
             if (bottomBanishButton != null) bottomBanishButton.onClick.AddListener(() => Open(true, PileKind.Banished));
             if (topGraveButton != null) topGraveButton.onClick.AddListener(() => Open(false, PileKind.Graveyard));
@@ -103,6 +112,43 @@ namespace Rouge.Tcg.UI
             if (topExtraRoot != null && topExtraRoot.activeSelf != topUsesExtra) topExtraRoot.SetActive(topUsesExtra);
             SetCount(bottomExtraCount, bottomExtra, ref lastBottomExtra);
             SetCount(topExtraCount, topExtra, ref lastTopExtra);
+
+            // Deck-Zone: Zähler + Stapel-Dicke (leer = gar kein Stapel mehr)
+            SetCount(bottomDeckCount, bottom.DeckPile.Count, ref lastBottomDeck);
+            SetCount(topDeckCount, top.DeckPile.Count, ref lastTopDeck);
+            UpdateDeckStack(bottomDeckLayers, bottom.DeckPile.Count);
+            UpdateDeckStack(topDeckLayers, top.DeckPile.Count);
+        }
+
+        /// <summary>
+        /// Die Deck-Stapel tragen den Kartenrücken des jeweiligen Spielers — dieselbe
+        /// Sleeve-Kosmetik wie verdeckte Karten. Unbekannte Gegenstände fallen still
+        /// auf den in der Szene gesetzten Standard-Rücken zurück.
+        /// </summary>
+        private void ApplyDeckSleeves()
+        {
+            SetLayerSprites(bottomDeckLayers, Rouge.Tcg.Net.CosmeticArt.EquippedCardBack());
+            SetLayerSprites(topDeckLayers, Rouge.Tcg.Net.CosmeticArt.CardBack(Rouge.Tcg.Net.MatchContext.RemoteEquipped("sleeve")));
+        }
+
+        private static void SetLayerSprites(Image[] layers, Sprite back)
+        {
+            if (back == null || layers == null) return;
+            foreach (var layer in layers)
+                if (layer != null) layer.sprite = back;
+        }
+
+        /// <summary>Wie viele Rücken-Lagen liegen sichtbar: 3 ab 20 Karten, 2 ab 8, 1 ab 1.</summary>
+        private static void UpdateDeckStack(Image[] layers, int count)
+        {
+            if (layers == null) return;
+            int visible = count >= 20 ? 3 : count >= 8 ? 2 : count >= 1 ? 1 : 0;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (layers[i] == null) continue;
+                bool show = i < visible;
+                if (layers[i].gameObject.activeSelf != show) layers[i].gameObject.SetActive(show);
+            }
         }
 
         private static bool AnyReliquaryOnField(PlayerState player)

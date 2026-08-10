@@ -233,7 +233,25 @@ namespace Rouge.Tcg.UI
                             yield return presenter.ShowReliquarySummon(card, player, evt.targetId);
                         break;
                     case "position": if (card != null) yield return presenter.ShowPositionSwitch(card); break;
-                    case "pulse": if (card != null) yield return presenter.ShowActivationPulse(card, false); break;
+                    case "pulse":
+                        if (card != null)
+                        {
+                            // Effekt-Infos aus dem Event zu einer Anzeige-Definition
+                            // zusammensetzen — ein alter Server schickt sie nicht,
+                            // dann bleibt es beim schlichten Puls ohne Panel.
+                            EffectDefinition pulseFx = null;
+                            if (!string.IsNullOrEmpty(evt.effectText) || !string.IsNullOrEmpty(evt.text))
+                                pulseFx = new EffectDefinition
+                                {
+                                    label = evt.text,
+                                    text = evt.effectText,
+                                    manaCost = evt.effectCost,
+                                    isInfused = evt.effectInfused > 0,
+                                    infusedKind = evt.effectInfused == 2 ? InfusedKind.Coupled : InfusedKind.Standalone
+                                };
+                            yield return presenter.ShowActivationPulse(card, false, pulseFx);
+                        }
+                        break;
                     case "targets": if (card != null) yield return presenter.ShowTargetsFlash(new List<CardInstance> { card }); break;
                     case "attack": if (card != null) yield return presenter.ShowAttackDeclared(card, target, evt.direct); break;
                     case "impact": if (card != null) yield return presenter.ShowAttackImpact(card, target, evt.direct); break;

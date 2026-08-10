@@ -40,7 +40,13 @@ namespace Rouge.Tcg
         IEnumerator ShowReliquarySummon(CardInstance monster, PlayerState owner, int zoneIndex);
         IEnumerator ShowPositionSwitch(CardInstance card);
         IEnumerator ShowCardActivation(CardInstance card, EffectDefinition effect);
-        IEnumerator ShowActivationPulse(CardInstance card, bool spin);
+
+        /// <summary>
+        /// Aktivierungs-Puls auf der Karte selbst. Mit <paramref name="effect"/>
+        /// hält die Karte gross in der Mitte und ein Panel darunter erklärt,
+        /// was der Effekt macht (Kartentext); ohne Effekt nur der kurze Puls.
+        /// </summary>
+        IEnumerator ShowActivationPulse(CardInstance card, bool spin, EffectDefinition effect = null);
 
         /// <summary>
         /// Ein Glied kommt an die Kette. <paramref name="link"/> ist 1-basiert.

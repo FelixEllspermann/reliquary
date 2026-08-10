@@ -21,6 +21,11 @@ namespace Rouge.DuelHost
         /// <summary>Zahl ohne eigene Bedeutung — bisher nur die Nummer eines Kettenglieds.</summary>
         public int Amount;
 
+        // Effekt-Anzeige beim Aktivierungs-Puls: der Client zeigt unter der
+        // gehobenen Karte, was der Effekt macht. Text (oben) trägt das Label.
+        public string EffectText;
+        public int EffectCost;
+        public int EffectInfused; // 0 = nein, 1 = Standalone, 2 = Coupled
     }
 
     public class ServerPresenter : IDuelPresenter
@@ -51,7 +56,15 @@ namespace Rouge.DuelHost
             Record(new DuelEvent { Type = "reliquarysummon", Card = monster, Player = owner, Zone = zoneIndex });
         public IEnumerator ShowPositionSwitch(CardInstance card) => Record(new DuelEvent { Type = "position", Card = card });
         public IEnumerator ShowCardActivation(CardInstance card, EffectDefinition effect) => Record(new DuelEvent { Type = "activation", Card = card, Text = effect != null ? effect.label : "" });
-        public IEnumerator ShowActivationPulse(CardInstance card, bool spin) => Record(new DuelEvent { Type = "pulse", Card = card });
+        public IEnumerator ShowActivationPulse(CardInstance card, bool spin, EffectDefinition effect = null) => Record(new DuelEvent
+        {
+            Type = "pulse",
+            Card = card,
+            Text = effect != null ? effect.label : null,
+            EffectText = effect != null ? effect.text : null,
+            EffectCost = effect != null ? effect.manaCost : 0,
+            EffectInfused = effect == null || !effect.isInfused ? 0 : (effect.infusedKind == InfusedKind.Coupled ? 2 : 1)
+        });
 
         // Kettenanzeige. Der Server rechnet, der Client zeigt — ohne diese drei
         // saehe ein Online-Spieler von der Kette genau nichts.

@@ -298,7 +298,10 @@ namespace Rouge.Tcg.UI
             currentBattle = request;
             pendingAttacker = null;
             pendingAttackOptions.Clear();
-            SetStatus("Battle Phase — click a monster that can attack.");
+            bool anyAttack = request.Options.Any(o => !o.EndBattle);
+            SetStatus(anyAttack
+                ? "Battle Phase — click a monster that can attack."
+                : "Battle Phase — no attacks available. End it when you're ready.");
             if (endBattleButton != null) endBattleButton.gameObject.SetActive(true);
 
             var attackers = request.Options.Where(o => !o.EndBattle).Select(o => o.Attacker).Distinct().ToList();

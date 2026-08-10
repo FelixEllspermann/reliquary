@@ -808,8 +808,9 @@ namespace Rouge.Tcg
             spell.FaceDown = false;
             BoardChanged();
 
-            // Aktivierungs-Puls auf der Karte selbst (Hand: mit Dreh, Feld: Blink+Pop)
-            if (presenter != null) yield return presenter.ShowActivationPulse(spell, fromHand);
+            // Aktivierungs-Puls auf der Karte selbst (Hand: mit Dreh, Feld: Blink+Pop),
+            // mit Effekt-Panel: das Showcase erklärt, was gerade aktiviert wird
+            if (presenter != null) yield return presenter.ShowActivationPulse(spell, fromHand, effect);
 
             if (manaCost < effect.manaCost)
                 Log($"{player.Name}'s first spell this turn is discounted — {manaCost} instead of {effect.manaCost} Mana.");
@@ -920,8 +921,9 @@ namespace Rouge.Tcg
                 BoardChanged();
             }
 
-            // Aktivierungs-Puls auf der Karte (Hand-Ignition mit Dreh, Feldkarten mit Blink+Pop)
-            if (presenter != null) yield return presenter.ShowActivationPulse(card, card.Zone == ZoneType.Hand);
+            // Aktivierungs-Puls auf der Karte (Hand-Ignition mit Dreh, Feldkarten mit
+            // Blink+Pop) — samt Panel, das den aktivierten Effekt erklärt
+            if (presenter != null) yield return presenter.ShowActivationPulse(card, card.Zone == ZoneType.Hand, effect);
 
             player.Mana -= effect.manaCost;
             LockEffectForTurn(card, effectIndex, effect);
@@ -2998,7 +3000,10 @@ namespace Rouge.Tcg
             while (Result == DuelResult.None && safety++ < 50)
             {
                 var request = BuildBattleActions(player);
-                if (request.Options.Count == 1) break; // nur noch "beenden"
+                // Kein Auto-Ende, wenn nur noch "End Battle Phase" übrig ist: die Phase
+                // gehört dem Spieler, bis er sie selbst schliesst. Bots wählen die
+                // einzige Option sofort — und weil JEDER die Entscheidung trifft,
+                // laufen Server und Client-Spiegel identisch.
 
                 yield return DecideRouted(player, request);
                 if (request.Chosen < 0 || request.Chosen >= request.Options.Count) continue;

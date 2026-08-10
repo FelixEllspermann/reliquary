@@ -493,7 +493,10 @@ namespace Rouge.DuelHost
             mine = evt.Player != null && evt.Player == viewer,
             text = evt.Text,
             direct = evt.Direct,
-            link = evt.Amount
+            link = evt.Amount,
+            effectText = evt.EffectText,
+            effectCost = evt.EffectCost,
+            effectInfused = evt.EffectInfused
         };
 
         private object RequestWire(DuelRequest request)
