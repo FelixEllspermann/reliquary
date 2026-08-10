@@ -69,11 +69,17 @@ namespace Rouge.Tcg.UI
         private Action finished;
         private Vector2 source, destination;
 
-        /// <summary>Rechnet einen Weltpunkt in die Koordinaten dieser Bühne um.</summary>
+        /// <summary>
+        /// Rechnet einen Weltpunkt in die Bühnen-Konvention um: x von der Mitte,
+        /// y VON OBEN (wie VaultY/ExtraY/SlotY). InverseTransformPoint liefert
+        /// Mitte-basiert mit y nach oben — daher die Spiegelung um H/2. Wer hier
+        /// das rohe local.y durchreicht, schickt die Karte am Ende der Fahrt um
+        /// die Bildmitte gespiegelt auf die falsche Seite oder aus dem Bild.
+        /// </summary>
         private Vector2 ToStage(Vector3 world)
         {
             var local = stage.InverseTransformPoint(world);
-            return new Vector2(local.x, local.y);
+            return new Vector2(local.x, H * 0.5f - local.y);
         }
 
         /// <summary>Versatz, aus dem die drei Ringe in die Flucht fahren.</summary>
@@ -104,8 +110,9 @@ namespace Rouge.Tcg.UI
             card = summoned;
             // Herkunft und Ziel kommen vom Brett: das Extra Deck DESSEN, der
             // beschwört, und die Zone, in die die Karte danach gelegt wird.
-            source = fromWorld.HasValue ? ToStage(fromWorld.Value) : new Vector2(ExtraX, -ExtraY);
-            destination = toWorld.HasValue ? ToStage(toWorld.Value) : new Vector2(SlotX, -SlotY);
+            // Beides in Bühnen-Konvention (x von der Mitte, y von oben).
+            source = fromWorld.HasValue ? ToStage(fromWorld.Value) : new Vector2(ExtraX, ExtraY);
+            destination = toWorld.HasValue ? ToStage(toWorld.Value) : new Vector2(SlotX, SlotY);
             cardView.Show(card, true, upright: true);   // verdeckt starten
             cardView.SetHighlight(false);
             gameObject.SetActive(true);
@@ -226,7 +233,7 @@ namespace Rouge.Tcg.UI
 
             SetDim(0.4f * (1f - travel));
             SetCard(Motion.Mix(VaultX, destination.x, travel),
-                Motion.Mix(VaultY - 4f, -destination.y, travel),
+                Motion.Mix(VaultY - 4f, destination.y, travel),
                 Motion.Mix(1f, FieldW / HeroW, travel), 1f, ref flipped, 0.5f * (1f - travel));
             SetBanner(inn * bannerOut);
             SetChips(inn * bannerOut);
@@ -251,7 +258,9 @@ namespace Rouge.Tcg.UI
         {
             thread.gameObject.SetActive(amount > 0.002f);
             if (amount <= 0.002f) return;
-            var from = source;
+            // source ist "y von oben" — der Anker des Fadens sitzt oben-Mitte,
+            // also wird y für anchoredPosition negiert (wie überall auf der Bühne)
+            var from = new Vector2(source.x, -source.y);
             var to = new Vector2(VaultX, -VaultY);
             var delta = to - from;
             thread.rectTransform.anchoredPosition = from;

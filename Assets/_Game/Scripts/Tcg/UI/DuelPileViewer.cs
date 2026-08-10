@@ -102,14 +102,14 @@ namespace Rouge.Tcg.UI
             SetCount(topGraveCount, top.Graveyard.Count, ref lastTopGrave);
             SetCount(topBanishCount, top.Banished.Count, ref lastTopBanish);
 
-            // Extra-Stapel: Feld + Extra Deck zusammen zählen (Bosse pendeln zwischen beiden);
-            // Seiten ohne Reliquarys blenden ihren Stapel komplett aus.
+            // Extra-Stapel: Feld + Extra Deck zusammen zählen (Bosse pendeln zwischen
+            // beiden). Seit die Piles einen festen Rasterplatz neben der Deck-Zone
+            // haben, bleiben sie IMMER sichtbar — ein ausgeblendeter Stapel riss
+            // ein Loch ins Raster und sah aus wie ein Fehler.
             int bottomExtra = bottom.ExtraDeckPile.Count;
             int topExtra = top.ExtraDeckPile.Count;
-            bool bottomUsesExtra = bottomExtra > 0 || AnyReliquaryOnField(bottom);
-            bool topUsesExtra = topExtra > 0 || AnyReliquaryOnField(top);
-            if (bottomExtraRoot != null && bottomExtraRoot.activeSelf != bottomUsesExtra) bottomExtraRoot.SetActive(bottomUsesExtra);
-            if (topExtraRoot != null && topExtraRoot.activeSelf != topUsesExtra) topExtraRoot.SetActive(topUsesExtra);
+            if (bottomExtraRoot != null && !bottomExtraRoot.activeSelf) bottomExtraRoot.SetActive(true);
+            if (topExtraRoot != null && !topExtraRoot.activeSelf) topExtraRoot.SetActive(true);
             SetCount(bottomExtraCount, bottomExtra, ref lastBottomExtra);
             SetCount(topExtraCount, topExtra, ref lastTopExtra);
 
