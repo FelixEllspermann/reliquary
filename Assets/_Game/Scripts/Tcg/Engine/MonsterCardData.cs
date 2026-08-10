@@ -52,6 +52,16 @@ namespace Rouge.Tcg
         [Tooltip("Gefordertes Attribut (wenn aktiviert)")]
         public MonsterAttribute selfSummonRequiredAttribute = MonsterAttribute.Light;
 
+        [Tooltip("Bedingung: Du hast in diesem oder im letzten Zug Karten gemillt (Deckay Leech)")]
+        public bool selfSummonRequiresMilled;
+
+        [Range(0, 20)]
+        [Tooltip("Bedingung: Mindestens so viele Karten mit dem Namensfilter in deinem Friedhof (0 = aus; Deckay Vulture)")]
+        public int selfSummonRequiresGraveNamedCount;
+
+        [Tooltip("Namensfilter für die Friedhofs-Bedingung")]
+        public string selfSummonRequiresGraveNamed = "";
+
         [Tooltip("Kampfposition der Selbst-Spezialbeschwörung")]
         public BattlePosition selfSummonPosition = BattlePosition.Defense;
 
@@ -83,6 +93,10 @@ namespace Rouge.Tcg
                 parts.Add("you control an Artifact");
             if (selfSummonRequiresOpponentMonsters > 0)
                 parts.Add($"your opponent controls {selfSummonRequiresOpponentMonsters}+ monsters");
+            if (selfSummonRequiresMilled)
+                parts.Add("you milled this or last turn");
+            if (selfSummonRequiresGraveNamedCount > 0 && !string.IsNullOrEmpty(selfSummonRequiresGraveNamed))
+                parts.Add($"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
 
             string position = selfSummonPosition == BattlePosition.Defense ? " in Defense Position" : "";
             if (parts.Count == 0)

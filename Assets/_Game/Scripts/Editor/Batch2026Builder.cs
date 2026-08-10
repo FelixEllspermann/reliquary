@@ -144,10 +144,9 @@ namespace Rouge.Tcg.EditorTools
                     Act(EffectActionType.SendSelfToGraveyard, isCost: true),
                     Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyMonster)).OnRelicSummon());
 
-            Mon("Deckay Leech", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Animal, 700, 900,
-                Fx("Crawl from the Wreck", "If you milled this or last turn: you can Special Summon this card from your hand.",
-                    EffectTrigger.HandIgnition, 0, true,
-                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.SelfCard)).NeedsMilled(),
+            // Die Selbstbeschwörung ist eine BEDINGUNG (kein aktivierbarer Effekt):
+            // sie erscheint als Beschwörungs-Option ohne Kette und ohne Effekt-Slot.
+            var leech = Mon("Deckay Leech", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Animal, 700, 900,
                 Fx("Gorge Tithe", "During your End Phase: mill 4 cards.",
                     EffectTrigger.EndPhase, 0, false,
                     Act(EffectActionType.MillSelf, 4)).Mand(),
@@ -157,11 +156,12 @@ namespace Rouge.Tcg.EditorTools
                 Inf("Unearth and Arm", "Pay 2 Mana instead: place it directly onto the field.",
                     EffectTrigger.OnMilledSelf, 2, true,
                     Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered, nameFilter: "Deckay")));
+            leech.canSelfSpecialSummon = true;
+            leech.selfSummonRequiresMilled = true;
+            leech.selfSummonPosition = BattlePosition.Attack;
+            UnityEditor.EditorUtility.SetDirty(leech);
 
-            Mon("Deckay Vulture", CardRarity.Rare, 2, MonsterAttribute.Dark, MonsterType.Animal, 900, 700,
-                Fx("Descend on Carrion", "If you have 5+ \"Deckay\" cards in your Graveyard: you can Special Summon this card from your hand.",
-                    EffectTrigger.HandIgnition, 0, true,
-                    Act(EffectActionType.SpecialSummonTargetFromHand, 1, TargetKind.SelfCard)).NeedsGraveNamed(5, "Deckay"),
+            var vulture = Mon("Deckay Vulture", CardRarity.Rare, 2, MonsterAttribute.Dark, MonsterType.Animal, 900, 700,
                 Fx("Wing Tithe", "During either player's End Phase: mill 3 cards.",
                     EffectTrigger.EitherEndPhase, 0, false,
                     Act(EffectActionType.MillSelf, 3)).Mand(),
@@ -172,6 +172,11 @@ namespace Rouge.Tcg.EditorTools
                     EffectTrigger.HandQuick, 2, false,
                     Act(EffectActionType.SendSelfToGraveyard, isCost: true),
                     Act(EffectActionType.SummonReliquaryFromExtraSuppressed)).OnRelicSummon());
+            vulture.canSelfSpecialSummon = true;
+            vulture.selfSummonRequiresGraveNamedCount = 5;
+            vulture.selfSummonRequiresGraveNamed = "Deckay";
+            vulture.selfSummonPosition = BattlePosition.Attack;
+            UnityEditor.EditorUtility.SetDirty(vulture);
 
             Spell("Deckay Rot", CardRarity.Rare, true,
                 Fx("Spread the Rot", "Mill 5 cards. If a \"Deckay\" monster lies in your Graveyard afterwards, you can destroy 1 monster your opponent controls.",
@@ -399,6 +404,9 @@ namespace Rouge.Tcg.EditorTools
             card.selfSummonRequiresArtifact = false;
             card.selfSummonRequiresFaceDownOnField = false;
             card.selfSummonChecksOpponentField = false;
+            card.selfSummonRequiresMilled = false;
+            card.selfSummonRequiresGraveNamedCount = 0;
+            card.selfSummonRequiresGraveNamed = "";
             card.selfSummonPosition = BattlePosition.Defense;
             return card;
         }

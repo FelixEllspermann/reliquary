@@ -75,7 +75,16 @@ namespace Rouge.Tcg
                             || player.ArtifactZones.Any(a => a != null);
                         bool foeCountOk = monsterData.selfSummonRequiresOpponentMonsters <= 0
                             || player.Opponent.MonsterCount() >= monsterData.selfSummonRequiresOpponentMonsters;
-                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk)
+                        // Deckay: "gemillt diesen oder letzten Zug" (Leech) und
+                        // "N+ benannte Karten im Friedhof" (Vulture) als BEDINGUNG
+                        bool milledOk = !monsterData.selfSummonRequiresMilled
+                            || player.MilledThisTurn || player.MilledLastTurn;
+                        bool graveNamedOk = monsterData.selfSummonRequiresGraveNamedCount <= 0
+                            || string.IsNullOrEmpty(monsterData.selfSummonRequiresGraveNamed)
+                            || player.Graveyard.Count(c =>
+                                   c.Name.Contains(monsterData.selfSummonRequiresGraveNamed))
+                               >= monsterData.selfSummonRequiresGraveNamedCount;
+                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk)
                             request.Options.Add(new MainActionOption
                             {
                                 Kind = MainActionKind.SpecialSummonSelf,

@@ -16,47 +16,6 @@ MonoBehaviour:
   artwork: {fileID: -3327282095260382265, guid: 6de3a5efdaf699f42ad3a7e04404cb27, type: 3}
   rarity: 1
   effects:
-  - label: Crawl from the Wreck
-    text: 'If you milled this or last turn: you can Special Summon this card from
-      your hand.'
-    isInfused: 0
-    infusedKind: 0
-    manaCost: 0
-    trigger: 9
-    oncePerTurn: 1
-    onlyIfSpecialSummoned: 0
-    requiresEquippedArtifact: 0
-    eitherPlayerMayActivate: 0
-    quickWindow: 0
-    mandatory: 0
-    onlyReliquarySummonResponse: 0
-    minMana: 0
-    minOwnMonsters: 0
-    minOwnFaceDownMonsters: 0
-    minOwnGraveyardCards: 0
-    requireOpponentMoreHandCards: 0
-    requireOpponentMoreMonsters: 0
-    requireMilledLastTurn: 1
-    minOwnGraveyardNamed: 0
-    graveyardNamedFilter: 
-    actions:
-    - type: 18
-      isCost: 0
-      amount: 1
-      target: 15
-      targetExcludesSelf: 0
-      useTypeFilter: 0
-      typeFilter: 0
-      levelFilter: 0
-      targetCount: 1
-      upToTargets: 0
-      nameFilter: 
-      mentionsFilter: 
-      maxAtkFilter: 0
-      useAttributeFilter: 0
-      attributeFilter: 0
-      countKind: 0
-      excludeSameName: 0
   - label: Gorge Tithe
     text: 'During your End Phase: mill 4 cards.'
     isInfused: 0
@@ -206,7 +165,7 @@ MonoBehaviour:
   monsterType: 2
   atk: 700
   def: 900
-  canSelfSpecialSummon: 0
+  canSelfSpecialSummon: 1
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
@@ -215,4 +174,7 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
-  selfSummonPosition: 1
+  selfSummonRequiresMilled: 1
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
+  selfSummonPosition: 0
