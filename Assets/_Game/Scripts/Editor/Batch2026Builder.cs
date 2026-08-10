@@ -101,6 +101,79 @@ namespace Rouge.Tcg.EditorTools
             Finish("Deckay");
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Failsafe (Artifacts)")]
+        public static void BuildFailsafe()
+        {
+            built.Clear();
+            Failsafe();
+            Finish("Failsafe");
+        }
+
+        // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
+        // rastet die nächste ein" ----
+        //
+        // Going-first-Deck: Turn 1 werden Failsafe-Artefakte offen gelegt, jedes
+        // trägt einen Quick-Interrupt für den Gegnerzug und ERSETZT sich nach
+        // Gebrauch selbst durch das nächste Failsafe aus dem Deck. Zwei Slots,
+        // Mana pro Interrupt und der Deck-Verbrauch balancieren die Kette.
+        private static void Failsafe()
+        {
+            Mon("Failsafe Tinker", CardRarity.Common, 1, MonsterAttribute.Earth, MonsterType.Human, 500, 900,
+                Fx("Install", "When this card is Summoned: you can set 1 \"Failsafe\" Artifact from your Deck onto the field.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe")));
+
+            var carrier = Mon("Failsafe Carrier", CardRarity.Uncommon, 1, MonsterAttribute.Earth, MonsterType.Human, 700, 700,
+                Fx("Salvage Parts", "When this card is Summoned: you can return 1 \"Failsafe\" card from your Graveyard to your hand.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardCardSelf,
+                        nameFilter: "Failsafe")));
+            carrier.canSelfSpecialSummon = true;
+            carrier.selfSummonRequiresArtifact = true;
+            carrier.selfSummonPosition = BattlePosition.Attack;
+            UnityEditor.EditorUtility.SetDirty(carrier);
+
+            var engineer = Mon("Failsafe Chief Engineer", CardRarity.Rare, 3, MonsterAttribute.Earth, MonsterType.Human, 1600, 1400,
+                Fx("Routine Maintenance", "Once per turn — pay 1 Mana: set 1 \"Failsafe\" Artifact from your Deck onto the field.",
+                    EffectTrigger.Ignition, 1, true,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe")));
+            engineer.passiveAtkPerCount = 200;
+            engineer.passiveAtkPerCountKind = EffectCountKind.OwnArtifactsOnField;
+            UnityEditor.EditorUtility.SetDirty(engineer);
+
+            Artifact("Failsafe Seal", CardRarity.Rare, ArtifactSlot.Field, 0, 0,
+                Fx("Emergency Shutdown", "Pay 1 Mana: negate 1 monster your opponent controls until the end of the turn. Then send this card to the Graveyard and set 1 other \"Failsafe\" Artifact from your Deck onto the field.",
+                    EffectTrigger.Quick, 1, false,
+                    Act(EffectActionType.NegateTargetCard, 1, TargetKind.EnemyMonster),
+                    Act(EffectActionType.SendSelfToGraveyard),
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe", excludeSameName: true)));
+
+            Artifact("Failsafe Damper", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Pressure Release", "Pay 1 Mana: 1 monster your opponent controls loses 500 ATK. Then send this card to the Graveyard and set 1 other \"Failsafe\" Artifact from your Deck onto the field.",
+                    EffectTrigger.Quick, 1, false,
+                    Act(EffectActionType.DebuffTargetAtk, 500, TargetKind.EnemyMonster),
+                    Act(EffectActionType.SendSelfToGraveyard),
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe", excludeSameName: true)));
+
+            Artifact("Failsafe Bulkhead", CardRarity.Uncommon, ArtifactSlot.Field, 0, 0,
+                Fx("Seal the Breach", "Pay 1 Mana: you take no battle damage this turn. Then send this card to the Graveyard and set 1 other \"Failsafe\" Artifact from your Deck onto the field.",
+                    EffectTrigger.Quick, 1, false,
+                    Act(EffectActionType.PreventBattleDamageThisTurn),
+                    Act(EffectActionType.SendSelfToGraveyard),
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 1, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe", excludeSameName: true)));
+
+            Spell("Raise the Failsafes", CardRarity.Common, false,
+                Fx("Bring Systems Online", "Set up to 2 \"Failsafe\" Artifacts from your Deck onto the field.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SetTargetArtifactFromDeck, 2, TargetKind.DeckArtifactFiltered,
+                        nameFilter: "Failsafe", targetCount: 2, upTo: true)));
+        }
+
         // ---- DECKAY (Dark / Mill) · „Das Deck verfault, und genau davon lebt es" ----
         //
         // Alle Endphasen-Mills sind PFLICHT (mandatory) — der Motor läuft, ob man
