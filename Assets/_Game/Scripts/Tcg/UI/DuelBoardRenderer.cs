@@ -20,6 +20,8 @@ namespace Rouge.Tcg.UI
             public TMP_Text lpValue;
             public Image lpBarFill;
             public Transform manaContainer;
+            public TMP_Text manaValue;   // grosse Zahl vor den Punkten ("3+2" bei Bonus-Mana)
+            public TMP_Text manaCarry;   // "+1 MANA NEXT TURN" — nur sichtbar bei Übertrag
             public TMP_Text deckCount;
             public TMP_Text handCount;
             public TMP_Text gyCount;
@@ -346,6 +348,9 @@ namespace Rouge.Tcg.UI
             }
         }
 
+        /// <summary>Temporär gewonnenes Mana — dasselbe Grün wie LP-Heilung.</summary>
+        private static readonly Color TempManaColor = new Color32(0x7D, 0xDB, 0x6E, 0xFF);
+
         private readonly Dictionary<PlayerState, int> maxLpCache = new Dictionary<PlayerState, int>();
 
         private void UpdateStatusPanel(StatusBinding binding, PlayerState player, float displayedLp, Color pipColor)
@@ -363,21 +368,44 @@ namespace Rouge.Tcg.UI
             }
             if (binding.lpBarFill != null && maxLp > 0)
                 binding.lpBarFill.fillAmount = Mathf.Clamp01(lp / (float)maxLp);   // tickt mit der Zahl
+            // Runden-Basis = reguläres Mana + dauerhafter Bonus (Tower-Bots). Alles
+            // darüber ist temporär gewonnen (King's Crown, Mana-Diebstahl) und
+            // leuchtet grün — es verfällt mit dem nächsten Auffüllen.
+            int manaBase = player.ManaPerTurn + player.BonusManaPerTurn;
+            int tempMana = Mathf.Max(0, player.Mana - manaBase);
             if (binding.manaContainer != null)
             {
+                int totalPips = Mathf.Max(manaBase, player.Mana);
+                int pipIndex = 0; // die Mana-Zahl lebt im selben Container — nur echte Pips (Images) zählen
                 for (int i = 0; i < binding.manaContainer.childCount; i++)
                 {
-                    var pip = binding.manaContainer.GetChild(i);
-                    bool exists = i < player.ManaPerTurn;
-                    pip.gameObject.SetActive(exists);
-                    if (!exists) continue;
-                    var image = pip.GetComponent<Image>();
-                    if (image != null)
+                    var child = binding.manaContainer.GetChild(i);
+                    var image = child.GetComponent<Image>();
+                    if (image == null) continue;
+                    bool exists = pipIndex < totalPips;
+                    if (child.gameObject.activeSelf != exists) child.gameObject.SetActive(exists);
+                    if (exists)
                     {
-                        bool available = i < player.Mana;
-                        image.color = available ? pipColor : new Color(pipColor.r, pipColor.g, pipColor.b, 0.22f);
+                        var baseColor = pipIndex >= manaBase ? TempManaColor : pipColor;
+                        bool available = pipIndex < player.Mana;
+                        image.color = available ? baseColor : new Color(baseColor.r, baseColor.g, baseColor.b, 0.22f);
                     }
+                    pipIndex++;
                 }
+            }
+            if (binding.manaValue != null)
+                binding.manaValue.text = tempMana > 0
+                    ? $"{player.Mana - tempMana}<color=#7DDB6E>+{tempMana}</color>"
+                    : player.Mana.ToString();
+            if (binding.manaCarry != null)
+            {
+                int carry = player.ManaCredit - player.ManaDebt;
+                if (binding.manaCarry.gameObject.activeSelf != (carry != 0))
+                    binding.manaCarry.gameObject.SetActive(carry != 0);
+                if (carry != 0)
+                    binding.manaCarry.text = carry > 0
+                        ? $"<color=#7DDB6E>+{carry} MANA NEXT TURN</color>"
+                        : $"<color=#E8695E>{carry} MANA NEXT TURN</color>";
             }
             if (binding.deckCount != null) binding.deckCount.text = player.DeckPile.Count.ToString();
             if (binding.handCount != null) binding.handCount.text = player.Hand.Count.ToString();

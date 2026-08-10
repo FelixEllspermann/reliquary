@@ -69,6 +69,9 @@ namespace Rouge.Tcg
 
             player.Mana = side.mana;
             player.ManaPerTurn = side.manaPerTurn;
+            player.BonusManaPerTurn = side.bonusManaPerTurn;
+            player.ManaCredit = side.manaCredit;
+            player.ManaDebt = side.manaDebt;
 
             // Hand/Extra kommen immer als ID-Listen — beim Gegner ohne Namen
             // (Platzhalter ohne Definition = Rückseiten), aber mit stabilen IDs,

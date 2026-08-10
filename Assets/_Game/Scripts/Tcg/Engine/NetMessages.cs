@@ -94,6 +94,11 @@ namespace Rouge.Tcg.Net
         public int lp;
         public int mana;
         public int manaPerTurn;
+        // Für die Mana-Anzeige: dauerhafter Bonus (gehört zur Runden-Basis) und
+        // der Übertrag in die nächste Runde (Credit/Debt aus Mana-Effekten)
+        public int bonusManaPerTurn;
+        public int manaCredit;
+        public int manaDebt;
         public int deckCount;
         public int extraCount;
         public int handCount;
