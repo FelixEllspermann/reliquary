@@ -475,6 +475,7 @@ namespace Rouge.DuelHost
                 case "chainlink":
                 case "chainresolve":
                 case "reliquarysummon":
+                case "milled":   // gemillte Karten werden aufgedeckt gezeigt
                     return true;
                 case "summon":
                     // Face-up-Beschwörungen zeigen sich; verdeckte bleiben verdeckt

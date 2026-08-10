@@ -300,11 +300,19 @@ namespace Rouge.Tcg.UI
                 // Extra Deck: beschwörbare Reliquarys leuchten und sind direkt klickbar
                 bool summonable = openKind == PileKind.Extra && openBottom
                     && uiController != null && uiController.CanReliquarySummon(shownCard);
-                view.SetHighlight(summonable, TcgCardView.PlayableHighlight);
+                // Friedhof/Banishment: aktivierbare Effekte genauso — Klick aktiviert
+                bool activatable = (openKind == PileKind.Graveyard || openKind == PileKind.Banished)
+                    && openBottom && uiController != null && uiController.CanActivatePileCard(shownCard);
+                view.SetHighlight(summonable || activatable, TcgCardView.PlayableHighlight);
                 if (summonable)
                     view.Clicked += _ =>
                     {
                         if (uiController.TryChooseReliquarySummon(shownCard)) Close();
+                    };
+                else if (activatable)
+                    view.Clicked += _ =>
+                    {
+                        if (uiController.TryActivatePileCard(shownCard)) Close();
                     };
                 spawnedViews.Add(view);
             }

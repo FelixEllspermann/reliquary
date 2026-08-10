@@ -715,14 +715,22 @@ namespace Rouge.Tcg
         {
             if (responseDepth < 2)
             {
+                // ERST das Reaktionsfenster auf die Beschwörung, DANN die Summon-
+                // Trigger: wer aufs Summon kontert, tut es, bevor z.B. ein Nibbler
+                // seinen Mill auflöst — sonst wirkte der Trigger wie Kosten.
+                yield return OpenResponseWindow(monster.Owner.Opponent, "summon", monster);
+                if (Result != DuelResult.None) yield break;
+
+                // Hat die Reaktion das Monster entfernt oder verdeckt, verpufft
+                // sein Beschwörungs-Trigger.
+                if (monster.Zone != ZoneType.MonsterZone || monster.FaceDown) yield break;
+
                 if (wasNormalSummon)
                 {
                     yield return OfferTriggeredEffects(monster.Owner, monster, EffectTrigger.OnNormalSummonSelf);
                     if (Result != DuelResult.None) yield break;
                 }
                 yield return OfferTriggeredEffects(monster.Owner, monster, EffectTrigger.OnSummonSelf);
-                if (Result != DuelResult.None) yield break;
-                yield return OpenResponseWindow(monster.Owner.Opponent, "summon", monster);
             }
         }
 
@@ -1804,14 +1812,16 @@ namespace Rouge.Tcg
 
                     case EffectActionType.MillSelf:
                     {
-                        int milled = MillDeck(player, Math.Max(1, action.amount));
+                        int milled = 0;
+                        yield return MillDeck(player, Math.Max(1, action.amount), n => milled = n);
                         yield return ApplyMillBurn(player, milled);
                         yield return FirePendingGraveTriggers();
                         break;
                     }
                     case EffectActionType.MillOpponent:
                     {
-                        int milled = MillDeck(player.Opponent, Math.Max(1, action.amount));
+                        int milled = 0;
+                        yield return MillDeck(player.Opponent, Math.Max(1, action.amount), n => milled = n);
                         yield return ApplyMillBurn(player.Opponent, milled);
                         yield return FirePendingGraveTriggers();
                         break;
@@ -2067,6 +2077,7 @@ namespace Rouge.Tcg
                         {
                             var top = player.DeckPile[0];
                             player.DeckPile.RemoveAt(0);
+                            if (presenter != null) yield return presenter.ShowMilled(player, top);
                             MoveToGraveyard(top);
                             milledCards.Add(top);
                         }
@@ -2400,20 +2411,24 @@ namespace Rouge.Tcg
 
         /// <summary>Oberste Karten eines Decks in den Friedhof. Ein leeres Deck verliert
         /// erst beim nächsten Ziehen — Millen allein beendet das Duell nicht.</summary>
-        private int MillDeck(PlayerState player, int count)
+        private IEnumerator MillDeck(PlayerState player, int count, Action<int> onMilled = null)
         {
             int actual = Math.Min(count, player.DeckPile.Count);
             for (int i = 0; i < actual; i++)
             {
                 var card = player.DeckPile[0];
                 player.DeckPile.RemoveAt(0);
+                // Aufdecken auf der Deck-Zone, kurz liegen lassen, dann der Flug —
+                // erst danach wandert die Karte wirklich in den Friedhof
+                if (presenter != null) yield return presenter.ShowMilled(player, card);
                 MoveToGraveyard(card);
+                BoardChanged();
             }
             if (actual > 0) player.MilledThisTurn = true;   // Deckay: "hast du gemillt?"
             Log(actual == 0
                 ? $"{player.Name}'s Deck is already empty."
                 : $"{player.Name} sends the top {actual} card(s) of the Deck to the Graveyard ({player.DeckPile.Count} left).");
-            return actual;
+            onMilled?.Invoke(actual);
         }
 
         /// <summary>
@@ -2796,7 +2811,41 @@ namespace Rouge.Tcg
         private IEnumerator CloseChainLink()
         {
             if (chainDepth > 0) chainDepth--;
-            if (chainDepth == 0 && presenter != null) yield return presenter.ShowChainEnd();
+            if (chainDepth == 0)
+            {
+                if (presenter != null) yield return presenter.ShowChainEnd();
+                yield return FlushPendingOffers();
+            }
+        }
+
+        /// <summary>
+        /// Stellt die während der Auflösung zurückgestellten Trigger-Fragen.
+        /// Antworten können neue Ketten starten — deren CloseChainLink flusht
+        /// dann erneut, der Guard verhindert nur die Selbst-Verschachtelung.
+        /// </summary>
+        private IEnumerator FlushPendingOffers()
+        {
+            if (flushingOffers || pendingOffers.Count == 0) yield break;
+            flushingOffers = true;
+            int safety = 0;
+            try
+            {
+                while (pendingOffers.Count > 0 && safety++ < 40 && Result == DuelResult.None)
+                {
+                    var (owner, card, trigger) = pendingOffers[0];
+                    pendingOffers.RemoveAt(0);
+                    // Karte inzwischen weg vom Brett? Dann verfällt das Angebot —
+                    // Friedhofs-Ankünfte haben ihre eigene Pipeline.
+                    if (card == null || card.Zone == ZoneType.Graveyard || card.Zone == ZoneType.Banished)
+                        continue;
+                    yield return OfferTriggeredEffects(owner, card, trigger);
+                }
+            }
+            finally
+            {
+                flushingOffers = false;
+                pendingOffers.Clear();
+            }
         }
 
         /// <summary>Log-Zusatz einer Aktivierung: [Infused]-Tag, explizite Kosten, Chain-Link-Nummer.</summary>
@@ -2820,6 +2869,15 @@ namespace Rouge.Tcg
 
         // ================== TRIGGER & REAKTIONEN ==================
 
+        /// <summary>
+        /// Trigger-Fragen, die WÄHREND einer Ketten-Auflösung anfielen. In den
+        /// Abbau grätscht niemand — auch nicht mit einer "Aktivieren?"-Frage.
+        /// Die Naht (Kette komplett aufgelöst, chainDepth == 0) holt sie nach.
+        /// </summary>
+        private readonly List<(PlayerState owner, CardInstance card, EffectTrigger trigger)> pendingOffers
+            = new List<(PlayerState, CardInstance, EffectTrigger)>();
+        private bool flushingOffers;
+
         private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger)
         {
             var activatable = ActivatableEffects(card, owner, trigger);
@@ -2838,6 +2896,15 @@ namespace Rouge.Tcg
                 if (Result != DuelResult.None) yield break;
             }
             if (activatable.Count == 0) yield break;
+
+            // Freiwillige Angebote unterbrechen keinen Ketten-Abbau: vormerken,
+            // FlushPendingOffers stellt die Frage nach der Auflösung.
+            if (resolvingChain > 0)
+            {
+                if (!pendingOffers.Exists(p => p.card == card && p.trigger == trigger))
+                    pendingOffers.Add((owner, card, trigger));
+                yield break;
+            }
 
             if (activatable.Count == 1)
             {

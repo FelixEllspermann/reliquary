@@ -233,6 +233,7 @@ namespace Rouge.Tcg.UI
                             yield return presenter.ShowReliquarySummon(card, player, evt.targetId);
                         break;
                     case "position": if (card != null) yield return presenter.ShowPositionSwitch(card); break;
+                    case "milled": if (card != null && player != null) yield return presenter.ShowMilled(player, card); break;
                     case "pulse":
                         if (card != null)
                         {

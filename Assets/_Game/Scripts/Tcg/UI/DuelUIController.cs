@@ -166,6 +166,33 @@ namespace Rouge.Tcg.UI
             return false;
         }
 
+        /// <summary>
+        /// True, wenn GENAU diese Friedhof-/Banishment-Karte gerade einen
+        /// aktivierbaren Effekt als Main-Aktion anbietet (Klick im Pile-Overlay).
+        /// </summary>
+        public bool CanActivatePileCard(CardInstance card)
+        {
+            if (card == null || currentMain == null || currentMain.Answered) return false;
+            if (promptPanel != null && promptPanel.IsOpen) return false;
+            return currentMain.Options.Any(o => o.Kind == MainActionKind.ActivateFieldEffect && o.Card == card);
+        }
+
+        /// <summary>Wählt die Aktivierung dieser Pile-Karte als Main-Aktion.</summary>
+        public bool TryActivatePileCard(CardInstance card)
+        {
+            var request = currentMain;
+            if (card == null || request == null || request.Answered) return false;
+            for (int i = 0; i < request.Options.Count; i++)
+            {
+                var option = request.Options[i];
+                if (option.Kind != MainActionKind.ActivateFieldEffect || option.Card != card) continue;
+                request.Chosen = i;
+                request.Answered = true;
+                return true;
+            }
+            return false;
+        }
+
         private void OnEnable()
         {
             if (board != null)

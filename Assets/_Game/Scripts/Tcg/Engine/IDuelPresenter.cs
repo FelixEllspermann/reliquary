@@ -29,6 +29,12 @@ namespace Rouge.Tcg
         /// <summary>Der Münzwurf. <paramref name="winner"/> entscheidet, auf welche Seite sie fällt.</summary>
         IEnumerator ShowCoinToss(PlayerState winner);
         IEnumerator ShowCardDrawn(PlayerState player, CardInstance card, float speed = 1f);
+
+        /// <summary>
+        /// Eine gemillte Karte: aufgedeckt auf der Deck-Zone zeigen, kurz liegen
+        /// lassen, dann in den Friedhof fliegen. Läuft VOR dem Datenmove.
+        /// </summary>
+        IEnumerator ShowMilled(PlayerState player, CardInstance card);
         IEnumerator ShowHandShuffle(PlayerState player);
         IEnumerator ShowSummon(CardInstance monster);
 

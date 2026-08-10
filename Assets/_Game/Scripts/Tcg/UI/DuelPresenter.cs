@@ -805,6 +805,50 @@ namespace Rouge.Tcg.UI
             else if (board.TryGetView(card, out var handView)) handView.gameObject.SetActive(true);
         }
 
+        [Range(0f, 2f)] [Tooltip("Wie lange eine gemillte Karte aufgedeckt auf dem Deck liegen bleibt")]
+        [SerializeField] private float millRevealHold = 0.4f;
+
+        /// <summary>
+        /// Eine gemillte Karte: erscheint aufgedeckt auf der Deck-Zone, bleibt dort
+        /// kurz liegen und fliegt dann in einem flachen Bogen in den Friedhof.
+        /// </summary>
+        public IEnumerator ShowMilled(PlayerState player, CardInstance card)
+        {
+            if (!enablePresentations || cardViewPrefab == null || flyLayer == null || board == null) yield break;
+
+            bool isBottom = player == board.BottomPlayer;
+            var deckAnchor = isBottom ? p1DeckAnchor : p2DeckAnchor;
+            var graveAnchor = isBottom ? p1GraveAnchor : p2GraveAnchor;
+            if (deckAnchor == null) yield break;
+
+            SfxManager.CardPlace();
+            var fly = Instantiate(cardViewPrefab, flyLayer);
+            fly.Show(card, false, upright: true);   // aufgedeckt
+            fly.SetHighlight(false);
+            var rect = (RectTransform)fly.transform;
+            rect.position = deckAnchor.position;
+            float scale = isBottom ? 0.95f : 0.85f;
+            rect.localScale = Vector3.one * scale;
+
+            try
+            {
+                if (millRevealHold > 0f) yield return new WaitForSeconds(millRevealHold);
+
+                Vector3 start = rect.position;
+                Vector3 end = graveAnchor != null ? graveAnchor.position : start;
+                Vector3 lift = Vector3.up * (isBottom ? 46f : -34f);
+                const float duration = 0.28f;
+                for (float t = 0f; t < duration; t += Time.deltaTime)
+                {
+                    float k = EaseInOut(Mathf.Clamp01(t / duration));
+                    rect.position = Vector3.Lerp(start, end, k) + lift * Mathf.Sin(k * Mathf.PI);
+                    rect.localScale = Vector3.one * Mathf.Lerp(scale, scale * 0.72f, k);
+                    yield return null;
+                }
+            }
+            finally { Destroy(fly.gameObject); }
+        }
+
         /// <summary>Sichtbarer Münzwurf: goldene Reliquary-Raute flippt in der Bildmitte und kommt taumelnd zur Ruhe.</summary>
         /// <summary>
         /// Der Münzwurf (Handoff „Coin Flip“). Vier Schläge in 3,4 s:
@@ -1173,9 +1217,31 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator ShowActivationPulse(CardInstance card, bool spin, EffectDefinition effect = null)
         {
-            if (!enablePresentations) yield break;
+            if (!enablePresentations || board == null) yield break;
             SfxManager.CardActivate();
-            if (board == null || !board.TryGetView(card, out var view)) yield break;
+
+            // Karten ohne Feld-View (Friedhof/Banishment) poppen aus ihrem Stapel
+            // auf: Wegwerf-View am Pile-Anker, derselbe Auftritt, danach zurück.
+            if (!board.TryGetView(card, out var view))
+            {
+                if (card.Zone != ZoneType.Graveyard && card.Zone != ZoneType.Banished) yield break;
+                if (cardViewPrefab == null || flyLayer == null) yield break;
+                var anchor = PileAnchor(card.Owner, card.Zone);
+                if (anchor == null) yield break;
+
+                var popup = Instantiate(cardViewPrefab, flyLayer);
+                popup.Show(card, false, upright: true);
+                popup.SetHighlight(false);
+                var popupRect = (RectTransform)popup.transform;
+                popupRect.position = anchor.position;
+                popupRect.localScale = Vector3.one * 0.8f;
+                try
+                {
+                    yield return PulseView(popup, popupRect, card, anchor.position, Vector3.one * 0.8f, effect);
+                }
+                finally { Destroy(popup.gameObject); }
+                yield break;
+            }
 
             var rect = (RectTransform)view.transform;
             var parent = rect.parent;
@@ -1190,6 +1256,30 @@ namespace Rouge.Tcg.UI
 
             // Über die Nachbarkarten heben, sonst schneidet die Zone die grosse Karte an
             if (flyLayer != null) rect.SetParent(flyLayer, true);
+            try
+            {
+                yield return PulseView(view, rect, card, homePosition, homeScale, effect);
+            }
+            finally
+            {
+                rect.localScale = homeScale;
+                if (flyLayer != null && rect.parent == flyLayer)
+                {
+                    rect.SetParent(parent, true);
+                    rect.SetSiblingIndex(siblingIndex);
+                }
+                rect.position = homePosition;
+            }
+        }
+
+        /// <summary>
+        /// Der eigentliche Puls-Auftritt: Lift in die Mitte, Hold mit Effekt-Panel,
+        /// Slam zurück zur Heimposition. Wird vom Feld-Pfad (echte View) und vom
+        /// Friedhofs-Popup (Wegwerf-View) geteilt.
+        /// </summary>
+        private IEnumerator PulseView(TcgCardView view, RectTransform rect, CardInstance card,
+            Vector3 homePosition, Vector3 homeScale, EffectDefinition effect)
+        {
             var centre = flyLayer != null
                 ? flyLayer.TransformPoint(Vector3.zero) : homePosition;
 
@@ -1242,13 +1332,6 @@ namespace Rouge.Tcg.UI
             }
             finally
             {
-                rect.localScale = homeScale;
-                if (flyLayer != null && rect.parent == flyLayer)
-                {
-                    rect.SetParent(parent, true);
-                    rect.SetSiblingIndex(siblingIndex);
-                }
-                rect.position = homePosition;
                 view.ClearCharge();
                 SetBoardDim(0f);
                 HideEffectCaption();
