@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeCarrier
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Failsafe Carrier
-  artwork: {fileID: 0}
+  artwork: {fileID: -3619398665941913899, guid: 28bedb39f3c0e7549b273f5b29181fd3, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Salvage Parts
     text: 'When this card is Summoned: you can return 1 "Failsafe" card from your

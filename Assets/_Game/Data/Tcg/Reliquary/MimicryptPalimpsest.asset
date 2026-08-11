@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptPalimpsest
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Mimicrypt, Palimpsest
-  artwork: {fileID: 0}
+  artwork: {fileID: -2722623392771125711, guid: 7bcd20261a04c664ca54170d05aba6c9, type: 3}
   rarity: 2
   isToken: 0
   effects:

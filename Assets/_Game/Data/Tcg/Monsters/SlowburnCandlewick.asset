@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnCandlewick
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Slowburn Candlewick
-  artwork: {fileID: 0}
+  artwork: {fileID: 6227348013980074256, guid: 7315b4b1aee536f4283502187d27e4fb, type: 3}
   rarity: 0
   isToken: 0
   effects:

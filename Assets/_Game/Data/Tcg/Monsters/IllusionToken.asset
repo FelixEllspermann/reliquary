@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IllusionToken
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Illusion Token
-  artwork: {fileID: 0}
+  artwork: {fileID: 4790675426300641570, guid: 262c751d01214814c9752af00bb9964b, type: 3}
   rarity: 0
   isToken: 1
   effects: []

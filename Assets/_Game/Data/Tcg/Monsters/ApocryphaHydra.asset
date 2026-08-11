@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaHydra
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Hydra
-  artwork: {fileID: 0}
+  artwork: {fileID: -5274298749405436528, guid: eb69be6f79e32bd4a821d0e0d7166be6, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Grow Back
     text: 'When this card is destroyed: you can Special Summon 1 "Apocrypha" monster

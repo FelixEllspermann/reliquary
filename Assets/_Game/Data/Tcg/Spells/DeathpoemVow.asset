@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemVow
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deathpoem Vow
-  artwork: {fileID: 0}
+  artwork: {fileID: -366592810220298641, guid: 5d410e21652fec74a8eee0c3827f8c48, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Recite the Verse
     text: Special Summon 1 "Deathpoem" monster from your Graveyard.

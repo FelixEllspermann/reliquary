@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightUsher
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gaslight Usher
-  artwork: {fileID: 0}
+  artwork: {fileID: -3581298738172580447, guid: f742d65903550c44983c6a4ae4574986, type: 3}
   rarity: 0
   isToken: 0
   effects:

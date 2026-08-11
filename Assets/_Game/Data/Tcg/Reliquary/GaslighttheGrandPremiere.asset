@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslighttheGrandPremiere
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Gaslight, the Grand Premiere
-  artwork: {fileID: 0}
+  artwork: {fileID: -8368719336081147500, guid: d0f3b20c79c20aa46bba01a71dadf0b0, type: 3}
   rarity: 3
   isToken: 0
   effects:
@@ -155,6 +155,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

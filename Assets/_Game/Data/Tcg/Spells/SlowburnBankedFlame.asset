@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnBankedFlame
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: 'Slowburn: Banked Flame'
-  artwork: {fileID: 0}
+  artwork: {fileID: -8125269582214527573, guid: 25087971d7b99a743893a071d57c3d79, type: 3}
   rarity: 1
   isToken: 0
   effects:

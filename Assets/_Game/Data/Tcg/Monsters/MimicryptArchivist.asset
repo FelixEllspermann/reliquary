@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptArchivist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mimicrypt Archivist
-  artwork: {fileID: 0}
+  artwork: {fileID: -2102884098540530315, guid: f55e638bfe230f249aab45113a837ce9, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptGhoul
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mimicrypt Ghoul
-  artwork: {fileID: 0}
+  artwork: {fileID: -1234773479402565460, guid: c8ac1c89e26c5c9429fdcda74d07d98d, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptForgery
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mimicrypt Forgery
-  artwork: {fileID: 0}
+  artwork: {fileID: 5452121282018325164, guid: e6e7d60695106044cae95d1d712ff6a0, type: 3}
   rarity: 1
   isToken: 0
   effects:

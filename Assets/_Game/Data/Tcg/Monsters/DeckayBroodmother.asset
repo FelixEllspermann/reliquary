@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeckayBroodmother
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Broodmother
-  artwork: {fileID: 0}
+  artwork: {fileID: -8610532893785646789, guid: 36f82fcfa1e544b47b852ff51b2b6318, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Tend the Brood
     text: 'During your End Phase: mill 2 cards.'

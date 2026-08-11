@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnChandler
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Slowburn Chandler
-  artwork: {fileID: 0}
+  artwork: {fileID: 8536536194112586654, guid: ed0648d1b33dfee4c9ffe8964fa6d314, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeckayWorm
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Worm
-  artwork: {fileID: 0}
+  artwork: {fileID: 5414923755030591789, guid: 69ab592255dd93e4e9df2dd3947f3f03, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Writhe Back
     text: 'Pay 1 Mana and banish 1 other "Deckay" card from your Graveyard: Special

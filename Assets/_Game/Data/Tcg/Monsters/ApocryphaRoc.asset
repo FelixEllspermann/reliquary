@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaRoc
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Roc
-  artwork: {fileID: 0}
+  artwork: {fileID: 2864470120766208275, guid: 1899cca86df222847b448bd031a9ca72, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Carried Off
     text: 'Pay 1 Mana: return 1 monster on the field to its owner''s hand.'

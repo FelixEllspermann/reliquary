@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemDuelist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Duelist
-  artwork: {fileID: 0}
+  artwork: {fileID: -8310404478150010833, guid: f1fcafdc119806a42af7e9f7e15b0a9f, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Second Verse
     text: 'Pay 2 Mana and tribute this card: destroy 1 monster.'

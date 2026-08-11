@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnthePatientFlame
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Slowburn, the Patient Flame
-  artwork: {fileID: 0}
+  artwork: {fileID: 363733768258434640, guid: 313670eab9ef10d46977da70c53e3335, type: 3}
   rarity: 3
   isToken: 0
   effects:
@@ -156,6 +156,7 @@ MonoBehaviour:
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 0
   reqGraveyardSpellsAtLeast: 2
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

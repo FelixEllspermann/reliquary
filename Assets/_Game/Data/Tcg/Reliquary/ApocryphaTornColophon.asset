@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaTornColophon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Apocrypha, Torn Colophon
-  artwork: {fileID: 0}
+  artwork: {fileID: 5628578174082922245, guid: 670ed2497fda4084b953e645054bd2f5, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Missing Page
     text: 'If this card is Summoned: return 1 card your opponent controls to its
@@ -105,6 +106,7 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 2
+  reqOpponentNamedOnField: 
   reqMinMana: 0
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
@@ -112,6 +114,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

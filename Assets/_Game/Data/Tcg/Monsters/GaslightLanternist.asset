@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightLanternist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gaslight Lanternist
-  artwork: {fileID: 0}
+  artwork: {fileID: 1705067632558310584, guid: 5ae5b2adf852ff54ab3b0bcd0eb7d310, type: 3}
   rarity: 0
   isToken: 0
   effects:

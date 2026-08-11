@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptUnderstudy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mimicrypt Understudy
-  artwork: {fileID: 0}
+  artwork: {fileID: 1547187294929968016, guid: 4d4ab82fb2289d44e9a0d329dcbeaf5e, type: 3}
   rarity: 1
   isToken: 0
   effects:

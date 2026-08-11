@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptEncore
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mimicrypt Encore
-  artwork: {fileID: 0}
+  artwork: {fileID: -5921051907044750663, guid: 44c665ae4db0bc343b6c6c249cd64b26, type: 3}
   rarity: 2
   isToken: 0
   effects:

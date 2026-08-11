@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemtheHundredthStanza
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Deathpoem, the Hundredth Stanza
-  artwork: {fileID: 0}
+  artwork: {fileID: 4788830888821582366, guid: c4e16d12e59d7274380f7f1017a79f23, type: 3}
   rarity: 3
+  isToken: 0
   effects:
   - label: Hundred Blades Falling
     text: 'If this card is Summoned: you can destroy up to 2 monsters your opponent
@@ -162,6 +163,7 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
   reqMinMana: 0
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
@@ -169,6 +171,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 5
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

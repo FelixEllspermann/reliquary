@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeTinker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Failsafe Tinker
-  artwork: {fileID: 0}
+  artwork: {fileID: -6319918139735030246, guid: 565f688556bb03a49950ffe8571e9fb9, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Install
     text: 'When this card is Summoned: you can set 1 "Failsafe" Artifact from your

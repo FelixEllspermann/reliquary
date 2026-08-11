@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightCurtainCall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gaslight Curtain Call
-  artwork: {fileID: 0}
+  artwork: {fileID: 2124728520559900974, guid: c039da3893d17b64c90da3dc411f2cb7, type: 3}
   rarity: 2
   isToken: 0
   effects:

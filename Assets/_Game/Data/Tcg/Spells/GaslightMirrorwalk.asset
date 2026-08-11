@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightMirrorwalk
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gaslight Mirrorwalk
-  artwork: {fileID: 0}
+  artwork: {fileID: 8709570090164435936, guid: 4de52ec9d6178ec4a8d3297f01dee80b, type: 3}
   rarity: 1
   isToken: 0
   effects:

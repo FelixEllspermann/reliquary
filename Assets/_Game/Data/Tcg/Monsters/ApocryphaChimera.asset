@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaChimera
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Chimera
-  artwork: {fileID: 0}
+  artwork: {fileID: 8555017112335949114, guid: 2d9edc6189d09dd4e844c4ab321fa109, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Borrowed Shape
     text: 'Pay 1 Mana: copy the ATK and DEF of 1 monster on the field until the end

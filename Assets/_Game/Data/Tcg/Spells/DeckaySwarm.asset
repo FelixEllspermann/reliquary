@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeckaySwarm
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deckay Swarm
-  artwork: {fileID: 0}
+  artwork: {fileID: 4278247416863897841, guid: 50fe596aa88fc314c9b1391601ca655d, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Blot the Sky
     text: Mill 3 cards. Then you can have 1 monster your opponent controls lose 800

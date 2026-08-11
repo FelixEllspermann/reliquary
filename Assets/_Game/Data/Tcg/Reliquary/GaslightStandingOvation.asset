@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightStandingOvation
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Gaslight, Standing Ovation
-  artwork: {fileID: 0}
+  artwork: {fileID: -5322164514646903205, guid: 2a107640c262b6b4197945dae2a7aec7, type: 3}
   rarity: 2
   isToken: 0
   effects:
@@ -114,6 +114,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

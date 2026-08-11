@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnTripwire
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: 'Slowburn: Tripwire'
-  artwork: {fileID: 0}
+  artwork: {fileID: 294051660079371506, guid: 27085af3db5b05848a7c85ea4c069d2f, type: 3}
   rarity: 0
   isToken: 0
   effects:

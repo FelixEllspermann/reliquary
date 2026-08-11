@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightMesmer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gaslight Mesmer
-  artwork: {fileID: 0}
+  artwork: {fileID: -4467160765506598411, guid: 83696e9ca20278040b5d662dbf8ce81f, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemHousebane
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Housebane
-  artwork: {fileID: 0}
+  artwork: {fileID: 1313347937911138283, guid: c49c15bf2a77aed45ba09588dcb1fd70, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Verse of Ruin
     text: 'Pay 3 Mana and tribute this card: destroy up to 2 monsters.'

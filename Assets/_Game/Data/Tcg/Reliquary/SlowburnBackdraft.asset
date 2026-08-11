@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnBackdraft
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Slowburn, Backdraft
-  artwork: {fileID: 0}
+  artwork: {fileID: -5493684589196889158, guid: 8f8178ac1f3ed304c872bbeaa6e0c3c0, type: 3}
   rarity: 2
   isToken: 0
   effects:
@@ -154,6 +154,7 @@ MonoBehaviour:
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 0
   reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemUnsignedVerse
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Deathpoem, Unsigned Verse
-  artwork: {fileID: 0}
+  artwork: {fileID: 8751150703205898337, guid: 0e122810d4b656647b4acf0454749c71, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Unwritten Ending
     text: 'Pay 2 Mana: this card cannot be destroyed this turn.'
@@ -104,6 +105,7 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
   reqMinMana: 0
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
@@ -111,6 +113,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 6
   reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

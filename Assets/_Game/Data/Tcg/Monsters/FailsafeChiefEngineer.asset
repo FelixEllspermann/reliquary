@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeChiefEngineer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Failsafe Chief Engineer
-  artwork: {fileID: 0}
+  artwork: {fileID: 7412334846681205246, guid: c4dd12d375af1e84fb4192c1929dfa5e, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Routine Maintenance
     text: "Once per turn \u2014 pay 1 Mana: set 1 \"Failsafe\" Artifact from your

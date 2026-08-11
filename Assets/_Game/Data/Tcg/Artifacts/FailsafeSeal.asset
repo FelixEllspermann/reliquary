@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeSeal
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Failsafe Seal
-  artwork: {fileID: 0}
+  artwork: {fileID: 1803377122884104235, guid: 6485b3d6836e5fb4cbb55bf08efc6f8a, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Emergency Shutdown
     text: 'Pay 1 Mana: negate 1 monster your opponent controls until the end of the

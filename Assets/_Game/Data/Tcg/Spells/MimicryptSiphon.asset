@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptSiphon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mimicrypt Siphon
-  artwork: {fileID: 0}
+  artwork: {fileID: 5173488081120700008, guid: f116ea420e761bd4caa72e533603573c, type: 3}
   rarity: 0
   isToken: 0
   effects:

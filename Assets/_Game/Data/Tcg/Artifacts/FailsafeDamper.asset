@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeDamper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Failsafe Damper
-  artwork: {fileID: 0}
+  artwork: {fileID: 8335533143744985267, guid: 134ba59bf7e3e5947a15a1503b5d4821, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Pressure Release
     text: 'Pay 1 Mana: 1 monster your opponent controls loses 500 ATK. Then send

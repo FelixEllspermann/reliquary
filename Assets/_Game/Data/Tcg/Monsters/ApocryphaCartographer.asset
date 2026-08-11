@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaCartographer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Cartographer
-  artwork: {fileID: 0}
+  artwork: {fileID: 3835056468153563738, guid: d0f637d6526776845a9962f4a02b0a8d, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Chart the Lost
     text: 'Pay 2 Mana and banish 1 card from your Graveyard: draw 1 card.'

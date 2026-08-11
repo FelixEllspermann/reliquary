@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FeastofDeckay
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Feast of Deckay
-  artwork: {fileID: 0}
+  artwork: {fileID: -7168457900953101936, guid: 3082f21ed1f92e6428d76c55c8f2e5b0, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: First Course
     text: Mill 2 cards. Draw 1 card.

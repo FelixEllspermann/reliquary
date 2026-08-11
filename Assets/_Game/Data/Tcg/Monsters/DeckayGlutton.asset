@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeckayGlutton
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Glutton
-  artwork: {fileID: 0}
+  artwork: {fileID: -7456607214418226727, guid: 13c8eb4ef27d8404da3d6f7fa0edb653, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Endless Hunger
     text: 'During your End Phase: mill 2 cards.'

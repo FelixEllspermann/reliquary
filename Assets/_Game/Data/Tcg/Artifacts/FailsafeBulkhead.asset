@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FailsafeBulkhead
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Failsafe Bulkhead
-  artwork: {fileID: 0}
+  artwork: {fileID: -3049349743643906333, guid: 97925b5041d29e54ab8b174d0382903e, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Seal the Breach
     text: 'Pay 1 Mana: you take no battle damage this turn. Then send this card to

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightCharlatan
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gaslight Charlatan
-  artwork: {fileID: 0}
+  artwork: {fileID: -8654410326933460679, guid: c93c17eb5efcf304b98ae349bfde3c4b, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: RaisetheFailsafes
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Raise the Failsafes
-  artwork: {fileID: 0}
+  artwork: {fileID: -6988345066518961146, guid: 6bb119f77e16bbc47a80e7d2af8c0e7e, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Bring Systems Online
     text: Set up to 2 "Failsafe" Artifacts from your Deck onto the field.

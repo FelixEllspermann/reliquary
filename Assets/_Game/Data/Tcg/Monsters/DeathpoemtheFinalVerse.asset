@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemtheFinalVerse
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem, the Final Verse
-  artwork: {fileID: 0}
+  artwork: {fileID: 4131532539836345413, guid: 38a618c8430531a47b02b88eb5f615b0, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Closing Line
     text: 'Pay 2 Mana and tribute this card: destroy 1 monster and return up to 1

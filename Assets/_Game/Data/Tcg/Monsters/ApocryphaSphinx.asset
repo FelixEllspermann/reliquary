@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaSphinx
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Sphinx
-  artwork: {fileID: 0}
+  artwork: {fileID: -3614575831127406392, guid: a30cf655b39e75a43af2fc5db5f34981, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: First Riddle
     text: 'When this card is Summoned: look at your opponent''s hand and choose 1

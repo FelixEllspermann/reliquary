@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemCalligrapher
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Calligrapher
-  artwork: {fileID: 0}
+  artwork: {fileID: -817510835374231929, guid: ef0c6ae65eb7d4345a1c263a61fbf340, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Ink for the Fallen
     text: 'If this card is sent to the Graveyard: add 1 "Deathpoem" card from your

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnPyrekeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Slowburn Pyrekeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: 2446682004080125081, guid: 15dd326ebc987864ebc4bb1f9a52a9fc, type: 3}
   rarity: 2
   isToken: 0
   effects:

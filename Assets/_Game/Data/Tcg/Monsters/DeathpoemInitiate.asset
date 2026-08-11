@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DeathpoemInitiate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Initiate
-  artwork: {fileID: 0}
+  artwork: {fileID: 630083799170568051, guid: 23697252db0cec44fb65339be73f65f1, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Opening Verse
     text: 'Pay 1 Mana and tribute this card: destroy 1 monster with 1500 or less

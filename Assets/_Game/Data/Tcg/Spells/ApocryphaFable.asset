@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ApocryphaFable
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Apocrypha Fable
-  artwork: {fileID: 0}
+  artwork: {fileID: 5323779767988523816, guid: 5b893ccfcb4c5bf468f872130ae3abb6, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Retell the Tale
     text: Add 1 "Apocrypha" card from your Deck to your hand.

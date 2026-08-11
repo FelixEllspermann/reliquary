@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicrypttheBorrowedKing
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Mimicrypt, the Borrowed King
-  artwork: {fileID: 0}
+  artwork: {fileID: -3893884733249312872, guid: aa229df00f1aeac4fb316264060d0ae9, type: 3}
   rarity: 3
   isToken: 0
   effects:
