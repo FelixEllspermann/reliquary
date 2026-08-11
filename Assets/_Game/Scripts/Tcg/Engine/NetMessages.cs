@@ -69,6 +69,7 @@ namespace Rouge.Tcg.Net
         public int soloGames;
         public int soloWins;
         public LiveGame[] liveGames;    // gerade laufende Server-Duelle (zum Zuschauen)
+        public ShowcaseCard[] showcase; // profile_stats/set_showcase: die 3 Schaufenster-Karten
 
         // Server-autoritatives Duell
         public bool sduel;          // hello: Client beherrscht Server-Duelle
@@ -143,6 +144,14 @@ namespace Rouge.Tcg.Net
         public string duelId;
         public string a;
         public string b;
+    }
+
+    /// <summary>Eine Schaufenster-Karte des Profils (Name + Finish).</summary>
+    [Serializable]
+    public class ShowcaseCard
+    {
+        public string n;
+        public int f;
     }
 
     // ================== SERVER-DUELL (Wire-Formate des DuelHost) ==================

@@ -320,6 +320,10 @@ namespace Rouge.Tcg.Net
         /// <summary>Verlässt den Zuschauer-Modus wieder.</summary>
         public void SendSpectateLeave() => SendJson(new NetMessage { t = "spectate_leave" });
 
+        /// <summary>Speichert die bis zu 3 Schaufenster-Karten des Profils.</summary>
+        public void SendSetShowcase(ShowcaseCard[] cards) =>
+            SendJson(new NetMessage { t = "set_showcase", showcase = cards ?? new ShowcaseCard[0] });
+
         /// <summary>Meldet den ersten Sieg auf einer Turm-Ebene (Server prüft die Reihenfolge).</summary>
         public void SendTowerProgress(int floor) => SendJson(new NetMessage { t = "tower_progress", floor = floor });
 

@@ -1458,10 +1458,28 @@ wss.on('connection', (ws, req) => {
           })),
           pvpGames: ps.pvpGames, pvpWins: ps.pvpWins,
           soloGames: ps.soloGames, soloWins: ps.soloWins,
+          showcase: (acc.progress && acc.progress.showcase) || [],
           liveGames: [...serverDuels.entries()].map(([id, d]) => ({
             duelId: id, a: d.a ? d.a.name : '?', b: d.b ? d.b.name : '?'
           }))
         });
+        break;
+      }
+
+      case 'set_showcase': {
+        if (!acc) break;
+        // Bis zu 3 Karten fürs Profil-Schaufenster — nur, was der Spieler besitzt.
+        const list = Array.isArray(m.showcase) ? m.showcase.slice(0, 3) : [];
+        const clean = [];
+        for (const entry of list) {
+          if (!entry || typeof entry.n !== 'string' || entry.n.length > 60) continue;
+          if (finishes.total(acc.collection[entry.n]) < 1) continue;
+          clean.push({ n: entry.n, f: Number.isInteger(entry.f) ? entry.f : 0 });
+        }
+        if (!acc.progress) acc.progress = {};
+        acc.progress.showcase = clean;
+        saveAccount(acc);
+        log(`${acc.name}: Showcase → ${clean.map(x => x.n).join(', ') || 'leer'}`);
         break;
       }
 
