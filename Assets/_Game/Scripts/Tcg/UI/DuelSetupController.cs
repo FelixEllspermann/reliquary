@@ -920,8 +920,10 @@ namespace Rouge.Tcg.UI
             if (watchGroup == null && watchMode) EnsureWatchGroup();
             if (watchGroup != null) watchGroup.gameObject.SetActive(watchMode);
 
-            // Der Watch-Modus räumt die rechte Seite komplett frei — die anderen
-            // Modi holen sich Banner und Start-Knopf hier wieder zurück.
+            // Der Watch-Modus räumt den GANZEN Screen frei (zum Zuschauen braucht
+            // es kein Deck) — die anderen Modi holen sich alles hier zurück.
+            var deckPicker = transform.Find("DeckPicker");
+            if (deckPicker != null) deckPicker.gameObject.SetActive(!watchMode);
             if (bannerBg != null) bannerBg.gameObject.SetActive(!watchMode);
             if (startButton != null) startButton.gameObject.SetActive(!watchMode);
             if (watchMode)
@@ -953,10 +955,12 @@ namespace Rouge.Tcg.UI
         private void EnsureWatchGroup()
         {
             var parent = (RectTransform)(onlineGroup != null ? onlineGroup.transform.parent : transform);
+            // Volle Breite: die Deck-Auswahl ist im Watch-Modus ausgeblendet,
+            // also gehört dem Live-Panel der ganze Bereich unter der TopBar.
             watchGroup = MakeUiRect("WatchGroup", parent);
             watchGroup.anchorMin = watchGroup.anchorMax = new Vector2(0.5f, 0.5f);
-            watchGroup.anchoredPosition = new Vector2(333f, -19f);
-            watchGroup.sizeDelta = new Vector2(1158f, 874f);
+            watchGroup.anchoredPosition = new Vector2(0f, -19f);
+            watchGroup.sizeDelta = new Vector2(1824f, 874f);
 
             var plate = watchGroup.gameObject.AddComponent<Image>();
             plate.color = new Color32(0x1E, 0x14, 0x0C, 0xBF);
