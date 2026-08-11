@@ -350,6 +350,8 @@ namespace Rouge.Tcg
                 && player.Monsters().Count(m => m.FaceDown) < data.reqOwnFaceDownMonsters) return false;
             if (data.reqMonsterWithEquip && !player.Monsters().Any(m => m.EquippedArtifacts.Count > 0)) return false;
             if (data.reqGraveyardAtLeast > 0 && player.Graveyard.Count < data.reqGraveyardAtLeast) return false;
+            if (data.reqGraveyardSpellsAtLeast > 0
+                && player.Graveyard.Count(c => c.SpellData != null) < data.reqGraveyardSpellsAtLeast) return false;
             if (data.reqGraveyardMonstersAtLeast > 0
                 && player.Graveyard.Count(c => c.MonsterData != null) < data.reqGraveyardMonstersAtLeast) return false;
             if (data.reqControlNoMonsters && player.MonsterCount() > 0) return false;
@@ -809,6 +811,34 @@ namespace Rouge.Tcg
             spell.SetThisTurn = true;
             Log($"{player.Name} sets a card face-down.");
             BoardChanged();
+        }
+
+        /// <summary>
+        /// Slowburn: Gesetzte Spells mit Charged-Effekt zünden in der EIGENEN
+        /// Standby Phase automatisch — sofern sie VOR diesem Zug gesetzt wurden
+        /// (SetThisTurn ist beim Zugwechsel gefallen). Bricht der Spieler eine
+        /// Zielwahl ab, bleibt die Lunte liegen und fragt nächste Standby erneut.
+        /// </summary>
+        private IEnumerator ResolveChargedSpells(PlayerState player)
+        {
+            foreach (var spell in player.SpellZones.ToArray())
+            {
+                if (spell == null || spell.SpellData == null || !spell.FaceDown || spell.SetThisTurn) continue;
+                int charged = ChargedEffectIndex(spell);
+                if (charged < 0) continue;
+                Log($"{spell.Name}'s fuse burns down — the charged effect triggers!");
+                yield return ActivateSpell(player, spell, charged, fromHand: false);
+                if (Result != DuelResult.None) yield break;
+            }
+        }
+
+        /// <summary>Index des Charged-Effekts eines Spells, -1 wenn keiner existiert.</summary>
+        private static int ChargedEffectIndex(CardInstance spell)
+        {
+            if (spell?.Definition == null) return -1;
+            for (int i = 0; i < spell.Definition.effects.Count; i++)
+                if (spell.Definition.effects[i].trigger == EffectTrigger.ChargedStandby) return i;
+            return -1;
         }
 
         private IEnumerator ActivateSpell(PlayerState player, CardInstance spell, int effectIndex, bool fromHand)
@@ -1626,6 +1656,24 @@ namespace Rouge.Tcg
                         }
                         break;
                     }
+
+                    case EffectActionType.DetonateChargedSpell:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.SpellData == null || !hit.FaceDown
+                                || hit.Zone != ZoneType.SpellZone) continue;
+                            if (hit.SetThisTurn)
+                            {
+                                Log($"{hit.Name} was set this turn — the fuse is too fresh.");
+                                continue;
+                            }
+                            int chargedIdx = ChargedEffectIndex(hit);
+                            if (chargedIdx < 0) continue;
+                            Log($"{source.Name} shortcuts the fuse — {hit.Name} detonates!");
+                            yield return ActivateSpell(hit.Owner, hit, chargedIdx, fromHand: false);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
                     case EffectActionType.ProtectSelfThisTurn:
                         if (IsOnField(source))
                         {

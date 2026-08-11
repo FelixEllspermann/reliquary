@@ -56,7 +56,11 @@ namespace Rouge.Tcg
         OpponentEndPhase,      // End Phase des GEGNERISCHEN Zuges
         OnMilledSelf,          // DIESE Karte wandert vom DECK in den Friedhof (gemillt)
         OnDiscardedOrMilledSelf, // DIESE Karte wandert aus HAND oder DECK in den Friedhof
-        OnSentToGraveyardSelf  // DIESE Karte landet im Friedhof — egal woher (Feld/Hand/Deck)
+        OnSentToGraveyardSelf, // DIESE Karte landet im Friedhof — egal woher (Feld/Hand/Deck)
+
+        // --- Slowburn (Charged-Spells) ---
+        ChargedStandby         // GELADENE Version eines gesetzten Spells: zündet automatisch in der
+                               // eigenen Standby Phase, wenn die Karte VOR diesem Zug gesetzt wurde
     }
 
     public enum EffectActionType
@@ -163,7 +167,10 @@ namespace Rouge.Tcg
         // --- Gaslight (Illusion-Tokens) ---
         SummonIllusionTokensToOpponent,   // amount Illusion-Tokens (0/0, DEF) auf FREIE Gegner-Zonen; keine Summon-Trigger
         DestroyIllusionTokensDrawPer,     // bis zu amount gegnerische Illusion-Tokens zerstören; je 1 Karte ziehen (Cap: targetCount)
-        DestroyAllIllusionTokensDebuffTargetPer // ALLE Illusion-Tokens zerstören; Ziel-Monster verliert amount ATK je Token
+        DestroyAllIllusionTokensDebuffTargetPer, // ALLE Illusion-Tokens zerstören; Ziel-Monster verliert amount ATK je Token
+
+        // --- Slowburn (Charged-Spells) ---
+        DetonateChargedSpell        // zündet SOFORT den Charged-Effekt eines eigenen gesetzten Spells (vor diesem Zug gesetzt)
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>

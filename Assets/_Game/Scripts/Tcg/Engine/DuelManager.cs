@@ -529,6 +529,9 @@ namespace Rouge.Tcg
             yield return EnterPhase(DuelPhase.Standby);
             yield return ResolvePhaseTriggers(player, EffectTrigger.StandbyPhase);
             if (CheckWin()) yield break;
+            // Slowburn: Lunten, die vor diesem Zug gelegt wurden, zünden jetzt
+            yield return ResolveChargedSpells(player);
+            if (CheckWin()) yield break;
 
             // ---- Main Phase ----
             yield return EnterPhase(DuelPhase.Main);

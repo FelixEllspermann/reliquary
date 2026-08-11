@@ -806,7 +806,7 @@ namespace Rouge.Tcg.UI
         }
 
         [Range(0f, 2f)] [Tooltip("Wie lange eine gemillte Karte aufgedeckt auf dem Deck liegen bleibt")]
-        [SerializeField] private float millRevealHold = 0.4f;
+        [SerializeField] private float millRevealHold = 1.2f;
 
         /// <summary>
         /// Eine gemillte Karte: erscheint aufgedeckt auf der Deck-Zone, bleibt dort

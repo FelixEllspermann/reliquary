@@ -391,6 +391,101 @@ namespace Rouge.Tcg.EditorTools
             ovation.auraExcludesSelf = true;
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Slowburn (Charged)")]
+        public static void BuildSlowburn()
+        {
+            built.Clear();
+            Slowburn();
+            Finish("Slowburn");
+        }
+
+        // ---- SLOWBURN (Fire / Human) · „Die lange Lunte" ----
+        //
+        // Magier, die Quick-Spells SETZEN und schwelen lassen: sofort gezündet
+        // schwach — liegt die Lunte eine volle Runde, zündet in der eigenen
+        // Standby Phase automatisch die GELADENE Version (ChargedStandby).
+        // Pyrekeeper und der Boss schließen die Lunte per Detonate kurz.
+        private static void Slowburn()
+        {
+            Mon("Slowburn Candlewick", CardRarity.Common, 1, MonsterAttribute.Fire, MonsterType.Human, 600, 800,
+                Fx("Lay the Fuse", "When this card is Summoned: you can set 1 \"Slowburn\" Spell from your Deck.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered,
+                        nameFilter: "Slowburn:")),
+                Inf("Lay Both Fuses", "Pay 2 Mana instead: set up to 2 with different names.",
+                    EffectTrigger.OnSummonSelf, 2, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered,
+                        nameFilter: "Slowburn:", targetCount: 2, upTo: true, excludeSameName: true)));
+
+            Mon("Slowburn Chandler", CardRarity.Uncommon, 2, MonsterAttribute.Fire, MonsterType.Human, 1000, 1200,
+                Fx("Rewick", "Pay 1 Mana: return 1 \"Slowburn\" card from your Graveyard to your hand.",
+                    EffectTrigger.Ignition, 1, false,
+                    Act(EffectActionType.ReturnFromGraveyardToHand, 1, TargetKind.GraveyardCardSelf,
+                        nameFilter: "Slowburn")),
+                Inf("Snuff the Flame", "Pay 2 Mana: your opponent cannot Special Summon this turn.",
+                    EffectTrigger.Quick, 2, false,
+                    Act(EffectActionType.OpponentSummonLockThisTurn)));
+
+            var pyrekeeper = Mon("Slowburn Pyrekeeper", CardRarity.Rare, 3, MonsterAttribute.Fire, MonsterType.Human, 1700, 1300,
+                Fx("Detonate", "Pay 3 Mana: trigger the CHARGED effect of 1 of your set \"Slowburn\" Spells that was set before this turn.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.DetonateChargedSpell, 1, TargetKind.AllySpellOrArtifact,
+                        nameFilter: "Slowburn:")));
+            pyrekeeper.auraDefBonus = 200;
+            pyrekeeper.auraNameFilter = "Slowburn";
+            pyrekeeper.auraExcludesSelf = true;
+
+            Spell("Slowburn: Tripwire", CardRarity.Common, true,
+                Fx("Fuse Lit", "Switch 1 monster your opponent controls to Defense Position.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.SwitchTargetToDefense, 1, TargetKind.EnemyMonster)),
+                Fx("Charged: Firing Line", "Charged (auto in your Standby Phase): switch ALL your opponent's monsters to Defense Position.",
+                    EffectTrigger.ChargedStandby, 0, false,
+                    Act(EffectActionType.SwitchAllToDefense, 1)));
+
+            Spell("Slowburn: Banked Flame", CardRarity.Uncommon, true,
+                Fx("Fuse Lit", "Draw 1 card.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.DrawCards, 1)),
+                Fx("Charged: Flashover", "Charged (auto in your Standby Phase): draw 2 cards and gain 2 Mana this turn.",
+                    EffectTrigger.ChargedStandby, 0, false,
+                    Act(EffectActionType.DrawCards, 2),
+                    Act(EffectActionType.GainMana, 2)));
+
+            Spell("Slowburn: Deep Coals", CardRarity.Rare, true,
+                Fx("Fuse Lit", "1 monster your opponent controls loses 400 ATK.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.DebuffTargetAtk, 400, TargetKind.EnemyMonster)),
+                Fx("Charged: Eruption", "Charged (auto in your Standby Phase): destroy up to 2 monsters your opponent controls.",
+                    EffectTrigger.ChargedStandby, 0, false,
+                    Act(EffectActionType.DestroyTargetMonster, 1, TargetKind.EnemyMonster,
+                        targetCount: 2, upTo: true)));
+
+            var patient = Rel("Slowburn, the Patient Flame", CardRarity.Legendary, 3,
+                MonsterAttribute.Fire, MonsterType.Human, 2300, 1900,
+                "2+ Spells in your Graveyard — pay 3 Mana.", 3,
+                Fx("Long Game", "If this card is Summoned: you can set up to 2 \"Slowburn\" Spells from your Deck.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.SetTargetSpellFromDeck, 1, TargetKind.DeckSpellFiltered,
+                        nameFilter: "Slowburn:", targetCount: 2, upTo: true)),
+                Fx("Detonate", "Pay 2 Mana: trigger the CHARGED effect of 1 of your set \"Slowburn\" Spells that was set before this turn.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.DetonateChargedSpell, 1, TargetKind.AllySpellOrArtifact,
+                        nameFilter: "Slowburn:")));
+            patient.reqGraveyardSpellsAtLeast = 2;
+
+            var backdraft = Rel("Slowburn, Backdraft", CardRarity.Rare, 2,
+                MonsterAttribute.Fire, MonsterType.Human, 1800, 1400,
+                "Your opponent controls more monsters than you — pay 2 Mana.", 2,
+                Fx("Rush of Air", "If this card is Summoned: gain 2 Mana this turn.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.GainMana, 2)).Mand(),
+                Inf("Doorway Flare", "Pay 2 Mana: 1 monster your opponent controls loses 600 ATK.",
+                    EffectTrigger.Quick, 2, false,
+                    Act(EffectActionType.DebuffTargetAtk, 600, TargetKind.EnemyMonster)));
+            backdraft.reqOpponentMoreMonsters = true;
+        }
+
         // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
         // rastet die nächste ein" ----
         //
@@ -751,7 +846,7 @@ namespace Rouge.Tcg.EditorTools
         // ================== Asset-Anlage ==================
 
         private static string FileName(string cardName) =>
-            cardName.Replace(",", "").Replace("'", "").Replace(" ", "");
+            cardName.Replace(",", "").Replace("'", "").Replace(":", "").Replace(" ", "");
 
         private static T Make<T>(string dir, string cardName, CardRarity rarity,
             params EffectDefinition[] effects) where T : CardDefinition
