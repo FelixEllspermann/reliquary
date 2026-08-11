@@ -352,6 +352,8 @@ namespace Rouge.Tcg
             if (data.reqGraveyardAtLeast > 0 && player.Graveyard.Count < data.reqGraveyardAtLeast) return false;
             if (data.reqGraveyardSpellsAtLeast > 0
                 && player.Graveyard.Count(c => c.SpellData != null) < data.reqGraveyardSpellsAtLeast) return false;
+            if (data.reqOpponentGraveyardAtLeast > 0
+                && opponent.Graveyard.Count < data.reqOpponentGraveyardAtLeast) return false;
             if (data.reqGraveyardMonstersAtLeast > 0
                 && player.Graveyard.Count(c => c.MonsterData != null) < data.reqGraveyardMonstersAtLeast) return false;
             if (data.reqControlNoMonsters && player.MonsterCount() > 0) return false;
@@ -1318,6 +1320,12 @@ namespace Rouge.Tcg
                 case TargetKind.GraveyardCardOpponent:
                     candidates.AddRange(player.Opponent.Graveyard);
                     break;
+                case TargetKind.GraveyardSpellOpponent:
+                    candidates.AddRange(player.Opponent.Graveyard.Where(c => c.SpellData != null));
+                    break;
+                case TargetKind.GraveyardMonsterOpponent:
+                    candidates.AddRange(player.Opponent.Graveyard.Where(c => c.MonsterData != null));
+                    break;
                 case TargetKind.AllySpellOrArtifact:
                     candidates.AddRange(player.SpellsOnField());
                     candidates.AddRange(player.ArtifactsOnField());
@@ -1672,6 +1680,52 @@ namespace Rouge.Tcg
                             Log($"{source.Name} shortcuts the fuse — {hit.Name} detonates!");
                             yield return ActivateSpell(hit.Owner, hit, chargedIdx, fromHand: false);
                             if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+
+                    case EffectActionType.CopySpellFromOpponentGraveyard:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.SpellData == null || hit.Zone != ZoneType.Graveyard) continue;
+                            var copied = hit.Definition != null && hit.Definition.effects.Count > 0
+                                ? hit.Definition.effects[0] : null;
+                            if (copied == null) continue;
+                            Log($"{player.Name} re-enacts {hit.Name} from the opponent's Graveyard!");
+                            // Quelle bleibt die Grave-Karte: Selbstbezüge (BanishSelf & Co.)
+                            // treffen das fremde Original, nie den Nachahmer. Kosten-Aktionen
+                            // des kopierten Effekts fallen bewusst NICHT an.
+                            var copyTargets = new TargetCollection();
+                            yield return CollectTargets(player, copied, copyTargets, true, hit);
+                            if (copyTargets.Cancelled) continue;
+                            yield return ResolveEffectActions(hit, copied, player, copyTargets);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+
+                    case EffectActionType.AllyMonsterCopiesTargetStats:
+                        if (target != null && target.MonsterData != null && IsOnField(target))
+                        {
+                            var recipientRequest = new TargetRequest
+                            {
+                                Title = $"Choose your monster to copy {target.Name}'s stats",
+                                Kind = TargetKind.AllyMonster,
+                                Count = 1,
+                                AllowCancel = false
+                            };
+                            recipientRequest.Candidates.AddRange(player.Monsters().Where(m => !m.FaceDown && m != target));
+                            if (recipientRequest.Candidates.Count == 0)
+                            {
+                                Log($"{player.Name} controls no monster to receive the copied stats.");
+                                break;
+                            }
+                            yield return DecideRouted(player, recipientRequest);
+                            if (recipientRequest.Result.Count == 0) break;
+                            var recipient = recipientRequest.Result[0];
+                            recipient.StatsOverriddenThisTurn = true;
+                            recipient.OverriddenAtk = target.CurrentAtk;
+                            recipient.OverriddenDef = target.CurrentDef;
+                            Log($"{recipient.Name} copies {target.Name}'s stats ({recipient.CurrentAtk}/{recipient.CurrentDef}).");
+                            BoardChanged();
                         }
                         break;
                     case EffectActionType.ProtectSelfThisTurn:

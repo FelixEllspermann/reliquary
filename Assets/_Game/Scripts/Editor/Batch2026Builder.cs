@@ -486,6 +486,83 @@ namespace Rouge.Tcg.EditorTools
             backdraft.reqOpponentMoreMonsters = true;
         }
 
+        [MenuItem("Rouge TCG/Build Batch 2026 — Mimicrypt (Copy)")]
+        public static void BuildMimicrypt()
+        {
+            built.Clear();
+            Mimicrypt();
+            Finish("Mimicrypt");
+        }
+
+        // ---- MIMICRYPT (Dark / Demon) · „Die Krypta der Nachahmer" ----
+        //
+        // Kopisten, die den GEGNERISCHEN Friedhof plündern: Zauber nachspielen,
+        // Werte absaugen, Originale entleihen — und der König beschwört fremde
+        // Tote aufs eigene Feld. Jede Karte stiehlt anders.
+        private static void Mimicrypt()
+        {
+            Mon("Mimicrypt Ghoul", CardRarity.Common, 1, MonsterAttribute.Dark, MonsterType.Demon, 600, 900,
+                Fx("Grave Robbery", "When this card is Summoned: banish 1 card from your opponent's Graveyard.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent)),
+                Inf("Double Haul", "Pay 1 Mana instead: banish up to 2.",
+                    EffectTrigger.OnSummonSelf, 1, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent,
+                        targetCount: 2, upTo: true)));
+
+            Mon("Mimicrypt Understudy", CardRarity.Uncommon, 2, MonsterAttribute.Dark, MonsterType.Demon, 1000, 1000,
+                Fx("Steal the Scene", "Pay 2 Mana: choose 1 Spell in your opponent's Graveyard — resolve its effect as if it were yours.",
+                    EffectTrigger.Ignition, 2, true,
+                    Act(EffectActionType.CopySpellFromOpponentGraveyard, 1, TargetKind.GraveyardSpellOpponent)));
+
+            Spell("Mimicrypt Forgery", CardRarity.Uncommon, true,
+                Fx("Perfect Fake", "1 monster you control copies the ATK and DEF of 1 monster your opponent controls until the end of the turn.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.AllyMonsterCopiesTargetStats, 1, TargetKind.EnemyMonster)));
+
+            Spell("Mimicrypt Siphon", CardRarity.Common, false,
+                Fx("Drain the Original", "1 monster your opponent controls loses 400 ATK; 1 monster you control gains 400 ATK.",
+                    EffectTrigger.OnActivate, 1, false,
+                    Act(EffectActionType.DebuffTargetAtk, 400, TargetKind.EnemyMonster),
+                    Act(EffectActionType.BuffTargetAtk, 400, TargetKind.AllyMonster)));
+
+            var archivist = Mon("Mimicrypt Archivist", CardRarity.Rare, 3, MonsterAttribute.Dark, MonsterType.Demon, 1500, 1500,
+                Fx("Borrow the Original", "Pay 3 Mana: take control of 1 monster your opponent controls until the End Phase.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.TakeControlUntilEndOfTurn, 1, TargetKind.EnemyMonster)));
+            archivist.auraDefBonus = 200;
+            archivist.auraNameFilter = "Mimicrypt";
+            archivist.auraExcludesSelf = true;
+
+            Spell("Mimicrypt Encore", CardRarity.Rare, false,
+                Fx("Encore!", "Special Summon a copy of 1 monster your opponent controls to your field. It vanishes during the End Phase.",
+                    EffectTrigger.OnActivate, 2, false,
+                    Act(EffectActionType.SummonCopyOfTarget, 1, TargetKind.EnemyMonster)));
+
+            var king = Rel("Mimicrypt, the Borrowed King", CardRarity.Legendary, 3,
+                MonsterAttribute.Dark, MonsterType.Demon, 1000, 1000,
+                "Your opponent's Graveyard holds 8+ cards — pay 3 Mana.", 3,
+                Fx("Crown of Mirrors", "If this card is Summoned: you can copy the ATK and DEF of 1 monster on the field until the end of the turn.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster)),
+                Fx("Command the Dead", "Pay 3 Mana: Special Summon 1 monster from your OPPONENT's Graveyard to your field.",
+                    EffectTrigger.Ignition, 3, true,
+                    Act(EffectActionType.SpecialSummonTargetFromGraveOrBanish, 1, TargetKind.GraveyardMonsterOpponent)));
+            king.reqOpponentGraveyardAtLeast = 8;
+
+            var palimpsest = Rel("Mimicrypt, Palimpsest", CardRarity.Rare, 2,
+                MonsterAttribute.Dark, MonsterType.Demon, 1600, 1600,
+                "Your opponent's Graveyard holds 6+ cards — pay 2 Mana.", 2,
+                Fx("Scrape the Page", "If this card is Summoned: you can banish up to 2 cards from your opponent's Graveyard.",
+                    EffectTrigger.OnSummonSelf, 0, true,
+                    Act(EffectActionType.BanishTarget, 1, TargetKind.GraveyardCardOpponent,
+                        targetCount: 2, upTo: true)),
+                Inf("Undertext", "Pay 2 Mana: copy the ATK and DEF of 1 monster on the field until the end of the turn.",
+                    EffectTrigger.Quick, 2, false,
+                    Act(EffectActionType.CopyTargetStatsThisTurn, 1, TargetKind.AnyMonster)));
+            palimpsest.reqOpponentGraveyardAtLeast = 6;
+        }
+
         // ---- FAILSAFE (Earth / Artefakt-Interrupts) · „Fällt eine Sicherung,
         // rastet die nächste ein" ----
         //

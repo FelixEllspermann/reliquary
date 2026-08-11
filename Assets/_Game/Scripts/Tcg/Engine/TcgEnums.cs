@@ -170,7 +170,11 @@ namespace Rouge.Tcg
         DestroyAllIllusionTokensDebuffTargetPer, // ALLE Illusion-Tokens zerstören; Ziel-Monster verliert amount ATK je Token
 
         // --- Slowburn (Charged-Spells) ---
-        DetonateChargedSpell        // zündet SOFORT den Charged-Effekt eines eigenen gesetzten Spells (vor diesem Zug gesetzt)
+        DetonateChargedSpell,       // zündet SOFORT den Charged-Effekt eines eigenen gesetzten Spells (vor diesem Zug gesetzt)
+
+        // --- Mimicrypt (Nachahmer) ---
+        CopySpellFromOpponentGraveyard, // Ziel-Zauber im GEGNER-Friedhof: dessen ersten Effekt als eigenen auflösen
+        AllyMonsterCopiesTargetStats    // ein selbst gewähltes EIGENES Monster kopiert ATK/DEF des Ziels bis Zugende
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
@@ -225,7 +229,11 @@ namespace Rouge.Tcg
         BanishedCardSelf,          // beliebige Karte in der eigenen Verbannung
         GraveyardCardOpponent,     // beliebige Karte im gegnerischen Friedhof
         AllySpellOrArtifact,       // eigener Zauber (auch gesetzt) oder eigenes Artefakt auf dem Feld
-        HandSpellFiltered          // Zauber in der eigenen Hand (Filter der Action beachten)
+        HandSpellFiltered,         // Zauber in der eigenen Hand (Filter der Action beachten)
+
+        // --- Mimicrypt (Gegner-Friedhof) ---
+        GraveyardSpellOpponent,    // Zauberkarte im gegnerischen Friedhof
+        GraveyardMonsterOpponent   // Monster im gegnerischen Friedhof
     }
 
     /// <summary>

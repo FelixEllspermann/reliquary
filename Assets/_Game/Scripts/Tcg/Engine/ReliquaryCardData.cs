@@ -62,6 +62,9 @@ namespace Rouge.Tcg
         [Tooltip("Mindestzahl an Zauberkarten im eigenen Friedhof")]
         [Range(0, 20)] public int reqGraveyardSpellsAtLeast;
 
+        [Tooltip("Mindestzahl an Karten im GEGNERISCHEN Friedhof")]
+        [Range(0, 20)] public int reqOpponentGraveyardAtLeast;
+
         [Tooltip("Bedingung: Du kontrollierst KEIN Monster")]
         public bool reqControlNoMonsters;
 
