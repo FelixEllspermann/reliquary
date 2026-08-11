@@ -216,7 +216,8 @@ export function openDatabase(dataDir, log = console.log) {
         pvp_games = pvp_games + excluded.pvp_games, pvp_wins = pvp_wins + excluded.pvp_wins,
         updated = excluded.updated
     `),
-    selectTopCards: db.prepare('SELECT * FROM card_stats ORDER BY games DESC, card ASC LIMIT ?'),
+    // Die Karten-Statistik wertet NUR Online-Matches — Solo verzerrt (Bots).
+    selectTopCards: db.prepare('SELECT * FROM card_stats WHERE pvp_games > 0 ORDER BY pvp_games DESC, card ASC LIMIT ?'),
     upsertCardPair: db.prepare(`
       INSERT INTO card_pairs (a, b, games, wins) VALUES (?, ?, 1, ?)
       ON CONFLICT(a, b) DO UPDATE SET games = games + 1, wins = wins + excluded.wins
@@ -403,15 +404,17 @@ export function openDatabase(dataDir, log = console.log) {
       won ? 1 : 0, pvp ? 1 : 0, pvp && won ? 1 : 0, Date.now());
 
     // Karten-Statistik: jede Karte zählt pro Match einmal, Kopien egal.
-    // Paare (alphabetisch normiert) tragen "often paired with".
+    // Paare (alphabetisch normiert) tragen "often paired with" — und zählen
+    // NUR Online-Matches, genau wie die Anzeige (Solo gegen Bots verzerrt).
     const now = Date.now();
     const distinct = [...new Set([...main, ...side])].sort();
     const winFlag = won ? 1 : 0;
     for (const card of distinct)
       statements.upsertCardStat.run(card, winFlag, pvp ? 1 : 0, pvp && won ? 1 : 0, now);
-    for (let i = 0; i < distinct.length; i++)
-      for (let j = i + 1; j < distinct.length; j++)
-        statements.upsertCardPair.run(distinct[i], distinct[j], winFlag);
+    if (pvp)
+      for (let i = 0; i < distinct.length; i++)
+        for (let j = i + 1; j < distinct.length; j++)
+          statements.upsertCardPair.run(distinct[i], distinct[j], winFlag);
   }
 
   /** Die meistgespielten Karten (ein Match zählt je Karte einmal). */

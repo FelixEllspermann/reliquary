@@ -11,9 +11,10 @@ namespace Rouge.Tcg.UI
 {
     /// <summary>
     /// Statistik-Seite der Sammlung: welche KARTEN gespielt werden, wie oft sie
-    /// gewinnen und mit wem sie im Deck stehen. Ein Match zählt je Karte einmal
-    /// (Kopien egal); die Zahlen kommen fertig vom Server (stats_cards /
-    /// stats_card_detail) — der Client rechnet nur die Prozentanzeige.
+    /// gewinnen und mit wem sie im Deck stehen. Gewertet werden NUR
+    /// Online-Matches (Solo gegen Bots verzerrt die Winrates); ein Match zählt
+    /// je Karte einmal (Kopien egal). Die Zahlen kommen fertig vom Server
+    /// (stats_cards / stats_card_detail) — der Client rechnet nur die Prozente.
     /// </summary>
     public class StatisticsController : MonoBehaviour
     {
@@ -103,7 +104,7 @@ namespace Rouge.Tcg.UI
 
             if (cards.Length == 0 || listContent == null || rowTemplate == null)
             {
-                ShowEmpty("NO MATCHES TRACKED YET — PLAY SOME DUELS.");
+                ShowEmpty("NO ONLINE MATCHES TRACKED YET — PLAY SOME ONLINE DUELS.\n<size=70%>SOLO GAMES DO NOT COUNT HERE.</size>");
                 ClearDetail();
                 return;
             }
@@ -117,11 +118,11 @@ namespace Rouge.Tcg.UI
                 row.SetActive(true);
                 SetRowText(row, "NameText", card.n);
                 SetRowText(row, "HeroText", DescribeCard(card.n));
-                SetRowText(row, "GamesText", card.games + (card.games == 1 ? " GAME" : " GAMES"));
+                SetRowText(row, "GamesText", card.pvpGames + (card.pvpGames == 1 ? " GAME" : " GAMES"));
                 var rateText = FindRowText(row, "WinrateText");
                 if (rateText != null)
                 {
-                    int rate = Winrate(card.wins, card.games);
+                    int rate = Winrate(card.pvpWins, card.pvpGames);
                     rateText.text = rate + "%";
                     rateText.color = rate >= 50 ? goodWinrate : badWinrate;
                 }
@@ -163,12 +164,9 @@ namespace Rouge.Tcg.UI
             if (detailTitle != null) detailTitle.text = card.n;
             if (detailSummary != null)
             {
-                int rate = Winrate(card.wins, card.games);
-                string line = $"{card.games} GAMES  ·  {card.wins} WINS  ·  <color=#{ColorUtility.ToHtmlStringRGB(rate >= 50 ? goodWinrate : badWinrate)}>{rate}% WINRATE</color>";
-                if (card.pvpGames > 0)
-                    line += $"\n<size=80%>PVP: {card.pvpWins}/{card.pvpGames} ({Winrate(card.pvpWins, card.pvpGames)}%)  ·  SOLO: {card.wins - card.pvpWins}/{card.games - card.pvpGames}</size>";
-                else
-                    line += "\n<size=80%>ALL MATCHES AGAINST BOTS (SOLO)</size>";
+                int rate = Winrate(card.pvpWins, card.pvpGames);
+                string line = $"{card.pvpGames} GAMES  ·  {card.pvpWins} WINS  ·  <color=#{ColorUtility.ToHtmlStringRGB(rate >= 50 ? goodWinrate : badWinrate)}>{rate}% WINRATE</color>";
+                line += "\n<size=80%>ONLINE MATCHES ONLY — SOLO GAMES ARE NOT TRACKED.</size>";
                 detailSummary.text = line;
             }
             if (detailCards != null)
