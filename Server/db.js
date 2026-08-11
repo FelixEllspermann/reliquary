@@ -141,6 +141,44 @@ export function openDatabase(dataDir, log = console.log) {
     );
   `);
 
+  // Karten-Statistiken: je Karte zählt ein Match EINMAL (egal wie viele Kopien
+  // im Deck lagen). card_pairs hält, wie oft zwei Karten zusammen in einem
+  // Deck ein Match bestritten haben — Grundlage für "often paired with".
+  // Paare sind alphabetisch normiert (a < b), damit jede Kombination genau
+  // eine Zeile hat.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS card_stats (
+      card      TEXT PRIMARY KEY,
+      games     INTEGER NOT NULL DEFAULT 0,
+      wins      INTEGER NOT NULL DEFAULT 0,
+      pvp_games INTEGER NOT NULL DEFAULT 0,
+      pvp_wins  INTEGER NOT NULL DEFAULT 0,
+      updated   INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS card_pairs (
+      a     TEXT NOT NULL,
+      b     TEXT NOT NULL,
+      games INTEGER NOT NULL DEFAULT 0,
+      wins  INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (a, b)
+    );
+    CREATE INDEX IF NOT EXISTS card_pairs_b ON card_pairs(b);
+  `);
+
+  // Match-Historie je Konto: die letzten Spiele für die Profil-Seite.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS match_log (
+      id        INTEGER PRIMARY KEY AUTOINCREMENT,
+      account   TEXT NOT NULL,
+      ts        INTEGER NOT NULL,
+      mode      TEXT NOT NULL,
+      opponent  TEXT NOT NULL DEFAULT '',
+      deck_name TEXT NOT NULL DEFAULT '',
+      won       INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE INDEX IF NOT EXISTS match_log_account ON match_log(account, ts);
+  `);
+
   db.prepare('INSERT OR REPLACE INTO meta(key, value) VALUES(?, ?)')
     .run('schema_version', String(SCHEMA_VERSION));
 
@@ -170,6 +208,36 @@ export function openDatabase(dataDir, log = console.log) {
         updated = excluded.updated
     `),
     selectTopDecks: db.prepare('SELECT * FROM deck_stats ORDER BY games DESC, updated DESC LIMIT ?'),
+    upsertCardStat: db.prepare(`
+      INSERT INTO card_stats (card, games, wins, pvp_games, pvp_wins, updated)
+      VALUES (?, 1, ?, ?, ?, ?)
+      ON CONFLICT(card) DO UPDATE SET
+        games = games + 1, wins = wins + excluded.wins,
+        pvp_games = pvp_games + excluded.pvp_games, pvp_wins = pvp_wins + excluded.pvp_wins,
+        updated = excluded.updated
+    `),
+    selectTopCards: db.prepare('SELECT * FROM card_stats ORDER BY games DESC, card ASC LIMIT ?'),
+    upsertCardPair: db.prepare(`
+      INSERT INTO card_pairs (a, b, games, wins) VALUES (?, ?, 1, ?)
+      ON CONFLICT(a, b) DO UPDATE SET games = games + 1, wins = wins + excluded.wins
+    `),
+    selectPartners: db.prepare(`
+      SELECT CASE WHEN a = ? THEN b ELSE a END AS partner, games, wins
+      FROM card_pairs WHERE a = ? OR b = ?
+      ORDER BY games DESC, partner ASC LIMIT ?
+    `),
+    insertMatchLog: db.prepare(`
+      INSERT INTO match_log (account, ts, mode, opponent, deck_name, won)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `),
+    selectRecentMatches: db.prepare(`
+      SELECT ts, mode, opponent, deck_name, won FROM match_log
+      WHERE account = ? ORDER BY ts DESC, id DESC LIMIT ?
+    `),
+    countMatchStats: db.prepare(`
+      SELECT mode, COUNT(*) AS games, SUM(won) AS wins FROM match_log
+      WHERE account = ? GROUP BY mode
+    `),
     countAccounts: db.prepare('SELECT COUNT(*) AS n FROM accounts'),
     countCards: db.prepare('SELECT COUNT(*) AS n FROM collection')
   };
@@ -333,6 +401,52 @@ export function openDatabase(dataDir, log = console.log) {
     statements.upsertDeckStat.run(hash, name || '', hero || '',
       JSON.stringify(grouped(main)), JSON.stringify(grouped(side)),
       won ? 1 : 0, pvp ? 1 : 0, pvp && won ? 1 : 0, Date.now());
+
+    // Karten-Statistik: jede Karte zählt pro Match einmal, Kopien egal.
+    // Paare (alphabetisch normiert) tragen "often paired with".
+    const now = Date.now();
+    const distinct = [...new Set([...main, ...side])].sort();
+    const winFlag = won ? 1 : 0;
+    for (const card of distinct)
+      statements.upsertCardStat.run(card, winFlag, pvp ? 1 : 0, pvp && won ? 1 : 0, now);
+    for (let i = 0; i < distinct.length; i++)
+      for (let j = i + 1; j < distinct.length; j++)
+        statements.upsertCardPair.run(distinct[i], distinct[j], winFlag);
+  }
+
+  /** Die meistgespielten Karten (ein Match zählt je Karte einmal). */
+  function topCards(limit = 100) {
+    return statements.selectTopCards.all(limit).map(row => ({
+      n: row.card, games: row.games, wins: row.wins,
+      pvpGames: row.pvp_games, pvpWins: row.pvp_wins
+    }));
+  }
+
+  /** Die häufigsten Deck-Partner einer Karte, samt gemeinsamer Bilanz. */
+  function cardPartners(card, limit = 12) {
+    return statements.selectPartners.all(card, card, card, limit).map(row => ({
+      n: row.partner, games: row.games, wins: row.wins
+    }));
+  }
+
+  /** Schreibt ein Spiel in die Historie eines Kontos (Profil: "Recent Matches"). */
+  function recordMatch(account, { mode, opponent, deckName, won }) {
+    statements.insertMatchLog.run(account, Date.now(), mode || 'solo',
+      opponent || '', deckName || '', won ? 1 : 0);
+  }
+
+  /** Die letzten Spiele + Modus-Bilanzen eines Kontos. */
+  function profileStats(account, limit = 20) {
+    const matches = statements.selectRecentMatches.all(account, limit).map(row => ({
+      ts: row.ts, mode: row.mode, opponent: row.opponent,
+      deckName: row.deck_name, won: row.won === 1
+    }));
+    let pvpGames = 0, pvpWins = 0, soloGames = 0, soloWins = 0;
+    for (const row of statements.countMatchStats.all(account)) {
+      if (row.mode === 'pvp') { pvpGames = row.games; pvpWins = row.wins || 0; }
+      else { soloGames += row.games; soloWins += row.wins || 0; }
+    }
+    return { matches, pvpGames, pvpWins, soloGames, soloWins };
   }
 
   /** Die meistgespielten Decks samt Kartenlisten, fürs Statistik-Panel im Client. */
@@ -381,5 +495,6 @@ export function openDatabase(dataDir, log = console.log) {
     return count;
   }
 
-  return { loadAll, save, remove, flush, close, stats, importLegacyJson, file, recordDeckResult, topDecks };
+  return { loadAll, save, remove, flush, close, stats, importLegacyJson, file,
+    recordDeckResult, topDecks, topCards, cardPartners, recordMatch, profileStats };
 }

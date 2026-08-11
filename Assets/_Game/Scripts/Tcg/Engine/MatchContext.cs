@@ -9,6 +9,9 @@ namespace Rouge.Tcg.Net
         /// <summary>Server-autoritatives Duell: der DuelHost auf dem Server rechnet, der Client spiegelt nur.</summary>
         public static bool IsServerMatch;
 
+        /// <summary>Zuschauer-Modus: wir spiegeln ein fremdes Server-Duell, ohne mitzuspielen.</summary>
+        public static bool SpectateMode;
+
         /// <summary>Solo-Duell mit einem Account-Deck (LocalDeckCards/LocalHero gefüllt, Gegner = Bot).</summary>
         public static bool UseCustomLocalDeck;
 
@@ -71,6 +74,7 @@ namespace Rouge.Tcg.Net
         public static void Clear()
         {
             IsServerMatch = false;
+            SpectateMode = false;
             UseCustomLocalDeck = false;
             SoloDifficulty = 1;
             TowerFloor = 0;

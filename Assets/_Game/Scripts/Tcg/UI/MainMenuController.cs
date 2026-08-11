@@ -205,7 +205,9 @@ namespace Rouge.Tcg.UI
                 plateButton = plate.gameObject.GetComponent<Button>();
                 if (plateButton == null) plateButton = plate.gameObject.AddComponent<Button>();
                 plateButton.transition = Selectable.Transition.None;
-                plateButton.onClick.AddListener(() => ProfilePanel.Open(catalog));
+                // Das Profil ist inzwischen eine eigene Seite (Kosmetik/Titel öffnet
+                // sie dort als CUSTOMIZE-Overlay).
+                plateButton.onClick.AddListener(() => SceneManager.LoadScene("Profile"));
             }
             plateButton.interactable = online;
         }

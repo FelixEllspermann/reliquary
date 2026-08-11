@@ -89,6 +89,12 @@ namespace Rouge.DuelHost
                     if (duelId != null && sessions.TryGetValue(duelId, out var forLeave))
                         forLeave.Forfeit(msg.GetProperty("side").GetString());
                     break;
+                case "poke":
+                    // Ein Zuschauer ist beigetreten — beim nächsten Flush geht ein
+                    // frischer State raus (auch an A/B, das ist idempotent).
+                    if (duelId != null && sessions.TryGetValue(duelId, out var forPoke))
+                        forPoke.Poke();
+                    break;
                 case "ping":
                     server.Send(new { op = "pong" });
                     break;

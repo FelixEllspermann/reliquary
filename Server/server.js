@@ -788,6 +788,15 @@ function handleHostMessage(m) {
   const payload = { t: 'sduel', ...m };
   delete payload.to;
 
+  // Zuschauer: to=="S" ist ihre gefilterte Fassung, to==null (log/end) geht an alle.
+  // Tote Sockets fliegen hier gleich mit raus.
+  if (duel.spectators) {
+    duel.spectators = duel.spectators.filter(s => s.ws && s.ws.readyState === 1);
+    if ((!to || to === 'S') && m.op !== 'end')
+      for (const s of duel.spectators) send(s, payload);
+  }
+  if (to === 'S') return;
+
   if (m.op === 'end') {
     // Autoritative Belohnung: HIER weiß der Server wirklich, wer gewonnen hat
     for (const side of ['a', 'b']) {
@@ -823,12 +832,24 @@ function handleHostMessage(m) {
         sendProfile(client, acc);
       }
     }
-    // Deck-Statistik: beide Zusammensetzungen mit autoritativem Ergebnis verbuchen
+    // Deck-/Karten-Statistik + Match-Historie: beide Seiten mit autoritativem Ergebnis
     if (duel.stats) {
       for (const side of ['a', 'b']) {
         const snap = duel.stats[side];
-        if (snap) db.recordDeckResult({ ...snap, won: (m.winner === 'A') === (side === 'a'), pvp: true });
+        if (!snap) continue;
+        const won = (m.winner === 'A') === (side === 'a');
+        db.recordDeckResult({ ...snap, won, pvp: true });
+        const client = duel[side];
+        const other = duel[side === 'a' ? 'b' : 'a'];
+        if (client && client.account) db.recordMatch(client.account, {
+          mode: 'pvp', opponent: other ? other.name : '', deckName: snap.name, won
+        });
       }
+    }
+    // Zuschauer sehen das Ende ebenfalls und sind danach ausgetragen
+    for (const s of duel.spectators || []) {
+      send(s, payload);
+      s.spectateDuelId = null;
     }
     serverDuels.delete(m.duelId);
     log(`Server-Duell ${m.duelId} beendet — Sieger ${m.winner}.`);
@@ -1358,13 +1379,18 @@ wss.on('connection', (ws, req) => {
         saveAccount(acc);
         sendProfile(c, acc);
         log(`${acc.name}: Solo-Belohnung → ${acc.coins} Coins`);
-        // Deck-Statistik: Solo zählt als eigenes Match (Client-Angabe — hinter
-        // demselben Cooldown wie die Belohnung, damit niemand Winrates spammt).
+        // Deck-/Karten-Statistik + Historie: Solo zählt als eigenes Match
+        // (Client-Angabe — hinter demselben Cooldown wie die Belohnung,
+        // damit niemand Winrates spammt).
         if (Array.isArray(m.deckCards) && m.deckCards.length > 0) {
           db.recordDeckResult({
             name: m.deckName || 'Deck', hero: m.deckHero || '',
             cards: m.deckCards, extra: Array.isArray(m.deckExtra) ? m.deckExtra : [],
             won: !!m.won, pvp: false
+          });
+          db.recordMatch(c.account, {
+            mode: 'solo', opponent: m.opponent || 'Bot',
+            deckName: m.deckName || 'Deck', won: !!m.won
           });
         }
         break;
@@ -1373,6 +1399,58 @@ wss.on('connection', (ws, req) => {
       case 'stats_decks': {
         if (!acc) break;
         send(c, { t: 'stats_decks', decks: db.topDecks(50) });
+        break;
+      }
+
+      case 'stats_cards': {
+        if (!acc) break;
+        send(c, { t: 'stats_cards', cardStats: db.topCards(120) });
+        break;
+      }
+
+      case 'stats_card_detail': {
+        if (!acc || !m.card) break;
+        send(c, { t: 'stats_card_detail', card: m.card, partners: db.cardPartners(m.card, 12) });
+        break;
+      }
+
+      case 'spectate': {
+        if (!acc) break;
+        const watched = serverDuels.get(m.duelId);
+        if (!watched) { send(c, { t: 'error', msg: 'This match has already ended.' }); break; }
+        watched.spectators = watched.spectators || [];
+        if (!watched.spectators.includes(c)) watched.spectators.push(c);
+        c.spectateDuelId = m.duelId;
+        // Frischer State für den Neuankömmling — der Host schickt ihn beim nächsten Flush
+        hostSend({ op: 'poke', duelId: m.duelId });
+        send(c, { t: 'spectate_start', duelId: m.duelId });
+        log(`${acc.name} schaut Duell ${m.duelId} zu.`);
+        break;
+      }
+
+      case 'spectate_leave': {
+        if (!c.spectateDuelId) break;
+        const watched = serverDuels.get(c.spectateDuelId);
+        if (watched && watched.spectators)
+          watched.spectators = watched.spectators.filter(s => s !== c);
+        c.spectateDuelId = null;
+        break;
+      }
+
+      case 'profile_stats': {
+        if (!acc) break;
+        const ps = db.profileStats(c.account, 20);
+        send(c, {
+          t: 'profile_stats',
+          matches: ps.matches.map(x => ({
+            ts: x.ts, mode: x.mode, opponent: x.opponent, deckName: x.deckName, won: x.won
+          })),
+          pvpGames: ps.pvpGames, pvpWins: ps.pvpWins,
+          soloGames: ps.soloGames, soloWins: ps.soloWins,
+          liveGames: [...serverDuels.entries()].map(([id, d]) => ({
+            duelId: id, a: d.a ? d.a.name : '?', b: d.b ? d.b.name : '?'
+          }))
+        });
         break;
       }
 

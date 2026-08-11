@@ -294,11 +294,28 @@ namespace Rouge.Tcg.Net
             deckName = string.IsNullOrEmpty(MatchContext.LocalDeckName) ? "Deck" : MatchContext.LocalDeckName,
             deckHero = MatchContext.LocalHero ?? "",
             deckCards = MatchContext.LocalDeckCards != null ? MatchContext.LocalDeckCards.ToArray() : new string[0],
-            deckExtra = MatchContext.LocalExtraCards != null ? MatchContext.LocalExtraCards.ToArray() : new string[0]
+            deckExtra = MatchContext.LocalExtraCards != null ? MatchContext.LocalExtraCards.ToArray() : new string[0],
+            opponent = MatchContext.RemoteName ?? "Bot"
         });
 
         /// <summary>Fragt die Deck-Statistiken ab; die Antwort kommt als OnMessage mit t == "stats_decks".</summary>
         public void RequestDeckStats() => SendJson(new NetMessage { t = "stats_decks" });
+
+        /// <summary>Karten-Statistiken (Winrate je Karte); Antwort: t == "stats_cards".</summary>
+        public void RequestCardStats() => SendJson(new NetMessage { t = "stats_cards" });
+
+        /// <summary>Die häufigsten Deck-Partner einer Karte; Antwort: t == "stats_card_detail".</summary>
+        public void RequestCardDetail(string cardName) =>
+            SendJson(new NetMessage { t = "stats_card_detail", card = cardName });
+
+        /// <summary>Match-Historie + Bilanzen + Live-Spiele; Antwort: t == "profile_stats".</summary>
+        public void RequestProfileStats() => SendJson(new NetMessage { t = "profile_stats" });
+
+        /// <summary>Tritt einem laufenden Duell als Zuschauer bei (danach kommen sduel-Nachrichten).</summary>
+        public void SendSpectate(string duelId) => SendJson(new NetMessage { t = "spectate", duelId = duelId });
+
+        /// <summary>Verlässt den Zuschauer-Modus wieder.</summary>
+        public void SendSpectateLeave() => SendJson(new NetMessage { t = "spectate_leave" });
 
         /// <summary>Meldet den ersten Sieg auf einer Turm-Ebene (Server prüft die Reihenfolge).</summary>
         public void SendTowerProgress(int floor) => SendJson(new NetMessage { t = "tower_progress", floor = floor });

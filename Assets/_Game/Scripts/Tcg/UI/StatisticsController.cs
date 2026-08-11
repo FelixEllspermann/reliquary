@@ -10,9 +10,10 @@ using Rouge.Tcg.Net;
 namespace Rouge.Tcg.UI
 {
     /// <summary>
-    /// Statistik-Seite der Sammlung: welche Decks gespielt werden, wie oft sie
-    /// gewinnen und was drinsteckt. Die Zahlen kommen fertig vom Server
-    /// (stats_decks) — der Client rechnet nur die Prozentanzeige.
+    /// Statistik-Seite der Sammlung: welche KARTEN gespielt werden, wie oft sie
+    /// gewinnen und mit wem sie im Deck stehen. Ein Match zählt je Karte einmal
+    /// (Kopien egal); die Zahlen kommen fertig vom Server (stats_cards /
+    /// stats_card_detail) — der Client rechnet nur die Prozentanzeige.
     /// </summary>
     public class StatisticsController : MonoBehaviour
     {
@@ -26,7 +27,7 @@ namespace Rouge.Tcg.UI
         [SerializeField] private string decksSceneName = "DeckEditor";
         [SerializeField] private string shopSceneName = "Shop";
 
-        [Header("Deck-Liste")]
+        [Header("Karten-Liste")]
         [SerializeField] private RectTransform listContent;
         [SerializeField] private GameObject rowTemplate;
         [SerializeField] private TMP_Text emptyHint;
@@ -36,6 +37,9 @@ namespace Rouge.Tcg.UI
         [SerializeField] private TMP_Text detailSummary;
         [SerializeField] private TMP_Text detailCards;
 
+        [Header("Daten")]
+        [SerializeField] private CardCatalog catalog;
+
         [Header("Farben")]
         [SerializeField] private Color rowIdleColor = new Color(0.10f, 0.08f, 0.05f, 0.85f);
         [SerializeField] private Color rowSelectedColor = new Color(0.72f, 0.58f, 0.28f, 0.35f);
@@ -43,7 +47,7 @@ namespace Rouge.Tcg.UI
         [SerializeField] private Color badWinrate = new Color(0.90f, 0.45f, 0.38f);
 
         private readonly List<GameObject> rows = new List<GameObject>();
-        private StatsDeck[] decks = Array.Empty<StatsDeck>();
+        private StatsCard[] cards = Array.Empty<StatsCard>();
         private int selected = -1;
 
         private void Awake()
@@ -66,7 +70,7 @@ namespace Rouge.Tcg.UI
             net.OnMessage += HandleMessage;
             ShowEmpty("LOADING STATISTICS...");
             ClearDetail();
-            net.RequestDeckStats();
+            net.RequestCardStats();
         }
 
         private void OnDisable()
@@ -77,9 +81,18 @@ namespace Rouge.Tcg.UI
 
         private void HandleMessage(NetMessage m)
         {
-            if (m == null || m.t != "stats_decks") return;
-            decks = m.decks ?? Array.Empty<StatsDeck>();
-            BuildList();
+            if (m == null) return;
+            if (m.t == "stats_cards")
+            {
+                cards = m.cardStats ?? Array.Empty<StatsCard>();
+                BuildList();
+            }
+            else if (m.t == "stats_card_detail")
+            {
+                // Nur übernehmen, wenn die Antwort noch zur Auswahl passt
+                if (selected >= 0 && selected < cards.Length && cards[selected].n == m.card)
+                    ShowPartners(m.partners ?? Array.Empty<StatsPair>());
+            }
         }
 
         private void BuildList()
@@ -88,7 +101,7 @@ namespace Rouge.Tcg.UI
             rows.Clear();
             selected = -1;
 
-            if (decks.Length == 0 || listContent == null || rowTemplate == null)
+            if (cards.Length == 0 || listContent == null || rowTemplate == null)
             {
                 ShowEmpty("NO MATCHES TRACKED YET — PLAY SOME DUELS.");
                 ClearDetail();
@@ -96,19 +109,19 @@ namespace Rouge.Tcg.UI
             }
             if (emptyHint != null) emptyHint.gameObject.SetActive(false);
 
-            for (int i = 0; i < decks.Length; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
                 int index = i;
-                var deck = decks[i];
+                var card = cards[i];
                 var row = Instantiate(rowTemplate, listContent);
                 row.SetActive(true);
-                SetRowText(row, "NameText", string.IsNullOrEmpty(deck.name) ? "UNNAMED DECK" : deck.name.ToUpperInvariant());
-                SetRowText(row, "HeroText", string.IsNullOrEmpty(deck.hero) ? "" : "HERO · " + deck.hero.ToUpperInvariant());
-                SetRowText(row, "GamesText", deck.games + (deck.games == 1 ? " GAME" : " GAMES"));
+                SetRowText(row, "NameText", card.n);
+                SetRowText(row, "HeroText", DescribeCard(card.n));
+                SetRowText(row, "GamesText", card.games + (card.games == 1 ? " GAME" : " GAMES"));
                 var rateText = FindRowText(row, "WinrateText");
                 if (rateText != null)
                 {
-                    int rate = Winrate(deck.wins, deck.games);
+                    int rate = Winrate(card.wins, card.games);
                     rateText.text = rate + "%";
                     rateText.color = rate >= 50 ? goodWinrate : badWinrate;
                 }
@@ -119,56 +132,65 @@ namespace Rouge.Tcg.UI
             Select(0);
         }
 
+        /// <summary>Kartenart + Rarity aus dem Katalog — reine Anzeige-Hilfe.</summary>
+        private string DescribeCard(string cardName)
+        {
+            var def = catalog != null ? catalog.FindByName(cardName) : null;
+            if (def == null) return "";
+            string kind = def is ReliquaryCardData ? "RELIQUARY"
+                : def is MonsterCardData ? "MONSTER"
+                : def is SpellCardData ? "SPELL"
+                : def is ArtifactCardData ? "ARTIFACT" : "CARD";
+            return kind + " · " + def.rarity.ToString().ToUpperInvariant();
+        }
+
         private void Select(int index)
         {
-            if (index < 0 || index >= decks.Length) return;
+            if (index < 0 || index >= cards.Length) return;
             selected = index;
             for (int i = 0; i < rows.Count; i++)
             {
                 var image = rows[i].GetComponent<Image>();
                 if (image != null) image.color = i == index ? rowSelectedColor : rowIdleColor;
             }
-            ShowDetail(decks[index]);
+            ShowDetail(cards[index]);
+            var net = NetworkManager.Instance;
+            if (net != null && net.IsConnected) net.RequestCardDetail(cards[index].n);
         }
 
-        private void ShowDetail(StatsDeck deck)
+        private void ShowDetail(StatsCard card)
         {
-            if (detailTitle != null)
-            {
-                string hero = string.IsNullOrEmpty(deck.hero) ? "" : "  ·  HERO: " + deck.hero.ToUpperInvariant();
-                detailTitle.text = (string.IsNullOrEmpty(deck.name) ? "UNNAMED DECK" : deck.name.ToUpperInvariant()) + hero;
-            }
+            if (detailTitle != null) detailTitle.text = card.n;
             if (detailSummary != null)
             {
-                int rate = Winrate(deck.wins, deck.games);
-                string line = $"{deck.games} GAMES  ·  {deck.wins} WINS  ·  <color=#{ColorUtility.ToHtmlStringRGB(rate >= 50 ? goodWinrate : badWinrate)}>{rate}% WINRATE</color>";
-                if (deck.pvpGames > 0)
-                    line += $"\n<size=80%>PVP: {deck.pvpWins}/{deck.pvpGames} ({Winrate(deck.pvpWins, deck.pvpGames)}%)  ·  SOLO: {deck.wins - deck.pvpWins}/{deck.games - deck.pvpGames}</size>";
+                int rate = Winrate(card.wins, card.games);
+                string line = $"{card.games} GAMES  ·  {card.wins} WINS  ·  <color=#{ColorUtility.ToHtmlStringRGB(rate >= 50 ? goodWinrate : badWinrate)}>{rate}% WINRATE</color>";
+                if (card.pvpGames > 0)
+                    line += $"\n<size=80%>PVP: {card.pvpWins}/{card.pvpGames} ({Winrate(card.pvpWins, card.pvpGames)}%)  ·  SOLO: {card.wins - card.pvpWins}/{card.games - card.pvpGames}</size>";
                 else
-                    line += $"\n<size=80%>ALL MATCHES AGAINST BOTS (SOLO)</size>";
+                    line += "\n<size=80%>ALL MATCHES AGAINST BOTS (SOLO)</size>";
                 detailSummary.text = line;
             }
             if (detailCards != null)
-            {
-                var text = new System.Text.StringBuilder();
-                int mainTotal = deck.cards?.Sum(e => e.c) ?? 0;
-                text.AppendLine($"<color=#C9B37E>MAIN DECK ({mainTotal})</color>");
-                AppendCardLines(text, deck.cards);
-                if (deck.extra != null && deck.extra.Length > 0)
-                {
-                    text.AppendLine();
-                    text.AppendLine($"<color=#C9B37E>EXTRA DECK ({deck.extra.Sum(e => e.c)})</color>");
-                    AppendCardLines(text, deck.extra);
-                }
-                detailCards.text = text.ToString();
-            }
+                detailCards.text = "<color=#C9B37E>OFTEN PAIRED WITH</color>\n<color=#8F8069>loading...</color>";
         }
 
-        private static void AppendCardLines(System.Text.StringBuilder text, StatsCardCount[] entries)
+        private void ShowPartners(StatsPair[] partners)
         {
-            if (entries == null) return;
-            foreach (var entry in entries.OrderByDescending(e => e.c).ThenBy(e => e.n, StringComparer.Ordinal))
-                text.AppendLine($"<color=#8F8069>{entry.c}×</color>  {entry.n}");
+            if (detailCards == null) return;
+            var text = new System.Text.StringBuilder();
+            text.AppendLine("<color=#C9B37E>OFTEN PAIRED WITH</color>");
+            if (partners.Length == 0)
+            {
+                text.AppendLine("<color=#8F8069>No pairings tracked yet.</color>");
+            }
+            else foreach (var partner in partners)
+            {
+                int rate = Winrate(partner.wins, partner.games);
+                string rateHex = ColorUtility.ToHtmlStringRGB(rate >= 50 ? goodWinrate : badWinrate);
+                text.AppendLine($"<color=#8F8069>{partner.games}× together · <color=#{rateHex}>{rate}%</color></color>  {partner.n}");
+            }
+            detailCards.text = text.ToString();
         }
 
         private void ClearDetail()

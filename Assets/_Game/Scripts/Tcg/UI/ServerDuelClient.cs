@@ -39,6 +39,18 @@ namespace Rouge.Tcg.UI
             StartCoroutine(Pipeline());
         }
 
+        private void OnDestroy()
+        {
+            // Zuschauer melden sich beim Verlassen der Szene ab — egal auf welchem
+            // Weg sie rausgehen (Surrender-Knopf, GameOver, Menü).
+            if (MatchContext.SpectateMode)
+            {
+                var net = Rouge.Tcg.Net.NetworkManager.Instance;
+                if (net != null && net.IsConnected) net.SendSpectateLeave();
+                MatchContext.SpectateMode = false;
+            }
+        }
+
         /// <summary>
         /// Holt alle inzwischen eingetroffenen Server-Duell-Nachrichten aus dem
         /// NetworkManager-Puffer. Der überlebt den Szenenwechsel — so geht die

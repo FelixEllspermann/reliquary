@@ -53,12 +53,22 @@ namespace Rouge.Tcg.Net
         public int deckIndex;      // save_deck/delete_deck/queue
         public NetDeck deck;       // save_deck
 
-        // Deck-Statistiken
+        // Deck-/Karten-Statistiken
         public string deckName;     // solo_result: Name des gespielten Decks
         public string deckHero;     // solo_result: Heldenkarte des gespielten Decks
         public string[] deckCards;  // solo_result: Main-Deck (Kartennamen)
         public string[] deckExtra;  // solo_result: Extra Deck (Kartennamen)
         public StatsDeck[] decks;   // stats_decks: Antwort des Servers
+        public StatsCard[] cardStats;   // stats_cards: Karten mit Bilanz
+        public StatsPair[] partners;    // stats_card_detail: häufigste Deck-Partner
+
+        // Profil-Statistiken (profile_stats)
+        public ProfileMatch[] matches;  // die letzten Spiele des Kontos
+        public int pvpGames;
+        public int pvpWins;
+        public int soloGames;
+        public int soloWins;
+        public LiveGame[] liveGames;    // gerade laufende Server-Duelle (zum Zuschauen)
 
         // Server-autoritatives Duell
         public bool sduel;          // hello: Client beherrscht Server-Duelle
@@ -93,6 +103,46 @@ namespace Rouge.Tcg.Net
     {
         public string n;
         public int c;
+    }
+
+    /// <summary>Bilanz einer Karte über alle Matches (stats_cards); ein Match zählt einmal.</summary>
+    [Serializable]
+    public class StatsCard
+    {
+        public string n;
+        public int games;
+        public int wins;
+        public int pvpGames;
+        public int pvpWins;
+    }
+
+    /// <summary>Ein häufiger Deck-Partner einer Karte (stats_card_detail).</summary>
+    [Serializable]
+    public class StatsPair
+    {
+        public string n;
+        public int games;   // gemeinsame Matches
+        public int wins;    // davon gewonnen
+    }
+
+    /// <summary>Ein Eintrag der Match-Historie (profile_stats).</summary>
+    [Serializable]
+    public class ProfileMatch
+    {
+        public long ts;
+        public string mode;      // "pvp" | "solo"
+        public string opponent;
+        public string deckName;
+        public bool won;
+    }
+
+    /// <summary>Ein gerade laufendes Server-Duell (profile_stats: zum Zuschauen).</summary>
+    [Serializable]
+    public class LiveGame
+    {
+        public string duelId;
+        public string a;
+        public string b;
     }
 
     // ================== SERVER-DUELL (Wire-Formate des DuelHost) ==================

@@ -333,6 +333,9 @@ namespace Rouge.DuelHost
             if (presenter.Pending.Count == 0) return;
             emit("A", new { op = "events", duelId = Id, events = presenter.Pending.Select(e => EventWire(e, playerA)).ToArray() });
             emit("B", new { op = "events", duelId = Id, events = presenter.Pending.Select(e => EventWire(e, playerB)).ToArray() });
+            // Zuschauer-Fassung: viewer=null zeigt NUR Öffentliches (kein Ghosting).
+            // Node verwirft to=="S", wenn niemand zuschaut.
+            emit("S", new { op = "events", duelId = Id, events = presenter.Pending.Select(e => EventWire(e, null)).ToArray() });
             presenter.Pending.Clear();
         }
 
@@ -343,7 +346,24 @@ namespace Rouge.DuelHost
             stateDirty = false;
             emit("A", new { op = "state", duelId = Id, view = BuildView(playerA, playerB) });
             emit("B", new { op = "state", duelId = Id, view = BuildView(playerB, playerA) });
+            emit("S", new { op = "state", duelId = Id, view = BuildSpectatorView() });
         }
+
+        /// <summary>Erzwingt beim nächsten Flush einen State — für frisch beigetretene Zuschauer.</summary>
+        public void Poke() => stateDirty = true;
+
+        /// <summary>
+        /// Die Sicht eines Zuschauers: Spieler A unten, B oben, beide Hände
+        /// verdeckt (viewer=null sieht nur, was BEIDE Spieler sehen).
+        /// </summary>
+        private object BuildSpectatorView() => new
+        {
+            turn = duel.TurnNumber,
+            phase = duel.Phase.ToString(),
+            yourTurn = false,
+            you = SideView(playerA, null),
+            foe = SideView(playerB, null)
+        };
 
         public void Flush()
         {
