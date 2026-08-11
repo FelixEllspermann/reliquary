@@ -125,6 +125,15 @@ namespace Rouge.Tcg.UI
         private Button towerTabButton;
         private Image towerTabBg;
         private TMP_Text towerTabLabel;
+
+        // Watch-Tab: Live-Duelle zum Zuschauen (Laufzeit-UI wie der Turm-Tab)
+        private Image watchTabBg;
+        private TMP_Text watchTabLabel;
+        private RectTransform watchGroup;
+        private RectTransform watchListContent;
+        private TMP_Text watchEmptyText;
+        private readonly List<GameObject> watchRows = new List<GameObject>();
+        private Coroutine watchPoll;
         private RectTransform towerGroup;
         private readonly List<(RectTransform row, Image bg, Image frame, TMP_Text name, TMP_Text state)> towerRows
             = new List<(RectTransform, Image, Image, TMP_Text, TMP_Text)>();
@@ -383,6 +392,7 @@ namespace Rouge.Tcg.UI
 
             RefreshRosterRows();
             ApplyTowerMode();
+            ApplyWatchMode();
         }
 
         // ---------- Gegner-Roster (Fallback: statische Legacy-Schwierigkeiten) ----------
@@ -584,6 +594,9 @@ namespace Rouge.Tcg.UI
                     RefreshAll();
                     break;
                 case "queued":
+                    break;
+                case "watch_list":
+                    BuildWatchRows(message.liveGames);
                     break;
                 case "lobby":
                     lobbyCode = message.code;
@@ -826,20 +839,20 @@ namespace Rouge.Tcg.UI
             var soloRect = (RectTransform)soloTabButton.transform;
             var container = (RectTransform)soloRect.parent;   // „Tabs" — der Rahmen wächst mit
 
-            // Die Leiste von zwei Hälften auf vier Viertel: der Rahmen wird
-            // doppelt so lang, die Szenen-Tabs rücken in ihre Viertel, Turm-
-            // und Draft-Tab sind exakte Kopien des Solo-Tabs dahinter.
-            container.sizeDelta = new Vector2(container.sizeDelta.x * 2f, container.sizeDelta.y);
+            // Die Leiste von zwei Hälften auf FÜNF Fünftel: der Rahmen wächst auf
+            // das 2.5-fache, die Szenen-Tabs rücken in ihre Fünftel, Turm-,
+            // Draft- und Watch-Tab sind exakte Kopien des Solo-Tabs dahinter.
+            container.sizeDelta = new Vector2(container.sizeDelta.x * 2.5f, container.sizeDelta.y);
             if (onlineTabButton != null)
             {
                 var onlineRect = (RectTransform)onlineTabButton.transform;
                 onlineRect.anchorMin = new Vector2(0f, 0f);
-                onlineRect.anchorMax = new Vector2(0.25f, 1f);
+                onlineRect.anchorMax = new Vector2(0.2f, 1f);
             }
-            soloRect.anchorMin = new Vector2(0.25f, 0f);
-            soloRect.anchorMax = new Vector2(0.5f, 1f);
+            soloRect.anchorMin = new Vector2(0.2f, 0f);
+            soloRect.anchorMax = new Vector2(0.4f, 1f);
 
-            var clone = CloneTabButton(container, soloRect, "TowerTabButton", 0.5f, 0.75f);
+            var clone = CloneTabButton(container, soloRect, "TowerTabButton", 0.4f, 0.6f);
             towerTabButton = clone.GetComponent<Button>();
             towerTabButton.onClick.RemoveAllListeners();
             towerTabButton.onClick.AddListener(() => SetMode(2));
@@ -850,7 +863,7 @@ namespace Rouge.Tcg.UI
             // Vierter Tab: DRAFT. Er schaltet keinen Modus um, sondern führt
             // direkt in die Draft-Szene — dort liegt der Start (DRAW 20 PACKS)
             // samt Pool, Deck und Turm-Lauf. Smaragd, wie die Challenges-Welt.
-            var draftClone = CloneTabButton(container, soloRect, "DraftTabButton", 0.75f, 1f);
+            var draftClone = CloneTabButton(container, soloRect, "DraftTabButton", 0.6f, 0.8f);
             var draftButton = draftClone.GetComponent<Button>();
             draftButton.onClick.RemoveAllListeners();
             draftButton.onClick.AddListener(() =>
@@ -864,6 +877,15 @@ namespace Rouge.Tcg.UI
                 draftLabel.text = "DRAFT";
                 draftLabel.color = new Color32(0x6F, 0xBF, 0x9A, 0xFF);
             }
+
+            // Fünfter Tab: WATCH — Live-Duelle zum Zuschauen (Modus 4).
+            var watchClone = CloneTabButton(container, soloRect, "WatchTabButton", 0.8f, 1f);
+            var watchButton = watchClone.GetComponent<Button>();
+            watchButton.onClick.RemoveAllListeners();
+            watchButton.onClick.AddListener(() => SetMode(4));
+            watchTabBg = watchClone.GetComponent<Image>();
+            watchTabLabel = watchClone.GetComponentInChildren<TMP_Text>(true);
+            if (watchTabLabel != null) watchTabLabel.text = "WATCH";
         }
 
         /// <summary>Kopie des Solo-Tabs an eine Viertel-Position, ohne geerbtes Knopf-Feedback.</summary>
@@ -885,6 +907,201 @@ namespace Rouge.Tcg.UI
             var fxGlow = clone.transform.Find("~FxGlow");
             if (fxGlow != null) Destroy(fxGlow.gameObject);
             return clone;
+        }
+
+        // ---------- Fünfter Tab: WATCH (Live-Duelle zum Zuschauen) ----------
+
+        private void ApplyWatchMode()
+        {
+            bool watchMode = mode == 4;
+            StyleTab(watchTabBg, watchTabLabel, watchMode,
+                skin != null ? skin.badgeMonster : null, new Color32(0x1E, 0x14, 0x05, 0xFF));
+
+            if (watchGroup == null && watchMode) EnsureWatchGroup();
+            if (watchGroup != null) watchGroup.gameObject.SetActive(watchMode);
+
+            // Der Watch-Modus räumt die rechte Seite komplett frei — die anderen
+            // Modi holen sich Banner und Start-Knopf hier wieder zurück.
+            if (bannerBg != null) bannerBg.gameObject.SetActive(!watchMode);
+            if (startButton != null) startButton.gameObject.SetActive(!watchMode);
+            if (watchMode)
+            {
+                if (onlineGroup != null) onlineGroup.SetActive(false);
+                if (soloGroup != null) soloGroup.SetActive(false);
+                if (illegalStrip != null) illegalStrip.SetActive(false);
+                if (watchPoll == null) watchPoll = StartCoroutine(WatchPoll());
+            }
+        }
+
+        /// <summary>Fragt die Live-Liste an, solange der Watch-Tab offen ist.</summary>
+        private System.Collections.IEnumerator WatchPoll()
+        {
+            while (mode == 4)
+            {
+                if (network != null && network.IsConnected) network.RequestWatchList();
+                else if (watchEmptyText != null)
+                {
+                    watchEmptyText.gameObject.SetActive(true);
+                    watchEmptyText.text = "NOT CONNECTED — WATCHING NEEDS A SERVER SESSION.";
+                }
+                yield return new WaitForSeconds(5f);
+            }
+            watchPoll = null;
+        }
+
+        /// <summary>Baut das Watch-Panel beim ersten Öffnen (Laufzeit-UI wie der Turm-Tab).</summary>
+        private void EnsureWatchGroup()
+        {
+            var parent = (RectTransform)(onlineGroup != null ? onlineGroup.transform.parent : transform);
+            watchGroup = MakeUiRect("WatchGroup", parent);
+            watchGroup.anchorMin = watchGroup.anchorMax = new Vector2(0.5f, 0.5f);
+            watchGroup.anchoredPosition = new Vector2(333f, -19f);
+            watchGroup.sizeDelta = new Vector2(1158f, 874f);
+
+            var plate = watchGroup.gameObject.AddComponent<Image>();
+            plate.color = new Color32(0x1E, 0x14, 0x0C, 0xBF);
+            var frame = MakeUiImage("Frame", watchGroup, new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.3f),
+                skin != null ? skin.whiteFrame : null, true);
+            var frameRect = (RectTransform)frame.transform;
+            frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+            frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+
+            var titleFont = bannerTitle != null ? bannerTitle.font : null;
+            var subFont = startSub != null ? startSub.font : null;
+
+            var title = MakeUiText("Title", watchGroup, titleFont, 26f,
+                new Color32(0xF1, 0xDF, 0xB8, 0xFF), "Live Duels");
+            title.alignment = TextAlignmentOptions.Left;
+            var titleRect = title.rectTransform;
+            titleRect.anchorMin = new Vector2(0f, 1f); titleRect.anchorMax = Vector2.one;
+            titleRect.pivot = new Vector2(0.5f, 1f);
+            titleRect.anchoredPosition = new Vector2(28f, -22f); titleRect.sizeDelta = new Vector2(-56f, 36f);
+
+            var hint = MakeUiText("Hint", watchGroup, subFont, 11f,
+                new Color32(0x8C, 0x7B, 0x5F, 0xFF), "SPECTATE A RUNNING DUEL — BOTH HANDS STAY HIDDEN. REFRESHES EVERY 5 SECONDS.");
+            hint.alignment = TextAlignmentOptions.Left;
+            var hintRect = hint.rectTransform;
+            hintRect.anchorMin = new Vector2(0f, 1f); hintRect.anchorMax = Vector2.one;
+            hintRect.pivot = new Vector2(0.5f, 1f);
+            hintRect.anchoredPosition = new Vector2(28f, -62f); hintRect.sizeDelta = new Vector2(-56f, 18f);
+
+            var line = MakeUiImage("Line", watchGroup, new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.25f), null, false);
+            var lineRect = (RectTransform)line.transform;
+            lineRect.anchorMin = new Vector2(0f, 1f); lineRect.anchorMax = Vector2.one;
+            lineRect.pivot = new Vector2(0.5f, 1f);
+            lineRect.anchoredPosition = new Vector2(0f, -92f); lineRect.sizeDelta = new Vector2(-40f, 1f);
+
+            var scrollGo = MakeUiRect("WatchScroll", watchGroup);
+            scrollGo.anchorMin = Vector2.zero; scrollGo.anchorMax = Vector2.one;
+            scrollGo.offsetMin = new Vector2(14f, 14f); scrollGo.offsetMax = new Vector2(-14f, -100f);
+            var scroll = scrollGo.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false; scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 30f;
+            var viewport = MakeUiRect("Viewport", scrollGo);
+            viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var catcher = viewport.gameObject.AddComponent<Image>();
+            catcher.color = Color.clear;
+            scroll.viewport = viewport;
+            watchListContent = MakeUiRect("Content", viewport);
+            watchListContent.anchorMin = new Vector2(0f, 1f); watchListContent.anchorMax = new Vector2(1f, 1f);
+            watchListContent.pivot = new Vector2(0.5f, 1f);
+            scroll.content = watchListContent;
+
+            watchEmptyText = MakeUiText("EmptyHint", watchGroup, subFont, 13f,
+                new Color32(0x8C, 0x7B, 0x5F, 0xFF), "LOOKING FOR LIVE DUELS...");
+            watchEmptyText.alignment = TextAlignmentOptions.Center;
+            var emptyRect = watchEmptyText.rectTransform;
+            emptyRect.anchorMin = new Vector2(0f, 0.5f); emptyRect.anchorMax = new Vector2(1f, 0.5f);
+            emptyRect.sizeDelta = new Vector2(-80f, 40f);
+        }
+
+        /// <summary>Zeichnet die Live-Liste neu (Antwort auf watch_list).</summary>
+        private void BuildWatchRows(Rouge.Tcg.Net.LiveGame[] games)
+        {
+            if (watchListContent == null) return;
+            foreach (var row in watchRows) if (row != null) Destroy(row);
+            watchRows.Clear();
+
+            games = games ?? System.Array.Empty<Rouge.Tcg.Net.LiveGame>();
+            if (watchEmptyText != null)
+            {
+                watchEmptyText.gameObject.SetActive(games.Length == 0);
+                if (games.Length == 0) watchEmptyText.text = "NO LIVE DUELS RIGHT NOW — CHECK BACK IN A MOMENT.";
+            }
+
+            var titleFont = bannerTitle != null ? bannerTitle.font : null;
+            var subFont = startSub != null ? startSub.font : null;
+            const float rowH = 64f, gap = 8f;
+
+            for (int i = 0; i < games.Length; i++)
+            {
+                var game = games[i];
+                var row = MakeUiRect("Live_" + i, watchListContent);
+                row.anchorMin = new Vector2(0f, 1f); row.anchorMax = new Vector2(1f, 1f);
+                row.pivot = new Vector2(0.5f, 1f);
+                row.sizeDelta = new Vector2(0f, rowH);
+                row.anchoredPosition = new Vector2(0f, -i * (rowH + gap));
+
+                var bg = row.gameObject.AddComponent<Image>();
+                bg.color = new Color(0f, 0f, 0f, 0.4f);
+                var frame = MakeUiImage("Frame", row, new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.25f),
+                    skin != null ? skin.whiteFrame : null, true);
+                var frameRect = (RectTransform)frame.transform;
+                frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+                frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+
+                var live = MakeUiText("LiveTag", row, titleFont, 16f,
+                    new Color32(0xEB, 0xCE, 0x8A, 0xFF), "LIVE");
+                live.alignment = TextAlignmentOptions.Left;
+                var liveRect = live.rectTransform;
+                liveRect.anchorMin = new Vector2(0f, 0f); liveRect.anchorMax = new Vector2(0.1f, 1f);
+                liveRect.offsetMin = new Vector2(20f, 0f); liveRect.offsetMax = Vector2.zero;
+
+                var names = MakeUiText("Names", row, subFont, 15f,
+                    new Color32(0xD8, 0xCD, 0xB8, 0xFF), $"{game.a}  VS  {game.b}");
+                names.alignment = TextAlignmentOptions.Left;
+                var namesRect = names.rectTransform;
+                namesRect.anchorMin = new Vector2(0.1f, 0f); namesRect.anchorMax = new Vector2(0.8f, 1f);
+                namesRect.offsetMin = Vector2.zero; namesRect.offsetMax = Vector2.zero;
+
+                var watch = MakeUiRect("WatchButton", row);
+                watch.anchorMin = new Vector2(0.83f, 0.5f); watch.anchorMax = new Vector2(0.83f, 0.5f);
+                watch.pivot = new Vector2(0f, 0.5f);
+                watch.sizeDelta = new Vector2(140f, 40f);
+                var watchBg = watch.gameObject.AddComponent<Image>();
+                watchBg.sprite = skin != null ? skin.badgeMonster : null;
+                watchBg.color = Color.white;
+                var watchBtn = watch.gameObject.AddComponent<Button>();
+                string duelId = game.duelId; string nameA = game.a; string nameB = game.b;
+                watchBtn.onClick.AddListener(() => WatchDuel(duelId, nameA, nameB));
+                var watchLabel = MakeUiText("Label", watch, subFont, 13f,
+                    new Color32(0x1E, 0x14, 0x05, 0xFF), "WATCH");
+                watchLabel.alignment = TextAlignmentOptions.Center;
+                var watchLabelRect = watchLabel.rectTransform;
+                watchLabelRect.anchorMin = Vector2.zero; watchLabelRect.anchorMax = Vector2.one;
+                watchLabelRect.offsetMin = Vector2.zero; watchLabelRect.offsetMax = Vector2.zero;
+
+                watchRows.Add(row.gameObject);
+            }
+            watchListContent.sizeDelta = new Vector2(0f, games.Length * (rowH + gap));
+        }
+
+        /// <summary>Startet den Zuschauer-Modus für das gewählte Duell.</summary>
+        private void WatchDuel(string duelId, string nameA, string nameB)
+        {
+            if (network == null || !network.IsConnected) return;
+            SfxManager.Click();
+            MatchContext.Clear();
+            MatchContext.IsServerMatch = true;
+            MatchContext.SpectateMode = true;
+            MatchContext.LocalName = nameA;
+            MatchContext.RemoteName = nameB;
+            MatchContext.LocalIsPlayerA = true;
+            network.SendSpectate(duelId);
+            SceneManager.LoadScene(duelSceneName);
         }
 
         // ---------- Dynamische Gegner-Liste (Solo-Tab, alle Roster-Einträge) ----------

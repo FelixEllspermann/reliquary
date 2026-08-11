@@ -1414,6 +1414,17 @@ wss.on('connection', (ws, req) => {
         break;
       }
 
+      case 'watch_list': {
+        if (!acc) break;
+        send(c, {
+          t: 'watch_list',
+          liveGames: [...serverDuels.entries()].map(([id, d]) => ({
+            duelId: id, a: d.a ? d.a.name : '?', b: d.b ? d.b.name : '?'
+          }))
+        });
+        break;
+      }
+
       case 'spectate': {
         if (!acc) break;
         const watched = serverDuels.get(m.duelId);

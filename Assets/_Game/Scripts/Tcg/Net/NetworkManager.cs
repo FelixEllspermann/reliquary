@@ -311,6 +311,9 @@ namespace Rouge.Tcg.Net
         /// <summary>Match-Historie + Bilanzen + Live-Spiele; Antwort: t == "profile_stats".</summary>
         public void RequestProfileStats() => SendJson(new NetMessage { t = "profile_stats" });
 
+        /// <summary>Liste der laufenden Duelle; Antwort: t == "watch_list" mit liveGames.</summary>
+        public void RequestWatchList() => SendJson(new NetMessage { t = "watch_list" });
+
         /// <summary>Tritt einem laufenden Duell als Zuschauer bei (danach kommen sduel-Nachrichten).</summary>
         public void SendSpectate(string duelId) => SendJson(new NetMessage { t = "spectate", duelId = duelId });
 
