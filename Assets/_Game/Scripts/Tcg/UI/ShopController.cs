@@ -37,6 +37,7 @@ namespace Rouge.Tcg.UI
         [SerializeField] private TMP_Text[] dustTexts = new TMP_Text[4];
         [SerializeField] private TMP_Text coinsText;
         [SerializeField] private Button decksTabButton;
+        [SerializeField] private Button statsTabButton;
         [SerializeField] private Button menuButton;
 
         [Header("Featured-Banner")]
@@ -64,6 +65,7 @@ namespace Rouge.Tcg.UI
         [Header("Szenen")]
         [SerializeField] private string mainMenuSceneName = "MainMenu";
         [SerializeField] private string decksSceneName = "DeckEditor";
+        [SerializeField] private string statsSceneName = "Statistics";
 
         [Header("Pack-Info")]
         [Tooltip("Wie weit über BUY/OPEN die Knöpfe CARDS und ODDS sitzen")]
@@ -89,6 +91,7 @@ namespace Rouge.Tcg.UI
             BuildInfoButtons();   // vor dem Verdrahten: die Kopien sollen keine Listener erben
             if (menuButton != null) menuButton.onClick.AddListener(() => SceneManager.LoadScene(mainMenuSceneName));
             if (decksTabButton != null) decksTabButton.onClick.AddListener(() => SceneManager.LoadScene(decksSceneName));
+            if (statsTabButton != null) statsTabButton.onClick.AddListener(() => SceneManager.LoadScene(statsSceneName));
             if (featuredBuyButton != null) featuredBuyButton.onClick.AddListener(() => BuyPack(featuredPack));
             if (cosmeticsButton != null) cosmeticsButton.onClick.AddListener(() => CosmeticsPanel.Open());
             foreach (var tile in tiles)

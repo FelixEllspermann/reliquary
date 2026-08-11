@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/DraftBuilder.unity
     guid: 0984717c20af47a44919946b00229bb3
+  - enabled: 1
+    path: Assets/_Game/Scenes/Statistics.unity
+    guid: e859b65809eac65498a28e93f7623cf2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

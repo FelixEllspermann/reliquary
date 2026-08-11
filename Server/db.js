@@ -11,6 +11,7 @@
 // node:sqlite ist ab Node 22 eingebaut — kein natives Modul, kein Compiler nötig.
 
 import { DatabaseSync } from 'node:sqlite';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import * as finishes from './finishes.js';
@@ -122,6 +123,24 @@ export function openDatabase(dataDir, log = console.log) {
     log('DB-Migration: Sammlung um Finishes erweitert (Bestand = schlicht).');
   }
 
+  // Deck-Statistiken: EIN Aggregat je Deck-Zusammensetzung (Hash über Held +
+  // sortierte Kartenlisten). Die Anzeige braucht keine Einzel-Matches, und ein
+  // Aggregat kann bei Regeländerungen nicht "falsch nachberechnet" werden.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS deck_stats (
+      hash      TEXT PRIMARY KEY,
+      name      TEXT NOT NULL DEFAULT '',
+      hero      TEXT NOT NULL DEFAULT '',
+      cards     TEXT NOT NULL DEFAULT '[]',
+      extra     TEXT NOT NULL DEFAULT '[]',
+      games     INTEGER NOT NULL DEFAULT 0,
+      wins      INTEGER NOT NULL DEFAULT 0,
+      pvp_games INTEGER NOT NULL DEFAULT 0,
+      pvp_wins  INTEGER NOT NULL DEFAULT 0,
+      updated   INTEGER NOT NULL DEFAULT 0
+    );
+  `);
+
   db.prepare('INSERT OR REPLACE INTO meta(key, value) VALUES(?, ?)')
     .run('schema_version', String(SCHEMA_VERSION));
 
@@ -141,6 +160,16 @@ export function openDatabase(dataDir, log = console.log) {
     clearCollection: db.prepare('DELETE FROM collection WHERE account = ?'),
     insertCard: db.prepare('INSERT INTO collection (account, card, finish, count) VALUES (?, ?, ?, ?)'),
     deleteAccount: db.prepare('DELETE FROM accounts WHERE key = ?'),
+    upsertDeckStat: db.prepare(`
+      INSERT INTO deck_stats (hash, name, hero, cards, extra, games, wins, pvp_games, pvp_wins, updated)
+      VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?, ?)
+      ON CONFLICT(hash) DO UPDATE SET
+        name = excluded.name, hero = excluded.hero,
+        games = games + 1, wins = wins + excluded.wins,
+        pvp_games = pvp_games + excluded.pvp_games, pvp_wins = pvp_wins + excluded.pvp_wins,
+        updated = excluded.updated
+    `),
+    selectTopDecks: db.prepare('SELECT * FROM deck_stats ORDER BY games DESC, updated DESC LIMIT ?'),
     countAccounts: db.prepare('SELECT COUNT(*) AS n FROM accounts'),
     countCards: db.prepare('SELECT COUNT(*) AS n FROM collection')
   };
@@ -284,6 +313,39 @@ export function openDatabase(dataDir, log = console.log) {
   }
 
   /**
+   * Verbucht ein Match für eine Deck-Zusammensetzung. Die Identität ist der
+   * Hash über Held + sortierte Kartenlisten — gleiche Zusammensetzung heisst
+   * gleiches Deck, egal wie es benannt ist oder wem es gehört. Der zuletzt
+   * benutzte Name gewinnt die Anzeige.
+   */
+  function recordDeckResult({ name, hero, cards, extra, won, pvp }) {
+    const main = [...(cards || [])].sort();
+    const side = [...(extra || [])].sort();
+    if (main.length === 0) return;
+    const hash = crypto.createHash('sha1')
+      .update((hero || '') + '|' + main.join(',') + '|' + side.join(','))
+      .digest('hex');
+    const grouped = list => {
+      const counts = new Map();
+      for (const card of list) counts.set(card, (counts.get(card) || 0) + 1);
+      return [...counts.entries()].map(([n, c]) => ({ n, c }));
+    };
+    statements.upsertDeckStat.run(hash, name || '', hero || '',
+      JSON.stringify(grouped(main)), JSON.stringify(grouped(side)),
+      won ? 1 : 0, pvp ? 1 : 0, pvp && won ? 1 : 0, Date.now());
+  }
+
+  /** Die meistgespielten Decks samt Kartenlisten, fürs Statistik-Panel im Client. */
+  function topDecks(limit = 50) {
+    return statements.selectTopDecks.all(limit).map(row => ({
+      name: row.name, hero: row.hero,
+      games: row.games, wins: row.wins,
+      pvpGames: row.pvp_games, pvpWins: row.pvp_wins,
+      cards: JSON.parse(row.cards), extra: JSON.parse(row.extra)
+    }));
+  }
+
+  /**
    * Einmalige Übernahme aus der alten accounts.json. Läuft nur, solange die
    * Datenbank leer ist; danach wird die JSON aus dem Weg umbenannt.
    */
@@ -319,5 +381,5 @@ export function openDatabase(dataDir, log = console.log) {
     return count;
   }
 
-  return { loadAll, save, remove, flush, close, stats, importLegacyJson, file };
+  return { loadAll, save, remove, flush, close, stats, importLegacyJson, file, recordDeckResult, topDecks };
 }

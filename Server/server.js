@@ -823,6 +823,13 @@ function handleHostMessage(m) {
         sendProfile(client, acc);
       }
     }
+    // Deck-Statistik: beide Zusammensetzungen mit autoritativem Ergebnis verbuchen
+    if (duel.stats) {
+      for (const side of ['a', 'b']) {
+        const snap = duel.stats[side];
+        if (snap) db.recordDeckResult({ ...snap, won: (m.winner === 'A') === (side === 'a'), pvp: true });
+      }
+    }
     serverDuels.delete(m.duelId);
     log(`Server-Duell ${m.duelId} beendet — Sieger ${m.winner}.`);
     return;
@@ -841,7 +848,15 @@ function startServerDuel(a, b) {
   if (validateDeck(accA, deckA) || validateDeck(accB, deckB)) return false;
 
   const duelId = 'd' + (nextDuelId++);
-  serverDuels.set(duelId, { a, b });
+  serverDuels.set(duelId, { a, b,
+    // Für die Statistik am Duell-Ende: die Deck-Zusammensetzung zum Start.
+    // Der Spieler kann sein Deck während des Matches nicht ändern — aber die
+    // Client-Verbindung kann sterben, und dann wäre acc.decks nicht mehr sicher
+    // dasselbe Objekt.
+    stats: {
+      a: { name: deckA.name || 'Deck', hero: deckA.hero || '', cards: [...deckA.cards], extra: [...(deckA.extra || [])] },
+      b: { name: deckB.name || 'Deck', hero: deckB.hero || '', cards: [...deckB.cards], extra: [...(deckB.extra || [])] }
+    } });
   a.serverDuelId = duelId; a.serverSide = 'A';
   b.serverDuelId = duelId; b.serverSide = 'B';
 
@@ -1343,6 +1358,21 @@ wss.on('connection', (ws, req) => {
         saveAccount(acc);
         sendProfile(c, acc);
         log(`${acc.name}: Solo-Belohnung → ${acc.coins} Coins`);
+        // Deck-Statistik: Solo zählt als eigenes Match (Client-Angabe — hinter
+        // demselben Cooldown wie die Belohnung, damit niemand Winrates spammt).
+        if (Array.isArray(m.deckCards) && m.deckCards.length > 0) {
+          db.recordDeckResult({
+            name: m.deckName || 'Deck', hero: m.deckHero || '',
+            cards: m.deckCards, extra: Array.isArray(m.deckExtra) ? m.deckExtra : [],
+            won: !!m.won, pvp: false
+          });
+        }
+        break;
+      }
+
+      case 'stats_decks': {
+        if (!acc) break;
+        send(c, { t: 'stats_decks', decks: db.topDecks(50) });
         break;
       }
 

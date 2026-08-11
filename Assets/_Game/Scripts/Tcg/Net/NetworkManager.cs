@@ -286,7 +286,19 @@ namespace Rouge.Tcg.Net
         public void SendEquipCosmetic(string slot, string itemId) =>
             SendJson(new NetMessage { t = "equip_cosmetic", slot = slot, item = itemId });
         public void SendDuelResult(bool won) => SendJson(new NetMessage { t = "duel_result", won = won });
-        public void SendSoloResult(bool won) => SendJson(new NetMessage { t = "solo_result", won = won });
+        public void SendSoloResult(bool won) => SendJson(new NetMessage
+        {
+            t = "solo_result", won = won,
+            // Das gespielte Deck für die Statistik — Solo, Turm und Draft füllen
+            // den MatchContext, bevor die Duel-Szene lädt.
+            deckName = string.IsNullOrEmpty(MatchContext.LocalDeckName) ? "Deck" : MatchContext.LocalDeckName,
+            deckHero = MatchContext.LocalHero ?? "",
+            deckCards = MatchContext.LocalDeckCards != null ? MatchContext.LocalDeckCards.ToArray() : new string[0],
+            deckExtra = MatchContext.LocalExtraCards != null ? MatchContext.LocalExtraCards.ToArray() : new string[0]
+        });
+
+        /// <summary>Fragt die Deck-Statistiken ab; die Antwort kommt als OnMessage mit t == "stats_decks".</summary>
+        public void RequestDeckStats() => SendJson(new NetMessage { t = "stats_decks" });
 
         /// <summary>Meldet den ersten Sieg auf einer Turm-Ebene (Server prüft die Reihenfolge).</summary>
         public void SendTowerProgress(int floor) => SendJson(new NetMessage { t = "tower_progress", floor = floor });

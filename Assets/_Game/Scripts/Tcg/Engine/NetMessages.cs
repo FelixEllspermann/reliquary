@@ -53,6 +53,13 @@ namespace Rouge.Tcg.Net
         public int deckIndex;      // save_deck/delete_deck/queue
         public NetDeck deck;       // save_deck
 
+        // Deck-Statistiken
+        public string deckName;     // solo_result: Name des gespielten Decks
+        public string deckHero;     // solo_result: Heldenkarte des gespielten Decks
+        public string[] deckCards;  // solo_result: Main-Deck (Kartennamen)
+        public string[] deckExtra;  // solo_result: Extra Deck (Kartennamen)
+        public StatsDeck[] decks;   // stats_decks: Antwort des Servers
+
         // Server-autoritatives Duell
         public bool sduel;          // hello: Client beherrscht Server-Duelle
         public string op;           // sduel: state | request | events | log | waiting | end
@@ -64,6 +71,28 @@ namespace Rouge.Tcg.Net
         public string[] lines;      // sduel log
         public string text;         // sduel waiting: was der Gegner gerade tut (leer = fertig)
         public SduelAnswer answer;  // sduel_intent (Client -> Server)
+    }
+
+    /// <summary>Ein Eintrag der Deck-Statistik (stats_decks): ein Deck über alle Spieler.</summary>
+    [Serializable]
+    public class StatsDeck
+    {
+        public string name;         // zuletzt benutzter Deckname
+        public string hero;
+        public int games;           // alle Matches (PvP + Solo)
+        public int wins;
+        public int pvpGames;        // davon server-autoritative PvP-Matches
+        public int pvpWins;
+        public StatsCardCount[] cards;
+        public StatsCardCount[] extra;
+    }
+
+    /// <summary>Kartenname + Kopienzahl in einem Statistik-Deck.</summary>
+    [Serializable]
+    public class StatsCardCount
+    {
+        public string n;
+        public int c;
     }
 
     // ================== SERVER-DUELL (Wire-Formate des DuelHost) ==================

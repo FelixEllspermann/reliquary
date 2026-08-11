@@ -33,6 +33,7 @@ namespace Rouge.Tcg.UI
         [SerializeField] private TMP_Text[] dustTexts = new TMP_Text[4]; // C U R L
         [SerializeField] private TMP_Text coinsText;
         [SerializeField] private Button shopTabButton;
+        [SerializeField] private Button statsTabButton;
         [SerializeField] private Button menuButton;
 
         [Header("Pool")]
@@ -79,6 +80,7 @@ namespace Rouge.Tcg.UI
         [Header("Szenen")]
         [SerializeField] private string mainMenuSceneName = "MainMenu";
         [SerializeField] private string shopSceneName = "Shop";
+        [SerializeField] private string statsSceneName = "Statistics";
 
         private static readonly MonsterAttribute[] AttrOrder =
         {
@@ -209,6 +211,7 @@ namespace Rouge.Tcg.UI
             if (backButton != null) backButton.onClick.AddListener(() => SceneManager.LoadScene(mainMenuSceneName));
             if (menuButton != null) menuButton.onClick.AddListener(() => SceneManager.LoadScene(mainMenuSceneName));
             if (shopTabButton != null) shopTabButton.onClick.AddListener(() => SceneManager.LoadScene(shopSceneName));
+            if (statsTabButton != null) statsTabButton.onClick.AddListener(() => SceneManager.LoadScene(statsSceneName));
             if (dustButton != null) dustButton.onClick.AddListener(DustSelected);
             if (craftButton != null) craftButton.onClick.AddListener(CraftSelected);
             if (network != null) network.OnMessage += HandleNet;
