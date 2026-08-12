@@ -347,7 +347,9 @@ namespace Rouge.Tcg
         {
             if (Result != DuelResult.None || loser == null) return;
             EndDuelByLoss(loser);
-            BoardChanged();
+            // Sofort ausrufen: die Engine-Schleife steckt womöglich in einer
+            // Anfrage an genau den Spieler, der gerade aufgegeben hat.
+            AnnounceEnd();
         }
 
         /// <summary>Der Gegner hat im Netz-Duell aufgegeben — hier gewinnt der lokale Spieler.</summary>
@@ -432,6 +434,20 @@ namespace Rouge.Tcg
                 Result = Player1.LifePoints >= Player2.LifePoints ? DuelResult.Player1Wins : DuelResult.Player2Wins;
             }
 
+            AnnounceEnd();
+        }
+
+        /// <summary>
+        /// Ruft das Duell-Ende GENAU EINMAL aus. Neben dem normalen Schleifenende
+        /// ruft auch Forfeit hierher — wer aufgibt, sieht den Ergebnis-Bildschirm
+        /// sofort statt erst am nächsten Prüfpunkt der Engine (die wartet sonst
+        /// womöglich gerade auf eine Eingabe, die nie mehr kommt).
+        /// </summary>
+        private bool endAnnounced;
+        private void AnnounceEnd()
+        {
+            if (endAnnounced || Result == DuelResult.None) return;
+            endAnnounced = true;
             DuelRunning = false;
             var winner = Result == DuelResult.Player1Wins ? Player1 : Player2;
             Log($"DUEL OVER — {winner.Name} wins!");

@@ -52,6 +52,26 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>
+        /// Aufgeben wirkt SOFORT. Vorher schickte der Surrender-Knopf nur das
+        /// leave und wartete auf das end des Servers — das hing aber in der
+        /// Nachrichtenschleife fest, wenn gerade eine eigene Anfrage offen war
+        /// (die Schleife liest nichts, solange sie auf die Antwort wartet) oder
+        /// noch ein Berg Ereignis-Animationen davor lag. Jetzt: leave senden,
+        /// alle eigenen Abläufe stoppen und das Duell lokal als Niederlage
+        /// beenden. Das end des Servers bestätigt später nur noch; Rang,
+        /// Historie und Statistik bucht der Server ohnehin unabhängig davon.
+        /// </summary>
+        public void SurrenderNow()
+        {
+            if (duel == null || duel.Result != DuelResult.None) return;
+            var net = NetworkManager.Instance;
+            if (net != null && net.IsConnected) net.SendLeave();
+            StopAllCoroutines();   // Pipeline, offener Request, Event-Wiedergabe
+            CurrentRequest = null;
+            duel.MirrorEnd(false); // feuert OnDuelEnded → Ergebnis-Bildschirm sofort
+        }
+
+        /// <summary>
         /// Holt alle inzwischen eingetroffenen Server-Duell-Nachrichten aus dem
         /// NetworkManager-Puffer. Der überlebt den Szenenwechsel — so geht die
         /// Eröffnung (Münzwurf + Startwahl) nicht mehr verloren, die der DuelHost

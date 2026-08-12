@@ -113,17 +113,32 @@ namespace Rouge.Tcg.UI
             if (promptPanel.IsOpen) return;
             if (board.Duel.Result != DuelResult.None) return;
 
-            promptPanel.ShowYesNo("Surrender", "Give up this duel? Your opponent takes the win.", confirmed =>
+            // Zuschauer geben nichts auf — sie hören nur zu schauen auf.
+            bool spectating = Net.MatchContext.SpectateMode;
+            string title = spectating ? "Leave" : "Surrender";
+            string question = spectating
+                ? "Stop watching this duel?"
+                : "Give up this duel? Your opponent takes the win.";
+
+            promptPanel.ShowYesNo(title, question, confirmed =>
             {
                 if (!confirmed) return;
+                if (spectating)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+                    return;
+                }
                 var duel = board.Duel;
                 if (duel == null || duel.Result != DuelResult.None) return;
                 var me = duel.LocalPlayer != null ? duel.LocalPlayer : board.BottomPlayer;
                 if (me == null) return;
-                // Server-Duell: der Server wertet das Verlassen als Aufgabe und meldet das Ende
+                // Server-Duell: leave an den Server UND lokal sofort beenden —
+                // wer aufgibt, soll nicht auf Animationen oder offene Anfragen warten
                 if (Net.MatchContext.IsServerMatch)
                 {
-                    if (Net.NetworkManager.Instance != null) Net.NetworkManager.Instance.SendLeave();
+                    var client = FindFirstObjectByType<ServerDuelClient>();
+                    if (client != null) client.SurrenderNow();
+                    else if (Net.NetworkManager.Instance != null) Net.NetworkManager.Instance.SendLeave();
                     return;
                 }
                 duel.Log($"{me.Name} surrenders.");
