@@ -22,6 +22,10 @@ namespace Rouge.Tcg.UI
         [SerializeField] private RectTransform showcaseCardHolder;
         [SerializeField] private TMP_Text showcaseBanner;
         [SerializeField] private RectTransform flyLayer;
+        [Tooltip("Vollbild-Container unter der Overlay-Canvas — Ziel des Screenshakes. Die Canvas-Wurzel selbst ist 'driven' und ignoriert Positionsänderungen, einzelne Ebenen decken nicht den ganzen Schirm ab.")]
+        [SerializeField] private RectTransform shakeRoot;
+        [Tooltip("Der Brett-Container für den kleinen Zusatz-Wackler beim Einschlag")]
+        [SerializeField] private RectTransform boardShakeTarget;
         [SerializeField] private Transform p1DeckAnchor;
         [SerializeField] private Transform p2DeckAnchor;
         [SerializeField] private Transform p1HandAnchor;
@@ -148,8 +152,12 @@ namespace Rouge.Tcg.UI
 
             // Der Duell-Canvas läuft im Overlay-Modus und sieht die Kamera nicht.
             // Ein Kamera-Stoß wäre dort unsichtbar — also bekommt der Screenshake
-            // die Brett-Wurzel als Ziel.
-            if (flyLayer != null && flyLayer.parent != null)
+            // den Vollbild-Container unter der Canvas als Ziel. (Der frühere
+            // Fallback flyLayer.parent traf nur die Präsentations-Ebene: Brett,
+            // Hände und Hintergrund standen still, der Shake war quasi unsichtbar.)
+            if (shakeRoot != null)
+                ScreenShake.SetUiTarget(shakeRoot);
+            else if (flyLayer != null && flyLayer.parent != null)
                 ScreenShake.SetUiTarget(flyLayer.parent);
         }
 
@@ -388,7 +396,7 @@ namespace Rouge.Tcg.UI
 
                 // 3) Einschlag: Hit-Stop + Feedback des Getroffenen + Board-Wackler
                 if (targetView != null) StartCoroutine(HitFeedback(targetView, dir));
-                StartCoroutine(BoardShake());
+                StartBoardShake();
                 if (impactHold > 0f) yield return new WaitForSeconds(impactHold);
 
                 // 4) Langsamer Rückstoß
@@ -476,22 +484,44 @@ namespace Rouge.Tcg.UI
             }
         }
 
+        // ---- Board-Wackler: kleiner lokaler Akzent zusätzlich zum ScreenShake ----
+        // (Früher bewegte er board.transform — das war die Overlay-Canvas-Wurzel,
+        // deren Position Unity selbst verwaltet: der Wackler war unsichtbar.)
+        private Coroutine boardShakeRoutine;
+        private Vector3 boardShakeHome;
+        private bool boardShakeHolding;
+
+        /// <summary>Startet den Brett-Wackler; ein laufender wird sauber beendet, damit die Ruhelage nie verrutscht.</summary>
+        private void StartBoardShake()
+        {
+            if (boardShakeTarget == null) return;
+            if (boardShakeRoutine != null)
+            {
+                StopCoroutine(boardShakeRoutine);
+                if (boardShakeHolding) boardShakeTarget.localPosition = boardShakeHome;
+                boardShakeHolding = false;
+            }
+            boardShakeRoutine = StartCoroutine(BoardShake());
+        }
+
         /// <summary>Kleiner Wackler des ganzen Boards beim Einschlag.</summary>
         private IEnumerator BoardShake()
         {
-            if (board == null) yield break;
-            var t = board.transform;
-            Vector3 home = t.localPosition;
+            var t = boardShakeTarget;
+            boardShakeHome = t.localPosition;
+            boardShakeHolding = true;
             float elapsed = 0f;
             const float duration = 0.14f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float fadeOff = 1f - Mathf.Clamp01(elapsed / duration);
-                t.localPosition = home + (Vector3)(UnityEngine.Random.insideUnitCircle * 5f * fadeOff);
+                t.localPosition = boardShakeHome + (Vector3)(UnityEngine.Random.insideUnitCircle * 5f * fadeOff);
                 yield return null;
             }
-            t.localPosition = home;
+            t.localPosition = boardShakeHome;
+            boardShakeHolding = false;
+            boardShakeRoutine = null;
         }
 
         // ================== ZONEN-FLÜGE ==================
