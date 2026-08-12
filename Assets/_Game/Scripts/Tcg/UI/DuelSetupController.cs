@@ -138,6 +138,7 @@ namespace Rouge.Tcg.UI
         private readonly List<(RectTransform row, Image bg, Image frame, TMP_Text name, TMP_Text state)> towerRows
             = new List<(RectTransform, Image, Image, TMP_Text, TMP_Text)>();
         private ScrollRect towerScroll;
+        private bool towerAutoScrolled;   // beim Betreten des Tabs einmal zur aktiven Ebene rollen
         private int selectedFloor = 1;    // 1-basiert
         private GameObject dialogOverlay;
 
@@ -1233,7 +1234,7 @@ namespace Rouge.Tcg.UI
             towerScroll.scrollSensitivity = 30f;
             var viewport = MakeUiRect("Viewport", scrollGo);
             viewport.anchorMin = Vector2.zero; viewport.anchorMax = Vector2.one;
-            viewport.offsetMin = Vector2.zero; viewport.offsetMax = Vector2.zero;
+            viewport.offsetMin = Vector2.zero; viewport.offsetMax = new Vector2(-14f, 0f);
             viewport.gameObject.AddComponent<RectMask2D>();
             var catcher = viewport.gameObject.AddComponent<Image>();
             catcher.color = Color.clear;
@@ -1244,14 +1245,36 @@ namespace Rouge.Tcg.UI
             content.pivot = new Vector2(0.5f, 1f);
             towerScroll.content = content;
 
-            // Von OBEN nach unten bauen: Ebene 15 zuoberst, Ebene 1 zuunterst —
-            // der Blick klettert also wirklich den Turm hinauf.
+            // Sichtbare Scrollbar: ohne sie sieht die Leiter aus wie eine feste
+            // Liste — dass weiter unten Ebenen warten, verrät erst der Griff.
+            var barRect = MakeUiRect("Scrollbar", scrollGo);
+            barRect.anchorMin = new Vector2(1f, 0f); barRect.anchorMax = Vector2.one;
+            barRect.pivot = new Vector2(1f, 0.5f);
+            barRect.offsetMin = new Vector2(-10f, 0f); barRect.offsetMax = Vector2.zero;
+            var barBg = barRect.gameObject.AddComponent<Image>();
+            barBg.color = new Color(0f, 0f, 0f, 0.45f);
+            var scrollbar = barRect.gameObject.AddComponent<Scrollbar>();
+            scrollbar.direction = Scrollbar.Direction.BottomToTop;
+            var slidingArea = MakeUiRect("SlidingArea", barRect);
+            slidingArea.anchorMin = Vector2.zero; slidingArea.anchorMax = Vector2.one;
+            slidingArea.offsetMin = new Vector2(1f, 1f); slidingArea.offsetMax = new Vector2(-1f, -1f);
+            var handleRect = MakeUiRect("Handle", slidingArea);
+            handleRect.offsetMin = Vector2.zero; handleRect.offsetMax = Vector2.zero;
+            var handleImage = handleRect.gameObject.AddComponent<Image>();
+            handleImage.color = new Color(TowerGold.r, TowerGold.g, TowerGold.b, 0.55f);
+            scrollbar.handleRect = handleRect;
+            scrollbar.targetGraphic = handleImage;
+            towerScroll.verticalScrollbar = scrollbar;
+            towerScroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.Permanent;
+
+            // Ebene 1 zuoberst: die Liste liest sich wie der Aufstieg — wo man
+            // anfängt, steht ganz oben, die versiegelten Höhen folgen darunter.
             int count = TowerFloorCount();
             const float rowH = 52f, gap = 6f;
             towerRows.Clear();
             for (int i = 0; i < count; i++)
             {
-                int floorNumber = count - i;   // oberste Zeile = höchste Ebene
+                int floorNumber = i + 1;   // oberste Zeile = Ebene 1
                 var row = MakeUiRect("Floor_" + floorNumber, content);
                 row.anchorMin = new Vector2(0f, 1f); row.anchorMax = new Vector2(1f, 1f);
                 row.pivot = new Vector2(0.5f, 1f);
@@ -1301,7 +1324,7 @@ namespace Rouge.Tcg.UI
             int cleared = PlayerProfile.TowerFloor;
             for (int i = 0; i < towerRows.Count; i++)
             {
-                int floorNumber = count - i;
+                int floorNumber = i + 1;   // gleiche Ordnung wie beim Bau: Ebene 1 oben
                 var floor = FloorAt(floorNumber);
                 var (row, bg, frame, name, state) = towerRows[i];
                 bool sealedFloor = floorNumber <= cleared;
@@ -1312,7 +1335,7 @@ namespace Rouge.Tcg.UI
                 if (name != null)
                 {
                     string keeper = floor != null ? floor.keeperName : "???";
-                    name.text = $"FLOOR {ToRoman(floorNumber)} — {(locked ? "SEALED ABOVE" : keeper.ToUpperInvariant())}";
+                    name.text = $"FLOOR {ToRoman(floorNumber)} — {(locked ? "STILL SEALED" : keeper.ToUpperInvariant())}";
                     name.color = locked ? new Color32(0x4C, 0x42, 0x33, 0xFF)
                         : selected ? TowerGoldBright
                         : sealedFloor ? new Color32(0xA8, 0x93, 0x66, 0xFF)
@@ -1360,11 +1383,22 @@ namespace Rouge.Tcg.UI
 
             if (towerGroup == null && towerMode) EnsureTowerGroup();
             if (towerGroup != null) towerGroup.gameObject.SetActive(towerMode);
-            if (!towerMode) return;
+            if (!towerMode) { towerAutoScrolled = false; return; }
 
             if (soloGroup != null) soloGroup.SetActive(false);
             if (onlineGroup != null) onlineGroup.SetActive(false);
             RefreshTowerRows();
+
+            // Beim Betreten einmal zur aktiven Ebene rollen: Ebene 1 steht oben,
+            // wer schon höher klettert, soll seine nächste Ebene sofort sehen.
+            if (!towerAutoScrolled && towerScroll != null)
+            {
+                towerAutoScrolled = true;
+                int floors = Mathf.Max(1, TowerFloorCount() - 1);
+                Canvas.ForceUpdateCanvases();
+                towerScroll.verticalNormalizedPosition =
+                    1f - Mathf.Clamp01((float)Mathf.Clamp(PlayerProfile.TowerFloor, 0, floors) / floors);
+            }
 
             int count = TowerFloorCount();
             int cleared = PlayerProfile.TowerFloor;
