@@ -363,8 +363,10 @@ namespace Rouge.Tcg.Net
             card = Application.version   // Build-Version mitschicken, damit Meldungen zuordenbar sind
         });
         public void SendQueue(int deckIndex = 0) => SendJson(new NetMessage { t = "queue", deckIndex = deckIndex });
-        public void SendCreate() => SendJson(new NetMessage { t = "create" });
-        public void SendJoin(string code) => SendJson(new NetMessage { t = "join", code = code });
+        // Auch Lobby-Duelle tragen die Deck-Wahl — ohne sie spielte der Server
+        // stumpf Deck 0 statt des im Play-Screen gewählten Decks.
+        public void SendCreate(int deckIndex = 0) => SendJson(new NetMessage { t = "create", deckIndex = deckIndex });
+        public void SendJoin(string code, int deckIndex = 0) => SendJson(new NetMessage { t = "join", code = code, deckIndex = deckIndex });
         public void SendLeave() { PeerLeft = false; SendJson(new NetMessage { t = "leave" }); }
         public void SendRelay(NetData data) => SendJson(new NetMessage { t = "relay", data = data });
 

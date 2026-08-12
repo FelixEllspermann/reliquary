@@ -483,7 +483,7 @@ namespace Rouge.Tcg.UI
         private void CreateLobby()
         {
             if (!Prepare()) return;
-            network.SendCreate();
+            network.SendCreate(selectedDeck);
         }
 
         private void CloseLobby()
@@ -522,7 +522,7 @@ namespace Rouge.Tcg.UI
             if (!Prepare()) return;
             string code = joinInput != null ? joinInput.text.Trim().ToUpperInvariant() : "";
             if (code.Length != 6) return;
-            network.SendJoin(code);
+            network.SendJoin(code, selectedDeck);
             ShowOverlay("Joining the lobby", $"Sealing into lobby {code}…");
         }
 

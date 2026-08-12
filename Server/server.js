@@ -1524,6 +1524,8 @@ wss.on('connection', (ws, req) => {
       }
 
       case 'create': {
+        // Deck-Wahl auch für Lobby-Duelle (alte Clients senden nichts -> Deck 0)
+        c.deckIndex = Number.isInteger(m.deckIndex) ? m.deckIndex : 0;
         leaveEverything(c);
         const code = makeCode();
         c.lobbyCode = code;
@@ -1534,6 +1536,7 @@ wss.on('connection', (ws, req) => {
       }
 
       case 'join': {
+        c.deckIndex = Number.isInteger(m.deckIndex) ? m.deckIndex : 0;
         leaveEverything(c);
         const host = lobbies.get(String(m.code || '').toUpperCase().trim());
         if (!host || host.ws.readyState !== 1 || host === c) { sendError(c, 'Lobby not found.'); break; }
