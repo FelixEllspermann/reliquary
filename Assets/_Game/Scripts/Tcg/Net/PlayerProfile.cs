@@ -81,6 +81,9 @@ namespace Rouge.Tcg.Net
 
         /// <summary>Aufschlüsselung je Karte nach Finish — für Deck Builder und Sammlung.</summary>
         public static readonly Dictionary<string, CardStock> Stock = new Dictionary<string, CardStock>();
+
+        /// <summary>Frisch erhaltene Karten (Erstbesitz), die noch kein Klick gesehen hat — NEW-Badge im Deck Builder.</summary>
+        public static readonly HashSet<string> NewCards = new HashSet<string>();
         public static readonly Dictionary<string, int> PackInventory = new Dictionary<string, int>();
         public static readonly List<RuntimeDeck> Decks = new List<RuntimeDeck>();
 
@@ -271,6 +274,11 @@ namespace Rouge.Tcg.Net
                     Stock[card] = stock;
                 }
 
+            NewCards.Clear();
+            if (profile.newCards != null)
+                foreach (var fresh in profile.newCards)
+                    if (!string.IsNullOrEmpty(fresh)) NewCards.Add(fresh);
+
             PackInventory.Clear();
             if (profile.packNames != null && profile.packCounts != null)
                 for (int i = 0; i < profile.packNames.Length && i < profile.packCounts.Length; i++)
@@ -339,6 +347,14 @@ namespace Rouge.Tcg.Net
         /// <summary>Der Bestand einer Karte nach Finish (nie null).</summary>
         public static CardStock StockOf(string cardName) =>
             cardName != null && Stock.TryGetValue(cardName, out var stock) ? stock : EmptyStock;
+
+        /// <summary>Trägt die Karte noch das NEW-Badge?</summary>
+        public static bool IsNew(string cardName) =>
+            !string.IsNullOrEmpty(cardName) && NewCards.Contains(cardName);
+
+        /// <summary>Nimmt die Karte lokal aus dem NEW-Stand. True, wenn sie tatsächlich neu war.</summary>
+        public static bool MarkSeen(string cardName) =>
+            !string.IsNullOrEmpty(cardName) && NewCards.Remove(cardName);
 
         private static readonly CardStock EmptyStock = new CardStock();
 

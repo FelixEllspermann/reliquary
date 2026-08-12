@@ -329,6 +329,9 @@ function profileOf(acc) {
     collectionGlossy: names.map(n => finishes.normalise(acc.collection[n])[finishes.GLOSSY]),
     collectionRainbow: names.map(n => finishes.normalise(acc.collection[n])[finishes.RAINBOW]),
     collectionStatic: names.map(n => finishes.normalise(acc.collection[n])[finishes.STATIC]),
+    // Frisch erhaltene Karten (Erstbesitz) — der Deck Builder zeigt sie mit
+    // NEW-Badge, bis der Spieler sie anklickt (seen_card).
+    newCards: acc.progress && Array.isArray(acc.progress.newCards) ? acc.progress.newCards : [],
     packNames,
     packCounts: packNames.map(p => acc.packInv[p]),
     decks: acc.decks.map(d => ({
@@ -414,6 +417,19 @@ function grantStarterDeck(acc, id) {
   saveAccount(acc);
   log(`${acc.name} waehlt das Startdeck "${deck.name}" (${deck.cards.length}+${deck.extra.length} Karten).`);
   return null;
+}
+
+/**
+ * Karte gewähren + Erstbesitz als "neu" merken (NEW-Badge im Deck Builder).
+ * Nur ECHTE Neuzugänge zählen: Duplikate einer bekannten Karte leuchten nicht.
+ * Der Starter läuft bewusst NICHT hierüber — das Deck hat man selbst gewählt.
+ */
+function grantCard(acc, name, finish) {
+  if (!acc.progress) acc.progress = {};
+  if (!Array.isArray(acc.progress.newCards)) acc.progress.newCards = [];
+  if (finishes.total(acc.collection[name]) < 1 && !acc.progress.newCards.includes(name))
+    acc.progress.newCards.push(name);
+  finishes.add(acc.collection, name, finish);
 }
 
 /** Karten eines Unique-Packs, die dem Konto noch fehlen. */
@@ -635,7 +651,7 @@ function adminApply(acc, body) {
       const amount = Math.round(Number(entry.count));
       if (!Number.isFinite(amount) || amount === 0) continue;
       if (amount > 0) {
-        for (let i = 0; i < amount; i++) finishes.add(acc.collection, name, finish);
+        for (let i = 0; i < amount; i++) grantCard(acc, name, finish);
       } else {
         for (let i = 0; i < -amount; i++) {
           if (!finishes.owns(acc.collection, name, finish)) break;
@@ -1035,12 +1051,12 @@ wss.on('connection', (ws, req) => {
             if (pool.length === 0) { acc.coins += packDef.price; refundedPacks += 1; continue; }
             const pick = pool[Math.floor(Math.random() * pool.length)];
             const fin = finishes.roll();
-            finishes.add(acc.collection, pick, fin);
+            grantCard(acc, pick, fin);
             drawn.push(pick); drawnFinishes.push(fin);
           } else {
             for (const name of drawFromPack(packDef)) {
               const fin = finishes.roll();
-              finishes.add(acc.collection, name, fin);
+              grantCard(acc, name, fin);
               drawn.push(name); drawnFinishes.push(fin);
             }
           }
@@ -1077,11 +1093,24 @@ wss.on('connection', (ws, req) => {
         // Auch beim Fertigen wird das Finish gewürfelt — gleiche Raten wie im Pack.
         // Gezielt herstellen kann man es nicht.
         const craftedFinish = finishes.roll();
-        finishes.add(acc.collection, m.card, craftedFinish);
+        grantCard(acc, String(m.card), craftedFinish);
         saveAccount(acc);
         send(c, { t: 'craft_result', card: String(m.card), finish: craftedFinish, profile: profileOf(acc) });
         if (craftedFinish !== finishes.PLAIN)
           log(`${acc.name} fertigt '${m.card}' — ${finishes.NAMES[craftedFinish]}!`);
+        break;
+      }
+
+      // Spieler hat eine "neue" Karte im Deck Builder angeklickt — Badge weg.
+      // Kein Response nötig: der Client pflegt sein Set selbst.
+      case 'seen_card': {
+        if (!acc) break;
+        const list = acc.progress && Array.isArray(acc.progress.newCards) ? acc.progress.newCards : null;
+        if (!list) break;
+        const idx = list.indexOf(String(m.card || ''));
+        if (idx < 0) break;
+        list.splice(idx, 1);
+        saveAccount(acc);
         break;
       }
 

@@ -106,13 +106,13 @@ namespace Rouge.Tcg.UI
         // ---- Sortierung + Besitz-Filter der Pool-Werkzeugleiste ----
         private int sortMode;             // Index in SortOptionNames
         private bool sortAscending = true;
-        private int ownedFilter;          // 0 alle, 1 nur besessene, 2 nur fehlende
+        private int ownedFilter;          // 0 alle, 1 nur besessene, 2 nur fehlende, 3 nur neue
         private TMP_Dropdown sortDropdown;
         private Image sortDirBg;
         private TMP_Text sortDirLabel;
-        private readonly GameObject[] ownedChips = new GameObject[3];
-        private readonly Image[] ownedChipBgs = new Image[3];
-        private readonly TMP_Text[] ownedChipLabels = new TMP_Text[3];
+        private readonly GameObject[] ownedChips = new GameObject[4];
+        private readonly Image[] ownedChipBgs = new Image[4];
+        private readonly TMP_Text[] ownedChipLabels = new TMP_Text[4];
 
         private const string SortModePref = "deckpool_sort";
         private const string SortDirPref = "deckpool_dir";
@@ -424,12 +424,12 @@ namespace Rouge.Tcg.UI
             spacer.transform.SetParent(rowRect, false);
             spacer.GetComponent<LayoutElement>().flexibleWidth = 1f;
 
-            string[] ownedNames = { "ALL", "OWNED", "MISSING" };
+            string[] ownedNames = { "ALL", "OWNED", "MISSING", "NEW" };
             for (int i = 0; i < ownedNames.Length; i++)
             {
                 int index = i;
                 var chip = CloneToolbarChip("OwnedChip" + ownedNames[i], ownedNames[i],
-                    i == 2 ? 84f : 74f, rowRect, out ownedChipBgs[i], out ownedChipLabels[i]);
+                    i == 2 ? 84f : i == 3 ? 60f : 74f, rowRect, out ownedChipBgs[i], out ownedChipLabels[i]);
                 ownedChips[i] = chip;
                 if (chip != null)
                     chip.GetComponent<Button>().onClick.AddListener(() =>
@@ -582,6 +582,7 @@ namespace Rouge.Tcg.UI
                 bool has = PlayerProfile.Owned(card.cardName) > 0;
                 if (ownedFilter == 1 && !has) return false;
                 if (ownedFilter == 2 && has) return false;
+                if (ownedFilter == 3 && !PlayerProfile.IsNew(card.cardName)) return false;
             }
             if (attrFilter > 0)
             {
@@ -1020,7 +1021,8 @@ namespace Rouge.Tcg.UI
                     tile.gameObject.SetActive(true);
                     tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
                         AllowedCopies(card), CountInDeck(card),
-                        AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode);
+                        AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode,
+                        isNew: CollectionMode && PlayerProfile.IsNew(card.cardName));
                     used++;
                 }
             for (int i = used; i < poolTiles.Count; i++)
@@ -1292,11 +1294,28 @@ namespace Rouge.Tcg.UI
         {
             selected = card;
             selectedFinish = finish;
+            MarkCardSeen(card);
             ShowPreview();
             if (previewEmpty != null) previewEmpty.SetActive(card == null);
             RefreshCardText(card);
             RefreshCraftButtons();
             HighlightSelection();
+        }
+
+        /// <summary>
+        /// Anklicken einer "neuen" Karte nimmt ihr das NEW-Badge — lokal sofort
+        /// (alle Kacheln dieser Karte), der Server vergisst sie über seen_card.
+        /// Die Kachel bleibt bis zum nächsten Filter-Rebuild sichtbar, damit
+        /// unter dem NEW-Filter nichts unterm Zeiger wegspringt.
+        /// </summary>
+        private void MarkCardSeen(CardDefinition card)
+        {
+            if (card == null || !CollectionMode) return;
+            if (!PlayerProfile.MarkSeen(card.cardName)) return;
+            foreach (var tile in poolTiles)
+                if (tile != null && tile.Card == card) tile.HideNewBadge();
+            var net = NetworkManager.Instance;
+            if (net != null && net.IsConnected) net.SendSeenCard(card.cardName);
         }
 
         /// <summary>Zeichnet die Vorschaukarte in der gerade gewählten Ausführung.</summary>

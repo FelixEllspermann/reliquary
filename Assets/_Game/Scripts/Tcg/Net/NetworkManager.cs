@@ -304,6 +304,10 @@ namespace Rouge.Tcg.Net
         /// <summary>Karten-Statistiken (Winrate je Karte); Antwort: t == "stats_cards".</summary>
         public void RequestCardStats() => SendJson(new NetMessage { t = "stats_cards" });
 
+        /// <summary>Meldet dem Server, dass eine "neue" Karte angeklickt wurde — das NEW-Badge verfällt.</summary>
+        public void SendSeenCard(string cardName) =>
+            SendJson(new NetMessage { t = "seen_card", card = cardName });
+
         /// <summary>Die häufigsten Deck-Partner einer Karte; Antwort: t == "stats_card_detail".</summary>
         public void RequestCardDetail(string cardName) =>
             SendJson(new NetMessage { t = "stats_card_detail", card = cardName });

@@ -39,6 +39,8 @@ namespace Rouge.Tcg.UI
         private Image rarityGem;
         private GameObject banChip;
         private TMP_Text banText;
+        private GameObject newBadge;
+        private RectTransform newBadgeRect;
         private GameObject deckBadge;
         private Image deckBadgeBg;
         private Image deckBadgeFrame;
@@ -128,6 +130,23 @@ namespace Rouge.Tcg.UI
             banBg.raycastTarget = false;
             banText = MakeText(banRect, "Label", 12f, TextAlignmentOptions.Center, fontSource);
             banChip = banRect.gameObject;
+
+            // NEW-Plättchen: goldene Marke für frisch erhaltene Karten. Sitzt am
+            // BanChip-Platz und rückt unter ihn, wenn beide gleichzeitig da sind.
+            newBadgeRect = MakeRect(transform, "NewBadge");
+            newBadgeRect.anchorMin = newBadgeRect.anchorMax = new Vector2(0f, 1f);
+            newBadgeRect.pivot = new Vector2(0f, 1f);
+            newBadgeRect.anchoredPosition = new Vector2(4f, -26f);
+            newBadgeRect.sizeDelta = new Vector2(40f, 20f);
+            var newBg = newBadgeRect.gameObject.AddComponent<Image>();
+            newBg.color = new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.95f);
+            newBg.raycastTarget = false;
+            var newText = MakeText(newBadgeRect, "Label", 11.5f, TextAlignmentOptions.Center, fontSource);
+            newText.text = "NEW";
+            newText.fontStyle = FontStyles.Bold;
+            newText.color = Hex("#241A0E");
+            newBadge = newBadgeRect.gameObject;
+            newBadge.SetActive(false);
 
             // „Im Deck"-Abzeichen rechts auf der Karte — ebenfalls unter der
             // Namenszeile, dort sitzt sonst schon das Level-Wappen. Dunkles
@@ -274,7 +293,7 @@ namespace Rouge.Tcg.UI
             int maxCopies, int copiesOfCard,
             Action<CardDefinition, CardFinish> add, Action<CardDefinition, CardFinish> remove,
             Action<CardDefinition, CardFinish> select, int banLimit, bool collectionMode,
-            bool isDeckSide = false)
+            bool isDeckSide = false, bool isNew = false)
         {
             card = definition;
             finish = cardFinish;
@@ -297,6 +316,14 @@ namespace Rouge.Tcg.UI
             if (banChip != null) banChip.SetActive(banLimit >= 0);
             if (banText != null && banLimit >= 0)
                 banText.text = $"<color=#{CollectionRow.RestrictionHex(banLimit)}><b>[{banLimit}]</b></color>";
+
+            // NEW-Marke: unter den BanChip ausweichen, wenn beide sichtbar sind
+            if (newBadge != null)
+            {
+                newBadge.SetActive(isNew);
+                if (isNew && newBadgeRect != null)
+                    newBadgeRect.anchoredPosition = new Vector2(4f, banLimit >= 0 ? -48f : -26f);
+            }
 
             bool overLimit = banLimit >= 0 && copiesOfCard > banLimit;
             if (deckBadge != null) deckBadge.SetActive(inDeck > 0);
@@ -365,6 +392,12 @@ namespace Rouge.Tcg.UI
                     : new Color(200f / 255f, 164f / 255f, 92f / 255f, 0.22f);
             if (label != null)
                 label.color = !enabled ? Hex("#4A4235") : isRemove ? Hex("#E9A183") : Hex("#F3DDA4");
+        }
+
+        /// <summary>Nimmt die NEW-Marke sofort von der Kachel (die Karte wurde angeklickt).</summary>
+        public void HideNewBadge()
+        {
+            if (newBadge != null) newBadge.SetActive(false);
         }
 
         /// <summary>Ausgewählt = Karte, die gerade in der Detail-Rail steht.</summary>

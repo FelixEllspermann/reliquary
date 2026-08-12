@@ -345,6 +345,9 @@ namespace Rouge.Tcg.Net
         public int[] collectionGlossy;
         public int[] collectionRainbow;
         public int[] collectionStatic;
+
+        /// <summary>Frisch erhaltene Karten (Erstbesitz) — NEW-Badge im Deck Builder, bis sie angeklickt werden.</summary>
+        public string[] newCards;
         public string[] packNames;   // Pack-Inventar (ungeöffnete Packs)
         public int[] packCounts;
         public NetDeck[] decks;      // Account-Decks
