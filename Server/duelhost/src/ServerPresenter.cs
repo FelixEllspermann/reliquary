@@ -56,6 +56,7 @@ namespace Rouge.DuelHost
             Record(new DuelEvent { Type = "reliquarysummon", Card = monster, Player = owner, Zone = zoneIndex });
         public IEnumerator ShowPositionSwitch(CardInstance card) => Record(new DuelEvent { Type = "position", Card = card });
         public IEnumerator ShowMilled(PlayerState player, CardInstance card) => Record(new DuelEvent { Type = "milled", Card = card, Player = player });
+        public IEnumerator ShowCardRevealed(CardInstance card, string label) => Record(new DuelEvent { Type = "reveal", Card = card, Text = label });
         public IEnumerator ShowCardActivation(CardInstance card, EffectDefinition effect) => Record(new DuelEvent { Type = "activation", Card = card, Text = effect != null ? effect.label : "" });
         public IEnumerator ShowActivationPulse(CardInstance card, bool spin, EffectDefinition effect = null) => Record(new DuelEvent
         {

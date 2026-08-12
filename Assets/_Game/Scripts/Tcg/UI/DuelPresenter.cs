@@ -1585,6 +1585,24 @@ namespace Rouge.Tcg.UI
 
         private Image boardDim;
 
+        [Range(0.2f, 2.5f)] [Tooltip("Wie lange eine gesuchte/zurückgeholte Karte groß gezeigt wird")]
+        [SerializeField] private float revealHoldDuration = 0.85f;
+
+        /// <summary>
+        /// Suche/Rückholung: die bewegte Karte kurz groß in der Mitte, mit dem
+        /// Ziel als Banner ("ADDED TO HAND" …). Nutzt das Aktivierungs-Showcase.
+        /// </summary>
+        public IEnumerator ShowCardRevealed(CardInstance card, string label)
+        {
+            if (!enablePresentations || card == null || flyLayer == null) yield break;
+            SfxManager.CardPlace();
+            SpawnShowcaseCard(card);
+            if (showcaseBanner != null) showcaseBanner.text = label ?? "";
+            yield return FadeShowcase(1f);
+            yield return new WaitForSeconds(revealHoldDuration);
+            yield return FadeShowcase(0f);
+        }
+
         private void SpawnShowcaseCard(CardInstance card)
         {
             if (showcaseView != null) Destroy(showcaseView.gameObject);

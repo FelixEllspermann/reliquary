@@ -35,6 +35,13 @@ namespace Rouge.Tcg
         /// lassen, dann in den Friedhof fliegen. Läuft VOR dem Datenmove.
         /// </summary>
         IEnumerator ShowMilled(PlayerState player, CardInstance card);
+
+        /// <summary>
+        /// Eine Karte wird beiden Spielern kurz groß gezeigt — wenn ein Effekt sie
+        /// aus Deck, Friedhof oder Verbannung auf die Hand oder ins Deck bewegt.
+        /// Läuft VOR dem Datenmove; <paramref name="label"/> steht als Banner darüber.
+        /// </summary>
+        IEnumerator ShowCardRevealed(CardInstance card, string label);
         IEnumerator ShowHandShuffle(PlayerState player);
         IEnumerator ShowSummon(CardInstance monster);
 

@@ -155,6 +155,17 @@ namespace Rouge.Tcg.UI
                 && currentMain.Options.Any(o => o.Kind == MainActionKind.SummonReliquary);
         }
 
+        /// <summary>
+        /// True, solange eine eigene Karte aus dieser Zone (Friedhof/Verbannung)
+        /// gerade eine legale Aktivierung hat — der Stapel auf dem Feld glüht dann
+        /// grün, wie spielbare Handkarten.
+        /// </summary>
+        public bool HasPileActivation(ZoneType zone)
+        {
+            return currentMain != null && !currentMain.Answered
+                && currentMain.Options.Any(o => o.Card != null && o.Card.Zone == zone);
+        }
+
         /// <summary>True, wenn genau diese Reliquary-Karte gerade beschworen werden kann.</summary>
         public bool CanReliquarySummon(CardInstance card)
         {

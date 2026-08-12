@@ -266,6 +266,7 @@ namespace Rouge.Tcg.UI
                         break;
                     case "position": if (card != null) yield return presenter.ShowPositionSwitch(card); break;
                     case "milled": if (card != null && player != null) yield return presenter.ShowMilled(player, card); break;
+                    case "reveal": if (card != null) yield return presenter.ShowCardRevealed(card, evt.text ?? ""); break;
                     case "pulse":
                         if (card != null)
                         {

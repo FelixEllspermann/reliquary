@@ -25,6 +25,10 @@ namespace Rouge.Tcg.UI
         [SerializeField] private Button bottomBanishButton;
         [SerializeField] private Button topGraveButton;
         [SerializeField] private Button topBanishButton;
+        [Tooltip("Leuchtet, wenn eine Friedhofskarte gerade aktivierbar ist")]
+        [SerializeField] private Image bottomGraveGlow;
+        [Tooltip("Leuchtet, wenn eine Verbannungs-Karte gerade aktivierbar ist")]
+        [SerializeField] private Image bottomBanishGlow;
         [SerializeField] private TMP_Text bottomGraveCount;
         [SerializeField] private TMP_Text bottomBanishCount;
         [SerializeField] private TMP_Text topGraveCount;
@@ -86,6 +90,10 @@ namespace Rouge.Tcg.UI
         {
             RefreshCounts();
             RefreshExtraGlow();
+            // Friedhof/Verbannung: gleiche Sprache wie Handkarten — grün heißt
+            // "hier liegt gerade eine legale Aktivierung"
+            RefreshGlow(bottomGraveGlow, uiController != null && uiController.HasPileActivation(ZoneType.Graveyard));
+            RefreshGlow(bottomBanishGlow, uiController != null && uiController.HasPileActivation(ZoneType.Banished));
         }
 
         private PlayerState BottomPlayer => board != null ? board.BottomPlayer : null;
@@ -159,19 +167,22 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Gold-grüner Puls auf dem eigenen Extra-Stapel, solange eine Reliquary beschworen werden kann.</summary>
-        private void RefreshExtraGlow()
+        private void RefreshExtraGlow() =>
+            RefreshGlow(bottomExtraGlow, uiController != null && uiController.HasReliquarySummon());
+
+        /// <summary>Grüner Puls im Playable-Ton — dieselbe Sprache wie spielbare Handkarten.</summary>
+        private static void RefreshGlow(Image glow, bool active)
         {
-            if (bottomExtraGlow == null) return;
-            bool summonable = uiController != null && uiController.HasReliquarySummon();
-            if (!summonable)
+            if (glow == null) return;
+            if (!active)
             {
-                if (bottomExtraGlow.enabled) bottomExtraGlow.enabled = false;
+                if (glow.enabled) glow.enabled = false;
                 return;
             }
-            bottomExtraGlow.enabled = true;
+            glow.enabled = true;
             var baseColor = TcgCardView.PlayableHighlight;
             float pulse = 0.55f + 0.45f * Mathf.PingPong(Time.unscaledTime * 1.8f, 1f);
-            bottomExtraGlow.color = new Color(baseColor.r, baseColor.g, baseColor.b, baseColor.a * pulse + 0.25f);
+            glow.color = new Color(baseColor.r, baseColor.g, baseColor.b, baseColor.a * pulse + 0.25f);
         }
 
         private static void SetCount(TMP_Text text, int count, ref int cache)

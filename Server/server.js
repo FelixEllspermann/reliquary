@@ -331,7 +331,7 @@ function profileOf(acc) {
     collectionStatic: names.map(n => finishes.normalise(acc.collection[n])[finishes.STATIC]),
     // Frisch erhaltene Karten (Erstbesitz) — der Deck Builder zeigt sie mit
     // NEW-Badge, bis der Spieler sie anklickt (seen_card).
-    newCards: acc.progress && Array.isArray(acc.progress.newCards) ? acc.progress.newCards : [],
+    newCards: Array.isArray(acc.newCards) ? acc.newCards : [],
     packNames,
     packCounts: packNames.map(p => acc.packInv[p]),
     decks: acc.decks.map(d => ({
@@ -425,10 +425,11 @@ function grantStarterDeck(acc, id) {
  * Der Starter läuft bewusst NICHT hierüber — das Deck hat man selbst gewählt.
  */
 function grantCard(acc, name, finish) {
-  if (!acc.progress) acc.progress = {};
-  if (!Array.isArray(acc.progress.newCards)) acc.progress.newCards = [];
-  if (finishes.total(acc.collection[name]) < 1 && !acc.progress.newCards.includes(name))
-    acc.progress.newCards.push(name);
+  // Direktes Konto-Feld: writeAccount packt es in die progress-Spalte —
+  // Unterobjekte, die dort fehlen, überleben keinen Server-Neustart.
+  if (!Array.isArray(acc.newCards)) acc.newCards = [];
+  if (finishes.total(acc.collection[name]) < 1 && !acc.newCards.includes(name))
+    acc.newCards.push(name);
   finishes.add(acc.collection, name, finish);
 }
 
@@ -1105,7 +1106,7 @@ wss.on('connection', (ws, req) => {
       // Kein Response nötig: der Client pflegt sein Set selbst.
       case 'seen_card': {
         if (!acc) break;
-        const list = acc.progress && Array.isArray(acc.progress.newCards) ? acc.progress.newCards : null;
+        const list = Array.isArray(acc.newCards) ? acc.newCards : null;
         if (!list) break;
         const idx = list.indexOf(String(m.card || ''));
         if (idx < 0) break;
@@ -1487,7 +1488,7 @@ wss.on('connection', (ws, req) => {
           })),
           pvpGames: ps.pvpGames, pvpWins: ps.pvpWins,
           soloGames: ps.soloGames, soloWins: ps.soloWins,
-          showcase: (acc.progress && acc.progress.showcase) || [],
+          showcase: Array.isArray(acc.showcase) ? acc.showcase : [],
           liveGames: [...serverDuels.entries()].map(([id, d]) => ({
             duelId: id, a: d.a ? d.a.name : '?', b: d.b ? d.b.name : '?'
           }))
@@ -1505,8 +1506,7 @@ wss.on('connection', (ws, req) => {
           if (finishes.total(acc.collection[entry.n]) < 1) continue;
           clean.push({ n: entry.n, f: Number.isInteger(entry.f) ? entry.f : 0 });
         }
-        if (!acc.progress) acc.progress = {};
-        acc.progress.showcase = clean;
+        acc.showcase = clean;
         saveAccount(acc);
         log(`${acc.name}: Showcase → ${clean.map(x => x.n).join(', ') || 'leer'}`);
         break;

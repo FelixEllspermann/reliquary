@@ -1863,6 +1863,7 @@ namespace Rouge.Tcg
                         {
                             if (hit == null || hit.Zone != ZoneType.Graveyard) continue;
                             if (ReturnToExtraDeck(hit)) continue; // Reliquarys kehren ins Extra Deck zurück
+                            if (presenter != null) yield return presenter.ShowCardRevealed(hit, "RETURNED TO HAND");
                             RemoveFromCurrentZone(hit);
                             hit.Zone = ZoneType.Hand;
                             hit.Owner.Hand.Add(hit);
@@ -1872,6 +1873,7 @@ namespace Rouge.Tcg
                     case EffectActionType.AddTargetFromDeckToHand:
                         if (target != null && target.Zone == ZoneType.Deck)
                         {
+                            if (presenter != null) yield return presenter.ShowCardRevealed(target, "ADDED FROM THE DECK");
                             player.DeckPile.Remove(target);
                             target.Zone = ZoneType.Hand;
                             player.Hand.Add(target);
@@ -2047,6 +2049,10 @@ namespace Rouge.Tcg
                         {
                             if (hit == null || hit.Zone == ZoneType.Deck) continue;
                             Log($"{hit.Name} is shuffled into {hit.Owner.Name}'s Deck.");
+                            // Aus Stapeln (Friedhof/Verbannung) zeigt sich die Karte kurz —
+                            // vom Feld war sie ohnehin sichtbar, da reicht der Flug.
+                            if (presenter != null && (hit.Zone == ZoneType.Graveyard || hit.Zone == ZoneType.Banished))
+                                yield return presenter.ShowCardRevealed(hit, "SHUFFLED INTO THE DECK");
                             if (presenter != null) yield return presenter.ShowCardSentToGrave(hit);
                             RemoveCardFromItsZone(hit);
                             hit.Zone = ZoneType.Deck;
@@ -2059,6 +2065,7 @@ namespace Rouge.Tcg
                         foreach (var hit in affected)
                         {
                             if (hit == null || hit.Zone != ZoneType.Graveyard) continue;
+                            if (presenter != null) yield return presenter.ShowCardRevealed(hit, "SHUFFLED INTO THE DECK");
                             player.Graveyard.Remove(hit);
                             hit.Zone = ZoneType.Deck;
                             player.DeckPile.Add(hit);
@@ -2249,6 +2256,7 @@ namespace Rouge.Tcg
                     case EffectActionType.ReturnSelfFromGraveToHand:
                         if (source.Zone == ZoneType.Graveyard && !ReturnToExtraDeck(source))
                         {
+                            if (presenter != null) yield return presenter.ShowCardRevealed(source, "RETURNED TO HAND");
                             RemoveFromCurrentZone(source);
                             source.Zone = ZoneType.Hand;
                             source.FaceDown = false;
@@ -2306,6 +2314,7 @@ namespace Rouge.Tcg
                             if (salvaged >= Math.Max(1, action.targetCount)) break;
                             if (milled.Zone != ZoneType.Graveyard) continue;
                             if (ActionHasFilter(action) && !MatchesFilter(action, milled)) continue;
+                            if (presenter != null) yield return presenter.ShowCardRevealed(milled, "SALVAGED TO HAND");
                             RemoveFromCurrentZone(milled);
                             milled.Zone = ZoneType.Hand;
                             milled.Owner.Hand.Add(milled);

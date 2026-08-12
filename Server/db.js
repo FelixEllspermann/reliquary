@@ -318,7 +318,11 @@ export function openDatabase(dataDir, log = console.log) {
         JSON.stringify({
           towerFloor: account.towerFloor | 0,
           draft: account.draft || null,
-          draftClears: account.draftClears | 0
+          draftClears: account.draftClears | 0,
+          // Profil-Schaufenster und NEW-Badges: gleiche Falle wie einst der
+          // Turm — was hier fehlt, existiert nach dem nächsten Neustart nicht.
+          showcase: Array.isArray(account.showcase) ? account.showcase : [],
+          newCards: Array.isArray(account.newCards) ? account.newCards : []
         }),
         now,
         now
