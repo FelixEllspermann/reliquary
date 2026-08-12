@@ -165,6 +165,25 @@ export function openDatabase(dataDir, log = console.log) {
     CREATE INDEX IF NOT EXISTS card_pairs_b ON card_pairs(b);
   `);
 
+  // Archetype-Statistiken: welche Familien gespielt werden und welche Duos
+  // funktionieren. Ein Deck "spielt" einen Archetype ab einer Mindestzahl
+  // Karten (entscheidet der Server beim Verbuchen) — nur Online-Matches.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS archetype_stats (
+      name    TEXT PRIMARY KEY,
+      games   INTEGER NOT NULL DEFAULT 0,
+      wins    INTEGER NOT NULL DEFAULT 0,
+      updated INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS archetype_pairs (
+      a     TEXT NOT NULL,
+      b     TEXT NOT NULL,
+      games INTEGER NOT NULL DEFAULT 0,
+      wins  INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (a, b)
+    );
+  `);
+
   // Match-Historie je Konto: die letzten Spiele für die Profil-Seite.
   db.exec(`
     CREATE TABLE IF NOT EXISTS match_log (
@@ -227,6 +246,17 @@ export function openDatabase(dataDir, log = console.log) {
       FROM card_pairs WHERE a = ? OR b = ?
       ORDER BY games DESC, partner ASC LIMIT ?
     `),
+    upsertArchetypeStat: db.prepare(`
+      INSERT INTO archetype_stats (name, games, wins, updated) VALUES (?, 1, ?, ?)
+      ON CONFLICT(name) DO UPDATE SET
+        games = games + 1, wins = wins + excluded.wins, updated = excluded.updated
+    `),
+    selectTopArchetypes: db.prepare('SELECT * FROM archetype_stats ORDER BY games DESC, name ASC LIMIT ?'),
+    upsertArchetypePair: db.prepare(`
+      INSERT INTO archetype_pairs (a, b, games, wins) VALUES (?, ?, 1, ?)
+      ON CONFLICT(a, b) DO UPDATE SET games = games + 1, wins = wins + excluded.wins
+    `),
+    selectTopArchetypePairs: db.prepare('SELECT * FROM archetype_pairs ORDER BY games DESC, a ASC LIMIT ?'),
     insertMatchLog: db.prepare(`
       INSERT INTO match_log (account, ts, mode, opponent, deck_name, won)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -391,7 +421,7 @@ export function openDatabase(dataDir, log = console.log) {
    * gleiches Deck, egal wie es benannt ist oder wem es gehört. Der zuletzt
    * benutzte Name gewinnt die Anzeige.
    */
-  function recordDeckResult({ name, hero, cards, extra, won, pvp }) {
+  function recordDeckResult({ name, hero, cards, extra, won, pvp, archetypes }) {
     const main = [...(cards || [])].sort();
     const side = [...(extra || [])].sort();
     if (main.length === 0) return;
@@ -419,6 +449,16 @@ export function openDatabase(dataDir, log = console.log) {
       for (let i = 0; i < distinct.length; i++)
         for (let j = i + 1; j < distinct.length; j++)
           statements.upsertCardPair.run(distinct[i], distinct[j], winFlag);
+
+    // Archetype-Statistik: welche Familien das Deck spielt (leitet der Server
+    // aus den Kartennamen ab) — ebenfalls nur Online-Matches.
+    if (pvp) {
+      const arch = [...new Set(archetypes || [])].sort();
+      for (const one of arch) statements.upsertArchetypeStat.run(one, winFlag, now);
+      for (let i = 0; i < arch.length; i++)
+        for (let j = i + 1; j < arch.length; j++)
+          statements.upsertArchetypePair.run(arch[i], arch[j], winFlag);
+    }
   }
 
   /** Die meistgespielten Karten (ein Match zählt je Karte einmal). */
@@ -433,6 +473,20 @@ export function openDatabase(dataDir, log = console.log) {
   function cardPartners(card, limit = 12) {
     return statements.selectPartners.all(card, card, card, limit).map(row => ({
       n: row.partner, games: row.games, wins: row.wins
+    }));
+  }
+
+  /** Meistgespielte Archetypes (nur Online-Matches). */
+  function topArchetypes(limit = 50) {
+    return statements.selectTopArchetypes.all(limit).map(row => ({
+      n: row.name, games: row.games, wins: row.wins
+    }));
+  }
+
+  /** Die erfolgreichsten Archetype-Duos (gemeinsam in einem Deck, nur Online). */
+  function topArchetypePairs(limit = 50) {
+    return statements.selectTopArchetypePairs.all(limit).map(row => ({
+      a: row.a, b: row.b, games: row.games, wins: row.wins
     }));
   }
 
@@ -503,5 +557,6 @@ export function openDatabase(dataDir, log = console.log) {
   }
 
   return { loadAll, save, remove, flush, close, stats, importLegacyJson, file,
-    recordDeckResult, topDecks, topCards, cardPartners, recordMatch, profileStats };
+    recordDeckResult, topDecks, topCards, cardPartners, recordMatch, profileStats,
+    topArchetypes, topArchetypePairs };
 }

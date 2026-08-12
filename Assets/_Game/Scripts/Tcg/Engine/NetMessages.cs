@@ -60,6 +60,8 @@ namespace Rouge.Tcg.Net
         public string[] deckExtra;  // solo_result: Extra Deck (Kartennamen)
         public StatsDeck[] decks;   // stats_decks: Antwort des Servers
         public StatsCard[] cardStats;   // stats_cards: Karten mit Bilanz
+        public StatsArchetype[] archetypeStats; // stats_archetypes: Familien mit Bilanz
+        public StatsArchPair[] archetypePairs;  // stats_archetypes: die Duos dazu
         public StatsPair[] partners;    // stats_card_detail: häufigste Deck-Partner
 
         // Profil-Statistiken (profile_stats)
@@ -124,6 +126,25 @@ namespace Rouge.Tcg.Net
         public string n;
         public int games;   // gemeinsame Matches
         public int wins;    // davon gewonnen
+    }
+
+    /// <summary>Bilanz eines Archetypes über Online-Matches (stats_archetypes).</summary>
+    [Serializable]
+    public class StatsArchetype
+    {
+        public string n;
+        public int games;
+        public int wins;
+    }
+
+    /// <summary>Ein Archetype-Duo, das gemeinsam in Decks stand (stats_archetypes).</summary>
+    [Serializable]
+    public class StatsArchPair
+    {
+        public string a;
+        public string b;
+        public int games;
+        public int wins;
     }
 
     /// <summary>Ein Eintrag der Match-Historie (profile_stats).</summary>

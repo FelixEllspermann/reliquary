@@ -308,6 +308,9 @@ namespace Rouge.Tcg.Net
         public void SendSeenCard(string cardName) =>
             SendJson(new NetMessage { t = "seen_card", card = cardName });
 
+        /// <summary>Archetype-Nutzung + beste Duos; Antwort: t == "stats_archetypes".</summary>
+        public void RequestArchetypeStats() => SendJson(new NetMessage { t = "stats_archetypes" });
+
         /// <summary>Die häufigsten Deck-Partner einer Karte; Antwort: t == "stats_card_detail".</summary>
         public void RequestCardDetail(string cardName) =>
             SendJson(new NetMessage { t = "stats_card_detail", card = cardName });

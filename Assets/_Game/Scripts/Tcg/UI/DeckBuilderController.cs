@@ -107,6 +107,8 @@ namespace Rouge.Tcg.UI
         private int sortMode;             // Index in SortOptionNames
         private bool sortAscending = true;
         private int ownedFilter;          // 0 alle, 1 nur besessene, 2 nur fehlende, 3 nur neue
+        private int archetypeFilter;      // 0 alle, sonst 1+Index in ArchetypeCatalog.Names
+        private TMP_Dropdown archetypeDropdown;
         private TMP_Dropdown sortDropdown;
         private Image sortDirBg;
         private TMP_Text sortDirLabel;
@@ -378,9 +380,11 @@ namespace Rouge.Tcg.UI
             var panelRect = scrollRect != null ? scrollRect.parent as RectTransform : null;
             if (panelRect == null) return;
 
+            // Zwei Zeilen: oben Sortierung + Besitz, darunter der Archetype-Filter
             const float toolbarHeight = 44f;
+            const float archRowHeight = 40f;
             float listTop = scrollRect.offsetMax.y;
-            scrollRect.offsetMax = new Vector2(scrollRect.offsetMax.x, listTop - toolbarHeight);
+            scrollRect.offsetMax = new Vector2(scrollRect.offsetMax.x, listTop - toolbarHeight - archRowHeight);
 
             var row = new GameObject("PoolToolbar", typeof(RectTransform));
             var rowRect = (RectTransform)row.transform;
@@ -439,6 +443,40 @@ namespace Rouge.Tcg.UI
                         RebuildPool();
                     });
             }
+
+            // Zweite Zeile: der Archetype-Filter — alle 29 Familien plus ALL
+            var archRow = new GameObject("ArchetypeRow", typeof(RectTransform));
+            var archRect = (RectTransform)archRow.transform;
+            archRect.SetParent(panelRect, false);
+            archRect.anchorMin = new Vector2(0f, 1f);
+            archRect.anchorMax = new Vector2(1f, 1f);
+            archRect.pivot = new Vector2(0.5f, 1f);
+            archRect.offsetMin = new Vector2(14f, listTop - toolbarHeight - archRowHeight + 4f);
+            archRect.offsetMax = new Vector2(-14f, listTop - toolbarHeight);
+            var archLayout = archRow.AddComponent<HorizontalLayoutGroup>();
+            archLayout.spacing = 6f;
+            archLayout.childControlWidth = true;
+            archLayout.childControlHeight = true;
+            archLayout.childForceExpandWidth = false;
+            archLayout.childForceExpandHeight = true;
+
+            archetypeDropdown = Instantiate(deckDropdown, archRect);
+            archetypeDropdown.name = "ArchetypeDropdown";
+            var archDropLayout = archetypeDropdown.GetComponent<LayoutElement>();
+            if (archDropLayout == null) archDropLayout = archetypeDropdown.gameObject.AddComponent<LayoutElement>();
+            archDropLayout.preferredWidth = 236f;
+            archDropLayout.flexibleWidth = 0f;
+            archetypeDropdown.onValueChanged.RemoveAllListeners();
+            archetypeDropdown.ClearOptions();
+            var archOptions = new List<string> { "ALL ARCHETYPES" };
+            archOptions.AddRange(ArchetypeCatalog.Names.Select(n => n.ToUpperInvariant()));
+            archetypeDropdown.AddOptions(archOptions);
+            archetypeDropdown.SetValueWithoutNotify(archetypeFilter);
+            archetypeDropdown.onValueChanged.AddListener(value =>
+            {
+                archetypeFilter = value;
+                RebuildPool();
+            });
 
             RefreshPoolToolbar();
         }
@@ -589,6 +627,9 @@ namespace Rouge.Tcg.UI
                 var monster = card as MonsterCardData;
                 if (monster == null || monster.attribute != AttrOrder[attrFilter - 1]) return false;
             }
+            if (archetypeFilter > 0 && archetypeFilter <= ArchetypeCatalog.Names.Length
+                && !card.cardName.StartsWith(ArchetypeCatalog.Names[archetypeFilter - 1], System.StringComparison.Ordinal))
+                return false;
             if (!string.IsNullOrWhiteSpace(search))
             {
                 string query = search.Trim().ToLowerInvariant();

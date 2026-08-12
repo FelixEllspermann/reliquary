@@ -419,6 +419,31 @@ function grantStarterDeck(acc, id) {
   return null;
 }
 
+// Die kuratierten Archetypes — gleiche Liste wie ArchetypeCatalog.cs im Client.
+// Zugehörigkeit steckt im Namens-Präfix; "Dragon Shrine" steht VOR einem
+// hypothetischen "Dragon", damit Generics wie "Dragon Claw" nicht mitzählen.
+const ARCHETYPES = [
+  'Apocrypha', 'Archfiend', 'Barrierstruck', 'Deathpoem', 'Deckay',
+  'Dragon Shrine', 'Fethaerbreese', 'Forgeheart', 'Gaslight',
+  'Genostitched', 'Gravemaw', 'Heavenly', 'Hexweaver', 'Kindlekin',
+  'Lightless', 'Lyria', 'Manacle', 'Mechination', 'Mimicrypt',
+  'Paperbound', 'Powderkeg', 'Redactor', 'Sacrilegion', 'Sleightwind',
+  'Slowburn', 'Snugglet', 'Tidebound', 'Trapline', 'Wyldpack'
+];
+
+/**
+ * Welche Archetypes ein Deck SPIELT: mindestens 4 Karten (Kopien zählen) mit
+ * dem Namens-Präfix. Eine einzelne Splash-Karte macht noch keinen Archetype.
+ */
+function archetypesOf(cards, extra) {
+  const counts = {};
+  for (const name of [...(cards || []), ...(extra || [])]) {
+    const archetype = ARCHETYPES.find(a => typeof name === 'string' && name.startsWith(a));
+    if (archetype) counts[archetype] = (counts[archetype] || 0) + 1;
+  }
+  return Object.keys(counts).filter(a => counts[a] >= 4);
+}
+
 /**
  * Karte gewähren + Erstbesitz als "neu" merken (NEW-Badge im Deck Builder).
  * Nur ECHTE Neuzugänge zählen: Duplikate einer bekannten Karte leuchten nicht.
@@ -855,7 +880,7 @@ function handleHostMessage(m) {
         const snap = duel.stats[side];
         if (!snap) continue;
         const won = (m.winner === 'A') === (side === 'a');
-        db.recordDeckResult({ ...snap, won, pvp: true });
+        db.recordDeckResult({ ...snap, won, pvp: true, archetypes: archetypesOf(snap.cards, snap.extra) });
         const client = duel[side];
         const other = duel[side === 'a' ? 'b' : 'a'];
         if (client && client.account) db.recordMatch(client.account, {
@@ -1434,7 +1459,18 @@ wss.on('connection', (ws, req) => {
 
       case 'stats_cards': {
         if (!acc) break;
-        send(c, { t: 'stats_cards', cardStats: db.topCards(120) });
+        send(c, { t: 'stats_cards', cardStats: db.topCards(300) });
+        break;
+      }
+
+      // Archetype-Statistik: Nutzung + die erfolgreichsten Duos (nur Online)
+      case 'stats_archetypes': {
+        if (!acc) break;
+        send(c, {
+          t: 'stats_archetypes',
+          archetypeStats: db.topArchetypes(50),
+          archetypePairs: db.topArchetypePairs(50)
+        });
         break;
       }
 
