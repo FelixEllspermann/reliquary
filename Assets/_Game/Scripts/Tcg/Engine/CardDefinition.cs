@@ -69,6 +69,9 @@ namespace Rouge.Tcg
         [Tooltip("Dieses Monster kann im Zug seiner Beschwörung nicht angreifen (Slow to Anger)")]
         public bool passiveNoAttackOnSummonTurn;
 
+        [Tooltip("Dieses Monster kann im Zug seiner Beschwörung nicht DIREKT angreifen (Tidebound Leviathan)")]
+        public bool passiveNoDirectAttackOnSummonTurn;
+
         [Tooltip("Feld-Limit (Snugglet): dieses Monster ist nicht beschwörbar/setzbar, solange du " +
                  "bereits N Monster kontrollierst, deren Name diesen Text enthält (leer = kein Limit)")]
         public string fieldLimitName = "";
@@ -136,6 +139,8 @@ namespace Rouge.Tcg
                 lines.Add("This card cannot attack.");
             if (passiveNoAttackOnSummonTurn)
                 lines.Add("This card cannot attack during the turn it is Summoned.");
+            if (passiveNoDirectAttackOnSummonTurn)
+                lines.Add("This card cannot attack directly during the turn it is Summoned.");
             if (passiveTaunt)
                 lines.Add("Your opponent's attacks must target this card.");
             if (battleShieldMinOwnArtifacts > 0)

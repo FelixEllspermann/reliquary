@@ -52,6 +52,11 @@ namespace Rouge.Tcg
         public bool MilledThisTurn;
         public bool MilledLastTurn;
 
+        // Tidebound Leviathan: Selbst-Spezialbeschwörungen mit "einmal pro Zug"
+        // werden je KARTENNAME gemerkt (zwei Exemplare teilen sich das Limit).
+        public readonly System.Collections.Generic.HashSet<string> SelfSummonedNamesThisTurn
+            = new System.Collections.Generic.HashSet<string>();
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

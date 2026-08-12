@@ -85,7 +85,10 @@ namespace Rouge.Tcg
                                    string.IsNullOrEmpty(monsterData.selfSummonRequiresGraveNamed)
                                    || c.Name.Contains(monsterData.selfSummonRequiresGraveNamed))
                                >= monsterData.selfSummonRequiresGraveNamedCount;
-                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk)
+                        // Tidebound Leviathan: "einmal pro Zug" zählt je Kartenname
+                        bool oncePerTurnOk = !monsterData.selfSummonOncePerTurn
+                            || !player.SelfSummonedNamesThisTurn.Contains(card.Name);
+                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk && oncePerTurnOk)
                             request.Options.Add(new MainActionOption
                             {
                                 Kind = MainActionKind.SpecialSummonSelf,
@@ -605,6 +608,7 @@ namespace Rouge.Tcg
             monster.Position = summonPosition;
             monster.SummonedThisTurn = true;
             monster.WasSpecialSummoned = true;
+            player.SelfSummonedNamesThisTurn.Add(monster.Name); // "einmal pro Zug"-Gedächtnis
             Log($"{player.Name} special summons {monster.Name} ({monster.CurrentAtk}/{monster.CurrentDef}) in {(monster.Position == BattlePosition.Attack ? "Attack" : "Defense")} Position.");
             BoardChanged();
 
@@ -3337,6 +3341,10 @@ namespace Rouge.Tcg
 
                 if (player.Opponent.MonsterCount() == 0)
                 {
+                    // Tidebound Leviathan: im Beschwörungszug kein Direktangriff —
+                    // der Summon-Bounce soll das Feld nicht für den Todesstoß räumen
+                    if (attacker.SummonedThisTurn && attacker.Definition != null
+                        && attacker.Definition.passiveNoDirectAttackOnSummonTurn) continue;
                     request.Options.Add(new BattleOption
                     {
                         Attacker = attacker,
@@ -3376,6 +3384,8 @@ namespace Rouge.Tcg
             if (attacker.Definition != null && attacker.Definition.passiveCannotAttack) yield break;
             if (attacker.SummonedThisTurn && attacker.Definition != null
                 && attacker.Definition.passiveNoAttackOnSummonTurn) yield break;
+            if (option.Direct && attacker.SummonedThisTurn && attacker.Definition != null
+                && attacker.Definition.passiveNoDirectAttackOnSummonTurn) yield break;
             if (attacker.HasAttackedThisTurn && attacker.BonusAttacks <= 0
                 && !ConditionalSecondAttackReady(player, attacker)) yield break;
 

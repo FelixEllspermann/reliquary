@@ -610,6 +610,7 @@ namespace Rouge.Tcg
                     // eigenen Zugbeginn weiter (Mills im Gegnerzug zählten mit)
                     player.MilledLastTurn = player.MilledThisTurn;
                     player.MilledThisTurn = false;
+                    player.SelfSummonedNamesThisTurn.Clear();
                 }
                 foreach (var card in player.FieldCards())
                 {
