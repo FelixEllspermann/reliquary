@@ -3375,27 +3375,21 @@ namespace Rouge.Tcg
                 yield break;
             }
 
-            if (activatable.Count == 1)
-            {
-                var effect = GetEffect(card, activatable[0]);
-                var request = new YesNoRequest
-                {
-                    Title = "Activate effect?",
-                    Card = card,
-                    Question = $"{card.Name}: Activate \"{effect.label}\"?{DescribeActivation(effect)}"
-                };
-                yield return DecideRouted(owner, request);
-                if (request.Result) yield return ActivateTriggered(owner, card, activatable[0]);
-            }
-            else
+            // Einheitlich als Karten-Liste (Master-Duel-Stil): eine Zeile je
+            // Effekt mit der Karte dahinter, CANCEL passt — ob nun ein Trigger
+            // fragt oder zwischen Normal und Infused gewählt wird.
             {
                 var request = new OptionRequest
                 {
-                    Title = $"{card.Name}: choose effect",
+                    Title = activatable.Count == 1 ? "Activate effect?" : $"{card.Name}: choose effect",
                     Card = card,
                     AllowCancel = true
                 };
-                foreach (int index in activatable) request.Options.Add(EffectChoiceLabel(card, index));
+                foreach (int index in activatable)
+                {
+                    request.Options.Add(EffectChoiceLabel(card, index));
+                    request.OptionCards.Add(card);
+                }
                 yield return DecideRouted(owner, request);
                 if (request.Result >= 0 && request.Result < activatable.Count)
                     yield return ActivateTriggered(owner, card, activatable[request.Result]);
