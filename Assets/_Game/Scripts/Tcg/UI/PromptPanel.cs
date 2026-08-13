@@ -124,6 +124,16 @@ namespace Rouge.Tcg.UI
         /// <summary>Karten-Prefab für die Mini-Vorschauen — setzt der DuelUIController beim Start.</summary>
         public static TcgCardView CardViewPrefab;
 
+        /// <summary>
+        /// Hover über einer Listenzeile legt die Karte ins Inspect-Panel links —
+        /// nur Enter, KEIN EventTrigger: der würde das Mausrad der Liste schlucken.
+        /// </summary>
+        private class RowHover : MonoBehaviour, UnityEngine.EventSystems.IPointerEnterHandler
+        {
+            public Action OnEnter;
+            public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData _) => OnEnter?.Invoke();
+        }
+
         private RectTransform listRoot;
         private TMP_Text listTitle;
         private RectTransform listContent;
@@ -303,6 +313,10 @@ namespace Rouge.Tcg.UI
                 colors.highlightedColor = new Color(1.25f, 1.2f, 1.05f);
                 rowButton.colors = colors;
                 rowButton.onClick.AddListener(() => ResolveList(index));
+                // Hover zeigt die Karte gross im Inspect links
+                var hover = row.gameObject.AddComponent<RowHover>();
+                var hoverCard = card;
+                hover.OnEnter = () => CardLinkText.ShowInstance(hoverCard);
 
                 // Mini-Karte links — gross genug, um sie zu erkennen
                 if (card != null && CardViewPrefab != null)
@@ -386,6 +400,10 @@ namespace Rouge.Tcg.UI
                 rowImg.color = new Color(0.115f, 0.105f, 0.085f, 1f);
                 var rowButton = row.gameObject.AddComponent<Button>();
                 rowButton.onClick.AddListener(() => ResolveList(index));
+                // Hover zeigt die Karte hinter dem Namen im Inspect links
+                var hover = row.gameObject.AddComponent<RowHover>();
+                string hoverName = searchPool[index];
+                hover.OnEnter = () => CardLinkText.ShowByName(hoverName);
 
                 var label = new GameObject("Label", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
                 var labelRect = (RectTransform)label.transform;

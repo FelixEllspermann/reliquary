@@ -58,6 +58,20 @@ namespace Rouge.Tcg.UI
             }
         }
 
+        /// <summary>Karte im Inspect zeigen — für Hover ausserhalb von Textlinks (Reaktionsliste).</summary>
+        public static void ShowInstance(CardInstance card)
+        {
+            if (panel != null && card != null) panel.ShowCard(card);
+        }
+
+        /// <summary>Karte per Name im Inspect zeigen (Namenssuche von The Forbidden Name).</summary>
+        public static void ShowByName(string cardName)
+        {
+            if (panel == null || catalog == null || string.IsNullOrEmpty(cardName)) return;
+            var definition = catalog.FindByName(cardName);
+            if (definition != null) panel.ShowDefinition(definition);
+        }
+
         private static int KindOf(CardDefinition definition)
         {
             if (definition is ReliquaryCardData) return KindReliquary;
