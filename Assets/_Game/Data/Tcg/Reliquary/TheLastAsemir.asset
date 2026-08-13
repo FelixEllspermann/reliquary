@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheLastAsemir
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: The Last Asemir
-  artwork: {fileID: 0}
+  artwork: {fileID: 5738019947273224921, guid: 9d9a781553d81874ab93ba77e9924786, type: 3}
   rarity: 3
   isToken: 0
   effects:
@@ -32,6 +32,7 @@ MonoBehaviour:
     mandatory: 1
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
     minMana: 0
     minOwnMonsters: 0
@@ -77,6 +78,7 @@ MonoBehaviour:
     mandatory: 1
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 1
     minMana: 0
     minOwnMonsters: 0
@@ -138,6 +140,9 @@ MonoBehaviour:
   passiveRedirectBattleDamage: 1
   passiveDeathCounterLimit: 0
   passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
   level: 3
   attribute: 1
   monsterType: 6

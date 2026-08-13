@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RallyTheWeak
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Rally the Weak
-  artwork: {fileID: 0}
+  artwork: {fileID: 9195710615876862857, guid: 5ee55d87e39faf64f98df37da1341e10, type: 3}
   rarity: 0
   isToken: 0
   effects:
@@ -32,6 +32,7 @@ MonoBehaviour:
     mandatory: 0
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
     minMana: 0
     minOwnMonsters: 0
@@ -93,4 +94,7 @@ MonoBehaviour:
   passiveRedirectBattleDamage: 0
   passiveDeathCounterLimit: 0
   passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
   speed: 0

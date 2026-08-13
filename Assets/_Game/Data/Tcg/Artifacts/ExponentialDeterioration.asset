@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExponentialDeterioration
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Exponential Deterioration
-  artwork: {fileID: 0}
+  artwork: {fileID: -6214400381203362611, guid: 5f46150d607389c4cb9d67d701f37cab, type: 3}
   rarity: 2
   isToken: 0
   effects: []
@@ -48,6 +48,9 @@ MonoBehaviour:
   passiveRedirectBattleDamage: 0
   passiveDeathCounterLimit: 0
   passiveOpponentMillAmplify: 2
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

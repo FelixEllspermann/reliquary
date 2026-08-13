@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EmergencyBarrier
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Emergency Barrier
-  artwork: {fileID: 0}
+  artwork: {fileID: -1106251802937413240, guid: 2e593da6c6ce859498d00a6002bd6626, type: 3}
   rarity: 2
   isToken: 0
   effects:

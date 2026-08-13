@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YardSentence
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Yard Sentence
-  artwork: {fileID: 0}
+  artwork: {fileID: -1393385329619269310, guid: 4cfda91755a452f4fb74b8ac8ad70828, type: 3}
   rarity: 1
   isToken: 0
   effects:
@@ -32,6 +32,7 @@ MonoBehaviour:
     mandatory: 0
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
     minMana: 0
     minOwnMonsters: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
     mandatory: 0
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
     minMana: 0
     minOwnMonsters: 0
@@ -157,4 +159,7 @@ MonoBehaviour:
   passiveRedirectBattleDamage: 0
   passiveDeathCounterLimit: 0
   passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
   speed: 1

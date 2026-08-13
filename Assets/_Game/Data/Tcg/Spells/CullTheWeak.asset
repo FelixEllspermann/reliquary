@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CullTheWeak
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Cull the Weak
-  artwork: {fileID: 0}
+  artwork: {fileID: 6165707232819778914, guid: bd7fea4fd88b88c42ba804bd7d4b1e0c, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ImmortalDemon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Immortal Demon
-  artwork: {fileID: 0}
+  artwork: {fileID: 505096083463027514, guid: 5309b143e879b174a923b6462b1005a5, type: 3}
   rarity: 3
   isToken: 0
   effects:
@@ -32,6 +32,7 @@ MonoBehaviour:
     mandatory: 0
     onlyReliquarySummonResponse: 0
     onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
     minMana: 0
     minOwnMonsters: 0
@@ -112,6 +113,9 @@ MonoBehaviour:
   passiveRedirectBattleDamage: 0
   passiveDeathCounterLimit: 4
   passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
   level: 3
   attribute: 1
   monsterType: 6

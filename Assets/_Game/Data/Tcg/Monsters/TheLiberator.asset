@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheLiberator
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Liberator
-  artwork: {fileID: 0}
+  artwork: {fileID: -1768229079290288807, guid: 94205a95dd17bed4f8f4f0e7293781b0, type: 3}
   rarity: 2
   isToken: 0
   effects: []
