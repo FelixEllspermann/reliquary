@@ -657,6 +657,47 @@ namespace Rouge.Tcg
             yield return FirePendingGraveTriggers();
             if (CheckWin()) yield break;
 
+            // Emergency Barrier: der Unterhalt wird in JEDER End Phase fällig —
+            // der Besitzer zahlt oder das Artefakt fällt. Reicht das LP-Polster
+            // nicht (Zahlen würde auf 0 oder darunter drücken), gibt es keine Wahl.
+            foreach (var side in new[] { player, player.Opponent })
+            {
+                foreach (var upkeep in new List<CardInstance>(side.FieldCards()))
+                {
+                    int toll = upkeep.Definition != null ? upkeep.Definition.passiveEndPhaseLpToll : 0;
+                    if (toll <= 0 || upkeep.FaceDown || upkeep.Zone == ZoneType.Graveyard) continue;
+
+                    bool pays = false;
+                    if (side.LifePoints > toll)
+                    {
+                        var ask = new YesNoRequest
+                        {
+                            Title = "Upkeep",
+                            Card = upkeep,
+                            Question = $"Pay {toll} LP to keep {upkeep.Name}?"
+                        };
+                        yield return DecideRouted(side, ask);
+                        pays = ask.Result;
+                    }
+
+                    if (pays)
+                    {
+                        int before = side.LifePoints;
+                        side.LifePoints -= toll;
+                        Log($"{side.Name} pays {toll} LP to keep {upkeep.Name} ({side.LifePoints} LP).");
+                        OnLifeChanged?.Invoke(side, side.LifePoints - before);
+                    }
+                    else
+                    {
+                        Log($"{side.Name} does not pay the upkeep — {upkeep.Name} is destroyed.");
+                        yield return DestroyCard(upkeep);
+                    }
+                    BoardChanged();
+                }
+            }
+            yield return FirePendingGraveTriggers();
+            if (CheckWin()) yield break;
+
             ClearTempModifiers();
             yield return EnforceHandLimit(player);
             // Handlimit-Abwürfe können Friedhofs-Trigger tragen (Deckay Vulture)

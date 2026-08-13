@@ -108,6 +108,21 @@ namespace Rouge.Tcg
                  "(Exponential Deterioration)")]
         public int passiveOpponentMillAmplify;
 
+        [Header("Schutz & Zwang (August 2026, Teil 2)")]
+        [Tooltip("Solange offen auf dem Feld: KEINE Karte des Besitzers kann vom Gegner als " +
+                 "Effekt-Ziel gewählt oder angegriffen werden — diese Karte eingeschlossen. " +
+                 "Nicht-zielende Effekte (z.B. \"destroy all\") wirken weiter (Emergency Barrier)")]
+        public bool passiveProtectAllFromTargetingAndAttacks;
+
+        [Tooltip(">0: in JEDER End Phase zahlt der Besitzer N LP oder diese Karte wird zerstört " +
+                 "(Emergency Barrier)")]
+        public int passiveEndPhaseLpToll;
+
+        [Tooltip("Solange offen auf dem Feld: der GEGNER kann Zauber nicht aus der Hand aktivieren — " +
+                 "er muss sie erst setzen (und gesetzte Zauber zünden frühestens im Folgezug) " +
+                 "(The Liberator)")]
+        public bool passiveOpponentMustSetSpells;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -195,6 +210,12 @@ namespace Rouge.Tcg
                 lines.Add($"During each End Phase: put a Death Counter on this card. With {passiveDeathCounterLimit} Death Counters, it is sent to the Graveyard.");
             if (passiveOpponentMillAmplify > 0)
                 lines.Add($"Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {passiveOpponentMillAmplify} more.");
+            if (passiveProtectAllFromTargetingAndAttacks)
+                lines.Add("While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.");
+            if (passiveEndPhaseLpToll > 0)
+                lines.Add($"During each End Phase: pay {passiveEndPhaseLpToll} LP or destroy this card.");
+            if (passiveOpponentMustSetSpells)
+                lines.Add("While this card is face-up on the field, your opponent must Set Spells before activating them.");
 
             return lines;
         }

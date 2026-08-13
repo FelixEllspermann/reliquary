@@ -126,6 +126,10 @@ namespace Rouge.Tcg
                  "bleibt daheim, erst das Infused-Upgrade reagiert im Gegnerzug).")]
         public bool onlyDuringYourTurn;
 
+        [Tooltip("Effekt nur im GEGNERISCHEN Zug anwählbar (Emergency Barrier: der Notfall-Einsatz " +
+                 "aus der Hand lohnt nur, wenn der Gegner am Zug ist — im eigenen spielt man normal).")]
+        public bool onlyDuringOpponentTurn;
+
         [Tooltip("Friedhofs-Trigger zündet NUR, wenn die Karte aus dem EXTRA DECK in den Friedhof " +
                  "ging (The Last Asemir).")]
         public bool onlyFromExtraDeck;

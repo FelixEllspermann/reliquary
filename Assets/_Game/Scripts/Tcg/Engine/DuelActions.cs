@@ -112,18 +112,21 @@ namespace Rouge.Tcg
                 }
                 else if (card.SpellData != null)
                 {
-                    foreach (int index in ActivatableEffects(card, player, EffectTrigger.OnActivate))
-                    {
-                        // Fallen (AttackResponse/SummonResponse) sind nie offen aus der Hand spielbar
-                        if (card.Definition.effects[index].quickWindow != QuickWindow.Any) continue;
-                        request.Options.Add(new MainActionOption
+                    // The Liberator: der Gegner erzwingt den Umweg über das Setzen —
+                    // direkte Hand-Aktivierungen entfallen, die Set-Option bleibt.
+                    if (!MustSetSpellsFirst(player))
+                        foreach (int index in ActivatableEffects(card, player, EffectTrigger.OnActivate))
                         {
-                            Kind = MainActionKind.ActivateSpellFromHand,
-                            Card = card,
-                            EffectIndex = index,
-                            Label = $"Activate {card.Name} — {EffectChoiceLabel(card, index)}"
-                        });
-                    }
+                            // Fallen (AttackResponse/SummonResponse) sind nie offen aus der Hand spielbar
+                            if (card.Definition.effects[index].quickWindow != QuickWindow.Any) continue;
+                            request.Options.Add(new MainActionOption
+                            {
+                                Kind = MainActionKind.ActivateSpellFromHand,
+                                Card = card,
+                                EffectIndex = index,
+                                Label = $"Activate {card.Name} — {EffectChoiceLabel(card, index)}"
+                            });
+                        }
                     if (player.FirstFreeZoneIndex(player.SpellZones) >= 0)
                     {
                         request.Options.Add(new MainActionOption
@@ -908,7 +911,9 @@ namespace Rouge.Tcg
             activationSerial++;
             int chainLink = ++chainDepth;
             chainCards.Add(spell);
-            Log($"{player.Name} activates {spell.Name}{ActivationLogSuffix(effect)}.");
+            // "(set)" macht im Protokoll sichtbar, dass der Zauber vom Feld kam —
+            // und macht die Liberator-Sperre (Hand-Aktivierungen verboten) prüfbar.
+            Log($"{player.Name} activates {spell.Name}{(fromHand ? "" : " (set)")}{ActivationLogSuffix(effect)}.");
             if (presenter != null)
                 yield return presenter.ShowChainLink(spell, effect.label, player, chainLink);
             BoardChanged();
@@ -1162,6 +1167,8 @@ namespace Rouge.Tcg
                     && card.Zone == ZoneType.MonsterZone && card.WasSpecialSummoned) continue;
                 // The Forbidden Name: der Normal-Effekt bleibt im eigenen Zug daheim
                 if (effect.onlyDuringYourTurn && TurnPlayer != player) continue;
+                // Emergency Barrier: der Notfall-Einsatz zündet nur im Gegnerzug
+                if (effect.onlyDuringOpponentTurn && TurnPlayer == player) continue;
                 if (RequiresOpenChain(effect) && chainCards.Count == 0) continue;
                 if (!MeetsConditions(effect, player)) continue;
                 if (!HasValidTargets(effect, player, card)) continue;
@@ -1212,6 +1219,9 @@ namespace Rouge.Tcg
         {
             foreach (var action in effect.actions)
             {
+                // Cull the Weak: ohne Monster im eigenen Deck gibt es nichts aufzudecken
+                if (action.type == EffectActionType.SimultaneousDeckCull
+                    && !player.DeckPile.Any(c => c.MonsterData != null)) return false;
                 if (action.target == TargetKind.None || action.target == TargetKind.SelfCard) continue;
                 // "Bis zu"-Aktionen sind optional: null Kandidaten blockieren die
                 // Aktivierung nicht (Trapline: "then Set 1 ... from your hand").
@@ -1396,6 +1406,11 @@ namespace Rouge.Tcg
                 && c.Definition != null && c.Definition.passiveUntargetable && IsOnField(c));
             // Heavenly Bodyguard: benannte Karten sind für den Gegner kein gültiges Ziel
             candidates.RemoveAll(c => c != null && c.Owner != player && IsGuardedFromTargeting(c));
+            // Emergency Barrier: ein offener Feld-Beschützer macht ALLE Karten seines
+            // Besitzers (sich selbst eingeschlossen) für gegnerische Effekte unanvisierbar.
+            // Nicht-zielende Effekte (destroy all, Mill) bleiben davon unberührt.
+            candidates.RemoveAll(c => c != null && c.Owner != player && IsOnField(c)
+                && HasAllCardsProtection(c.Owner));
             return candidates;
         }
 
@@ -1918,6 +1933,15 @@ namespace Rouge.Tcg
                         BoardChanged();
                         break;
                     }
+                    case EffectActionType.SimultaneousDeckCull:
+                        yield return ResolveSimultaneousDeckCull(player, source);
+                        if (Result != DuelResult.None) yield break;
+                        break;
+                    case EffectActionType.PlaySelfFromHand:
+                        // Emergency Barrier: die Quellkarte selbst wandert aus der Hand aufs Feld
+                        if (source != null && source.ArtifactData != null && player.Hand.Contains(source))
+                            yield return ExecutePlayArtifact(player, source, -1);
+                        break;
                     case EffectActionType.PurgeTargetBuffs:
                         foreach (var hit in affected)
                         {
@@ -3529,9 +3553,15 @@ namespace Rouge.Tcg
             // Verdeckte Information bleibt verdeckt: die Kandidaten werden nur
             // für den Antwortenden selbst gebaut, und der Server maskiert die
             // Hand des Gegners ohnehin.
+            // The Liberator: Zauber dürfen nicht direkt aus der Hand antworten,
+            // solange der Gegner den Set-Zwang auf dem Feld hat.
+            bool spellsLocked = MustSetSpellsFirst(responder);
             foreach (var card in responder.Hand)
+            {
+                if (spellsLocked && card.SpellData != null) continue;
                 foreach (int index in ActivatableEffects(card, responder, EffectTrigger.HandQuick))
                     candidates.Add((card, index));
+            }
 
             // Deckay Fiend/Vulture: Antworten, die NUR auf ein Reliquary-Summon
             // zünden — zentral gefiltert, damit jeder Sammelweg oben es erbt.
@@ -3543,6 +3573,124 @@ namespace Rouge.Tcg
             });
 
             return candidates;
+        }
+
+        /// <summary>
+        /// The Liberator: liegt beim GEGNER dieses Spielers ein offenes Feld-Monster
+        /// mit Set-Zwang, muss dieser Spieler Zauber erst setzen — Aktivierungen
+        /// direkt aus der Hand (Main Phase wie HandQuick) entfallen.
+        /// </summary>
+        public bool MustSetSpellsFirst(PlayerState player)
+        {
+            foreach (var card in player.Opponent.FieldCards())
+                if (card != null && !card.FaceDown && card.Definition != null
+                    && card.Definition.passiveOpponentMustSetSpells) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Emergency Barrier: liegt bei dieser Seite ein offener Feld-Beschützer,
+        /// sind ALLE ihre Karten für den Gegner weder Effekt-Ziel noch Angriffsziel.
+        /// </summary>
+        public bool HasAllCardsProtection(PlayerState side)
+        {
+            foreach (var card in side.FieldCards())
+                if (card != null && !card.FaceDown && card.Definition != null
+                    && card.Definition.passiveProtectAllFromTargetingAndAttacks) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Cull the Weak: beide Spieler wählen VERDECKT ein Monster aus ihrem Deck —
+        /// erst nach beiden Wahlen wird gleichzeitig aufgedeckt. Das niedrigere ATK
+        /// geht ins Grab, das höhere wird spezialbeschworen (ohne Platz: oben aufs
+        /// Deck) und sein Besitzer nimmt die ATK-Differenz als Schaden.
+        /// Gleichstand: beide werden zurückgemischt. Fehlt einer Seite das Monster,
+        /// gewinnt die andere kampflos — die Differenz ist dann das volle ATK.
+        /// </summary>
+        private IEnumerator ResolveSimultaneousDeckCull(PlayerState player, CardInstance source)
+        {
+            var sides = new[] { player, player.Opponent };
+            var picks = new CardInstance[2];
+            for (int s = 0; s < sides.Length; s++)
+            {
+                var side = sides[s];
+                var pool = side.DeckPile.Where(c => c.MonsterData != null)
+                    .OrderByDescending(c => c.MonsterData.atk).ToList();
+                if (pool.Count == 0)
+                {
+                    Log($"{side.Name} has no monster in the Deck to reveal.");
+                    continue;
+                }
+                var request = new TargetRequest
+                {
+                    Title = $"{source.Name}: choose a monster from your Deck to reveal",
+                    Kind = TargetKind.DeckMonsterFilteredSelf,
+                    Count = 1,
+                    AllowCancel = false
+                };
+                request.Candidates.AddRange(pool);
+                yield return DecideRouted(side, request);
+                picks[s] = request.Result.Count > 0 ? request.Result[0] : pool[0];
+            }
+
+            if (picks[0] == null && picks[1] == null) yield break;
+
+            foreach (var pick in picks)
+            {
+                if (pick == null) continue;
+                Log($"{pick.Owner.Name} reveals {pick.Name} (ATK {pick.MonsterData.atk}).");
+                if (presenter != null) yield return presenter.ShowCardRevealed(pick, "REVEALED FROM THE DECK");
+            }
+
+            if (picks[0] != null && picks[1] != null
+                && picks[0].MonsterData.atk == picks[1].MonsterData.atk)
+            {
+                Log("Both monsters have equal ATK — they are shuffled back into the Decks.");
+                Shuffle(player.DeckPile);
+                Shuffle(player.Opponent.DeckPile);
+                BoardChanged();
+                yield break;
+            }
+
+            int atkFirst = picks[0]?.MonsterData.atk ?? -1;
+            int atkSecond = picks[1]?.MonsterData.atk ?? -1;
+            var winner = atkFirst > atkSecond ? picks[0] : picks[1];
+            var loser = atkFirst > atkSecond ? picks[1] : picks[0];
+
+            if (loser != null)
+            {
+                Log($"{loser.Name} has the lower ATK — it is destroyed.");
+                MoveToGraveyard(loser);
+                BoardChanged();
+            }
+
+            var owner = winner.Owner;
+            bool canSummon = owner.FreeMonsterZones() > 0
+                && !owner.CannotSpecialSummonThisTurn
+                && !FieldLimitReached(owner, winner.Definition);
+            if (canSummon)
+            {
+                yield return SpecialSummonToField(owner, winner, $"with {source.Name}");
+            }
+            else
+            {
+                owner.DeckPile.Remove(winner);
+                owner.DeckPile.Insert(0, winner);
+                winner.Zone = ZoneType.Deck;
+                Log($"{winner.Name} cannot be Summoned — it is placed on top of the Deck.");
+                BoardChanged();
+            }
+
+            int difference = winner.MonsterData.atk - Math.Max(0, loser?.MonsterData.atk ?? 0);
+            if (difference > 0)
+            {
+                Log($"{owner.Name} pays the price of strength.");
+                DealDamage(owner, difference, source.Name);
+                if (CheckWin()) yield break;
+            }
+
+            yield return FirePendingGraveTriggers();
         }
 
         // ================== BATTLE PHASE ==================
@@ -3608,6 +3756,9 @@ namespace Rouge.Tcg
                 }
                 else
                 {
+                    // Emergency Barrier: kein Monster des geschützten Spielers ist Angriffsziel —
+                    // und weil er Monster kontrolliert, gibt es auch keinen Direktangriff.
+                    if (HasAllCardsProtection(player.Opponent)) continue;
                     // Lyria Green Room: geschützte verdeckte Monster sind kein Angriffsziel
                     var openTargets = (forcedTargets.Count > 0 ? forcedTargets : player.Opponent.Monsters().ToList())
                         .Where(t => !FaceDownShieldedFromAttack(t)).ToList();

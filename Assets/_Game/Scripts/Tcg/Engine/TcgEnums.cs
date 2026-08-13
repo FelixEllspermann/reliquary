@@ -185,7 +185,9 @@ namespace Rouge.Tcg
         ReturnTargetReliquaryToExtraDeck, // gegnerisches Reliquary auf dem Feld kehrt ins Extra Deck zurück
         LockOpponentSpecialSummonedEffects, // Gegner kann diesen Zug keine Effekte spezialbeschworener Feldmonster aktivieren
         SwitchAllToAttack,              // alle offenen Monster beider Felder in Angriffsposition
-        ReturnAllBanishedToOwners       // JEDE verbannte Karte kehrt zurück: Reliquaries ins Extra Deck, Rest ins Deck
+        ReturnAllBanishedToOwners,      // JEDE verbannte Karte kehrt zurück: Reliquaries ins Extra Deck, Rest ins Deck
+        SimultaneousDeckCull,           // Cull the Weak: beide decken je 1 Deck-Monster auf — schwächeres stirbt, stärkeres kommt (Besitzer nimmt Differenz als Schaden)
+        PlaySelfFromHand                // Emergency Barrier: die Quellkarte (Artefakt) wird aus der Hand aufs Feld gespielt
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
