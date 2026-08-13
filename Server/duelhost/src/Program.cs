@@ -24,6 +24,16 @@ namespace Rouge.DuelHost
             var library = CardLibrary.Load(dataDir);
             Console.WriteLine($"[host] {library.Catalog.cards.Count} Karten geladen, Regeln: startMana {library.Rules.startMana}, Deck {library.Rules.deckMinSize}-{library.Rules.deckMaxSize}");
 
+            // The Forbidden Name: Namenspool für "declare a card name" — gleiche
+            // Liste und Sortierung wie der Client (CardLinkText.Configure).
+            DuelManager.DeclarableNames.Clear();
+            foreach (var card in library.Catalog.cards)
+            {
+                if (card == null || card is PlayerCardData || card.isToken) continue;
+                DuelManager.DeclarableNames.Add(card.cardName);
+            }
+            DuelManager.DeclarableNames.Sort(StringComparer.Ordinal);
+
             if (args.Contains("--selftest")) return SelfTest(library, dataDir);
 
             var server = new HostServer(port);

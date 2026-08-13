@@ -41,6 +41,14 @@ namespace Rouge.Tcg
         public int ExtraNormalSummons;          // zusätzlich erlaubte Normalbeschwörungen
         public bool NoBattleDamageThisTurn;     // erleidet diesen Zug keinen Kampfschaden
         public bool CannotSpecialSummonThisTurn;
+        public bool NoDirectAttacksThisTurn;    // darf diesen Zug nicht direkt angreifen (Implosion)
+        public bool SpecialSummonedEffectsLockedThisTurn; // kann diesen Zug keine Effekte spezialbeschworener Feldmonster aktivieren
+
+        // The Forbidden Name (Infused): die NÄCHSTE eigene Battle Phase entfällt.
+        // Gemerkt wird der Aktivierungszug — verbraucht wird in einem späteren
+        // Zug, damit eine Aktivierung in der eigenen Main Phase nicht schon die
+        // eigene Battle Phase desselben Zuges frisst. -1 = keine Schuld offen.
+        public int SkipBattlePhaseAfterTurn = -1;
 
         /// <summary>Ausgespielte Zauber in diesem Zug — für den Erster-Zauber-Rabatt
         /// (Bargain Bobbin). Reset in ResetTurnFlags(), für beide Spieler.</summary>

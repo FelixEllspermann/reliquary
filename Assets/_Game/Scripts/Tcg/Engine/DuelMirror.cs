@@ -245,9 +245,16 @@ namespace Rouge.Tcg
                     {
                         Title = wire.title ?? "",
                         AllowCancel = wire.allowCancel,
-                        Card = MirrorCard(wire.cardId)
+                        Card = MirrorCard(wire.cardId),
+                        IsResponseList = wire.isResponseList,
+                        IsPhaseWindow = wire.isPhaseWindow,
+                        Searchable = wire.searchable
                     };
                     if (wire.choices != null) request.Options.AddRange(wire.choices);
+                    // Master-Duel-Reaktionsliste: die Karte hinter jeder Option
+                    if (wire.choiceCardIds != null)
+                        foreach (var id in wire.choiceCardIds)
+                            request.OptionCards.Add(id > 0 ? MirrorCard(id) : null);
                     return request;
                 }
 

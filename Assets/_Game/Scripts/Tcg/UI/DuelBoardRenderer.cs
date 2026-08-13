@@ -33,6 +33,9 @@ namespace Rouge.Tcg.UI
         [UnityEngine.Serialization.FormerlySerializedAs("duel")]
         private DuelHost duelHost;
         [SerializeField] private TcgCardView cardViewPrefab;
+
+        /// <summary>Das Karten-Prefab für Laufzeit-Ansichten (Prompt-Fenster, Reaktionsliste).</summary>
+        public TcgCardView CardViewPrefab => cardViewPrefab;
         [SerializeField] private CardDetailPanel detailPanel;
         [SerializeField] private CardSkin skin;
 

@@ -53,6 +53,8 @@ namespace Rouge.Tcg.UI
 
             BuildConfirmButton();
             BuildResponseToggle();
+            // Karten-Prefab für die Mini-Vorschauen im Prompt (Reaktionsliste, Trigger-Fragen)
+            if (board != null) PromptPanel.CardViewPrefab = board.CardViewPrefab;
             StrengthenStatusText();
 
             // Die Duell-Knöpfe tragen die wichtigsten Entscheidungen — deutlich kräftigeres Feedback
@@ -397,7 +399,8 @@ namespace Rouge.Tcg.UI
                 askedView.SetHighlight(true);
 
             bool done = false;
-            promptPanel.ShowYesNo(request.Title, request.Question, result =>
+            // Mit Kartenbild: die fragende Karte schwebt über dem Fenster
+            promptPanel.ShowYesNo(request.Title, request.Question, request.Card, result =>
             {
                 request.Result = result;
                 request.Answered = true;
@@ -474,9 +477,47 @@ namespace Rouge.Tcg.UI
 
         public IEnumerator Handle(OptionRequest request)
         {
+            // Reaktions-Toggle: eine Reaktionsliste wird pauschal gepasst.
+            // Phasenfenster fragen weiterhin — wie bei den alten Ja/Nein-Fragen.
+            if (request.IsResponseList && !request.IsPhaseWindow && !ResponsesEnabled)
+            {
+                request.Result = -1;
+                request.Answered = true;
+                yield break;
+            }
+
             if (pileViewer != null) pileViewer.CloseIfBrowsing();
             if (request.Card != null && detailPanel != null) detailPanel.ShowCard(request.Card);
             bool done = false;
+
+            // Namenssuche (The Forbidden Name): Suchfeld + gefilterte Liste
+            if (request.Searchable)
+            {
+                promptPanel.ShowSearchList(request.Title, request.Options, result =>
+                {
+                    request.Result = result;
+                    request.Answered = true;
+                    done = true;
+                });
+                while (!done) yield return null;
+                yield break;
+            }
+
+            // Master-Duel-Liste: Optionen mit Karten dahinter als anklickbare Zeilen
+            bool hasCards = request.OptionCards != null && request.OptionCards.Exists(c => c != null);
+            if (request.IsResponseList || hasCards)
+            {
+                string pass = request.IsResponseList ? "PASS" : "CANCEL";
+                promptPanel.ShowCardList(request.Title, request.Options, request.OptionCards, pass, result =>
+                {
+                    request.Result = result;
+                    request.Answered = true;
+                    done = true;
+                });
+                while (!done) yield return null;
+                yield break;
+            }
+
             promptPanel.ShowOptions(request.Title, "", request.Options, request.AllowCancel, result =>
             {
                 request.Result = result;

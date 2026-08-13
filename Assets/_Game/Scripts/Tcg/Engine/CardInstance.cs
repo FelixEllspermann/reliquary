@@ -22,6 +22,7 @@ namespace Rouge.Tcg
         public bool SetThisTurn;                    // in diesem Zug gesetzt (noch nicht aktivierbar)
         public bool SummonedThisTurn;
         public bool WasSpecialSummoned;             // solange auf dem Feld: kam per Spezialbeschwörung
+        public int DeathCounters;                   // Immortal Demon: End-Phase-Zähler bis zum Grab
         public bool HasAttackedThisTurn;
         public int BonusAttacks;   // zusätzliche Angriffe in dieser Battle Phase (z.B. Dragon Tail)
         public int PositionChangesUsed;

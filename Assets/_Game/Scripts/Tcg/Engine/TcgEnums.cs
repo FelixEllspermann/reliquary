@@ -174,7 +174,18 @@ namespace Rouge.Tcg
 
         // --- Mimicrypt (Nachahmer) ---
         CopySpellFromOpponentGraveyard, // Ziel-Zauber im GEGNER-Friedhof: dessen ersten Effekt als eigenen auflösen
-        AllyMonsterCopiesTargetStats    // ein selbst gewähltes EIGENES Monster kopiert ATK/DEF des Ziels bis Zugende
+        AllyMonsterCopiesTargetStats,   // ein selbst gewähltes EIGENES Monster kopiert ATK/DEF des Ziels bis Zugende
+
+        // --- Dark-Angel-Paket (August 2026) ---
+        ForbidChosenNameTwoTurns,       // Spieler wählt per Suche einen Kartennamen; dessen Effekte sind diesen und den nächsten Zug gesperrt
+        SkipOwnBattlePhaseNextTurn,     // der Aktivierende überspringt seine nächste Battle Phase
+        BanishAllOpponentMonsters,      // alle gegnerischen Monster verbannen
+        NoDirectAttacksThisTurnSelf,    // der Aktivierende darf diesen Zug nicht direkt angreifen
+        BanishFromExtraDeckCost,        // Ziel aus dem EIGENEN Extra Deck verbannen (als Kosten gedacht)
+        ReturnTargetReliquaryToExtraDeck, // gegnerisches Reliquary auf dem Feld kehrt ins Extra Deck zurück
+        LockOpponentSpecialSummonedEffects, // Gegner kann diesen Zug keine Effekte spezialbeschworener Feldmonster aktivieren
+        SwitchAllToAttack,              // alle offenen Monster beider Felder in Angriffsposition
+        ReturnAllBanishedToOwners       // JEDE verbannte Karte kehrt zurück: Reliquaries ins Extra Deck, Rest ins Deck
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
@@ -233,7 +244,11 @@ namespace Rouge.Tcg
 
         // --- Mimicrypt (Gegner-Friedhof) ---
         GraveyardSpellOpponent,    // Zauberkarte im gegnerischen Friedhof
-        GraveyardMonsterOpponent   // Monster im gegnerischen Friedhof
+        GraveyardMonsterOpponent,  // Monster im gegnerischen Friedhof
+
+        // --- Dark-Angel-Paket ---
+        ExtraDeckReliquarySelf,    // Reliquary im EIGENEN Extra Deck (z.B. als Verbannungs-Kosten)
+        EnemyReliquaryOnField      // gegnerisches Reliquary auf dem Feld
     }
 
     /// <summary>

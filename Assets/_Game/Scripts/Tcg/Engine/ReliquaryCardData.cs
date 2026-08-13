@@ -77,6 +77,15 @@ namespace Rouge.Tcg
         [Tooltip("Mindestens so viele Karten in deinem Banishment (0 = aus)")]
         [Range(0, 20)] public int reqBanishedAtLeast;
 
+        [Tooltip("KEINE Reliquary auf einem der Felder oder in einer der Verbannungen (Immortal Demon)")]
+        public bool reqNoReliquariesOnFieldOrBanish;
+
+        [Tooltip("Mindestens so viele Reliquaries in DEINEM Friedhof (0 = aus)")]
+        [Range(0, 10)] public int reqReliquariesInGraveAtLeast;
+
+        [Tooltip("Der Gegner kontrolliert ein Monster mit mindestens so viel ATK (0 = aus)")]
+        public int reqOpponentMonsterAtkAtLeast;
+
         [Header("Zusatzkosten (bei der Beschwörung bezahlt)")]
         [Tooltip("Banishe so viele Monster aus deinem Friedhof (0 = aus)")]
         [Range(0, 10)] public int costBanishMonstersFromGrave;

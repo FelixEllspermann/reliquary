@@ -92,6 +92,25 @@ namespace Rouge.Tcg
         public bool DuelRunning { get; private set; }
         public readonly List<string> LogHistory = new List<string>();
 
+        /// <summary>
+        /// The Forbidden Name: gesperrte Kartennamen → letzter Zug (TurnNumber),
+        /// in dem die Sperre noch gilt. Abgelaufene Einträge räumt der Zugbeginn.
+        /// </summary>
+        public readonly Dictionary<string, int> ForbiddenNames = new Dictionary<string, int>();
+
+        /// <summary>
+        /// Namenspool für "declare a card name"-Effekte: alle Kartennamen des
+        /// Spiels, ordinal sortiert. Wird beim Aufsetzen gefüllt — Unity-seitig
+        /// aus dem CardCatalog, im DuelHost aus den geladenen Server-Daten.
+        /// Statisch, weil er pro Prozess gilt und keine Duell-Daten trägt.
+        /// </summary>
+        public static readonly List<string> DeclarableNames = new List<string>();
+
+        /// <summary>Ist dieser Kartenname gerade gesperrt? (The Forbidden Name)</summary>
+        public bool IsNameForbidden(string cardName) =>
+            !string.IsNullOrEmpty(cardName)
+            && ForbiddenNames.TryGetValue(cardName, out int until) && TurnNumber <= until;
+
         /// <summary>Karten des letzten TryDraw-Aufrufs (für die Zieh-Präsentation).</summary>
         public readonly List<CardInstance> LastDrawn = new List<CardInstance>();
 
@@ -567,6 +586,17 @@ namespace Rouge.Tcg
             }
 
             // ---- Battle Phase ----
+            // The Forbidden Name (Infused): die geliehene Flexibilität kostet
+            // die NÄCHSTE eigene Battle Phase — sie entfällt ersatzlos.
+            if (player.SkipBattlePhaseAfterTurn >= 0 && TurnNumber > player.SkipBattlePhaseAfterTurn)
+            {
+                player.SkipBattlePhaseAfterTurn = -1;
+                if (toBattle)
+                {
+                    toBattle = false;
+                    Log($"{player.Name} skips the Battle Phase this turn.");
+                }
+            }
             if (toBattle && Result == DuelResult.None)
             {
                 yield return EnterPhase(DuelPhase.Battle);
@@ -608,6 +638,25 @@ namespace Rouge.Tcg
             yield return FirePendingGraveTriggers();
             if (CheckWin()) yield break;
 
+            // Immortal Demon: in JEDER End Phase tickt der Death Counter — bei
+            // vollem Zähler geht die Karte ins Grab (und zündet dort ihre Trigger).
+            foreach (var side in new[] { player, player.Opponent })
+            {
+                foreach (var doomed in new List<CardInstance>(side.Monsters()))
+                {
+                    var limit = doomed.Definition != null ? doomed.Definition.passiveDeathCounterLimit : 0;
+                    if (limit <= 0 || doomed.FaceDown) continue;
+                    doomed.DeathCounters++;
+                    Log($"{doomed.Name} gains a Death Counter ({doomed.DeathCounters}/{limit}).");
+                    if (doomed.DeathCounters < limit) continue;
+                    Log($"{doomed.Name} has {limit} Death Counters — it is sent to the Graveyard.");
+                    MoveToGraveyardWithEquips(doomed);
+                    BoardChanged();
+                }
+            }
+            yield return FirePendingGraveTriggers();
+            if (CheckWin()) yield break;
+
             ClearTempModifiers();
             yield return EnforceHandLimit(player);
             // Handlimit-Abwürfe können Friedhofs-Trigger tragen (Deckay Vulture)
@@ -617,9 +666,22 @@ namespace Rouge.Tcg
 
         private void ResetTurnFlags(PlayerState turnPlayer)
         {
+            // The Forbidden Name: abgelaufene Sperren räumen (gilt bis
+            // einschliesslich des gemerkten Zuges).
+            var expired = new List<string>();
+            foreach (var pair in ForbiddenNames)
+                if (TurnNumber > pair.Value) expired.Add(pair.Key);
+            foreach (var name in expired)
+            {
+                ForbiddenNames.Remove(name);
+                Log($"\"{name}\" is no longer forbidden.");
+            }
+
             foreach (var player in new[] { Player1, Player2 })
             {
                 player.SpellsCastThisTurn = 0; // Erster-Zauber-Rabatt gilt je Zug neu
+                player.NoDirectAttacksThisTurn = false;
+                player.SpecialSummonedEffectsLockedThisTurn = false;
                 if (player == turnPlayer)
                 {
                     // Deckay: "letzte Runde gemillt" — der Zähler rutscht beim

@@ -43,6 +43,19 @@ namespace Rouge.Tcg.UI
             catalog = cardCatalog;
             namesByFirstChar = null;
             kindByName = null;
+
+            // The Forbidden Name: der Namenspool für "declare a card name"-Effekte.
+            // Ordinal sortiert — der DuelHost baut dieselbe Liste aus den Server-Daten.
+            if (cardCatalog != null)
+            {
+                DuelManager.DeclarableNames.Clear();
+                foreach (var card in cardCatalog.cards)
+                {
+                    if (card == null || card is PlayerCardData || card.isToken) continue;
+                    DuelManager.DeclarableNames.Add(card.cardName);
+                }
+                DuelManager.DeclarableNames.Sort(System.StringComparer.Ordinal);
+            }
         }
 
         private static int KindOf(CardDefinition definition)

@@ -63,6 +63,12 @@ namespace Rouge.Tcg
         [Tooltip("Karten mit demselben NAMEN wie die Quellkarte sind kein gültiges Ziel " +
                  "(Trapline: \"mit anderem Namen\")")]
         public bool excludeSameName;
+
+        [Tooltip("Nur Monster OHNE Effekte als Ziel zulassen (Rally the Weak)")]
+        public bool onlyWithoutEffects;
+
+        [Tooltip("Spezialbeschwörungen dieser Aktion kommen in Verteidigungsposition")]
+        public bool summonInDefense;
     }
 
     [Serializable]
@@ -115,6 +121,14 @@ namespace Rouge.Tcg
         [Tooltip("Dieser Reaktions-Effekt ist NUR anwählbar, wenn das auslösende Summon ein " +
                  "Reliquary war (Deckay Fiend/Vulture).")]
         public bool onlyReliquarySummonResponse;
+
+        [Tooltip("Quick-Effekt nur im EIGENEN Zug anwählbar (The Forbidden Name: der Normal-Effekt " +
+                 "bleibt daheim, erst das Infused-Upgrade reagiert im Gegnerzug).")]
+        public bool onlyDuringYourTurn;
+
+        [Tooltip("Friedhofs-Trigger zündet NUR, wenn die Karte aus dem EXTRA DECK in den Friedhof " +
+                 "ging (The Last Asemir).")]
+        public bool onlyFromExtraDeck;
 
         [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
         [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]

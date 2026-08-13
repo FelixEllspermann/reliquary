@@ -288,6 +288,9 @@ namespace Rouge.Tcg.Net
         public SduelBattleOption[] battleOptions;
         public string[] choices;   // option
         public bool allowCancel;   // option/target
+        public int[] choiceCardIds;   // option: Karte je Option (0 = keine) — Master-Duel-Reaktionsliste
+        public bool isResponseList;   // option: Reaktions-Angebot (Toggle darf pauschal passen)
+        public bool searchable;       // option: Namenssuche mit Filterfeld (The Forbidden Name)
         public SduelCard[] candidates; // target
         public int count;          // target
         public bool allowFewer;    // target

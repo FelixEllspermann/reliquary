@@ -558,6 +558,13 @@ namespace Rouge.DuelHost
                     common["choices"] = option.Options.ToArray();
                     common["allowCancel"] = option.AllowCancel;
                     common["cardId"] = IdOf(option.Card);
+                    // Master-Duel-Reaktionsliste: Karte je Option (0 = keine) + Flags;
+                    // searchable = Namenssuche (The Forbidden Name), dort reisen nur Strings.
+                    common["choiceCardIds"] = option.Options
+                        .Select((_, i) => i < option.OptionCards.Count ? IdOf(option.OptionCards[i]) : 0).ToArray();
+                    common["isResponseList"] = option.IsResponseList;
+                    common["isPhaseWindow"] = option.IsPhaseWindow;
+                    common["searchable"] = option.Searchable;
                     break;
                 case TargetRequest target:
                     common["type"] = "target";

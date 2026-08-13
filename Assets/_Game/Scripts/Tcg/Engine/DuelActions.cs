@@ -330,10 +330,22 @@ namespace Rouge.Tcg
 
         // ================== RELIQUARY (EXTRA DECK) ==================
 
+        /// <summary>The Fallen One: liegt irgendwo ein offener Reliquary-Blocker?</summary>
+        private bool ReliquarySummonsBlocked()
+        {
+            foreach (var side in new[] { Player1, Player2 })
+                foreach (var monster in side.Monsters())
+                    if (!monster.FaceDown && !monster.EffectsNegated
+                        && monster.Definition != null && monster.Definition.passiveBlockReliquarySummons)
+                        return true;
+            return false;
+        }
+
         /// <summary>Prüft alle Beschwörungs-Voraussetzungen einer Reliquary-Karte (inkl. Bezahlbarkeit der Kosten).</summary>
         private bool ReliquaryRequirementsMet(PlayerState player, ReliquaryCardData data)
         {
             var opponent = player.Opponent;
+            if (ReliquarySummonsBlocked()) return false; // The Fallen One sperrt beide Spieler
             if (player.Mana < Math.Max(data.summonManaCost, data.reqMinMana)) return false;
 
             if (!string.IsNullOrEmpty(data.reqNamedOnField))
@@ -364,6 +376,20 @@ namespace Rouge.Tcg
             if (data.reqOwnMonstersAtLeast > 0 && player.MonsterCount() < data.reqOwnMonstersAtLeast) return false;
             if (data.reqLifeAtMost > 0 && player.LifePoints > data.reqLifeAtMost) return false;
             if (data.reqBanishedAtLeast > 0 && player.Banished.Count < data.reqBanishedAtLeast) return false;
+            // Immortal Demon: nirgends Reliquaries — weder auf den Feldern noch in den Verbannungen
+            if (data.reqNoReliquariesOnFieldOrBanish)
+            {
+                foreach (var side in new[] { player, opponent })
+                {
+                    if (side.Monsters().Any(m => m.Definition is ReliquaryCardData)) return false;
+                    if (side.Banished.Any(c => c.Definition is ReliquaryCardData)) return false;
+                }
+            }
+            if (data.reqReliquariesInGraveAtLeast > 0
+                && player.Graveyard.Count(c => c.Definition is ReliquaryCardData) < data.reqReliquariesInGraveAtLeast) return false;
+            // The Last Asemir: der Gegner muss eine echte Bedrohung kontrollieren
+            if (data.reqOpponentMonsterAtkAtLeast > 0
+                && !opponent.Monsters().Any(m => !m.FaceDown && m.CurrentAtk >= data.reqOpponentMonsterAtkAtLeast)) return false;
 
             // Zusatzkosten müssen bezahlbar sein
             if (data.costBanishMonstersFromGrave > 0
@@ -756,7 +782,7 @@ namespace Rouge.Tcg
         }
 
         /// <summary>Gemeinsamer Pfad aller Effekt-Spezialbeschwörungen: Zone wählen, aufs Feld, Events.</summary>
-        private IEnumerator SpecialSummonToField(PlayerState player, CardInstance monster, string sourceDescription)
+        private IEnumerator SpecialSummonToField(PlayerState player, CardInstance monster, string sourceDescription, bool inDefense = false)
         {
             if (player.CannotSpecialSummonThisTurn)
             {
@@ -783,7 +809,7 @@ namespace Rouge.Tcg
             player.MonsterZones[zoneIndex] = monster;
             monster.Owner = player;
             monster.Zone = ZoneType.MonsterZone;
-            monster.Position = BattlePosition.Attack;
+            monster.Position = inDefense ? BattlePosition.Defense : BattlePosition.Attack;
             monster.SummonedThisTurn = true;
             monster.WasSpecialSummoned = true;
             monster.PermanentAtkBonus = 0;
@@ -852,6 +878,7 @@ namespace Rouge.Tcg
         {
             var effect = GetEffect(spell, effectIndex);
             if (effect == null) yield break;
+            if (IsNameForbidden(spell.Name)) yield break; // The Forbidden Name
             int manaCost = EffectiveManaCost(player, spell, effect);
             if (player.Mana < manaCost) yield break;
 
@@ -966,6 +993,7 @@ namespace Rouge.Tcg
         {
             var effect = GetEffect(card, effectIndex);
             if (effect == null || player.Mana < effect.manaCost) yield break;
+            if (IsNameForbidden(card.Name)) yield break; // The Forbidden Name
 
             var targets = new TargetCollection();
             yield return CollectTargets(player, effect, targets, true, card);
@@ -1128,6 +1156,12 @@ namespace Rouge.Tcg
                 if (effect.onlyIfSpecialSummoned && !card.WasSpecialSummoned) continue;
                 if (effect.requiresEquippedArtifact && card.EquippedArtifacts.Count == 0) continue;
                 if (card.EffectsNegated) continue; // annullierte Karte kann nichts aktivieren
+                if (IsNameForbidden(card.Name)) continue; // The Forbidden Name: Name ist gesperrt
+                // The Fallen One (Infused): keine Effekte spezialbeschworener Feldmonster
+                if (player.SpecialSummonedEffectsLockedThisTurn
+                    && card.Zone == ZoneType.MonsterZone && card.WasSpecialSummoned) continue;
+                // The Forbidden Name: der Normal-Effekt bleibt im eigenen Zug daheim
+                if (effect.onlyDuringYourTurn && TurnPlayer != player) continue;
                 if (RequiresOpenChain(effect) && chainCards.Count == 0) continue;
                 if (!MeetsConditions(effect, player)) continue;
                 if (!HasValidTargets(effect, player, card)) continue;
@@ -1208,6 +1242,10 @@ namespace Rouge.Tcg
             if (action.maxAtkFilter > 0 && (monster == null || card.CurrentAtk > action.maxAtkFilter)) return false;
             if (!string.IsNullOrEmpty(action.nameFilter) && !card.Name.Contains(action.nameFilter)) return false;
             if (!string.IsNullOrEmpty(action.mentionsFilter) && !CardMentions(card, action.mentionsFilter)) return false;
+            // Rally the Weak: nur Vanillas — Karten ohne jeden Effekt-Eintrag
+            if (action.onlyWithoutEffects && card.Definition != null
+                && (card.Definition.effects.Count > 0
+                    || (card.MonsterData != null && card.MonsterData.canSelfSpecialSummon))) return false;
             return true;
         }
 
@@ -1227,7 +1265,7 @@ namespace Rouge.Tcg
 
         private static bool ActionHasFilter(EffectAction action) =>
             action.useTypeFilter || action.useAttributeFilter || action.levelFilter > 0
-            || action.maxAtkFilter > 0
+            || action.maxAtkFilter > 0 || action.onlyWithoutEffects
             || !string.IsNullOrEmpty(action.nameFilter) || !string.IsNullOrEmpty(action.mentionsFilter);
 
         private List<CardInstance> BuildTargetCandidates(EffectAction action, PlayerState player, CardInstance source = null)
@@ -1338,6 +1376,12 @@ namespace Rouge.Tcg
                 case TargetKind.HandSpellFiltered:
                     candidates.AddRange(player.Hand.Where(c => c.SpellData != null));
                     break;
+                case TargetKind.ExtraDeckReliquarySelf:
+                    candidates.AddRange(player.ExtraDeckPile.Where(c => c.Definition is ReliquaryCardData));
+                    break;
+                case TargetKind.EnemyReliquaryOnField:
+                    candidates.AddRange(player.Opponent.Monsters().Where(m => m.Definition is ReliquaryCardData));
+                    break;
                 // TargetKind.SelfCard: kein Auswahl-Dialog — wird in ResolveEffectActions direkt zur Quellkarte.
             }
             if (ActionHasFilter(action)) candidates.RemoveAll(c => !MatchesFilter(action, c));
@@ -1347,6 +1391,9 @@ namespace Rouge.Tcg
                 candidates.RemoveAll(c => c != null && c.Name == source.Name);
             // Ziel-Immunität gilt nur gegen den Gegner — eigene Effekte dürfen weiter anvisieren
             candidates.RemoveAll(c => c != null && (c.CannotBeTargetedThisTurn || c.ImmuneToOpponentThisTurn) && c.Owner != player);
+            // Immortal Demon: dauerhaft unanvisierbar für den Gegner (Feldkarten)
+            candidates.RemoveAll(c => c != null && c.Owner != player && !c.FaceDown
+                && c.Definition != null && c.Definition.passiveUntargetable && IsOnField(c));
             // Heavenly Bodyguard: benannte Karten sind für den Gegner kein gültiges Ziel
             candidates.RemoveAll(c => c != null && c.Owner != player && IsGuardedFromTargeting(c));
             return candidates;
@@ -1571,13 +1618,16 @@ namespace Rouge.Tcg
                         }
                         break;
                     case EffectActionType.SpecialSummonTargetFromDeck:
-                        if (target != null && target.MonsterData != null && target.Zone == ZoneType.Deck)
+                        // Schleife statt Einzelziel — "bis zu 3 aus dem Deck" (Rally the Weak)
+                        foreach (var pick in affected)
                         {
-                            player.DeckPile.Remove(target);
-                            Shuffle(player.DeckPile);
-                            yield return SpecialSummonToField(player, target, "from the deck");
+                            if (pick == null || pick.MonsterData == null || pick.Zone != ZoneType.Deck) continue;
+                            if (player.FreeMonsterZones() <= 0) { Log("No free monster zone — no further summons."); break; }
+                            player.DeckPile.Remove(pick);
+                            yield return SpecialSummonToField(player, pick, "from the deck", action.summonInDefense);
                             if (Result != DuelResult.None) yield break;
                         }
+                        Shuffle(player.DeckPile);
                         break;
                     case EffectActionType.NegateTargetCard:
                         foreach (var hit in affected)
@@ -1740,6 +1790,134 @@ namespace Rouge.Tcg
                             Log($"{source.Name} cannot be destroyed this turn.");
                         }
                         break;
+
+                    // ================== DARK-ANGEL-PAKET ==================
+
+                    case EffectActionType.ForbidChosenNameTwoTurns:
+                    {
+                        // Namenswahl über das Suchfeld: der Pool sind alle Karten-
+                        // namen des Spiels (DeclarableNames wird beim Aufsetzen des
+                        // Prozesses gefüllt), das UI filtert beim Tippen.
+                        var namePick = new OptionRequest
+                        {
+                            Title = "Declare a card name",
+                            Card = source,
+                            AllowCancel = false,
+                            Searchable = true
+                        };
+                        namePick.Options.AddRange(DeclarableNames);
+                        if (namePick.Options.Count == 0) { Log("No card names to declare."); break; }
+                        yield return DecideRouted(player, namePick);
+                        if (namePick.Result < 0 || namePick.Result >= namePick.Options.Count) break;
+                        string forbidden = namePick.Options[namePick.Result];
+                        ForbiddenNames[forbidden] = TurnNumber + 1; // dieser + nächster Zug
+                        Log($"{player.Name} declares \"{forbidden}\" — its effects are forbidden this turn and the next.");
+                        break;
+                    }
+
+                    case EffectActionType.SkipOwnBattlePhaseNextTurn:
+                        player.SkipBattlePhaseAfterTurn = TurnNumber;
+                        Log($"{player.Name} will skip their next Battle Phase.");
+                        break;
+
+                    case EffectActionType.BanishAllOpponentMonsters:
+                        foreach (var enemy in new List<CardInstance>(player.Opponent.Monsters()))
+                        {
+                            if (DissolveIfToken(enemy)) continue; // Illusionen lösen sich auf
+                            RemoveFromCurrentZone(enemy);
+                            DetachEquipsToGraveyard(enemy);
+                            enemy.FaceDown = false;
+                            enemy.Zone = ZoneType.Banished;
+                            enemy.Owner.Banished.Add(enemy);
+                            Log($"{enemy.Name} is banished.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.NoDirectAttacksThisTurnSelf:
+                        player.NoDirectAttacksThisTurn = true;
+                        Log($"{player.Name} cannot attack directly this turn.");
+                        break;
+
+                    case EffectActionType.BanishFromExtraDeckCost:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone != ZoneType.ExtraDeck) continue;
+                            hit.Owner.ExtraDeckPile.Remove(hit);
+                            hit.Zone = ZoneType.Banished;
+                            hit.Owner.Banished.Add(hit);
+                            Log($"{player.Name} banishes {hit.Name} from the Extra Deck.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.ReturnTargetReliquaryToExtraDeck:
+                        foreach (var hit in affected)
+                        {
+                            if (!IsOnField(hit)) continue;
+                            if (ReturnToExtraDeck(hit))
+                                Log($"{hit.Name} returns to the Extra Deck.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.LockOpponentSpecialSummonedEffects:
+                        player.Opponent.SpecialSummonedEffectsLockedThisTurn = true;
+                        Log($"{player.Opponent.Name} cannot activate effects of Special Summoned monsters for the rest of this turn.");
+                        break;
+
+                    case EffectActionType.SwitchAllToAttack:
+                        // "Every monster" heisst jedes: verdeckte werden dabei
+                        // aufgedeckt (ohne Flip-Trigger — der Ruck kommt von aussen).
+                        foreach (var side in new[] { player, player.Opponent })
+                        {
+                            foreach (var monster in side.Monsters())
+                            {
+                                if (!monster.FaceDown && monster.Position == BattlePosition.Attack) continue;
+                                bool wasHidden = monster.FaceDown;
+                                monster.FaceDown = false;
+                                monster.Position = BattlePosition.Attack;
+                                Log(wasHidden
+                                    ? $"{monster.Name} is flipped face-up and switches to Attack Position."
+                                    : $"{monster.Name} switches to Attack Position.");
+                            }
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.ReturnAllBanishedToOwners:
+                    {
+                        int returned = 0;
+                        foreach (var side in new[] { player, player.Opponent })
+                        {
+                            foreach (var exiled in new List<CardInstance>(side.Banished))
+                            {
+                                side.Banished.Remove(exiled);
+                                if (exiled.OriginalOwner != null) exiled.Owner = exiled.OriginalOwner;
+                                exiled.FaceDown = false;
+                                if (exiled.Definition is ReliquaryCardData)
+                                {
+                                    exiled.Zone = ZoneType.ExtraDeck;
+                                    exiled.Owner.ExtraDeckPile.Add(exiled);
+                                }
+                                else
+                                {
+                                    exiled.Zone = ZoneType.Deck;
+                                    exiled.Owner.DeckPile.Add(exiled);
+                                }
+                                returned++;
+                            }
+                        }
+                        if (returned > 0)
+                        {
+                            // Beide Decks mischen — die Rückkehrer sollen nicht unten aufliegen
+                            Shuffle(player.DeckPile);
+                            Shuffle(player.Opponent.DeckPile);
+                            Log($"{returned} banished card(s) return to their owners' Decks and Extra Decks.");
+                        }
+                        BoardChanged();
+                        break;
+                    }
                     case EffectActionType.PurgeTargetBuffs:
                         foreach (var hit in affected)
                         {
@@ -2327,6 +2505,7 @@ namespace Rouge.Tcg
                             player.MilledThisTurn = true;
                             BoardChanged();
                             yield return ApplyMillBurn(player, millCount);
+                            yield return AmplifyOpponentMill(player, millCount);
                             yield return FirePendingGraveTriggers();
                         }
                         break;
@@ -2484,6 +2663,7 @@ namespace Rouge.Tcg
                         // Vulture-Konter: Reliquary aus dem Extra Deck OHNE Bedingungen,
                         // aber die Mana-Beschwörungskosten fallen an. Kein On-Summon-
                         // Effekt; die Karte fällt in der eigenen End Phase ins Grab.
+                        if (ReliquarySummonsBlocked()) { Log("Reliquary Summons are sealed — the call fizzles."); break; }
                         var options = player.ExtraDeckPile
                             .Where(r => r?.MonsterData is ReliquaryCardData rd && player.Mana >= rd.summonManaCost)
                             .ToList();
@@ -2573,15 +2753,21 @@ namespace Rouge.Tcg
                         break;
 
                     case EffectActionType.SendTargetFromDeckToGraveyard:
+                    {
+                        int sent = 0;
                         foreach (var hit in affected)
                         {
                             if (hit == null || hit.Zone != ZoneType.Deck) continue;
                             player.DeckPile.Remove(hit);
                             MoveToGraveyard(hit);
+                            sent++;
                             Log($"{player.Name} sends {hit.Name} from the Deck to the Graveyard.");
                         }
                         Shuffle(player.DeckPile);
+                        if (sent > 0) player.MilledThisTurn = true;
+                        yield return AmplifyOpponentMill(player, sent);
                         break;
+                    }
 
                     case EffectActionType.BuffTargetAtkPerCountEot:
                         foreach (var hit in affected)
@@ -2655,6 +2841,34 @@ namespace Rouge.Tcg
                 ? $"{player.Name}'s Deck is already empty."
                 : $"{player.Name} sends the top {actual} card(s) of the Deck to the Graveyard ({player.DeckPile.Count} left).");
             onMilled?.Invoke(actual);
+            yield return AmplifyOpponentMill(player, actual);
+        }
+
+        // Exponential Deterioration millt gerade nach — der Nachschlag darf sich
+        // nicht selbst wieder auslösen ("except by the effect from this card").
+        private bool amplifyingMill;
+
+        /// <summary>
+        /// Exponential Deterioration: hat der GEGNER des Millers ein offenes
+        /// Verstärker-Artefakt liegen, schickt der Miller je Vorgang N Karten
+        /// hinterher. Ein Vorgang, ein Nachschlag — auch bei mehreren Karten.
+        /// </summary>
+        private IEnumerator AmplifyOpponentMill(PlayerState miller, int milledCount)
+        {
+            if (milledCount <= 0 || amplifyingMill) yield break;
+            int amplify = 0;
+            foreach (var artifact in miller.Opponent.ArtifactZones)
+            {
+                if (artifact == null || artifact.FaceDown || artifact.Definition == null) continue;
+                if (artifact.EffectsNegated) continue;
+                amplify += artifact.Definition.passiveOpponentMillAmplify;
+            }
+            if (amplify <= 0) yield break;
+
+            amplifyingMill = true;
+            Log($"{miller.Opponent.Name}'s Exponential Deterioration bites — {miller.Name} sends {amplify} more card(s).");
+            yield return MillDeck(miller, amplify);
+            amplifyingMill = false;
         }
 
         /// <summary>
@@ -2801,9 +3015,13 @@ namespace Rouge.Tcg
         /// <summary>Zählbasis der ...PerCount-Aktionen — geteilt mit CardInstance.PerCountBonus.</summary>
         private static int CountFor(EffectCountKind kind, PlayerState player) => CardInstance.CountOn(player, kind);
 
-        /// <summary>Ironclad: im Kampf unzerstörbar, solange der Besitzer genug Artefakte kontrolliert.</summary>
+        /// <summary>
+        /// Im Kampf unzerstörbar: hart (passiveNoBattleDestroy, Immortal Demon)
+        /// oder bedingt über Artefakte (Ironclad).
+        /// </summary>
         private static bool BattleShieldHolds(CardInstance monster)
         {
+            if (monster?.Definition != null && monster.Definition.passiveNoBattleDestroy) return true;
             int needed = monster?.Definition != null ? monster.Definition.battleShieldMinOwnArtifacts : 0;
             if (needed <= 0 || monster.Owner == null) return false;
             int artifacts = 0;
@@ -2921,7 +3139,7 @@ namespace Rouge.Tcg
                     yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnMilledSelf);
                 if (fromZone == ZoneType.Deck || fromZone == ZoneType.Hand)
                     yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnDiscardedOrMilledSelf);
-                yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnSentToGraveyardSelf);
+                yield return OfferTriggeredEffects(owner, card, EffectTrigger.OnSentToGraveyardSelf, fromZone);
             }
             pendingGraveTriggers.Clear();
             firingGraveTriggers = false;
@@ -3122,9 +3340,16 @@ namespace Rouge.Tcg
             = new List<(PlayerState, CardInstance, EffectTrigger)>();
         private bool flushingOffers;
 
-        private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger)
+        private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger, ZoneType? graveFromZone = null)
         {
             var activatable = ActivatableEffects(card, owner, trigger);
+            // The Last Asemir: der Trigger verlangt die Reise Extra Deck → Friedhof
+            if (graveFromZone.HasValue)
+                activatable.RemoveAll(i =>
+                {
+                    var fx = GetEffect(card, i);
+                    return fx != null && fx.onlyFromExtraDeck && graveFromZone.Value != ZoneType.ExtraDeck;
+                });
             if (activatable.Count == 0) yield break;
 
             // PFLICHT-Effekte (Deckay) feuern ohne Nachfrage — der Reihe nach,
@@ -3213,34 +3438,57 @@ namespace Rouge.Tcg
             if (resolvingChain > 0) yield break;
             responseDepth++;
 
+            // Wer beschwört, reagiert nicht auf die eigene Beschwörung — seine
+            // On-Summon-Trigger folgen ohnehin direkt (Master-Duel-Reihenfolge:
+            // erst der Konter des Gegners, dann sofort der eigene Trigger).
+            bool onlyOpponentResponds = context == "summon";
+
             foreach (var responder in new[] { firstPriority, firstPriority.Opponent })
             {
                 if (Result != DuelResult.None) break;
+                if (onlyOpponentResponds && contextCard != null && responder == contextCard.Owner) continue;
 
-                foreach (var (card, effectIndex) in BuildResponseCandidates(responder, context, contextCard))
+                // Master-Duel-Liste statt Einzelfragen: ALLE aktivierbaren
+                // Reaktionen auf einmal zeigen, der Spieler klickt eine an oder
+                // passt. Nach jeder Aktivierung wird neu gesammelt — was die
+                // Auflösung verändert hat, verschwindet von selbst aus der Liste.
+                int safety = 0;
+                while (Result == DuelResult.None && safety++ < 12)
                 {
-                    if (Result != DuelResult.None) break;
+                    var candidates = new List<(CardInstance card, int effectIndex)>();
+                    foreach (var (card, effectIndex) in BuildResponseCandidates(responder, context, contextCard))
+                    {
+                        var effect = GetEffect(card, effectIndex);
+                        if (effect == null || responder.Mana < EffectiveManaCost(responder, card, effect)) continue;
+                        if (card.OncePerTurnUsed.Contains(effectIndex)) continue;
+                        if (!HasValidTargets(effect, responder, card)) continue;
+                        candidates.Add((card, effectIndex));
+                    }
+                    if (candidates.Count == 0) break;
 
-                    var effect = GetEffect(card, effectIndex);
-                    if (effect == null || responder.Mana < EffectiveManaCost(responder, card, effect)) continue;
-                    if (card.OncePerTurnUsed.Contains(effectIndex)) continue;
-                    if (!HasValidTargets(effect, responder, card)) continue;
-
-                    var request = new YesNoRequest
+                    var request = new OptionRequest
                     {
                         Title = isPhaseWindow ? context : $"Response to {context}",
-                        Card = card,
-                        IsPhaseWindow = isPhaseWindow,
-                        IsResponse = !isPhaseWindow,
-                        Question = $"{card.Name}: Activate \"{effect.label}\" {(isPhaseWindow ? "now?" : "in response?")}{DescribeActivation(effect)}"
+                        Card = contextCard,
+                        AllowCancel = true,       // Cancel = Pass
+                        IsResponseList = true,
+                        IsPhaseWindow = isPhaseWindow
                     };
+                    foreach (var (card, effectIndex) in candidates)
+                    {
+                        var effect = GetEffect(card, effectIndex);
+                        request.Options.Add($"{card.Name} — \"{effect.label}\"{DescribeActivation(effect)}");
+                        request.OptionCards.Add(card);
+                    }
                     yield return DecideRouted(responder, request);
-                    if (!request.Result) continue;
+                    if (request.Result < 0 || request.Result >= candidates.Count) break; // Pass
 
-                    if (card.SpellData != null && card.Zone == ZoneType.SpellZone)
-                        yield return ActivateSpell(responder, card, effectIndex, false);
+                    var chosen = candidates[request.Result];
+                    if (chosen.card.SpellData != null && chosen.card.Zone == ZoneType.SpellZone)
+                        yield return ActivateSpell(responder, chosen.card, chosen.effectIndex, false);
                     else
-                        yield return ActivateEffect(responder, card, effectIndex);
+                        yield return ActivateEffect(responder, chosen.card, chosen.effectIndex);
+                    if (Result != DuelResult.None) break;
                 }
             }
 
@@ -3351,6 +3599,8 @@ namespace Rouge.Tcg
 
                 if (player.Opponent.MonsterCount() == 0)
                 {
+                    // Implosion: wer das Feld wegsprengt, stürmt nicht im selben Zug hinterher
+                    if (player.NoDirectAttacksThisTurn) continue;
                     // Tidebound Leviathan: im Beschwörungszug kein Direktangriff —
                     // der Summon-Bounce soll das Feld nicht für den Todesstoß räumen
                     if (attacker.SummonedThisTurn && attacker.Definition != null
@@ -3396,8 +3646,15 @@ namespace Rouge.Tcg
                 && attacker.Definition.passiveNoAttackOnSummonTurn) yield break;
             if (option.Direct && attacker.SummonedThisTurn && attacker.Definition != null
                 && attacker.Definition.passiveNoDirectAttackOnSummonTurn) yield break;
+            if (option.Direct && player.NoDirectAttacksThisTurn) yield break; // Implosion
             if (attacker.HasAttackedThisTurn && attacker.BonusAttacks <= 0
                 && !ConditionalSecondAttackReady(player, attacker)) yield break;
+
+            // Immortal Demon: Kämpfe MIT dieser Karte verursachen keinen Kampfschaden
+            bool noBattleDamage =
+                (attacker.Definition != null && attacker.Definition.passiveNoBattleDamageInvolving)
+                || (!option.Direct && target != null && target.Definition != null
+                    && target.Definition.passiveNoBattleDamageInvolving);
 
             // Bonus- bzw. bedingten Zweitangriff verbrauchen: der Zweitangriff drückt
             // BonusAttacks auf -1, womit ConditionalSecondAttackReady (== 0) erlischt.
@@ -3433,7 +3690,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     yield break;
                 }
                 if (presenter != null) yield return presenter.ShowAttackImpact(attacker, null, true);
-                DealDamage(player.Opponent, attacker.CurrentAtk, attacker.Name, isBattleDamage: true);
+                if (!noBattleDamage) DealDamage(player.Opponent, attacker.CurrentAtk, attacker.Name, isBattleDamage: true);
             }
             else
             {
@@ -3460,7 +3717,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     int defenderAtk = target.CurrentAtk;
                     if (attackValue > defenderAtk)
                     {
-                        DealDamage(player.Opponent, attackValue - defenderAtk, attacker.Name, isBattleDamage: true);
+                        if (!noBattleDamage) DealDamage(player.Opponent, attackValue - defenderAtk, attacker.Name, isBattleDamage: true);
                         if (BattleShieldHolds(target)) Log($"{target.Name} stands firm — its artifacts hold the line.");
                         else yield return DestroyCard(target);
                         if (Result == DuelResult.None && target.Zone != ZoneType.MonsterZone)
@@ -3468,7 +3725,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     }
                     else if (attackValue < defenderAtk)
                     {
-                        DealDamage(player, defenderAtk - attackValue, target.Name, isBattleDamage: true);
+                        if (!noBattleDamage) DealDamage(player, defenderAtk - attackValue, target.Name, isBattleDamage: true);
                         if (BattleShieldHolds(attacker)) Log($"{attacker.Name} stands firm — its artifacts hold the line.");
                         else yield return DestroyCard(attacker);
                     }
@@ -3500,7 +3757,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     }
                     else if (attackValue < defenderDef)
                     {
-                        DealDamage(player, defenderDef - attackValue, target.Name, isBattleDamage: true);
+                        if (!noBattleDamage) DealDamage(player, defenderDef - attackValue, target.Name, isBattleDamage: true);
                         Log($"{attacker.Name} bounces off the defense.");
                     }
                     else
@@ -3515,6 +3772,14 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
         private void DealDamage(PlayerState player, int amount, string sourceName, bool isBattleDamage = false)
         {
             if (amount <= 0) return;
+            // The Last Asemir: der Gegner erleidet allen Kampfschaden des Besitzers.
+            // Nur EINE Umleitung — zwei Asemirs werfen den Schaden nicht ewig hin und her.
+            if (isBattleDamage && player.Monsters().Any(m => !m.FaceDown
+                && m.Definition != null && m.Definition.passiveRedirectBattleDamage))
+            {
+                Log($"{player.Name}'s battle damage is redirected to {player.Opponent.Name}.");
+                player = player.Opponent;
+            }
             if (isBattleDamage && player.NoBattleDamageThisTurn)
             {
                 Log($"{player.Name} takes no battle damage this turn — {amount} damage is prevented.");

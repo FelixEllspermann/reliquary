@@ -82,6 +82,32 @@ namespace Rouge.Tcg
                  "der Gegner so viel Schaden — solange diese Karte offen auf dem Feld liegt")]
         public int passiveBurnPerMill;
 
+        [Header("Dark-Angel-Passives (August 2026)")]
+        [Tooltip("Solange offen auf dem Feld: KEIN Spieler kann Reliquaries beschwören (The Fallen One)")]
+        public bool passiveBlockReliquarySummons;
+
+        [Tooltip("Dieses Monster kann nicht durch Kampf zerstört werden")]
+        public bool passiveNoBattleDestroy;
+
+        [Tooltip("Dieses Monster kann nicht von gegnerischen Effekten als Ziel gewählt werden")]
+        public bool passiveUntargetable;
+
+        [Tooltip("Kein Spieler erleidet Kampfschaden aus Kämpfen, an denen dieses Monster beteiligt ist")]
+        public bool passiveNoBattleDamageInvolving;
+
+        [Tooltip("Solange offen auf dem Feld: der GEGNER erleidet allen Kampfschaden, den der " +
+                 "Besitzer erleiden würde (The Last Asemir)")]
+        public bool passiveRedirectBattleDamage;
+
+        [Tooltip(">0: in jeder End Phase erhält diese Karte einen Death Counter; bei N Countern " +
+                 "geht sie in den Friedhof (Immortal Demon)")]
+        public int passiveDeathCounterLimit;
+
+        [Tooltip(">0: jedes Mal, wenn der GEGNER Karten aus seinem Deck in seinen Friedhof schickt " +
+                 "(ausser durch diesen Effekt selbst), schickt er N weitere hinterher " +
+                 "(Exponential Deterioration)")]
+        public int passiveOpponentMillAmplify;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -155,6 +181,20 @@ namespace Rouge.Tcg
                 lines.Add($"You cannot Summon or Set this card while you control {fieldLimitCount} \"{fieldLimitName}\" monsters.");
             if (passiveBurnPerMill > 0)
                 lines.Add($"Every time you mill 1 or more cards: deal {passiveBurnPerMill} damage to your opponent.");
+            if (passiveBlockReliquarySummons)
+                lines.Add("While this card is on the field, neither player can Special Summon Reliquaries.");
+            if (passiveNoBattleDestroy)
+                lines.Add("This card cannot be destroyed by battle.");
+            if (passiveUntargetable)
+                lines.Add("This card cannot be targeted by your opponent's effects.");
+            if (passiveNoBattleDamageInvolving)
+                lines.Add("Neither player takes battle damage from battles involving this card.");
+            if (passiveRedirectBattleDamage)
+                lines.Add("Your opponent takes all battle damage you would take instead.");
+            if (passiveDeathCounterLimit > 0)
+                lines.Add($"During each End Phase: put a Death Counter on this card. With {passiveDeathCounterLimit} Death Counters, it is sent to the Graveyard.");
+            if (passiveOpponentMillAmplify > 0)
+                lines.Add($"Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {passiveOpponentMillAmplify} more.");
 
             return lines;
         }

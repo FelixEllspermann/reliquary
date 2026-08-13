@@ -35,6 +35,21 @@ namespace Rouge.Tcg
         public List<string> Options = new List<string>();
         public bool AllowCancel;
         public int Result = -1; // -1 = abgebrochen
+
+        /// <summary>Karte je Option (parallel zu Options, null erlaubt) — die UI
+        /// rendert Reaktions-Listen dann als anklickbare Karten statt als Text.</summary>
+        public List<CardInstance> OptionCards = new List<CardInstance>();
+
+        /// <summary>True: die Optionen sind ein Reaktions-Angebot ("Master-Duel-Liste").
+        /// Der Client darf sie per Reaktions-Toggle pauschal ablehnen; "Cancel" heisst Pass.</summary>
+        public bool IsResponseList;
+
+        /// <summary>True: die Liste stammt aus einem Phasenwechsel-Fenster (kein konkretes Ereignis).</summary>
+        public bool IsPhaseWindow;
+
+        /// <summary>True: sehr viele Optionen — die UI zeigt ein Suchfeld und filtert
+        /// die Liste beim Tippen (The Forbidden Name: alle Kartennamen).</summary>
+        public bool Searchable;
     }
 
     public class TargetRequest : DuelRequest

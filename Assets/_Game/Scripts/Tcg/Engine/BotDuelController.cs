@@ -244,6 +244,23 @@ namespace Rouge.Tcg
         public override IEnumerator Decide(OptionRequest request)
         {
             yield return ThinkDelay();
+
+            // Master-Duel-Reaktionsliste: gleiche Politik wie die alten Ja/Nein-
+            // Fragen — echte Reaktionen nimmt der Bot, Phasenfenster passt er.
+            if (request.IsResponseList)
+            {
+                request.Result = request.IsPhaseWindow || request.Options.Count == 0 ? -1 : 0;
+                request.Answered = true;
+                yield break;
+            }
+            // Namenssuche (The Forbidden Name): deterministisch den ersten Namen
+            if (request.Searchable)
+            {
+                request.Result = request.Options.Count > 0 ? 0 : -1;
+                request.Answered = true;
+                yield break;
+            }
+
             int chosen = request.Options.Count > 0 ? 0 : -1;
 
             // Beschwörungs-Position: defensive Monster (DEF > ATK) verdeckt in Verteidigung legen
