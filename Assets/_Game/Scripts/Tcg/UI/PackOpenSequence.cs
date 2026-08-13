@@ -132,6 +132,7 @@ namespace Rouge.Tcg.UI
             foreach (var pull in pulls)
                 if (pull.Holder != null) DestroyImmediate(pull.Holder.gameObject);
             pulls.Clear();
+            holdShift = 0f;   // die nächste Öffnung beginnt wieder mittig
 
             for (int i = 0; i < cardNames.Length && i < 5; i++)
             {
@@ -198,6 +199,19 @@ namespace Rouge.Tcg.UI
 
         private static float SlotX(int index) => (index - 2) * (CardW + Gap);
 
+        // Sobald die Effekt-Tafel rechts steht, räumt die Reihe ihr Platz: sie
+        // rückt nach links und rafft sich etwas zusammen. Ohne das läge die
+        // rechte Karte unter der Tafel. holdShift fährt das über die
+        // Hold-Szene ein und bleibt danach stehen.
+        private const float HoldShiftX = -152f;
+        private const float HoldShrink = 0.88f;
+        private float holdShift;
+
+        private float HoldSlotX(int index) =>
+            SlotX(index) * Mathf.Lerp(1f, HoldShrink, holdShift) + HoldShiftX * holdShift;
+
+        private float HoldScale() => Mathf.Lerp(1f, HoldShrink, holdShift);
+
         // ================== ABLAUF ==================
 
         private IEnumerator Run()
@@ -255,17 +269,26 @@ namespace Rouge.Tcg.UI
             "<color=#7A6B52>Hover a card to read its full effects.</color>";
 
         /// <summary>
-        /// Nur Enter/Exit, bewusst KEIN EventTrigger: der implementiert alle
-        /// Event-Interfaces auf einmal — auch IScrollHandler — und schluckte
-        /// damit das Mausrad über jeder Karte. So läuft Scroll ungestört zum
-        /// ScrollRect durch.
+        /// Enter/Exit plus Mausrad, bewusst KEIN EventTrigger: der implementiert
+        /// alle Event-Interfaces auf einmal und schluckte damit das Rad über
+        /// jeder Karte.
+        ///
+        /// Das Rad reichen wir gezielt weiter: Wer eine Karte anschaut, liest
+        /// ihren Text auf der Tafel — und scrollt dann dort, wo der Zeiger steht,
+        /// nämlich über der Karte. Ohne ForwardTo (Galerie) läuft das Event wie
+        /// gehabt zum Gitter durch.
         /// </summary>
         private class HoverRelay : MonoBehaviour, UnityEngine.EventSystems.IPointerEnterHandler,
-            UnityEngine.EventSystems.IPointerExitHandler
+            UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IScrollHandler
         {
             public System.Action OnEnter;
+            public ScrollRect ForwardTo;
             public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData _) => OnEnter?.Invoke();
             public void OnPointerExit(UnityEngine.EventSystems.PointerEventData _) { }
+            public void OnScroll(UnityEngine.EventSystems.PointerEventData e)
+            {
+                if (ForwardTo != null) ForwardTo.OnScroll(e);
+            }
         }
 
         /// <summary>Karte + Effekte als lesbarer Block für die Hover-Tafel.</summary>
@@ -317,10 +340,12 @@ namespace Rouge.Tcg.UI
             }
             else
             {
+                // Hoch genug, dass die allermeisten Karten ohne Scrollen
+                // hineinpassen — gescrollt wird nur noch bei den längsten.
                 detailPlate.anchorMin = new Vector2(1f, 0.5f);
                 detailPlate.anchorMax = new Vector2(1f, 0.5f);
                 detailPlate.pivot = new Vector2(1f, 0.5f);
-                detailPlate.sizeDelta = new Vector2(316f, 460f);
+                detailPlate.sizeDelta = new Vector2(316f, 620f);
                 detailPlate.anchoredPosition = new Vector2(-18f, 0f);
             }
             var bg = detailPlate.gameObject.AddComponent<Image>();
@@ -394,6 +419,9 @@ namespace Rouge.Tcg.UI
             var relay = holder.gameObject.GetComponent<HoverRelay>();
             if (relay == null) relay = holder.gameObject.AddComponent<HoverRelay>();
             relay.OnEnter = () => ShowDetail(definition);
+            // Fünfer-Öffnung: das Rad über der Karte scrollt ihren Text.
+            // Galerie: null lassen, dort gehört das Rad dem Gitter.
+            relay.ForwardTo = detailRailMode ? null : detailScroll;
         }
 
         private IEnumerator HoldForContinue()
@@ -673,14 +701,15 @@ namespace Rouge.Tcg.UI
             float breathe = Mathf.Sin(Mathf.PI * 2f * Motion.Seg(p, 0.1f, 1f) - Mathf.PI * 0.5f) * 0.5f + 0.5f;
 
             int hero = BestIndex();
+            holdShift = inn;   // die Reihe macht der Effekt-Tafel Platz
             Table(Motion.Mix(1.04f, 1.02f, Motion.Drift(p)));
             for (int i = 0; i < pulls.Count; i++)
             {
                 var pull = pulls[i];
                 bool isHero = i == hero;
-                Place(pull, SlotX(i),
+                Place(pull, HoldSlotX(i),
                     -CY - (isHero ? Motion.Mix(0f, 22f, inn) + breathe * 5f : 0f), 0f,
-                    isHero ? Motion.Mix(1f, 1.07f, inn) : 1f, 1f);
+                    HoldScale() * (isHero ? Motion.Mix(1f, 1.07f, inn) : 1f), 1f);
                 SetGlow(pull, isHero ? (0.34f + breathe * 0.26f) * outro : 0.1f * outro, p);
                 SetFace(pull, true, 1f);
             }
@@ -847,7 +876,7 @@ namespace Rouge.Tcg.UI
             heroChip.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.55f * alpha);
             heroChip.Find("Frame").GetComponent<Image>().color = Motion.Alpha(hero.Colour, 0.75f * alpha);
             heroChip.Find("Gem").GetComponent<Image>().color = Motion.Alpha(hero.Colour, alpha);
-            heroChip.anchoredPosition = new Vector2(SlotX(index), -(CY - CardH * 0.5f - 60f));
+            heroChip.anchoredPosition = new Vector2(HoldSlotX(index), -(CY - CardH * 0.5f - 60f));
         }
 
         private void SetChips(float alpha)
