@@ -15,22 +15,30 @@ MonoBehaviour:
   cardName: Lightless Blackout Curtain
   artwork: {fileID: 21300000, guid: 8f4e2c9a35b00be4ba592934b99ed65b, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Draw the Curtain
     text: 'Once per turn: Pay 2 Mana; Set 1 "Lightless" monster from your hand face-down.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 35
       isCost: 0
@@ -48,6 +56,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 500
   auraNameFilter: 
@@ -68,6 +77,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

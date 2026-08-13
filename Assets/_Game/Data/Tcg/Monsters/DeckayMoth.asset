@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Deckay Moth
   artwork: {fileID: -2903241345517697376, guid: e6a19c6efd5cd3c4d9ddaac252285ca0, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Dust Tithe
     text: 'During either player''s End Phase: mill 1 card.'
@@ -60,7 +61,7 @@ MonoBehaviour:
     text: "If this card is sent from the Deck to the Graveyard \u2014 pay 1 Mana:
       you can Special Summon 1 Level 1 \"Deckay\" monster with a different name from
       your Deck."
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 22
@@ -176,6 +177,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

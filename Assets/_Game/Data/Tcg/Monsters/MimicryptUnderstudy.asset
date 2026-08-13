@@ -20,7 +20,7 @@ MonoBehaviour:
   - label: Steal the Scene
     text: "Pay 2 Mana: choose 1 Spell in your opponent's Graveyard \u2014 resolve
       its effect as if it were yours."
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

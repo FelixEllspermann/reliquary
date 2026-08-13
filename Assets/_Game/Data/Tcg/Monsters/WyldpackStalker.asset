@@ -20,7 +20,7 @@ MonoBehaviour:
   - label: Run Them Down
     text: 'If this card was Special Summoned, you can pay 1 Mana: 1 monster your
       opponent controls permanently loses 400 ATK.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 0

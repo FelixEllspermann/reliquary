@@ -15,23 +15,31 @@ MonoBehaviour:
   cardName: Gravemaw Cold Storage
   artwork: {fileID: 21300000, guid: 53837fd2d3d9ecf4093fbb67eb8e46f4, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Thaw
-    text: 'Once per turn: Pay 2 Mana; Special Summon 1 "Gravemaw" monster from your
-      Graveyard face-down.'
+    text: 'Once per turn: Special Summon 1 Level 1 "Gravemaw" monster from your Graveyard
+      face-down.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 2
+    manaCost: 0
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 65
       isCost: 0
@@ -40,7 +48,7 @@ MonoBehaviour:
       targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
-      levelFilter: 0
+      levelFilter: 1
       targetCount: 1
       upToTargets: 0
       nameFilter: Gravemaw
@@ -49,6 +57,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Flash Thaw
     text: 'Instead, pay 4 Mana: Special Summon 1 "Gravemaw" monster from your Graveyard
       face-up.'
@@ -59,12 +68,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 9
       isCost: 0
@@ -82,6 +98,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -102,6 +119,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

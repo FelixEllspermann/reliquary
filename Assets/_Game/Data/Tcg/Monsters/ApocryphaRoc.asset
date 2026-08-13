@@ -18,12 +18,12 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Carried Off
-    text: 'Pay 1 Mana: return 1 monster on the field to its owner''s hand.'
+    text: 'Once per turn: Return 1 monster on the field to its owner''s hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 0
-    oncePerTurn: 0
+    oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

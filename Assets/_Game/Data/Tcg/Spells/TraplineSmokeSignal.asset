@@ -15,25 +15,31 @@ MonoBehaviour:
   cardName: Trapline Smoke Signal
   artwork: {fileID: 21300000, guid: 91eb47f1083ae6942961de69770d237c, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Smoke Signal
-    text: Draw 1 card; then you may Set 1 "Trapline" Quick Spell with a different
-      name from your hand.
+    text: "QUICK \xB7 Pay 1 Mana: Draw 1 card; then you may Set 1 \"Trapline\" Quick
+      Spell with a different name from your hand; gain 1 Mana."
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 2
       isCost: 0
@@ -69,6 +75,23 @@ MonoBehaviour:
       attributeFilter: 0
       countKind: 0
       excludeSameName: 1
+    - type: 3
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
   - label: Signal Fire
     text: 'Instead, pay 1 Mana: Also gain 1 Mana.'
     isInfused: 1
@@ -80,12 +103,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 2
       isCost: 0
@@ -158,6 +186,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 1

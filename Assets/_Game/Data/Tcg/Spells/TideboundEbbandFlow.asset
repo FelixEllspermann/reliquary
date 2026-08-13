@@ -15,22 +15,30 @@ MonoBehaviour:
   cardName: Tidebound Ebb and Flow
   artwork: {fileID: 21300000, guid: f1ded6a4773f8c9428c67629181a35f1, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Ebb
-    text: Return up to 2 monsters you control to your hand.
+    text: 'Pay 1 Mana: Return up to 3 monsters you control to your hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 10
       isCost: 0
@@ -40,7 +48,7 @@ MonoBehaviour:
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
-      targetCount: 2
+      targetCount: 3
       upToTargets: 1
       nameFilter: 
       mentionsFilter: 
@@ -48,6 +56,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Flow
     text: 'Instead, pay 2 Mana: Return 2 monsters you control to your hand; draw
       2 cards.'
@@ -58,12 +67,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 10
       isCost: 0
@@ -81,6 +97,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 2
@@ -97,6 +114,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -117,4 +135,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

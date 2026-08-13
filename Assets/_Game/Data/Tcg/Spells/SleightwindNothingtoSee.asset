@@ -15,22 +15,31 @@ MonoBehaviour:
   cardName: Sleightwind Nothing to See
   artwork: {fileID: 21300000, guid: a7be87ed2ceb56d42a3dedfd6113c08f, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Nothing to See
-    text: Return 1 of your face-down monsters to your hand; draw 2 cards.
+    text: 'Pay 1 Mana: Return 1 of your face-down monsters to your hand; draw 2 cards
+      and gain 1 Mana.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 10
       isCost: 0
@@ -48,6 +57,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 2
@@ -64,6 +74,24 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
+    - type: 3
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
   - label: Move Along
     text: 'Instead, pay 2 Mana: Draw 3 cards instead.'
     isInfused: 1
@@ -73,12 +101,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 10
       isCost: 0
@@ -96,6 +131,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 3
@@ -112,6 +148,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -132,4 +169,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

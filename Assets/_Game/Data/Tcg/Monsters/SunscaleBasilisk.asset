@@ -15,15 +15,30 @@ MonoBehaviour:
   cardName: Sunscale Basilisk
   artwork: {fileID: 7225861350665898839, guid: 168ab2d9f0800cf4b8951c5484f8ac3d, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Piercing Gaze
     text: 'You can pay 2 Mana: Target 1 face-down monster on the field; destroy it.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 4
       isCost: 0
@@ -34,10 +49,38 @@ MonoBehaviour:
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
+      maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 2
   attribute: 0
   monsterType: 3
@@ -47,6 +90,12 @@ MonoBehaviour:
   selfSummonRequiresNameOnField: 
   selfSummonChecksOpponentField: 0
   selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 0

@@ -58,11 +58,11 @@ MonoBehaviour:
       countKind: 0
       excludeSameName: 0
   - label: Burrowed Loot
-    text: "If this card is sent from the Deck to the Graveyard \u2014 pay 1 Mana:
-      add 1 \"Deckay\" Artifact from your Deck to your hand."
+    text: 'If this card is sent from the Deck to the Graveyard: add 1 "Deckay" Artifact
+      from your Deck to your hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 22
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0

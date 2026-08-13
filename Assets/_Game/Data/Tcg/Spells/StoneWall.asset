@@ -15,26 +15,48 @@ MonoBehaviour:
   cardName: Stone Wall
   artwork: {fileID: 4927595245445519120, guid: 3a20fb5033d29bd42b64abeaf786664d, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Stone Skin
-    text: 1 of your monsters permanently gains 500 DEF.
+    text: 'Pay 1 Mana: 1 of your monsters permanently gains 700 DEF.'
     isInfused: 0
-    manaCost: 0
+    infusedKind: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 11
-      amount: 500
+      isCost: 0
+      amount: 700
       target: 2
+      targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
+      maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
   - label: Living Rock
     text: Pay 2 Mana; 1 of your monsters permanently gains 500 DEF and 500 ATK.
     isInfused: 1
@@ -43,27 +65,77 @@ MonoBehaviour:
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 11
+      isCost: 0
       amount: 500
       target: 2
+      targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
+      maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
     - type: 6
+      isCost: 0
       amount: 500
       target: 2
+      targetExcludesSelf: 0
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
       targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
+      maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

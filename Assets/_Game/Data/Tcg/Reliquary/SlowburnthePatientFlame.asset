@@ -61,7 +61,7 @@ MonoBehaviour:
   - label: Detonate
     text: 'Pay 2 Mana: trigger the CHARGED effect of 1 of your set "Slowburn" Spells
       that was set before this turn.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

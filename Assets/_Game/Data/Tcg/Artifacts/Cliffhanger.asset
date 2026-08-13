@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Cliffhanger
   artwork: {fileID: 21300000, guid: e3f4fb269e5054e459dc2813486bd791, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: To Be Continued
     text: 'During your Standby Phase: Reveal the top card of your Deck; you may put
@@ -28,12 +29,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 69
       isCost: 0
@@ -55,7 +61,7 @@ MonoBehaviour:
   - label: Skip to the Good Part
     text: 'Once per turn: Pay 1 Mana; send the top card of your Deck to the Graveyard;
       draw 1 card.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 0
@@ -64,12 +70,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 40
       isCost: 0
@@ -125,8 +136,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

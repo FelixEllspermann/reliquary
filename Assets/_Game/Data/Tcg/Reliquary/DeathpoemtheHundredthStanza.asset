@@ -60,7 +60,7 @@ MonoBehaviour:
       excludeSameName: 0
   - label: The Book Closes
     text: 'Pay 3 Mana and tribute this card: destroy up to 3 monsters.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 3
     trigger: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

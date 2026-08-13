@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Deckay Fiend
   artwork: {fileID: 7480873479946632233, guid: e33653368109ab641b9d299e28197e6d, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Feast of Endings
     text: 'During your opponent''s End Phase: send this card from the field to the
@@ -75,11 +76,11 @@ MonoBehaviour:
       countKind: 0
       excludeSameName: 0
   - label: Parting Spite
-    text: "If this card is sent to the Graveyard from anywhere \u2014 pay 1 Mana:
-      burn 2 Mana from your opponent."
+    text: 'If this card is sent to the Graveyard from anywhere: burn 1 Mana from
+      your opponent.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 24
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
     actions:
     - type: 15
       isCost: 0
-      amount: 2
+      amount: 1
       target: 0
       targetExcludesSelf: 0
       useTypeFilter: 0
@@ -233,6 +234,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

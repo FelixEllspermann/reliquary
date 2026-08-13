@@ -19,7 +19,7 @@ MonoBehaviour:
   effects:
   - label: Chart the Lost
     text: 'Pay 2 Mana and banish 1 card from your Graveyard: draw 1 card.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

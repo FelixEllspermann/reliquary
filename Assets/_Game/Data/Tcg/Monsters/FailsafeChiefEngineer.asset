@@ -20,7 +20,7 @@ MonoBehaviour:
   - label: Routine Maintenance
     text: "Once per turn \u2014 pay 1 Mana: set 1 \"Failsafe\" Artifact from your
       Deck onto the field."
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

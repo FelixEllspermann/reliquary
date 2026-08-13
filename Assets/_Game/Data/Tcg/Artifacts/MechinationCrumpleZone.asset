@@ -15,22 +15,30 @@ MonoBehaviour:
   cardName: Mechination Crumple Zone
   artwork: {fileID: 21300000, guid: c1c1ac79fa2cd7140a80316108616463, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Reinforced Frame
     text: 'Once per turn: Pay 2 Mana; 1 MECHA monster you control gains 400 DEF permanently.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 11
       isCost: 0
@@ -48,6 +56,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 300
   auraNameFilter: 
@@ -68,6 +77,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

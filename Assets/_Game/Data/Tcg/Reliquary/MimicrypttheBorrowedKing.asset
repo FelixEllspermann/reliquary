@@ -61,7 +61,7 @@ MonoBehaviour:
   - label: Command the Dead
     text: 'Pay 3 Mana: Special Summon 1 monster from your OPPONENT''s Graveyard to
       your field.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 3
     trigger: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

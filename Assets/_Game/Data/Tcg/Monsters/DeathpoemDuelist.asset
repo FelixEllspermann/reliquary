@@ -18,10 +18,10 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Second Verse
-    text: 'Pay 2 Mana and tribute this card: destroy 1 monster.'
+    text: 'Tribute this card: destroy 1 monster with 2000 or less ATK.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 2
+    manaCost: 0
     trigger: 0
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
       upToTargets: 0
       nameFilter: 
       mentionsFilter: 
-      maxAtkFilter: 0
+      maxAtkFilter: 2000
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

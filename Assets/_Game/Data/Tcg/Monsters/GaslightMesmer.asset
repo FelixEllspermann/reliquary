@@ -18,12 +18,13 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Shatter the Doubt
-    text: 'Pay 1 Mana: destroy 1 Illusion Token your opponent controls; draw 1 card.'
+    text: 'Once per turn: Destroy 1 Illusion Token your opponent controls; draw 1
+      card.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 0
-    oncePerTurn: 0
+    oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

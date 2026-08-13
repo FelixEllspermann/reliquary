@@ -18,11 +18,11 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Closing Line
-    text: 'Pay 2 Mana and tribute this card: destroy 1 monster and return up to 1
-      Spell or Artifact to its owner''s hand.'
+    text: 'Tribute this card: destroy 1 monster with 2000 or less ATK and return
+      up to 1 Spell or Artifact to its owner''s hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 2
+    manaCost: 0
     trigger: 0
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
       upToTargets: 0
       nameFilter: 
       mentionsFilter: 
-      maxAtkFilter: 0
+      maxAtkFilter: 2000
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0

@@ -15,24 +15,31 @@ MonoBehaviour:
   cardName: Sleightwind, Ace Up the Sleeve
   artwork: {fileID: 21300000, guid: 5f9e75696bb607c4ea75ce7f8694925a, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Ace Up the Sleeve
-    text: 'Once per turn, during either player''s turn: Pay 2 Mana and discard this
-      card from your hand; return 1 monster your opponent controls to its owner''s
-      hand.'
+    text: 'Once per turn, during either player''s turn: Discard this card from your
+      hand; return 1 monster your opponent controls to its owner''s hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 2
+    manaCost: 0
     trigger: 12
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 24
       isCost: 1
@@ -50,6 +57,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 10
       isCost: 0
       amount: 1
@@ -66,21 +74,29 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Second Ace
     text: 'Once per turn: Pay 1 Mana; discard 1 card; draw 1 card.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 52
       isCost: 1
@@ -98,6 +114,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 1
@@ -114,6 +131,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -134,6 +152,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 3
   attribute: 4
   monsterType: 5
@@ -148,4 +170,7 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1

@@ -18,12 +18,12 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Emergency Shutdown
-    text: 'Pay 1 Mana: negate 1 monster your opponent controls until the end of the
-      turn. Then send this card to the Graveyard and set 1 other "Failsafe" Artifact
-      from your Deck onto the field.'
+    text: Negate 1 monster your opponent controls until the end of the turn. Then
+      send this card to the Graveyard and set 1 other "Failsafe" Artifact from your
+      Deck onto the field.
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 1
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

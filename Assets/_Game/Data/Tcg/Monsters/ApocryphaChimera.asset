@@ -18,13 +18,13 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Borrowed Shape
-    text: 'Pay 1 Mana: copy the ATK and DEF of 1 monster on the field until the end
-      of the turn.'
+    text: 'Once per turn, during either player''s turn: Copy the ATK and DEF of 1
+      monster on the field until the end of this turn.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 1
-    oncePerTurn: 0
+    oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

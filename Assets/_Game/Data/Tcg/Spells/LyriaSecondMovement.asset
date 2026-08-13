@@ -15,22 +15,31 @@ MonoBehaviour:
   cardName: Lyria Second Movement
   artwork: {fileID: 21300000, guid: 4309529269d9fe44d86b6a5a3de064be, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Second Movement
-    text: Set 1 monster from your Graveyard face-down on your field.
+    text: 'Pay 1 Mana: Set 1 monster from your Graveyard face-down on your field;
+      gain 1 Mana.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 65
       isCost: 0
@@ -48,6 +57,24 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
+    - type: 3
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
   - label: Reprise
     text: 'Instead, pay 3 Mana: Set 2 "Lyria" monsters from your Graveyard face-down;
       draw 1 card.'
@@ -58,12 +85,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 65
       isCost: 0
@@ -81,6 +115,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 2
       isCost: 0
       amount: 1
@@ -97,6 +132,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -117,4 +153,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

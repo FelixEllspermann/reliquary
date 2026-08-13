@@ -15,28 +15,34 @@ MonoBehaviour:
   cardName: Sleep On It
   artwork: {fileID: 21300000, guid: 842df1e2ef01af141a8ea9ccd67f1fc7, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Sleep On It
-    text: You have 2 more Mana during your next turn.
+    text: 'Pay 1 Mana: You have 3 more Mana during your next turn.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 58
       isCost: 0
-      amount: 2
+      amount: 3
       target: 0
       targetExcludesSelf: 0
       useTypeFilter: 0
@@ -62,12 +68,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 58
       isCost: 0
@@ -106,6 +117,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

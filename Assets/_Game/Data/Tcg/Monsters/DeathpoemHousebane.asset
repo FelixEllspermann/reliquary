@@ -18,10 +18,10 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Verse of Ruin
-    text: 'Pay 3 Mana and tribute this card: destroy up to 2 monsters.'
+    text: 'Tribute this card: destroy 1 monster.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 3
+    manaCost: 0
     trigger: 0
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -65,8 +65,8 @@ MonoBehaviour:
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
-      targetCount: 2
-      upToTargets: 1
+      targetCount: 1
+      upToTargets: 0
       nameFilter: 
       mentionsFilter: 
       maxAtkFilter: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

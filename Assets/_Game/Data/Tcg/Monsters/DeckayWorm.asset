@@ -20,7 +20,7 @@ MonoBehaviour:
   - label: Writhe Back
     text: 'Pay 1 Mana and banish 1 other "Deckay" card from your Graveyard: Special
       Summon this card from your Graveyard.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 10
@@ -95,6 +95,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

@@ -168,7 +168,7 @@ namespace Rouge.Tcg.UI
             // Vorspann: Beschwörungs-Bedingung (Reliquary/Selbst-Spezialbeschwörung) oder passive Feld-Aura
             string aura = "";
             if (definition is ReliquaryCardData reliquaryData && !string.IsNullOrWhiteSpace(reliquaryData.summonText))
-                aura = $"<color=#F1E7D2><b>RELIQUARY SUMMON</b></color>\n{reliquaryData.summonText}";
+                aura = $"<color=#F1E7D2><b>RELIQUARY SUMMON</b></color> {CostChip(reliquaryData.summonManaCost)}\n{reliquaryData.summonText}";
             else if (definition is MonsterCardData monsterData)
             {
                 string condition = monsterData.SelfSummonConditionText();
@@ -203,9 +203,8 @@ namespace Rouge.Tcg.UI
                 first = false;
 
                 string kind = effect.isInfused ? (coupled ? "INFUSED UPGRADE" : "INFUSED") : "NORMAL";
-                string cost = effect.manaCost > 0 ? $" ({effect.manaCost} Mana)" : "";
                 string headColor = effect.isInfused ? "#6FD3E0" : "#F0C33C";
-                sb.Append($"<color={headColor}><b>{kind}{cost}</b></color>");
+                sb.Append($"<color={headColor}><b>{kind}</b></color> ").Append(CostChip(effect.manaCost));
                 if (!string.IsNullOrEmpty(effect.label)) sb.Append($"<color={headColor}> · {effect.label}</color>");
 
                 string trigger = TriggerLabel(effect);
@@ -223,6 +222,18 @@ namespace Rouge.Tcg.UI
                 sb.Append('\n');
             }
             return sb.ToString().TrimEnd();
+        }
+
+        /// <summary>
+        /// Preisschild eines Effekts als farbiges Badge: blau mit Manazahl, grün
+        /// wenn er nichts kostet. Der eingefärbte Hintergrund (mark) hebt die Kosten
+        /// aus der Textwand heraus — man soll sie sehen, ohne zu lesen.
+        /// </summary>
+        public static string CostChip(int manaCost)
+        {
+            return manaCost > 0
+                ? $"<mark=#12395CAA><color=#8FD8FF><b> {manaCost} MANA </b></color></mark>"
+                : "<mark=#1B402AAA><color=#8FE0A8><b> NO MANA </b></color></mark>";
         }
 
         /// <summary>Deutsche Kurzbeschreibung, wann ein Effekt aktiviert werden kann.</summary>

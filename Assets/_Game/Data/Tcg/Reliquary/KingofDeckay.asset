@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: King of Deckay
   artwork: {fileID: 3696799885954725524, guid: 8e860a3b607d589469799441cd309f8e, type: 3}
   rarity: 3
+  isToken: 0
   effects:
   - label: Coronation of Rot
     text: 'If this card is Summoned: mill 10 cards.'
@@ -58,7 +59,7 @@ MonoBehaviour:
       excludeSameName: 0
   - label: Rot Consumes All
     text: Destroy all other cards on the field. Take 200 damage for each card destroyed.
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 3
     trigger: 0
@@ -157,6 +158,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 200
@@ -186,6 +188,7 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
   reqMinMana: 5
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
@@ -193,6 +196,8 @@ MonoBehaviour:
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
   reqGraveyardMonstersAtLeast: 8
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

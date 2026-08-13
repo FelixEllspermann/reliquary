@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Redactor Blackbar
   artwork: {fileID: 21300000, guid: 43f24f632884e7e4888b63eaf071d5e3, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Heavily Redacted
     text: 'Once per turn, when your opponent draws outside their Draw Phase: 1 monster
@@ -28,12 +29,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 8
       isCost: 0
@@ -63,12 +69,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 8
       isCost: 0
@@ -89,7 +100,7 @@ MonoBehaviour:
       excludeSameName: 0
   - label: Expunge
     text: 'Once per turn: Pay 2 Mana; banish 1 card from your opponent''s Graveyard.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -98,12 +109,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 21
       isCost: 0
@@ -142,8 +158,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 3
   attribute: 1
   monsterType: 1
@@ -158,4 +176,7 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1

@@ -61,7 +61,7 @@ MonoBehaviour:
   - label: Lights Down
     text: 'Pay 3 Mana: destroy all Illusion Tokens; 1 monster your opponent controls
       loses 400 ATK for each.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 3
     trigger: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

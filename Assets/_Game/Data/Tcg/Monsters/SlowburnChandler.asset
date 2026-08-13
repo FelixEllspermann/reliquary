@@ -19,7 +19,7 @@ MonoBehaviour:
   effects:
   - label: Rewick
     text: 'Pay 1 Mana: return 1 "Slowburn" card from your Graveyard to your hand.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 1
     trigger: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

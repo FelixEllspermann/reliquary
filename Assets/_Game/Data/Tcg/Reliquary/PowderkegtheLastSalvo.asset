@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Powderkeg, the Last Salvo
   artwork: {fileID: 21300000, guid: f42388f188776a44c9c845a2806e229c, type: 3}
   rarity: 3
+  isToken: 0
   effects:
   - label: Fire at Will
     text: "During either player's turn: Destroy 1 Artifact you control; destroy 1
@@ -29,12 +30,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 4
       isCost: 1
@@ -73,7 +79,7 @@ MonoBehaviour:
   - label: Reload
     text: 'Once per turn: Pay 2 Mana; place 1 "Powderkeg" Artifact from your Graveyard
       back into your Artifact Zone.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -82,12 +88,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 71
       isCost: 0
@@ -126,8 +137,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 3
   attribute: 3
   monsterType: 4
@@ -142,6 +155,9 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
   summonText: You control 2 Artifacts and have 3+ Artifacts in your Graveyard. Cost
     3 Mana.
@@ -151,12 +167,16 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
   reqMinMana: 0
   reqOwnArtifactsOnField: 2
   reqOwnArtifactsInGrave: 3
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 0
+  reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

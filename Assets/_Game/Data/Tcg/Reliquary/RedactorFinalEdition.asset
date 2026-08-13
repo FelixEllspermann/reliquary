@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Redactor, Final Edition
   artwork: {fileID: 21300000, guid: deff25e2d719bb94b881c7eab063506a, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Print Deadline
     text: 'Once per turn, when your opponent draws outside their Draw Phase: They
@@ -28,12 +29,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 14
       isCost: 0
@@ -63,12 +69,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 14
       isCost: 0
@@ -107,7 +118,7 @@ MonoBehaviour:
   - label: Pulp the Archives
     text: 'Once per turn: Pay 2 Mana; banish up to 3 cards from your opponent''s
       Graveyard.'
-    isInfused: 0
+    isInfused: 1
     infusedKind: 0
     manaCost: 2
     trigger: 0
@@ -116,12 +127,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 21
       isCost: 0
@@ -160,8 +176,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 3
   attribute: 1
   monsterType: 1
@@ -176,6 +194,9 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
   summonText: 5+ cards in your Graveyard. Tribute 1 monster you control. Cost 3 Mana.
   summonManaCost: 3
@@ -184,12 +205,16 @@ MonoBehaviour:
   reqLifeBelowOpponent: 0
   reqOpponentMoreMonsters: 0
   reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
   reqMinMana: 0
   reqOwnArtifactsOnField: 0
   reqOwnArtifactsInGrave: 0
   reqOwnFaceDownMonsters: 0
   reqMonsterWithEquip: 0
   reqGraveyardAtLeast: 5
+  reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
   reqControlNoMonsters: 0
   reqOwnMonstersAtLeast: 0
   reqLifeAtMost: 0

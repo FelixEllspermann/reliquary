@@ -15,44 +15,32 @@ MonoBehaviour:
   cardName: Paperbound Waiting Room
   artwork: {fileID: 21300000, guid: 41cd21dc06e922c489d9a9ba5a808775, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Please Hold
-    text: 'Once per turn: Pay 2 Mana; 1 monster your opponent controls cannot attack
-      and cannot change its position this turn.'
+    text: 'Once per turn: 1 monster your opponent controls cannot attack this turn.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 2
+    manaCost: 0
     trigger: 0
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 44
-      isCost: 0
-      amount: 1
-      target: 1
-      targetExcludesSelf: 0
-      useTypeFilter: 0
-      typeFilter: 0
-      levelFilter: 0
-      targetCount: 1
-      upToTargets: 0
-      nameFilter: 
-      mentionsFilter: 
-      maxAtkFilter: 0
-      useAttributeFilter: 0
-      attributeFilter: 0
-      countKind: 0
-      excludeSameName: 0
-    - type: 45
       isCost: 0
       amount: 1
       target: 1
@@ -80,12 +68,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 44
       isCost: 0
@@ -158,8 +151,10 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

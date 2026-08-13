@@ -531,15 +531,18 @@ namespace Rouge.Tcg.UI
                 if (effect == null || string.IsNullOrWhiteSpace(effect.text)) continue;
                 if (sb.Length > 0) sb.Append('\n');
                 string head;
+                // Manakosten in Mana-Blau: auf der Karte selbst ist der Platz knapp,
+                // die Farbe reicht — das volle Badge trägt die Inspect-Ansicht.
+                // Dunkler Ton, weil das Textfeld der Karte hell ist.
+                string costPart = effect.manaCost > 0 ? $" <color=#155A8A>{effect.manaCost} MANA</color>" : "";
                 if (effect.isInfused)
                 {
                     // Coupled = Entweder-oder-Upgrade des Normal-Effekts → "OR INFUSED"
-                    string costPart = effect.manaCost > 0 ? $" ({effect.manaCost})" : "";
                     head = effect.infusedKind == InfusedKind.Coupled
                         ? $"OR INFUSED{costPart}:"
                         : $"INFUSED{costPart}:";
                 }
-                else head = "NORMAL:";
+                else head = $"NORMAL{costPart}:";
                 sb.Append("<b>").Append(head).Append("</b> ").Append(effect.text);
             }
             return sb.ToString();

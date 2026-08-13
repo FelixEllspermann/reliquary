@@ -15,22 +15,30 @@ MonoBehaviour:
   cardName: Long Way Home
   artwork: {fileID: 21300000, guid: 56bf38c7187413142a8bb9d7045a2d96, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Long Way Home
-    text: Return up to 2 of your banished cards to your Graveyard.
+    text: 'Pay 1 Mana: Return up to 3 of your banished cards to your Graveyard.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 70
       isCost: 0
@@ -40,7 +48,7 @@ MonoBehaviour:
       useTypeFilter: 0
       typeFilter: 0
       levelFilter: 0
-      targetCount: 2
+      targetCount: 3
       upToTargets: 1
       nameFilter: 
       mentionsFilter: 
@@ -48,6 +56,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   - label: Shortcut
     text: 'Instead, pay 2 Mana: Also return 1 card from your Graveyard to your hand.'
     isInfused: 1
@@ -57,12 +66,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 70
       isCost: 0
@@ -80,6 +96,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
     - type: 16
       isCost: 0
       amount: 1
@@ -96,6 +113,7 @@ MonoBehaviour:
       useAttributeFilter: 0
       attributeFilter: 0
       countKind: 0
+      excludeSameName: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -116,4 +134,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

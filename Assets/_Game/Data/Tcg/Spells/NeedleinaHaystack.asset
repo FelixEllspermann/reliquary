@@ -15,29 +15,35 @@ MonoBehaviour:
   cardName: Needle in a Haystack
   artwork: {fileID: 21300000, guid: cadc2dd2751c7124a98569de1df0d543, type: 3}
   rarity: 0
+  isToken: 0
   effects:
   - label: Needle in a Haystack
-    text: Send the top 3 cards of your Deck to the Graveyard; add 1 Level 1 monster
-      among them to your hand.
+    text: 'Pay 1 Mana: Send the top 4 cards of your Deck to the Graveyard; add 1
+      Level 1 monster among them to your hand.'
     isInfused: 0
     infusedKind: 0
-    manaCost: 0
+    manaCost: 1
     trigger: 2
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 66
       isCost: 0
-      amount: 3
+      amount: 4
       target: 0
       targetExcludesSelf: 0
       useTypeFilter: 0
@@ -63,12 +69,17 @@ MonoBehaviour:
     requiresEquippedArtifact: 0
     eitherPlayerMayActivate: 0
     quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
     minOwnGraveyardCards: 0
     requireOpponentMoreHandCards: 0
     requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 66
       isCost: 0
@@ -107,6 +118,8 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
+  passiveBurnPerMill: 0
   speed: 0

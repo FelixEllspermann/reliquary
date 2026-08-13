@@ -18,12 +18,11 @@ MonoBehaviour:
   isToken: 0
   effects:
   - label: Pressure Release
-    text: 'Pay 1 Mana: 1 monster your opponent controls loses 500 ATK. Then send
-      this card to the Graveyard and set 1 other "Failsafe" Artifact from your Deck
-      onto the field.'
+    text: 1 monster your opponent controls loses 500 ATK. Then send this card to
+      the Graveyard and set 1 other "Failsafe" Artifact from your Deck onto the field.
     isInfused: 0
     infusedKind: 0
-    manaCost: 1
+    manaCost: 0
     trigger: 1
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
@@ -113,6 +112,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0
