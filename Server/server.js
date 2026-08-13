@@ -424,7 +424,7 @@ function grantStarterDeck(acc, id) {
 // hypothetischen "Dragon", damit Generics wie "Dragon Claw" nicht mitzählen.
 const ARCHETYPES = [
   'Apocrypha', 'Archfiend', 'Barrierstruck', 'Deathpoem', 'Deckay',
-  'Dragon Shrine', 'Fethaerbreese', 'Forgeheart', 'Gaslight',
+  'Dragon Shrine', 'Failsafe', 'Fethaerbreese', 'Forgeheart', 'Gaslight',
   'Genostitched', 'Gravemaw', 'Heavenly', 'Hexweaver', 'Kindlekin',
   'Lightless', 'Lyria', 'Manacle', 'Mechination', 'Mimicrypt',
   'Paperbound', 'Powderkeg', 'Redactor', 'Sacrilegion', 'Sleightwind',
