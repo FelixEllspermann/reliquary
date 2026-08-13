@@ -47,6 +47,9 @@ namespace Rouge.Tcg
             { "Dragon Sceptre", "Dragon Shrine" },
 
             { "Bulwark Prism", "Barrierstruck" },
+            { "Aegis Fragment", "Barrierstruck" },
+            { "Reactive Plating", "Barrierstruck" },
+            { "Woven Fate", "Hexweaver" },
             { "Herald of the Lightless", "Lightless" },
             { "Call of the Wyld", "Wyldpack" },
             { "Heart of the Forge", "Forgeheart" },
