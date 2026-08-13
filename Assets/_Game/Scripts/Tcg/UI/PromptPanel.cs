@@ -146,34 +146,77 @@ namespace Rouge.Tcg.UI
 
         public bool IsListOpen => listRoot != null && listRoot.gameObject.activeSelf;
 
+        private RectTransform listBackdrop;
+
         private void EnsureListRoot()
         {
             if (listRoot != null) return;
             var parent = panelRoot != null ? panelRoot.transform.parent : transform;
+            var gold = new Color(0.784f, 0.643f, 0.361f, 1f);
+
+            // Abdunkelnder Schleier hinter dem Fenster — das Brett tritt zurück,
+            // die Entscheidung tritt vor. Fängt auch Klicks aufs Feld ab (modal).
+            listBackdrop = new GameObject("EffectListBackdrop", typeof(RectTransform)).GetComponent<RectTransform>();
+            listBackdrop.SetParent(parent, false);
+            listBackdrop.anchorMin = Vector2.zero; listBackdrop.anchorMax = Vector2.one;
+            listBackdrop.offsetMin = Vector2.zero; listBackdrop.offsetMax = Vector2.zero;
+            var veilImg = listBackdrop.gameObject.AddComponent<Image>();
+            veilImg.color = new Color(0f, 0f, 0f, 0.55f);
+            listBackdrop.gameObject.SetActive(false);
 
             listRoot = new GameObject("EffectListWindow", typeof(RectTransform)).GetComponent<RectTransform>();
             listRoot.SetParent(parent, false);
             listRoot.anchorMin = listRoot.anchorMax = new Vector2(0.5f, 0.5f);
             listRoot.pivot = new Vector2(0.5f, 0.5f);
-            listRoot.sizeDelta = new Vector2(520f, 560f);
+            listRoot.sizeDelta = new Vector2(540f, 580f);
             var bg = listRoot.gameObject.AddComponent<Image>();
-            bg.color = new Color(0.055f, 0.05f, 0.04f, 0.97f);
+            bg.color = new Color(0.055f, 0.05f, 0.04f, 0.985f);
 
-            var edge = new GameObject("Edge", typeof(RectTransform)).GetComponent<RectTransform>();
-            edge.SetParent(listRoot, false);
-            edge.anchorMin = new Vector2(0f, 1f); edge.anchorMax = Vector2.one;
-            edge.offsetMin = new Vector2(0f, -3f); edge.offsetMax = Vector2.zero;
-            edge.gameObject.AddComponent<Image>().color = new Color(0.784f, 0.643f, 0.361f, 0.9f);
+            // Goldrahmen ringsum + Eck-Rauten — das Reliquary-Fenster-Vokabular
+            void Strip(string name, Vector2 aMin, Vector2 aMax, Vector2 oMin, Vector2 oMax)
+            {
+                var s = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();
+                s.SetParent(listRoot, false);
+                s.anchorMin = aMin; s.anchorMax = aMax; s.offsetMin = oMin; s.offsetMax = oMax;
+                var img = s.gameObject.AddComponent<Image>();
+                img.color = new Color(gold.r, gold.g, gold.b, 0.85f);
+                img.raycastTarget = false;
+            }
+            Strip("EdgeTop", new Vector2(0f, 1f), Vector2.one, new Vector2(0f, -2f), Vector2.zero);
+            Strip("EdgeBottom", Vector2.zero, new Vector2(1f, 0f), Vector2.zero, new Vector2(0f, 2f));
+            Strip("EdgeLeft", Vector2.zero, new Vector2(0f, 1f), Vector2.zero, new Vector2(2f, 0f));
+            Strip("EdgeRight", new Vector2(1f, 0f), Vector2.one, new Vector2(-2f, 0f), Vector2.zero);
+            foreach (var (ax, ay) in new[] { (0f, 0f), (1f, 0f), (0f, 1f), (1f, 1f) })
+            {
+                var gem = new GameObject("Gem", typeof(RectTransform)).GetComponent<RectTransform>();
+                gem.SetParent(listRoot, false);
+                gem.anchorMin = gem.anchorMax = new Vector2(ax, ay);
+                gem.pivot = new Vector2(0.5f, 0.5f);
+                gem.sizeDelta = new Vector2(13f, 13f);
+                gem.localEulerAngles = new Vector3(0f, 0f, 45f);
+                var gemImg = gem.gameObject.AddComponent<Image>();
+                gemImg.color = gold;
+                gemImg.raycastTarget = false;
+            }
 
             listTitle = new GameObject("Title", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
             var titleRect = (RectTransform)listTitle.transform;
             titleRect.SetParent(listRoot, false);
             titleRect.anchorMin = new Vector2(0f, 1f); titleRect.anchorMax = Vector2.one;
-            titleRect.offsetMin = new Vector2(18f, -46f); titleRect.offsetMax = new Vector2(-18f, -10f);
+            titleRect.offsetMin = new Vector2(24f, -48f); titleRect.offsetMax = new Vector2(-24f, -12f);
             listTitle.fontSize = 20f;
             listTitle.color = new Color(0.945f, 0.905f, 0.823f);
-            listTitle.alignment = TextAlignmentOptions.MidlineLeft;
+            listTitle.alignment = TextAlignmentOptions.Midline;
             if (titleText != null) listTitle.font = titleText.font;
+
+            // Trennlinie unter dem Titel (wie im Ja/Nein-Fenster)
+            var rule = new GameObject("TitleRule", typeof(RectTransform)).GetComponent<RectTransform>();
+            rule.SetParent(listRoot, false);
+            rule.anchorMin = new Vector2(0f, 1f); rule.anchorMax = new Vector2(1f, 1f);
+            rule.offsetMin = new Vector2(40f, -54f); rule.offsetMax = new Vector2(-40f, -52f);
+            var ruleImg = rule.gameObject.AddComponent<Image>();
+            ruleImg.color = new Color(gold.r, gold.g, gold.b, 0.55f);
+            ruleImg.raycastTarget = false;
 
             // Suchfeld (nur die Namenssuche blendet es ein)
             var searchGo = TMP_DefaultControls.CreateInputField(new TMP_DefaultControls.Resources());
@@ -230,21 +273,47 @@ namespace Rouge.Tcg.UI
             layout.childForceExpandHeight = false;
             layout.childControlWidth = true;
             layout.childControlHeight = true;
-            layout.padding = new RectOffset(4, 4, 4, 4);
+            layout.padding = new RectOffset(4, 12, 4, 4); // rechts Platz für die Scrollbar
             var fitter = listContent.gameObject.AddComponent<ContentSizeFitter>();
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             listScroll.content = listContent;
 
-            // Pass/Cancel unten
+            // Sichtbare Scrollbar (Gold-Griff) — erscheint, sobald die Liste überläuft
+            var barGo = new GameObject("Scrollbar", typeof(RectTransform)).GetComponent<RectTransform>();
+            barGo.SetParent(scrollGo, false);
+            barGo.anchorMin = new Vector2(1f, 0f); barGo.anchorMax = Vector2.one;
+            barGo.pivot = new Vector2(1f, 0.5f);
+            barGo.offsetMin = new Vector2(-8f, 2f); barGo.offsetMax = new Vector2(-2f, -2f);
+            var barBg = barGo.gameObject.AddComponent<Image>();
+            barBg.color = new Color(1f, 1f, 1f, 0.06f);
+            var scrollbar = barGo.gameObject.AddComponent<Scrollbar>();
+            scrollbar.direction = Scrollbar.Direction.BottomToTop;
+            var slideGo = new GameObject("SlidingArea", typeof(RectTransform)).GetComponent<RectTransform>();
+            slideGo.SetParent(barGo, false);
+            slideGo.anchorMin = Vector2.zero; slideGo.anchorMax = Vector2.one;
+            slideGo.offsetMin = Vector2.zero; slideGo.offsetMax = Vector2.zero;
+            var handleGo = new GameObject("Handle", typeof(RectTransform)).GetComponent<RectTransform>();
+            handleGo.SetParent(slideGo, false);
+            handleGo.anchorMin = Vector2.zero; handleGo.anchorMax = Vector2.one;
+            handleGo.offsetMin = Vector2.zero; handleGo.offsetMax = Vector2.zero;
+            var handleImg = handleGo.gameObject.AddComponent<Image>();
+            handleImg.color = new Color(gold.r, gold.g, gold.b, 0.75f);
+            scrollbar.handleRect = handleGo;
+            scrollbar.targetGraphic = handleImg;
+            listScroll.verticalScrollbar = scrollbar;
+            listScroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+
+            // PASS/CANCEL im Gold-Stil der Duell-Knöpfe: goldene Platte, dunkle Schrift
             var passGo = new GameObject("Pass", typeof(RectTransform)).GetComponent<RectTransform>();
             passGo.SetParent(listRoot, false);
             passGo.anchorMin = new Vector2(0.5f, 0f); passGo.anchorMax = new Vector2(0.5f, 0f);
             passGo.pivot = new Vector2(0.5f, 0f);
-            passGo.sizeDelta = new Vector2(220f, 44f);
-            passGo.anchoredPosition = new Vector2(0f, 12f);
+            passGo.sizeDelta = new Vector2(230f, 46f);
+            passGo.anchoredPosition = new Vector2(0f, 14f);
             var passImg = passGo.gameObject.AddComponent<Image>();
-            passImg.color = new Color(0.30f, 0.26f, 0.19f, 1f);
+            passImg.color = gold;
             listPassButton = passGo.gameObject.AddComponent<Button>();
+            listPassButton.targetGraphic = passImg;
             listPassButton.onClick.AddListener(() => ResolveList(-1));
             listPassLabel = new GameObject("Label", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
             var passLabelRect = (RectTransform)listPassLabel.transform;
@@ -252,8 +321,9 @@ namespace Rouge.Tcg.UI
             passLabelRect.anchorMin = Vector2.zero; passLabelRect.anchorMax = Vector2.one;
             passLabelRect.offsetMin = Vector2.zero; passLabelRect.offsetMax = Vector2.zero;
             listPassLabel.fontSize = 17f;
+            listPassLabel.characterSpacing = 4f;
             listPassLabel.alignment = TextAlignmentOptions.Center;
-            listPassLabel.color = new Color(0.945f, 0.905f, 0.823f);
+            listPassLabel.color = new Color(0.12f, 0.09f, 0.05f, 1f);
             if (titleText != null) listPassLabel.font = titleText.font;
 
             listRoot.gameObject.SetActive(false);
@@ -276,6 +346,7 @@ namespace Rouge.Tcg.UI
         public void HideList()
         {
             if (listRoot != null) listRoot.gameObject.SetActive(false);
+            if (listBackdrop != null) listBackdrop.gameObject.SetActive(false);
             listCallback = null;
             searchPool = null;
         }
@@ -302,15 +373,25 @@ namespace Rouge.Tcg.UI
                 int index = i;
                 var card = cards != null && i < cards.Count ? cards[i] : null;
 
+                // Zeile im Reliquary-Rahmen: goldene Kante aussen, dunkle Platte innen —
+                // der Button färbt die Kante, Hover lässt sie aufleuchten.
                 var row = new GameObject("Row" + i, typeof(RectTransform)).GetComponent<RectTransform>();
                 row.SetParent(listContent, false);
                 var rowLayout = row.gameObject.AddComponent<LayoutElement>();
                 rowLayout.preferredHeight = 116f;
-                var rowImg = row.gameObject.AddComponent<Image>();
-                rowImg.color = new Color(0.115f, 0.105f, 0.085f, 1f);
+                var frameImg = row.gameObject.AddComponent<Image>();
+                frameImg.color = new Color(0.784f, 0.643f, 0.361f, 0.38f);
+                var inner = new GameObject("Inner", typeof(RectTransform)).GetComponent<RectTransform>();
+                inner.SetParent(row, false);
+                inner.anchorMin = Vector2.zero; inner.anchorMax = Vector2.one;
+                inner.offsetMin = new Vector2(1f, 1f); inner.offsetMax = new Vector2(-1f, -1f);
+                var innerImg = inner.gameObject.AddComponent<Image>();
+                innerImg.color = new Color(0.105f, 0.095f, 0.075f, 1f);
+                innerImg.raycastTarget = false;
                 var rowButton = row.gameObject.AddComponent<Button>();
+                rowButton.targetGraphic = frameImg;
                 var colors = rowButton.colors;
-                colors.highlightedColor = new Color(1.25f, 1.2f, 1.05f);
+                colors.highlightedColor = new Color(1.6f, 1.5f, 1.2f);
                 rowButton.colors = colors;
                 rowButton.onClick.AddListener(() => ResolveList(index));
                 // Hover zeigt die Karte gross im Inspect links
@@ -354,7 +435,10 @@ namespace Rouge.Tcg.UI
 
             Canvas.ForceUpdateCanvases();
             listScroll.verticalNormalizedPosition = 1f;
+            listBackdrop.gameObject.SetActive(true);
+            listBackdrop.SetAsLastSibling();
             listRoot.gameObject.SetActive(true);
+            listRoot.SetAsLastSibling(); // über dem Schleier
         }
 
         /// <summary>
@@ -373,7 +457,10 @@ namespace Rouge.Tcg.UI
             ((RectTransform)listScroll.transform).offsetMax = new Vector2(-12f, -96f);
             listPassButton.gameObject.SetActive(false); // Namenswahl ist Pflicht
             RebuildSearchRows();
+            listBackdrop.gameObject.SetActive(true);
+            listBackdrop.SetAsLastSibling();
             listRoot.gameObject.SetActive(true);
+            listRoot.SetAsLastSibling();
             searchField.Select();
             searchField.ActivateInputField();
         }
@@ -396,9 +483,20 @@ namespace Rouge.Tcg.UI
                 row.SetParent(listContent, false);
                 var rowLayout = row.gameObject.AddComponent<LayoutElement>();
                 rowLayout.preferredHeight = 36f;
-                var rowImg = row.gameObject.AddComponent<Image>();
-                rowImg.color = new Color(0.115f, 0.105f, 0.085f, 1f);
+                var frameImg = row.gameObject.AddComponent<Image>();
+                frameImg.color = new Color(0.784f, 0.643f, 0.361f, 0.30f);
+                var inner = new GameObject("Inner", typeof(RectTransform)).GetComponent<RectTransform>();
+                inner.SetParent(row, false);
+                inner.anchorMin = Vector2.zero; inner.anchorMax = Vector2.one;
+                inner.offsetMin = new Vector2(1f, 1f); inner.offsetMax = new Vector2(-1f, -1f);
+                var innerImg = inner.gameObject.AddComponent<Image>();
+                innerImg.color = new Color(0.105f, 0.095f, 0.075f, 1f);
+                innerImg.raycastTarget = false;
                 var rowButton = row.gameObject.AddComponent<Button>();
+                rowButton.targetGraphic = frameImg;
+                var rowColors = rowButton.colors;
+                rowColors.highlightedColor = new Color(1.6f, 1.5f, 1.2f);
+                rowButton.colors = rowColors;
                 rowButton.onClick.AddListener(() => ResolveList(index));
                 // Hover zeigt die Karte hinter dem Namen im Inspect links
                 var hover = row.gameObject.AddComponent<RowHover>();
