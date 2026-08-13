@@ -107,7 +107,7 @@ namespace Rouge.Tcg.UI
         private int sortMode;             // Index in SortOptionNames
         private bool sortAscending = true;
         private int ownedFilter;          // 0 alle, 1 nur besessene, 2 nur fehlende, 3 nur neue
-        private int archetypeFilter;      // 0 alle, sonst 1+Index in ArchetypeCatalog.Names
+        private int archetypeFilter;      // 0 alle, 1 nur Generics, sonst 2+Index in ArchetypeCatalog.Names
         private TMP_Dropdown archetypeDropdown;
         private TMP_Dropdown sortDropdown;
         private Image sortDirBg;
@@ -468,7 +468,9 @@ namespace Rouge.Tcg.UI
             archDropLayout.flexibleWidth = 0f;
             archetypeDropdown.onValueChanged.RemoveAllListeners();
             archetypeDropdown.ClearOptions();
-            var archOptions = new List<string> { "ALL ARCHETYPES" };
+            // "NO ARCHETYPE" steht gleich hinter "ALL": die Generics sind eine
+            // eigene Gruppe, keine Restmenge irgendwo unten in der Liste.
+            var archOptions = new List<string> { "ALL ARCHETYPES", "NO ARCHETYPE" };
             archOptions.AddRange(ArchetypeCatalog.Names.Select(n => n.ToUpperInvariant()));
             archetypeDropdown.AddOptions(archOptions);
             archetypeDropdown.SetValueWithoutNotify(archetypeFilter);
@@ -627,8 +629,13 @@ namespace Rouge.Tcg.UI
                 var monster = card as MonsterCardData;
                 if (monster == null || monster.attribute != AttrOrder[attrFilter - 1]) return false;
             }
-            if (archetypeFilter > 0 && archetypeFilter <= ArchetypeCatalog.Names.Length
-                && !card.cardName.StartsWith(ArchetypeCatalog.Names[archetypeFilter - 1], System.StringComparison.Ordinal))
+            if (archetypeFilter == 1)
+            {
+                // Generics: alles, was zu keinem der kuratierten Archetypes gehört
+                if (ArchetypeCatalog.Of(card.cardName) != null) return false;
+            }
+            else if (archetypeFilter > 1 && archetypeFilter - 1 <= ArchetypeCatalog.Names.Length
+                && !card.cardName.StartsWith(ArchetypeCatalog.Names[archetypeFilter - 2], System.StringComparison.Ordinal))
                 return false;
             if (!string.IsNullOrWhiteSpace(search))
             {
