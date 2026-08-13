@@ -431,14 +431,48 @@ const ARCHETYPES = [
   'Slowburn', 'Snugglet', 'Tidebound', 'Trapline', 'Wyldpack'
 ];
 
+// Karten, die zu einem Archetype gehören, ohne ihn als Namens-Präfix zu tragen.
+// Exakte Namen — "Dragon Sceptre" zählt zum Shrine, "Dragon Claw" bleibt Generic.
+// Gleiche Tabelle wie ArchetypeCatalog.Exceptions im Client.
+const ARCHETYPE_EXCEPTIONS = {
+  'King of Deckay': 'Deckay',
+  'Signs of Deckay': 'Deckay',
+  'Feast of Deckay': 'Deckay',
+
+  'Maiden of the Dragon Shrine': 'Dragon Shrine',
+  'Baby Dragon of the Dragon Shrine': 'Dragon Shrine',
+  'Doorwyrm of the Dragon Shrine': 'Dragon Shrine',
+  'Elder Wyrm of the Dragon Shrine': 'Dragon Shrine',
+  'Diactor of the Dragon Shrine': 'Dragon Shrine',
+  'Petitioner of the Dragon Shrine': 'Dragon Shrine',
+  'Wyrm Eternal, Shrine Ascendant': 'Dragon Shrine',
+  'Shrinekeeper Dragon': 'Dragon Shrine',
+  'Heart of the Shrine': 'Dragon Shrine',
+  'Dragon Sceptre': 'Dragon Shrine',
+
+  'Bulwark Prism': 'Barrierstruck',
+  'Herald of the Lightless': 'Lightless',
+  'Call of the Wyld': 'Wyldpack',
+  'Heart of the Forge': 'Forgeheart',
+  'Rising Tide': 'Tidebound',
+  'Raise the Failsafes': 'Failsafe'
+};
+
+/** Der Archetype einer Karte — namentliche Ausnahmen vor dem Präfix. */
+function archetypeOf(name) {
+  if (typeof name !== 'string' || !name) return null;
+  if (ARCHETYPE_EXCEPTIONS[name]) return ARCHETYPE_EXCEPTIONS[name];
+  return ARCHETYPES.find(a => name.startsWith(a)) || null;
+}
+
 /**
- * Welche Archetypes ein Deck SPIELT: mindestens 4 Karten (Kopien zählen) mit
- * dem Namens-Präfix. Eine einzelne Splash-Karte macht noch keinen Archetype.
+ * Welche Archetypes ein Deck SPIELT: mindestens 4 Karten (Kopien zählen).
+ * Eine einzelne Splash-Karte macht noch keinen Archetype.
  */
 function archetypesOf(cards, extra) {
   const counts = {};
   for (const name of [...(cards || []), ...(extra || [])]) {
-    const archetype = ARCHETYPES.find(a => typeof name === 'string' && name.startsWith(a));
+    const archetype = archetypeOf(name);
     if (archetype) counts[archetype] = (counts[archetype] || 0) + 1;
   }
   return Object.keys(counts).filter(a => counts[a] >= 4);

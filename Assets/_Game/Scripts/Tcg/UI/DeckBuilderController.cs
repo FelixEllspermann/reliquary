@@ -634,8 +634,10 @@ namespace Rouge.Tcg.UI
                 // Generics: alles, was zu keinem der kuratierten Archetypes gehört
                 if (ArchetypeCatalog.Of(card.cardName) != null) return false;
             }
+            // Über den Katalog, nicht über das Präfix: sonst fehlen die Karten,
+            // deren Familie nur namentlich geführt ist ("King of Deckay").
             else if (archetypeFilter > 1 && archetypeFilter - 1 <= ArchetypeCatalog.Names.Length
-                && !card.cardName.StartsWith(ArchetypeCatalog.Names[archetypeFilter - 2], System.StringComparison.Ordinal))
+                && ArchetypeCatalog.Of(card.cardName) != ArchetypeCatalog.Names[archetypeFilter - 2])
                 return false;
             if (!string.IsNullOrWhiteSpace(search))
             {
