@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Deckay Leech
   artwork: {fileID: -3327282095260382265, guid: 6de3a5efdaf699f42ad3a7e04404cb27, type: 3}
   rarity: 1
+  isToken: 0
   effects:
   - label: Gorge Tithe
     text: 'During your End Phase: mill 4 cards.'
@@ -157,6 +158,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

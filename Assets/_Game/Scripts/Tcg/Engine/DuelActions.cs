@@ -85,9 +85,10 @@ namespace Rouge.Tcg
                                    string.IsNullOrEmpty(monsterData.selfSummonRequiresGraveNamed)
                                    || c.Name.Contains(monsterData.selfSummonRequiresGraveNamed))
                                >= monsterData.selfSummonRequiresGraveNamedCount;
-                        // Tidebound Leviathan: "einmal pro Zug" zählt je Kartenname
-                        bool oncePerTurnOk = !monsterData.selfSummonOncePerTurn
-                            || !player.SelfSummonedNamesThisTurn.Contains(card.Name);
+                        // REGEL: Selbst-Spezialbeschwörungen aus dem Main Deck gehen
+                        // grundsätzlich nur EINMAL pro Zug (je Kartenname) — sonst
+                        // leert eine Hand voller Kopien das ganze Feld auf einmal.
+                        bool oncePerTurnOk = !player.SelfSummonedNamesThisTurn.Contains(card.Name);
                         if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk && oncePerTurnOk)
                             request.Options.Add(new MainActionOption
                             {

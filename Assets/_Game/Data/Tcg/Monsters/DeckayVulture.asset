@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Deckay Vulture
   artwork: {fileID: 5315287596684343480, guid: 8d8d02c75ee4da04f90f7801b5e0957f, type: 3}
   rarity: 2
+  isToken: 0
   effects:
   - label: Wing Tithe
     text: 'During either player''s End Phase: mill 3 cards.'
@@ -178,6 +179,7 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
   fieldLimitName: 
   fieldLimitCount: 0
   passiveBurnPerMill: 0

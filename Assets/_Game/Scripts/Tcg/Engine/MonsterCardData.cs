@@ -65,9 +65,6 @@ namespace Rouge.Tcg
         [Tooltip("Kampfposition der Selbst-Spezialbeschwörung")]
         public BattlePosition selfSummonPosition = BattlePosition.Defense;
 
-        [Tooltip("Die Selbst-Spezialbeschwörung geht nur EINMAL pro Zug (je Kartenname)")]
-        public bool selfSummonOncePerTurn;
-
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -103,11 +100,12 @@ namespace Rouge.Tcg
                     ? $"you have {selfSummonRequiresGraveNamedCount}+ cards in your Graveyard"
                     : $"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
 
+            // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
+            // der Kartentext sagt es jedes Mal dazu.
             string position = selfSummonPosition == BattlePosition.Defense ? " in Defense Position" : "";
-            string oncePerTurn = selfSummonOncePerTurn ? " (once per turn)" : "";
             if (parts.Count == 0)
-                return $"You can Special Summon this card from your hand{position}{oncePerTurn}.";
-            return $"While {string.Join(" and ", parts)}: You can Special Summon this card from your hand{position}{oncePerTurn}.";
+                return $"You can Special Summon this card from your hand{position} (once per turn).";
+            return $"While {string.Join(" and ", parts)}: You can Special Summon this card from your hand{position} (once per turn).";
         }
 
         /// <summary>Anzeige-Farbe des Attributs — Pip-Farben aus dem Reliquary-Design-Handoff.</summary>

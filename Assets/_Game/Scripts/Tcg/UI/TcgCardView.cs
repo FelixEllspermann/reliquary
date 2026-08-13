@@ -200,10 +200,13 @@ namespace Rouge.Tcg.UI
             }
         }
 
-        public void Show(CardInstance instance, bool hideFace, bool upright = false)
+        public void Show(CardInstance instance, bool hideFace, bool upright = false, bool revealFaceDown = false)
         {
             Instance = instance;
-            HiddenFace = hideFace || (instance != null && instance.FaceDown);
+            // revealFaceDown: die Inspect-Ansicht darf eigene verdeckte Karten
+            // aufgedeckt zeigen — was man nicht sehen darf, kommt gar nicht erst
+            // hier an (ShowHiddenCard-Weiche bzw. Definition == null im Mirror).
+            HiddenFace = hideFace || (!revealFaceDown && instance != null && instance.FaceDown);
             SetHighlight(false);
 
             if (instance == null)

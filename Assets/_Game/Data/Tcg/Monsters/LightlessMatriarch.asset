@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Lightless Matriarch
   artwork: {fileID: -6717416481733676354, guid: 5f5fed0870af53a4fb6ae8d456b7e067, type: 3}
   rarity: 3
+  isToken: 0
   effects:
   - label: Veiling Order
     text: 'When this card is Summoned: You can turn up to 2 monsters on the field
@@ -26,6 +27,19 @@ MonoBehaviour:
     oncePerTurn: 0
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 26
       isCost: 0
@@ -42,6 +56,8 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
   - label: Extinguish
     text: 'You can pay 3 Mana: Destroy 1 face-down monster your opponent controls,
       then inflict 400 damage to your opponent.'
@@ -52,6 +68,19 @@ MonoBehaviour:
     oncePerTurn: 1
     onlyIfSpecialSummoned: 0
     requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
     actions:
     - type: 4
       isCost: 0
@@ -68,6 +97,8 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
     - type: 0
       isCost: 0
       amount: 400
@@ -83,6 +114,32 @@ MonoBehaviour:
       maxAtkFilter: 0
       useAttributeFilter: 0
       attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
   level: 3
   attribute: 1
   monsterType: 1
@@ -97,4 +154,7 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 0
