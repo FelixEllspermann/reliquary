@@ -13,7 +13,7 @@ namespace Rouge.Tcg.EditorTools
     /// Das Artwork bleibt dabei erhalten — sonst wäre jede Korrektur am Effekttext
     /// eine Runde Bildergenerieren.
     /// </summary>
-    public static class Batch2026Builder
+    public static partial class Batch2026Builder
     {
         private const string MonsterDir  = "Assets/_Game/Data/Tcg/Monsters";
         private const string SpellDir    = "Assets/_Game/Data/Tcg/Spells";

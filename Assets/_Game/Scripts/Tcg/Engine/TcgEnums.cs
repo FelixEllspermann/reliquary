@@ -59,8 +59,12 @@ namespace Rouge.Tcg
         OnSentToGraveyardSelf, // DIESE Karte landet im Friedhof — egal woher (Feld/Hand/Deck)
 
         // --- Slowburn (Charged-Spells) ---
-        ChargedStandby         // GELADENE Version eines gesetzten Spells: zündet automatisch in der
+        ChargedStandby,        // GELADENE Version eines gesetzten Spells: zündet automatisch in der
                                // eigenen Standby Phase, wenn die Karte VOR diesem Zug gesetzt wurde
+
+        // --- 6er-Welle (August 2026) — NUR ANHÄNGEN, Assets speichern Zahlenwerte ---
+        OnOwnArtifactDestroyed, // wenn irgendein eigenes Artefakt zerstört wird (Failsafe Dead Man's Switch)
+        OnOwnMonsterFlipped     // wenn irgendein eigenes Monster aufgedeckt wird (Lyria Orchestra Pit)
     }
 
     public enum EffectActionType
@@ -187,7 +191,8 @@ namespace Rouge.Tcg
         SwitchAllToAttack,              // alle offenen Monster beider Felder in Angriffsposition
         ReturnAllBanishedToOwners,      // JEDE verbannte Karte kehrt zurück: Reliquaries ins Extra Deck, Rest ins Deck
         SimultaneousDeckCull,           // Cull the Weak: beide decken je 1 Deck-Monster auf — schwächeres stirbt, stärkeres kommt (Besitzer nimmt Differenz als Schaden)
-        PlaySelfFromHand                // Emergency Barrier: die Quellkarte (Artefakt) wird aus der Hand aufs Feld gespielt
+        PlaySelfFromHand,               // Emergency Barrier: die Quellkarte (Artefakt) wird aus der Hand aufs Feld gespielt
+        SetTargetSpellFromGraveyard     // Ziel-Zauber aus dem EIGENEN Friedhof verdeckt setzen (sofort aktivierbar)
     }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>

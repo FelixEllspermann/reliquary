@@ -315,7 +315,15 @@ namespace Rouge.Tcg
                     ExecuteChangePosition(player, option.Card);
                     if (presenter != null) yield return presenter.ShowPositionSwitch(option.Card);
                     if (wasFaceDown && responseDepth < 2) // Flip-Effekte (Lyria)
+                    {
                         yield return OfferTriggeredEffects(player, option.Card, EffectTrigger.OnFlipFaceUp);
+                        // Orchestra Pit hört auch auf manuelle Flips
+                        foreach (var listener in TriggerScanCandidates(player).ToArray())
+                        {
+                            if (Result != DuelResult.None) yield break;
+                            yield return OfferTriggeredEffects(player, listener, EffectTrigger.OnOwnMonsterFlipped);
+                        }
+                    }
                     break;
                 }
                 case MainActionKind.SpecialSummonSelf:
@@ -1065,7 +1073,15 @@ namespace Rouge.Tcg
             Log($"{monster.Name} is flipped face-up!");
             BoardChanged();
             if (responseDepth < 2)
+            {
                 yield return OfferTriggeredEffects(monster.Owner, monster, EffectTrigger.OnFlipFaceUp);
+                // Lyria Orchestra Pit: Feld/Hand des Besitzers hört mit, wenn ein eigenes Monster aufgedeckt wird
+                foreach (var listener in TriggerScanCandidates(monster.Owner).ToArray())
+                {
+                    if (Result != DuelResult.None) yield break;
+                    yield return OfferTriggeredEffects(monster.Owner, listener, EffectTrigger.OnOwnMonsterFlipped);
+                }
+            }
         }
 
         private void ExecuteChangePosition(PlayerState player, CardInstance monster)
@@ -1265,6 +1281,7 @@ namespace Rouge.Tcg
                     return player.Opponent.FreeMonsterZones();
                 case EffectActionType.SetTargetSpellFromDeck:
                 case EffectActionType.SetTargetSpellFromHand:
+                case EffectActionType.SetTargetSpellFromGraveyard:
                     return FreeZoneCount(player.SpellZones);
                 case EffectActionType.SetTargetArtifactFromDeck:
                 case EffectActionType.PlaceTargetArtifactFromGraveyard:
@@ -2239,6 +2256,21 @@ namespace Rouge.Tcg
                             Log($"{player.Name} sets a spell from the deck (usable this turn) and shuffles.");
                         }
                         break;
+                    case EffectActionType.SetTargetSpellFromGraveyard:
+                        if (target != null && target.Zone == ZoneType.Graveyard && target.SpellData != null)
+                        {
+                            int graveSetZone = player.FirstFreeZoneIndex(player.SpellZones);
+                            if (graveSetZone < 0) { Log("No free spell zone — the set fizzles."); break; }
+                            target.Owner.Graveyard.Remove(target);
+                            player.SpellZones[graveSetZone] = target;
+                            target.Owner = player;
+                            target.Zone = ZoneType.SpellZone;
+                            target.FaceDown = true;
+                            target.SetThisTurn = false; // darf noch in diesem Zug aktiviert werden
+                            target.EffectsNegated = false;
+                            Log($"{player.Name} sets a spell from the graveyard (usable this turn).");
+                        }
+                        break;
                     case EffectActionType.SendSelfToGraveyard:
                         if (IsOnField(source) || source.Zone == ZoneType.Hand)
                         {
@@ -2395,7 +2427,17 @@ namespace Rouge.Tcg
                         break;
 
                     case EffectActionType.TauntThisTurn:
-                        if (IsOnField(source))
+                        // Mit Zielwahl tauntet das ZIEL (Hold the Line); ohne wie bisher die Quellkarte
+                        if (affected.Count > 0)
+                        {
+                            foreach (var baited in affected)
+                            {
+                                if (!IsOnField(baited) || baited.MonsterData == null) continue;
+                                baited.MustBeAttackedThisTurn = true;
+                                Log($"{player.Opponent.Name}'s monsters must attack {baited.Name} this turn.");
+                            }
+                        }
+                        else if (IsOnField(source))
                         {
                             source.MustBeAttackedThisTurn = true;
                             Log($"{player.Opponent.Name}'s monsters must attack {source.Name} this turn.");
@@ -4279,6 +4321,15 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     {
                         if (Result != DuelResult.None) yield break;
                         yield return OfferTriggeredEffects(card.Owner, listener, EffectTrigger.OnOwnMonsterDestroyed);
+                    }
+                }
+                else if (card.ArtifactData != null)
+                {
+                    // Dead Man's Switch: dasselbe Ohr für fallende ARTEFAKTE
+                    foreach (var listener in TriggerScanCandidates(card.Owner).ToArray())
+                    {
+                        if (Result != DuelResult.None) yield break;
+                        yield return OfferTriggeredEffects(card.Owner, listener, EffectTrigger.OnOwnArtifactDestroyed);
                     }
                 }
                 // Deckay: der Friedhofs-Ankunfts-Trigger der zerstörten Karte
