@@ -1086,8 +1086,16 @@ namespace Rouge.Tcg.UI
             // die zwei Static einbauen statt der schlichten Exemplare. Kacheln
             // werden recycelt: bei ~750 Karten wäre Zerstören und Neubauen bei
             // jedem Tastendruck im Suchfeld unbezahlbar.
-            const int tilesPerFrame = 48;
-            int used = 0, sinceYield = 0;
+            //
+            // Dosiert wird nach ZEIT, nicht nach Stückzahl: eine Kachel ist eine
+            // volle Kartenansicht (~10 TMP-Texte, dazu ein Artwork, das beim
+            // ersten Zugriff erst entpackt wird) — feste 48 pro Frame kosteten
+            // je nach Kaltstart zweistellige Millisekunden und das Nachfüllen
+            // ruckelte sichtbar. Jetzt nimmt sich jeder Frame nur, was ins
+            // Budget passt (mindestens eine Kachel, sonst käme nichts voran).
+            const double frameBudgetMs = 4.0;
+            var clock = System.Diagnostics.Stopwatch.StartNew();
+            int used = 0;
             foreach (var card in sorted)
                 foreach (var finish in FinishRowsFor(card))
                 {
@@ -1099,10 +1107,10 @@ namespace Rouge.Tcg.UI
                         AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode,
                         isNew: CollectionMode && PlayerProfile.IsNew(card.cardName));
                     used++;
-                    if (++sinceYield >= tilesPerFrame)
+                    if (clock.Elapsed.TotalMilliseconds >= frameBudgetMs)
                     {
-                        sinceYield = 0;
                         yield return null;
+                        clock.Restart();
                     }
                 }
             for (int i = used; i < poolTiles.Count; i++)
