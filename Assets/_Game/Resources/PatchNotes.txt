@@ -1,4 +1,96 @@
 ────────────────────────────────
+0.1.6 · SIX FOR THIRTY
+────────────────────────────────
+
+191 NEW CARDS
+  · Every one of the 30 archetypes gets six new cards: two
+    monsters, two spells, an Artifact and a Reliquary — 180
+    cards aimed at whatever each archetype was still missing
+  · Most of the wave's Level 2 and 3 monsters bring their own
+    Special Summon condition: an Artifact on your field, a
+    stocked graveyard, a crowded enemy board, a face-down card.
+    Big bodies, earned sideways
+  · The Dark Angel package: eight cards about forbidden names,
+    death counters and damage that goes where it hurts — The
+    Forbidden Name, The Fallen One, Immortal Demon, The Last
+    Asemir and their court
+  · Three strays: Emergency Barrier (flash a wall from your
+    hand in their turn — then pay its rent every End Phase),
+    Cull the Weak (both decks reveal a monster; the weaker one
+    dies, the stronger is summoned, the difference is dealt as
+    damage) and The Liberator (your opponent must SET spells
+    before activating them)
+  · The pool grows from 558 to 749 cards
+
+CHAINS PLAY BY THE REAL RULES
+  · While a chain resolves, nothing else activates — even
+    mandatory triggers wait politely and fire once the last
+    link is done
+  · An effect is only playable if it could resolve RIGHT NOW.
+    "Set up to 2 Artifacts" on a full board is not a play, and
+    with one slot free it offers exactly one
+  · If the board shifts mid-chain and the promise can no longer
+    be kept, the effect fizzles — visibly, and legally
+
+NEGATED MEANS VISIBLE
+  · Cards whose effects are negated wear a violet NEG badge on
+    the board
+  · A negated card that tries to act says so and flashes — no
+    more silent nothing
+  · Death counters sit on the card as a skull chip that counts
+
+MANA REFORM
+  · Normal effects cost no Mana, ever. 41 of them dropped their
+    price tag (a few were trimmed to pay for it); 67 that
+    charged Mana were really Infused all along and are labelled
+    honestly now
+  · Every spell costs at least 1 Mana — the 29 free ones charge
+    it now and got a little something in return
+  · Costs are visible everywhere: a blue Mana badge (or green
+    NO MANA) in the inspect panel and deck builder, and the
+    number in blue on the card itself
+
+RESPONDING, COMFORTABLY
+  · Response windows show ONE scrollable list of everything you
+    could activate, with card art — not a parade of yes/no
+    questions. After each activation the list rebuilds
+  · Trigger prompts carry the card's image, hovering a listed
+    effect shows the card on the left, and name searches filter
+    as you type
+  · Summoning no longer asks YOU first: your opponent gets
+    their counter window, then your own on-summon trigger fires
+
+BALANCE
+  · Self-Special-Summons work once per turn, per card name —
+    the Leviathan encore is over. Sweeping Tide returns ONE
+    enemy monster, and the Leviathan cannot attack directly on
+    the turn it arrives
+
+ON THE BOARD
+  · A card fetched from a deck, graveyard or banishment is
+    shown to both players before it lands
+  · Graveyard and banishment piles glow when something inside
+    can act
+  · Surrender takes effect immediately — solo, online, and for
+    anyone watching
+  · Your own face-down cards show their face in the inspect
+    panel. Your opponent still sees a card back
+
+DECK BUILDER & MENUS
+  · Opening DECKS is fast now. Card art shipped at print
+    resolution and loaded a gigabyte at once; it is stored at a
+    sane size and the grid fills in over a few frames
+  · Filter the pool by archetype — NO ARCHETYPE included.
+    Support cards that name an archetype count as part of it
+  · STATISTICS: archetype win rates, and the card table filters
+    by archetype too
+  · The Tower ladder reads from Floor I down, scrolls properly,
+    auto-scrolls to where you stand — and your climb survives
+    a restart
+  · Pack opening: the effect panel no longer covers the cards
+    and scrolls under your pointer
+
+────────────────────────────────
 0.1.5 · WATCH THIS
 ────────────────────────────────
 
