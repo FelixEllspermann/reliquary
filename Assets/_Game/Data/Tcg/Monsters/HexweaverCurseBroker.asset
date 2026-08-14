@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverCurseBroker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Hexweaver Curse Broker
-  artwork: {fileID: 0}
+  artwork: {fileID: -7188336534563851107, guid: d0d4aab286ff711499e51b6c2e8ee06f, type: 3}
   rarity: 2
   isToken: 0
   effects:

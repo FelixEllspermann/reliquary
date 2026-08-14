@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineJawsmith
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Trapline Jawsmith
-  artwork: {fileID: 0}
+  artwork: {fileID: 975330184799508564, guid: 971e1c1bde0cf724ea1ed0441fbea001, type: 3}
   rarity: 2
   isToken: 0
   effects:

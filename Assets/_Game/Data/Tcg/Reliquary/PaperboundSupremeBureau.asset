@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundSupremeBureau
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Paperbound, Supreme Bureau
-  artwork: {fileID: 0}
+  artwork: {fileID: 7490614867076822907, guid: 13ca04ff0c747ad49a3415ad0bff5b8b, type: 3}
   rarity: 3
   isToken: 0
   effects:

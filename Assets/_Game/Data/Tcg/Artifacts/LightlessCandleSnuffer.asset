@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessCandleSnuffer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Lightless Candle Snuffer
-  artwork: {fileID: 0}
+  artwork: {fileID: -810748959374925230, guid: 433a22dd3ac938e489b323c001d5c678, type: 3}
   rarity: 2
   isToken: 0
   effects:

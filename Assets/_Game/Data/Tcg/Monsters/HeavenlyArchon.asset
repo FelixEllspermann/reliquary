@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyArchon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Heavenly Archon
-  artwork: {fileID: 0}
+  artwork: {fileID: -68092403772780229, guid: dfd29651ce5c22e4e9872e899c089bb0, type: 3}
   rarity: 2
   isToken: 0
   effects:

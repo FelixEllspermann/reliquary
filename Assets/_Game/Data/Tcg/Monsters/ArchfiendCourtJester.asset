@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendCourtJester
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Archfiend Court Jester
-  artwork: {fileID: 0}
+  artwork: {fileID: -6195330796683692071, guid: d7405d15fb150734a9293a10c1d09d80, type: 3}
   rarity: 0
   isToken: 0
   effects:

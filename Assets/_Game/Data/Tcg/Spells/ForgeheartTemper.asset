@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartTemper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Forgeheart Temper
-  artwork: {fileID: 0}
+  artwork: {fileID: 2906564832356156742, guid: eff188ae8ab2dc741bf5564243163ab3, type: 3}
   rarity: 1
   isToken: 0
   effects:

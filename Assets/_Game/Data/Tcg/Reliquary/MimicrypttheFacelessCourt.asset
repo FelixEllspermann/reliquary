@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicrypttheFacelessCourt
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Mimicrypt, the Faceless Court
-  artwork: {fileID: 0}
+  artwork: {fileID: 1064975306573872442, guid: b72c0a1b6d10dd9479d8e893b597c363, type: 3}
   rarity: 3
   isToken: 0
   effects:

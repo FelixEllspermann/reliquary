@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseTailwind
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Fethaerbreese Tailwind
-  artwork: {fileID: 0}
+  artwork: {fileID: 7082801634888979884, guid: b59b173c91c22c4468a78a94abe9c118, type: 3}
   rarity: 1
   isToken: 0
   effects:

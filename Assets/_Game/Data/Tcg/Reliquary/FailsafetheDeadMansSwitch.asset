@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafetheDeadMansSwitch
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Failsafe, the Dead Man's Switch
-  artwork: {fileID: 0}
+  artwork: {fileID: 8184864618489968408, guid: 0da1d2af0b71af641968c03bfd5f6b72, type: 3}
   rarity: 3
   isToken: 0
   effects:

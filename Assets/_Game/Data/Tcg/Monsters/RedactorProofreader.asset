@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorProofreader
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Redactor Proofreader
-  artwork: {fileID: 0}
+  artwork: {fileID: 1078292304582599649, guid: 560d44106b5c247419766f2fef034b44, type: 3}
   rarity: 0
   isToken: 0
   effects:

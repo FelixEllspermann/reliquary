@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendKingmaker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Archfiend Kingmaker
-  artwork: {fileID: 0}
+  artwork: {fileID: 2201141704439844804, guid: dfe565f510b7e674fb663a0094e1f593, type: 3}
   rarity: 3
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundRecordsOffice
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Paperbound Records Office
-  artwork: {fileID: 0}
+  artwork: {fileID: -6535451329735715722, guid: f4d2b77fc376f2f4e9a4d2e7c79565b8, type: 3}
   rarity: 2
   isToken: 0
   effects:

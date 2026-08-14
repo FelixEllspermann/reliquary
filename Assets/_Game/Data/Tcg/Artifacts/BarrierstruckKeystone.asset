@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckKeystone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Barrierstruck Keystone
-  artwork: {fileID: 0}
+  artwork: {fileID: 7792386291901225680, guid: caa9e5258cc7667488eb32960f858d46, type: 3}
   rarity: 2
   isToken: 0
   effects:

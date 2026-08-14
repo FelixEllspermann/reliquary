@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindCurtainjumper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind Curtainjumper
-  artwork: {fileID: 0}
+  artwork: {fileID: 3012777638882588594, guid: f509c3defab06514e87018c49f0d2806, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnFireWatch
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Slowburn Fire Watch
-  artwork: {fileID: 0}
+  artwork: {fileID: -162579128205201035, guid: 7fefd2cabbe59eb409a5cb289c64fa14, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorErrataSlip
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Redactor Errata Slip
-  artwork: {fileID: 0}
+  artwork: {fileID: 4758651180833369489, guid: dd577aee8e7d83c4692626f2bc632cef, type: 3}
   rarity: 1
   isToken: 0
   effects:

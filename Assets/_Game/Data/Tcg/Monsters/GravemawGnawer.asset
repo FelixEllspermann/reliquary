@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawGnawer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gravemaw Gnawer
-  artwork: {fileID: 0}
+  artwork: {fileID: -7695040267785962606, guid: 7dc32616f087aa148857954403abdd42, type: 3}
   rarity: 0
   isToken: 0
   effects:

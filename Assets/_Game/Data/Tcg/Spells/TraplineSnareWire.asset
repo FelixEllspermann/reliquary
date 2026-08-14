@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineSnareWire
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Snare Wire
-  artwork: {fileID: 0}
+  artwork: {fileID: 8891137078948327849, guid: d7c5314e4c4b6854c85833e0bbbf1431, type: 3}
   rarity: 1
   isToken: 0
   effects:

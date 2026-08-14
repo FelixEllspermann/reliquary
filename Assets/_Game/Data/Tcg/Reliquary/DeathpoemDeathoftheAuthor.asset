@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemDeathoftheAuthor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Deathpoem, Death of the Author
-  artwork: {fileID: 0}
+  artwork: {fileID: 2809395528541631335, guid: 1ed1204d106101c4aa01cae8d523357a, type: 3}
   rarity: 3
   isToken: 0
   effects:

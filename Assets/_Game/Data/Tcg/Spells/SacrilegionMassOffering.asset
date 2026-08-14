@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionMassOffering
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Mass Offering
-  artwork: {fileID: 0}
+  artwork: {fileID: 5129155894412390434, guid: fc75f428d89bd014b8fda911852bbb92, type: 3}
   rarity: 1
   isToken: 0
   effects:

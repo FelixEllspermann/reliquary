@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegDemolitionist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Powderkeg Demolitionist
-  artwork: {fileID: 0}
+  artwork: {fileID: -4508654788541174550, guid: e03e9272d79400f49a598d7c6c2d5ed0, type: 3}
   rarity: 2
   isToken: 0
   effects:

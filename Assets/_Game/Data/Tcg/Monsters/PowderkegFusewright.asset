@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegFusewright
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Powderkeg Fusewright
-  artwork: {fileID: 0}
+  artwork: {fileID: 4800058742117467253, guid: 0631f6e2aba38ed4ca0e6cba5035e10e, type: 3}
   rarity: 0
   isToken: 0
   effects:

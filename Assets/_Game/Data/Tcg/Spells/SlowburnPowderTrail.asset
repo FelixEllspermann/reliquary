@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnPowderTrail
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: 'Slowburn: Powder Trail'
-  artwork: {fileID: 0}
+  artwork: {fileID: 390148892027836886, guid: cbf086b03fc398b4c864ea953bddc99b, type: 3}
   rarity: 2
   isToken: 0
   effects:

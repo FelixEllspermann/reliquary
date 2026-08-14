@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletGroupHug
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Snugglet Group Hug
-  artwork: {fileID: 0}
+  artwork: {fileID: -8474916435940000316, guid: dcf1a92831e88954abf3f124822a5e1b, type: 3}
   rarity: 1
   isToken: 0
   effects:

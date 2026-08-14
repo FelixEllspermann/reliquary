@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundRiptide
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Tidebound Riptide
-  artwork: {fileID: 0}
+  artwork: {fileID: -7478090525853752482, guid: c70f029fb9ee3a44b841a17f5c175291, type: 3}
   rarity: 2
   isToken: 0
   effects:

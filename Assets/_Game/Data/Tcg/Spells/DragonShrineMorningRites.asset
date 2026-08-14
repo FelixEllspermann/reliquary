@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonShrineMorningRites
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Dragon Shrine Morning Rites
-  artwork: {fileID: 0}
+  artwork: {fileID: -882957720363339552, guid: c1a16493b7b9c554fa462f52829ea428, type: 3}
   rarity: 1
   isToken: 0
   effects:

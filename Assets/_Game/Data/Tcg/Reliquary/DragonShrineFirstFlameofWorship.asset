@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonShrineFirstFlameofWorship
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Dragon Shrine, First Flame of Worship
-  artwork: {fileID: 0}
+  artwork: {fileID: 9071937036573452533, guid: 6e6cf468f55c95548be90f68f2f6d312, type: 3}
   rarity: 3
   isToken: 0
   effects:

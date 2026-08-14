@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckaySpoilage
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deckay Spoilage
-  artwork: {fileID: 0}
+  artwork: {fileID: 8638794982796238086, guid: 366015819de161b44803589c270bfc40, type: 3}
   rarity: 2
   isToken: 0
   effects:

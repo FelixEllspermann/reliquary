@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartMasterwork
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Forgeheart Masterwork
-  artwork: {fileID: 0}
+  artwork: {fileID: 1760538610041899478, guid: 5ea8cc265a05a7643b093ee3ba51d9cd, type: 3}
   rarity: 2
   isToken: 0
   effects:

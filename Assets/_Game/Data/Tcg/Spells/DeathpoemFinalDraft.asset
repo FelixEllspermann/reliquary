@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemFinalDraft
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deathpoem Final Draft
-  artwork: {fileID: 0}
+  artwork: {fileID: -1590062713472838959, guid: 38ef5361c844439438cd1632de662b43, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemWarpoet
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Warpoet
-  artwork: {fileID: 0}
+  artwork: {fileID: 5474646665574076640, guid: fd775476150e8b14482ad286c5fbe932, type: 3}
   rarity: 2
   isToken: 0
   effects:

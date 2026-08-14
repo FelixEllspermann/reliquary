@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackBareFangs
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Wyldpack Bare Fangs
-  artwork: {fileID: 0}
+  artwork: {fileID: -3567317286035390447, guid: c8e76a58b8c164341942ca8c5d2dc787, type: 3}
   rarity: 1
   isToken: 0
   effects:

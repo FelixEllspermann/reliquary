@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslighttheVanishingAct
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Gaslight, the Vanishing Act
-  artwork: {fileID: 0}
+  artwork: {fileID: -1206153986335804551, guid: 3ccb12b47e887f5489119c78955ec2aa, type: 3}
   rarity: 3
   isToken: 0
   effects:

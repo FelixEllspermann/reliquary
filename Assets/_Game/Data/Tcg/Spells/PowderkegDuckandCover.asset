@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegDuckandCover
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Powderkeg Duck and Cover
-  artwork: {fileID: 0}
+  artwork: {fileID: -1158810840922411344, guid: 47066065aa4f1224c98d6b38920dc3f4, type: 3}
   rarity: 1
   isToken: 0
   effects:

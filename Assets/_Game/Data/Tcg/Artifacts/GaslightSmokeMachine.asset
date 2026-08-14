@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightSmokeMachine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Gaslight Smoke Machine
-  artwork: {fileID: 0}
+  artwork: {fileID: -7772005172244797410, guid: ee4ab3a4dc36c4444ae00ea9c3ffccb5, type: 3}
   rarity: 2
   isToken: 0
   effects:

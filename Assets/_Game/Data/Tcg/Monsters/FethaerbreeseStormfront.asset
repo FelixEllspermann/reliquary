@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseStormfront
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Fethaerbreese Stormfront
-  artwork: {fileID: 0}
+  artwork: {fileID: 5705311526238511644, guid: e3b3470f8ac90fd46964ae34db20e740, type: 3}
   rarity: 2
   isToken: 0
   effects:

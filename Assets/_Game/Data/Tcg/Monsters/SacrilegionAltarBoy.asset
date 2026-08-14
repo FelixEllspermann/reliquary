@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionAltarBoy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Altar Boy
-  artwork: {fileID: 0}
+  artwork: {fileID: -1973134329543232809, guid: bf27623e4c14666419d507c07243f6df, type: 3}
   rarity: 0
   isToken: 0
   effects:

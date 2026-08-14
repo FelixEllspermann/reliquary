@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinHearthstone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Kindlekin Hearthstone
-  artwork: {fileID: 0}
+  artwork: {fileID: 6453852913916056892, guid: 48c95a99b3e240c45aee663f7da684d4, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaOrchestraPit
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Lyria Orchestra Pit
-  artwork: {fileID: 0}
+  artwork: {fileID: -580962294599177700, guid: f36883a3f0ead9e4494a40d4be70fe94, type: 3}
   rarity: 2
   isToken: 0
   effects:

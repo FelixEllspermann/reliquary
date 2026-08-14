@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleWageGarnish
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Wage Garnish
-  artwork: {fileID: 0}
+  artwork: {fileID: 7792861014154120725, guid: 63b95aec750cc394a899cd47efecdd8d, type: 3}
   rarity: 1
   isToken: 0
   effects:

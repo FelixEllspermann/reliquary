@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindRiggedDeck
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sleightwind Rigged Deck
-  artwork: {fileID: 0}
+  artwork: {fileID: 7901339068168953118, guid: 436855df0ec79094baa7b82423ba1494, type: 3}
   rarity: 1
   isToken: 0
   effects:

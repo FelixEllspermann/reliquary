@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessHourofNone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Lightless, Hour of None
-  artwork: {fileID: 0}
+  artwork: {fileID: -3247173716198864822, guid: e4f777a3eb86f374abda31fcdb92eea3, type: 3}
   rarity: 3
   isToken: 0
   effects:

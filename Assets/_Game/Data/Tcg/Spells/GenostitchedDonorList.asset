@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedDonorList
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Genostitched Donor List
-  artwork: {fileID: 0}
+  artwork: {fileID: -6225025492166807255, guid: df4c8ee19ef7b2c41810d91e3650dd6e, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletStoryTime
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Snugglet Story Time
-  artwork: {fileID: 0}
+  artwork: {fileID: -2444448842376967347, guid: cb360e5be0ce8e6408466d500181936d, type: 3}
   rarity: 1
   isToken: 0
   effects:

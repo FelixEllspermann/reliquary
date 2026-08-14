@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartRecastOrder
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Forgeheart Recast Order
-  artwork: {fileID: 0}
+  artwork: {fileID: 1776226005559617173, guid: b4d0f0252cba9ce46ae478e582b7a87b, type: 3}
   rarity: 1
   isToken: 0
   effects:

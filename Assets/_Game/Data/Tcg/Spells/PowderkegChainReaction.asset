@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegChainReaction
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Powderkeg Chain Reaction
-  artwork: {fileID: 0}
+  artwork: {fileID: -7415216088811131018, guid: d0f807d505bf31c499e52dde372aa539, type: 3}
   rarity: 2
   isToken: 0
   effects:

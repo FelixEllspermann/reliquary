@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartCrucible
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Forgeheart Crucible
-  artwork: {fileID: 0}
+  artwork: {fileID: -956277604261054735, guid: daa7fca5161fbce409876eef044c24ae, type: 3}
   rarity: 2
   isToken: 0
   effects:

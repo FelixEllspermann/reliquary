@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedMagnumOpus
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Genostitched Magnum Opus
-  artwork: {fileID: 0}
+  artwork: {fileID: 8163648690031804627, guid: 926a4cb15e3abba49bd5983fa1cfb4fd, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayCarrionPrince
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Carrion Prince
-  artwork: {fileID: 0}
+  artwork: {fileID: -5316802501456493783, guid: ad80ed372aa360844a089f55d7fc12bd, type: 3}
   rarity: 2
   isToken: 0
   effects:

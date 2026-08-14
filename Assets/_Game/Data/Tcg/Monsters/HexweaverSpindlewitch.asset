@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverSpindlewitch
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Hexweaver Spindlewitch
-  artwork: {fileID: 0}
+  artwork: {fileID: -7850207871628303987, guid: b99f011c902f4d647a2e4fca269f6628, type: 3}
   rarity: 0
   isToken: 0
   effects:

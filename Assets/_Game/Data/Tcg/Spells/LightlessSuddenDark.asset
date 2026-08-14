@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessSuddenDark
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lightless Sudden Dark
-  artwork: {fileID: 0}
+  artwork: {fileID: -8864483479049934606, guid: 92ce3e45fb1d0794ea0541d369e2db65, type: 3}
   rarity: 2
   isToken: 0
   effects:

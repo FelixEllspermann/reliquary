@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundBeachhead
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Tidebound Beachhead
-  artwork: {fileID: 0}
+  artwork: {fileID: -1997293250075385312, guid: cb1f6647255faeb429e09de28e1dcce1, type: 3}
   rarity: 1
   isToken: 0
   effects:

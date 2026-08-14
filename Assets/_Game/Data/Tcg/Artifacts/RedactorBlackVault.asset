@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorBlackVault
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Redactor Black Vault
-  artwork: {fileID: 0}
+  artwork: {fileID: -1642007238638883442, guid: d2cb75e9cc982324f83c478e75309fa5, type: 3}
   rarity: 2
   isToken: 0
   effects:

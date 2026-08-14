@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnLongFuse
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: 'Slowburn: Long Fuse'
-  artwork: {fileID: 0}
+  artwork: {fileID: -2132710673871731623, guid: af2ecdfd5a1a7c34f8698915c212f91a, type: 3}
   rarity: 1
   isToken: 0
   effects:

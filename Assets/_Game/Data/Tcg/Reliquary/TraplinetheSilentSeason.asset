@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplinetheSilentSeason
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Trapline, the Silent Season
-  artwork: {fileID: 0}
+  artwork: {fileID: 5743707923384557530, guid: dd9b53c6ca9e5a44ca34ada3ac7f9e44, type: 3}
   rarity: 3
   isToken: 0
   effects:

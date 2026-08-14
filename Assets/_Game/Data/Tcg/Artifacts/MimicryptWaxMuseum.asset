@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptWaxMuseum
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Mimicrypt Wax Museum
-  artwork: {fileID: 0}
+  artwork: {fileID: 1573088699227435718, guid: 0394adf37ab8e644abcca299654d86c5, type: 3}
   rarity: 2
   isToken: 0
   effects:

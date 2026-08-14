@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseGustShield
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Fethaerbreese Gust Shield
-  artwork: {fileID: 0}
+  artwork: {fileID: -3005627375982986101, guid: 89a0a35eaa2abd5448526a44150aba83, type: 3}
   rarity: 1
   isToken: 0
   effects:

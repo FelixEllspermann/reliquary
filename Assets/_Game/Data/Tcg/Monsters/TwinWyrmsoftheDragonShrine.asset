@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TwinWyrmsoftheDragonShrine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Twin Wyrms of the Dragon Shrine
-  artwork: {fileID: 0}
+  artwork: {fileID: -90217763356548955, guid: a8fe90d7a86506e42b089a0efc81381c, type: 3}
   rarity: 2
   isToken: 0
   effects:

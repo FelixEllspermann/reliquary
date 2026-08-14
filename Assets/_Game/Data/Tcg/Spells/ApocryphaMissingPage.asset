@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApocryphaMissingPage
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Apocrypha Missing Page
-  artwork: {fileID: 0}
+  artwork: {fileID: -8977998132935328755, guid: 019ec44acc663d440b5cd8d9371736cf, type: 3}
   rarity: 2
   isToken: 0
   effects:

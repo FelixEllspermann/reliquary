@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackDenmother
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Wyldpack Denmother
-  artwork: {fileID: 0}
+  artwork: {fileID: 5546674813178928189, guid: c25ec2958f58d544691fa46a07c02160, type: 3}
   rarity: 1
   isToken: 0
   effects:

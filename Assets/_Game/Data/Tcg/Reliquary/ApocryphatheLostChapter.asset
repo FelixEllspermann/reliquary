@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApocryphatheLostChapter
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Apocrypha, the Lost Chapter
-  artwork: {fileID: 0}
+  artwork: {fileID: -4774487861132385097, guid: 7cc68594e43ea5d4787a901020aa2a50, type: 3}
   rarity: 3
   isToken: 0
   effects:

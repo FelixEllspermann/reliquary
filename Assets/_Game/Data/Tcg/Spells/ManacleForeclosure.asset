@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleForeclosure
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Manacle Foreclosure
-  artwork: {fileID: 0}
+  artwork: {fileID: 2674079028337288271, guid: 6e2d0fba30df1a64694785dd0621dbe5, type: 3}
   rarity: 2
   isToken: 0
   effects:

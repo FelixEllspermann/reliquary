@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleVaultDoor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Manacle Vault Door
-  artwork: {fileID: 0}
+  artwork: {fileID: -8124661624663824, guid: 246e8314f16ef784bb34fa9778271f5d, type: 3}
   rarity: 2
   isToken: 0
   effects:

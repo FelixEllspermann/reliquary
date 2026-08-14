@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacleChancellorofCoin
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Chancellor of Coin
-  artwork: {fileID: 0}
+  artwork: {fileID: 7255986749489981328, guid: b68a02bf693f18b4e93e088717c6c489, type: 3}
   rarity: 2
   isToken: 0
   effects:

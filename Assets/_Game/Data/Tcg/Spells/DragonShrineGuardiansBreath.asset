@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonShrineGuardiansBreath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Dragon Shrine Guardian's Breath
-  artwork: {fileID: 0}
+  artwork: {fileID: 8664859393344681599, guid: f234edd4a19b0714e85d703aba081fb9, type: 3}
   rarity: 1
   isToken: 0
   effects:

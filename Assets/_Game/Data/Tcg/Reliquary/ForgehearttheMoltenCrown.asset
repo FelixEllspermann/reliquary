@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgehearttheMoltenCrown
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Forgeheart, the Molten Crown
-  artwork: {fileID: 0}
+  artwork: {fileID: -5520142781646199535, guid: a541cccb18c13e84ca258003662ed2c4, type: 3}
   rarity: 3
   isToken: 0
   effects:

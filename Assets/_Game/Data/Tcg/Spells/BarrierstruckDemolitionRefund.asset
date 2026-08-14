@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckDemolitionRefund
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Barrierstruck Demolition Refund
-  artwork: {fileID: 0}
+  artwork: {fileID: -6389817141198808914, guid: 6c90909896f59544fbe2d0f2fcbbb9c2, type: 3}
   rarity: 1
   isToken: 0
   effects:

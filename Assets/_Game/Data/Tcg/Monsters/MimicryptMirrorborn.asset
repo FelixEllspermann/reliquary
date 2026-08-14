@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptMirrorborn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mimicrypt Mirrorborn
-  artwork: {fileID: 0}
+  artwork: {fileID: 7559024306023184619, guid: 0ba3d8a621f9bc74db461185f7483bf4, type: 3}
   rarity: 2
   isToken: 0
   effects:

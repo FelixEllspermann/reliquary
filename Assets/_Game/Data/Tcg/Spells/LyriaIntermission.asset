@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaIntermission
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lyria Intermission
-  artwork: {fileID: 0}
+  artwork: {fileID: -3609839152671693667, guid: 88bf088f709b6b444a0856313eacda4f, type: 3}
   rarity: 1
   isToken: 0
   effects:

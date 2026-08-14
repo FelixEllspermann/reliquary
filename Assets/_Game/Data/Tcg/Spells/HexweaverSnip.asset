@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverSnip
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Hexweaver Snip
-  artwork: {fileID: 0}
+  artwork: {fileID: 7665260377059759695, guid: 2aeb85afa46618c46b0f56aaf7eb95f5, type: 3}
   rarity: 2
   isToken: 0
   effects:

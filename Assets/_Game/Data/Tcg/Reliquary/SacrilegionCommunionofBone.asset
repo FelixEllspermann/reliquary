@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionCommunionofBone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sacrilegion, Communion of Bone
-  artwork: {fileID: 0}
+  artwork: {fileID: 3309344661372820020, guid: 45036c6669aa5e1458939529d1aaae0a, type: 3}
   rarity: 3
   isToken: 0
   effects:

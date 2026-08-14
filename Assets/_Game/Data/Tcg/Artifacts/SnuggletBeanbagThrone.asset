@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletBeanbagThrone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Snugglet Beanbag Throne
-  artwork: {fileID: 0}
+  artwork: {fileID: -4099377001030847306, guid: 19b120a3d0a151c43a3dabfddfb3c1f3, type: 3}
   rarity: 2
   isToken: 0
   effects:

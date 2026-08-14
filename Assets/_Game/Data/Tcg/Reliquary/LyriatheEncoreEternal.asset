@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriatheEncoreEternal
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Lyria, the Encore Eternal
-  artwork: {fileID: 0}
+  artwork: {fileID: -4882643874631543985, guid: 8e82df25bf0e5304fb283ba22a0f9517, type: 3}
   rarity: 3
   isToken: 0
   effects:

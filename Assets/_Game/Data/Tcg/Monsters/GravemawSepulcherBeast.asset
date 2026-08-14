@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawSepulcherBeast
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gravemaw Sepulcher Beast
-  artwork: {fileID: 0}
+  artwork: {fileID: 1936847867836295663, guid: eb267043c6e53f342b451bf155da0da0, type: 3}
   rarity: 2
   isToken: 0
   effects:

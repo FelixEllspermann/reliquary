@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaStandingRoomOnly
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lyria Standing Room Only
-  artwork: {fileID: 0}
+  artwork: {fileID: 380142124985017367, guid: b0191cc8a6781694db309f8ee7a77721, type: 3}
   rarity: 1
   isToken: 0
   effects:

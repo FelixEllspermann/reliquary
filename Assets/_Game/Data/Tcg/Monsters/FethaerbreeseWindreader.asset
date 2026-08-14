@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreeseWindreader
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Fethaerbreese Windreader
-  artwork: {fileID: 0}
+  artwork: {fileID: -1925645462762207889, guid: 5aef9ebc132bb534fb5bc582fb07f630, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburntheInevitableSpark
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Slowburn, the Inevitable Spark
-  artwork: {fileID: 0}
+  artwork: {fileID: 4260050733144482538, guid: f9922fbc173ff6047969bddbce5a770d, type: 3}
   rarity: 3
   isToken: 0
   effects:

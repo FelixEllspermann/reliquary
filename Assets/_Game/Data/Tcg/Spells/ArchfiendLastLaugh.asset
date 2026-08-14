@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendLastLaugh
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Archfiend Last Laugh
-  artwork: {fileID: 0}
+  artwork: {fileID: 8901854067072728887, guid: 0e7668950771cdd43bcc23f5ae3c3aa7, type: 3}
   rarity: 1
   isToken: 0
   effects:

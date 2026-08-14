@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionGrandSacrist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sacrilegion Grand Sacrist
-  artwork: {fileID: 0}
+  artwork: {fileID: 8630817934192676365, guid: a0bf65a913da66749afb6556e379d1cc, type: 3}
   rarity: 2
   isToken: 0
   effects:

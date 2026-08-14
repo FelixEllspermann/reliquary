@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightHouseLights
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gaslight House Lights
-  artwork: {fileID: 0}
+  artwork: {fileID: -8452520854200491347, guid: be18d2d97dee3f243ac99e34b8168114, type: 3}
   rarity: 1
   isToken: 0
   effects:

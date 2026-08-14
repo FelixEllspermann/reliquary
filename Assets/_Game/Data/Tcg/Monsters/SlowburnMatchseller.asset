@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnMatchseller
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Slowburn Matchseller
-  artwork: {fileID: 0}
+  artwork: {fileID: 9156910264873677238, guid: fdba910cb4c6c3647a433db2f9dc75ad, type: 3}
   rarity: 0
   isToken: 0
   effects:

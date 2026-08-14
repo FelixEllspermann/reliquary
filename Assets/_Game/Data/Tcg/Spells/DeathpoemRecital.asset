@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemRecital
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deathpoem Recital
-  artwork: {fileID: 0}
+  artwork: {fileID: -5350614845922688143, guid: 672d63058793de04d93a4d4719d5a3cb, type: 3}
   rarity: 2
   isToken: 0
   effects:

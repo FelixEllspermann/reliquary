@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessGravewatcher
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lightless Gravewatcher
-  artwork: {fileID: 0}
+  artwork: {fileID: -4239101299216246255, guid: 82445cb66a0b84b43a3ee9bb85c38d74, type: 3}
   rarity: 2
   isToken: 0
   effects:

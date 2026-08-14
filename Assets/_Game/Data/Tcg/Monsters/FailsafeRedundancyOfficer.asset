@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafeRedundancyOfficer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Failsafe Redundancy Officer
-  artwork: {fileID: 0}
+  artwork: {fileID: -5046258261413085972, guid: 2eb900f6167dece49bfe4e7f20eae67b, type: 3}
   rarity: 2
   isToken: 0
   effects:

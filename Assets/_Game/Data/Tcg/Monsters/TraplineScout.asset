@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineScout
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Trapline Scout
-  artwork: {fileID: 0}
+  artwork: {fileID: 3428483151929526041, guid: 98c58962e01e0b04593f76f8ed5b8c1e, type: 3}
   rarity: 0
   isToken: 0
   effects:

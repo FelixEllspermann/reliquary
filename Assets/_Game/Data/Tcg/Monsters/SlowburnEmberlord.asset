@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlowburnEmberlord
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Slowburn Emberlord
-  artwork: {fileID: 0}
+  artwork: {fileID: -502990857151308919, guid: 288c0555d1ba51441a3acbfebf7c08c2, type: 3}
   rarity: 2
   isToken: 0
   effects:

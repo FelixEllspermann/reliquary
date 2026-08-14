@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaUnderstage
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lyria Understage
-  artwork: {fileID: 0}
+  artwork: {fileID: 1811599755195621225, guid: b32ddcf45652d3f4581bcc487e36e53f, type: 3}
   rarity: 0
   isToken: 0
   effects:

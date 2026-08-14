@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LyriaPrimaVoce
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lyria Prima Voce
-  artwork: {fileID: 0}
+  artwork: {fileID: 4329396688249484158, guid: 2a7dc0debf9bc13429d2f5fed9c4a4ba, type: 3}
   rarity: 2
   isToken: 0
   effects:

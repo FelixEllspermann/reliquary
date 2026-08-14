@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindthePerfectTrick
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sleightwind, the Perfect Trick
-  artwork: {fileID: 0}
+  artwork: {fileID: -5507989538727404266, guid: e05108ffd359c7a4ea0bdc9f6ea520eb, type: 3}
   rarity: 3
   isToken: 0
   effects:

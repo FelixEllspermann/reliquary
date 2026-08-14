@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyVindicator
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Heavenly Vindicator
-  artwork: {fileID: 0}
+  artwork: {fileID: 4762771420260664859, guid: ad59a0a51d67fbf409a1086153294641, type: 3}
   rarity: 1
   isToken: 0
   effects:

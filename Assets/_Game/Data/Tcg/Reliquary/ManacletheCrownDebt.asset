@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManacletheCrownDebt
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Manacle, the Crown Debt
-  artwork: {fileID: 0}
+  artwork: {fileID: 4069071369653632829, guid: a1bcb8aa036f36e468559de68a83a956, type: 3}
   rarity: 3
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawFeedingTrough
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Gravemaw Feeding Trough
-  artwork: {fileID: 0}
+  artwork: {fileID: -5444225648638937385, guid: cc546c87d8817b04f9bd4b6da7239e2a, type: 3}
   rarity: 2
   isToken: 0
   effects:

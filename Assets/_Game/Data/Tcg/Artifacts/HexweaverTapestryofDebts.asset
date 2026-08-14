@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverTapestryofDebts
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Hexweaver Tapestry of Debts
-  artwork: {fileID: 0}
+  artwork: {fileID: 3954672713220209405, guid: a412c82022505d243b59fa5ea5c56eec, type: 3}
   rarity: 2
   isToken: 0
   effects:

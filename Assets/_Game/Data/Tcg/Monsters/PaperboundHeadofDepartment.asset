@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundHeadofDepartment
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Paperbound Head of Department
-  artwork: {fileID: 0}
+  artwork: {fileID: 3520260689916307517, guid: 30d52541d37fdd542adcb82cf193c58d, type: 3}
   rarity: 2
   isToken: 0
   effects:

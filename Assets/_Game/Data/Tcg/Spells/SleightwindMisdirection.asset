@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindMisdirection
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sleightwind Misdirection
-  artwork: {fileID: 0}
+  artwork: {fileID: -1599181136538005368, guid: 7896f73aae258754185e9e6220bbb15c, type: 3}
   rarity: 2
   isToken: 0
   effects:

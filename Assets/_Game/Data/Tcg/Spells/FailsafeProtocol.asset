@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafeProtocol
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Failsafe Protocol
-  artwork: {fileID: 0}
+  artwork: {fileID: -2367347364936040228, guid: 152098e685964a649954ea0fa64eac40, type: 3}
   rarity: 1
   isToken: 0
   effects:

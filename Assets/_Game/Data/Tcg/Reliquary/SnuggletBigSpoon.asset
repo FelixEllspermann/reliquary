@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletBigSpoon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Snugglet, Big Spoon
-  artwork: {fileID: 0}
+  artwork: {fileID: -7757507221492793204, guid: fcdb2e28fb18fc345964c1145c1b725f, type: 3}
   rarity: 3
   isToken: 0
   effects:

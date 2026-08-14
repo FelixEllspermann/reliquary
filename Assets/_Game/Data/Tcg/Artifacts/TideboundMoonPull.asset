@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundMoonPull
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Tidebound Moon Pull
-  artwork: {fileID: 0}
+  artwork: {fileID: -7078029307925698837, guid: 7f778b1a7d6aa5946bf4814b00eec350, type: 3}
   rarity: 2
   isToken: 0
   effects:

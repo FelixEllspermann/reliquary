@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayCompostHeap
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Deckay Compost Heap
-  artwork: {fileID: 0}
+  artwork: {fileID: 710083599842383727, guid: 9cdf962d5268e0e41a3f4ed013ce459f, type: 3}
   rarity: 2
   isToken: 0
   effects:

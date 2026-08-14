@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonShrinePrayerWheel
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Dragon Shrine Prayer Wheel
-  artwork: {fileID: 0}
+  artwork: {fileID: -6531250988781957020, guid: 66251bbb8fc3aa647a470906fb83be05, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemElegist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deathpoem Elegist
-  artwork: {fileID: 0}
+  artwork: {fileID: 7634759636570723438, guid: eeb826ed175ac7342adf3c327f8bef0b, type: 3}
   rarity: 1
   isToken: 0
   effects:

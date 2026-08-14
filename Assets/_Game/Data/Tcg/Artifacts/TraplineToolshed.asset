@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineToolshed
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Trapline Toolshed
-  artwork: {fileID: 0}
+  artwork: {fileID: 3804100968065500808, guid: c9cbc62a001dcfa4e961a8e0df095f3e, type: 3}
   rarity: 2
   isToken: 0
   effects:

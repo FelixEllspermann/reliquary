@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafeManualOverride
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Failsafe Manual Override
-  artwork: {fileID: 0}
+  artwork: {fileID: 692552082362901230, guid: ff26693167b76354cbf03c227bcfcf23, type: 3}
   rarity: 2
   isToken: 0
   effects:

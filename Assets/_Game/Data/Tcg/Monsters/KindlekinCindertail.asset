@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinCindertail
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Cindertail
-  artwork: {fileID: 0}
+  artwork: {fileID: 8620540342805132617, guid: 644d97846d737a743aeda7d9a3f9039f, type: 3}
   rarity: 0
   isToken: 0
   effects:

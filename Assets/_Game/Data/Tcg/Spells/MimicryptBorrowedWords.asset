@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptBorrowedWords
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mimicrypt Borrowed Words
-  artwork: {fileID: 0}
+  artwork: {fileID: 3151295073275982203, guid: 2f05406dacfe78f408a701d98791125f, type: 3}
   rarity: 2
   isToken: 0
   effects:

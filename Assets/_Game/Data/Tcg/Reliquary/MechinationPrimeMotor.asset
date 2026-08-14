@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationPrimeMotor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Mechination, Prime Motor
-  artwork: {fileID: 0}
+  artwork: {fileID: 434281788724587349, guid: b5f292935ec51f64da6f5dc24424c69b, type: 3}
   rarity: 3
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawGulp
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gravemaw Gulp
-  artwork: {fileID: 0}
+  artwork: {fileID: -6493464867050010746, guid: 58825f9823e141545a0c57273e9f8be1, type: 3}
   rarity: 2
   isToken: 0
   effects:

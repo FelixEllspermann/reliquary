@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessPallbearer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Lightless Pallbearer
-  artwork: {fileID: 0}
+  artwork: {fileID: -6973320322404282516, guid: 4cc6e94e0143e6048987873de21df799, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlySummons
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Heavenly Summons
-  artwork: {fileID: 0}
+  artwork: {fileID: 5937545034967371497, guid: d5a18f4c4058a774f90e912c17582200, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackHuntingGrounds
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Wyldpack Hunting Grounds
-  artwork: {fileID: 0}
+  artwork: {fileID: -1795721309845327805, guid: 255946e78da61be4390e2adf58a92cc1, type: 3}
   rarity: 2
   isToken: 0
   effects:

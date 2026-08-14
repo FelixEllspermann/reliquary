@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathpoemInkstone
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Deathpoem Inkstone
-  artwork: {fileID: 0}
+  artwork: {fileID: -3787876337684521709, guid: 9da1d16e005f2884cb68e18117161e05, type: 3}
   rarity: 2
   isToken: 0
   effects:

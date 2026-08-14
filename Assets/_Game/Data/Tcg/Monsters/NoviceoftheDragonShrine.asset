@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NoviceoftheDragonShrine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Novice of the Dragon Shrine
-  artwork: {fileID: 0}
+  artwork: {fileID: 3241293781439706594, guid: 29b704e4109a2014e9c9dc6685c3bb1e, type: 3}
   rarity: 0
   isToken: 0
   effects:

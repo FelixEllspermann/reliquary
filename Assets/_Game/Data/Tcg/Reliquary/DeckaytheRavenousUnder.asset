@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckaytheRavenousUnder
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Deckay, the Ravenous Under
-  artwork: {fileID: 0}
+  artwork: {fileID: -6499601261090993682, guid: 32a6da07d0fefb9478a096288f6e9d34, type: 3}
   rarity: 3
   isToken: 0
   effects:

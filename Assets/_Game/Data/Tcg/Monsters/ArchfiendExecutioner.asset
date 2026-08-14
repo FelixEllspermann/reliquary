@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendExecutioner
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Archfiend Executioner
-  artwork: {fileID: 0}
+  artwork: {fileID: -2631866178584613754, guid: 0de7887d34f359947a6368d17fd625ba, type: 3}
   rarity: 1
   isToken: 0
   effects:

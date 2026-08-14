@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedtheCompositeGod
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Genostitched, the Composite God
-  artwork: {fileID: 0}
+  artwork: {fileID: -2283382533898947432, guid: 7f0584706554a7c428fd5f088011c088, type: 3}
   rarity: 3
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindFalseBottom
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Sleightwind False Bottom
-  artwork: {fileID: 0}
+  artwork: {fileID: -2708486741909367811, guid: 11bbc6c6472bc6743808a4e08814b043, type: 3}
   rarity: 2
   isToken: 0
   effects:

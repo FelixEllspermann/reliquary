@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightUnderstudy
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gaslight Understudy
-  artwork: {fileID: 0}
+  artwork: {fileID: -9016847958399570612, guid: 1b66a4bffd580444eb894cd75a8eeb22, type: 3}
   rarity: 0
   isToken: 0
   effects:

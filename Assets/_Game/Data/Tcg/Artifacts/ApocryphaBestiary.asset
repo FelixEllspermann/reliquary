@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApocryphaBestiary
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Apocrypha Bestiary
-  artwork: {fileID: 0}
+  artwork: {fileID: -7332299218109000750, guid: 6fa786b815895e74e9cd32fe21bd0db2, type: 3}
   rarity: 2
   isToken: 0
   effects:

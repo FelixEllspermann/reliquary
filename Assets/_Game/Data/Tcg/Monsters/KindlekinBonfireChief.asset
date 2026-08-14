@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinBonfireChief
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Kindlekin Bonfire Chief
-  artwork: {fileID: 0}
+  artwork: {fileID: 5765648047984246379, guid: e618cd43db396904d9d049c1b0c3cd04, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckHoldtheLine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Barrierstruck Hold the Line
-  artwork: {fileID: 0}
+  artwork: {fileID: -5469543966814592650, guid: 425f5ad38e6ef134db344a7c4cde1521, type: 3}
   rarity: 1
   isToken: 0
   effects:

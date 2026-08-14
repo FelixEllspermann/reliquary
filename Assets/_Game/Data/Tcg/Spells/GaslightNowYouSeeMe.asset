@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightNowYouSeeMe
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Gaslight Now You See Me
-  artwork: {fileID: 0}
+  artwork: {fileID: -8277789444527660362, guid: c2f0edf21e3710646adf986c6bd99784, type: 3}
   rarity: 2
   isToken: 0
   effects:

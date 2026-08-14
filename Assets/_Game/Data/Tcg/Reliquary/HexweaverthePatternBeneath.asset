@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverthePatternBeneath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Hexweaver, the Pattern Beneath
-  artwork: {fileID: 0}
+  artwork: {fileID: -465293260664748702, guid: 75887b4e4ed784f4a9db4559f55d12c3, type: 3}
   rarity: 3
   isToken: 0
   effects:

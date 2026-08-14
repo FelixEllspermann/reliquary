@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManaclePawnbroker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Manacle Pawnbroker
-  artwork: {fileID: 0}
+  artwork: {fileID: -8989532363027908048, guid: d4e1fab2927c57a4e87520b5519fbc70, type: 3}
   rarity: 0
   isToken: 0
   effects:

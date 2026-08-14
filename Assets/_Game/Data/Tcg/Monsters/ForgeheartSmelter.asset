@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgeheartSmelter
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Forgeheart Smelter
-  artwork: {fileID: 0}
+  artwork: {fileID: 5544969940013707578, guid: e3e15b13b7586504f9e941189bd75f9f, type: 3}
   rarity: 0
   isToken: 0
   effects:

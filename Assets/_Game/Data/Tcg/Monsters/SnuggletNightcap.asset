@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletNightcap
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Snugglet Nightcap
-  artwork: {fileID: 0}
+  artwork: {fileID: -6275838787669357333, guid: 9a6ea7b519011934889071b3b6e63e27, type: 3}
   rarity: 0
   isToken: 0
   effects:

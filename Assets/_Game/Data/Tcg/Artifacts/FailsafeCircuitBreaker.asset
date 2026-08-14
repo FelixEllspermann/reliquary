@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafeCircuitBreaker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Failsafe Circuit Breaker
-  artwork: {fileID: 0}
+  artwork: {fileID: -1216756558483370945, guid: d1b427070b03fc64e9fe1285637a7454, type: 3}
   rarity: 2
   isToken: 0
   effects:

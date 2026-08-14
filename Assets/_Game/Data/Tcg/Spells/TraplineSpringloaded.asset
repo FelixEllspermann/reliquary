@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TraplineSpringloaded
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trapline Springloaded
-  artwork: {fileID: 0}
+  artwork: {fileID: 5520834051534701517, guid: 872811cdbb14c514e98f0205000d0ed0, type: 3}
   rarity: 2
   isToken: 0
   effects:

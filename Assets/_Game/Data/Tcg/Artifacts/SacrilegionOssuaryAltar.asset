@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionOssuaryAltar
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Sacrilegion Ossuary Altar
-  artwork: {fileID: 0}
+  artwork: {fileID: 3597906627419921521, guid: 6a24a4899b4afc547ae1a850a8840624, type: 3}
   rarity: 2
   isToken: 0
   effects:

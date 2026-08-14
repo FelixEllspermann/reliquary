@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyBenediction
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Heavenly Benediction
-  artwork: {fileID: 0}
+  artwork: {fileID: -3882746861359990242, guid: e144a8f8131d0a6498eaba2f4bf7ed0d, type: 3}
   rarity: 1
   isToken: 0
   effects:

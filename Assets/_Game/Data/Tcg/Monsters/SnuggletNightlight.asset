@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnuggletNightlight
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Snugglet Nightlight
-  artwork: {fileID: 0}
+  artwork: {fileID: -3212139498663689929, guid: 0e99578ca10b0894fb6c6dc53c5c1661, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightlessVigil
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lightless Vigil
-  artwork: {fileID: 0}
+  artwork: {fileID: -7722590997745206170, guid: 94eefb51646a5f9498d00db56ce8d48e, type: 3}
   rarity: 1
   isToken: 0
   effects:

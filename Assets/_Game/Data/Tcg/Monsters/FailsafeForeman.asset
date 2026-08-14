@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FailsafeForeman
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Failsafe Foreman
-  artwork: {fileID: 0}
+  artwork: {fileID: -7061098050971367530, guid: fddd249a10b20794db22e3206f75f0a6, type: 3}
   rarity: 1
   isToken: 0
   effects:

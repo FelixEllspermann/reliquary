@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegMunitionsDump
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Powderkeg Munitions Dump
-  artwork: {fileID: 0}
+  artwork: {fileID: -6109196100333943804, guid: 6c59521e31bf5b645971003fa3c12442, type: 3}
   rarity: 2
   isToken: 0
   effects:

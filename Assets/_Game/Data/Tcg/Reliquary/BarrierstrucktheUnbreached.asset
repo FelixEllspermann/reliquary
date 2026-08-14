@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstrucktheUnbreached
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Barrierstruck, the Unbreached
-  artwork: {fileID: 0}
+  artwork: {fileID: 8014537214590578521, guid: c5ae23aaf09b24a47b6ec0c133b2f080, type: 3}
   rarity: 3
   isToken: 0
   effects:

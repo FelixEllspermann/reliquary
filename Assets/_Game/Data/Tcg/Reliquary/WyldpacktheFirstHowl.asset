@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpacktheFirstHowl
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Wyldpack, the First Howl
-  artwork: {fileID: 0}
+  artwork: {fileID: -6118796609884982355, guid: d2686236da3277941a9d673500f0f30f, type: 3}
   rarity: 3
   isToken: 0
   effects:

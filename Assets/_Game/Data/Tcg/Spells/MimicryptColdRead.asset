@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptColdRead
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mimicrypt Cold Read
-  artwork: {fileID: 0}
+  artwork: {fileID: -2825244529502934143, guid: f8b0b845d473be541a19cee94e70aae2, type: 3}
   rarity: 1
   isToken: 0
   effects:

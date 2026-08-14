@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayDecomposition
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Deckay Decomposition
-  artwork: {fileID: 0}
+  artwork: {fileID: 3169987664425141218, guid: eac12916ce0251547b46231b5b16be82, type: 3}
   rarity: 1
   isToken: 0
   effects:

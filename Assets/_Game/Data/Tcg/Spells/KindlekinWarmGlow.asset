@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinWarmGlow
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Kindlekin Warm Glow
-  artwork: {fileID: 0}
+  artwork: {fileID: 5381896837625146447, guid: 57bdf9b89aee8ef4eb04f1af910cdf7b, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApocryphaErrata
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Apocrypha Errata
-  artwork: {fileID: 0}
+  artwork: {fileID: -5970236070274810225, guid: b80f11d338f88b04291a78eb59fc83dd, type: 3}
   rarity: 1
   isToken: 0
   effects:

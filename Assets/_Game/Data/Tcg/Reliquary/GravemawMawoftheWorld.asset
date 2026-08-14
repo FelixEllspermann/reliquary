@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GravemawMawoftheWorld
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Gravemaw, Maw of the World
-  artwork: {fileID: 0}
+  artwork: {fileID: -2649804433631168593, guid: 2906ab68429a2774594550391bde51be, type: 3}
   rarity: 3
   isToken: 0
   effects:

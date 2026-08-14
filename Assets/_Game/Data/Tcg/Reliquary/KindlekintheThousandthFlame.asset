@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekintheThousandthFlame
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Kindlekin, the Thousandth Flame
-  artwork: {fileID: 0}
+  artwork: {fileID: 1427907376996349883, guid: dc40979eb9f8e3d4883d1f8ab4e726f3, type: 3}
   rarity: 3
   isToken: 0
   effects:

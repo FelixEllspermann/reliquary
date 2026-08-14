@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationEmergencyShift
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Emergency Shift
-  artwork: {fileID: 0}
+  artwork: {fileID: -2892862396197928273, guid: bd73159e6923e684089901b4163ee65d, type: 3}
   rarity: 2
   isToken: 0
   effects:

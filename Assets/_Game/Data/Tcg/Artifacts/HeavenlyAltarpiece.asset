@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyAltarpiece
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Heavenly Altarpiece
-  artwork: {fileID: 0}
+  artwork: {fileID: -4440263556068097280, guid: 7e576ddcf59077a49a7b6f944f0fedbb, type: 3}
   rarity: 2
   isToken: 0
   effects:

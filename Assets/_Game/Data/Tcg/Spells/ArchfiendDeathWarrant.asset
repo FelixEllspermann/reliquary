@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendDeathWarrant
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Archfiend Death Warrant
-  artwork: {fileID: 0}
+  artwork: {fileID: 6656550821103334670, guid: 995df06f3a99fee4ca77ceeda66ad6d8, type: 3}
   rarity: 2
   isToken: 0
   effects:

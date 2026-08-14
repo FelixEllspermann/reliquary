@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorStruckfromRecord
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Redactor Struck from Record
-  artwork: {fileID: 0}
+  artwork: {fileID: 5989930981632288843, guid: 02c787fa7e017be458fe2c0191092fc2, type: 3}
   rarity: 2
   isToken: 0
   effects:

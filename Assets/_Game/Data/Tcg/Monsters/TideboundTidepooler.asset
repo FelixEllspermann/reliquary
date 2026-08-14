@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundTidepooler
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Tidebound Tidepooler
-  artwork: {fileID: 0}
+  artwork: {fileID: 1521716077745315359, guid: ab3779b19d9dcfa4fb06ba1c56f60d42, type: 3}
   rarity: 0
   isToken: 0
   effects:

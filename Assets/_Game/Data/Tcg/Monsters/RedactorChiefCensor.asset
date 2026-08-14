@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactorChiefCensor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Redactor Chief Censor
-  artwork: {fileID: 0}
+  artwork: {fileID: -6934640923526039308, guid: 4a738c8ed0cf1c74c8e3d1ea4945c6d1, type: 3}
   rarity: 2
   isToken: 0
   effects:

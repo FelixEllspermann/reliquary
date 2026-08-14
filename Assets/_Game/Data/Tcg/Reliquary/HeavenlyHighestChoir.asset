@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavenlyHighestChoir
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Heavenly Highest Choir
-  artwork: {fileID: 0}
+  artwork: {fileID: -6610236321560198634, guid: 5ca94f0b714d32d45b59c2a96afe3f26, type: 3}
   rarity: 3
   isToken: 0
   effects:

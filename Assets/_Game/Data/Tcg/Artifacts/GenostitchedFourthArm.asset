@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedFourthArm
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Genostitched Fourth Arm
-  artwork: {fileID: 0}
+  artwork: {fileID: -2698855075029225407, guid: 493651d487b0680459f1b935136323aa, type: 3}
   rarity: 2
   isToken: 0
   effects:

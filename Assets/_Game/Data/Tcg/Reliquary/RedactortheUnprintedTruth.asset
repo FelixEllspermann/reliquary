@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedactortheUnprintedTruth
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Redactor, the Unprinted Truth
-  artwork: {fileID: 0}
+  artwork: {fileID: 7197149633580801121, guid: 77c78e01db5c7d24295fe92b80302e9a, type: 3}
   rarity: 3
   isToken: 0
   effects:

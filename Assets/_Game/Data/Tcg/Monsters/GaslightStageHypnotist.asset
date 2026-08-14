@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaslightStageHypnotist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gaslight Stage Hypnotist
-  artwork: {fileID: 0}
+  artwork: {fileID: 8270161610937899685, guid: 1db6896dd444d4946ba1630eec54e262, type: 3}
   rarity: 2
   isToken: 0
   effects:

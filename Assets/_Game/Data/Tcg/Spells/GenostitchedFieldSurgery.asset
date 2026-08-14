@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedFieldSurgery
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Genostitched Field Surgery
-  artwork: {fileID: 0}
+  artwork: {fileID: -507692463948689519, guid: 8e195ffdc15189340b82c433cbd0c8ef, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MimicryptWaxchild
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mimicrypt Waxchild
-  artwork: {fileID: 0}
+  artwork: {fileID: 7181721901324432080, guid: e1792605cd34a1749babaf898c8d0cc0, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArchfiendGallows
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Archfiend Gallows
-  artwork: {fileID: 0}
+  artwork: {fileID: -87192579488433492, guid: 6022cd16a08d70c43bb709234ee63b54, type: 3}
   rarity: 2
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackFullMoon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Wyldpack Full Moon
-  artwork: {fileID: 0}
+  artwork: {fileID: -1270305486839161118, guid: 20e4e724b44c32d49a08c567da1bfba1, type: 3}
   rarity: 2
   isToken: 0
   effects:

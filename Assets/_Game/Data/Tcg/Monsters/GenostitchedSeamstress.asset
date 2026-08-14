@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenostitchedSeamstress
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Genostitched Seamstress
-  artwork: {fileID: 0}
+  artwork: {fileID: 7114394573184289785, guid: 95ecc3a7fa40d6d469113eeaf85b3552, type: 3}
   rarity: 0
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WyldpackLoneshadow
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Wyldpack Loneshadow
-  artwork: {fileID: 0}
+  artwork: {fileID: -8119525623161459668, guid: c8c69866d744b01489e89d21880138c1, type: 3}
   rarity: 2
   isToken: 0
   effects:

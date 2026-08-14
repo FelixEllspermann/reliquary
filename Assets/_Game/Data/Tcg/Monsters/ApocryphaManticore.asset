@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApocryphaManticore
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Apocrypha Manticore
-  artwork: {fileID: 0}
+  artwork: {fileID: 5440421801227781984, guid: 06bb6d3444fbb624595a0837d11b3434, type: 3}
   rarity: 1
   isToken: 0
   effects:

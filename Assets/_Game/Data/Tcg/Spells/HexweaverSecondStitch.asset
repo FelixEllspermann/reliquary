@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HexweaverSecondStitch
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Hexweaver Second Stitch
-  artwork: {fileID: 0}
+  artwork: {fileID: -7560484645529674989, guid: f0d3a5cabe0360e4c8c0951512bef703, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SacrilegionDivineExchange
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sacrilegion Divine Exchange
-  artwork: {fileID: 0}
+  artwork: {fileID: 6963987124710150029, guid: f95a49c21a0d81d499a0950cec913e09, type: 3}
   rarity: 2
   isToken: 0
   effects:

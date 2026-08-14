@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationRivetrunner
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Mechination Rivetrunner
-  artwork: {fileID: 0}
+  artwork: {fileID: 6253330798995740154, guid: f5b083dd27b88444682b7dc0cb8de94e, type: 3}
   rarity: 0
   isToken: 0
   effects:

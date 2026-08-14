@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeckayBurrower
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Deckay Burrower
-  artwork: {fileID: 0}
+  artwork: {fileID: -5150994164991917081, guid: 1a21d982eec6efc47b6751044a1c67de, type: 3}
   rarity: 0
   isToken: 0
   effects:

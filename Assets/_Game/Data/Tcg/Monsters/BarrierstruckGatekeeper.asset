@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckGatekeeper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Barrierstruck Gatekeeper
-  artwork: {fileID: 0}
+  artwork: {fileID: 322981180744357693, guid: 580b94eb298575f44a1be01fe4537356, type: 3}
   rarity: 2
   isToken: 0
   effects:

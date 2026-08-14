@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowderkegZeroHour
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Powderkeg, Zero Hour
-  artwork: {fileID: 0}
+  artwork: {fileID: -6907534617883465917, guid: 5e38090f15385a941834c53d713b6f31, type: 3}
   rarity: 3
   isToken: 0
   effects:

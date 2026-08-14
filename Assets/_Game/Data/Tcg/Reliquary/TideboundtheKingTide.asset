@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundtheKingTide
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Tidebound, the King Tide
-  artwork: {fileID: 0}
+  artwork: {fileID: -7661552043026529032, guid: 8db3bcb3f5473e545a50e4d328065e3c, type: 3}
   rarity: 3
   isToken: 0
   effects:

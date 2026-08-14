@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarrierstruckMason
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Barrierstruck Mason
-  artwork: {fileID: 0}
+  artwork: {fileID: 5946750851288960213, guid: cd461889f2cdd374b94dc88581eb2e1f, type: 3}
   rarity: 0
   isToken: 0
   effects:

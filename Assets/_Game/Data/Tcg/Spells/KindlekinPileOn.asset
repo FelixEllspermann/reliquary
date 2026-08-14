@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KindlekinPileOn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Kindlekin Pile On
-  artwork: {fileID: 0}
+  artwork: {fileID: 4851837159279795967, guid: 701a3e60ca7fa9846b8d2f07c410c131, type: 3}
   rarity: 1
   isToken: 0
   effects:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationProductionQuota
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Mechination Production Quota
-  artwork: {fileID: 0}
+  artwork: {fileID: 5482736671985820074, guid: d4f0e27f8483cb642b4721f58ff65092, type: 3}
   rarity: 1
   isToken: 0
   effects:

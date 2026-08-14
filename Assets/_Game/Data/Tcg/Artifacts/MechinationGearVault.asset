@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MechinationGearVault
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Mechination Gear Vault
-  artwork: {fileID: 0}
+  artwork: {fileID: 7485059665546673625, guid: e86209c9ebcac8047a8f42e6af0017a9, type: 3}
   rarity: 2
   isToken: 0
   effects:

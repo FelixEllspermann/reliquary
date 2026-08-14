@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleightwindPalmist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sleightwind Palmist
-  artwork: {fileID: 0}
+  artwork: {fileID: 2080615976511993064, guid: dafd67b064118d644930c54ec17cbff7, type: 3}
   rarity: 0
   isToken: 0
   effects:

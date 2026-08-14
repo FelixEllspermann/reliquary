@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FethaerbreesetheHomingSky
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Fethaerbreese, the Homing Sky
-  artwork: {fileID: 0}
+  artwork: {fileID: 1730735464032699382, guid: f1d0e1d074de75c458ff7671c66588a7, type: 3}
   rarity: 3
   isToken: 0
   effects:

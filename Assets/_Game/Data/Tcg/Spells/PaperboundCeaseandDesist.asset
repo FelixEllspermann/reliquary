@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundCeaseandDesist
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Paperbound Cease and Desist
-  artwork: {fileID: 0}
+  artwork: {fileID: -2441877902860672759, guid: 03a33005870327e41bf251be0716df0d, type: 3}
   rarity: 2
   isToken: 0
   effects:

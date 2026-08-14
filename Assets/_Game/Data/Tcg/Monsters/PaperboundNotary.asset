@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaperboundNotary
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Paperbound Notary
-  artwork: {fileID: 0}
+  artwork: {fileID: 7998562827005194547, guid: 77e531044c22d7145a0b5bde4c6f02eb, type: 3}
   rarity: 0
   isToken: 0
   effects:

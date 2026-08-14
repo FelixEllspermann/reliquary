@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TideboundDeepcaller
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Tidebound Deepcaller
-  artwork: {fileID: 0}
+  artwork: {fileID: 8795237379180184579, guid: bf555bbe8e346254e9c9ee12254922d0, type: 3}
   rarity: 2
   isToken: 0
   effects:
