@@ -242,6 +242,10 @@ namespace Rouge.Tcg.UI
             if (finishHost != null)
                 CardFinishOverlay.Apply(finishHost, showBack ? Net.CardFinish.Plain : instance.Finish);
 
+            // Status-Badges (NEG / Death Counter) kleben auf der Karte selbst —
+            // verdeckte Karten zeigen nichts, sonst wäre die Info verraten.
+            UpdateStatusBadges(finishHost, instance, showBack);
+
             if (compact)
             {
                 ShowCompact(instance, showBack);
@@ -404,6 +408,134 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Kompakte Feld-/Hand-Rendition (Handoff "Reduced card renditions").</summary>
+        // ---- Status-Badges: Negated-Chip + Death-Counter (Totenkopf + Zahl) ----
+        // Komplett zur Laufzeit gebaut (kein Prefab-/Szenen-Edit): ein kleiner
+        // Streifen oben links auf der Karte. ASCII-Texte, damit kein Font-Atlas
+        // leere Glyphen liefert; der Totenkopf ist ein prozedurales Mini-Sprite.
+        private RectTransform statusBadgeRoot;
+        private Image negChip;
+        private Image dcChip;
+        private TMP_Text dcText;
+        private static Sprite cachedSkullSprite;
+
+        private void UpdateStatusBadges(RectTransform host, CardInstance instance, bool showBack)
+        {
+            bool negated = !showBack && instance != null && instance.EffectsNegated;
+            int counters = showBack || instance == null ? 0 : instance.DeathCounters;
+            if (!negated && counters <= 0)
+            {
+                if (statusBadgeRoot != null) statusBadgeRoot.gameObject.SetActive(false);
+                return;
+            }
+
+            EnsureStatusBadges();
+            if (host != null && statusBadgeRoot.parent != host)
+                statusBadgeRoot.SetParent(host, false);
+            statusBadgeRoot.SetAsLastSibling();
+            statusBadgeRoot.gameObject.SetActive(true);
+
+            negChip.gameObject.SetActive(negated);
+            dcChip.gameObject.SetActive(counters > 0);
+            if (counters > 0) dcText.text = counters.ToString();
+
+            float x = 0f;
+            if (negated) { ((RectTransform)negChip.transform).anchoredPosition = new Vector2(x, 0f); x += 42f; }
+            if (counters > 0) ((RectTransform)dcChip.transform).anchoredPosition = new Vector2(x, 0f);
+        }
+
+        private void EnsureStatusBadges()
+        {
+            if (statusBadgeRoot != null) return;
+
+            var rootGo = new GameObject("StatusBadges", typeof(RectTransform));
+            statusBadgeRoot = (RectTransform)rootGo.transform;
+            statusBadgeRoot.anchorMin = statusBadgeRoot.anchorMax = new Vector2(0f, 1f);
+            statusBadgeRoot.pivot = new Vector2(0f, 1f);
+            statusBadgeRoot.anchoredPosition = new Vector2(4f, -4f);
+            statusBadgeRoot.sizeDelta = new Vector2(10f, 18f);
+
+            negChip = BuildChip(statusBadgeRoot, "NegChip", new Color(0.42f, 0.26f, 0.58f, 0.95f), 40f, out var negLabel);
+            negLabel.text = "NEG";
+
+            dcChip = BuildChip(statusBadgeRoot, "DeathChip", new Color(0.55f, 0.12f, 0.12f, 0.95f), 36f, out dcText);
+            dcText.text = "0";
+            ((RectTransform)dcText.transform).offsetMin = new Vector2(16f, 0f);
+
+            var skullGo = new GameObject("Skull", typeof(RectTransform), typeof(Image));
+            var skullRect = (RectTransform)skullGo.transform;
+            skullRect.SetParent(dcChip.transform, false);
+            skullRect.anchorMin = skullRect.anchorMax = new Vector2(0f, 0.5f);
+            skullRect.pivot = new Vector2(0f, 0.5f);
+            skullRect.anchoredPosition = new Vector2(2f, 0f);
+            skullRect.sizeDelta = new Vector2(13f, 13f);
+            var skullImage = skullGo.GetComponent<Image>();
+            skullImage.sprite = SkullSprite();
+            skullImage.raycastTarget = false;
+        }
+
+        private Image BuildChip(RectTransform parent, string name, Color color, float width, out TMP_Text label)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(parent, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+            rect.pivot = new Vector2(0f, 1f);
+            rect.sizeDelta = new Vector2(width, 16f);
+            var image = go.GetComponent<Image>();
+            image.color = color;
+            image.raycastTarget = false;
+
+            var textGo = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+            var textRect = (RectTransform)textGo.transform;
+            textRect.SetParent(rect, false);
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = Vector2.zero;
+            label = textGo.GetComponent<TextMeshProUGUI>();
+            if (nameText != null) label.font = nameText.font;
+            label.fontSize = 10f;
+            label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.Center;
+            label.color = Color.white;
+            label.raycastTarget = false;
+            label.enableWordWrapping = false;
+            return image;
+        }
+
+        /// <summary>12×12-Totenkopf, einmal pro Prozess gezeichnet (Zeile 0 = unten).</summary>
+        private static Sprite SkullSprite()
+        {
+            if (cachedSkullSprite != null) return cachedSkullSprite;
+            string[] rows =
+            {
+                "............",
+                "............",
+                "..X.XX.XX.X.",
+                "..XXXXXXXX..",
+                "..XXXXXXXX..",
+                ".XXXXooXXXX.",
+                ".XooXXXXooX.",
+                ".XooXXXXooX.",
+                ".XXXXXXXXXX.",
+                ".XXXXXXXXXX.",
+                "..XXXXXXXX..",
+                "....XXXX....",
+            };
+            var tex = new Texture2D(12, 12, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
+            for (int y = 0; y < 12; y++)
+                for (int x = 0; x < 12; x++)
+                {
+                    char c = rows[y][x];
+                    tex.SetPixel(x, y, c == 'X' ? Color.white
+                        : c == 'o' ? new Color(0f, 0f, 0f, 0.85f)
+                        : Color.clear);
+                }
+            tex.Apply();
+            cachedSkullSprite = Sprite.Create(tex, new Rect(0, 0, 12, 12), new Vector2(0.5f, 0.5f), 12f);
+            return cachedSkullSprite;
+        }
+
         private void ShowCompact(CardInstance instance, bool showBack)
         {
             if (skin == null) return;

@@ -188,6 +188,7 @@ namespace Rouge.Tcg.Net
         public int atk;
         public int def;
         public bool negated;
+        public int deathCounters;
 
         // Ausführung des Exemplars (CardFinish). Nur bei sichtbaren Karten
         // gefüllt — eine verdeckte Karte am Funkeln zu erkennen wäre verraten,

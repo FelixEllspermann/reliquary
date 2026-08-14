@@ -1217,11 +1217,19 @@ namespace Rouge.Tcg
 
         private bool HasValidTargets(EffectDefinition effect, PlayerState player, CardInstance source = null)
         {
+            // YuGiOh-Aktivierungslegalität: Aktionen, die Karten aufs Feld bringen,
+            // sind ohne freie Zone gar nicht erst aktivierbar — auch "bis zu"-
+            // Fassungen. Räumt eine FRÜHERE Aktion desselben Effekts womöglich
+            // selbst Platz (Opfer/Bounce/eigene Zerstörung als Kosten), gilt die
+            // Sperre nicht — die Auflösung schafft sich ihren Platz.
+            bool earlierMayFree = false;
             foreach (var action in effect.actions)
             {
                 // Cull the Weak: ohne Monster im eigenen Deck gibt es nichts aufzudecken
                 if (action.type == EffectActionType.SimultaneousDeckCull
                     && !player.DeckPile.Any(c => c.MonsterData != null)) return false;
+                if (!earlierMayFree && FreeCapacityFor(action.type, player) <= 0) return false;
+                if (ActionMayFreeOwnZone(action.type)) earlierMayFree = true;
                 if (action.target == TargetKind.None || action.target == TargetKind.SelfCard) continue;
                 // "Bis zu"-Aktionen sind optional: null Kandidaten blockieren die
                 // Aktivierung nicht (Trapline: "then Set 1 ... from your hand").
@@ -1229,6 +1237,69 @@ namespace Rouge.Tcg
                 if (BuildTargetCandidates(action, player, source).Count == 0) return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Wie viele Karten diese Aktion mangels Zonen-Platz überhaupt aufs Feld
+        /// bringen könnte (int.MaxValue = kein Zonenbedarf). Grundlage der
+        /// Aktivierungslegalität UND der Zielwahl-Klammer: "bis zu 2 setzen"
+        /// bietet bei nur einer freien Zone auch nur ein Ziel an. Ändert sich
+        /// das Brett NACH der Aktivierung, fizzlet die Auflösung ganz normal.
+        /// </summary>
+        private int FreeCapacityFor(EffectActionType type, PlayerState player)
+        {
+            switch (type)
+            {
+                case EffectActionType.SpecialSummonFromGraveyard:
+                case EffectActionType.SpecialSummonTargetFromHand:
+                case EffectActionType.SpecialSummonTargetFromBanished:
+                case EffectActionType.SpecialSummonTargetFromGraveOrBanish:
+                case EffectActionType.SpecialSummonTargetFromHandOrGrave:
+                case EffectActionType.SpecialSummonTargetFaceDown:
+                case EffectActionType.SpecialSummonTargetFromDeck:
+                case EffectActionType.SpecialSummonTargetFromGraveFaceDown:
+                case EffectActionType.SummonCopyOfTarget:
+                case EffectActionType.SummonReliquaryFromExtraSuppressed:
+                    return player.FreeMonsterZones();
+                case EffectActionType.SummonIllusionTokensToOpponent:
+                    return player.Opponent.FreeMonsterZones();
+                case EffectActionType.SetTargetSpellFromDeck:
+                case EffectActionType.SetTargetSpellFromHand:
+                    return FreeZoneCount(player.SpellZones);
+                case EffectActionType.SetTargetArtifactFromDeck:
+                case EffectActionType.PlaceTargetArtifactFromGraveyard:
+                    return FreeZoneCount(player.ArtifactZones);
+                default:
+                    return int.MaxValue;
+            }
+        }
+
+        /// <summary>Kann diese Aktion eine EIGENE Zone räumen (Opferkosten, Bounce, Selbst-Abgang)?</summary>
+        private static bool ActionMayFreeOwnZone(EffectActionType type)
+        {
+            switch (type)
+            {
+                case EffectActionType.DestroyTargetMonster:
+                case EffectActionType.BanishTargetMonster:
+                case EffectActionType.BanishTarget:
+                case EffectActionType.BanishSelf:
+                case EffectActionType.ReturnTargetToHand:
+                case EffectActionType.ReturnTargetCardToHand:
+                case EffectActionType.SendSelfToGraveyard:
+                case EffectActionType.TributeSelfSpecialSummonTarget:
+                case EffectActionType.ShuffleTargetIntoDeck:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private static int FreeZoneCount(CardInstance[] zones)
+        {
+            int free = 0;
+            for (int i = 0; i < zones.Length; i++)
+                if (zones[i] == null) free++;
+            return free;
         }
 
         /// <summary>Liegt irgendwo auf dem Feld eine verdeckte Karte (Monster oder gesetzter Zauber)?</summary>
@@ -1416,15 +1487,25 @@ namespace Rouge.Tcg
 
         private IEnumerator CollectTargets(PlayerState player, EffectDefinition effect, TargetCollection result, bool canCancel, CardInstance source = null)
         {
+            bool earlierMayFree = false;
             for (int i = 0; i < effect.actions.Count; i++)
             {
                 var action = effect.actions[i];
-                if (action.target == TargetKind.None || action.target == TargetKind.SelfCard) continue;
+                bool mayFreeAfter = ActionMayFreeOwnZone(action.type);
+                if (action.target == TargetKind.None || action.target == TargetKind.SelfCard)
+                {
+                    if (mayFreeAfter) earlierMayFree = true;
+                    continue;
+                }
 
                 var candidates = BuildTargetCandidates(action, player, source);
-                if (candidates.Count == 0) continue;
+                if (candidates.Count == 0) { if (mayFreeAfter) earlierMayFree = true; continue; }
 
-                int targetCount = Math.Clamp(action.targetCount, 1, candidates.Count);
+                // Zonen-Klammer: mehr Ziele als freie Plätze gibt es nicht zu wählen —
+                // außer eine frühere Aktion desselben Effekts schafft selbst Platz.
+                int capacity = earlierMayFree ? int.MaxValue : FreeCapacityFor(action.type, player);
+                int targetCount = Math.Clamp(Math.Min(action.targetCount, capacity), 1, candidates.Count);
+                if (mayFreeAfter) earlierMayFree = true;
                 // upTo gilt auch bei Einzelzielen: eine optionale Zusatz-Aktion
                 // ("then Set 1 from your hand") darf mit 0 Zielen enden.
                 bool upTo = action.upToTargets;
@@ -3309,7 +3390,7 @@ namespace Rouge.Tcg
             {
                 while (pendingOffers.Count > 0 && safety++ < 40 && Result == DuelResult.None)
                 {
-                    var (owner, card, trigger) = pendingOffers[0];
+                    var (owner, card, trigger, graveFromZone) = pendingOffers[0];
                     pendingOffers.RemoveAt(0);
                     if (card == null) continue;
                     // Friedhofs-Trigger (OnMilledSelf & Co.) ERWARTEN die Karte im
@@ -3324,7 +3405,7 @@ namespace Rouge.Tcg
                     if (graveTrigger && card.Zone != ZoneType.Graveyard) continue;
                     if (!graveTrigger && (card.Zone == ZoneType.Graveyard || card.Zone == ZoneType.Banished))
                         continue;
-                    yield return OfferTriggeredEffects(owner, card, trigger);
+                    yield return OfferTriggeredEffects(owner, card, trigger, graveFromZone);
                 }
             }
             finally
@@ -3360,12 +3441,23 @@ namespace Rouge.Tcg
         /// Abbau grätscht niemand — auch nicht mit einer "Aktivieren?"-Frage.
         /// Die Naht (Kette komplett aufgelöst, chainDepth == 0) holt sie nach.
         /// </summary>
-        private readonly List<(PlayerState owner, CardInstance card, EffectTrigger trigger)> pendingOffers
-            = new List<(PlayerState, CardInstance, EffectTrigger)>();
+        private readonly List<(PlayerState owner, CardInstance card, EffectTrigger trigger, ZoneType? graveFromZone)> pendingOffers
+            = new List<(PlayerState, CardInstance, EffectTrigger, ZoneType?)>();
         private bool flushingOffers;
 
         private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger, ZoneType? graveFromZone = null)
         {
+            // YuGiOh-Regel: WÄHREND eine Kette sich auflöst, startet nichts Neues —
+            // auch PFLICHT-Trigger warten und feuern erst an der Naht danach.
+            // graveFromZone wandert mit, sonst verlöre Asemirs "nur aus dem Extra
+            // Deck"-Filter beim Nachholen seine Herkunftsinfo.
+            if (resolvingChain > 0)
+            {
+                if (!pendingOffers.Exists(p => p.card == card && p.trigger == trigger))
+                    pendingOffers.Add((owner, card, trigger, graveFromZone));
+                yield break;
+            }
+
             var activatable = ActivatableEffects(card, owner, trigger);
             // The Last Asemir: der Trigger verlangt die Reise Extra Deck → Friedhof
             if (graveFromZone.HasValue)
@@ -3374,7 +3466,18 @@ namespace Rouge.Tcg
                     var fx = GetEffect(card, i);
                     return fx != null && fx.onlyFromExtraDeck && graveFromZone.Value != ZoneType.ExtraDeck;
                 });
-            if (activatable.Count == 0) yield break;
+            if (activatable.Count == 0)
+            {
+                // Sichtbares Fizzle statt stillem Nichts: der Trigger WÄRE da,
+                // aber die Karte ist annulliert.
+                if (card.EffectsNegated && HasEffectWithTrigger(card, trigger))
+                {
+                    Log($"{card.Name} tries to activate — but its effects are negated.");
+                    if (presenter != null)
+                        yield return presenter.ShowTargetsFlash(new List<CardInstance> { card });
+                }
+                yield break;
+            }
 
             // PFLICHT-Effekte (Deckay) feuern ohne Nachfrage — der Reihe nach,
             // bevor die freiwilligen ihre Frage stellen.
@@ -3389,15 +3492,6 @@ namespace Rouge.Tcg
                 if (Result != DuelResult.None) yield break;
             }
             if (activatable.Count == 0) yield break;
-
-            // Freiwillige Angebote unterbrechen keinen Ketten-Abbau: vormerken,
-            // FlushPendingOffers stellt die Frage nach der Auflösung.
-            if (resolvingChain > 0)
-            {
-                if (!pendingOffers.Exists(p => p.card == card && p.trigger == trigger))
-                    pendingOffers.Add((owner, card, trigger));
-                yield break;
-            }
 
             // Einheitlich als Karten-Liste (Master-Duel-Stil): eine Zeile je
             // Effekt mit der Karte dahinter, CANCEL passt — ob nun ein Trigger
@@ -3418,6 +3512,15 @@ namespace Rouge.Tcg
                 if (request.Result >= 0 && request.Result < activatable.Count)
                     yield return ActivateTriggered(owner, card, activatable[request.Result]);
             }
+        }
+
+        /// <summary>Hat die Karte überhaupt einen Effekt mit diesem Trigger? (Für das Negated-Fizzle-Feedback.)</summary>
+        private static bool HasEffectWithTrigger(CardInstance card, EffectTrigger trigger)
+        {
+            if (card?.Definition == null) return false;
+            foreach (var fx in card.Definition.effects)
+                if (fx != null && fx.trigger == trigger) return true;
+            return false;
         }
 
         /// <summary>

@@ -127,6 +127,7 @@ namespace Rouge.Tcg
             card.FaceDown = wire.faceDown;
             card.Position = wire.position == "def" ? BattlePosition.Defense : BattlePosition.Attack;
             card.EffectsNegated = wire.negated;
+            card.DeathCounters = wire.deathCounters;
             card.Finish = Net.CardFinishWire.From(wire.finish);
 
             if (!string.IsNullOrEmpty(wire.name))
