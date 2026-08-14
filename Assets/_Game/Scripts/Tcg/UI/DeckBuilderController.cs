@@ -93,6 +93,22 @@ namespace Rouge.Tcg.UI
         private List<PlayerCardData> heroes = new List<PlayerCardData>();
         private List<PlayerCardData> ownedHeroes = new List<PlayerCardData>();
         private readonly List<CollectionCardTile> poolTiles = new List<CollectionCardTile>();
+
+        // ---------- Virtualisiertes Pool-Gitter ----------
+        // Es existieren nur die Kacheln des sichtbaren Ausschnitts (plus
+        // Pufferzeilen); die Gesamtliste lebt als reine Datenliste. Bei ~800
+        // Einträgen wäre alles andere unbezahlbar: jede Kachel ist eine volle
+        // Kartenansicht, und ein GridLayoutGroup layoutet bei jeder Änderung
+        // sämtliche Kinder neu.
+        private readonly List<(CardDefinition card, CardFinish finish)> poolEntries = new List<(CardDefinition, CardFinish)>();
+        private readonly List<int> poolTileBound = new List<int>();   // je Kachel der gebundene Eintragsindex, -1 = schläft
+        private ScrollRect poolScroll;
+        private RectTransform poolViewportRect;
+        private bool poolWindowDirty;
+        private int poolRingSize;                                     // Kachel-Ringgröße, wächst mit der Viewporthöhe
+        private const int PoolColumns = 4;
+        private const float PoolSpacingX = 8f, PoolSpacingY = 10f;
+        private const float PoolPadLeft = 12f, PoolPadTop = 10f, PoolPadBottom = 10f;
         private readonly List<CollectionCardTile> deckTiles = new List<CollectionCardTile>();
         private readonly List<Button> heroChips = new List<Button>();
         private GameObject extraHeader;  // Laufzeit-Trenner "EXTRA DECK x/20"
@@ -348,9 +364,11 @@ namespace Rouge.Tcg.UI
         private static readonly bool[] SortDefaultAscending = { true, true, false, false, false, false, false };
 
         /// <summary>
-        /// Der Pool zeigt Kartenbilder statt Zeilen: die alte VerticalLayoutGroup
-        /// des Contents weicht einem Gitter. Zur Laufzeit statt in der Szene,
-        /// damit der Umbau im Diff sichtbar ist — wie schon die Scroll-Empfindlichkeit.
+        /// Der Pool zeigt Kartenbilder statt Zeilen. Zur Laufzeit statt in der
+        /// Szene, damit der Umbau im Diff sichtbar ist — wie die Scroll-Empfindlichkeit.
+        /// Layout-Komponenten fliegen dabei komplett raus: das Gitter ist
+        /// virtualisiert, Positionen sind bei fester Zellgröße selbst gerechnet
+        /// (4 Spalten: 4×130 + 3×8 + Polster 12+16 im 588er-Viewport).
         /// </summary>
         private void ConvertPoolToGrid()
         {
@@ -358,12 +376,21 @@ namespace Rouge.Tcg.UI
             var vertical = poolContent.GetComponent<VerticalLayoutGroup>();
             if (vertical != null) DestroyImmediate(vertical);
             var grid = poolContent.GetComponent<GridLayoutGroup>();
-            if (grid == null) grid = poolContent.gameObject.AddComponent<GridLayoutGroup>();
-            // 4 Spalten: 4×134 + 3×8 = 560 = Viewport 588 minus Polster 12+16
-            grid.cellSize = new Vector2(CollectionCardTile.Width, CollectionCardTile.Height);
-            grid.spacing = new Vector2(8f, 10f);
-            grid.padding = new RectOffset(12, 16, 10, 10);
-            grid.childAlignment = TextAnchor.UpperLeft;
+            if (grid != null) DestroyImmediate(grid);
+            var fitter = poolContent.GetComponent<ContentSizeFitter>();
+            if (fitter != null) fitter.enabled = false;
+
+            // Oben verankert mit Pivot oben: sizeDelta.y ist dann die echte
+            // Inhaltshöhe und anchoredPosition.y der Scrollversatz nach oben.
+            var content = (RectTransform)poolContent;
+            content.anchorMin = new Vector2(content.anchorMin.x, 1f);
+            content.anchorMax = new Vector2(content.anchorMax.x, 1f);
+            content.pivot = new Vector2(content.pivot.x, 1f);
+
+            poolViewportRect = content.parent as RectTransform;
+            poolScroll = content.GetComponentInParent<ScrollRect>(true);
+            if (poolScroll != null)
+                poolScroll.onValueChanged.AddListener(_ => poolWindowDirty = true);
         }
 
         /// <summary>
@@ -1051,25 +1078,10 @@ namespace Rouge.Tcg.UI
             RefreshSaveButton();
         }
 
-        private Coroutine poolBuildRoutine;
-
         private void RebuildPool()
         {
             if (poolContent == null) return;
 
-            // Bei ~750 Karten friert ein synchroner Aufbau den ersten Frame sichtbar
-            // ein (jede Kachel zieht beim ersten Zugriff ihre Textur von der Platte).
-            // Deshalb gestaffelt: die erste Ladung füllt den sichtbaren Bereich
-            // sofort, der Rest streamt über die folgenden Frames nach.
-            if (poolBuildRoutine != null) { StopCoroutine(poolBuildRoutine); poolBuildRoutine = null; }
-            if (isActiveAndEnabled)
-                poolBuildRoutine = StartCoroutine(RebuildPoolIncremental());
-            else
-                RebuildPoolNow();
-        }
-
-        private System.Collections.IEnumerator RebuildPoolIncremental()
-        {
             var filtered = pool.Where(c => c != null && PassesFilter(c)).ToList();
             var sorted = SortedPool(filtered);
 
@@ -1082,49 +1094,153 @@ namespace Rouge.Tcg.UI
                 poolCountText.text = $"{filtered.Count} of {pool.Count} cards{ownedInfo}";
             }
 
-            // Je Karte eine Kachel pro besessenem Finish — so lassen sich gezielt
-            // die zwei Static einbauen statt der schlichten Exemplare. Kacheln
-            // werden recycelt: bei ~750 Karten wäre Zerstören und Neubauen bei
-            // jedem Tastendruck im Suchfeld unbezahlbar.
-            //
-            // Dosiert wird nach ZEIT, nicht nach Stückzahl: eine Kachel ist eine
-            // volle Kartenansicht (~10 TMP-Texte, dazu ein Artwork, das beim
-            // ersten Zugriff erst entpackt wird) — feste 48 pro Frame kosteten
-            // je nach Kaltstart zweistellige Millisekunden und das Nachfüllen
-            // ruckelte sichtbar. Jetzt nimmt sich jeder Frame nur, was ins
-            // Budget passt (mindestens eine Kachel, sonst käme nichts voran).
-            const double frameBudgetMs = 4.0;
-            var clock = System.Diagnostics.Stopwatch.StartNew();
-            int used = 0;
+            // Je Karte ein Eintrag pro besessenem Finish — so lassen sich gezielt
+            // die zwei Static einbauen statt der schlichten Exemplare. Das hier
+            // ist reine Datenarbeit; Kacheln entstehen erst, wenn ihr Eintrag
+            // ins Sichtfenster rückt.
+            var newEntries = new List<(CardDefinition card, CardFinish finish)>();
             foreach (var card in sorted)
                 foreach (var finish in FinishRowsFor(card))
-                {
-                    var tile = used < poolTiles.Count ? poolTiles[used] : CreatePoolTile();
-                    if (tile == null) break;
-                    tile.gameObject.SetActive(true);
-                    tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
-                        AllowedCopies(card), CountInDeck(card),
-                        AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode,
-                        isNew: CollectionMode && PlayerProfile.IsNew(card.cardName));
-                    used++;
-                    if (clock.Elapsed.TotalMilliseconds >= frameBudgetMs)
-                    {
-                        yield return null;
-                        clock.Restart();
-                    }
-                }
-            for (int i = used; i < poolTiles.Count; i++)
-                if (poolTiles[i] != null) poolTiles[i].gameObject.SetActive(false);
+                    newEntries.Add((card, finish));
 
+            // Gleiche Liste (nur Badges ändern sich, etwa nach einem Deck-Edit):
+            // Sicht halten. Andere Liste (Suche, Filter, Sortierung): nach oben —
+            // sonst starrt man nach einer Suche auf die Leere unter dem Ende
+            // der kürzer gewordenen Liste, denn der ScrollRect klemmt einen
+            // von außen gesetzten Versatz nicht von selbst.
+            bool sameList = newEntries.Count == poolEntries.Count;
+            if (sameList)
+                for (int i = 0; i < newEntries.Count; i++)
+                    if (newEntries[i].card != poolEntries[i].card || newEntries[i].finish != poolEntries[i].finish)
+                    {
+                        sameList = false;
+                        break;
+                    }
+            poolEntries.Clear();
+            poolEntries.AddRange(newEntries);
+
+            int rows = (poolEntries.Count + PoolColumns - 1) / PoolColumns;
+            float height = PoolPadTop + PoolPadBottom
+                + rows * CollectionCardTile.Height
+                + Mathf.Max(0, rows - 1) * PoolSpacingY;
+            var content = (RectTransform)poolContent;
+            content.sizeDelta = new Vector2(content.sizeDelta.x, height);
+
+            float viewH = poolViewportRect != null ? poolViewportRect.rect.height : 0f;
+            float maxScroll = Mathf.Max(0f, height - viewH);
+            float targetY = sameList ? Mathf.Clamp(content.anchoredPosition.y, 0f, maxScroll) : 0f;
+            if (!Mathf.Approximately(targetY, content.anchoredPosition.y))
+            {
+                content.anchoredPosition = new Vector2(content.anchoredPosition.x, targetY);
+                if (poolScroll != null) poolScroll.velocity = Vector2.zero;
+            }
+
+            // Alles neu binden: nach Filter- oder Deck-Änderung stimmen weder
+            // Zuordnung noch Badges (×N im Deck) der sichtbaren Kacheln noch.
+            ForgetPoolBindings();
+            RefreshPoolWindow(isActiveAndEnabled ? 4.0 : 0.0);
             HighlightSelection();
-            poolBuildRoutine = null;
         }
 
-        /// <summary>Synchroner Fallback (inaktives Objekt kann keine Coroutine fahren).</summary>
-        private void RebuildPoolNow()
+        private void ForgetPoolBindings()
         {
-            var routine = RebuildPoolIncremental();
-            while (routine.MoveNext()) { }
+            for (int i = 0; i < poolTileBound.Count; i++) poolTileBound[i] = -1;
+        }
+
+        /// <summary>Unerledigte Fensterarbeit (Budget-Rest, Scroll) frameweise nachholen.</summary>
+        private void LateUpdate()
+        {
+            if (poolWindowDirty) RefreshPoolWindow(4.0);
+        }
+
+        /// <summary>
+        /// Bindet die Kacheln des sichtbaren Ausschnitts (plus Pufferzeilen) an
+        /// die Eintragsliste. Ringpuffer: Eintrag i wohnt in Kachel i modulo
+        /// Ringgröße — beim zeilenweisen Scrollen wechseln so nur die gerade
+        /// herausgefallenen Kacheln ihren Inhalt, der Rest bleibt unberührt.
+        /// budgetMs deckelt die Arbeit pro Aufruf (0 = alles sofort); was nicht
+        /// mehr hineinpasst, holt der nächste LateUpdate-Tick nach.
+        /// </summary>
+        private void RefreshPoolWindow(double budgetMs)
+        {
+            poolWindowDirty = false;
+            if (poolContent == null) return;
+            var content = (RectTransform)poolContent;
+
+            float rowStride = CollectionCardTile.Height + PoolSpacingY;
+            float viewH = poolViewportRect != null ? poolViewportRect.rect.height : 0f;
+            // Beim Szenenstart ist das Layout noch nicht gelaufen — großzügig
+            // schätzen, denn der Ring wächst nur und ein paar Kacheln Verschnitt
+            // sind billiger als ein komplettes Neu-Binden nach der ersten Messung.
+            if (viewH <= 1f) viewH = 1000f;
+
+            int ringRows = Mathf.CeilToInt(viewH / rowStride) + 3;   // 1 Pufferzeile oben, 2 unten
+            int ringSize = ringRows * PoolColumns;
+            if (ringSize > poolRingSize)
+            {
+                poolRingSize = ringSize;
+                ForgetPoolBindings();   // das Modulo-Mapping verschiebt sich
+            }
+
+            float scrollY = Mathf.Max(0f, content.anchoredPosition.y);
+            int firstRow = Mathf.Max(0, Mathf.FloorToInt((scrollY - PoolPadTop) / rowStride) - 1);
+            int start = firstRow * PoolColumns;
+            int end = Mathf.Min(poolEntries.Count, start + poolRingSize);
+            // Am Listenende von hinten auffüllen, damit der Ring voll bleibt
+            if (end - start < poolRingSize) start = Mathf.Max(0, end - poolRingSize);
+
+            var clock = System.Diagnostics.Stopwatch.StartNew();
+
+            // Ring auffüllen — nennenswerte Arbeit nur beim allerersten Aufbau,
+            // danach existieren die Kacheln für die Lebensdauer der Szene
+            int wantTiles = Mathf.Min(poolRingSize, poolEntries.Count);
+            while (poolTiles.Count < wantTiles)
+            {
+                if (budgetMs > 0.0 && clock.Elapsed.TotalMilliseconds >= budgetMs)
+                {
+                    poolWindowDirty = true;
+                    return;
+                }
+                if (CreatePoolTile() == null) return;
+            }
+
+            bool done = true;
+            for (int entryIndex = start; entryIndex < end; entryIndex++)
+            {
+                int slot = entryIndex % poolRingSize;
+                if (slot >= poolTiles.Count) continue;
+                var tile = poolTiles[slot];
+                if (tile == null) continue;
+                if (poolTileBound[slot] == entryIndex && tile.gameObject.activeSelf) continue;
+                if (budgetMs > 0.0 && clock.Elapsed.TotalMilliseconds >= budgetMs) { done = false; break; }
+
+                var (card, finish) = poolEntries[entryIndex];
+                int row = entryIndex / PoolColumns, col = entryIndex % PoolColumns;
+                ((RectTransform)tile.transform).anchoredPosition = new Vector2(
+                    PoolPadLeft + col * (CollectionCardTile.Width + PoolSpacingX),
+                    -(PoolPadTop + row * rowStride));
+                tile.gameObject.SetActive(true);
+                tile.Setup(card, finish, CountInDeck(card, finish), OwnedOf(card, finish),
+                    AllowedCopies(card), CountInDeck(card),
+                    AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode,
+                    isNew: CollectionMode && PlayerProfile.IsNew(card.cardName));
+                tile.SetSelected(card == selected && finish == selectedFinish);
+                poolTileBound[slot] = entryIndex;
+            }
+
+            // Kacheln, deren Eintrag aus dem Fenster gefallen ist, schlafen
+            for (int i = 0; i < poolTiles.Count; i++)
+            {
+                int bound = i < poolTileBound.Count ? poolTileBound[i] : -1;
+                if (bound >= start && bound < end) continue;
+                if (poolTiles[i] != null && poolTiles[i].gameObject.activeSelf)
+                {
+                    poolTiles[i].gameObject.SetActive(false);
+                    poolTileBound[i] = -1;
+                }
+            }
+
+            poolWindowDirty = !done;
         }
 
         private CollectionCardTile CreatePoolTile()
@@ -1132,10 +1248,16 @@ namespace Rouge.Tcg.UI
             if (previewView == null) return null;
             var go = new GameObject("CardTile", typeof(RectTransform));
             go.transform.SetParent(poolContent, false);
+            // Oben links verankert — die Fensterlogik setzt die Position direkt
+            var rt = (RectTransform)go.transform;
+            rt.anchorMin = rt.anchorMax = new Vector2(0f, 1f);
+            rt.pivot = new Vector2(0f, 1f);
+            go.SetActive(false);   // schlafend geboren; das Binden weckt und platziert sie
             var tile = go.AddComponent<CollectionCardTile>();
             tile.Build(previewView, skin);
             tile.SetDropTarget(deckDropArea);
             poolTiles.Add(tile);
+            poolTileBound.Add(-1);
             return tile;
         }
 
