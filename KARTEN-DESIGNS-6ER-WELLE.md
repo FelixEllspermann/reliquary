@@ -1,36 +1,45 @@
-# Design-Vorschlag: 6er-Welle für alle 30 Archetypes (180 Karten)
+# Design-Vorschlag v2: 6er-Welle für alle 30 Archetypes (180 Karten)
 
-**Status: ENTWURF — wartet auf Felix' Freigabe. Noch nichts gebaut.**
+**Status: ENTWURF v2 — wartet auf Felix' Freigabe. Noch nichts gebaut.**
 
-Pro Archetype: 2 Monster, 2 Spells, 1 Artifact, 1 Reliquary. Jede Karte folgt
-dem Gameplan aus ARCHETYPE-MECHANICS.md. Regeln: Normal-Effekte 0 Mana,
-Infused immer mit Mana (↳ = Coupled-Upgrade des Effekts darüber, sonst
-Standalone), Spells min. 1 Mana, wenig Burn, nur vorhandene Engine-Bausteine.
-Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
+Änderungen gegenüber v1 (Felix' Feedback):
+- **Fast alle Lv2/Lv3-Monster haben jetzt eine Special-Summon-Bedingung**
+  („SS:" — aus der Hand, wenn die Bedingung erfüllt ist; global once per turn
+  je Kartenname, wie überall). Nur reine Vanilla-Statlines bleiben ohne.
+- Archfiend Last Laugh: Infused ersetzt (kein 2-Mana-für-2-Mana-Unsinn).
+- Fethaerbreese Homing Sky: Doppel-Bounce ohne Downside gestrichen.
+- Effekte überall nachgeschärft: mehr Bedingungen, Verzahnung und
+  ungewöhnliche Baustein-Kombinationen statt Standard-Suche/Standard-Buff.
+
+Format: SS: = Special-Summon-Bedingung · ↳ = Coupled-Infused (Upgrade des
+Effekts darüber) · sonst Standalone-Infused. Normal-Effekte 0 Mana, Infused
+immer Mana, Spells min. 1 Mana.
 
 ---
 
 ## Apocrypha (LIGHT/Myth) — Toolbox + Banish + Ketten-Kontrolle
 
 **Apocrypha Manticore** — Monster · LIGHT/Myth · Lv2 · 1400/1100 · Uncommon
+- SS: Wenn 2+ deiner Karten verbannt sind.
 - On Summon (0M): Banish 1 card from your Graveyard; draw 1 card.
-- ↳ Infused (2M): Banish up to 2 instead; draw 2.
+- ↳ Infused (2M): Banish up to 2 instead; draw 2, then reveal the top card of your Deck — you may put it on the bottom.
 
 **Apocrypha Basilisk** — Monster · LIGHT/Myth · Lv3 · 2000/1700 · Rare
+- SS: Wenn der Gegner mehr Monster kontrolliert als du.
 - Passiv: Gains 200 ATK for each of your banished monsters.
-- Quick-Infused (2M): Negate the effects of 1 card on the field until the end of this turn.
+- Quick-Infused (2M): Negate the effects of 1 card on the field until the end of this turn. If it was a Spell in the chain, draw 1 card.
 
 **Apocrypha Errata** — Spell · Normal · Uncommon
-- (1M): Shuffle up to 3 cards from your Graveyard into your Deck; draw 1 card.
+- (1M): Shuffle up to 3 cards from your Graveyard into your Deck; draw 1 card for every 3 shuffled.
 - ↳ Infused (2M): Banish them instead; draw 2.
 
 **Apocrypha Missing Page** — Spell · Quick · Rare
-- (1M): Return 1 of your banished cards to your Graveyard; draw 1 card.
-- ↳ Infused (3M): Return up to 2; 1 monster you control gains 500 ATK until the end of this turn.
+- (1M): Return 1 of your banished cards to your Graveyard; 1 monster you control swaps its ATK and DEF until the end of this turn.
+- ↳ Infused (3M): Return up to 2; the swap monster also cannot be destroyed this turn.
 
 **Apocrypha Bestiary** — Artifact · Field · Rare
-- Ignition (0M, once per turn): Add 1 "Apocrypha" card from your Graveyard to your hand.
-- Infused (2M): Banish 1 card from your opponent's Graveyard.
+- Ignition (0M, once per turn): Banish 1 card from your Graveyard; add 1 "Apocrypha" card from your Graveyard to your hand.
+- Infused (2M): Banish 1 card from your opponent's Graveyard; if it was a monster, 1 monster you control gains 300 ATK until the end of this turn.
 
 **Apocrypha, the Lost Chapter** — Reliquary · LIGHT/Myth · Lv3 · 2600/2200 · Legendary
 - SUMMON: 3+ deiner Karten verbannt · Kosten 2 Mana
@@ -41,8 +50,9 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 ## Archfiend (DARK/Demon) — Removal-Aggro + Selbstopfer
 
 **Archfiend Executioner** — Monster · DARK/Demon · Lv2 · 1700/900 · Uncommon
+- SS: Wenn der Gegner 2+ Monster kontrolliert.
 - On Summon (0M): Destroy 1 monster your opponent controls with 1200 or less ATK.
-- ↳ Infused (2M): 1800 or less instead.
+- ↳ Infused (2M): 1800 or less; if it was in Defense Position, draw 1 card.
 
 **Archfiend Court Jester** — Monster · DARK/Demon · Lv1 · 700/700 · Common
 - On Destroyed (0M): Draw 1 card.
@@ -50,34 +60,35 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Archfiend Death Warrant** — Spell · Normal · Rare
 - (2M): Destroy 1 monster your opponent controls with 2000 or less ATK.
-- ↳ Infused (4M): No ATK limit; then return 1 "Archfiend" monster from your Graveyard to your hand.
+- ↳ Infused (4M): No ATK limit; then Special Summon 1 "Archfiend" monster from your Graveyard face-down.
 
 **Archfiend Last Laugh** — Spell · Quick · Uncommon
 - (1M): Destroy 1 monster you control; draw 2 cards.
-- ↳ Infused (2M): Also gain 2 Mana.
+- ↳ Infused (2M): Also Special Summon 1 "Archfiend" monster from your Graveyard face-down. *(v1-„gain 2 Mana" ersetzt)*
 
 **Archfiend Gallows** — Artifact · Field · Rare
-- Passiv: Your DEMON monsters gain 200 ATK.
+- Passiv: Deine DEMON-Monster erhalten 200 ATK.
 - Ignition-Infused (2M, once per turn): Destroy 1 monster you control; Special Summon 1 "Archfiend" monster from your Graveyard face-down.
 
 **Archfiend Kingmaker** — Reliquary · DARK/Demon · Lv3 · 2800/2000 · Legendary
 - SUMMON: 3+ Monster in deinem Friedhof · Kosten 3 Mana · Tribute 1 eigenes Monster
-- On Summon (0M): Destroy up to 2 monsters your opponent controls with 1500 or less ATK.
+- On Summon (0M): Destroy up to 2 monsters your opponent controls with 1500 or less ATK; this card permanently gains 200 ATK for each.
 - Ignition-Infused (3M): Special Summon 1 "Archfiend" monster from your Graveyard.
 
 ## Barrierstruck (EARTH/Mecha) — Schildwall + Artefakt-Kette
 
 **Barrierstruck Mason** — Monster · EARTH/Mecha · Lv1 · 400/1600 · Common
 - On Summon (0M): Add 1 "Barrierstruck" Artifact from your Graveyard to your hand.
-- ↳ Infused (2M): Place it directly onto the field instead.
+- ↳ Infused (2M): Place it directly onto the field instead; 1 monster you control gains 300 DEF until the end of this turn.
 
 **Barrierstruck Gatekeeper** — Monster · EARTH/Mecha · Lv3 · 1600/3000 · Rare
-- Passiv: Taunt (Angriffe müssen dieses Monster wählen). Gains 200 DEF for each of your Artifacts on the field.
-- Quick-Infused (2M): This card cannot be destroyed this turn.
+- SS: Wenn du 2+ Artefakte kontrollierst.
+- Passiv: Taunt. Gains 200 DEF for each of your Artifacts on the field.
+- Quick-Infused (2M): This card cannot be destroyed this turn; it swaps ATK and DEF until the end of this turn. *(der Wall schlägt zurück)*
 
 **Barrierstruck Hold the Line** — Spell · Quick · Uncommon
 - (1M): Up to 3 of your monsters gain 600 DEF until the end of this turn.
-- ↳ Infused (3M): They also cannot be destroyed by battle this turn. *(über temporäre Unzerstörbarkeit)*
+- ↳ Infused (3M): They also cannot be destroyed this turn, and 1 of them taunts (der Gegner muss es diesen Zug angreifen).
 
 **Barrierstruck Demolition Refund** — Spell · Normal · Uncommon
 - (1M): Destroy 1 Artifact you control; draw 2 cards.
@@ -89,31 +100,33 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Barrierstruck, the Unbreached** — Reliquary · EARTH/Mecha · Lv3 · 2200/3400 · Legendary
 - SUMMON: Du kontrollierst 3+ Artefakte · Kosten 3 Mana
-- Passiv: Cannot be destroyed by battle while you control an Artifact. *(battleShieldMinOwnArtifacts=1)*
+- Passiv: Im Kampf unzerstörbar, solange du ein Artefakt kontrollierst.
 - On Summon (0M): Up to 2 of your monsters gain 500 DEF permanently.
-- Ignition-Infused (3M): Place 1 "Barrierstruck" Artifact from your Deck onto the field.
+- Ignition-Infused (3M): This card swaps ATK and DEF until the end of this turn; it can attack twice this Battle Phase.
 
 ## Deathpoem (FIRE/Human) — Selbstmord-Removal + Friedhofs-Aufbau
 
 **Deathpoem Elegist** — Monster · FIRE/Human · Lv2 · 1500/600 · Uncommon
+- SS: Wenn 4+ Karten in deinem Friedhof liegen.
 - Ignition (0M): Tribute this card: destroy 1 Spell or Artifact your opponent controls.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; add 1 "Deathpoem" card from your Deck to your hand.
 
 **Deathpoem Warpoet** — Monster · FIRE/Human · Lv3 · 2200/1400 · Rare
+- SS: Wenn 6+ Karten in deinem Friedhof liegen.
 - Passiv: Gains 100 ATK for each card in your Graveyard.
 - Ignition (0M): Tribute this card: destroy up to 2 monsters with 1500 or less ATK.
 
 **Deathpoem Final Draft** — Spell · Normal · Uncommon
-- (1M): Send 1 "Deathpoem" monster from your Deck to the Graveyard; draw 1 card.
-- ↳ Infused (2M): Send 2 instead; draw 1.
+- (1M): Send 1 "Deathpoem" monster from your Deck to the Graveyard; if you control no monsters, draw 2 cards, otherwise draw 1.
+- ↳ Infused (2M): Send 2 instead.
 
 **Deathpoem Recital** — Spell · Quick · Rare
-- (2M): Special Summon 1 "Deathpoem" monster from your Graveyard. *(Quick — auch im Gegnerzug als Blocker/Tribut-Futter)*
-- ↳ Infused (4M): Special Summon 2 instead.
+- (2M): Special Summon 1 "Deathpoem" monster from your Graveyard. *(auch im Gegnerzug — der Blocker, der morgen wieder Tribut ist)*
+- ↳ Infused (4M): Special Summon 2 instead; they cannot be destroyed by battle this turn.
 
 **Deathpoem Inkstone** — Artifact · Field · Rare
 - Trigger (0M, once per turn, wenn ein eigenes Monster tributet wird): Draw 1 card.
-- Ignition-Infused (2M): Return 1 "Deathpoem" monster from your Graveyard to your hand.
+- Ignition-Infused (2M): Return 1 "Deathpoem" monster from your Graveyard to your hand; it gains 300 ATK permanently. *(der zweite Vers ist schärfer)*
 
 **Deathpoem, Death of the Author** — Reliquary · FIRE/Human · Lv3 · 2500/2000 · Legendary
 - SUMMON: 7+ Karten in deinem Friedhof · Kosten 3 Mana
@@ -127,9 +140,10 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - On Milled (0M): If this card is sent from the Deck to the Graveyard: Special Summon it.
 
 **Deckay Carrion Prince** — Monster · DARK/Demon · Lv3 · 2100/1500 · Rare
+- SS: Wenn du in diesem oder im letzten Zug gemillt hast.
 - Passiv: Gains 100 ATK for each card in your Graveyard.
 - On Summon (0M): Mill 3 cards.
-- Ignition-Infused (2M): Shuffle up to 3 cards from your Graveyard into your Deck; draw 1 card.
+- Ignition-Infused (2M): Shuffle up to 3 cards from your Graveyard into your Deck; 1 monster your opponent controls loses 200 ATK permanently for each.
 
 **Deckay Decomposition** — Spell · Normal · Uncommon
 - (1M): Mill 4 cards; then you can add 1 "Deckay" card from your Graveyard to your hand.
@@ -150,16 +164,17 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 ## Dragon Shrine (LIGHT/Dragon) — Suche + Leiter-Schwarm
 
-**Novice of the Dragon Shrine** — Monster · LIGHT/Human · Lv1 · 600/900 · Common *(Namens-Ausnahme wie Petitioner — folgt dem Muster „X of the Dragon Shrine")*
+**Novice of the Dragon Shrine** — Monster · LIGHT/Human · Lv1 · 600/900 · Common
 - On Normal Summon (0M): Special Summon 1 Level 1 Dragon-Type monster from your hand.
 - ↳ Infused (2M): From your Deck instead.
 
 **Twin Wyrms of the Dragon Shrine** — Monster · LIGHT/Dragon · Lv2 · 1500/1500 · Rare
+- SS: Wenn du ein anderes offenes LIGHT-Monster kontrollierst.
 - On Summon (0M): If you control another Dragon-Type monster: draw 1 card.
-- Ignition-Infused (2M, once per turn): Special Summon 1 Level 1 Dragon-Type monster from your Graveyard.
+- Ignition-Infused (2M, once per turn): Special Summon 1 Level 1 Dragon-Type monster from your Graveyard; it gains 200 DEF permanently.
 
 **Dragon Shrine Morning Rites** — Spell · Normal · Uncommon
-- (1M): Add 1 Level 2 Dragon-Type monster from your Deck to your hand.
+- (1M): Add 1 Level 2 Dragon-Type monster from your Deck to your hand; reveal the top card of your Deck — you may put it on the bottom.
 - ↳ Infused (3M): Add 1 Level 2 AND 1 Level 1 Dragon-Type monster instead.
 
 **Dragon Shrine Guardian's Breath** — Spell · Quick · Uncommon
@@ -178,12 +193,14 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 ## Failsafe (EARTH) — Antwort-Kette mit Auto-Nachschub
 
 **Failsafe Foreman** — Monster · EARTH/Human · Lv2 · 1200/1600 · Uncommon
+- SS: Wenn du ein Artefakt kontrollierst.
 - On Summon (0M): Set 1 "Failsafe" Artifact from your Graveyard onto the field.
 - ↳ Infused (2M): From your Deck instead, then draw 1 card.
 
 **Failsafe Redundancy Officer** — Monster · EARTH/Human · Lv3 · 1800/2200 · Rare
+- SS: Wenn du 2+ Artefakte kontrollierst.
 - Passiv: Gains 200 DEF for each of your Artifacts on the field.
-- Quick-Infused (2M): 1 of your Artifacts cannot be destroyed this turn.
+- Quick-Infused (2M): 1 of your Artifacts cannot be destroyed this turn; draw 1 card if your opponent controls more monsters than you.
 
 **Failsafe Protocol** — Spell · Normal · Uncommon
 - (1M): Add up to 2 "Failsafe" Artifacts from your Graveyard to your hand.
@@ -208,6 +225,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (1M): Also gain 1 Mana.
 
 **Fethaerbreese Stormfront** — Monster · WIND/Animal · Lv3 · 2300/2000 · Rare
+- SS: Wenn du ein anderes offenes WIND-Monster kontrollierst.
 - On Summon (0M): Return 1 monster your opponent controls with 1500 or less ATK to its owner's hand.
 - ↳ Infused (3M): No ATK limit.
 - Passiv: Doppelangriff, solange ein anderes eigenes WIND-Monster offen liegt.
@@ -217,7 +235,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): They gain 300 ATK until the end of this turn.
 
 **Fethaerbreese Gust Shield** — Spell · Quick · Uncommon
-- (1M): Return 1 of your monsters to your hand. *(Rettung vor Removal/Kampf + Trigger-Recycling)*
+- (1M): Return 1 of your monsters to your hand.
 - ↳ Infused (2M): Also draw 1 card and gain 1 Mana.
 
 **Fethaerbreese High Roost** — Artifact · Field · Rare
@@ -226,7 +244,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Fethaerbreese, the Homing Sky** — Reliquary · WIND/Animal · Lv3 · 2800/2500 · Legendary
 - SUMMON: 4+ Monster in deinem Friedhof · Kosten 3 Mana
-- On Summon (0M): Return up to 2 monsters on the field to their owners' hands.
+- On Summon (0M): Return 1 monster your opponent controls to its owner's hand, then return up to 1 of YOUR monsters to your hand. *(v1-Doppel-Gegner-Bounce entschärft: einer trifft den Gegner, der zweite ist eigener Trigger-Value)*
 - Quick-Infused (2M): Return 1 of your monsters to your hand; draw 1 card.
 
 ## Forgeheart (FIRE/Mecha) — Artefakt-Ökonomie + permanente Buffs
@@ -236,13 +254,14 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; add 1 Artifact from your Graveyard to your hand.
 
 **Forgeheart Masterwork** — Monster · FIRE/Mecha · Lv3 · 2600/2200 · Rare
+- SS: Wenn du 2+ Artefakte kontrollierst.
 - Passiv: Kann im Kampf nicht zerstört werden, solange du 2+ Artefakte kontrollierst.
 - On Summon (0M): 1 monster you control permanently gains 300 ATK.
 - ↳ Infused (3M): Up to 2 monsters instead; 400 each.
 
 **Forgeheart Temper** — Spell · Quick · Uncommon
 - (1M): 1 monster you control gains 500 ATK until the end of this turn.
-- ↳ Infused (3M): The bonus is permanent.
+- ↳ Infused (3M): The bonus is permanent; if the monster is a MECHA, it also gains 300 DEF permanently.
 
 **Forgeheart Recast Order** — Spell · Normal · Uncommon
 - (1M): Place 1 Artifact from your Graveyard directly into your Artifact Zone.
@@ -264,6 +283,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; summon 1 Illusion Token to your opponent's field.
 
 **Gaslight Stage Hypnotist** — Monster · DARK/Myth · Lv3 · 1900/1500 · Rare
+- SS: Wenn der Gegner 2+ Monster kontrolliert.
 - Passiv: Gains 300 ATK for each Illusion Token your opponent controls.
 - Ignition (0M, once per turn): Destroy 1 Illusion Token your opponent controls; 1 monster they control loses 300 ATK permanently.
 
@@ -291,6 +311,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): Equip it directly to 1 monster you control instead.
 
 **Genostitched Magnum Opus** — Monster · DARK/Mecha · Lv3 · 2300/1900 · Rare
+- SS: Wenn du ein Artefakt kontrollierst.
 - Passiv: Gains 300 ATK for each Artifact equipped to it.
 - On Summon (0M): Equip 1 Artifact from your Graveyard to this card.
 - Ignition-Infused (2M, while equipped): This card cannot be targeted this turn.
@@ -319,6 +340,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (1M): Banish 1 other card from your Graveyard; Special Summon this card from your Graveyard.
 
 **Gravemaw Sepulcher Beast** — Monster · DARK/Beast · Lv3 · 2400/1700 · Rare
+- SS: Wenn du in diesem oder im letzten Zug gemillt hast.
 - Passiv: Gains 200 ATK for each of your banished monsters.
 - On Summon (0M): Banish up to 2 cards from your Graveyard; draw 1 card if you banished 2.
 - ↳ Infused (2M): Banish up to 3; draw 1.
@@ -328,7 +350,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): Also Special Summon 1 Level 1 "Gravemaw" monster from your Graveyard.
 
 **Gravemaw Gulp** — Spell · Quick · Rare
-- (2M): Banish 1 monster your opponent controls with 1500 or less ATK. *(Removal über Banish — teuer, dafür endgültig)*
+- (2M): Banish 1 monster your opponent controls with 1500 or less ATK.
 - ↳ Infused (4M): No ATK limit.
 
 **Gravemaw Feeding Trough** — Artifact · Field · Rare
@@ -338,15 +360,17 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 **Gravemaw, Maw of the World** — Reliquary · DARK/Beast · Lv3 · 3000/2100 · Legendary
 - SUMMON: 5+ deiner Karten verbannt · Kosten 3 Mana
 - On Summon (0M): Return up to 3 of your banished cards to your Graveyard; this card gains 200 ATK for each.
-- Ignition-Infused (3M): Banish 1 card your opponent controls. *(einmal pro Zug)*
+- Ignition-Infused (3M, once per turn): Banish 1 card your opponent controls.
 
 ## Heavenly (LIGHT/Angel) — Wächter-Midrange + Protection
 
 **Heavenly Vindicator** — Monster · LIGHT/Angel · Lv2 · 1600/1400 · Uncommon
+- SS: Wenn du ein anderes offenes LIGHT-Monster kontrollierst.
 - On Summon (0M): 1 "Heavenly" monster you control cannot be destroyed this turn.
 - ↳ Infused (2M): Also gains 400 DEF permanently.
 
 **Heavenly Archon** — Monster · LIGHT/Angel · Lv3 · 2500/2300 · Rare
+- SS: Wenn du 2+ Monster kontrollierst.
 - Passiv: Deine anderen „Heavenly"-Monster erhalten 200 DEF.
 - On Summon (0M): Special Summon 1 Level 1 "Heavenly" monster from your Graveyard.
 - Quick-Infused (3M): Negate the effects of 1 monster your opponent controls until the end of this turn.
@@ -364,7 +388,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Standby-Infused (1M): Gain 300 LP.
 
 **Heavenly Highest Choir** — Reliquary · LIGHT/Angel · Lv3 · 3000/2600 · Legendary
-- SUMMON: Du kontrollierst 2+ „Heavenly"-Monster und deine LP liegen über 6000 · Kosten 4 Mana *(reqLifeAtMost-Gegenstück: nutzt reqMinMana-Muster — falls kein LP-über-X-Req existiert: stattdessen 2+ Heavenly + 5+ Mana)*
+- SUMMON: Du kontrollierst 2+ „Heavenly"-Monster und hast 5+ Mana verfügbar · Kosten 4 Mana
 - On Summon (0M): Special Summon up to 2 "Heavenly" monsters from your Graveyard; they cannot be destroyed this turn.
 - Quick-Infused (2M): 1 "Heavenly" monster you control cannot be targeted this turn.
 
@@ -375,6 +399,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; return 1 Spell from your Graveyard to your hand.
 
 **Hexweaver Curse Broker** — Monster · DARK/Human · Lv3 · 2000/2200 · Rare
+- SS: Wenn du eine verdeckte Karte kontrollierst.
 - On Summon (0M): If you have 5+ Mana: draw 1 card and gain 1 Mana.
 - Quick-Infused (2M): 1 monster your opponent controls loses 500 ATK until the end of this turn.
 
@@ -388,7 +413,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Hexweaver Tapestry of Debts** — Artifact · Field · Rare
 - Passiv: Dein erster Spell pro Zug kostet 1 Mana weniger.
-- Ignition-Infused (2M, once per turn): Set 1 "Hexweaver" Spell from your Graveyard. *(zurück aufs Feld, verdeckt)*
+- Ignition-Infused (2M, once per turn): Set 1 "Hexweaver" Spell from your Graveyard.
 
 **Hexweaver, the Pattern Beneath** — Reliquary · DARK/Human · Lv3 · 2700/2500 · Legendary
 - SUMMON: 4+ Spells in deinem Friedhof · Kosten 3 Mana
@@ -402,6 +427,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - On Destroyed (0M): Add 1 Level 1 FIRE monster from your Graveyard to your hand.
 
 **Kindlekin Bonfire Chief** — Monster · FIRE/Beast · Lv2 · 1400/1300 · Rare
+- SS: Wenn du 2+ Monster kontrollierst.
 - Passiv: Deine Level-1-Monster erhalten 200 ATK und 200 DEF.
 - Ignition-Infused (2M, once per turn): Special Summon up to 2 Level 1 FIRE monsters from your Graveyard.
 
@@ -429,6 +455,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): Also draw 1 card.
 
 **Lightless Gravewatcher** — Monster · DARK/Human · Lv3 · 2100/1800 · Rare
+- SS: Wenn du ein verdecktes Monster kontrollierst.
 - Passiv: Gains 300 ATK for each of YOUR face-down monsters.
 - Flip (0M): When this card is flipped face-up: turn 1 monster your opponent controls face-down into Defense Position.
 
@@ -456,6 +483,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Ignition-Infused (1M): Turn this card face-down into Defense Position.
 
 **Lyria Prima Voce** — Monster · LIGHT/Human · Lv3 · 2300/2000 · Rare
+- SS: Wenn du ein verdecktes Monster kontrollierst.
 - Flip (0M): When this card is flipped face-up: 1 monster your opponent controls permanently loses 500 ATK.
 - Quick-Infused (2M): Flip 1 of your face-down monsters face-up.
 
@@ -468,7 +496,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (3M): From your hand or Graveyard.
 
 **Lyria Orchestra Pit** — Artifact · Field · Rare
-- Trigger (0M, once per turn, wenn eines deiner Monster aufgedeckt wird): Draw 1 card. *(über OnFlipFaceUp-Feldtrigger)*
+- Trigger (0M, once per turn, wenn eines deiner Monster aufgedeckt wird): Draw 1 card.
 - Ignition-Infused (2M): Flip 1 of your face-down monsters face-up.
 
 **Lyria, the Encore Eternal** — Reliquary · LIGHT/Human · Lv3 · 2600/2600 · Legendary
@@ -483,12 +511,13 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): They lose 1 more during their next turn.
 
 **Manacle Chancellor of Coin** — Monster · DARK/Myth · Lv3 · 2500/2000 · Rare
+- SS: Wenn der Gegner mehr Monster kontrolliert als du.
 - On Summon (0M): If you have 6+ Mana: draw 1 card.
 - Quick-Infused (3M): Your opponent loses 2 Mana; you gain 1 Mana.
 
 **Manacle Foreclosure** — Spell · Normal · Rare
-- (3M): Destroy 1 monster your opponent controls with ATK less than or equal to 500 × your current Mana. *(skaliert mit dem Konto — als fixe Stufen: bis 2000 ATK)*
-- ↳ Infused (5M): No ATK limit; your opponent loses 1 Mana.
+- (3M): Destroy 1 monster your opponent controls with 2000 or less ATK; your opponent loses 1 Mana.
+- ↳ Infused (5M): No ATK limit.
 
 **Manacle Wage Garnish** — Spell · Quick · Uncommon
 - (1M): Your opponent has 1 less Mana during their next turn; you have 1 more during yours.
@@ -496,7 +525,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Manacle Vault Door** — Artifact · Field · Rare
 - Standby Phase (0M): Gain 1 Mana.
-- Quick-Infused (2M): Your opponent loses 1 Mana. *(einmal pro Zug)*
+- Quick-Infused (2M, once per turn): Your opponent loses 1 Mana.
 
 **Manacle, the Crown Debt** — Reliquary · DARK/Myth · Lv3 · 3000/2400 · Legendary
 - SUMMON: 8+ Mana verfügbar · Kosten 5 Mana
@@ -510,6 +539,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): From your Deck instead (mit 1000 oder weniger ATK).
 
 **Mechination Shift Supervisor** — Monster · EARTH/Mecha · Lv3 · 2300/2100 · Rare
+- SS: Wenn du 2+ Monster kontrollierst.
 - Passiv: Deine anderen MECHA-Monster erhalten 200 ATK.
 - Ignition-Infused (2M, once per turn): 1 MECHA monster you control can attack twice this turn.
 
@@ -537,6 +567,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; banish 1 card from your opponent's Graveyard.
 
 **Mimicrypt Mirrorborn** — Monster · DARK/Demon · Lv3 · 1200/1200 · Rare
+- SS: Wenn der Gegner mehr Monster kontrolliert als du.
 - Quick (0M, once per turn): This card copies the ATK and DEF of 1 monster on the field until the end of this turn.
 - ↳ Infused (2M): It also cannot be destroyed by battle this turn.
 
@@ -554,7 +585,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Mimicrypt, the Faceless Court** — Reliquary · DARK/Demon · Lv3 · 1500/1500 · Legendary
 - SUMMON: Gegner-Friedhof hält 10+ Karten · Kosten 3 Mana
-- On Summon (0M): This card copies the ATK and DEF of the strongest monster on the field until the end of this turn. *(Zielwahl: 1 Monster)*
+- On Summon (0M): This card copies the ATK and DEF of 1 monster on the field until the end of this turn.
 - Ignition-Infused (3M): Take control of 1 monster your opponent controls until the End Phase.
 
 ## Paperbound (DARK/Human) — Verwaltungs-Lockdown
@@ -564,6 +595,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (1M): It also cannot change its battle position this turn.
 
 **Paperbound Head of Department** — Monster · DARK/Human · Lv3 · 2200/2500 · Rare
+- SS: Wenn der Gegner mehr Monster kontrolliert als du.
 - On Summon (0M): Your opponent cannot Special Summon for the rest of this turn.
 - Quick-Infused (2M): Change 1 monster your opponent controls to Defense Position; it cannot change its position this turn.
 
@@ -591,6 +623,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): From your Deck instead; draw 1 card.
 
 **Powderkeg Demolitionist** — Monster · FIRE/Mecha · Lv3 · 2300/1800 · Rare
+- SS: Wenn du ein Artefakt kontrollierst.
 - Passiv: Gains 200 ATK for each of your Artifacts on the field.
 - Quick-Infused (2M): Destroy 1 Artifact you control; destroy 1 Spell or Artifact your opponent controls.
 
@@ -615,9 +648,10 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Redactor Proofreader** — Monster · DARK/Human · Lv1 · 800/1000 · Common
 - Trigger (0M, once per turn, wenn der Gegner außerhalb seiner Draw Phase zieht): Gain 1 Mana.
-- ↳ Infused (1M): Also draw 1 card. *(nur wenn der Trigger feuert)*
+- ↳ Infused (1M): Also draw 1 card.
 
 **Redactor Chief Censor** — Monster · DARK/Human · Lv3 · 2400/2000 · Rare
+- SS: Wenn der Gegner mehr Handkarten hat als du.
 - Trigger (0M, once per turn, wenn der Gegner außerhalb seiner Draw Phase zieht): Send the top 2 cards of their Deck to the Graveyard.
 - Ignition-Infused (2M): Your opponent draws 1 card. *(füttert das eigene Straf-Netz)*
 
@@ -645,6 +679,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Hand-Ignition-Infused (1M): Send this card from your hand to the Graveyard; add 1 "Sacrilegion" card from your Deck to your hand.
 
 **Sacrilegion Grand Sacrist** — Monster · LIGHT/Dragon · Lv3 · 2300/2100 · Rare
+- SS: Wenn 4+ Karten in deinem Friedhof liegen.
 - Passiv: Zählt beim Reliquary-Tribut als 2 Monster.
 - On Summon (0M): Add 1 "Sacrilegion" card from your Graveyard to your hand.
 
@@ -672,6 +707,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - On Summon (0M): Add 1 Level 1 WIND monster from your Graveyard to your hand.
 
 **Sleightwind Curtainjumper** — Monster · WIND/Demon · Lv3 · 2200/1900 · Rare
+- SS: Wenn der Gegner mehr Handkarten hat als du.
 - HandQuick (0M, once per turn): Discard this card from your hand; 1 monster your opponent controls loses 500 ATK until the end of this turn.
 - Ignition-Infused (2M): Return 1 monster your opponent controls with 1500 or less ATK to its owner's hand.
 
@@ -680,7 +716,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (3M): Also draw 1 card.
 
 **Sleightwind Rigged Deck** — Spell · Normal · Uncommon
-- (1M): Discard up to 2 cards; draw that many plus 1. *(als feste Stufen: discard 2, draw 3)*
+- (1M): Discard 2 cards; draw 3.
 - ↳ Infused (2M): Also gain 1 Mana.
 
 **Sleightwind False Bottom** — Artifact · Field · Rare
@@ -690,7 +726,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 **Sleightwind, the Perfect Trick** — Reliquary · WIND/Demon · Lv3 · 2700/2300 · Legendary
 - SUMMON: 5+ Karten in deinem Friedhof und der Gegner kontrolliert mehr Monster als du · Kosten 3 Mana
 - On Summon (0M): Return up to 2 monsters your opponent controls with 2000 or less ATK to their owner's hand.
-- HandQuick wäre hier sinnfrei — stattdessen Quick-Infused (2M): Add 1 monster from your Graveyard to your hand.
+- Quick-Infused (2M): Add 1 monster from your Graveyard to your hand.
 
 ## Slowburn (FIRE/Human) — Charged-Zünder
 
@@ -699,6 +735,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Graveyard-Ignition-Infused (2M): Banish this card from your Graveyard; return 1 "Slowburn" Spell from your Graveyard to your hand.
 
 **Slowburn Emberlord** — Monster · FIRE/Human · Lv3 · 2200/1800 · Rare
+- SS: Wenn du eine verdeckte Karte kontrollierst.
 - Passiv: Deine anderen „Slowburn"-Monster erhalten 300 DEF.
 - Ignition-Infused (3M, once per turn): Trigger the CHARGED effect of 1 of your set "Slowburn" Spells that was set before this turn.
 
@@ -721,11 +758,11 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 ## Snugglet (bunt/Beast+Animal) — Kuschel-Kreis
 
-**Snugglet Nightlight** — Monster · LIGHT/Beast · Lv1 · 500/1000 · Common *(Buddy: bufft „Snugglet Nightcap")*
+**Snugglet Nightlight** — Monster · LIGHT/Beast · Lv1 · 500/1000 · Common
 - Passiv: „Snugglet Nightcap" erhält 400 DEF. Feld-Limit: max. 3 „Snugglet".
 - On Summon (0M): Add 1 "Snugglet" monster from your Deck to your hand.
 
-**Snugglet Nightcap** — Monster · DARK/Animal · Lv1 · 900/500 · Common *(Buddy: bufft „Snugglet Nightlight")*
+**Snugglet Nightcap** — Monster · DARK/Animal · Lv1 · 900/500 · Common
 - Passiv: „Snugglet Nightlight" erhält 400 ATK. Feld-Limit: max. 3 „Snugglet".
 - On Summon (0M): You can Special Summon 1 "Snugglet" monster from your hand.
 
@@ -754,6 +791,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - Quick-Infused (2M): Return this card to your hand; 1 monster your opponent controls loses 400 ATK until the end of this turn.
 
 **Tidebound Deepcaller** — Monster · WATER/Myth · Lv3 · 2200/2100 · Rare
+- SS: Wenn der Gegner mehr Monster kontrolliert als du.
 - On Summon (0M): Return 1 Spell or Artifact your opponent controls to the hand.
 - ↳ Infused (3M): Also return 1 monster with 1500 or less ATK.
 
@@ -771,7 +809,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 **Tidebound, the King Tide** — Reliquary · WATER/Myth · Lv3 · 2800/2600 · Legendary
 - SUMMON: 5+ Karten in deinem Friedhof · Kosten 3 Mana
-- On Summon (0M): Return up to 2 cards your opponent controls to their owner's hand.
+- On Summon (0M): Return 1 card your opponent controls to its owner's hand.
 - Quick-Infused (3M): Return 1 monster on the field to its owner's hand.
 
 ## Trapline (EARTH/Human) — Fallen-Ketten
@@ -781,6 +819,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (2M): Set it directly instead (sofort scharf).
 
 **Trapline Jawsmith** — Monster · EARTH/Human · Lv3 · 2100/2200 · Rare
+- SS: Wenn 4+ Karten in deinem Friedhof liegen.
 - Passiv: Gains 200 DEF for each Spell in your Graveyard.
 - Ignition-Infused (1M, once per turn): Set 1 "Trapline" Quick Spell from your hand face-down; draw 1 card.
 
@@ -793,7 +832,7 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 - ↳ Infused (4M): Destroy it instead (bei 2000 oder weniger ATK); then you may Set 1 "Trapline" from your hand.
 
 **Trapline Toolshed** — Artifact · Field · Rare
-- Standby Phase (0M): Set 1 "Trapline" Quick Spell from your Graveyard face-down. *(Recycling statt Deck — Basecamp setzt aus dem Deck)*
+- Standby Phase (0M): Set 1 "Trapline" Quick Spell from your Graveyard face-down.
 - Ignition-Infused (2M): Draw 1 card.
 
 **Trapline, the Silent Season** — Reliquary · EARTH/Human · Lv3 · 2400/2600 · Legendary
@@ -804,10 +843,12 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 ## Wyldpack (WIND/Beast) — Rudel-Schwarm
 
 **Wyldpack Denmother** — Monster · WIND/Beast · Lv2 · 1200/1700 · Uncommon
+- SS: Wenn du ein anderes offenes WIND-Monster kontrollierst.
 - On Summon (0M): You can Special Summon 1 Level 1 "Wyldpack" monster from your Graveyard.
 - ↳ Infused (2M): Up to 2 instead.
 
 **Wyldpack Loneshadow** — Monster · WIND/Beast · Lv3 · 2400/1600 · Rare
+- SS: Wenn du 2+ Monster kontrollierst.
 - Passiv: Doppelangriff, solange ein anderes eigenes WIND-Monster offen liegt.
 - On Summon (0M): If you control 3+ monsters: this card gains 400 ATK until the end of this turn.
 
@@ -832,17 +873,16 @@ Rarities: Monster/Spells Common–Rare, Artifacts Rare, Reliquaries Legendary.
 
 ## Hinweise zur Umsetzung (nach Freigabe)
 
-1. **Engine:** Fast alles läuft über vorhandene Bausteine. Drei Kleinigkeiten
-   sind neu und günstig: (a) ein Trigger „wenn ein eigenes Artefakt zerstört
-   wird" (Dead Man's Switch — Analogie zu OnOwnMonsterDestroyed), (b) ein
-   Feld-Trigger „wenn eines deiner Monster aufgedeckt wird" (Lyria Orchestra
-   Pit — Analogie zu OnOwnMonsterBounced), (c) „Set aus dem Friedhof" für
-   Spells (Hexweaver Tapestry, Trapline Toolshed — Analogie zum Deck-Set).
-   Falls du sie nicht willst, nenne ich Ersatz-Effekte.
-2. **Heavenly Highest Choir:** Falls kein „LP über X"-Requirement gewünscht,
-   nehme ich „2+ Heavenly-Monster + 5 Mana verfügbar".
-3. **Manacle Foreclosure:** Die Mana-Skalierung wird als feste Stufe gebaut
-   (≤2000 ATK), der Flavor bleibt im Text.
-4. Reihenfolge beim Bauen: 3 Wellen à 10 Archetypes (60 Karten je Welle),
-   nach jeder Welle Kompilierung + Bot-Probe + Test-Server-Export.
+1. **Special-Summon-Bedingungen** nutzen die vorhandenen selfSummon-Bausteine
+   (Name/Attribut auf dem Feld, Gegner-Monsterzahl, verdeckte Karte, Artefakt,
+   gemillt, Friedhofs-Zähler). Alle greifen automatisch unter der globalen
+   Once-per-turn-Regel für Self-Summons.
+2. **Drei kleine Engine-Ergänzungen** stecken weiterhin drin (billige
+   Analogien zu vorhandenen Triggern): (a) „eigenes Artefakt zerstört"-Trigger
+   (Dead Man's Switch), (b) „eigenes Monster aufgedeckt"-Feldtrigger (Lyria
+   Orchestra Pit), (c) „Spell aus dem Friedhof setzen" (Hexweaver Tapestry,
+   Trapline Toolshed, Slowburn Inevitable Spark). Sag Bescheid, falls du sie
+   nicht willst — dann nenne ich Ersatz-Effekte.
+3. Reihenfolge beim Bauen: 3 Wellen à 10 Archetypes (je 60 Karten), nach
+   jeder Welle Kompilierung + Bot-Probe + Test-Server-Export.
 
