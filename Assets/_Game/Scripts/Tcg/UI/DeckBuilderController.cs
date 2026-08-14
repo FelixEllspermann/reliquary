@@ -1051,18 +1051,43 @@ namespace Rouge.Tcg.UI
             RefreshSaveButton();
         }
 
+        private Coroutine poolBuildRoutine;
+
         private void RebuildPool()
         {
             if (poolContent == null) return;
 
+            // Bei ~750 Karten friert ein synchroner Aufbau den ersten Frame sichtbar
+            // ein (jede Kachel zieht beim ersten Zugriff ihre Textur von der Platte).
+            // Deshalb gestaffelt: die erste Ladung füllt den sichtbaren Bereich
+            // sofort, der Rest streamt über die folgenden Frames nach.
+            if (poolBuildRoutine != null) { StopCoroutine(poolBuildRoutine); poolBuildRoutine = null; }
+            if (isActiveAndEnabled)
+                poolBuildRoutine = StartCoroutine(RebuildPoolIncremental());
+            else
+                RebuildPoolNow();
+        }
+
+        private System.Collections.IEnumerator RebuildPoolIncremental()
+        {
             var filtered = pool.Where(c => c != null && PassesFilter(c)).ToList();
             var sorted = SortedPool(filtered);
 
+            if (poolCountText != null)
+            {
+                // In der Sammlung steht dazu, wie viele verschiedene Karten man schon hat
+                string ownedInfo = CollectionMode
+                    ? $" · <color=#F3DDA4>{pool.Count(c => c != null && PlayerProfile.Owned(c.cardName) > 0)}</color> owned"
+                    : "";
+                poolCountText.text = $"{filtered.Count} of {pool.Count} cards{ownedInfo}";
+            }
+
             // Je Karte eine Kachel pro besessenem Finish — so lassen sich gezielt
             // die zwei Static einbauen statt der schlichten Exemplare. Kacheln
-            // werden recycelt: bei ~500 Karten wäre Zerstören und Neubauen bei
+            // werden recycelt: bei ~750 Karten wäre Zerstören und Neubauen bei
             // jedem Tastendruck im Suchfeld unbezahlbar.
-            int used = 0;
+            const int tilesPerFrame = 48;
+            int used = 0, sinceYield = 0;
             foreach (var card in sorted)
                 foreach (var finish in FinishRowsFor(card))
                 {
@@ -1074,19 +1099,24 @@ namespace Rouge.Tcg.UI
                         AddCard, RemoveCard, Select, BanLimitOf(card), CollectionMode,
                         isNew: CollectionMode && PlayerProfile.IsNew(card.cardName));
                     used++;
+                    if (++sinceYield >= tilesPerFrame)
+                    {
+                        sinceYield = 0;
+                        yield return null;
+                    }
                 }
             for (int i = used; i < poolTiles.Count; i++)
                 if (poolTiles[i] != null) poolTiles[i].gameObject.SetActive(false);
 
-            if (poolCountText != null)
-            {
-                // In der Sammlung steht dazu, wie viele verschiedene Karten man schon hat
-                string ownedInfo = CollectionMode
-                    ? $" · <color=#F3DDA4>{pool.Count(c => c != null && PlayerProfile.Owned(c.cardName) > 0)}</color> owned"
-                    : "";
-                poolCountText.text = $"{filtered.Count} of {pool.Count} cards{ownedInfo}";
-            }
             HighlightSelection();
+            poolBuildRoutine = null;
+        }
+
+        /// <summary>Synchroner Fallback (inaktives Objekt kann keine Coroutine fahren).</summary>
+        private void RebuildPoolNow()
+        {
+            var routine = RebuildPoolIncremental();
+            while (routine.MoveNext()) { }
         }
 
         private CollectionCardTile CreatePoolTile()
