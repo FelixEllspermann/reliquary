@@ -1,6 +1,32 @@
-# Design-Vorschlag: 50 neue Generics — „THE SMALL PRINT"
+# Design-Vorschlag v2: 51 neue Generics — „THE SMALL PRINT"
 
-**Status: ENTWURF — wartet auf Felix' Freigabe. Noch nichts gebaut.**
+**Status: ENTWURF v2 — Felix' Feedback eingearbeitet, wartet auf Freigabe. Noch nichts gebaut.**
+
+Änderungen gegenüber v1 (Felix' Feedback):
+- **Loaded Dice**: zweimal werfen, Ergebnis aussuchen (bei zwei Tails keine Wahl → Karte zerstört).
+- **The Usurer's Terms**: Schuld ist immer aktivierbar; jedes Mana, das nächste
+  Runde nicht gedeckt ist, kostet 1500 LP — steht so auf der Karte. Gilt als
+  allgemeine Regel für Mana-Schulden.
+- **NEU: Skimmed Off the Top** (Quick): Mana, das der Gegner sich verschaffen
+  will, geht an dich. Damit 51 Karten — wenn du bei 50 bleiben willst, würde ich
+  *Sworn Statement* streichen (teuerster UI-Baustein).
+- **Ledger of Small Debts**: Infused kostet jetzt 1 Mana + 1500 LP für 2 Karten
+  (statt 2 Mana für 1 Mana).
+- **Grale**: kein Massen-Lien mehr — Infused erhöht stattdessen EIN Lien um 1;
+  Stats runter auf 1300/1000.
+- **Aurel**: LP-Kosten werden 0 statt halbiert; dafür SUMMON härter
+  (LP ≤ 4000 · 3+ Spells im Friedhof · 3 Mana).
+- **The White Elephant** 1000 LP je Standby, **Gift Horse** 800 LP.
+- **Left Hand of the Hangman**: Zerstörung des Gegenübers feuert bei Summon
+  UND nach jeder Bewegung — die Bewegung ist damit das wiederholbare Removal.
+- **Load-Bearing Wall**: Positionswechsel-Effekte des Gegners dürfen sie
+  targeten, verpuffen aber (das Passiv gewinnt).
+- **Castellan**: „bewegen" ist nacheinander gemeint (jede Bewegung macht eine
+  Zone frei) — Text entsprechend präzisiert.
+- **High Stakes**: nur in der gegnerischen Main Phase aktivierbar, wirkt bis
+  zum Ende DEINES nächsten Zuges (also beide Battle Phases).
+- Deine Antworten: Lien wiederkehrend ✓ · Zonen-Bewegung ✓ · Namen ✓ ·
+  Set-Name „The Small Print" ✓.
 
 Leitidee des Sets: **Jeder Handel hat Bedingungen.** Alle 50 Karten sind
 Generics (kein Archetype), und jede starke Wirkung trägt ihr Kleingedrucktes —
@@ -26,8 +52,8 @@ global once per turn je Name) · ↳ = Coupled-Infused (Upgrade des Effekts
 darüber) · sonst Standalone-Infused · Normal-Effekte 0 Mana, Infused kostet,
 Spells min. 1 Mana. ⚙ = braucht neuen Engine-Baustein (Liste am Ende).
 
-Verteilung: 21 Monster · 15 Spells · 8 Artifacts · 6 Reliquaries.
-Rarities: 6 Legendary · 22 Rare · 22 Uncommon.
+Verteilung: 21 Monster · 16 Spells · 8 Artifacts · 6 Reliquaries.
+Rarities: 6 Legendary · 23 Rare · 22 Uncommon.
 
 ---
 
@@ -43,9 +69,9 @@ sondern immer die Kehrseite — das ist der eingebaute Preis.
 - *Kleingedrucktes*: 50 % (bzw. 25 %) Eigentor.
 
 **Loaded Dice** — Artifact · Player · Rare
-- Passiv ⚙: Once per turn, when one of your coin flips lands Tails, flip it again — the second result stands.
+- Passiv ⚙: Once per turn, when you flip a coin, flip it twice instead and choose which result counts.
 - Ignition-Infused (2M, once per turn): Flip a coin: Heads — draw 1 card. Tails — discard 1 card.
-- *Kleingedrucktes*: If the re-flip lands Tails as well, destroy this card. (Das Glück ist aufgebraucht.)
+- *Kleingedrucktes*: If both flips land Tails, there is nothing to choose — and this card is destroyed. (Das Glück ist aufgebraucht.)
 
 **Grinner, Who Plays the Table** — Monster · DARK/Demon · Lv2 · 1600/1200 · Rare
 - SS: Wenn der Gegner ein Monster kontrolliert.
@@ -73,13 +99,14 @@ sondern immer die Kehrseite — das ist der eingebaute Preis.
 - Ignition-Infused (2M, once per turn): Flip a coin: Heads — this card can attack twice this Battle Phase. Tails — it cannot attack this turn.
 - *Kleingedrucktes*: Der Boardwipe ist ein echter Münzwurf — Alles oder Nichts.
 
-## II. DEBTS — LP als Kosten, Mana-Schulden, Pfandrecht (10 Karten)
+## II. DEBTS — LP als Kosten, Mana-Schulden, Pfandrecht (11 Karten)
 
 Neue Mechaniken ⚙: **Pay LP** als Kosten (statt oder zusätzlich zu Mana) ·
-**Mana-Schuld** (nächster Zug weniger Mana, Umkehrung von „Sleep On It") ·
-**Lien (Pfandrecht)**: ein Marker auf einem Monster — *in jeder Standby Phase
-seines Kontrolleurs zahlt er 1 Mana oder es wird zerstört.* Sichtbar als
-Badge wie der Totenkopf.
+**Mana-Schuld** (nächster Zug weniger Mana, Umkehrung von „Sleep On It";
+Regel: *was nicht gedeckt ist, kostet 1500 LP je Mana* — steht auf jeder Karte
+mit Schuld) · **Lien (Pfandrecht)**: ein Marker mit Betrag auf einem Monster —
+*in jeder Standby Phase seines Kontrolleurs zahlt er den Betrag in Mana oder es
+wird zerstört.* Sichtbar als Badge wie der Totenkopf, mit Zahl.
 
 **Blood for Ink** — Spell · Normal · Uncommon
 - (1M + pay 1000 LP): Draw 2 cards.
@@ -87,9 +114,13 @@ Badge wie der Totenkopf.
 - *Kleingedrucktes*: Once per turn (beide Stufen zusammen). Karten gegen Leben.
 
 **The Usurer's Terms** — Spell · Normal · Rare
-- (1M): Gain 4 Mana this turn. During your next turn, you have 3 less Mana.
-- ↳ Infused (1M): Gain 6 Mana this turn. During your next turn, you have 5 less Mana.
-- *Kleingedrucktes*: Der Kredit wird nächste Runde fällig — Tempo jetzt, Loch danach.
+- (1M): Gain 4 Mana this turn. During your next turn, you have 3 less Mana. If you cannot cover the full amount, you lose 1500 LP for each Mana you could not pay.
+- ↳ Infused (1M): Gain 6 Mana this turn; next turn 5 less — same terms.
+- *Kleingedrucktes*: Der Kredit wird nächste Runde fällig — Tempo jetzt, Loch danach; wer nicht zahlen kann, zahlt mit Leben.
+
+**Skimmed Off the Top** — Spell · Quick · Rare *(neu, Felix' Wunsch)*
+- (1M) ⚙: Activate when your opponent activates a card or effect that would give them Mana: they gain none of it — you gain that Mana instead. (Mana skimmed during your opponent's turn is added to your next turn.)
+- *Kleingedrucktes*: Nur als Antwort auf einen Mana-Effekt aktivierbar; ohne Ziel tot auf der Hand.
 
 **Pound of Flesh** — Spell · Normal · Rare
 - (1M + pay 1500 LP): Destroy 1 monster your opponent controls with 1500 or less ATK.
@@ -102,14 +133,14 @@ Badge wie der Totenkopf.
 
 **Ledger of Small Debts** — Artifact · Field · Rare
 - Ignition (0M, once per turn): Pay 800 LP: gain 1 Mana this turn.
-- Ignition-Infused (2M, once per turn): Pay 1500 LP: draw 1 card and gain 1 Mana this turn.
+- Ignition-Infused (1M, once per turn): Pay 1500 LP: draw 2 cards.
 - *Kleingedrucktes* ⚙: When your LP are 2000 or less, this card is destroyed. (Der Eintreiber kommt.)
 
-**Grale, Who Collects on Sundays** — Monster · DARK/Human · Lv2 · 1800/1300 · Rare
+**Grale, Who Collects on Sundays** — Monster · DARK/Human · Lv2 · 1300/1000 · Rare
 - SS ⚙: Wenn deine LP niedriger sind als die des Gegners.
-- On Summon (0M): Place a Lien on 1 monster your opponent controls. (During each of its controller's Standby Phases, they pay 1 Mana or it is destroyed.)
-- Ignition-Infused (3M, once per turn): Place a Lien on every monster your opponent controls.
-- *Kleingedrucktes*: Der Gegner entscheidet jede Runde neu — zahlen oder verlieren; du hast dafür 1800 ATK ohne Schutz.
+- On Summon (0M): Place a Lien of 1 on 1 monster your opponent controls. (During each of its controller's Standby Phases, they pay that much Mana or it is destroyed.)
+- Ignition-Infused (2M, once per turn) ⚙: Raise the Lien on 1 monster your opponent controls by 1. (Zinsen: aus 1 Mana je Runde werden 2, dann 3 …)
+- *Kleingedrucktes*: Ein Lien pro Beschwörung, danach nur noch Zinsen — und ein 1300er-Body, der sich nicht selbst schützen kann.
 
 **Vetch, Who Never Forgets a Face** — Monster · DARK/Human · Lv1 · 900/900 · Uncommon
 - SS ⚙: Wenn ein Monster mit Lien auf dem Feld liegt.
@@ -122,10 +153,10 @@ Badge wie der Totenkopf.
 - On Summon (0M): Destroy 1 monster with a Lien; draw 1 card.
 
 **Aurel, Who Collects at Midnight** — Reliquary · DARK/Angel · Lv3 · 2600/2200 · Rare
-- SUMMON: Deine LP niedriger als die des Gegners · Kosten 2 Mana
+- SUMMON: Deine LP 4000 oder weniger · 3+ Spells in deinem Friedhof · Kosten 3 Mana
 - On Summon (0M): Gain 500 LP for each Spell in your Graveyard (max 2500).
-- Passiv ⚙: LP costs you pay are halved.
-- *Kleingedrucktes*: Cannot attack the turn it is Summoned. Macht Blood for Ink / Pound of Flesh zum Schnäppchen — aber nur, wenn du hinten liegst.
+- Passiv ⚙: LP costs you pay are reduced to 0.
+- *Kleingedrucktes*: Cannot attack the turn it is Summoned. Blood for Ink, Pound of Flesh, Sign in Blood, Blood Oath werden gratis — aber erst, wenn du fast am Boden liegst und schon gezaubert hast.
 
 **Blood Oath** — Monster · DARK/Human · Lv2 · 1700/1500 · Uncommon
 - Cannot be Normal Summoned/Set ⚙.
@@ -154,12 +185,12 @@ wenn es das Feld verlässt) · **beide Hände mischen und neu ziehen**.
 **The White Elephant** — Monster · EARTH/Animal · Lv3 · 3000/2600 · Rare
 - Cannot be Normal Summoned/Set ⚙ · cannot be Tributed ⚙.
 - SS: Wenn der Gegner 2+ Monster kontrolliert.
-- Passiv ⚙: During each of its controller's Standby Phases, its controller loses 800 LP.
+- Passiv ⚙: During each of its controller's Standby Phases, its controller loses 1000 LP.
 - *Kleingedrucktes*: 3000 ATK ohne Bedingung — aber wer ihn hält, blutet. Verschenken (Fair Trade, Broker) ist der Plan.
 
 **Gift Horse** — Monster · WIND/Animal · Lv2 · 1900/1900 · Uncommon
 - SS: Wenn 3+ Karten in deinem Friedhof liegen.
-- Passiv ⚙: Cannot attack · cannot be Tributed · during each of its controller's Standby Phases, its controller loses 500 LP.
+- Passiv ⚙: Cannot attack · cannot be Tributed · during each of its controller's Standby Phases, its controller loses 800 LP.
 - Ignition (0M, once per turn) ⚙: Give control of this card to your opponent; draw 2 cards.
 - *Kleingedrucktes*: Solange er bei dir steht, kostet er dich; erst als Geschenk wird er stark.
 
@@ -206,9 +237,9 @@ Zonenwahl beim Beschwören gibt es schon — jetzt zählt sie.
 
 **Left Hand of the Hangman** — Monster · DARK/Demon · Lv2 · 1800/1000 · Rare
 - SS: Wenn der Gegner 2+ Monster kontrolliert.
-- On Summon (0M) ⚙: Destroy the face-up monster facing this card if its ATK is lower than this card's.
-- Ignition-Infused (2M, once per turn): Move this card to an adjacent empty zone; it cannot attack this turn.
-- *Kleingedrucktes*: Removal per Platzwahl — der Gegner sieht kommen, wohin du ihn stellst.
+- Trigger (0M) ⚙: When this card is Summoned or moves to another zone: destroy the face-up monster facing it if its ATK is lower than this card's.
+- Ignition-Infused (2M, once per turn) ⚙: Move this card to an adjacent empty zone; it cannot attack this turn.
+- *Kleingedrucktes*: Jede Bewegung ist ein neuer Strang — aber nur gegen offene Monster unter 1800 ATK, nur in eine leere Nachbarzone, und der Angriff fällt aus. Der Gegner sieht kommen, wo du hinwillst.
 
 **Rook's Gambit** — Monster · LIGHT/Mecha · Lv1 · 900/1500 · Uncommon
 - Passiv ⚙: The monster facing this card loses 600 ATK. This card cannot attack.
@@ -224,7 +255,7 @@ Zonenwahl beim Beschwören gibt es schon — jetzt zählt sie.
 **Load-Bearing Wall** — Monster · EARTH/Mecha · Lv3 · 2400/2600 · Rare
 - Cannot be Normal Summoned/Set ⚙.
 - SS ⚙: Wenn du 2+ Monster kontrollierst.
-- Passiv ⚙: Monsters adjacent to this card cannot be destroyed by card effects. This card cannot change its battle position.
+- Passiv ⚙: Monsters adjacent to this card cannot be destroyed by card effects. This card cannot change its battle position — effects that would change it can still target it, but do nothing.
 - On Destroyed (0M) ⚙: The monsters adjacent to it permanently lose 500 ATK and 500 DEF.
 - *Kleingedrucktes*: Fällt die Wand, fällt der Putz mit.
 
@@ -234,7 +265,7 @@ Zonenwahl beim Beschwören gibt es schon — jetzt zählt sie.
 
 **Castellan of the Long Wall** — Reliquary · EARTH/Human · Lv3 · 2200/3000 · Rare
 - SUMMON: 3+ Monster unter deiner Kontrolle · Kosten 2 Mana
-- On Summon (0M) ⚙: Move up to 2 monsters you control to other empty monster zones.
+- On Summon (0M) ⚙: Move 1 monster you control to an empty monster zone; then you may move a second one. (Nacheinander — die erste Bewegung macht eine Zone frei, also reicht die eine freie Zone neben ihm.)
 - Passiv ⚙: Monsters adjacent to this card cannot be destroyed by battle. This card cannot attack.
 
 ## V. OATHS — Once per Duel, Schwüre, harte Auflagen (7 Karten)
@@ -294,8 +325,8 @@ Angriff mit halbem Schaden** · **doppelter Kampfschaden** (Zug-Flag) ·
 - Passiv ⚙: Can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.
 
 **High Stakes** — Spell · Quick · Rare
-- (2M) ⚙: For the rest of this turn, all battle damage to either player is doubled.
-- *Kleingedrucktes*: Gilt für beide — wer sich verrechnet, verliert doppelt.
+- (2M) ⚙: Only during your opponent's Main Phase: until the end of your next turn, all battle damage to either player is doubled.
+- *Kleingedrucktes*: Gilt für beide Battle Phases — erst seine, dann deine. Wer sich verrechnet, verliert doppelt.
 
 **Guild Tariff** — Artifact · Field · Rare
 - Passiv ⚙: Spells cost 1 more Mana — for both players.
@@ -333,18 +364,18 @@ Ende). Grobe Größe: vergleichbar mit dem 115er-Set-Batch (~15 Bausteine).
 
 | # | Baustein | Karten |
 |---|----------|--------|
-| 1 | **Münzwurf**: `FlipCoin`-Aktion + Aktions-Gate (nur bei Heads / nur bei Tails) · Passiv Re-Flip (Loaded Dice) · Passiv „Tails zählt als Heads im Rückstand" (House) | 7 |
-| 2 | **LP als Kosten**: `PayLifePoints` (isCost) · SS-Kosten in LP (Blood Oath) · Passiv LP-Kosten halbiert (Aurel) · Passiv „zerstört bei LP ≤ X" (Ledger) | 6 |
-| 3 | **Mana-Schuld**: `DrainSelfManaNextTurn` (Usurer, Pennywhistle) | 2 |
-| 4 | **Lien**: Marker auf Monster, Standby-Toll „1 Mana oder zerstört" (Yes/No wie Emergency Barrier) · `PlaceLienOnTarget` · SS-Bedingung „Lien auf dem Feld" · Passiv „Lien-Monster −500 ATK" · Badge wie Totenkopf | 3 |
+| 1 | **Münzwurf**: `FlipCoin`-Aktion + Aktions-Gate (nur bei Heads / nur bei Tails) · Passiv „zweimal werfen, Ergebnis wählen" (Loaded Dice, Wahl-Prompt) · Passiv „Tails zählt als Heads im Rückstand" (House) | 7 |
+| 2 | **LP als Kosten**: `PayLifePoints` (isCost) · SS-Kosten in LP (Blood Oath) · Passiv LP-Kosten = 0 (Aurel) · Passiv „zerstört bei LP ≤ X" (Ledger) | 6 |
+| 3 | **Mana-Schuld**: `DrainSelfManaNextTurn`; ungedeckter Rest kostet 1500 LP je Mana (Usurer, Pennywhistle) · **Mana-Umleitung**: `RedirectManaFromChainLink` — nur legal als Antwort auf ein gegnerisches Kettenglied mit Mana-Gewinn; in dessen Zug wird es zu Next-Turn-Mana (Skimmed Off the Top) | 3 |
+| 4 | **Lien**: Marker MIT BETRAG auf Monster, Standby-Toll „N Mana oder zerstört" (Yes/No wie Emergency Barrier) · `PlaceLienOnTarget` · `RaiseLienOnTarget` · SS-Bedingung „Lien auf dem Feld" · Passiv „Lien-Monster −500 ATK" · Badge wie Totenkopf mit Zahl | 3 |
 | 5 | **Kontrolle**: `SwapControlWithTarget` · `GiveSelfToOpponent` · Passiv „Kontrolleur verliert X LP je Standby" · `cannot be Tributed` · Reliquary-Req „fremdkontrolliertes Monster auf dem Feld" | 5 |
 | 6 | **Poach**: SS aus dem GEGNER-Friedhof + Instanz-Flag „verbannt, wenn es das Feld verlässt" | 1 |
-| 7 | **Zonen**: Nachbar-/Gegenüber-Helfer · Aura-Filter „nur Nachbarn" / „nur Alleinstehende" · Ziel „adjacent allies" / „facing monster" · `MoveSelfToZone` / `MoveTargetsToZones` · Passiv „Nachbarn effekt-/kampfimmun" | 9 |
-| 8 | **Position**: Trigger `OnPositionChangedSelf` · `ExtraPositionChangeThisTurn` · Passiv „cannot change position" | 3 |
+| 7 | **Zonen**: Nachbar-/Gegenüber-Helfer · Aura-Filter „nur Nachbarn" / „nur Alleinstehende" · Ziel „adjacent allies" / „facing monster" · `MoveSelfToZone` / `MoveTargetToZone` (nacheinander) · Trigger `OnMovedSelf` (Hangman) · Passiv „Nachbarn effekt-/kampfimmun" | 9 |
+| 8 | **Position**: Trigger `OnPositionChangedSelf` · `ExtraPositionChangeThisTurn` · Passiv „cannot change position" (Effekte dürfen targeten, verpuffen) | 3 |
 | 9 | **Once per Duel** (Effekt-Flag, je Spieler+Name) | 2 |
 | 10 | **Beschwörungs-Auflagen**: `cannot be Normal Summoned/Set` · Passiv „du kannst keine anderen Monster spezialbeschwören" · neue SS-Bedingungen: keine eigenen Monster / 2+ eigene Monster / LP niedriger / Handkarten ≤ 2 bzw. ≥ 5 / Gegner-Monster in Defense · Reliquary-Req „leere Hand" | 10 |
 | 11 | **Handkarten-Zähler** (`OwnHandCards` für Passiv-ATK) · Passiv-Immunität „solange Hand ≤ 1" (Ascetic) | 2 |
-| 12 | **Kampf**: Passiv Piercing + `GrantPiercingThisTurn` · Passiv Direktangriff mit halbem Schaden · Zug-Flag „Kampfschaden ×2" · Passiv „cannot attack directly" · Passiv „immun gegen Effektzerstörung" · Ram's-Head-Bruch (Trigger „hat Defense-Monster nicht zerstört") | 6 |
+| 12 | **Kampf**: Passiv Piercing + `GrantPiercingThisTurn` · Passiv Direktangriff mit halbem Schaden · Flag „Kampfschaden ×2 bis Ende deines nächsten Zuges" + Aktivierungs-Gate „nur gegnerische Main Phase" (High Stakes) · Passiv „cannot attack directly" · Passiv „immun gegen Effektzerstörung" · Ram's-Head-Bruch (Trigger „hat Defense-Monster nicht zerstört") | 6 |
 | 13 | **Battle-Phase-Regeln**: `EndBattlePhaseNow` (Parley) · Angriffslimit 1 je Battle Phase + Angreifer-Bonus (Duelist's Code) | 2 |
 | 14 | **Zauberregeln**: Zaubersteuer +1 (beide) + End-Phase-Selbstzerstörung „wenn du gezaubert hast" · „keine weiteren Spells diesen Zug" (Unbroken Oath) · `NegatePreviousChainLink` + destroy (First and Last Word) | 3 |
 | 15 | **Kleinkram**: `SkipOwnNextDrawPhase` (Hessel) · `ShuffleBothHandsRedraw` (Even Exchange) · End-Phase-Handlimit-Zerstörung (Vow of Poverty) · Typ-Deklaration + Top-Reveal (Sworn Statement) | 4 |
@@ -354,14 +385,13 @@ Wenn dir das zu viel Engine ist: am günstigsten zu streichen wären Baustein 15
 ohne Manipulation) und die Zonen-Bewegung (Halloway/Hangman/Rook/Castellan
 bleiben mit Nachbar-/Gegenüber-Passiven trotzdem sinnvoll).
 
-## Fragen an Felix
+## Geklärt (v1-Fragen)
 
-1. **Lien**: wiederkehrend (jede Standby Phase 1 Mana oder zerstört — mein
-   Vorschlag, weil es den Gegner jede Runde neu zwingt) oder einmalig?
-2. **Zonen-Bewegung**: okay, dass Monster ihre Zone wechseln können? Das ist
-   für das Spiel neu, macht aber „facing"/„adjacent" erst richtig lebendig.
-3. **Namen**: alle austauschbar — sag, welche dir nicht schmecken.
-4. **Set-Name** „The Small Print" für Patchnotes/Pack-Text?
+Lien wiederkehrend ✓ · Zonen-Bewegung ✓ · Namen ✓ · Set-Name „The Small Print" ✓.
+
+Offen nur noch: **51 oder 50?** Skimmed Off the Top ist dazugekommen; wenn du
+bei 50 bleiben willst, streiche ich Sworn Statement (einziger Kandidat mit
+eigenem Deklarations-Prompt).
 
 Nach Freigabe: Engine-Bausteine → Builder-Stage (partial, idempotent wie
 WaveSix) → Bot-Proben + Selftest → Test-Deploy → Artwork-Prompts nach
