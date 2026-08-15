@@ -440,13 +440,16 @@ namespace Rouge.Tcg.UI
             negChip.gameObject.SetActive(negated);
             dcChip.gameObject.SetActive(counters > 0);
             if (counters > 0) dcText.text = counters.ToString();
-            lienChip.gameObject.SetActive(lien > 0);
-            if (lien > 0) lienText.text = "LIEN " + lien;
+            if (lienChip != null)
+            {
+                lienChip.gameObject.SetActive(lien > 0);
+                if (lien > 0 && lienText != null) lienText.text = "LIEN " + lien;
+            }
 
             float x = 0f;
             if (negated) { ((RectTransform)negChip.transform).anchoredPosition = new Vector2(x, 0f); x += 42f; }
             if (counters > 0) { ((RectTransform)dcChip.transform).anchoredPosition = new Vector2(x, 0f); x += 38f; }
-            if (lien > 0) ((RectTransform)lienChip.transform).anchoredPosition = new Vector2(x, 0f);
+            if (lien > 0 && lienChip != null) ((RectTransform)lienChip.transform).anchoredPosition = new Vector2(x, 0f);
         }
 
         private void EnsureStatusBadges()
@@ -477,6 +480,10 @@ namespace Rouge.Tcg.UI
             var skullImage = skullGo.GetComponent<Image>();
             skullImage.sprite = SkullSprite();
             skullImage.raycastTarget = false;
+
+            // The Small Print: Pfandrecht — Betrag in Gold auf dunklem Grund
+            lienChip = BuildChip(statusBadgeRoot, "LienChip", new Color(0.55f, 0.42f, 0.14f, 0.95f), 52f, out lienText);
+            lienText.text = "LIEN 1";
         }
 
         private Image BuildChip(RectTransform parent, string name, Color color, float width, out TMP_Text label)

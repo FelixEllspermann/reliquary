@@ -3851,6 +3851,7 @@ namespace Rouge.Tcg
                 if (free.Contains(request.Result)) chosen = request.Result;
             }
 
+            presenter?.RememberOrigin(monster);   // Flug von der alten in die neue Zone
             player.MonsterZones[from] = null;
             player.MonsterZones[chosen] = monster;
             Log($"{monster.Name} moves to zone {chosen + 1}.");
