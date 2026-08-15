@@ -416,13 +416,16 @@ namespace Rouge.Tcg.UI
         private Image negChip;
         private Image dcChip;
         private TMP_Text dcText;
+        private Image lienChip;     // The Small Print: Pfandrecht mit Betrag
+        private TMP_Text lienText;
         private static Sprite cachedSkullSprite;
 
         private void UpdateStatusBadges(RectTransform host, CardInstance instance, bool showBack)
         {
             bool negated = !showBack && instance != null && instance.EffectsNegated;
             int counters = showBack || instance == null ? 0 : instance.DeathCounters;
-            if (!negated && counters <= 0)
+            int lien = showBack || instance == null ? 0 : instance.LienAmount;
+            if (!negated && counters <= 0 && lien <= 0)
             {
                 if (statusBadgeRoot != null) statusBadgeRoot.gameObject.SetActive(false);
                 return;
@@ -437,10 +440,13 @@ namespace Rouge.Tcg.UI
             negChip.gameObject.SetActive(negated);
             dcChip.gameObject.SetActive(counters > 0);
             if (counters > 0) dcText.text = counters.ToString();
+            lienChip.gameObject.SetActive(lien > 0);
+            if (lien > 0) lienText.text = "LIEN " + lien;
 
             float x = 0f;
             if (negated) { ((RectTransform)negChip.transform).anchoredPosition = new Vector2(x, 0f); x += 42f; }
-            if (counters > 0) ((RectTransform)dcChip.transform).anchoredPosition = new Vector2(x, 0f);
+            if (counters > 0) { ((RectTransform)dcChip.transform).anchoredPosition = new Vector2(x, 0f); x += 38f; }
+            if (lien > 0) ((RectTransform)lienChip.transform).anchoredPosition = new Vector2(x, 0f);
         }
 
         private void EnsureStatusBadges()

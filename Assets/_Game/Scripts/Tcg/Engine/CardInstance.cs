@@ -48,6 +48,18 @@ namespace Rouge.Tcg
         /// <summary>Bei Kontrollübernahme: Spieler, an den die Karte in der End Phase zurückgeht.</summary>
         public PlayerState ControlReturnsTo;
 
+        // --- The Small Print ---
+        /// <summary>Pfandrecht: in jeder Standby Phase des Kontrolleurs zahlt er so viel Mana oder die Karte wird zerstört (0 = keins).</summary>
+        public int LienAmount;
+        /// <summary>Gewildert (Poacher's Lantern): verlässt die Karte das Feld, wird sie verbannt statt ins Grab zu gehen.</summary>
+        public bool BanishWhenLeavingField;
+        /// <summary>Piercing bis Zugende (Trample the Line) — dauerhaft über passivePiercing/Ram's Head.</summary>
+        public bool PiercingThisTurn;
+        /// <summary>Skimmed Off the Top: der Mana-Gewinn dieses Kettenglieds geht an diesen Spieler.</summary>
+        public PlayerState ManaRedirectedTo;
+        /// <summary>Loaded Dice: der Re-Flip ist einmal pro Zug — auf der Karte gemerkt.</summary>
+        public bool CoinChooseUsedThisTurn;
+
         /// <summary>Laufzeit-Kopie (The Mirror Hour): verschwindet in der End Phase.</summary>
         public bool IsTemporaryCopy;
 
@@ -151,6 +163,13 @@ namespace Rouge.Tcg
                         if (m != null && m.Definition != null && m.Definition.isToken) tokens++;
                     return tokens;
                 }
+                case EffectCountKind.OwnHandCards: return player.Hand.Count;
+                case EffectCountKind.OwnGraveyardSpells:
+                {
+                    int spells = 0;
+                    foreach (var c in player.Graveyard) if (c.SpellData != null) spells++;
+                    return spells;
+                }
                 default: return 0;
             }
         }
@@ -173,6 +192,12 @@ namespace Rouge.Tcg
                     var def = source != null ? source.Definition : null;
                     if (def == null) continue;
                     if (source.FaceDown) continue;                      // verdeckte Quellen strahlen nicht
+
+                    // The Small Print: Zonen-Auren ohne klassischen Aura-Wert
+                    if (atk && def.auraCrowdedAtkPenalty > 0 && source != this && HasAdjacentMonster()) total -= def.auraCrowdedAtkPenalty;
+                    if (atk && def.passiveStolenAtkBonus > 0 && Owner != OriginalOwner) total += def.passiveStolenAtkBonus;
+                    if (atk && def.passiveLienAtkPenalty > 0 && LienAmount > 0) total -= def.passiveLienAtkPenalty;
+
                     if (def.auraExcludesSelf && source == this) continue;
                     int bonus = atk ? def.auraAtkBonus : def.auraDefBonus;
                     if (bonus == 0) continue;
@@ -181,10 +206,82 @@ namespace Rouge.Tcg
                     if (def.auraUseTypeFilter && MonsterData.monsterType != def.auraTypeFilter) continue;
                     if (def.auraLevelFilter > 0 && MonsterData.level != def.auraLevelFilter) continue;
                     if (def.auraOnlyFaceDown && !FaceDown) continue;
+                    if (def.auraAdjacentOnly && !IsAdjacentTo(source)) continue;
+                    if (def.auraAloneOnly && HasAdjacentMonster()) continue;
                     total += bonus;
                 }
             }
+
+            // Gegnerische Quellen: das Monster GEGENÜBER (Rook's Gambit) und Pfandrecht-Strafen (Bailiff)
+            if (Owner.Opponent != null)
+            {
+                int index = ZoneIndex;
+                foreach (var source in Owner.Opponent.MonsterZones)
+                {
+                    var def = source != null ? source.Definition : null;
+                    if (def == null || source.FaceDown) continue;
+                    if (atk && def.facingAtkPenalty > 0 && index >= 0 && source.ZoneIndex == index) total -= def.facingAtkPenalty;
+                    if (atk && def.passiveLienAtkPenalty > 0 && LienAmount > 0) total -= def.passiveLienAtkPenalty;
+                }
+            }
             return total;
+        }
+
+        // ---------- The Small Print: Zonen-Geometrie ----------
+
+        /// <summary>Index dieser Karte in den Monsterzonen ihres Kontrolleurs (-1 = nicht auf dem Feld).</summary>
+        public int ZoneIndex => Owner != null && Zone == ZoneType.MonsterZone
+            ? System.Array.IndexOf(Owner.MonsterZones, this) : -1;
+
+        /// <summary>Liegen beide auf derselben Seite direkt nebeneinander?</summary>
+        public bool IsAdjacentTo(CardInstance other)
+        {
+            if (other == null || other == this || other.Owner != Owner) return false;
+            int a = ZoneIndex, b = other.ZoneIndex;
+            return a >= 0 && b >= 0 && System.Math.Abs(a - b) == 1;
+        }
+
+        /// <summary>Hat diese Karte links oder rechts ein Monster (gleiche Seite)?</summary>
+        public bool HasAdjacentMonster()
+        {
+            int index = ZoneIndex;
+            if (index < 0) return false;
+            var zones = Owner.MonsterZones;
+            return (index > 0 && zones[index - 1] != null) || (index < zones.Length - 1 && zones[index + 1] != null);
+        }
+
+        /// <summary>Die eigenen Nachbarn (0–2 Karten).</summary>
+        public List<CardInstance> AdjacentMonsters()
+        {
+            var result = new List<CardInstance>();
+            int index = ZoneIndex;
+            if (index < 0) return result;
+            var zones = Owner.MonsterZones;
+            if (index > 0 && zones[index - 1] != null) result.Add(zones[index - 1]);
+            if (index < zones.Length - 1 && zones[index + 1] != null) result.Add(zones[index + 1]);
+            return result;
+        }
+
+        /// <summary>Das gegnerische Monster in der Zone gegenüber (null = keins).</summary>
+        public CardInstance FacingMonster()
+        {
+            int index = ZoneIndex;
+            if (index < 0 || Owner.Opponent == null) return null;
+            var zones = Owner.Opponent.MonsterZones;
+            return index < zones.Length ? zones[index] : null;
+        }
+
+        /// <summary>Piercing dauerhaft (Passiv, Ram's Head) oder bis Zugende (Trample the Line)?</summary>
+        public bool HasPiercing
+        {
+            get
+            {
+                if (PiercingThisTurn) return true;
+                if (Definition != null && Definition.passivePiercing) return true;
+                foreach (var artifact in EquippedArtifacts)
+                    if (artifact.Definition != null && artifact.Definition.passiveBearerPiercing) return true;
+                return false;
+            }
         }
 
         /// <summary>Der ursprüngliche Besitzer — dahin kehrt die Karte zurück (Friedhof/Hand/Verbannung), auch wenn sie gerade kontrolliert wird.</summary>

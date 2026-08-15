@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: CastellanoftheLongWall
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
+  cardName: Castellan of the Long Wall
+  artwork: {fileID: 0}
+  rarity: 2
+  isToken: 0
+  effects:
+  - label: Man the Wall
+    text: 'When this card is Summoned: Move 1 other monster you control to an empty
+      monster zone; then you may move a second one.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
+    onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
+    actions:
+    - type: 112
+      isCost: 0
+      amount: 1
+      target: 2
+      targetExcludesSelf: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+    - type: 112
+      isCost: 0
+      amount: 1
+      target: 2
+      targetExcludesSelf: 1
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 1
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
+  passiveBlockReliquarySummons: 0
+  passiveNoBattleDestroy: 0
+  passiveUntargetable: 0
+  passiveNoBattleDamageInvolving: 0
+  passiveRedirectBattleDamage: 0
+  passiveDeathCounterLimit: 0
+  passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 1
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
+  level: 3
+  attribute: 5
+  monsterType: 1
+  atk: 2200
+  def: 3000
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
+  selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0
+  summonText: "You control 3+ monsters \u2014 pay 2 Mana."
+  summonManaCost: 2
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 3
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  reqNoReliquariesOnFieldOrBanish: 0
+  reqReliquariesInGraveAtLeast: 0
+  reqOpponentMonsterAtkAtLeast: 0
+  reqHandEmpty: 0
+  reqControlChangedOnField: 0
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0

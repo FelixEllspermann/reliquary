@@ -1,6 +1,24 @@
 # Design-Vorschlag v2: 51 neue Generics — „THE SMALL PRINT"
 
-**Status: ENTWURF v2 — Felix' Feedback eingearbeitet, wartet auf Freigabe. Noch nichts gebaut.**
+**Status: FREIGEGEBEN und GEBAUT (2026-08-15) — Builder `Assets/_Game/Scripts/Editor/SmallPrint.cs`
+(Menü „Rouge TCG/Build The Small Print (51 Generics)"), Engine-Bausteine in
+DuelActions/DuelManager, Prompts in `KARTEN-PROMPTS-SMALL-PRINT.md`. Liegt auf dem
+Testserver (7778/7901); Prod erst auf Go. Kleine Abweichungen beim Bau (siehe „Umsetzung" unten).**
+
+## Umsetzung — Abweichungen vom Text
+
+- **Heads You Lose:** Ziel wird NACH dem Wurf gewählt (Heads: 1 Monster auf dem Feld,
+  Tails: 1 eigenes) — Münzwurf-Ziele werden generell erst nach dem Wurf gewählt.
+- **The House Always Wins:** „Flip 3 coins" statt „je Zauber im Friedhof (max 3)" — die
+  Beschwörung verlangt ohnehin 3+ Zauber, das ist dieselbe Zahl.
+- **Blood for Ink:** kein „Once per turn" (die Engine kennt kein hartes OPT je Kartenname
+  für Zauber; 1000 LP je 2 Karten trägt das).
+- **First and Last Word:** nur „negate" — ein annullierter Zauber geht ohnehin ins Grab.
+- **Lock Shields (Infused):** „cannot be destroyed this turn" (Kampf UND Effekt).
+- **Volte-Face:** SS-Bedingung ist die bestehende „a face-down monster is on the field".
+- **Load-Bearing Wall:** der Zerstörungs-Effekt ist ein Passiv-Text (feuert automatisch).
+- **Sabine** darf im Beschwörungszug angreifen (sonst wäre „All or Nothing" tot).
+- **Gift Horse:** nur der Besitzer darf verschenken (kein Ping-Pong).
 
 Änderungen gegenüber v1 (Felix' Feedback):
 - **Loaded Dice**: zweimal werfen, Ergebnis aussuchen (bei zwei Tails keine Wahl → Karte zerstört).

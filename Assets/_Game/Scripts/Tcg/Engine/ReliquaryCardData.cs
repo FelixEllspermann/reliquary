@@ -86,6 +86,13 @@ namespace Rouge.Tcg
         [Tooltip("Der Gegner kontrolliert ein Monster mit mindestens so viel ATK (0 = aus)")]
         public int reqOpponentMonsterAtkAtLeast;
 
+        [Header("The Small Print")]
+        [Tooltip("Du hast KEINE Handkarten (The Ascetic of the Ninth Stair)")]
+        public bool reqHandEmpty;
+
+        [Tooltip("Ein Monster auf dem Feld wird von jemand anderem kontrolliert als seinem Besitzer (Broker of Both Sides)")]
+        public bool reqControlChangedOnField;
+
         [Header("Zusatzkosten (bei der Beschwörung bezahlt)")]
         [Tooltip("Banishe so viele Monster aus deinem Friedhof (0 = aus)")]
         [Range(0, 10)] public int costBanishMonstersFromGrave;

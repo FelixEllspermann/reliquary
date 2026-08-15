@@ -65,6 +65,24 @@ namespace Rouge.Tcg
         public readonly System.Collections.Generic.HashSet<string> SelfSummonedNamesThisTurn
             = new System.Collections.Generic.HashSet<string>();
 
+        // --- The Small Print ---
+        /// <summary>
+        /// Eigene Mana-Schuld (Usurer's Terms, Pennywhistle): wird zu Beginn des
+        /// nächsten Zuges vom Vorrat abgezogen — was der Vorrat nicht deckt,
+        /// kostet 1500 LP je Mana. Getrennt von ManaDebt (gegnerische Drains
+        /// bleiben bei 0 stehen, ohne LP-Folgen).
+        /// </summary>
+        public int LoanDebt;
+        /// <summary>Hessel (Infused): die nächste eigene Draw Phase entfällt.</summary>
+        public bool SkipNextDrawPhase;
+        /// <summary>The Unbroken Oath: diesen Zug keine weiteren Zauber.</summary>
+        public bool SpellsLockedThisTurn;
+        /// <summary>The Duelist's Code: erklärte Angriffe in der laufenden Battle Phase.</summary>
+        public int AttacksDeclaredThisBattle;
+        /// <summary>Once per Duel: "Kartenname#Effektindex" — verbraucht für den Rest des Duells.</summary>
+        public readonly System.Collections.Generic.HashSet<string> OncePerDuelUsed
+            = new System.Collections.Generic.HashSet<string>();
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

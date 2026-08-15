@@ -69,6 +69,10 @@ namespace Rouge.Tcg
 
         [Tooltip("Spezialbeschwörungen dieser Aktion kommen in Verteidigungsposition")]
         public bool summonInDefense;
+
+        [Tooltip("The Small Print: diese Aktion läuft nur, wenn der letzte Münzwurf des Effekts " +
+                 "(FlipCoin) so fiel — Heads oder Tails. None = immer.")]
+        public CoinGate coinGate = CoinGate.None;
     }
 
     [Serializable]
@@ -133,6 +137,16 @@ namespace Rouge.Tcg
         [Tooltip("Friedhofs-Trigger zündet NUR, wenn die Karte aus dem EXTRA DECK in den Friedhof " +
                  "ging (The Last Asemir).")]
         public bool onlyFromExtraDeck;
+
+        [Tooltip("The Small Print: einmal pro DUELL je Spieler und Kartenname (The Unbroken Oath, " +
+                 "First and Last Word).")]
+        public bool oncePerDuel;
+
+        [Tooltip("The Small Print: nur in einer MAIN PHASE anwählbar (High Stakes: die gegnerische).")]
+        public bool onlyDuringMainPhase;
+
+        [Tooltip("The Small Print: nur während einer BATTLE PHASE anwählbar (Parley).")]
+        public bool onlyDuringBattlePhase;
 
         [Header("Aktivierungs-Bedingungen (0/false = keine Bedingung)")]
         [Tooltip("Nur aktivierbar mit mindestens so viel verfügbarem Mana (zusätzlich zu den Kosten)")]

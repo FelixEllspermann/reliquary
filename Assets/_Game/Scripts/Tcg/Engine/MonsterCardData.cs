@@ -65,6 +65,34 @@ namespace Rouge.Tcg
         [Tooltip("Kampfposition der Selbst-Spezialbeschwörung")]
         public BattlePosition selfSummonPosition = BattlePosition.Defense;
 
+        [Header("The Small Print: weitere Bedingungen")]
+        [Tooltip("Bedingung: du kontrollierst KEINE Monster (Sworn to the Gate, Stone That Would Not Break)")]
+        public bool selfSummonRequiresNoOwnMonsters;
+
+        [Range(0, 5)]
+        [Tooltip("Bedingung: du kontrollierst mindestens so viele Monster (0 = egal; Halloway, Load-Bearing Wall)")]
+        public int selfSummonRequiresOwnMonsters;
+
+        [Tooltip("Bedingung: deine LP sind niedriger als die des Gegners (Grale)")]
+        public bool selfSummonRequiresLifeBelowOpponent;
+
+        [Range(0, 8)]
+        [Tooltip("Bedingung: höchstens so viele Handkarten (0 = aus; Nell: 2). Zählt OHNE diese Karte.")]
+        public int selfSummonRequiresHandAtMost;
+
+        [Range(0, 8)]
+        [Tooltip("Bedingung: mindestens so viele Handkarten (0 = aus; Marrow: 5). Zählt OHNE diese Karte.")]
+        public int selfSummonRequiresHandAtLeast;
+
+        [Tooltip("Bedingung: der Gegner kontrolliert ein Monster in Verteidigungsposition (Bristleback Aurochs)")]
+        public bool selfSummonRequiresOpponentDefenseMonster;
+
+        [Tooltip("Bedingung: ein Monster mit Pfandrecht liegt auf dem Feld (Vetch, Bailiff)")]
+        public bool selfSummonRequiresLienOnField;
+
+        [Tooltip("Kosten der Selbst-Spezialbeschwörung in LP (Blood Oath: 1000). 0 = keine.")]
+        public int selfSummonLifeCost;
+
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -99,13 +127,21 @@ namespace Rouge.Tcg
                 parts.Add(string.IsNullOrEmpty(selfSummonRequiresGraveNamed)
                     ? $"you have {selfSummonRequiresGraveNamedCount}+ cards in your Graveyard"
                     : $"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
+            if (selfSummonRequiresNoOwnMonsters) parts.Add("you control no monsters");
+            if (selfSummonRequiresOwnMonsters > 0) parts.Add($"you control {selfSummonRequiresOwnMonsters}+ monsters");
+            if (selfSummonRequiresLifeBelowOpponent) parts.Add("your LP are lower than your opponent's");
+            if (selfSummonRequiresHandAtMost > 0) parts.Add($"you have {selfSummonRequiresHandAtMost} or fewer other cards in your hand");
+            if (selfSummonRequiresHandAtLeast > 0) parts.Add($"you have {selfSummonRequiresHandAtLeast}+ other cards in your hand");
+            if (selfSummonRequiresOpponentDefenseMonster) parts.Add("your opponent controls a Defense Position monster");
+            if (selfSummonRequiresLienOnField) parts.Add("a monster with a Lien is on the field");
 
             // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
             // der Kartentext sagt es jedes Mal dazu.
             string position = selfSummonPosition == BattlePosition.Defense ? " in Defense Position" : "";
+            string cost = selfSummonLifeCost > 0 ? $" by paying {selfSummonLifeCost} LP" : "";
             if (parts.Count == 0)
-                return $"You can Special Summon this card from your hand{position} (once per turn).";
-            return $"While {string.Join(" and ", parts)}: You can Special Summon this card from your hand{position} (once per turn).";
+                return $"You can Special Summon this card from your hand{position}{cost} (once per turn).";
+            return $"While {string.Join(" and ", parts)}: You can Special Summon this card from your hand{position}{cost} (once per turn).";
         }
 
         /// <summary>Anzeige-Farbe des Attributs — Pip-Farben aus dem Reliquary-Design-Handoff.</summary>

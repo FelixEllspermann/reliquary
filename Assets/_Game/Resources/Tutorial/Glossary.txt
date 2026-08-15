@@ -92,3 +92,23 @@ Until the end of the turn :: A temporary change that is undone in the End Phase.
 Vanilla :: A monster without effects. Some cards support exactly those.
 Zone :: A slot on the table. Five Monster Zones, three Spell Zones and two Artifact Zones per duelist. Where you place a card is your choice.
 Spell Zone :: One of three slots where a Set spell waits face-down until you activate it. Three per duelist.
+Adjacent :: The monsters in the two zones directly left and right of a card, on the same side of the table. Auras and protections "for adjacent monsters" care about exactly those — leave a gap and they no longer apply.
+Facing :: The opponent's monster in the zone straight across from a card (zone 1 faces zone 1, and so on). Effects that hit "the monster facing this card" hit nothing if that zone is empty.
+Move :: An effect that shifts a monster into another empty Monster Zone on its side. Moving changes who is adjacent and who is facing — some cards trigger when they move.
+Coin flip :: An effect flips a coin: Heads or Tails, each equally likely. The card says what each result does — Tails is never "nothing happens", it is the other side of the bet. Targets for a result are chosen after the flip.
+Heads :: The good side of a coin flip — usually.
+Tails :: The other side of a coin flip. Some cards let you re-flip or count Tails as Heads.
+LP cost :: Life Points paid as a price ("Pay 1 Mana and 1000 LP: …"). You must keep at least 1 LP to pay. Different from damage: some cards make LP costs free, none make damage free.
+Mana debt :: "During your next turn you have N less Mana." Debt is collected at the start of that turn; every Mana you cannot cover costs 1500 LP instead.
+Lien :: A marker with an amount on a monster, shown as a LIEN badge. During each Standby Phase of its controller, they pay that much Mana or the monster is destroyed. Liens can be raised, and they stay when control changes.
+Swap control :: Two monsters change sides permanently — no return in the End Phase, unlike "take control until the end of the turn". The one you receive cannot attack that turn.
+Poach :: To Special Summon a monster from the OTHER player's Graveyard onto your own field. A poached monster is banished if it leaves the field.
+Piercing :: When a piercing attacker attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage anyway.
+Once per Duel :: A hard limit: the effect can be used once for the whole duel per player and card name — a second copy does not reset it.
+Cannot be Normal Summoned :: The monster only comes to the field by its own Special Summon condition or another effect — never by a Normal Summon or Set.
+Cannot be Tributed :: The monster cannot be paid as a tribute for a Normal Summon or a Reliquary. Useful when it is a gift you want the opponent to keep.
+Spell tax :: While a Guild Tariff is face-up, every Spell costs 1 more Mana for both duelists — even the ones that would be free.
+Attack limit :: While The Duelist's Code is face-up, each duelist may declare only one attack per Battle Phase.
+Double battle damage :: While High Stakes is running, every battle damage to either duelist is doubled — the opponent's Battle Phase and your own.
+Declare a type :: You name Monster, Spell or Artifact before revealing cards; matches are kept, the rest go to the Graveyard.
+Direct attack (halved) :: A monster that may attack directly past the opponent's monsters, but deals only half its ATK that way.

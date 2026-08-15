@@ -438,6 +438,7 @@ namespace Rouge.DuelHost
                 def = visible ? card.CurrentDef : 0,
                 negated = visible && card.EffectsNegated,
                 deathCounters = visible ? card.DeathCounters : 0,
+                lienAmount = visible ? card.LienAmount : 0,
                 // Auch das Aussehen ist verdeckte Information: eine funkelnde
                 // Rückseite verriete, welche Karte dort liegt.
                 finish = visible ? (int)card.Finish : 0

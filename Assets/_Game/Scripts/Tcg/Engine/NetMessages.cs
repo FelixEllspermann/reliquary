@@ -189,6 +189,7 @@ namespace Rouge.Tcg.Net
         public int def;
         public bool negated;
         public int deathCounters;
+        public int lienAmount;     // The Small Print: Pfandrecht-Betrag (0 = keins)
 
         // Ausführung des Exemplars (CardFinish). Nur bei sichtbaren Karten
         // gefüllt — eine verdeckte Karte am Funkeln zu erkennen wäre verraten,

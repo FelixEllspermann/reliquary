@@ -1,0 +1,37 @@
+{
+  "name": "The Small Print (Probe)",
+  "hero": "Ignis the Pyromancer",
+  "cards": [
+    "Grinner, Who Plays the Table", "Grinner, Who Plays the Table",
+    "Pennywhistle, Who Calls It in the Air", "Pennywhistle, Who Calls It in the Air",
+    "Nell, Who Bets the Rent", "Nell, Who Bets the Rent",
+    "Grale, Who Collects on Sundays", "Grale, Who Collects on Sundays",
+    "Vetch, Who Never Forgets a Face", "Vetch, Who Never Forgets a Face",
+    "The Bailiff at the Door", "The Bailiff at the Door",
+    "Blood Oath", "Blood Oath",
+    "The White Elephant", "The White Elephant",
+    "Gift Horse", "Gift Horse",
+    "The Changeling Cradle", "The Changeling Cradle",
+    "Hessel of the Crossroads", "Hessel of the Crossroads",
+    "Serjeant Halloway", "Serjeant Halloway",
+    "Left Hand of the Hangman", "Left Hand of the Hangman",
+    "Rook's Gambit", "Rook's Gambit",
+    "Volte-Face", "Volte-Face",
+    "Load-Bearing Wall", "Load-Bearing Wall",
+    "Sworn to the Gate", "Sworn to the Gate",
+    "Marrow, Who Holds Every Card", "Marrow, Who Holds Every Card",
+    "Chimney Sweep", "Chimney Sweep",
+    "Stone That Would Not Break", "Stone That Would Not Break",
+    "Bristleback Aurochs", "Bristleback Aurochs",
+    "Heads You Lose", "Blood for Ink", "The Usurer's Terms", "Skimmed Off the Top",
+    "Pound of Flesh", "Sign in Blood", "Fair Trade", "Even Exchange",
+    "Lock Shields", "Stare Down", "The Unbroken Oath", "First and Last Word",
+    "Sworn Statement", "High Stakes", "Trample the Line", "Parley",
+    "Loaded Dice", "Ledger of Small Debts", "Poacher's Lantern", "The Empty Chair",
+    "Vow of Poverty", "Ram's Head", "Guild Tariff", "The Duelist's Code"
+  ],
+  "extra": [
+    "The House Always Wins", "Sabine, Who Wagers the Crown", "Aurel, Who Collects at Midnight",
+    "The Broker of Both Sides", "Castellan of the Long Wall", "The Ascetic of the Ninth Stair"
+  ]
+}

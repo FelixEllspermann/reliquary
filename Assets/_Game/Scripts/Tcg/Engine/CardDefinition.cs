@@ -123,6 +123,109 @@ namespace Rouge.Tcg
                  "(The Liberator)")]
         public bool passiveOpponentMustSetSpells;
 
+        [Header("The Small Print (August 2026)")]
+        [Tooltip("Aura wirkt nur auf die Monster in den NACHBARZONEN dieser Karte (Serjeant Halloway)")]
+        public bool auraAdjacentOnly;
+
+        [Tooltip("Aura wirkt nur auf eigene Monster OHNE Nachbarn (The Empty Chair); " +
+                 "auraCrowdedAtkPenalty trifft die mit Nachbarn")]
+        public bool auraAloneOnly;
+
+        [Tooltip(">0: eigene Monster MIT Nachbarn verlieren so viel ATK (The Empty Chair)")]
+        public int auraCrowdedAtkPenalty;
+
+        [Tooltip(">0: das gegnerische Monster GEGENÜBER dieser Karte verliert so viel ATK (Rook's Gambit)")]
+        public int facingAtkPenalty;
+
+        [Tooltip("Nachbarn dieser Karte können nicht durch Karteneffekte zerstört werden (Load-Bearing Wall)")]
+        public bool passiveAdjacentNoEffectDestroy;
+
+        [Tooltip("Nachbarn dieser Karte können nicht durch Kampf zerstört werden (Castellan of the Long Wall)")]
+        public bool passiveAdjacentNoBattleDestroy;
+
+        [Tooltip(">0: wird diese Karte zerstört, verlieren ihre Nachbarn dauerhaft N ATK und DEF (Load-Bearing Wall)")]
+        public int passiveAdjacentDebuffOnDestroy;
+
+        [Tooltip("Diese Karte kann nicht durch Karteneffekte zerstört werden (Stone That Would Not Break)")]
+        public bool passiveNoEffectDestroy;
+
+        [Tooltip("Diese Karte kann nicht als Tribut gezahlt werden (White Elephant, Gift Horse, Stone)")]
+        public bool passiveCannotBeTributed;
+
+        [Tooltip("Diese Karte kann ihre Kampfposition nicht wechseln — Effekte, die es versuchen, verpuffen " +
+                 "(Load-Bearing Wall, Stone That Would Not Break)")]
+        public bool passiveCannotChangePosition;
+
+        [Tooltip("Hat diese Karte in diesem Zug die Position gewechselt, kann sie nicht angreifen (Volte-Face)")]
+        public bool passiveNoAttackAfterPositionChange;
+
+        [Tooltip("Kann nicht als Normalbeschwörung beschworen oder gesetzt werden — nur per eigener " +
+                 "Spezialbeschwörung (White Elephant, Blood Oath, Sworn to the Gate, Load-Bearing Wall)")]
+        public bool passiveNoNormalSummon;
+
+        [Tooltip(">0: in jeder Standby Phase des KONTROLLEURS verliert dieser N LP (White Elephant, Gift Horse)")]
+        public int passiveControllerStandbyLpLoss;
+
+        [Tooltip("Solange auf dem Feld: der Besitzer kann keine ANDEREN Monster spezialbeschwören (Sworn to the Gate)")]
+        public bool passiveOwnerNoOtherSpecialSummons;
+
+        [Tooltip("Solange der Besitzer keine anderen Monster kontrolliert: nicht durch Kampf oder Effekte " +
+                 "zerstörbar (Sworn to the Gate)")]
+        public bool passiveLoneImmunity;
+
+        [Tooltip("Solange der Besitzer 1 oder weniger Handkarten hat: nicht zielbar, nicht durch Effekte " +
+                 "zerstörbar (The Ascetic of the Ninth Stair)")]
+        public bool passiveLowHandImmunity;
+
+        [Tooltip("Piercing: Kampfschaden gegen Verteidigungsposition in Höhe der Differenz (Bristleback Aurochs)")]
+        public bool passivePiercing;
+
+        [Tooltip("Ausgerüstetes Monster erhält Piercing (Ram's Head)")]
+        public bool passiveBearerPiercing;
+
+        [Tooltip("Ram's Head: greift der Träger ein Verteidigungs-Monster an und zerstört es nicht, " +
+                 "wird dieses Artefakt zerstört")]
+        public bool passiveBreakOnFailedPierce;
+
+        [Tooltip("Darf direkt angreifen, auch wenn der Gegner Monster kontrolliert; Kampfschaden " +
+                 "direkter Angriffe halbiert (Chimney Sweep)")]
+        public bool passiveDirectAttackHalved;
+
+        [Tooltip("Kann nie direkt angreifen (Bristleback Aurochs)")]
+        public bool passiveNoDirectAttack;
+
+        [Tooltip("Field: Zauber kosten für BEIDE Spieler 1 Mana mehr; wer selbst gezaubert hat, verliert " +
+                 "die Karte in seiner End Phase (Guild Tariff)")]
+        public bool passiveSpellTaxBoth;
+
+        [Tooltip("Field: jeder Spieler darf pro Battle Phase nur EINEN Angriff erklären; Angreifer +N ATK " +
+                 "während des Kampfes (The Duelist's Code)")]
+        public int passiveOneAttackBonus;
+
+        [Tooltip("Player: Standby +N Mana; End Phase mit mehr als passiveHandCapForSurvival Handkarten " +
+                 "zerstört die Karte (Vow of Poverty)")]
+        public int passiveStandbyBonusMana;
+        public int passiveHandCapForSurvival;
+
+        [Tooltip(">0: sinken die LP des Besitzers auf N oder darunter, wird die Karte zerstört (Ledger of Small Debts)")]
+        public int passiveDestroyWhenLifeAtMost;
+
+        [Tooltip("Player: LP-Kosten des Besitzers werden 0 (Aurel, Who Collects at Midnight)")]
+        public bool passiveLifeCostsFree;
+
+        [Tooltip("Player: Münzwürfe des Besitzers zweimal werfen und Ergebnis wählen; zwei Tails zerstören " +
+                 "die Karte (Loaded Dice)")]
+        public bool passiveCoinChoose;
+
+        [Tooltip("Liegen die LP des Besitzers unter denen des Gegners, zählt Tails als Heads (The House Always Wins)")]
+        public bool passiveTailsAsHeadsWhenBehind;
+
+        [Tooltip("Monster mit Pfandrecht verlieren so viel ATK (The Bailiff at the Door)")]
+        public int passiveLienAtkPenalty;
+
+        [Tooltip("Monster, die der Besitzer kontrolliert, aber nicht besitzt, erhalten so viel ATK (Broker of Both Sides)")]
+        public int passiveStolenAtkBonus;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -217,6 +320,70 @@ namespace Rouge.Tcg
             if (passiveOpponentMustSetSpells)
                 lines.Add("While this card is face-up on the field, your opponent must Set Spells before activating them.");
 
+            // --- The Small Print ---
+            if (auraAdjacentOnly && (auraAtkBonus != 0 || auraDefBonus != 0))
+                lines.Add("(The aura above applies only to monsters adjacent to this card.)");
+            if (auraAloneOnly && auraAtkBonus != 0)
+                lines.Add("(The aura above applies only to your monsters with no adjacent monster.)");
+            if (auraCrowdedAtkPenalty > 0)
+                lines.Add($"Your monsters with an adjacent monster lose {auraCrowdedAtkPenalty} ATK.");
+            if (facingAtkPenalty > 0)
+                lines.Add($"The monster facing this card loses {facingAtkPenalty} ATK.");
+            if (passiveAdjacentNoEffectDestroy)
+                lines.Add("Monsters adjacent to this card cannot be destroyed by card effects.");
+            if (passiveAdjacentNoBattleDestroy)
+                lines.Add("Monsters adjacent to this card cannot be destroyed by battle.");
+            if (passiveAdjacentDebuffOnDestroy > 0)
+                lines.Add($"When this card is destroyed: the monsters adjacent to it permanently lose {passiveAdjacentDebuffOnDestroy} ATK and DEF.");
+            if (passiveNoEffectDestroy)
+                lines.Add("This card cannot be destroyed by card effects.");
+            if (passiveCannotBeTributed)
+                lines.Add("This card cannot be Tributed.");
+            if (passiveCannotChangePosition)
+                lines.Add("This card cannot change its battle position.");
+            if (passiveNoAttackAfterPositionChange)
+                lines.Add("If this card changed its battle position this turn, it cannot attack.");
+            if (passiveNoNormalSummon)
+                lines.Add("Cannot be Normal Summoned or Set.");
+            if (passiveControllerStandbyLpLoss > 0)
+                lines.Add($"During each of its controller's Standby Phases: its controller loses {passiveControllerStandbyLpLoss} LP.");
+            if (passiveOwnerNoOtherSpecialSummons)
+                lines.Add("While this card is on the field, you cannot Special Summon other monsters.");
+            if (passiveLoneImmunity)
+                lines.Add("While you control no other monsters, this card cannot be destroyed by battle or by card effects.");
+            if (passiveLowHandImmunity)
+                lines.Add("While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.");
+            if (passivePiercing)
+                lines.Add("Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.");
+            if (passiveBearerPiercing)
+                lines.Add("The equipped monster inflicts piercing battle damage.");
+            if (passiveBreakOnFailedPierce)
+                lines.Add("If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.");
+            if (passiveDirectAttackHalved)
+                lines.Add("This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.");
+            if (passiveNoDirectAttack)
+                lines.Add("This card cannot attack directly.");
+            if (passiveSpellTaxBoth)
+                lines.Add("Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.");
+            if (passiveOneAttackBonus > 0)
+                lines.Add($"Each player may declare only one attack per Battle Phase. Attacking monsters gain {passiveOneAttackBonus} ATK during the battle.");
+            if (passiveStandbyBonusMana > 0)
+                lines.Add($"During your Standby Phase: gain {passiveStandbyBonusMana} additional Mana this turn.");
+            if (passiveHandCapForSurvival > 0)
+                lines.Add($"During your End Phase, if you hold more than {passiveHandCapForSurvival} cards, destroy this card.");
+            if (passiveDestroyWhenLifeAtMost > 0)
+                lines.Add($"When your LP are {passiveDestroyWhenLifeAtMost} or less, this card is destroyed.");
+            if (passiveLifeCostsFree)
+                lines.Add("LP costs you pay are reduced to 0.");
+            if (passiveCoinChoose)
+                lines.Add("Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.");
+            if (passiveTailsAsHeadsWhenBehind)
+                lines.Add("While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.");
+            if (passiveLienAtkPenalty > 0)
+                lines.Add($"Monsters with a Lien lose {passiveLienAtkPenalty} ATK.");
+            if (passiveStolenAtkBonus > 0)
+                lines.Add($"Monsters you control but do not own gain {passiveStolenAtkBonus} ATK.");
+
             return lines;
         }
 
@@ -235,6 +402,8 @@ namespace Rouge.Tcg
                 case EffectCountKind.EquippedArtifactsOnSelf: return "its equipped Artifacts";
                 case EffectCountKind.OpponentFaceDownMonsters: return "your opponent's face-down monsters";
                 case EffectCountKind.OpponentIllusionTokens: return "the Illusion Tokens your opponent controls";
+                case EffectCountKind.OwnHandCards: return "the cards in your hand";
+                case EffectCountKind.OwnGraveyardSpells: return "the Spells in your Graveyard";
                 default: return "your monsters on the field";
             }
         }

@@ -64,7 +64,11 @@ namespace Rouge.Tcg
 
         // --- 6er-Welle (August 2026) — NUR ANHÄNGEN, Assets speichern Zahlenwerte ---
         OnOwnArtifactDestroyed, // wenn irgendein eigenes Artefakt zerstört wird (Failsafe Dead Man's Switch)
-        OnOwnMonsterFlipped     // wenn irgendein eigenes Monster aufgedeckt wird (Lyria Orchestra Pit)
+        OnOwnMonsterFlipped,    // wenn irgendein eigenes Monster aufgedeckt wird (Lyria Orchestra Pit)
+
+        // --- The Small Print (August 2026) ---
+        OnPositionChangedSelf,  // DIESE Karte wechselt offen die Kampfposition (Volte-Face)
+        OnMovedSelf             // DIESE Karte ist in eine andere Zone gezogen (Left Hand of the Hangman)
     }
 
     public enum EffectActionType
@@ -192,8 +196,43 @@ namespace Rouge.Tcg
         ReturnAllBanishedToOwners,      // JEDE verbannte Karte kehrt zurück: Reliquaries ins Extra Deck, Rest ins Deck
         SimultaneousDeckCull,           // Cull the Weak: beide decken je 1 Deck-Monster auf — schwächeres stirbt, stärkeres kommt (Besitzer nimmt Differenz als Schaden)
         PlaySelfFromHand,               // Emergency Barrier: die Quellkarte (Artefakt) wird aus der Hand aufs Feld gespielt
-        SetTargetSpellFromGraveyard     // Ziel-Zauber aus dem EIGENEN Friedhof verdeckt setzen (sofort aktivierbar)
+        SetTargetSpellFromGraveyard,    // Ziel-Zauber aus dem EIGENEN Friedhof verdeckt setzen (sofort aktivierbar)
+
+        // --- The Small Print (August 2026) — NUR ANHÄNGEN ---
+        FlipCoin,                       // Münze werfen; folgende Aktionen mit coinGate Heads/Tails laufen nur bei passendem Ergebnis
+        PayLifePoints,                  // amount LP zahlen (als Kosten gedacht; Aurel setzt LP-Kosten auf 0)
+        DrainSelfManaNextTurn,          // eigene Mana-Schuld: nächster Zug amount weniger; ungedeckter Rest kostet 1500 LP je Mana
+        PlaceLienOnTarget,              // Pfandrecht amount auf Zielmonster (Standby des Kontrolleurs: zahlen oder zerstört)
+        RaiseLienOnTarget,              // bestehendes Pfandrecht des Ziels um amount erhöhen
+        SwapControlWithTarget,          // dauerhafter Kontrolltausch: erstes Ziel (eigenes) gegen zweites Ziel (gegnerisches)
+        GiveSelfToOpponent,             // Quellkarte wechselt dauerhaft zum Gegner (Gift Horse)
+        SpecialSummonFromOpponentGraveyard, // Ziel aus dem GEGNER-Friedhof aufs eigene Feld; verbannt, wenn es das Feld verlässt
+        MoveSelfToZone,                 // Quellkarte in eine leere eigene Monsterzone ziehen (amount 1 = nur Nachbarzone)
+        MoveTargetToZone,               // Zielmonster (eigenes) in eine leere Zone ziehen
+        ExtraPositionChangeThisTurn,    // Quellkarte darf diesen Zug noch einmal die Position wechseln
+        SkipOwnNextDrawPhase,           // der Aktivierende zieht in seiner nächsten Draw Phase nicht
+        ShuffleBothHandsRedraw,         // beide mischen die Hand ins Deck und ziehen gleich viele; amount = Extrakarten für den Aktivierenden
+        DeclareTypeRevealTop,           // Kartenart deklarieren, oberste amount Karten aufdecken: Treffer auf die Hand, Rest ins Grab
+        RedirectManaFromChainLink,      // Mana-Gewinn des vorigen (gegnerischen) Kettenglieds geht an den Aktivierenden
+        NegatePreviousChainLink,        // annulliert NUR das direkt vorige Kettenglied (gegnerischer Zauber)
+        EndBattlePhaseNow,              // die laufende Battle Phase endet sofort (Parley)
+        DoubleBattleDamageUntilNextTurnEnd, // Kampfschaden ×2 bis zum Ende des NÄCHSTEN eigenen Zuges (High Stakes)
+        GrantPiercingThisTurn,          // Ziel(e) fügen diesen Zug Piercing-Kampfschaden zu
+        LockOwnSpellsThisTurn,          // der Aktivierende kann diesen Zug keine weiteren Zauber aktivieren (Unbroken Oath)
+        DebuffAdjacentPermanent,        // Nachbarn der Quellkarte verlieren dauerhaft amount ATK und DEF (Load-Bearing Wall)
+        DamageSelf,                     // Schaden an die EIGENEN LP — kein Kostenzahlen, Aurel hilft nicht (House Always Wins: Tails)
+        DestroyAllEnemyMonsters,        // alle gegnerischen Monster zerstören (Sabine: Heads)
+        DestroyAllOtherOwnMonsters,     // alle ANDEREN eigenen Monster zerstören (Sabine: Tails)
+        SpecialSummonTargetFromDeckSuppressed, // Ziel aus dem Deck beschwören: Effekte bis Zugende annulliert, kein Angriff diesen Zug (Sign in Blood)
+        PickTargetOnly,                 // nur Zielwahl, die Aktion selbst tut nichts — die NÄCHSTE Aktion nutzt das Ziel (Fair Trade: eigenes Monster)
+        NegateAllOpponentCards,         // alle offenen gegnerischen Feldkarten sind bis Zugende annulliert (The Unbroken Oath)
+        GainAtkOfFacingMonsterEot,      // Ziel erhält bis Zugende amount % des ATK des Monsters GEGENÜBER (Stare Down)
+        DiscardSelfRandom,              // der Aktivierende wirft amount zufällige Handkarten ab (Grinner: Tails)
+        HealSelfPerCount                // amount LP je gezählter Karte (countKind), höchstens targetCount Zählungen (Aurel)
     }
+
+    /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>
+    public enum CoinGate { None, Heads, Tails }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
     public enum EffectCountKind
@@ -206,7 +245,9 @@ namespace Rouge.Tcg
         OwnMonstersOnField,     // eigene Monster auf dem Feld
         EquippedArtifactsOnSelf, // an DIESER Karte ausgerüstete Artefakte (nur Passiv-Skalierung)
         OpponentFaceDownMonsters, // verdeckte Monster des Gegners (Night Terror)
-        OpponentIllusionTokens  // Illusion-Tokens auf dem gegnerischen Feld (Gaslight Charlatan)
+        OpponentIllusionTokens, // Illusion-Tokens auf dem gegnerischen Feld (Gaslight Charlatan)
+        OwnHandCards,           // eigene Handkarten (Marrow, Who Holds Every Card)
+        OwnGraveyardSpells      // Zauber im eigenen Friedhof (The House Always Wins)
     }
 
     public enum TargetKind
@@ -255,7 +296,16 @@ namespace Rouge.Tcg
 
         // --- Dark-Angel-Paket ---
         ExtraDeckReliquarySelf,    // Reliquary im EIGENEN Extra Deck (z.B. als Verbannungs-Kosten)
-        EnemyReliquaryOnField      // gegnerisches Reliquary auf dem Feld
+        EnemyReliquaryOnField,     // gegnerisches Reliquary auf dem Feld
+
+        // --- The Small Print: Zonen-Ziele (werden ohne Dialog automatisch gewählt) ---
+        AdjacentAllyMonsters,      // die eigenen Monster links und rechts der Quellkarte
+        FacingEnemyMonster,        // das gegnerische Monster in der Zone gegenüber der Quellkarte
+        EnemyMonsterWithLien,      // gegnerisches Monster mit Pfandrecht
+        AnyMonsterWithLien,        // beliebiges Monster mit Pfandrecht
+        EnemyLevel1Monster,        // gegnerisches Level-1-Monster (Changeling Cradle)
+        EnemyDefenseMonster,       // gegnerisches Monster in Verteidigungsposition
+        SameAsPrevious             // dieselben Ziele wie die letzte zielende Aktion davor — kein zweiter Dialog (Lock Shields)
     }
 
     /// <summary>

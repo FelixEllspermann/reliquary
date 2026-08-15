@@ -139,6 +139,17 @@ namespace Rouge.Tcg
         // lebt nur im Aufrufstapel (siehe chainDepth) — diese Liste ist der
         // einzige Zugriff von innen nach außen, den NegateRestOfChain braucht.
         private readonly List<CardInstance> chainCards = new List<CardInstance>();
+        // Parallel dazu der aktivierte Effekt je Glied — The Small Print (Skimmed
+        // Off the Top) muss wissen, ob das vorige Glied Mana verspricht.
+        private readonly List<EffectDefinition> chainEffects = new List<EffectDefinition>();
+
+        // The Small Print (High Stakes): bis einschließlich dieser Zugnummer ist
+        // aller Kampfschaden verdoppelt (0 = aus).
+        private int doubleBattleDamageUntilTurn;
+        // Letzter Münzwurf innerhalb der laufenden Effektauflösung (coinGate)
+        private bool lastCoinHeads;
+        // Parley: die laufende Battle Phase endet nach dem aktuellen Kampf
+        private bool endBattlePhaseRequested;
 
         // Von NegateRestOfChain annullierte Glieder: die Annullierung gilt dem
         // Kettenglied, nicht der Karte — am Kettenende wird sie aufgehoben.
@@ -297,8 +308,10 @@ namespace Rouge.Tcg
             responseDepth = 0;
             chainDepth = 0;
             chainCards.Clear();
+            chainEffects.Clear();
             chainNegatedCards.Clear();
             resolvingChain = 0;
+            doubleBattleDamageUntilTurn = 0;
             Result = DuelResult.None;
             DuelRunning = true;
 
@@ -541,6 +554,25 @@ namespace Rouge.Tcg
             player.ManaDebt = 0;
             player.ManaCredit = 0;
 
+            // The Small Print (Usurer's Terms): die eigene Schuld wird fällig — was der
+            // Vorrat nicht deckt, kostet 1500 LP je Mana. Steht so auf der Karte.
+            if (player.LoanDebt > 0)
+            {
+                int payable = Math.Min(player.Mana, player.LoanDebt);
+                int shortfall = player.LoanDebt - payable;
+                player.Mana -= payable;
+                Log($"{player.Name} repays {payable} Mana of the {player.LoanDebt} owed ({player.Mana} Mana left).");
+                if (shortfall > 0)
+                {
+                    int before = player.LifePoints;
+                    player.LifePoints = Math.Max(0, player.LifePoints - shortfall * 1500);
+                    Log($"{player.Name} cannot cover {shortfall} Mana — the usurer takes {shortfall * 1500} LP ({player.LifePoints} LP).");
+                    OnLifeChanged?.Invoke(player, player.LifePoints - before);
+                }
+                player.LoanDebt = 0;
+                if (CheckWin()) yield break;
+            }
+
             ResetTurnFlags(player);
 
             Log($"— Turn {TurnNumber}: {player.Name} (Mana {player.Mana}) —");
@@ -548,7 +580,14 @@ namespace Rouge.Tcg
             // ---- Draw Phase ----
             yield return EnterPhase(DuelPhase.Draw);
             bool skipDraw = TurnNumber == 1 && rules.turnPlayerSkipsFirstDraw;
-            if (skipDraw)
+            if (player.SkipNextDrawPhase)
+            {
+                // Hessel (Infused): das Ziehen von gestern war das Ziehen von heute
+                player.SkipNextDrawPhase = false;
+                skipDraw = true;
+                Log($"{player.Name} skips the Draw Phase — the cards were drawn in advance.");
+            }
+            else if (skipDraw)
             {
                 Log($"{player.Name} skips the first draw.");
             }
@@ -562,6 +601,8 @@ namespace Rouge.Tcg
 
             // ---- Standby Phase ----
             yield return EnterPhase(DuelPhase.Standby);
+            yield return ResolveSmallPrintStandby(player);
+            if (CheckWin()) yield break;
             yield return ResolvePhaseTriggers(player, EffectTrigger.StandbyPhase);
             if (CheckWin()) yield break;
             // Slowburn: Lunten, die vor diesem Zug gelegt wurden, zünden jetzt
@@ -698,11 +739,107 @@ namespace Rouge.Tcg
             yield return FirePendingGraveTriggers();
             if (CheckWin()) yield break;
 
+            // The Small Print: Zunft-Zoll und Armutsgelübde werden in der eigenen End Phase fällig
+            yield return ResolveSmallPrintEndPhase(player);
+            if (CheckWin()) yield break;
+
             ClearTempModifiers();
             yield return EnforceHandLimit(player);
             // Handlimit-Abwürfe können Friedhofs-Trigger tragen (Deckay Vulture)
             yield return FirePendingGraveTriggers();
             BoardChanged();
+        }
+
+        /// <summary>
+        /// The Small Print, Standby Phase des Zugspielers: Vow of Poverty zahlt
+        /// Mana aus, Danaergeschenke (White Elephant, Gift Horse) kosten ihren
+        /// Kontrolleur Leben, und jedes Pfandrecht wird fällig — zahlen oder das
+        /// Monster fällt. Reicht das Mana nicht, gibt es keine Wahl.
+        /// </summary>
+        private IEnumerator ResolveSmallPrintStandby(PlayerState player)
+        {
+            // Vow of Poverty: das Gelübde zahlt vorab
+            foreach (var card in new List<CardInstance>(player.FieldCards()))
+            {
+                int bonus = card?.Definition != null && !card.FaceDown ? card.Definition.passiveStandbyBonusMana : 0;
+                if (bonus <= 0) continue;
+                player.Mana += bonus;
+                Log($"{card.Name}: {player.Name} gains {bonus} Mana ({player.Mana} Mana).");
+            }
+
+            // Danaergeschenke: wer sie hält, blutet
+            foreach (var card in new List<CardInstance>(player.Monsters()))
+            {
+                int loss = card?.Definition != null && !card.FaceDown ? card.Definition.passiveControllerStandbyLpLoss : 0;
+                if (loss <= 0) continue;
+                int before = player.LifePoints;
+                player.LifePoints = Math.Max(0, player.LifePoints - loss);
+                Log($"{card.Name} drains its keeper — {player.Name} loses {loss} LP ({player.LifePoints} LP).");
+                OnLifeChanged?.Invoke(player, player.LifePoints - before);
+                BoardChanged();
+                if (CheckWin()) yield break;
+            }
+
+            // Pfandrechte: der Kontrolleur zahlt oder verliert das Monster
+            foreach (var pledged in new List<CardInstance>(player.Monsters()))
+            {
+                if (pledged.LienAmount <= 0 || pledged.Zone != ZoneType.MonsterZone) continue;
+                int due = pledged.LienAmount;
+                bool pays = false;
+                if (player.Mana >= due)
+                {
+                    var ask = new YesNoRequest
+                    {
+                        Title = "Lien due",
+                        Card = pledged,
+                        Question = $"Pay {due} Mana to keep {pledged.Name}?"
+                    };
+                    yield return DecideRouted(player, ask);
+                    pays = ask.Result;
+                }
+                if (pays)
+                {
+                    player.Mana -= due;
+                    Log($"{player.Name} pays {due} Mana on the Lien of {pledged.Name} ({player.Mana} Mana left).");
+                }
+                else
+                {
+                    Log($"{player.Name} does not pay the Lien — {pledged.Name} is repossessed.");
+                    yield return DestroyCard(pledged);
+                    if (CheckWin()) yield break;
+                }
+                BoardChanged();
+            }
+            yield return FirePendingGraveTriggers();
+        }
+
+        /// <summary>
+        /// The Small Print, End Phase des Zugspielers: Guild Tariff fällt, wenn der
+        /// Besitzer selbst gezaubert hat; Vow of Poverty fällt, wenn zu viele
+        /// Karten auf der Hand liegen. Beide prüfen NUR die eigene End Phase.
+        /// </summary>
+        private IEnumerator ResolveSmallPrintEndPhase(PlayerState player)
+        {
+            foreach (var card in new List<CardInstance>(player.FieldCards()))
+            {
+                if (card?.Definition == null || card.FaceDown || card.Zone == ZoneType.Graveyard) continue;
+                if (card.Definition.passiveSpellTaxBoth && player.SpellsCastThisTurn > 0)
+                {
+                    Log($"{player.Name} paid the tariff and cast anyway — {card.Name} is destroyed.");
+                    yield return DestroyCard(card);
+                    if (CheckWin()) yield break;
+                    continue;
+                }
+                int cap = card.Definition.passiveHandCapForSurvival;
+                if (cap > 0 && player.Hand.Count > cap)
+                {
+                    Log($"{player.Name} holds {player.Hand.Count} cards — the vow of {card.Name} is broken; it is destroyed.");
+                    yield return DestroyCard(card);
+                    if (CheckWin()) yield break;
+                }
+            }
+            yield return EnforceLifeThresholds();
+            yield return FirePendingGraveTriggers();
         }
 
         private void ResetTurnFlags(PlayerState turnPlayer)
@@ -723,6 +860,12 @@ namespace Rouge.Tcg
                 player.SpellsCastThisTurn = 0; // Erster-Zauber-Rabatt gilt je Zug neu
                 player.NoDirectAttacksThisTurn = false;
                 player.SpecialSummonedEffectsLockedThisTurn = false;
+                player.SpellsLockedThisTurn = false;   // The Unbroken Oath
+                foreach (var card in player.FieldCards())
+                {
+                    card.PiercingThisTurn = false;      // Trample the Line
+                    card.CoinChooseUsedThisTurn = false; // Loaded Dice
+                }
                 if (player == turnPlayer)
                 {
                     // Deckay: "letzte Runde gemillt" — der Zähler rutscht beim

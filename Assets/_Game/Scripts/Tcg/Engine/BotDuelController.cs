@@ -263,6 +263,20 @@ namespace Rouge.Tcg
 
             int chosen = request.Options.Count > 0 ? 0 : -1;
 
+            // Sworn Statement (The Small Print): die Kartenart schwören, die im
+            // eigenen Deck am häufigsten übrig ist — Monster/Spell/Artifact.
+            if (request.Options.Count == 3 && request.Options[0] == "Monster"
+                && request.Options[1] == "Spell" && request.Options[2] == "Artifact" && Player != null)
+            {
+                int monsters = Player.DeckPile.Count(c => c.MonsterData != null);
+                int spells = Player.DeckPile.Count(c => c.SpellData != null);
+                int artifacts = Player.DeckPile.Count(c => c.ArtifactData != null);
+                chosen = monsters >= spells && monsters >= artifacts ? 0 : spells >= artifacts ? 1 : 2;
+                request.Result = chosen;
+                request.Answered = true;
+                yield break;
+            }
+
             // Beschwörungs-Position: defensive Monster (DEF > ATK) verdeckt in Verteidigung legen
             int defenseIndex = request.Options.FindIndex(o => o.Contains("Defense"));
             if (defenseIndex >= 0 && request.Card != null && request.Card.MonsterData != null
