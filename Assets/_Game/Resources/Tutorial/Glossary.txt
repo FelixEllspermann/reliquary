@@ -1,0 +1,94 @@
+Activate :: To use a Spell, Artifact or effect. Costs are paid on activation; the effect resolves afterwards — or as a chain link if someone responds.
+Archetype :: A named family of cards that work together, usually sharing a name prefix ("Tidebound", "Archfiend"). Support cards that name an archetype belong to it too. The Deck Builder can filter by archetype.
+Artifact :: A card that stays on the table. Monster Artifacts equip to one monster (bonus ATK / DEF and effects for the bearer), Field Artifacts affect the whole table, Player Artifacts sit on your hero. Two Artifact Zones per duelist.
+ATK :: Attack strength. Used when a monster attacks or is attacked in Attack Position. Modified by effects, temporarily ("until the end of the turn") or permanently.
+Attack Position :: A face-up monster standing upright. It can attack and fights with its ATK; if it loses a battle, its controller takes the difference as damage.
+Attribute :: A monster's element: Fire, Water, Wind, Earth, Light or Dark. Some effects and summon conditions ask for it.
+Banish :: To move a card to the Banishment pile — the second graveyard. Banished cards are out of the duel unless a card specifically brings them back.
+Banishment :: The pile of banished cards. Some effects return them, some Reliquaries count them.
+Banlist :: The list of cards limited to 2, 1 or 0 copies per deck. Enforced when a deck is saved; the limit is printed on the tile in the Deck Builder.
+Battle damage :: Damage from a battle: the ATK difference, or the full ATK of a direct attack. Distinct from effect damage — some cards prevent one and not the other.
+Battle Phase :: The fourth phase of a turn. Each face-up Attack Position monster may attack once. The duelist who goes first has no Battle Phase on their very first turn.
+Battle position :: Attack or Defense. Changed once per turn per monster in the Main Phase — not on the turn it was summoned, not after it attacked.
+Bounce :: Slang for "return to the hand". A bounced monster loses everything it gained on the field.
+Card type :: Monster, Spell, Artifact, Reliquary or Player Card. Some effects ask you to name one.
+Chain :: A stack of activations. When an effect answers another, they form links 1, 2, 3 …; once nobody adds a link, the chain resolves backwards, last link first. Nothing new can be activated while a chain resolves.
+Charged :: A Slowburn mechanic: a Spell that was Set before this turn can fire a stronger, charged version during your Standby Phase.
+Coins :: The currency earned by dueling. Buys packs and cosmetics.
+Continuous effect :: See Passive.
+Control :: Whose field a card is on. Some effects take control of a monster; the owner does not change, so it returns to the owner's Graveyard or hand when it leaves.
+Cost :: What you pay to activate: Mana, a discard, a tribute, banishing a card. Costs are paid even if the effect is later negated.
+Counter :: A marker placed on a card by an effect. Death counters are shown as a skull with a number; the card explains what happens when they pile up.
+Coupled :: An Infused effect that upgrades the effect above it ("Instead, pay 2 Mana: …"). Per turn you use either the plain version or the Coupled one, never both.
+Craft :: Turn dust into a card you are missing. Dusting a spare copy gives dust back.
+Death counter :: A counter that ticks up during End Phases; when a card reaches its printed limit it is destroyed. Shown as a skull with a number.
+Deck :: Your main pile, 40 to 80 cards, at most 3 copies of a card. Shuffled, face-down; you draw from the top.
+Defense Position :: A monster lying sideways. It cannot attack, holds with its DEF, and deals no battle damage. Face-down monsters are always in Defense.
+DEF :: Defense strength, used when a monster is attacked in Defense Position. If the attacker's ATK is lower, the attacker's controller takes the difference.
+Destroy :: To send a card from the field to the Graveyard by battle or by effect. "Cannot be destroyed" protects against exactly this — not against banishing, bouncing or tributing.
+Direct attack :: An attack on the opponent's hero instead of a monster. Only possible while they control no monsters. Deals the attacker's full ATK as damage.
+Discard :: To send a card from your hand to the Graveyard. "Random" discards are chosen by chance, others by the discarding player.
+Draft :: A mode where you build a deck from a fresh pool of cards and climb with what you drafted.
+Draw Phase :: The first phase of a turn: draw 1 card. Skipped by the duelist who goes first on their very first turn.
+Dust :: What a dusted card turns into. Spend it to craft cards.
+Effect damage :: Damage dealt by a card effect rather than by battle ("inflict 800 damage"). Some cards prevent one and not the other.
+End Phase :: The last phase of a turn: "during your End Phase" effects, hand limit, then the turn passes.
+Equip :: To attach a Monster Artifact to a monster — the bearer. If the bearer leaves the field, the Artifact goes to the Graveyard.
+Extra Deck :: Your Reliquaries, up to 20. Never drawn; each waits for its printed Summon requirements.
+Face-down :: A card played hidden. Face-down monsters are always in Defense Position; face-down Spells are Set and can be activated later.
+Field :: The table: every zone of both duelists. "On the field" means face-up or face-down in a Monster or Artifact Zone.
+Field Artifact :: An Artifact that sits in an Artifact Zone and affects the whole table, not one monster.
+Finish :: The look of a copy of a card: Plain, Glossy, Rainbow or Static. Purely cosmetic; the finish of the copy you build in is the one that reaches the table.
+Fizzle :: When an effect resolves but nothing legal is left to do — its target left, its zone filled up. The effect does nothing; the costs stay paid.
+Flip :: To turn a face-down monster face-up — by choosing to (into Attack Position), by an attack, or by an effect. Flip effects fire when this happens.
+Graveyard :: Where destroyed, used and discarded cards go. Many effects bring cards back from here or count what is in it. Click the pile to look through it.
+Hand :: The cards you hold. Limit 8 at the end of your turn.
+Hand limit :: 8. If you hold more during your End Phase, you discard down to 8.
+Hero :: See Player Card.
+Ignition effect :: An effect you activate yourself in your Main Phase ("Once per turn: …").
+Illusion Token :: A 0/0 Token the Gaslight archetype places on the opponent's field. It fills a zone and can be destroyed for value.
+Infused :: A stronger effect on a card that always costs Mana. Either Coupled (upgrade of the effect above) or Standalone (its own ability).
+Level :: 1, 2 or 3, shown in the crest. A Level 2 needs 1 tribute to Normal Summon, a Level 3 needs 2. Reliquaries are Level 3.
+Life Points :: Your health. 8000 to start (some heroes differ). At 0, the duel is lost.
+LP :: Short for Life Points.
+Main Phase :: The third phase of a turn: summon, play spells and Artifacts, activate Ignition effects, change positions, call Reliquaries.
+Mana :: The resource for spells, Infused effects, hero effects and Reliquary Summons. Refills each of your turns: 3 at first, one more every turn up to 10. Unspent Mana is lost unless a card says otherwise.
+Mill :: To send cards from the top of a Deck to the Graveyard. Your own or your opponent's.
+Monster :: A card that fights. Level, Attribute, Type, ATK, DEF — and usually effects.
+Monster Artifact :: An Artifact that equips to one monster.
+Monster Type :: Dragon, Human, Beast, Mecha, Angel, Demon, Myth, Animal … Some effects care about it.
+Negate :: To switch a card's effects off. A negated card wears a violet NEG badge until the end of the turn; if it tries to act, nothing happens.
+Normal Summon :: Playing a monster from your hand in your Main Phase, once per turn. Free for Level 1; 1 tribute for Level 2, 2 for Level 3. Setting a monster face-down uses it too.
+Once per turn :: The effect can be used once each turn. Some are once per turn per card name — three copies share one use.
+Owner :: Whose deck a card came from. Cards return to their owner's hand, Deck or Graveyard even after control changed.
+Passive :: An effect that is simply on while the card is face-up on the field. No activation, no cost, no chain link.
+Phase :: One of the five steps of a turn: Draw, Standby, Main, Battle, End.
+Player Card :: Your hero. Sets your starting Life Points and gives you one hero effect for 2 Mana, once per turn. Cannot be attacked or destroyed.
+Position change :: Switching a monster between Attack and Defense. Once per turn per monster, in your Main Phase.
+Quick Spell :: A Spell you can activate as a response — on your opponent's turn, inside a chain, when an attack is declared. Also usable in your own Main Phase.
+Rank :: Ten seals of five tiers each. Ranked duels move you up or down by Rank Points; a season lasts a month.
+Rarity :: Common, Uncommon, Rare or Legendary — how often a card drops from packs. Says nothing about power.
+Reactions toggle :: The switch at the bottom left of the duel. Off, the game stops offering you responses to your opponent's actions; your own triggers still ask.
+Reliquary :: A boss monster from the Extra Deck. Its Summon requirements, Mana price and tributes are printed on the card. Occupies a Monster Zone like any monster.
+Reliquary Summon :: Calling a Reliquary from the Extra Deck once its requirements are met, in your Main Phase.
+Response window :: The moment after an activation, a summon or an attack declaration in which the other duelist may answer with a Quick effect. Answering starts a chain.
+Return to hand :: To move a card from the field back to its owner's hand. See Bounce.
+Reveal :: To show a card to both players — a searched card, a random hand card, the top of a Deck.
+Search :: To take a specific card from your Deck to your hand. The Deck is shuffled afterwards.
+Season :: A month of ranked play. A new season begins each month.
+Set :: To play a card face-down: a monster in Defense Position (uses your Normal Summon), or a Spell to be activated later.
+Shuffle into the Deck :: To return a card to its owner's Deck and shuffle. Different from returning to hand — the card is out of reach for a while.
+Special Summon :: Any summon that is not a Normal Summon — by an effect, or by a monster's own condition ("you can Special Summon this card from your hand if …"). Own conditions work once per turn per card name.
+Spell :: A card played from the hand for Mana that goes to the Graveyard afterwards. Normal Spells in your Main Phase; Quick Spells whenever a response window is open.
+Standalone :: An Infused effect that is its own ability, independent of the other effects on the card.
+Standby Phase :: The second phase of a turn: "during your Standby Phase" effects, tolls and upkeep.
+Summon requirement :: What a Reliquary demands before it can be called: a state of the field, the Graveyard, your Life Points — plus Mana and sometimes tributes.
+Target :: The card an effect is aimed at, chosen when the effect is activated. "Cannot be targeted" makes a card immune to exactly that.
+Token :: A monster created by an effect rather than drawn from a deck. It vanishes instead of going to the Graveyard.
+Tribute :: To send a monster you control to the Graveyard as a price — for a Level 2 or 3 Normal Summon, or for a Reliquary. Some Reliquaries take tributes from your opponent's field.
+Turn player :: The duelist whose turn it is.
+Type :: See Monster Type.
+Until the end of the turn :: A temporary change that is undone in the End Phase. Permanent changes stay until the card leaves the field.
+Vanilla :: A monster without effects. Some cards support exactly those.
+Zone :: A slot on the table. Five Monster Zones, three Spell Zones and two Artifact Zones per duelist. Where you place a card is your choice.
+Spell Zone :: One of three slots where a Set spell waits face-down until you activate it. Three per duelist.

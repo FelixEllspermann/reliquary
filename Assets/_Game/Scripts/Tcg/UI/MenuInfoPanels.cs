@@ -7,11 +7,13 @@ using Rouge.Tcg.Net;
 namespace Rouge.Tcg.UI
 {
     /// <summary>
-    /// Die beiden Info-Ansichten des Hauptmenüs: NEWS zeigt die Patch Notes aus
-    /// Resources/PatchNotes.txt, BANLIST die vom Server gelieferten Limits.
-    /// Das Overlay entsteht zur Laufzeit im gleichen Reliquary-Stil wie das
-    /// Einstellungs- und das Feedback-Fenster (Rahmen, Innenkeyline, Kopfdiamant,
-    /// Cinzel-Titel über einer goldenen Trennlinie).
+    /// Die Info-Ansichten des Hauptmenüs: NEWS zeigt die Patch Notes aus
+    /// Resources/PatchNotes.txt, BANLIST die vom Server gelieferten Limits,
+    /// HOW TO PLAY das geschriebene Tutorial mit Bildern (Resources/Tutorial/
+    /// HowToPlay.txt + Bilder daneben) und GLOSSARY jeden Begriff mit Bedeutung
+    /// (Resources/Tutorial/Glossary.txt). Das Overlay entsteht zur Laufzeit im
+    /// gleichen Reliquary-Stil wie das Einstellungs- und das Feedback-Fenster
+    /// (Rahmen, Innenkeyline, Kopfdiamant, Cinzel-Titel über einer goldenen Linie).
     /// </summary>
     public class MenuInfoPanels : MonoBehaviour
     {
@@ -33,64 +35,87 @@ namespace Rouge.Tcg.UI
 
         private const float PanelWidth = 900f;
         private const float PanelHeight = 660f;
+        private const float TallPanelHeight = 840f;   // Tutorial mit Bildern braucht Luft
+        private RectTransform panelRect;
 
         private GameObject overlay;
         private TMP_Text titleText;
         private TMP_Text subText;
         private TMP_Text bodyText;
         private ScrollRect scroll;
+        private RectTransform contentRect;   // Stapel aus Body-Text und Tutorial-Blöcken
+        private readonly System.Collections.Generic.List<GameObject> blockObjects = new System.Collections.Generic.List<GameObject>();
 
         private void Awake()
         {
             if (newsButton != null) newsButton.onClick.AddListener(ShowNews);
             if (banlistButton != null) banlistButton.onClick.AddListener(ShowBanlist);
             if (buttonTemplate == null) buttonTemplate = newsButton;
-            BuildDiscordButton();
+            BuildRailButtons();
         }
 
         /// <summary>
-        /// DISCORD-Knopf links neben BANLIST — Klon des News-Knopfs, damit er
-        /// automatisch im Topbar-Stil sitzt. Öffnet die Einladung im Browser.
+        /// Die Knöpfe der unteren Leiste, rechts neben dem Daily-Claim-Panel:
+        /// DISCORD (Einladung im Browser), HOW TO PLAY (geschriebenes Tutorial mit
+        /// Bildern) und GLOSSARY (jeder Begriff mit Bedeutung). Alle sind Klone
+        /// des News-Knopfs, damit sie automatisch im Leisten-Stil sitzen; die
+        /// Topbar selbst ist voll, dort passt nichts mehr hinein.
         /// </summary>
-        private void BuildDiscordButton()
+        private void BuildRailButtons()
         {
-            if (string.IsNullOrEmpty(discordUrl) || banlistButton == null || newsButton == null) return;
-            // Unten in die BottomRail, direkt rechts neben das Daily-Claim-Panel
+            if (newsButton == null) return;
             var dailyPanel = GameObject.Find("DailyPanel");
             var parent = dailyPanel != null ? dailyPanel.transform.parent : newsButton.transform.parent;
+            float x = 640f, y = 72f;
+            if (dailyPanel != null)
+            {
+                var daily = (RectTransform)dailyPanel.transform;
+                x = daily.anchoredPosition.x + daily.sizeDelta.x + 16f;
+                y = daily.anchoredPosition.y + daily.sizeDelta.y * 0.5f;
+            }
+
+            if (!string.IsNullOrEmpty(discordUrl) && banlistButton != null)
+            {
+                var discord = CloneRailButton(parent, "DiscordButton", "DISCORD", 128f, ref x, y);
+                // Discord-Blau statt Topbar-Rot: gedreht wird nur der rote Farbton
+                // (beide Fenster, weil Rot im Farbkreis um die Null liegt) — das
+                // Gold der übrigen Topbar bleibt außen vor.
+                MainMenuController.SwapHue(discord.gameObject, 0f, 0.08f, 0.635f);
+                MainMenuController.SwapHue(discord.gameObject, 0.92f, 1f, 0.635f);
+                string url = discordUrl;
+                discord.onClick.AddListener(() =>
+                {
+                    SfxManager.Click();
+                    Application.OpenURL(url);
+                });
+            }
+
+            var howTo = CloneRailButton(parent, "HowToPlayButton", "HOW TO PLAY", 156f, ref x, y);
+            howTo.onClick.AddListener(() => { SfxManager.Click(); ShowHowToPlay(); });
+
+            var glossary = CloneRailButton(parent, "GlossaryButton", "GLOSSARY", 128f, ref x, y);
+            glossary.onClick.AddListener(() => { SfxManager.Click(); ShowGlossary(); });
+        }
+
+        /// <summary>Klon des News-Knopfs an Position x (rückt x hinter sich weiter).</summary>
+        private Button CloneRailButton(Transform parent, string name, string caption, float width, ref float x, float y)
+        {
             var clone = Instantiate(newsButton.gameObject, parent);
-            clone.name = "DiscordButton";
+            clone.name = name;
             var rect = (RectTransform)clone.transform;
             rect.anchorMin = new Vector2(0f, 0f);
             rect.anchorMax = new Vector2(0f, 0f);
             rect.pivot = new Vector2(0f, 0.5f);
-            rect.sizeDelta = new Vector2(128f, 48f);
-            if (dailyPanel != null)
-            {
-                var daily = (RectTransform)dailyPanel.transform;
-                rect.anchoredPosition = new Vector2(
-                    daily.anchoredPosition.x + daily.sizeDelta.x + 16f,
-                    daily.anchoredPosition.y + daily.sizeDelta.y * 0.5f);
-            }
-            else rect.anchoredPosition = new Vector2(640f, 72f);
+            rect.sizeDelta = new Vector2(width, 48f);
+            rect.anchoredPosition = new Vector2(x, y);
+            x += width + 12f;
 
             var label = clone.GetComponentInChildren<TMP_Text>(true);
-            if (label != null) label.text = "DISCORD";
-
-            // Discord-Blau statt Topbar-Rot: gedreht wird nur der rote Farbton
-            // (beide Fenster, weil Rot im Farbkreis um die Null liegt) — das
-            // Gold der übrigen Topbar bleibt außen vor.
-            MainMenuController.SwapHue(clone, 0f, 0.08f, 0.635f);
-            MainMenuController.SwapHue(clone, 0.92f, 1f, 0.635f);
+            if (label != null) label.text = caption;
 
             var button = clone.GetComponent<Button>();
             button.onClick.RemoveAllListeners();
-            string url = discordUrl;
-            button.onClick.AddListener(() =>
-            {
-                SfxManager.Click();
-                Application.OpenURL(url);
-            });
+            return button;
         }
 
         // ================== INHALTE ==================
@@ -107,6 +132,113 @@ namespace Rouge.Tcg.UI
         {
             Show("BANLIST", "CARD LIMITS · ENFORCED WHEN A DECK IS SAVED",
                 BuildBanlistText() + BuildHistoryText());
+        }
+
+        /// <summary>
+        /// Das geschriebene Tutorial: Resources/Tutorial/HowToPlay.txt, ein
+        /// leichtes Markup — „# Überschrift", „- Aufzählung", Leerzeile =
+        /// Absatz, „[img:name]" bzw. „[img:name|Bildunterschrift]" holt
+        /// Resources/Tutorial/name als Bild zwischen die Absätze.
+        /// </summary>
+        public void ShowHowToPlay()
+        {
+            var text = Resources.Load<TextAsset>("Tutorial/HowToPlay");
+            if (text == null)
+            {
+                Show("HOW TO PLAY", "THE RULES OF THE VAULT", "<color=#8C7B5F>No tutorial found.</color>");
+                return;
+            }
+            ShowBlocks("HOW TO PLAY", "THE RULES OF THE VAULT · SCROLL TO READ", ParseTutorial(text.text));
+        }
+
+        /// <summary>
+        /// Das Glossar: Resources/Tutorial/Glossary.txt, je Zeile „Term :: Bedeutung".
+        /// Wird alphabetisch sortiert und nach Anfangsbuchstaben gruppiert.
+        /// </summary>
+        public void ShowGlossary()
+        {
+            var text = Resources.Load<TextAsset>("Tutorial/Glossary");
+            Show("GLOSSARY", "EVERY TERM OF THE GAME · A TO Z", text != null
+                ? BuildGlossaryText(text.text)
+                : "<color=#8C7B5F>No glossary found.</color>");
+        }
+
+        private static string BuildGlossaryText(string raw)
+        {
+            var entries = new System.Collections.Generic.List<(string term, string meaning)>();
+            foreach (var line in raw.Replace("\r", "").Split('\n'))
+            {
+                int split = line.IndexOf("::", System.StringComparison.Ordinal);
+                if (split <= 0) continue;
+                string term = line.Substring(0, split).Trim();
+                string meaning = line.Substring(split + 2).Trim();
+                if (term.Length > 0 && meaning.Length > 0) entries.Add((term, meaning));
+            }
+            entries.Sort((a, b) => string.Compare(a.term, b.term, System.StringComparison.OrdinalIgnoreCase));
+
+            var builder = new System.Text.StringBuilder();
+            builder.Append("<color=#8C7B5F>").Append(entries.Count).Append(" terms. Card texts use exactly these words.</color>\n");
+            char group = '\0';
+            foreach (var (term, meaning) in entries)
+            {
+                char first = char.ToUpperInvariant(term[0]);
+                if (first != group)
+                {
+                    group = first;
+                    builder.Append("\n<size=120%><color=#EBCE8A><b>").Append(first).Append("</b></color></size>\n");
+                }
+                builder.Append("<color=#F3DDA4><b>").Append(term).Append("</b></color>")
+                       .Append("<color=#8C7B5F> — </color>")
+                       .Append("<color=#C2B49B>").Append(meaning).Append("</color>\n");
+            }
+            return builder.ToString();
+        }
+
+        /// <summary>Tutorial-Markup in Blöcke zerlegen (Text-Absätze und Bilder).</summary>
+        private static System.Collections.Generic.List<InfoBlock> ParseTutorial(string raw)
+        {
+            var blocks = new System.Collections.Generic.List<InfoBlock>();
+            var paragraph = new System.Text.StringBuilder();
+            void Flush()
+            {
+                if (paragraph.Length == 0) return;
+                blocks.Add(InfoBlock.Text(paragraph.ToString().TrimEnd('\n')));
+                paragraph.Clear();
+            }
+
+            foreach (var rawLine in raw.Replace("\r", "").Split('\n'))
+            {
+                string line = rawLine.TrimEnd();
+                if (line.StartsWith("[img:") && line.EndsWith("]"))
+                {
+                    Flush();
+                    string inner = line.Substring(5, line.Length - 6);
+                    int bar = inner.IndexOf('|');
+                    string image = bar >= 0 ? inner.Substring(0, bar).Trim() : inner.Trim();
+                    string caption = bar >= 0 ? inner.Substring(bar + 1).Trim() : "";
+                    blocks.Add(InfoBlock.Image(image, caption));
+                    continue;
+                }
+                if (line.Length == 0) { paragraph.Append('\n'); continue; }
+                if (line.StartsWith("# "))
+                    paragraph.Append("<size=120%><color=#EBCE8A><b>").Append(line.Substring(2)).Append("</b></color></size>\n");
+                else if (line.StartsWith("- "))
+                    paragraph.Append("<color=#C8A45C>  ·  </color><color=#C2B49B>").Append(line.Substring(2)).Append("</color>\n");
+                else
+                    paragraph.Append("<color=#C2B49B>").Append(line).Append("</color>\n");
+            }
+            Flush();
+            return blocks;
+        }
+
+        /// <summary>Ein Baustein des Tutorial-Fensters: Text ODER Bild mit Unterschrift.</summary>
+        private struct InfoBlock
+        {
+            public string text;
+            public string image;
+            public string caption;
+            public static InfoBlock Text(string t) => new InfoBlock { text = t };
+            public static InfoBlock Image(string name, string cap) => new InfoBlock { image = name, caption = cap };
         }
 
         /// <summary>Überschriften und Aufzählungen der Patch Notes hervorheben.</summary>
@@ -230,11 +362,86 @@ namespace Rouge.Tcg.UI
         {
             EnsureOverlay();
             if (overlay == null) return;
+            ClearBlocks();
             overlay.SetActive(true);
             overlay.transform.SetAsLastSibling();
+            if (panelRect != null) panelRect.sizeDelta = new Vector2(PanelWidth, PanelHeight);
             if (titleText != null) titleText.text = title;
             if (subText != null) subText.text = subtitle;
-            if (bodyText != null) bodyText.text = body;
+            if (bodyText != null) { bodyText.gameObject.SetActive(true); bodyText.text = body; }
+            ScrollToTop();
+        }
+
+        /// <summary>
+        /// Wie Show, aber mit Bild-Bausteinen zwischen den Absätzen: jeder Block
+        /// wird ein eigenes Kind des Inhalts-Stapels (Text ODER Bild + Unterschrift).
+        /// </summary>
+        private void ShowBlocks(string title, string subtitle, System.Collections.Generic.List<InfoBlock> blocks)
+        {
+            EnsureOverlay();
+            if (overlay == null) return;
+            ClearBlocks();
+            overlay.SetActive(true);
+            overlay.transform.SetAsLastSibling();
+            if (panelRect != null) panelRect.sizeDelta = new Vector2(PanelWidth, TallPanelHeight);
+            if (titleText != null) titleText.text = title;
+            if (subText != null) subText.text = subtitle;
+            if (bodyText != null) bodyText.gameObject.SetActive(false);
+
+            float width = contentRect != null && contentRect.rect.width > 10f ? contentRect.rect.width : 800f;
+            foreach (var block in blocks)
+            {
+                if (block.image != null)
+                {
+                    var sprite = Resources.Load<Sprite>("Tutorial/" + block.image);
+                    if (sprite == null) continue;
+                    var image = MakeImage("Img_" + block.image, contentRect, Color.white);
+                    image.sprite = sprite;
+                    image.preserveAspect = true;
+                    image.raycastTarget = false;
+                    // Nie über die native Größe hinaus vergrößern (Screenshots
+                    // werden sonst matschig); breitere Bilder schrumpfen auf die
+                    // Spaltenbreite. preserveAspect zentriert schmale Bilder in
+                    // der vollen Zeile.
+                    float aspect = sprite.rect.height / Mathf.Max(1f, sprite.rect.width);
+                    float shownWidth = Mathf.Min(sprite.rect.width, width);
+                    var element = image.gameObject.AddComponent<LayoutElement>();
+                    element.preferredHeight = Mathf.Min(shownWidth * aspect, 480f);
+                    element.flexibleWidth = 1f;
+                    blockObjects.Add(image.gameObject);
+
+                    if (!string.IsNullOrEmpty(block.caption))
+                    {
+                        var caption = MakeText("Cap_" + block.image, contentRect, 12.5f, skin != null ? skin.oswaldMedium : null);
+                        caption.text = block.caption;
+                        caption.alignment = TextAlignmentOptions.Center;
+                        caption.color = Hex("#8C7B5F", 1f);
+                        caption.characterSpacing = 3f;
+                        blockObjects.Add(caption.gameObject);
+                    }
+                }
+                else
+                {
+                    var text = MakeText("Para", contentRect, 17f, skin != null ? skin.spectral : null);
+                    text.text = block.text;
+                    text.alignment = TextAlignmentOptions.TopLeft;
+                    text.color = Hex("#C2B49B", 1f);
+                    text.lineSpacing = 6f;
+                    blockObjects.Add(text.gameObject);
+                }
+            }
+            ScrollToTop();
+        }
+
+        private void ClearBlocks()
+        {
+            foreach (var go in blockObjects) if (go != null) Destroy(go);
+            blockObjects.Clear();
+        }
+
+        private void ScrollToTop()
+        {
+            if (contentRect != null) LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
             if (scroll != null) scroll.verticalNormalizedPosition = 1f;
         }
 
@@ -266,6 +473,7 @@ namespace Rouge.Tcg.UI
             panel.pivot = new Vector2(0.5f, 0.5f);
             panel.sizeDelta = new Vector2(PanelWidth, PanelHeight);
             panel.anchoredPosition = Vector2.zero;
+            panelRect = panel;
 
             // Grund, Rahmen und Innenkeyline — exakt wie im Einstellungsfenster
             var background = MakeImage("BG", panel, Hex("#0E121B", 1f));
@@ -332,20 +540,31 @@ namespace Rouge.Tcg.UI
             catcher.raycastTarget = true;
             catcher.gameObject.AddComponent<UiFxIgnore>();
 
-            bodyText = MakeText("Body", viewport, 17f, skin != null ? skin.spectral : null);
-            var bodyRect = (RectTransform)bodyText.transform;
-            bodyRect.anchorMin = new Vector2(0f, 1f);
-            bodyRect.anchorMax = new Vector2(1f, 1f);
-            bodyRect.pivot = new Vector2(0.5f, 1f);
-            bodyRect.offsetMin = Vector2.zero;
-            bodyRect.offsetMax = Vector2.zero;
+            // Der Inhalt ist ein Stapel: für NEWS/BANLIST nur der eine Body-Text,
+            // für HOW TO PLAY Absätze und Bilder abwechselnd. Der Stapel misst
+            // sich selbst (ContentSizeFitter), die Kinder bekommen die volle Breite.
+            contentRect = MakeRect("Content", viewport);
+            contentRect.anchorMin = new Vector2(0f, 1f);
+            contentRect.anchorMax = new Vector2(1f, 1f);
+            contentRect.pivot = new Vector2(0.5f, 1f);
+            contentRect.offsetMin = Vector2.zero;
+            contentRect.offsetMax = Vector2.zero;
+            var stack = contentRect.gameObject.AddComponent<VerticalLayoutGroup>();
+            stack.childControlWidth = true;
+            stack.childControlHeight = true;
+            stack.childForceExpandWidth = true;
+            stack.childForceExpandHeight = false;
+            stack.spacing = 12f;
+            stack.padding = new RectOffset(0, 0, 0, 24);
+            var stackFitter = contentRect.gameObject.AddComponent<ContentSizeFitter>();
+            stackFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            scroll.content = contentRect;
+
+            bodyText = MakeText("Body", contentRect, 17f, skin != null ? skin.spectral : null);
             bodyText.alignment = TextAlignmentOptions.TopLeft;
             bodyText.color = Hex("#C2B49B", 1f);
             bodyText.lineSpacing = 6f;
             bodyText.raycastTarget = false;   // der Fänger darunter nimmt die Ereignisse
-            var fitter = bodyText.gameObject.AddComponent<ContentSizeFitter>();
-            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            scroll.content = bodyRect;
 
             BuildScrollbar(scrollRect, viewport);
 

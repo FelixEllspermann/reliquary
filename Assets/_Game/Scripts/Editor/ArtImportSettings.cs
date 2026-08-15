@@ -14,10 +14,24 @@ namespace Rouge.Tcg.EditorTools
     public class ArtImportSettings : AssetPostprocessor
     {
         private const string ArtFolder = "Assets/_Game/Art";
+        private const string TutorialFolder = "Assets/_Game/Resources/Tutorial";
         private const int MaxSize = 512;
 
         private void OnPreprocessTexture()
         {
+            if (assetPath.StartsWith(TutorialFolder))
+            {
+                // Tutorial-Bilder: Sprites für Resources.Load<Sprite>, scharf statt
+                // klein — Screenshots mit Text vertragen weder Crunch noch 512er-Deckel.
+                var tutorialImporter = (TextureImporter)assetImporter;
+                tutorialImporter.textureType = TextureImporterType.Sprite;
+                tutorialImporter.spriteImportMode = SpriteImportMode.Single;
+                tutorialImporter.maxTextureSize = 1024;
+                tutorialImporter.textureCompression = TextureImporterCompression.CompressedHQ;
+                tutorialImporter.crunchedCompression = false;
+                tutorialImporter.mipmapEnabled = false;
+                return;
+            }
             if (!assetPath.StartsWith(ArtFolder)) return;
             var importer = (TextureImporter)assetImporter;
             Apply(importer);

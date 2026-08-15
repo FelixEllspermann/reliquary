@@ -1,0 +1,145 @@
+# THE GOAL
+Two duelists, two vaults, one table. You win the moment your opponent's Life Points reach 0 — or when they must draw from an empty Deck and cannot. Everything else in this book is about how to get there: Mana to spend, monsters to summon, spells to answer with, and Reliquaries to seal the game.
+
+If you have never played a card game like this, read THE TABLE, YOUR TURN and BATTLE first. The rest can wait until it comes up.
+
+[img:board|Your side of the table sits at the bottom, your opponent's at the top.]
+
+# THE TABLE
+Each duelist has five Monster Zones in a row, three Spell Zones for Set spells, two Artifact Zones, a Deck, a Graveyard, a Banishment pile and an Extra Deck. Your hand rests at the bottom of the screen; the back of your opponent's hand shows at the top. Your Player Card — your hero — stands at the left of your row; your Life Points and Mana are on the plate to the right.
+
+[img:plate|Life Points on top, Mana below. Both tick as they change.]
+
+Life Points: you start with 8000 (some heroes bring a little more or less). Damage — from battle or from effects — takes them down; healing brings them back up. There is no upper limit.
+
+Mana: refilled at the start of each of your turns. 3 on your first turn, one more every turn after that, up to 10. Unspent Mana is gone at the end of your turn unless a card says otherwise. Mana pays for spells, for Infused effects, for hero effects and for Reliquary Summons — normal monster effects cost none.
+
+Hand limit: 8. If you hold more at the end of your turn, you discard down to 8.
+
+[img:phases|The phase bar. The lit step is where the duel is right now.]
+
+# YOUR TURN
+A turn runs through five phases, always in this order:
+
+- DRAW PHASE — draw 1 card. Whoever goes first skips this on their very first turn (they start with 5 cards, the other player with 6).
+- STANDBY PHASE — effects that say "during your Standby Phase" happen now. Tolls and upkeep are paid here.
+- MAIN PHASE — the heart of the turn. Summon or Set one monster, play spells and Artifacts, activate Ignition effects, change battle positions, Summon a Reliquary. In any order, as often as your Mana and your rules allow.
+- BATTLE PHASE — attack with your face-up Attack Position monsters. Whoever goes first has no Battle Phase on their very first turn.
+- END PHASE — "during your End Phase" effects, hand limit, and the turn passes.
+
+You can end the Main Phase or the Battle Phase whenever you like using the phase buttons; the game never forces you to attack.
+
+[img:hand|Your hand. Cards you can play right now are outlined; drag them to the table or click for options.]
+
+# THE CARDS
+Every card belongs to one of four kinds — plus the hero.
+
+MONSTERS carry a Level (1 to 3), an Attribute (Fire, Water, Wind, Earth, Light, Dark), a Type (Dragon, Human, Beast, Mecha, Angel, Demon, Myth, Animal …), and ATK / DEF. They fight, they defend, and most of them have effects.
+
+SPELLS are played from your hand for Mana and go to the Graveyard afterwards. Normal Spells are played in your Main Phase; QUICK Spells can also be played as a response — during your opponent's turn, in the middle of a chain, when an attack is declared. Any Spell may also be Set face-down and used later.
+
+ARTIFACTS stay on the table. Some equip to a monster (bonus ATK / DEF and effects for the bearer), some are Field Artifacts, some sit on your Player slot. Artifact Zones hold two; Set spells wait in the three Spell Zones.
+
+[img:artifacts|Two Player Artifacts in the Artifact Zones. They stay until something removes them.]
+
+RELIQUARIES live in your Extra Deck. Each one names its own Summon requirements on the card — a stocked Graveyard, three monsters, a hero on the ropes — plus a Mana price and sometimes tributes. Meet the terms and you can call it in your Main Phase.
+
+THE PLAYER CARD is your hero. It sets your starting Life Points and gives you one hero effect: 2 Mana, once per turn, always available. Heroes cannot be attacked or destroyed.
+
+[img:card|Anatomy of a monster: name and Level crest on top, Attribute and Type under the art, ATK and DEF at the bottom, effects in the text box.]
+
+[img:effectbox|In a duel, click any card and the INSPECT panel on the left lists its effects — cost badge first, then when it fires.]
+
+# SUMMONING
+NORMAL SUMMON — once per turn, from your hand, in your Main Phase. A Level 1 monster comes for free. A Level 2 needs 1 tribute, a Level 3 needs 2: send that many monsters you control to the Graveyard first. Instead of Summoning face-up, you may SET the monster face-down in Defense Position — this uses your Normal Summon too.
+
+SPECIAL SUMMON — every summon that is not a Normal Summon. Cards do it: "Special Summon 1 monster from your Graveyard", "you can Special Summon this card from your hand if …". Special Summons do not use up your Normal Summon and there is no limit per turn — except that each card name can use its own "you can Special Summon this card" condition only once per turn.
+
+RELIQUARY SUMMON — from the Extra Deck, in your Main Phase, once its printed requirements are met. Pay the Mana, offer the tributes it demands (some take them from your opponent's field), choose a zone.
+
+Every summoned monster gets a zone and a battle position. Face-up ATTACK Position fights with its ATK; DEFENSE Position holds with its DEF and deals no damage. Face-down monsters are always in Defense; nobody knows what they are until they flip.
+
+[img:zones-attack|Two monsters in Attack Position and a Set monster: face-down, nothing but its back.]
+
+[img:zones-defense|Defense Position lies sideways — its DEF faces the attacker.]
+
+# BATTLE
+In your Battle Phase, each face-up Attack Position monster may attack once. Click it, then click the target — or your opponent's hero for a direct attack. A direct attack is only possible while your opponent controls no monsters. The turn a monster is summoned it can attack normally, unless its card says otherwise.
+
+- Attack vs. ATTACK Position: the higher ATK wins, the loser is destroyed, and the difference is dealt as damage to the loser's controller. Equal ATK: both are destroyed, nobody takes damage.
+- Attack vs. DEFENSE Position: your ATK against their DEF. Higher ATK destroys the defender — no damage. Lower ATK: your monster survives, but YOU take the difference. Equal: nothing happens.
+- Attacking a face-down monster flips it face-up first; if it has a Flip effect, it fires.
+- Direct attack: full ATK as damage.
+
+Battle position can be changed once per turn per monster, in your Main Phase — but not on the turn the monster was summoned and not after it attacked. Flipping a face-down monster face-up into Attack Position counts as its position change.
+
+# EFFECTS
+Card text tells you when an effect happens and what it costs. The words are always the same, so learn them once:
+
+- ON SUMMON — when this card is Summoned. Triggers by itself; you choose targets.
+- IGNITION — you activate it in your Main Phase ("Once per turn: …").
+- QUICK — you can activate it whenever a response window is open, even on your opponent's turn.
+- PASSIVE — always on while the card is face-up on the field. No activation, no cost.
+- STANDBY / END PHASE — happens in that phase of your turn.
+- FLIP — when the face-down card is turned face-up, by you or by an attack.
+- HAND / GRAVEYARD — some effects are used from your hand or from your Graveyard; the pile glows when something in it can act. Click the pile.
+- ONCE PER TURN — exactly what it says. Some effects are once per turn per card name.
+
+Costs come first, effects second: "Pay 2 Mana: draw 1 card" means the Mana is gone even if the draw is negated. If an effect cannot possibly resolve right now — no legal target, no free zone for a summon — you cannot activate it at all.
+
+[img:activation|When an effect activates, the card and its text step forward so both duelists can read what is happening.]
+
+# INFUSED EFFECTS
+Many cards carry an INFUSED effect: a stronger version that always costs Mana. Two flavours:
+
+- COUPLED ("Instead, pay 2 Mana: …") upgrades the effect above it. Per turn you use either the plain version or the Infused one, never both.
+- STANDALONE is a separate ability of its own. It runs alongside everything else on the card.
+
+Reading a card, look at the Mana badge: blue with a number = costs that much, green NO MANA = free.
+
+[img:cardtext|The card text panel spells it out: cost badge, name of the effect, when it activates, once per turn or not.]
+
+# CHAINS AND RESPONSES
+Whenever a card is activated, a monster is Summoned or an attack is declared, your opponent gets a response window — and so do you when they act. Responding with a Quick effect builds a CHAIN: link 1, link 2, link 3 … Once nobody adds another link, the chain resolves backwards, last link first.
+
+When a second effect answers the first, a chain tracker drops from the top of the screen and lists the links in order — yours in teal, theirs in red. It reads BUILDING CHAIN while links are added and RESOLVING while they fire, last link first.
+
+While a chain resolves, nothing new can be activated — not even effects that would normally trigger. They wait for the chain to finish and fire afterwards. A negated card wears a violet NEG badge and its effects do nothing until the end of the turn; if it tries anyway, the game says so and moves on.
+
+[img:log|The duel log on the right keeps every activation, payment and result in order. When in doubt, read back.]
+
+The REACTIONS toggle at the bottom left switches automatic offers off: your opponent's actions no longer stop for you, only your own triggers still ask. Handy when your hand holds no answers.
+
+[img:reactions|Reactions on: the game pauses to offer you responses. Off: only your own triggers ask.]
+
+# THE PILES
+GRAVEYARD — where destroyed, used and discarded cards go. Many effects bring cards back from here or count what is in it. Click a pile to look through it.
+
+BANISHMENT — the second graveyard. Banished cards are out of the duel unless a card specifically returns them. Some Reliquaries count them.
+
+DECK — face-down, shuffled. "Search" effects find a card in it; "mill" sends cards from its top to the Graveyard. Running out is fine — needing to draw and failing is the loss.
+
+EXTRA DECK — your Reliquaries, up to 20. They are never drawn; they wait for their terms.
+
+[img:piles|Deck, Graveyard, Banishment and Extra Deck sit at the edge of your side. Numbers show what is inside.]
+
+# THE DECK BUILDER
+A deck holds 40 to 80 cards, at most 3 copies of a card, plus one hero and up to 20 Reliquaries in the Extra Deck. The Banlist may lower the copies of specific cards — the limit is printed on the tile and enforced when you save.
+
+You can only build with cards you own. Every card also exists in four finishes — Plain, Glossy, Rainbow, Static — and the finish of the copy you add is the finish that reaches the table. Cards you cannot pull can be crafted from dust; dusting a spare copy gives dust back.
+
+[img:deckbuilder|The deck panel: name, hero, the count against 40–80, and every copy you have sealed in.]
+
+[img:deckbalance|DECK BALANCE shows how many Level 1, 2 and 3 monsters you run — and tells you when the deck is legal.]
+
+# WHERE TO PLAY
+- SOLO — bots of every temper. Good for learning a deck.
+- PLAY — the online queue for coins and rank, private lobbies with a code, and WATCH to spectate live duels.
+- CHALLENGES — The Tower: fifteen floors, fifteen Keepers, packs on every first clear.
+- DRAFT — build from a fresh pool and climb with what you drafted.
+- SHOP — packs, the Hero Cache and cosmetics; STATISTICS shows what wins.
+
+Every online win, loss and draw earns coins. Rank Points move you through ten seals of five tiers each; a season lasts a month.
+
+# ONE LAST THING
+Card text beats this book. Where a card says something the rules do not, the card is right — the vault is full of exceptions, and the GLOSSARY next door explains every word they use.
