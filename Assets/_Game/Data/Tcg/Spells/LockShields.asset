@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LockShields
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Lock Shields
-  artwork: {fileID: 0}
+  artwork: {fileID: 7042587255613242358, guid: a1d0889d78ad7614a81aea645fdd44f2, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Lock Shields
     text: 'Pay 1 Mana: Target 1 monster you control: it and the monsters adjacent

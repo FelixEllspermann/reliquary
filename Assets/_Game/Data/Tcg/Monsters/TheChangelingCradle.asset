@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheChangelingCradle
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Changeling Cradle
-  artwork: {fileID: 0}
+  artwork: {fileID: -3119952548559531149, guid: 83178ba3629fee3428de65e2f5cde513, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Cuckoo's Egg
     text: 'When this card is Summoned: Swap control of this card and 1 Level 1 monster

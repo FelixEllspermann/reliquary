@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: FairTrade
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Fair Trade
-  artwork: {fileID: 0}
+  artwork: {fileID: 6700719935457342957, guid: 02f2d48056891ef4fa4911ffe1261af7, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Fair Trade
     text: 'Pay 2 Mana: Choose 1 monster you control and 1 monster your opponent controls:

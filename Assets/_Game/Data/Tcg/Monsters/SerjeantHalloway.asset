@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SerjeantHalloway
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Serjeant Halloway
-  artwork: {fileID: 0}
+  artwork: {fileID: -5661319634627905751, guid: 72bbc7473f5530a4e90219aee4a9a3a7, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Fall In
     text: 'Pay 1 Mana: Move this card to an empty monster zone you control.'

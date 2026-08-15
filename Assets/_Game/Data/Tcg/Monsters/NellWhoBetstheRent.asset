@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: NellWhoBetstheRent
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Nell, Who Bets the Rent
-  artwork: {fileID: 0}
+  artwork: {fileID: -4655598801055177631, guid: 12d43fa3427c04148872f0b4c66e7a9f, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Bets the Rent
     text: "Pay 1 Mana: Flip a coin. Heads \u2014 return 1 monster your opponent controls

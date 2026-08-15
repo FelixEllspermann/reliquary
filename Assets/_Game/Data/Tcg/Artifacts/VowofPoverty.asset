@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: VowofPoverty
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Vow of Poverty
-  artwork: {fileID: 0}
+  artwork: {fileID: 2692248455231379405, guid: 9d4c6af1450743d43884473bb15e8009, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

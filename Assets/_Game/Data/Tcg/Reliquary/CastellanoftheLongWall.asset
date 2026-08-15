@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CastellanoftheLongWall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Castellan of the Long Wall
-  artwork: {fileID: 0}
+  artwork: {fileID: -8900817065020378579, guid: d6fb95fce6c29ef46b5085f2e86c9b0c, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Man the Wall
     text: 'When this card is Summoned: Move 1 other monster you control to an empty

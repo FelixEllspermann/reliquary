@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BloodOath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Blood Oath
-  artwork: {fileID: 0}
+  artwork: {fileID: -8310329518897361629, guid: f0ba5467a30dbe84a9d7378530d5202b, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Debt Repaid
     text: 'When this card is destroyed: Gain 1000 LP.'

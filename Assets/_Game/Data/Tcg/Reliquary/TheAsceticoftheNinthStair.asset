@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheAsceticoftheNinthStair
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: The Ascetic of the Ninth Stair
-  artwork: {fileID: 0}
+  artwork: {fileID: 1381712095482479169, guid: c29f1ae043a722c4bb0e3f060fba389a, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: The Ninth Stair
     text: 'When this card is Summoned: Draw 2 cards.'

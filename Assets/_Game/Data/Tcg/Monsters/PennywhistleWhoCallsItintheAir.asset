@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PennywhistleWhoCallsItintheAir
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Pennywhistle, Who Calls It in the Air
-  artwork: {fileID: 0}
+  artwork: {fileID: -726524373632304688, guid: 658c1fa7528311842a24e0263ab3d134, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Calls It in the Air
     text: "When this card is Summoned: Flip a coin. Heads \u2014 add 1 Spell from

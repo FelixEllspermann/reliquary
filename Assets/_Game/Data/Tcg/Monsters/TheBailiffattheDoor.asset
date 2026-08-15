@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheBailiffattheDoor
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Bailiff at the Door
-  artwork: {fileID: 0}
+  artwork: {fileID: -2265507724897068813, guid: 63a269859a643f943a6a4df1944b4c91, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Knock, Knock
     text: 'When this card is Summoned: Destroy 1 monster with a Lien; draw 1 card.'

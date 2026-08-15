@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SwornStatement
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sworn Statement
-  artwork: {fileID: 0}
+  artwork: {fileID: -3475842777589034580, guid: e0951d39d14f76e4186f185e0f3d115d, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Sworn Statement
     text: 'Pay 1 Mana: Declare Monster, Spell or Artifact, then reveal the top card

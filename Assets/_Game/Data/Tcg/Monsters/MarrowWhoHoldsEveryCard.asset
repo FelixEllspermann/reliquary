@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MarrowWhoHoldsEveryCard
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Marrow, Who Holds Every Card
-  artwork: {fileID: 0}
+  artwork: {fileID: 479381979034081101, guid: f451648fdb3439e419a1299436302ae4, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Deal Me In
     text: 'Pay 2 Mana: Draw 1 card, then your opponent draws 1 card.'

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GraleWhoCollectsonSundays
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Grale, Who Collects on Sundays
-  artwork: {fileID: 0}
+  artwork: {fileID: -8382771598110280722, guid: cef7fb705d96c404082a81e79fb7a408, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Collects on Sundays
     text: 'When this card is Summoned: Place a Lien of 1 on 1 monster your opponent

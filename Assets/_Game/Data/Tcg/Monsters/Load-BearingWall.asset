@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Load-BearingWall
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Load-Bearing Wall
-  artwork: {fileID: 0}
+  artwork: {fileID: 6952277684489935046, guid: 4a2dc63d8b9c7f54c81db324987b70f2, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

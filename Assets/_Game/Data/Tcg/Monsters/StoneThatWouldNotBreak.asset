@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: StoneThatWouldNotBreak
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Stone That Would Not Break
-  artwork: {fileID: 0}
+  artwork: {fileID: 7076022654805487193, guid: 05629ed8304970b4bac3bc16742d4957, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

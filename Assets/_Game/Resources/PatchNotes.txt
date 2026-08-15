@@ -1,4 +1,59 @@
 ────────────────────────────────
+0.1.6b · THE SMALL PRINT
+────────────────────────────────
+
+51 NEW CARDS — EVERY DEAL HAS ITS TERMS
+  · Fifty-one new cards for ANY deck: no archetype, no home,
+    just contracts. Every strong effect carries its small print
+    — a wager, a debt, a trade, a place on the board, an oath
+    or a rule of battle. Press NEW CARDS below to browse them
+  · WAGERS: flip a coin. Heads is what you wanted; Tails is the
+    other side of the bet, never "nothing happens". Loaded Dice
+    lets you flip twice and choose; The House Always Wins calls
+    Tails as Heads while you are behind
+  · DEBTS: pay Life Points as a price (Blood for Ink, Pound of
+    Flesh, Sign in Blood — Aurel makes them free), borrow Mana
+    against next turn (The Usurer's Terms: what you cannot repay
+    costs 1500 LP each), skim your opponent's Mana as it flows,
+    and put a LIEN on a monster: its controller pays every
+    Standby Phase or loses it. Liens show as a badge on the card
+  · BARTER: swap control of monsters for good (Fair Trade, The
+    Changeling Cradle, The Broker of Both Sides), hand over a
+    gift that bleeds its keeper (The White Elephant, Gift Horse),
+    poach from the OTHER graveyard (Poacher's Lantern), or shuffle
+    both hands and redraw (Even Exchange)
+  · GROUND: zones matter now. Adjacent monsters share auras and
+    walls (Serjeant Halloway, Load-Bearing Wall, Castellan of the
+    Long Wall), the monster FACING a card is a target (Rook's
+    Gambit, Stare Down, Left Hand of the Hangman), and some cards
+    move to another zone — the Hangman kills whatever it lands
+    across from
+  · OATHS: two Once-per-Duel spells (The Unbroken Oath, First and
+    Last Word), a lone gatekeeper nothing can touch while he stands
+    alone, a vow that pays Mana as long as your hand stays small,
+    and an ascetic who is untargetable while you hold almost nothing
+  · TERMS OF BATTLE: piercing damage (Ram's Head, Bristleback
+    Aurochs, Trample the Line), a sweep who slips past blockers for
+    half damage, doubled battle damage for two turns (High Stakes),
+    a tariff on every spell (Guild Tariff), one attack per Battle
+    Phase for everyone (The Duelist's Code), and a way to end the
+    Battle Phase early (Parley)
+  · The pool grows from 749 to 800 cards
+
+NEW CARDS, ONE PRESS AWAY
+  · The patch notes now carry a NEW CARDS button: it opens a
+    gallery of every card added in this version and its letter
+    patches — 0.1.6b and 0.1.6 together — with the full card and
+    rules text on the left, filters by card type on the right
+
+RULES THAT CAME WITH THE SET
+  · Coin flips choose their targets AFTER the flip — no picking a
+    victim for a Tails that never comes
+  · Adjacent, facing and moving are defined in the Glossary now,
+    together with Lien, LP cost, Mana debt, Poach, Piercing and
+    Once per Duel
+
+────────────────────────────────
 0.1.6 · SIX FOR THIRTY
 ────────────────────────────────
 

@@ -16,6 +16,7 @@ MonoBehaviour:
   artwork: {fileID: -6499601261090993682, guid: 32a6da07d0fefb9478a096288f6e9d34, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6
   effects:
   - label: The Under Feeds
     text: 'When this card is Summoned: Mill 5 cards; then Special Summon up to 2
@@ -34,6 +35,9 @@ MonoBehaviour:
     onlyDuringYourTurn: 0
     onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -63,6 +67,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
     - type: 9
       isCost: 0
       amount: 1
@@ -82,6 +87,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
   - label: Fed and Patient
     text: 'Pay 2 Mana, if you milled this or last turn: this card cannot be destroyed
       this turn.'
@@ -99,6 +105,9 @@ MonoBehaviour:
     onlyDuringYourTurn: 0
     onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -128,6 +137,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -162,6 +172,37 @@ MonoBehaviour:
   passiveProtectAllFromTargetingAndAttacks: 0
   passiveEndPhaseLpToll: 0
   passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
   level: 3
   attribute: 1
   monsterType: 5
@@ -180,6 +221,14 @@ MonoBehaviour:
   selfSummonRequiresGraveNamedCount: 0
   selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0
   summonText: "Your Graveyard holds 10+ cards \u2014 pay 2 Mana."
   summonManaCost: 2
   reqNamedOnField: 
@@ -204,6 +253,8 @@ MonoBehaviour:
   reqNoReliquariesOnFieldOrBanish: 0
   reqReliquariesInGraveAtLeast: 0
   reqOpponentMonsterAtkAtLeast: 0
+  reqHandEmpty: 0
+  reqControlChangedOnField: 0
   costBanishMonstersFromGrave: 0
   costTributeOtherMonster: 0
   costTributeOwnMonsters: 0

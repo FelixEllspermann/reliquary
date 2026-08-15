@@ -126,6 +126,9 @@ namespace Rouge.Tcg.UI
             Show("NEWS", "PATCH NOTES · WHAT CHANGED", notes != null
                 ? Colourise(notes.text)
                 : "<color=#8C7B5F>No patch notes found.</color>");
+            // Nur die Patch Notes führen zur NEW-CARDS-Szene — jede andere
+            // Ansicht (Show/ShowBlocks) blendet den Knopf wieder aus.
+            SetNewCardsButton(true);
         }
 
         public void ShowBanlist()
@@ -363,6 +366,7 @@ namespace Rouge.Tcg.UI
             EnsureOverlay();
             if (overlay == null) return;
             ClearBlocks();
+            SetNewCardsButton(false);
             overlay.SetActive(true);
             overlay.transform.SetAsLastSibling();
             if (panelRect != null) panelRect.sizeDelta = new Vector2(PanelWidth, PanelHeight);
@@ -381,6 +385,7 @@ namespace Rouge.Tcg.UI
             EnsureOverlay();
             if (overlay == null) return;
             ClearBlocks();
+            SetNewCardsButton(false);
             overlay.SetActive(true);
             overlay.transform.SetAsLastSibling();
             if (panelRect != null) panelRect.sizeDelta = new Vector2(PanelWidth, TallPanelHeight);
@@ -617,40 +622,74 @@ namespace Rouge.Tcg.UI
         private void BuildCloseButton(RectTransform panel)
         {
             if (buttonTemplate == null) return;
-            var close = Instantiate(buttonTemplate.gameObject, panel);
-            close.name = "CloseButton";
+            closeButton = ClonePanelButton(panel, "CloseButton", "CLOSE", 140f, Hide);
+            // NEW CARDS: nur in den Patch Notes sichtbar — führt in die Karten-Szene
+            newCardsButton = ClonePanelButton(panel, "NewCardsButton", "NEW CARDS", 170f, () =>
+            {
+                Hide();
+                UnityEngine.SceneManagement.SceneManager.LoadScene(newCardsSceneName);
+            });
+            SetNewCardsButton(false);
+        }
+
+        private Button closeButton;
+        private Button newCardsButton;
+        [Tooltip("Szene hinter dem NEW-CARDS-Knopf der Patch Notes")]
+        [SerializeField] private string newCardsSceneName = "NewCards";
+
+        /// <summary>Knopf im Rahmen-Stil unten mittig im Fenster (Klon der Leisten-Vorlage).</summary>
+        private Button ClonePanelButton(RectTransform panel, string name, string caption, float width, UnityEngine.Events.UnityAction onClick)
+        {
+            var clone = Instantiate(buttonTemplate.gameObject, panel);
+            clone.name = name;
             foreach (var junk in new[] { "Glow", "~FxGlow", "Icon" })
             {
-                var child = close.transform.Find(junk);
+                var child = clone.transform.Find(junk);
                 if (child != null) Destroy(child.gameObject);
             }
-            var inherited = close.GetComponent<UiButtonFx>();
+            var inherited = clone.GetComponent<UiButtonFx>();
             if (inherited != null) Destroy(inherited);
 
-            var closeRect = (RectTransform)close.transform;
-            closeRect.anchorMin = closeRect.anchorMax = new Vector2(0.5f, 0f);
-            closeRect.pivot = new Vector2(0.5f, 0.5f);
-            closeRect.sizeDelta = new Vector2(140f, 44f);
-            closeRect.anchoredPosition = new Vector2(0f, 64f);
-            closeRect.localScale = Vector3.one;
+            var rect = (RectTransform)clone.transform;
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.sizeDelta = new Vector2(width, 44f);
+            rect.anchoredPosition = new Vector2(0f, 64f);
+            rect.localScale = Vector3.one;
 
-            var closeButton = close.GetComponent<Button>();
-            if (closeButton != null)
+            var button = clone.GetComponent<Button>();
+            if (button != null)
             {
-                closeButton.onClick.RemoveAllListeners();
-                closeButton.interactable = true;
-                closeButton.onClick.AddListener(Hide);
+                button.onClick.RemoveAllListeners();
+                button.interactable = true;
+                button.onClick.AddListener(() => { SfxManager.Click(); onClick(); });
             }
-            var closeLabel = close.GetComponentInChildren<TMP_Text>(true);
-            if (closeLabel != null) { closeLabel.text = "CLOSE"; closeLabel.color = Hex("#D9C79B", 1f); }
+            var label = clone.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) { label.text = caption; label.color = Hex("#D9C79B", 1f); }
 
             // Die Leisten-Knöpfe sind ember getönt; im Fenster gilt das Gold des Rahmens
-            var closeFrame = close.transform.Find("Frame");
-            if (closeFrame != null)
+            var frame = clone.transform.Find("Frame");
+            if (frame != null)
             {
-                var frameImage = closeFrame.GetComponent<Image>();
+                var frameImage = frame.GetComponent<Image>();
                 if (frameImage != null) frameImage.color = Hex("#C8A45C", 0.45f);
             }
+            return button;
+        }
+
+        /// <summary>NEW CARDS ein-/ausblenden; CLOSE rückt daneben bzw. zurück in die Mitte.</summary>
+        private void SetNewCardsButton(bool visible)
+        {
+            if (newCardsButton == null || closeButton == null) return;
+            newCardsButton.gameObject.SetActive(visible);
+            var closeRect = (RectTransform)closeButton.transform;
+            var newRect = (RectTransform)newCardsButton.transform;
+            if (visible)
+            {
+                newRect.anchoredPosition = new Vector2(-95f, 64f);
+                closeRect.anchoredPosition = new Vector2(85f, 64f);
+            }
+            else closeRect.anchoredPosition = new Vector2(0f, 64f);
         }
 
         // ---------- kleine Bau-Helfer ----------

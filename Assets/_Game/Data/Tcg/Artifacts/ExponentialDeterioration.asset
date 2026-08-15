@@ -16,6 +16,7 @@ MonoBehaviour:
   artwork: {fileID: -6214400381203362611, guid: 5f46150d607389c4cb9d67d701f37cab, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0
@@ -51,6 +52,37 @@ MonoBehaviour:
   passiveProtectAllFromTargetingAndAttacks: 0
   passiveEndPhaseLpToll: 0
   passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
   slot: 2
   atkBonus: 0
   defBonus: 0

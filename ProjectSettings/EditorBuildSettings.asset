@@ -35,5 +35,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/Profile.unity
     guid: f8bdc02908a696944881f9a0a576f32f
+  - enabled: 1
+    path: Assets/_Game/Scenes/NewCards.unity
+    guid: 4d6f306092d01b84381848bcce50a8d2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SkimmedOfftheTop
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Skimmed Off the Top
-  artwork: {fileID: 0}
+  artwork: {fileID: -7835359962864339136, guid: 59a3763bc73655a4b80f4e3523198103, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Skimmed Off the Top
     text: "Pay 1 Mana: Activate when your opponent activates a card or effect that

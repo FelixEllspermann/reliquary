@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LedgerofSmallDebts
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Ledger of Small Debts
-  artwork: {fileID: 0}
+  artwork: {fileID: 5338636510455946046, guid: 1a809d98cfcd06843b0f15270b072b65, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Small Debts
     text: 'Once per turn: Pay 800 LP; gain 1 Mana this turn.'

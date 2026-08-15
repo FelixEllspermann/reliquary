@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: RamsHead
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Ram's Head
-  artwork: {fileID: 0}
+  artwork: {fileID: 4252488530581418681, guid: dc9e503d573842546aa6a01dc546d094, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

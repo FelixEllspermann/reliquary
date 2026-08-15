@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GrinnerWhoPlaystheTable
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Grinner, Who Plays the Table
-  artwork: {fileID: 0}
+  artwork: {fileID: -40968946807144967, guid: b47cae036b2e71247918ece98d537413, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Plays the Table
     text: "When this card is Summoned: Flip a coin. Heads \u2014 your opponent discards

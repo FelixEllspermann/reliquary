@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ChimneySweep
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Chimney Sweep
-  artwork: {fileID: 0}
+  artwork: {fileID: 1114424803866988163, guid: 82095339afe88fd45b8ed9b06a1c0dfc, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

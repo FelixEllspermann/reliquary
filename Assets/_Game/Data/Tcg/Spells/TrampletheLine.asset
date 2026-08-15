@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TrampletheLine
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Trample the Line
-  artwork: {fileID: 0}
+  artwork: {fileID: 15571407589734357, guid: 37b0f7bbdacbfb14ab2f71db8015f672, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Trample the Line
     text: 'Pay 1 Mana: Target 1 monster you control: it inflicts piercing battle

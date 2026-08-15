@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SworntotheGate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Sworn to the Gate
-  artwork: {fileID: 0}
+  artwork: {fileID: -7187202306180542821, guid: c766b18bf3064df4297929660fed1f20, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

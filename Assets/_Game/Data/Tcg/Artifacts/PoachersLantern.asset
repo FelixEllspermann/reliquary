@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PoachersLantern
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Poacher's Lantern
-  artwork: {fileID: 0}
+  artwork: {fileID: 2140113352182279449, guid: c8d801bd1f964e0468b1cb1fa93dbe78, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Poacher's Lantern
     text: 'Pay 2 Mana (either player may activate this): Special Summon 1 monster

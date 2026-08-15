@@ -16,6 +16,7 @@ MonoBehaviour:
   artwork: {fileID: -1768229079290288807, guid: 94205a95dd17bed4f8f4f0e7293781b0, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0
@@ -51,6 +52,37 @@ MonoBehaviour:
   passiveProtectAllFromTargetingAndAttacks: 0
   passiveEndPhaseLpToll: 0
   passiveOpponentMustSetSpells: 1
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
   level: 1
   attribute: 0
   monsterType: 1
@@ -69,3 +101,11 @@ MonoBehaviour:
   selfSummonRequiresGraveNamedCount: 0
   selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0

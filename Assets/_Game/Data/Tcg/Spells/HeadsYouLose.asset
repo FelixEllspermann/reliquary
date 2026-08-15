@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: HeadsYouLose
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Heads You Lose
-  artwork: {fileID: 0}
+  artwork: {fileID: 3815379054229387255, guid: 761883d4dbf0d5540b38f94fa211dab5, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Heads You Lose
     text: "Pay 1 Mana: Flip a coin. Heads \u2014 destroy 1 monster on the field.

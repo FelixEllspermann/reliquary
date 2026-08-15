@@ -16,6 +16,7 @@ MonoBehaviour:
   artwork: {fileID: -1590062713472838959, guid: 38ef5361c844439438cd1632de662b43, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6
   effects:
   - label: Final Draft
     text: Send 1 "Deathpoem" monster from your Deck to the Graveyard; draw 1 card.
@@ -33,6 +34,9 @@ MonoBehaviour:
     onlyDuringYourTurn: 0
     onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -62,6 +66,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
     - type: 2
       isCost: 0
       amount: 1
@@ -81,6 +86,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
   - label: Collected Works
     text: 'Instead, pay 2 Mana: Send 2.'
     isInfused: 1
@@ -97,6 +103,9 @@ MonoBehaviour:
     onlyDuringYourTurn: 0
     onlyDuringOpponentTurn: 0
     onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
     minMana: 0
     minOwnMonsters: 0
     minOwnFaceDownMonsters: 0
@@ -126,6 +135,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
     - type: 2
       isCost: 0
       amount: 1
@@ -145,6 +155,7 @@ MonoBehaviour:
       excludeSameName: 0
       onlyWithoutEffects: 0
       summonInDefense: 0
+      coinGate: 0
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -179,4 +190,35 @@ MonoBehaviour:
   passiveProtectAllFromTargetingAndAttacks: 0
   passiveEndPhaseLpToll: 0
   passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
   speed: 0

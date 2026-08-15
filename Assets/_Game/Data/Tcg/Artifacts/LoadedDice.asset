@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LoadedDice
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Loaded Dice
-  artwork: {fileID: 0}
+  artwork: {fileID: -8997430224533770620, guid: 4786d7f76ebb3cc4fabd1328e1381db3, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Roll Again
     text: "Pay 2 Mana: Flip a coin. Heads \u2014 draw 1 card. Tails \u2014 discard

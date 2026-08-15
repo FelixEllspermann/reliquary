@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: RooksGambit
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Rook's Gambit
-  artwork: {fileID: 0}
+  artwork: {fileID: -3510364995336407924, guid: c63ab6901971e9d4392c064860b82c0f, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Castle
     text: 'Once per turn: Move this card to any empty monster zone you control.'

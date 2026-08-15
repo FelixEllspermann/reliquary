@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheUsurersTerms
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: The Usurer's Terms
-  artwork: {fileID: 0}
+  artwork: {fileID: 3947862472321741966, guid: 0be07dec097b96840a3a10a36de089ff, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: The Usurer's Terms
     text: 'Pay 1 Mana: Gain 4 Mana this turn. During your next turn, you have 3 less

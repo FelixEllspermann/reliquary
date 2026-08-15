@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SabineWhoWagerstheCrown
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Sabine, Who Wagers the Crown
-  artwork: {fileID: 0}
+  artwork: {fileID: -1268352163975530970, guid: 88ac2c6677561954485ea45679c778a8, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Wagers the Crown
     text: "When this card is Summoned: Flip a coin. Heads \u2014 destroy all monsters

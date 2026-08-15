@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: HesseloftheCrossroads
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Hessel of the Crossroads
-  artwork: {fileID: 0}
+  artwork: {fileID: 8138858942359225873, guid: 88d9d7df3fecf304ab269d5746685452, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Crossroads Deal
     text: 'When this card is Summoned: Your opponent draws 1 card; you draw 2 cards.'

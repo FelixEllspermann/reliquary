@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: VetchWhoNeverForgetsaFace
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Vetch, Who Never Forgets a Face
-  artwork: {fileID: 0}
+  artwork: {fileID: 2993920611993624223, guid: 99d7b28617470804f9f617408cac5258, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Never Forgets a Face
     text: 'When this card is Summoned: Place a Lien of 1 on 1 monster your opponent

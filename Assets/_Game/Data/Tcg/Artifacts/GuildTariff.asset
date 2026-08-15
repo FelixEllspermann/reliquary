@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GuildTariff
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Guild Tariff
-  artwork: {fileID: 0}
+  artwork: {fileID: 4894583850120230485, guid: c248170b69821ea4f862833109bcd956, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

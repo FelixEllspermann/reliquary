@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: HighStakes
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: High Stakes
-  artwork: {fileID: 0}
+  artwork: {fileID: -5660222046850275794, guid: f437023f144acba44ac04a8e8e07cd9c, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: High Stakes
     text: 'Pay 2 Mana: Only during your opponent''s Main Phase: until the end of

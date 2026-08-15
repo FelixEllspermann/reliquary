@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: AurelWhoCollectsatMidnight
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Aurel, Who Collects at Midnight
-  artwork: {fileID: 0}
+  artwork: {fileID: -1318039361062546870, guid: 3102bb005a1947a44894999d80659bb1, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Collects at Midnight
     text: 'When this card is Summoned: Gain 500 LP for each Spell in your Graveyard

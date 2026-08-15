@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LeftHandoftheHangman
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Left Hand of the Hangman
-  artwork: {fileID: 0}
+  artwork: {fileID: 8709824622242058876, guid: 5de2f545a5bf99446b829ed108074ed3, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: The Drop
     text: 'When this card is Summoned: Destroy the face-up monster facing it if that

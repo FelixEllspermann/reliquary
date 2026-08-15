@@ -19,6 +19,10 @@ namespace Rouge.Tcg
         [Tooltip("Token: nur von Effekten erzeugt — nicht sammelbar, nicht im Deck, löst sich beim Verlassen des Feldes auf")]
         public bool isToken;
 
+        [Tooltip("Spielversion, in der die Karte neu dazukam (z.B. \"0.1.6\", \"0.1.6b\"). Leer = Bestand. " +
+                 "Die NEW-CARDS-Szene der Patchnotes listet alle Karten der laufenden Version samt Buchstaben-Patches.")]
+        public string releaseVersion = "";
+
         [Header("Effekte (Normal & Infused)")]
         [Tooltip("Alle Effekte dieser Karte. Infused-Effekte werden auf der Karte getrennt dargestellt und kosten Mana.")]
         public List<EffectDefinition> effects = new List<EffectDefinition>();

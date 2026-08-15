@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: EvenExchange
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Even Exchange
-  artwork: {fileID: 0}
+  artwork: {fileID: -4267303107842863950, guid: 8927a77f7b05d4e4fb41f20b248bf686, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Even Exchange
     text: 'Pay 2 Mana: Both players shuffle their hands into their Decks, then each

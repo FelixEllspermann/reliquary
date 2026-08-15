@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheHouseAlwaysWins
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: The House Always Wins
-  artwork: {fileID: 0}
+  artwork: {fileID: -515315700614772796, guid: 3eef84fa2c4163044911f0e4764b3e5a, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: The House Always Wins
     text: 'When this card is Summoned: Flip 3 coins. For each Heads, destroy 1 monster

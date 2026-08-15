@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PoundofFlesh
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Pound of Flesh
-  artwork: {fileID: 0}
+  artwork: {fileID: -7849490891674765209, guid: c4261dc9715e7bc40842eb482efd65e0, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Pound of Flesh
     text: 'Pay 1 Mana and 1500 LP: Destroy 1 monster your opponent controls with

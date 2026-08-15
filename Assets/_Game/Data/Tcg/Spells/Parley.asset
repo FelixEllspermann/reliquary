@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Parley
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Parley
-  artwork: {fileID: 0}
+  artwork: {fileID: -5586671596553227141, guid: 57ee711ccb119754f9e49ef8df56d0d9, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Parley
     text: 'Pay 1 Mana: Only during a Battle Phase: end the Battle Phase. Your opponent

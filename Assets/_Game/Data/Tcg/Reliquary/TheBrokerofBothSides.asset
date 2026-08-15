@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheBrokerofBothSides
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: The Broker of Both Sides
-  artwork: {fileID: 0}
+  artwork: {fileID: -8806596583565363602, guid: 05ab6ea9b80a26a4cb98c59dad897be7, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Both Sides of the Deal
     text: 'When this card is Summoned: Swap control of 1 other monster you control

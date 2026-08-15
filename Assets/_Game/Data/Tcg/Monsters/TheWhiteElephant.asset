@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheWhiteElephant
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The White Elephant
-  artwork: {fileID: 0}
+  artwork: {fileID: 1665062776833652809, guid: 7e1b9819a8f9395479e7fc60f4e4f964, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

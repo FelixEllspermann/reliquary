@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: FirstandLastWord
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: First and Last Word
-  artwork: {fileID: 0}
+  artwork: {fileID: -6221630726496612727, guid: 3d279ca8fafd92446a0d5ec8dd089b7e, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: First and Last Word
     text: 'Once per Duel. Pay 2 Mana: Negate the activation of the Spell your opponent

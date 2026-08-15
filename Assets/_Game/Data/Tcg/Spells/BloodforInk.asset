@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BloodforInk
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Blood for Ink
-  artwork: {fileID: 0}
+  artwork: {fileID: -704839387459823892, guid: 0e58643e1faeaca46951e0181f319a10, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Blood for Ink
     text: 'Pay 1 Mana and 1000 LP: Draw 2 cards.'

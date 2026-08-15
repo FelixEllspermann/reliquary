@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheDuelistsCode
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: The Duelist's Code
-  artwork: {fileID: 0}
+  artwork: {fileID: 4694502867716652222, guid: a6b5070026213a143af13c400fc7fc15, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0

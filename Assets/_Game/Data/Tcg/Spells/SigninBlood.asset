@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SigninBlood
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Sign in Blood
-  artwork: {fileID: 0}
+  artwork: {fileID: 8711471463704945895, guid: 2b45e889ebb0edf4682670afb33dc999, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Sign in Blood
     text: 'Pay 2 Mana and 2000 LP: Special Summon 1 Level 2 monster from your Deck.

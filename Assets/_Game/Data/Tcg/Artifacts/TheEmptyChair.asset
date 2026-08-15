@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheEmptyChair
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: The Empty Chair
-  artwork: {fileID: 0}
+  artwork: {fileID: -8763806391235463393, guid: cf778de91d4d0aa4e909689a173ba590, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects: []
   auraAtkBonus: 500
   auraDefBonus: 0

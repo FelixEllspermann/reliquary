@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TheUnbrokenOath
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: The Unbroken Oath
-  artwork: {fileID: 0}
+  artwork: {fileID: 5799845850747818719, guid: 9f59edd1e3c115c4888041d6b66ae5f8, type: 3}
   rarity: 3
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: The Unbroken Oath
     text: 'Once per Duel. Pay 2 Mana: Negate the effects of all cards your opponent

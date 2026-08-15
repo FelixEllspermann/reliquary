@@ -28,9 +28,13 @@ namespace Rouge.Tcg.EditorTools
         private static EffectDefinition OpponentTurnOnly(this EffectDefinition effect) { effect.onlyDuringOpponentTurn = true; return effect; }
         private static EffectDefinition EitherSide(this EffectDefinition effect) { effect.eitherPlayerMayActivate = true; return effect; }
 
-        /// <summary>Alle Small-Print-Passives zurücksetzen (Make() kennt nur die alten).</summary>
+        /// <summary>Set-Version für die NEW-CARDS-Szene der Patchnotes.</summary>
+        private const string SmallPrintVersion = "0.1.6b";
+
+        /// <summary>Alle Small-Print-Passives zurücksetzen (Make() kennt nur die alten) + Set-Version stempeln.</summary>
         private static void ResetSmallPrint(CardDefinition card)
         {
+            card.releaseVersion = SmallPrintVersion;
             card.auraAdjacentOnly = false; card.auraAloneOnly = false; card.auraCrowdedAtkPenalty = 0;
             card.facingAtkPenalty = 0; card.passiveAdjacentNoEffectDestroy = false;
             card.passiveAdjacentNoBattleDestroy = false; card.passiveAdjacentDebuffOnDestroy = 0;

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GiftHorse
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Gift Horse
-  artwork: {fileID: 0}
+  artwork: {fileID: 8514129077259384560, guid: ff71b9e5fee1ad04896c2cd5dc020fee, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Don't Look It in the Mouth
     text: 'Once per turn, if you own this card: Give control of it to your opponent;

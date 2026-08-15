@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BristlebackAurochs
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Bristleback Aurochs
-  artwork: {fileID: 0}
+  artwork: {fileID: 732418932919556036, guid: 11e8537c8458a0a4c9bc50bafd0ffa0b, type: 3}
   rarity: 2
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Lower the Horns
     text: 'Pay 2 Mana: Switch 1 monster your opponent controls to Defense Position.'

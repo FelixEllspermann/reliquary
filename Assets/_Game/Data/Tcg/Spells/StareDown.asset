@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: StareDown
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Stare Down
-  artwork: {fileID: 0}
+  artwork: {fileID: 5595651365053551206, guid: 1a213228fd928704f8752d19f95bb180, type: 3}
   rarity: 1
   isToken: 0
+  releaseVersion: 0.1.6b
   effects:
   - label: Stare Down
     text: 'Pay 1 Mana: Target 1 monster you control: until the end of the turn it
