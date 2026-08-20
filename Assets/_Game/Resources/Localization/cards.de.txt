@@ -1,0 +1,4216 @@
+# RELIQUARY — Kartentexte Deutsch
+# Blöcke: "## Englischer Name" als Schlüssel, dann n/s/lN/tN.
+# Archetype-Namen (verbindlich): Apocrypha=Apokrypha Archfiend=Erzdämon
+# Barrierstruck=Barrieren Deathpoem=Totenvers Deckay=Deckay Dragon Shrine=Drachenschrein
+# Failsafe=Failsafe Fethaerbreese=Fethaerbreese Forgeheart=Schmiedeherz Gaslight=Gaslicht
+# Genostitched=Gennaht Gravemaw=Grabschlund Heavenly=Himmels Hexweaver=Hexweber
+# Kindlekin=Zundersippe Lightless=Lichtlos Lyria=Lyria Manacle=Manakel
+# Mechination=Maschination Mimicrypt=Mimikrypt Paperbound=Aktenbund Powderkeg=Pulverfass
+# Redactor=Redaktor Sacrilegion=Sakrilegion Sleightwind=Trickwind Slowburn=Schwelbrand
+# Snugglet=Schmuseling Tidebound=Gezeitenbann Trapline=Fallenlinie Wyldpack=Wyldrudel
+## Abyss Titan
+n Abgrund-Titan
+l0 Abschiedsgeschenk
+t0 Wenn diese Karte zerstört wird: Du kannst 1 Karte ziehen.
+## Aegis Fragment
+n Aegis-Fragment
+l0 An ihrer Statt zerbersten
+t0 Wenn diese Karte zerstört wird: Du kannst 1 „Barrieren“-Artefakt aus deinem Deck aufs Spielfeld legen.
+## Ancient Dragon
+n Uralter Drache
+l0 Drachenatem
+t0 Einmal pro Zug: Du kannst 3 Mana zahlen; füge deinem Gegner 800 Schaden zu.
+## Ancient History
+n Uralte Geschichte
+l0 Uralte Geschichte
+t0 Zahle 1 Mana: Verbanne bis zu 2 Karten aus dem Friedhof deines Gegners.
+l1 Von der Zeit verschluckt
+t1 Zahle stattdessen 2 Mana: Bis zu 4.
+## Apocrypha Basilisk
+n Apokrypha-Basilisk
+l0 Versteinernde Fußnote
+t0 Zahle 2 Mana: Annulliere die Effekte von 1 Karte auf dem Spielfeld bis zum Ende dieses Zuges.
+## Apocrypha Bestiary
+n Apokrypha-Bestiarium
+l0 Katalog der Bestien
+t0 Einmal pro Zug: Verbanne 1 Karte aus deinem Friedhof; füge deiner Hand 1 „Apokrypha“-Karte aus deinem Friedhof hinzu.
+l1 Feindselige Fußnote
+t1 Zahle 2 Mana: Verbanne 1 Karte aus dem Friedhof deines Gegners; 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK.
+## Apocrypha Cartographer
+n Apokrypha-Kartograf
+l0 Das Verlorene kartieren
+t0 Zahle 2 Mana und verbanne 1 Karte aus deinem Friedhof: Ziehe 1 Karte.
+## Apocrypha Chimera
+n Apokrypha-Chimäre
+l0 Geliehene Gestalt
+t0 Einmal pro Zug, im Zug beider Spieler: Kopiere ATK und DEF von 1 Monster auf dem Spielfeld bis zum Ende dieses Zuges.
+l1 Zweiter Kopf
+t1 Zahle stattdessen 2 Mana: Kopiere, und diese Karte kann in dieser Battle Phase ein weiteres Mal angreifen.
+## Apocrypha Errata
+n Apokrypha-Errata
+l0 Die Aufzeichnung berichtigen
+t0 Mische bis zu 3 Karten aus deinem Friedhof in dein Deck; ziehe 1 Karte.
+l1 Die Aufzeichnung streichen
+t1 Zahle stattdessen 2 Mana: Verbanne sie stattdessen; ziehe 2.
+## Apocrypha Fable
+n Apokrypha-Fabel
+l0 Die Sage neu erzählen
+t0 Füge deiner Hand 1 „Apokrypha“-Karte aus deinem Deck hinzu.
+## Apocrypha Hydra
+n Apokrypha-Hydra
+l0 Nachwachsen
+t0 Wenn diese Karte zerstört wird: Du kannst 1 „Apokrypha“-Monster aus deinem Friedhof spezialbeschwören.
+l1 Zwei Köpfe
+t1 Zahle 2 Mana: Spezialbeschwöre stattdessen bis zu 2.
+## Apocrypha Manticore
+n Apokrypha-Mantikor
+l0 Aus dem Index gerissen
+t0 Wenn diese Karte beschworen wird: Verbanne 1 Karte aus deinem Friedhof; ziehe 1 Karte.
+l1 Aus jedem Index gerissen
+t1 Zahle stattdessen 2 Mana: Verbanne bis zu 2; ziehe 2, decke dann die oberste Karte deines Decks auf — du darfst sie nach unten legen.
+## Apocrypha Missing Page
+n Apokrypha-Fehlende Seite
+l0 Geborgenes Fragment
+t0 Lege 1 deiner verbannten Karten in deinen Friedhof zurück; 1 Monster, das du kontrollierst, tauscht bis zum Ende dieses Zuges ATK und DEF.
+l1 Geborgenes Kapitel
+t1 Zahle stattdessen 3 Mana: Lege bis zu 2 zurück; das Monster kann in diesem Zug außerdem nicht zerstört werden.
+## Apocrypha Roc
+n Apokrypha-Rock
+l0 Davongetragen
+t0 Einmal pro Zug: Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+l1 Sturm der Schwingen
+t1 Zahle stattdessen 3 Mana: Gib bis zu 2 Monster zurück.
+## Apocrypha Sphinx
+n Apokrypha-Sphinx
+l0 Erstes Rätsel
+t0 Wenn diese Karte beschworen wird: Sieh dir die Hand deines Gegners an und wähle 1 Karte; er wirft sie ab.
+l1 Zweites Rätsel
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Sieh dir die Hand deines Gegners an und wähle 1 Karte; er wirft sie ab.
+## Apocrypha, Torn Colophon
+n Apokrypha, Zerrissenes Kolophon
+s Dein Gegner kontrolliert 2+ Monster — zahle 2 Mana.
+l0 Fehlende Seite
+t0 Falls diese Karte beschworen wird: Gib 1 Karte, die dein Gegner kontrolliert, auf die Hand ihres Besitzers zurück.
+## Apocrypha, the Lost Chapter
+n Apokrypha, das Verlorene Kapitel
+s 3+ deiner Karten sind verbannt — zahle 2 Mana.
+l0 Neu gebunden
+t0 Wenn diese Karte beschworen wird: Lege bis zu 2 deiner verbannten Karten in deinen Friedhof zurück; ziehe 1 Karte.
+l1 Vollständig gestrichen
+t1 Zahle 3 Mana: Verbanne 1 Monster, das dein Gegner kontrolliert.
+l2 Zwischen den Zeilen
+t2 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht als Ziel gewählt werden.
+## Apocrypha, the Unwritten
+n Apokrypha, das Ungeschriebene
+s 3+ Monster in deinem Friedhof und 4+ Mana verfügbar — zahle 2 Mana.
+l0 Das letzte Wort
+t0 Zahle 2 Mana: Annulliere alle vorherigen Glieder der laufenden Kette.
+## Archfiend Cinderling
+n Erzdämon-Aschenkind
+l0 Dich reiß ich mit
+t0 Wenn diese Karte zerstört wird: Du kannst 1 Monster mit 1000 oder weniger ATK zerstören, das dein Gegner kontrolliert.
+## Archfiend Court Jester
+n Erzdämon-Hofnarr
+l0 Letzter Witz
+t0 Wenn diese Karte zerstört wird: Ziehe 1 Karte.
+l1 Schneidende Pointe
+t1 Zahle 1 Mana und lege diese Karte aus deiner Hand auf den Friedhof: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 400 ATK.
+## Archfiend Crown
+n Erzdämon-Krone
+l0 Last der Krone
+t0 Während deiner Standby Phase: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 300 ATK.
+l1 Königliche Hinrichtung
+t1 Du kannst 2 Mana zahlen: Zerstöre 1 Monster mit 800 oder weniger ATK, das dein Gegner kontrolliert.
+## Archfiend Death Warrant
+n Erzdämon-Todesurteil
+l0 Unterschrieben und besiegelt
+t0 Zerstöre 1 Monster mit 2000 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Königlicher Erlass
+t1 Zahle stattdessen 4 Mana: Ohne ATK-Grenze; spezialbeschwöre danach 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
+## Archfiend Devil's Advocate
+n Erzdämon-Advocatus Diaboli
+l0 Advocatus Diaboli
+t0 Zahle 1 Mana und wirf 1 Karte ab; gib 1 „Erzdämon“-Monster aus deinem Friedhof auf deine Hand zurück.
+l1 Fall gewonnen
+t1 Zahle stattdessen 3 Mana und wirf 1 Karte ab: Spezialbeschwöre 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
+## Archfiend Devil's Bargain
+n Erzdämon-Teufelspakt
+l0 Der Pakt
+t0 Zahle 1 Mana: Zerstöre 1 Monster, das du kontrollierst; ziehe 2 Karten und erhalte 1 Mana.
+l1 Das Kleingedruckte
+t1 Zahle stattdessen 1 Mana: Spezialbeschwöre außerdem 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
+## Archfiend Dominus
+n Erzdämon-Dominus
+s Dein Gegner kontrolliert 2+ Monster. Kosten 2 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+l0 Thron des Verderbens
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster, das dein Gegner kontrolliert.
+## Archfiend Executioner
+n Erzdämon-Scharfrichter
+l0 Das Urteil vollstrecken
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster mit 1200 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Das Urteil ausweiten
+t1 Zahle stattdessen 2 Mana: 1800 oder weniger.
+## Archfiend Gallows
+n Erzdämon-Galgen
+l0 Gang zum Schafott
+t0 Einmal pro Zug — zahle 2 Mana: Zerstöre 1 Monster, das du kontrollierst; spezialbeschwöre 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
+## Archfiend Hatchet Man
+n Erzdämon-Henkersknecht
+l0 Grobe Arbeit
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Auftragsarbeit
+t1 Zahle stattdessen 3 Mana: Zerstöre 1 Monster mit 2500 oder weniger ATK, das dein Gegner kontrolliert.
+l2 Das Beil begraben
+t2 Einmal pro Zug: Zahle 2 Mana; verbanne 1 Monster aus deinem Friedhof; erhalte 300 LP.
+## Archfiend Heavy Is the Crown
+n Erzdämon — Schwer wiegt die Krone
+l0 Schwer wiegt die Krone
+t0 Während deiner Standby Phase: Gib „Erzdämon-Krone“ aus deinem Friedhof auf deine Hand zurück.
+## Archfiend Kingmaker
+n Erzdämon-Königsmacher
+s 3+ Monster in deinem Friedhof. Kosten 3 Mana; opfere 1 Monster, das du kontrollierst.
+l0 Krönung in Blut
+t0 Wenn diese Karte beschworen wird: Zerstöre bis zu 2 Monster mit 1500 oder weniger ATK, die dein Gegner kontrolliert; diese Karte erhält dauerhaft 200 ATK für jedes.
+l1 Den Hofstaat erheben
+t1 Zahle 3 Mana: Spezialbeschwöre 1 „Erzdämon“-Monster aus deinem Friedhof.
+## Archfiend Last Laugh
+n Erzdämon — Wer zuletzt lacht
+l0 Wer zuletzt lacht
+t0 Zerstöre 1 Monster, das du kontrollierst; ziehe 2 Karten.
+l1 Der Witz geht auf dich
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre außerdem 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
+## Archfiend Matchmaker
+n Erzdämon-Kuppler
+l0 Ein Streichholz entzünden
+t0 Wenn diese Karte beschworen wird: Lege 1 „Erzdämon“-Karte aus deinem Deck auf den Friedhof.
+l1 Perfektes Paar
+t1 Zahle stattdessen 1 Mana: Lege 1 „Erzdämon“-Karte aus deinem Deck auf den Friedhof, füge dann deiner Hand 1 andere „Erzdämon“-Karte aus deinem Deck hinzu.
+## Archfiend Overlord
+n Erzdämon-Oberherr
+l0 Das Urteil fährt herab
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster zerstören, das dein Gegner kontrolliert.
+l1 Den Thron füttern
+t1 Du kannst 3 Mana zahlen: Zerstöre 1 Monster, das dein Gegner kontrolliert, dann erhält diese Karte dauerhaft 400 ATK.
+## Archfiend Torturer
+n Erzdämon-Folterknecht
+l0 Brich sie
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 600 ATK.
+l1 Mach ein Ende
+t1 Du kannst 2 Mana zahlen: Zerstöre 1 Monster mit 1000 oder weniger ATK, das dein Gegner kontrolliert.
+## Archfiend Warden
+n Erzdämon-Kerkermeister
+l0 Keiner kommt durch
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 2 Mana zahlen; zerstöre 1 Monster mit 1700 oder weniger ATK, das dein Gegner kontrolliert.
+## Ash Warrior
+n Aschekrieger
+## Attention Hound
+n Aufmerksamkeits-Hund
+l0 Braver Junge
+t0 Einmal pro Zug: Diese Karte erhält bis zum Ende dieses Zuges 300 DEF.
+## Aurel, Who Collects at Midnight
+n Aurel, der um Mitternacht kassiert
+s Deine LP sind 4000 oder weniger und 3+ Zauber liegen in deinem Friedhof — zahle 3 Mana.
+l0 Kassiert um Mitternacht
+t0 Wenn diese Karte beschworen wird: Erhalte 500 LP für jeden Zauber in deinem Friedhof (max. 2500).
+## Awkward Silence
+n Peinliche Stille
+l0 Peinliche Stille
+t0 Wenn diese Karte beschworen wird: Du wirfst 1 Karte ab und dein Gegner wirft 1 zufällige Karte ab.
+l1 Schmerzhafte Stille
+t1 Zahle stattdessen 2 Mana: Dein Gegner wirft 2 zufällige Karten ab.
+## Baby Dragon of the Dragon Shrine
+n Drachenbaby des Drachenschreins
+l0 Drachenwachstum
+t0 Falls diese Karte spezialbeschworen wurde, während deiner End Phase: Du kannst diese Karte auf den Friedhof legen; spezialbeschwöre 1 Drachen-Monster der Stufe 2 aus deiner Hand oder deinem Friedhof.
+## Back in Style
+n Wieder in Mode
+l0 Wieder in Mode
+t0 Zahle 1 Mana: Mische bis zu 3 Karten aus deinem Friedhof in dein Deck; ziehe 1 Karte.
+l1 Großes Comeback
+t1 Zahle stattdessen 2 Mana: Bis zu 5 Karten; ziehe 1.
+## Bad Penny
+n Falscher Fuffziger
+l0 Taucht wieder auf
+t0 Wenn diese Karte zerstört wird: Gib sie auf deine Hand zurück.
+## Bael, Who Wears the Dead
+n Bael, der die Toten trägt
+l0 Die Gefallenen tragen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Artefakt aus deinem Friedhof an diese Karte anlegen.
+## Banishing Sigil
+n Verbannungssiegel
+l0 Verbannungssiegel
+t0 Wähle 1 Monster auf dem Spielfeld als Ziel; verbanne es.
+## Barrierstruck Aegis Colossus
+n Barrieren-Aegiskoloss
+l0 Wall der Willen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Barrieren“-Artefakt aus deinem Deck aufs Spielfeld legen.
+l1 Absolute Aegis
+t1 Du kannst 3 Mana zahlen und 1 Artefakt zerstören, das du kontrollierst; diese Karte kann in diesem Zug nicht zerstört werden.
+## Barrierstruck Bricklayer
+n Barrieren-Maurer
+l0 Das Fundament legen
+t0 Wenn diese Karte beschworen wird: Lege 1 Artefakt aus deinem Deck auf den Friedhof.
+l1 Zweimal messen
+t1 Zahle stattdessen 1 Mana: Füge es stattdessen deiner Hand hinzu.
+## Barrierstruck Cold Shoulder
+n Barrieren-Kalte Schulter
+l0 Kalte Schulter
+t0 Zahle 1 Mana: Ändere 1 Monster, das du kontrollierst, in die Verteidigungsposition; 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 800 DEF.
+l1 Eiskalt
+t1 Zahle stattdessen 2 Mana: Ändere ALLE deine Monster in die Verteidigungsposition; bis zu 5 davon erhalten bis zum Ende dieses Zuges 800 DEF.
+## Barrierstruck Demolition Refund
+n Barrieren-Abrissprämie
+l0 Abrissprämie
+t0 Zerstöre 1 Artefakt, das du kontrollierst; ziehe 2 Karten.
+l1 Versicherungssumme
+t1 Zahle stattdessen 2 Mana: Lege außerdem 1 „Barrieren“-Artefakt aus deinem Deck aufs Spielfeld.
+## Barrierstruck Gatekeeper
+n Barrieren-Torwächter
+l0 Das Tor antwortet
+t0 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht zerstört werden; sie tauscht bis zum Ende dieses Zuges ATK und DEF.
+## Barrierstruck Hold the Line
+n Barrieren-Haltet die Stellung
+l0 Haltet die Stellung
+t0 Bis zu 3 deiner Monster erhalten bis zum Ende dieses Zuges 600 DEF.
+l1 Keinen Schritt zurück
+t1 Zahle stattdessen 3 Mana: Sie können in diesem Zug außerdem nicht zerstört werden, und 1 von ihnen zieht jeden Angriff auf sich.
+## Barrierstruck Keystone
+n Barrieren-Schlussstein
+l0 Der Bogen hält
+t0 Wenn diese Karte zerstört wird: Lege bis zu 2 „Barrieren“-Artefakte aus deinem Friedhof aufs Spielfeld.
+## Barrierstruck Load-Bearing Wall
+n Barrieren-Tragende Wand
+l0 Die Last tragen
+t0 Einmal pro Zug: Zahle 1 Mana; 1 Monster, das du kontrollierst, erhält dauerhaft 400 DEF.
+## Barrierstruck Mason
+n Barrieren-Steinmetz
+l0 Die Mauer neu errichten
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Barrieren“-Artefakt aus deinem Friedhof hinzu.
+l1 Höher hinauf
+t1 Zahle stattdessen 2 Mana: Lege es direkt aufs Spielfeld; 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 DEF.
+## Barrierstruck Peacekeeper
+n Barrieren-Friedenswahrer
+l0 Letzte Warnung
+t0 Einmal pro Zug: Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition.
+## Barrierstruck Sanctum Colossus
+n Barrieren-Sanktumskoloss
+s 2+ Artefakte in deinem Friedhof. Kosten 3 Mana.
+l0 Das Sanktum neu errichten
+t0 Wenn diese Karte beschworen wird: Lege bis zu 2 „Barrieren“-Artefakte aus deinem Deck aufs Spielfeld.
+## Barrierstruck Shieldbearer
+n Barrieren-Schildträger
+l0 Die Mauer hochziehen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Barrieren“-Artefakt aus deinem Deck aufs Spielfeld legen.
+## Barrierstruck Warden
+n Barrieren-Wächter
+l0 Quartiermeister
+t0 Du kannst 1 Mana zahlen: Füge deiner Hand 1 „Barrieren“-Karte aus deinem Deck hinzu.
+## Barrierstruck, Set in Stone
+n Barrieren — In Stein gemeißelt
+l0 In Stein gemeißelt
+t0 Wenn diese Karte beschworen wird: Sie erhält 200 DEF für jedes Artefakt in deinem Friedhof.
+l1 In Stein geschrieben
+t1 Zahle stattdessen 2 Mana: Sie erhält außerdem genauso viel ATK.
+## Barrierstruck, the Unbreached
+n Barrieren, die Undurchbrochene
+s Du kontrollierst 3+ Artefakte. Kosten 3 Mana.
+l0 Die Lebenden befestigen
+t0 Wenn diese Karte beschworen wird: Bis zu 2 deiner Monster erhalten dauerhaft 500 DEF.
+l1 Die Mauer marschiert
+t1 Zahle 3 Mana: Diese Karte tauscht bis zum Ende dieses Zuges ATK und DEF; sie kann in dieser Battle Phase zweimal angreifen.
+## Bench Warmer
+n Bankdrücker
+## Blade Knight
+n Klingenritter
+## Blessing of Light
+n Segen des Lichts
+l0 Segen
+t0 Zahle 2 Mana; erhalte 1500 LP.
+l1 Größerer Segen
+t1 Zahle 4 Mana; erhalte 3500 LP.
+## Blood Oath
+n Blutschwur
+l0 Schuld beglichen
+t0 Wenn diese Karte zerstört wird: Erhalte 1000 LP.
+l1 In Blut geschworen
+t1 Zahle 2 Mana und 500 LP: Diese Karte erhält dauerhaft 500 ATK.
+## Blood for Ink
+n Blut für Tinte
+l0 Blut für Tinte
+t0 Zahle 1 Mana und 1000 LP: Ziehe 2 Karten.
+l1 Tieferer Schnitt
+t1 Zahle stattdessen 1 Mana und 2000 LP: Ziehe 3 Karten und erhalte in diesem Zug 1 Mana.
+## Bone Colossus
+n Knochenkoloss
+## Borrowed Time
+n Geliehene Zeit
+l0 Geliehene Zeit
+t0 Zahle 4 Mana: Übernimm bis zur End Phase die Kontrolle über 1 Monster, das dein Gegner kontrolliert.
+l1 Zinsen laufen auf
+t1 Zahle stattdessen 5 Mana: Ziehe außerdem 1 Karte.
+## Brack, Who Stands in Front
+n Brack, der sich davorstellt
+l0 Sich davorstellen
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; bis zur End Phase müssen die Monster deines Gegners diese Karte angreifen, falls sie können.
+## Bristleback Aurochs
+n Borstenrücken-Auerochse
+l0 Die Hörner senken
+t0 Zahle 2 Mana: Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition.
+## Bronn the Relicwright
+n Bronn der Reliquienschmied
+l0 Schmiedewerk
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; setze 1 Artefakt aus deinem Deck.
+## Bulwark Idol
+n Bollwerk-Idol
+l0 Stiller Segen
+t0 Während deiner Standby Phase: Du kannst 200 LP erhalten.
+l1 Steinerner Schutz
+t1 Du kannst 2 Mana zahlen: 1 Monster, das du kontrollierst, erhält dauerhaft 400 DEF.
+## Bulwark Prism
+n Bollwerk-Prisma
+l0 Gebrochener Wächter
+t0 Wenn diese Karte zerstört wird: Du kannst 1 „Barrieren“-Monster der Stufe 1 aus deinem Deck spezialbeschwören.
+## Call of the Wyld
+n Ruf der Wyldnis
+l0 Ferner Ruf
+t0 Füge deiner Hand 1 „Wyldrudel“-Monster aus deinem Deck hinzu.
+l1 Das Rudel antwortet
+t1 Füge deiner Hand 1 „Wyldrudel“-Monster aus deinem Deck hinzu, spezialbeschwöre dann 1 „Wyldrudel“-Monster der Stufe 1 aus deiner Hand.
+## Call to Arms
+n Ruf zu den Waffen
+l0 Ruf zu den Waffen
+t0 Füge deiner Hand 1 Monster der Stufe 2 aus deinem Deck hinzu.
+## Callis the Exhumer
+n Callis der Ausgräber
+l0 Ausgraben
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; füge deiner Hand 1 Monster mit 1000 ATK oder weniger aus deinem Friedhof hinzu.
+## Cards on the Table
+n Karten auf den Tisch
+l0 Karten auf den Tisch
+t0 Zahle 1 Mana: Decke 1 verdecktes Monster auf, das dein Gegner kontrolliert.
+l1 Zeig deine Hand
+t1 Zahle stattdessen 2 Mana: Decke bis zu 5 davon auf.
+## Careful Hands
+n Behutsame Hände
+l0 Behutsame Hände
+t0 Zahle 1 Mana: Spezialbeschwöre 1 Monster aus deiner Hand verdeckt in Verteidigungsposition.
+## Castellan of the Long Wall
+n Kastellan der Langen Mauer
+s Du kontrollierst 3+ Monster — zahle 2 Mana.
+l0 Auf die Mauer
+t0 Wenn diese Karte beschworen wird: Bewege 1 anderes Monster, das du kontrollierst, in eine leere Monsterzone; danach darfst du ein zweites bewegen.
+## Cease and Desist
+n Unterlassungserklärung
+l0 Unterlassen
+t0 Zahle 2 Mana: Annulliere die Effekte von 1 Karte, die dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+l1 Und zwar sofort
+t1 Zahle stattdessen 4 Mana: Außerdem kann 1 Monster, das dein Gegner kontrolliert, in diesem Zug nicht angreifen.
+## Chain Lightning
+n Kettenblitz
+l0 Kettenblitz
+t0 Wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; es verliert dauerhaft 800 ATK, füge dann deinem Gegner 300 Schaden zu.
+## Chaosfire Behemoth
+n Chaosfeuer-Behemoth
+l0 Rücksichtslose Glut
+t0 Wenn diese Karte beschworen wird: Füge beiden Spielern 500 Schaden zu.
+l1 Amoklauf
+t1 Du kannst 3 Mana zahlen: Diese Karte kann in der Battle Phase dieses Zuges ein zweites Mal angreifen.
+## Chimney Sweep
+n Schornsteinfeger
+## Chrono Adept
+n Chrono-Adept
+l0 Zurückspulen
+t0 Du kannst 3 Mana zahlen: Gib 1 Karte aus deinem Friedhof auf deine Hand zurück.
+## Cinderwake, Who Counts the Dead
+n Aschewacht, die die Toten zählt
+s 8 oder mehr Karten in deinem Friedhof. Kosten 2 Mana.
+l0 Die Zählung
+t0 Wenn diese Karte beschworen wird: Gib 1 Monster, das dein Gegner kontrolliert, auf die Hand zurück.
+## Cliffhanger
+n Cliffhanger
+l0 Fortsetzung folgt
+t0 Während deiner Standby Phase: Decke die oberste Karte deines Decks auf; du darfst sie nach unten legen.
+l1 Spring zur besten Stelle
+t1 Einmal pro Zug: Zahle 1 Mana; lege die oberste Karte deines Decks auf den Friedhof; ziehe 1 Karte.
+## Clockwork Sentinel
+n Uhrwerk-Wachposten
+l0 Selbstreparatur
+t0 Während deiner End Phase: Du kannst 300 LP erhalten.
+l1 Notpanzerung
+t1 Du kannst 2 Mana zahlen: Diese Karte erhält bis zum Ende des Zuges 500 DEF.
+## Coax, Who Whispers Terms
+n Coax, der Konditionen flüstert
+l0 Nutzungsbedingungen
+t0 Einmal pro Zug: Du kannst 3 Mana zahlen; übernimm bis zur End Phase die Kontrolle über 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+## Cold Feet
+n Kalte Füße
+l0 Kalte Füße
+t0 Zahle 2 Mana: Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+l1 Zweifel über Zweifel
+t1 Zahle stattdessen 4 Mana: Gib 2 Monster auf dem Spielfeld auf die Hände ihrer Besitzer zurück.
+## Cooler Heads Prevail
+n Kühlere Köpfe siegen
+l0 Kühlere Köpfe siegen
+t0 Zahle 2 Mana: Ändere alle offenen Monster auf dem Spielfeld in die Verteidigungsposition.
+l1 Zur Vernunft gebracht
+t1 Zahle stattdessen 3 Mana: Nur die Monster deines Gegners.
+## Cull the Weak
+n Die Schwachen aussondern
+l0 Die Schwachen aussondern
+t0 Beide Spieler wählen ein Monster aus ihrem Deck und decken sie gleichzeitig auf. Zerstöre das mit weniger ATK und spezialbeschwöre das andere (falls es nicht beschworen werden kann, lege es oben aufs Deck). Danach erhält sein Besitzer die ATK-Differenz als Schaden. Bei gleichem ATK werden beide zurückgemischt.
+## Deathpoem Calligrapher
+n Totenvers-Kalligraf
+l0 Tinte für die Gefallenen
+t0 Falls diese Karte auf den Friedhof gelegt wird: Füge deiner Hand 1 „Totenvers“-Karte aus deinem Deck hinzu.
+## Deathpoem Duelist
+n Totenvers-Duellant
+l0 Zweite Strophe
+t0 Opfere diese Karte: Zerstöre 1 Monster mit 2000 oder weniger ATK.
+l1 Echo der Klinge
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Spezialbeschwöre 1 „Totenvers“-Monster der Stufe 1 aus deinem Friedhof.
+## Deathpoem Elegist
+n Totenvers-Elegiker
+l0 Elegie für Stahl
+t0 Opfere diese Karte: Zerstöre 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert.
+l1 Erinnerte Strophe
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Füge deiner Hand 1 „Totenvers“-Karte aus deinem Deck hinzu.
+## Deathpoem Final Draft
+n Totenvers-Endfassung
+l0 Endfassung
+t0 Lege 1 „Totenvers“-Monster aus deinem Deck auf den Friedhof; ziehe 1 Karte.
+l1 Gesammelte Werke
+t1 Zahle stattdessen 2 Mana: Lege 2.
+## Deathpoem Housebane
+n Totenvers-Hausfluch
+l0 Strophe des Verfalls
+t0 Opfere diese Karte: Zerstöre 1 Monster.
+l1 Strophe der Stille
+t1 Zahle stattdessen 5 Mana: Zerstöre bis zu 2 Monster UND gib bis zu 1 Zauber oder Artefakt auf dem Spielfeld auf die Hand seines Besitzers zurück.
+## Deathpoem Initiate
+n Totenvers-Novize
+l0 Eröffnungsstrophe
+t0 Opfere diese Karte: Zerstöre 1 Monster mit 1200 oder weniger ATK.
+l1 Perfekter Schnitt
+t1 Zahle stattdessen 3 Mana: Zerstöre 1 Monster (ohne ATK-Grenze).
+## Deathpoem Inkstone
+n Totenvers-Tuschestein
+l0 Tinte aus Asche
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, geopfert wird: Ziehe 1 Karte.
+l1 Die Strophe schärfen
+t1 Zahle 2 Mana: Gib 1 „Totenvers“-Monster aus deinem Friedhof auf deine Hand zurück; es erhält dauerhaft 300 ATK.
+## Deathpoem Recital
+n Totenvers-Rezital
+l0 Mitternachtslesung
+t0 Spezialbeschwöre 1 „Totenvers“-Monster aus deinem Friedhof.
+l1 Lesung zu zweit
+t1 Zahle stattdessen 4 Mana: Spezialbeschwöre 2; sie können in diesem Zug nicht zerstört werden.
+## Deathpoem Vow
+n Totenvers-Gelübde
+l0 Die Strophe aufsagen
+t0 Spezialbeschwöre 1 „Totenvers“-Monster aus deinem Friedhof.
+l1 Die Anthologie aufsagen
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre bis zu 2.
+## Deathpoem Warpoet
+n Totenvers-Kriegsdichter
+l0 Strophe des Gemetzels
+t0 Opfere diese Karte: Zerstöre bis zu 2 Monster mit 1500 oder weniger ATK.
+## Deathpoem, Death of the Author
+n Totenvers — Tod des Autors
+s Dein Friedhof enthält 7+ Karten — zahle 3 Mana.
+l0 Der Autor fällt
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster, das dein Gegner kontrolliert; danach kannst du 1 „Totenvers“-Monster der Stufe 1 aus deinem Friedhof spezialbeschwören.
+l1 Das Buch brennt
+t1 Zahle 4 Mana und opfere diese Karte: Zerstöre ALLE Monster mit 2000 oder weniger ATK, die dein Gegner kontrolliert.
+## Deathpoem, Unsigned Verse
+n Totenvers — Unsignierte Strophe
+s Dein Friedhof enthält 6+ Karten — zahle 2 Mana.
+l0 Ungeschriebenes Ende
+t0 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht zerstört werden.
+## Deathpoem, the Final Verse
+n Totenvers, die Letzte Strophe
+l0 Schlusszeile
+t0 Opfere diese Karte: Zerstöre 1 Monster mit 2000 oder weniger ATK und gib bis zu 1 Zauber oder Artefakt auf die Hand seines Besitzers zurück.
+## Deathpoem, the Hundredth Stanza
+n Totenvers, die Hundertste Stanze
+s 5+ Monster in deinem Friedhof — zahle 3 Mana.
+l0 Hundert fallende Klingen
+t0 Falls diese Karte beschworen wird: Du kannst bis zu 2 Monster zerstören, die dein Gegner kontrolliert.
+l1 Das Buch schließt sich
+t1 Zahle 3 Mana und opfere diese Karte: Zerstöre bis zu 3 Monster.
+## Deckay Broodmother
+n Deckay-Brutmutter
+l0 Die Brut versorgen
+t0 Während deiner End Phase: Mille 2 Karten.
+l1 Das Nest erneuern
+t1 Falls diese Karte vom Deck auf den Friedhof gelegt wird: Mische bis zu 3 Karten aus deinem Friedhof in dein Deck.
+## Deckay Burrower
+n Deckay-Wühler
+l0 Sich durchgraben
+t0 Während der End Phase beider Spieler: Mille 2 Karten.
+l1 Nie wirklich fort
+t1 Falls diese Karte vom Deck auf den Friedhof gelegt wird: Spezialbeschwöre sie.
+## Deckay Carrion Prince
+n Deckay-Aasprinz
+l0 Hofstaat der Fäulnis
+t0 Wenn diese Karte beschworen wird: Mille 3 Karten.
+l1 Zehnt des Verfalls
+t1 Zahle 2 Mana: Mische bis zu 3 Karten aus deinem Friedhof in dein Deck; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 500 ATK.
+## Deckay Compost Heap
+n Deckay-Komposthaufen
+l0 Kompost
+t0 Während deiner Standby Phase: Mille 2 Karten.
+l1 Fetter Boden
+t1 Einmal pro Zug — zahle 1 Mana, falls du in diesem oder im letzten Zug gemillt hast: Du hast in deinem nächsten Zug 2 Mana mehr.
+## Deckay Decomposition
+n Deckay-Zersetzung
+l0 Zersetzung
+t0 Mille 4 Karten; danach kannst du deiner Hand 1 „Deckay“-Karte aus deinem Friedhof hinzufügen.
+l1 Vollständiger Abbau
+t1 Zahle stattdessen 2 Mana: Mille 6; füge bis zu 2 hinzu.
+## Deckay Fiend
+n Deckay-Unhold
+l0 Fest der Enden
+t0 Während der End Phase deines Gegners: Lege diese Karte vom Spielfeld auf den Friedhof, mille dann 3 Karten.
+l1 Abschiedsbosheit
+t1 Falls diese Karte von irgendwo auf den Friedhof gelegt wird: Verbrenne 1 Mana deines Gegners.
+l2 Süßere Bosheit
+t2 Zahle stattdessen 2 Mana: Erhalte 1000 LP.
+l3 Das Gewölbe verstopfen
+t3 Wenn dein Gegner eine Reliquie spezialbeschwört — wirf diese Karte ab: Annulliere die Effekte dieser Reliquie für den Rest dieses Zuges.
+## Deckay Glutton
+n Deckay-Vielfraß
+l0 Endloser Hunger
+t0 Während deiner End Phase: Mille 2 Karten.
+## Deckay Leech
+n Deckay-Blutegel
+l0 Schlemmerzehnt
+t0 Während deiner End Phase: Mille 4 Karten.
+l1 Vergrabene Beute
+t1 Falls diese Karte vom Deck auf den Friedhof gelegt wird: Füge deiner Hand 1 „Deckay“-Artefakt aus deinem Deck hinzu.
+l2 Ausgraben und aufrüsten
+t2 Zahle stattdessen 2 Mana: Lege es direkt aufs Spielfeld.
+## Deckay Maggot
+n Deckay-Made
+l0 Grabzehnt
+t0 Während der End Phase beider Spieler: Mille 2 Karten.
+l1 Duft der Fäulnis
+t1 Falls diese Karte vom Deck auf den Friedhof gelegt wird: Du kannst deiner Hand 1 „Deckay“-Zauber aus deinem Deck hinzufügen.
+## Deckay Moth
+n Deckay-Motte
+l0 Staubzehnt
+t0 Während der End Phase beider Spieler: Mille 1 Karte.
+l1 Aus Ruinen geschlüpft
+t1 Falls diese Karte vom Deck auf den Friedhof gelegt wird — zahle 1 Mana: Du kannst 1 „Deckay“-Monster der Stufe 1 mit anderem Namen aus deinem Deck spezialbeschwören.
+l2 Kokonfluch
+t2 Verbanne diese Karte aus deinem Friedhof: Setze 1 Monster, das dein Gegner kontrolliert, verdeckt in die Verteidigungsposition.
+## Deckay Rot
+n Deckay-Fäulnis
+l0 Die Fäulnis verbreiten
+t0 Mille 5 Karten. Liegt danach ein „Deckay“-Monster in deinem Friedhof, kannst du 1 Monster zerstören, das dein Gegner kontrolliert.
+l1 Blüte aus der Tiefe
+t1 Verbanne diese Karte aus deinem Friedhof: Spezialbeschwöre 1 „Deckay“-Monster der Stufe 2 oder niedriger aus deiner Hand oder deinem Friedhof.
+## Deckay Spoilage
+n Deckay-Verderb
+l0 Verderb
+t0 Mille 2 Karten; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 300 ATK.
+l1 Tiefe Fäulnis
+t1 Zahle stattdessen 3 Mana: Mille 4; es verliert dauerhaft 500 ATK.
+## Deckay Swarm
+n Deckay-Schwarm
+l0 Den Himmel verdunkeln
+t0 Mille 3 Karten. Danach kannst du 1 Monster, das dein Gegner kontrolliert, 800 ATK verlieren lassen.
+## Deckay Vulture
+n Deckay-Geier
+l0 Schwingenzehnt
+t0 Während der End Phase beider Spieler: Mille 3 Karten.
+l1 Federschutz
+t1 Falls diese Karte vom Deck oder aus deiner Hand auf den Friedhof gelegt wird: 1 Monster, das du kontrollierst, kann in diesem Zug nicht als Ziel gewählt werden und ist von Effekten deines Gegners unberührt.
+l2 Gleiches mit Gleichem
+t2 Wenn dein Gegner eine Reliquie beschwört — wirf diese Karte ab: Spezialbeschwöre 1 Reliquie aus deinem Extra Deck (ignoriere ihre Beschwörungsbedingungen, zahle ihre Manakosten). Sie kann ihre Beschwörungseffekte nicht nutzen und wird während deiner nächsten End Phase auf den Friedhof gelegt.
+## Deckay Worm
+n Deckay-Wurm
+l0 Zurückgekrochen
+t0 Zahle 1 Mana und verbanne 1 andere „Deckay“-Karte aus deinem Friedhof: Spezialbeschwöre diese Karte aus deinem Friedhof.
+## Deckay, the Ravenous Under
+n Deckay, das Gefräßige Darunter
+s Dein Friedhof enthält 10+ Karten — zahle 2 Mana.
+l0 Das Darunter frisst
+t0 Wenn diese Karte beschworen wird: Mille 5 Karten; spezialbeschwöre dann bis zu 2 „Deckay“-Monster aus deinem Friedhof.
+l1 Satt und geduldig
+t1 Zahle 2 Mana, falls du in diesem oder im letzten Zug gemillt hast: Diese Karte kann in diesem Zug nicht zerstört werden.
+## Diactor of the Dragon Shrine
+n Diaktor des Drachenschreins
+l0 Ruf des Schreins
+t0 Falls diese Karte normalbeschworen wird: Du kannst deiner Hand 1 Drachen-Monster aus deinem Deck hinzufügen.
+l1 Segen des Schreins
+t1 Einmal pro Zug: Du kannst 2 Mana zahlen; spezialbeschwöre 1 Drachen-Monster der Stufe 1 aus deiner Hand.
+## Doorwyrm of the Dragon Shrine
+n Torwyrm des Drachenschreins
+## Dragon Claw
+n Drachenklaue
+## Dragon Rider
+n Drachenreiter
+l0 Seelenzoll
+t0 Falls diese Karte beschworen wird: Verbanne 2 Karten aus einem der beiden Friedhöfe.
+l1 Die Verlorenen reiten
+t1 Einmal pro Zug: Du kannst 3 Mana zahlen; spezialbeschwöre 1 Drachen-Monster, das derzeit verbannt ist (aus beiden Verbannungen).
+## Dragon Sceptre
+n Drachenzepter
+l0 Ruf des Zepters
+t0 Zahle 1 Mana: Füge deiner Hand 1 Drachen-Monster aus deinem Deck hinzu; erhalte 1 Mana.
+l1 Segen des Zepters
+t1 Zahle 2 Mana; füge deiner Hand 1 Drachen-Monster UND 1 „Drachenschrein“-Monster aus deinem Deck hinzu.
+## Dragon Shrine Guardian's Breath
+n Drachenschrein-Wächteratem
+l0 Wächteratem
+t0 1 Drachen-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+l1 Zwillingsatem
+t1 Zahle stattdessen 2 Mana: Bis zu 2; sie erhalten außerdem bis zum Ende dieses Zuges 400 DEF.
+## Dragon Shrine Morning Rites
+n Drachenschrein-Morgenriten
+l0 Morgenriten
+t0 Füge deiner Hand 1 Drachen-Monster der Stufe 2 aus deinem Deck hinzu; decke die oberste Karte deines Decks auf — du darfst sie nach unten legen.
+l1 Volle Prozession
+t1 Zahle stattdessen 3 Mana: Füge 1 Drachen-Monster der Stufe 2 UND 1 der Stufe 1 hinzu.
+## Dragon Shrine Offering
+n Drachenschrein-Opfergabe
+l0 Opfergabe
+t0 Zerstöre 1 Drachen-Monster, das du kontrollierst, und falls du das tust, ziehe 2 Karten.
+l1 Größere Opfergabe
+t1 Zerstöre 1 Drachen-Monster, das du kontrollierst, und falls du das tust, ziehe 2 Karten, spezialbeschwöre dann 1 Drachen-Monster der Stufe 2 aus deinem Friedhof.
+## Dragon Shrine Prayer Wheel
+n Drachenschrein-Gebetsmühle
+l0 Drehende Gebete
+t0 Während deiner Standby Phase: Du kannst 1 Drachen-Monster der Stufe 1 aus deiner Hand spezialbeschwören.
+l1 Erhörtes Gebet
+t1 Zahle 3 Mana: Füge deiner Hand 1 „Drachenschrein“-Karte aus deinem Deck hinzu.
+## Dragon Shrine Scale Advantage
+n Drachenschrein-Schuppenvorteil
+l0 Schuppenvorteil
+t0 Zahle 1 Mana: 1 Drache, den du kontrollierst, erhält bis zum Ende dieses Zuges 500 ATK und 500 DEF.
+l1 Skaleneffekte
+t1 Zahle stattdessen 3 Mana: Bis zu 5 deiner Drachen-Monster erhalten bis zum Ende dieses Zuges 500 ATK und 500 DEF.
+## Dragon Shrine Stand-In
+n Drachenschrein-Double
+l0 Aus der Rolle fallen
+t0 Du kannst diese Karte auf den Friedhof legen: Füge deiner Hand 1 „Drachenschrein“-Karte aus deinem Deck hinzu.
+## Dragon Shrine Wakeup Call
+n Drachenschrein-Weckruf
+l0 Weckruf
+t0 Zahle 2 Mana: Spezialbeschwöre 1 Drachen-Monster aus deinem Friedhof.
+l1 Aufstehen, die Sonne scheint
+t1 Zahle stattdessen 4 Mana: Spezialbeschwöre bis zu 2 Drachen-Monster aus deinem Friedhof.
+## Dragon Shrine, First Flame of Worship
+n Drachenschrein, Erste Flamme der Andacht
+s Du kontrollierst 3+ „Drachen“-Monster. Kosten 3 Mana.
+l0 Der Schrein entflammt
+t0 Wenn diese Karte beschworen wird: Alle Drachen-Monster, die du kontrollierst, erhalten dauerhaft 400 ATK.
+l1 Pilger kehren zurück
+t1 Zahle 3 Mana: Spezialbeschwöre bis zu 2 Drachen-Monster der Stufe 1 aus deinem Friedhof.
+## Dragon Tail
+n Drachenschwanz
+l0 Schwanzfeger
+t0 Wähle 1 Drachen-Monster, das du kontrollierst, als Ziel; es kann in dieser Battle Phase ein zweites Mal angreifen.
+## Duskblade Mercenary
+n Dämmerklingen-Söldner
+l0 In Blut bezahlt
+t0 Falls diese Karte normalbeschworen wird: Sie erhält dauerhaft 300 ATK.
+## Early Bird
+n Früher Vogel
+l0 Der frühe Vogel
+t0 Wenn diese Karte beschworen wird: Erhalte 1 Mana.
+l1 Fängt den Wurm
+t1 Zahle stattdessen 1 Mana: Erhalte 2 Mana.
+## Earthquake
+n Erdbeben
+l0 Beben
+t0 Zahle 2 Mana; beide Spieler erhalten 700 Schaden.
+## Echo of the Fallen
+n Echo der Gefallenen
+l0 Schwaches Echo
+t0 Spezialbeschwöre 1 Monster der Stufe 1 aus deinem Friedhof.
+l1 Hallendes Echo
+t1 Spezialbeschwöre 1 Monster der Stufe 2 aus deinem Friedhof.
+## Elder Wyrm of the Dragon Shrine
+n Alter Wyrm des Drachenschreins
+l0 Hort der Zeitalter
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 Zauber aus deinem Deck hinzufügen, der „Drache“ erwähnt.
+l1 Uralter Zorn
+t1 Du kannst 3 Mana zahlen: Diese Karte kann in der Battle Phase dieses Zuges ein zweites Mal angreifen.
+## Elephant in the Room
+n Der Elefant im Raum
+l0 Den Elefanten ansprechen
+t0 Einmal pro Zug darf JEDER Spieler 2 Mana zahlen: Dieser Spieler zieht 1 Karte.
+## Ember Imp
+n Glutkobold
+l0 Funke der Bosheit
+t0 Wenn diese Karte beschworen wird: Füge deinem Gegner 200 Schaden zu.
+## Ember Spirit
+n Glutgeist
+l0 Glut
+t0 Während deiner Standby Phase: Du kannst 1 Mana zahlen; füge deinem Gegner 200 Schaden zu.
+## Emergency Barrier
+n Notfallbarriere
+l0 Noteinsatz
+t0 Während des Zuges deines Gegners: Du kannst diese Karte aus deiner Hand spielen.
+## Emergency Call
+n Notruf
+l0 Ruf
+t0 Zahle 1 Mana; ziehe 1 Karte.
+l1 Dringender Ruf
+t1 Zahle 2 Mana; ziehe 2 Karten.
+## Encore
+n Zugabe
+l0 Vorhangruf
+t0 Decke 1 verdecktes Monster auf, das du kontrollierst.
+l1 Große Zugabe
+t1 Decke bis zu 2 verdeckte Monster auf, die du kontrollierst.
+## Even Exchange
+n Fairer Tausch
+l0 Fairer Tausch
+t0 Zahle 2 Mana: Beide Spieler mischen ihre Hand ins Deck, dann zieht jeder so viele Karten, wie er gemischt hat.
+l1 Unfairer Tausch
+t1 Zahle stattdessen 3 Mana: Dasselbe — aber du ziehst 1 mehr.
+## Exponential Deterioration
+n Exponentieller Verfall
+## Failsafe Bulkhead
+n Failsafe-Schott
+l0 Das Leck versiegeln
+t0 Du erhältst in diesem Zug keinen Kampfschaden. Lege diese Karte danach auf den Friedhof und setze 1 anderes „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Carrier
+n Failsafe-Träger
+l0 Teile bergen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Failsafe“-Karte aus deinem Friedhof auf deine Hand zurückgeben.
+## Failsafe Chief Engineer
+n Failsafe-Chefingenieur
+l0 Routinewartung
+t0 Einmal pro Zug — zahle 1 Mana: Setze 1 „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Circuit Breaker
+n Failsafe-Sicherungsautomat
+l0 Die Sicherung auslösen
+t0 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen. Lege diese Karte danach auf den Friedhof und setze 1 anderes „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Damper
+n Failsafe-Dämpfer
+l0 Druck ablassen
+t0 1 Monster, das dein Gegner kontrolliert, verliert 500 ATK. Lege diese Karte danach auf den Friedhof und setze 1 anderes „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Foreman
+n Failsafe-Vorarbeiter
+l0 Zurück ans Netz
+t0 Wenn diese Karte beschworen wird: Setze 1 „Failsafe“-Artefakt aus deinem Friedhof aufs Spielfeld.
+l1 Neuinstallation
+t1 Zahle stattdessen 2 Mana: Stattdessen aus deinem Deck, ziehe dann 1 Karte.
+## Failsafe Manual Override
+n Failsafe-Manuelle Übersteuerung
+l0 Manuelle Übersteuerung
+t0 Annulliere die Effekte von 1 Monster, das dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+l1 Übersteuern und nachladen
+t1 Zahle stattdessen 3 Mana: Setze außerdem 1 „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Protocol
+n Failsafe-Protokoll
+l0 Wiederherstellungsprotokoll
+t0 Füge deiner Hand bis zu 2 „Failsafe“-Artefakte aus deinem Friedhof hinzu.
+l1 Hot Swap
+t1 Zahle stattdessen 2 Mana: Setze außerdem 1 „Failsafe“-Artefakt aus deinem Friedhof direkt aufs Spielfeld.
+## Failsafe Redundancy Officer
+n Failsafe-Redundanzbeauftragter
+l0 Backup-Protokoll
+t0 Zahle 2 Mana: 1 deiner Artefakte kann in diesem Zug nicht zerstört werden; ziehe 1 Karte.
+## Failsafe Seal
+n Failsafe-Siegel
+l0 Notabschaltung
+t0 Annulliere 1 Monster, das dein Gegner kontrolliert, bis zum Ende des Zuges. Lege diese Karte danach auf den Friedhof und setze 1 anderes „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld.
+## Failsafe Tinker
+n Failsafe-Bastler
+l0 Installieren
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Failsafe“-Artefakt aus deinem Deck aufs Spielfeld setzen.
+## Failsafe, the Dead Man's Switch
+n Failsafe, der Totmannschalter
+s 3+ Artefakte in deinem Friedhof. Kosten 3 Mana.
+l0 Alles startet neu
+t0 Wenn diese Karte beschworen wird: Setze bis zu 2 „Failsafe“-Artefakte aus deinem Friedhof aufs Spielfeld.
+l1 Dividende des Totmanns
+t1 Einmal pro Zug, wenn ein Artefakt, das du kontrollierst, zerstört wird: Ziehe 1 Karte.
+## Fair Trade
+n Gerechter Handel
+l0 Gerechter Handel
+t0 Zahle 2 Mana: Wähle 1 Monster, das du kontrollierst, und 1 Monster, das dein Gegner kontrolliert: Tauscht dauerhaft die Kontrolle über sie. Das Monster, das du erhältst, kann in diesem Zug nicht angreifen.
+l1 Ungerechter Handel
+t1 Zahle stattdessen 4 Mana: Tausche sie, ziehe 1 Karte, und die Effekte des Monsters, das du abgegeben hast, sind bis zur End Phase annulliert.
+## Fall Guy
+n Sündenbock
+l0 Stuntman-Gage
+t0 Wenn diese Karte zerstört wird: Ziehe 1 Karte.
+## Feast of Deckay
+n Festmahl des Deckay
+l0 Erster Gang
+t0 Mille 2 Karten. Ziehe 1 Karte.
+## Fethaerbreese Featherweight
+n Fethaerbreese-Federgewicht
+l0 Federgewicht
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Karte abwerfen; ziehe 1 Karte.
+l1 Nach oben boxen
+t1 Zahle stattdessen 1 Mana: Wirf 1 Karte ab; ziehe 2 Karten.
+## Fethaerbreese Fledgling
+n Fethaerbreese-Küken
+l0 Nestruf
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Fethaerbreese“-Karte aus deinem Deck hinzufügen.
+## Fethaerbreese Flight Risk
+n Fethaerbreese-Fluchtgefahr
+l0 Fluchtgefahr
+t0 Zahle 1 Mana: Gib 1 deiner „Fethaerbreese“-Monster auf deine Hand zurück; ziehe 1 Karte.
+l1 Am Morgen fort
+t1 Zahle stattdessen 2 Mana: Gib 2 deiner „Fethaerbreese“-Monster auf deine Hand zurück; ziehe 2 Karten.
+## Fethaerbreese Gust Shield
+n Fethaerbreese-Böenschild
+l0 Böenschild
+t0 Gib 1 deiner Monster auf deine Hand zurück.
+l1 Zyklon-Unterschlupf
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte und erhalte 1 Mana.
+## Fethaerbreese High Roost
+n Fethaerbreese-Hochsitz
+l0 Wacht von oben
+t0 Einmal pro Zug, wenn ein Monster von deinem Spielfeld auf deine Hand zurückkehrt: 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK.
+l1 Sturzflug vom Hochsitz
+t1 Zahle 2 Mana: Spezialbeschwöre 1 „Fethaerbreese“-Monster aus deiner Hand.
+## Fethaerbreese Hollowbone
+n Fethaerbreese-Hohlknochen
+l0 Knochen voller Luft
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Fethaerbreese“-Karte aus deinem Friedhof hinzufügen.
+## Fethaerbreese Homing Instinct
+n Fethaerbreese-Heiminstinkt
+l0 Heiminstinkt
+t0 Zahle 1 Mana: Gib bis zu 3 „Fethaerbreese“-Monster aus deinem Friedhof auf deine Hand zurück.
+l1 Rückenwind nach Hause
+t1 Zahle stattdessen 1 Mana: Gib 2 „Fethaerbreese“-Monster aus deinem Friedhof auf deine Hand zurück; erhalte 2 Mana.
+## Fethaerbreese Nest Egg
+n Fethaerbreese-Notgroschen
+l0 Notgroschen
+t0 Einmal pro Zug, wenn ein Monster von deinem Spielfeld auf deine Hand zurückkehrt: Ziehe 1 Karte.
+l1 Aufknacken
+t1 Du kannst diese Karte auf den Friedhof legen: Erhalte 2 Mana.
+## Fethaerbreese Nightjar
+n Fethaerbreese-Nachtschwalbe
+l0 Das Nest decken
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; drehe es verdeckt in die Verteidigungsposition.
+## Fethaerbreese Nightmother
+n Fethaerbreese-Nachtmutter
+l0 Die Luft steht still
+t0 SCHNELL · Einmal pro Zug: Du kannst 2 Mana zahlen; wähle 1 Karte, die dein Gegner kontrolliert, als Ziel; annulliere ihre Effekte bis zum Ende des Zuges.
+## Fethaerbreese Stormfront
+n Fethaerbreese-Sturmfront
+l0 Vorderkante
+t0 Wenn diese Karte beschworen wird: Gib 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück.
+l1 Voller Orkan
+t1 Zahle stattdessen 3 Mana: Ohne ATK-Grenze.
+## Fethaerbreese Tailwind
+n Fethaerbreese-Rückenwind
+l0 Rückenwind
+t0 Spezialbeschwöre bis zu 2 „Fethaerbreese“-Monster aus deiner Hand.
+l1 Sturmflut
+t1 Zahle stattdessen 2 Mana: Sie erhalten bis zum Ende dieses Zuges 300 ATK.
+## Fethaerbreese Two-in-the-Bush
+n Fethaerbreese-Zwei im Gebüsch
+l0 Ein Vogel in der Hand
+t0 Einmal pro Zug: Zahle 1 Mana; gib 1 anderes „Fethaerbreese“-Monster, das du kontrollierst, auf deine Hand zurück; ziehe 1 Karte.
+## Fethaerbreese Updraft
+n Fethaerbreese-Aufwind
+l0 Aufwind
+t0 Zahle 2 Mana: Spezialbeschwöre 1 „Fethaerbreese“-Monster aus deinem Deck.
+## Fethaerbreese Windless Hour
+n Fethaerbreese-Windstille Stunde
+l0 Windstille Stunde
+t0 SCHNELL · Zahle 2 Mana: Wähle bis zu 2 Monster auf dem Spielfeld als Ziel; sie verlieren bis zum Ende des Zuges 700 ATK.
+## Fethaerbreese Windreader
+n Fethaerbreese-Windleser
+l0 Die Strömungen lesen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 anderes „Fethaerbreese“-Monster, das du kontrollierst, auf deine Hand zurückgeben; falls du das tust, ziehe 1 Karte.
+l1 Günstige Winde
+t1 Zahle stattdessen 1 Mana: Erhalte außerdem 1 Mana.
+## Fethaerbreese, the Held Breath
+n Fethaerbreese, der Angehaltene Atem
+s 2 oder mehr „Fethaerbreese“-Monster unter deiner Kontrolle und 5+ Karten in deinem Friedhof. Kosten 3 Mana; opfere 1 anderes Monster.
+l0 Der angehaltene Atem
+t0 Wenn diese Karte beschworen wird: Wähle 1 Karte, die dein Gegner kontrolliert, als Ziel; annulliere ihre Effekte bis zum Ende des Zuges.
+l1 Nichts wird gesprochen
+t1 SCHNELL · Einmal pro Zug: Du kannst 2 Mana zahlen; wähle 1 Karte, die dein Gegner kontrolliert, als Ziel; annulliere ihre Effekte bis zum Ende des Zuges.
+## Fethaerbreese, the Homing Sky
+n Fethaerbreese, der Heimkehrende Himmel
+s 4+ Monster in deinem Friedhof. Kosten 3 Mana.
+l0 Der Himmel ruft heim
+t0 Wenn diese Karte beschworen wird: Gib 1 Monster, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück, danach kannst du 1 DEINER Monster auf deine Hand zurückgeben.
+l1 Heimgetragen
+t1 Zahle 2 Mana: Gib 1 deiner Monster auf deine Hand zurück; ziehe 1 Karte.
+## Fiendish Decree
+n Teuflischer Erlass
+l0 Erlass
+t0 Zerstöre 1 Monster, das dein Gegner kontrolliert.
+l1 Höllischer Erlass
+t1 Zerstöre bis zu 2 Monster, die dein Gegner kontrolliert.
+## Fire Escape
+n Feuerleiter
+l0 Feuerleiter
+t0 Einmal pro Zug: Gib 1 Monster, das du kontrollierst, auf deine Hand zurück.
+l1 Geordnete Evakuierung
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Fireball
+n Feuerball
+l0 Feuerball
+t0 Zahle 1 Mana: Füge deinem Gegner 800 Schaden zu.
+l1 Größerer Feuerball
+t1 Zahle 2 Mana; füge deinem Gegner 1400 Schaden zu.
+## First and Last Word
+n Erstes und letztes Wort
+l0 Erstes und letztes Wort
+t0 Einmal pro Duell. Zahle 2 Mana: Annulliere die Aktivierung des Zaubers, den dein Gegner in dieser Kette zuletzt aktiviert hat.
+## Five-Finger Discount
+n Fünf-Finger-Rabatt
+l0 Klebrige Finger
+t0 Zahle 4 Mana: Dein Gegner wirft 1 zufällige Karte ab.
+l1 Fünf-Finger-Rabatt
+t1 Zahle stattdessen 6 Mana: Decke 1 zufällige Karte seiner Hand auf — ist es ein Monster, spezialbeschwöre es auf DEIN Spielfeld; andernfalls wirft er es ab.
+## Flame Whelp
+n Flammenwelpe
+## Forgeheart Anvilborn
+n Schmiedeherz-Ambossgeborener
+l0 Draufhämmern
+t0 Du kannst 1 Mana zahlen: Wähle 1 Monster, das du kontrollierst, als Ziel; es erhält dauerhaft 300 DEF.
+## Forgeheart Apprentice-Piece
+n Schmiedeherz-Gesellenstück
+l0 Botengang des Gesellen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Schmiedeherz“-Artefakt aus deinem Deck hinzu.
+l1 Meisterliche Lieferung
+t1 Zahle stattdessen 2 Mana: Lege 1 „Schmiedeherz“-Artefakt aus deinem Deck direkt in deine Artefaktzone.
+## Forgeheart Bellows
+n Schmiedeherz-Blasebalg
+l0 Stetiger Luftzug
+t0 Während deiner Standby Phase: Du kannst deiner Hand 1 „Schmiedeherz“-Karte aus deinem Deck hinzufügen.
+l1 Brausender Stoß
+t1 Du kannst 2 Mana zahlen und diese Karte auf den Friedhof legen; spezialbeschwöre 1 „Schmiedeherz“-Monster der Stufe 2 aus deiner Hand.
+## Forgeheart Colossus
+n Schmiedeherz-Koloss
+l0 Fertigungsstraße
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Schmiedeherz“-Monster der Stufe 1 aus deiner Hand oder deinem Friedhof spezialbeschwören.
+l1 Glutpanzer
+t1 Du kannst 2 Mana zahlen: Diese Karte erhält bis zum Ende des Zuges 700 DEF.
+## Forgeheart Crucible
+n Schmiedeherz-Schmelztiegel
+l0 Opferlegierung
+t0 Einmal pro Zug — zahle 2 Mana: Zerstöre 1 anderes Artefakt, das du kontrollierst; 1 Monster, das du kontrollierst, erhält dauerhaft 400 ATK.
+## Forgeheart Hammer
+n Schmiedeherz-Hammer
+l0 Den Hammer schleudern
+t0 Lege diese Karte auf den Friedhof: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 500 ATK.
+## Forgeheart Ironclad Argument
+n Schmiedeherz-Eisenhartes Argument
+## Forgeheart Masterwork
+n Schmiedeherz-Meisterwerk
+l0 Signiertes Stück
+t0 Wenn diese Karte beschworen wird: 1 Monster, das du kontrollierst, erhält dauerhaft 300 ATK.
+l1 Meisterserie
+t1 Zahle stattdessen 3 Mana: Bis zu 2 Monster; je 400.
+## Forgeheart Quench
+n Schmiedeherz-Abschreckung
+l0 Abschrecken
+t0 Zahle 1 Mana: 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 800 DEF.
+l1 Gehärtet
+t1 Zahle stattdessen 2 Mana: 1 Monster, das du kontrollierst, erhält dauerhaft 800 DEF.
+## Forgeheart Recast Order
+n Schmiedeherz-Umgussauftrag
+l0 Umgussauftrag
+t0 Lege 1 Artefakt aus deinem Friedhof direkt in deine Artefaktzone.
+l1 Eilauftrag
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Forgeheart Scrap Deal
+n Schmiedeherz-Schrotthandel
+l0 Verschrotten
+t0 Zahle 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; ziehe 2 Karten und erhalte 1 Mana.
+l1 Feilschen
+t1 Zahle stattdessen 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; ziehe 2 Karten und erhalte 2 Mana.
+## Forgeheart Smelter
+n Schmiedeherz-Schmelzer
+l0 Den Ofen füttern
+t0 Wenn diese Karte beschworen wird: Lege 1 „Schmiedeherz“-Artefakt aus deinem Deck auf den Friedhof; ziehe 1 Karte.
+l1 Die Schlacke bergen
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Füge deiner Hand 1 Artefakt aus deinem Friedhof hinzu.
+## Forgeheart Spare Parts
+n Schmiedeherz-Ersatzteile
+l0 Ersatzteile
+t0 Einmal pro Zug: Gib 1 Artefakt aus deinem Friedhof auf deine Hand zurück.
+l1 Umgerüstet
+t1 Zahle stattdessen 3 Mana: Lege 1 Artefakt aus deinem Friedhof direkt in deine Artefaktzone.
+## Forgeheart Stoker
+n Schmiedeherz-Heizer
+l0 Die Kohlen schüren
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Schmiedeherz“-Karte aus deinem Deck hinzufügen.
+## Forgeheart Temper
+n Schmiedeherz-Härtung
+l0 Härten
+t0 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 500 ATK.
+l1 Perfekte Härtung
+t1 Zahle stattdessen 3 Mana: Der Bonus ist dauerhaft, und das Monster erhält dauerhaft 300 DEF.
+## Forgeheart Worldanvil
+n Schmiedeherz-Weltamboss
+s Du kontrollierst 2+ Artefakte. Kosten 3 Mana.
+l0 Den Weltamboss schlagen
+t0 Wenn diese Karte beschworen wird: Lege 1 Artefakt aus deinem Deck aufs Spielfeld.
+## Forgeheart, the Molten Crown
+n Schmiedeherz, die Geschmolzene Krone
+s Du kontrollierst 2+ Artefakte und dein Friedhof enthält 5+ Karten. Kosten 4 Mana.
+l0 Mit Schlacke gekrönt
+t0 Wenn diese Karte beschworen wird: Lege bis zu 2 Artefakte aus deinem Friedhof aufs Spielfeld.
+l1 Königliche Schmiedekunst
+t1 Zahle 3 Mana: 1 Monster, das du kontrollierst, erhält dauerhaft 500 ATK.
+## Frost Blade
+n Frostklinge
+## Frost Nova
+n Frostnova
+l0 Einfrieren
+t0 Zahle 1 Mana; 1 gegnerisches Monster verliert dauerhaft 500 ATK und 500 DEF.
+## Frost Wolf
+n Frostwolf
+## Gale Harpy
+n Sturmharpyie
+l0 Krallensturz
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster, das dein Gegner kontrolliert, dauerhaft 300 ATK verlieren lassen.
+## Gaslight Charlatan
+n Gaslicht-Scharlatan
+l0 Nichts im Ärmel
+t0 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht von Effekten deines Gegners als Ziel gewählt werden.
+## Gaslight Curtain Call
+n Gaslicht-Vorhangruf
+l0 Die Enthüllung
+t0 Zerstöre alle Illusions-Token, die dein Gegner kontrolliert; ziehe 1 Karte für jeden (max. 3).
+## Gaslight House Lights
+n Gaslicht-Saallichter
+l0 Saallicht an
+t0 Beschwöre 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners; ziehe 1 Karte.
+l1 Blendende Scheinwerfer
+t1 Zahle stattdessen 3 Mana: Beschwöre 2 Token; ziehe 2.
+## Gaslight Lanternist
+n Gaslicht-Laternenspieler
+l0 Erinnerst du dich?
+t0 Wenn diese Karte beschworen wird: Beschwöre 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners.
+l1 An beide?
+t1 Zahle stattdessen 2 Mana: Beschwöre 2.
+## Gaslight Mesmer
+n Gaslicht-Mesmerist
+l0 Den Zweifel zerschlagen
+t0 Einmal pro Zug: Zerstöre 1 Illusions-Token, den dein Gegner kontrolliert; ziehe 1 Karte.
+l1 Alles zerschlagen
+t1 Zahle stattdessen 2 Mana: Zerstöre bis zu 2; ziehe 1 für jeden.
+## Gaslight Mirrorwalk
+n Gaslicht-Spiegelgang
+l0 Und noch einer
+t0 Wenn dein Gegner ein Monster beschwört: Beschwöre 1 Illusions-Token (0/0) auf sein Spielfeld.
+## Gaslight Now You See Me
+n Gaslicht — Jetzt siehst du mich
+l0 Jetzt siehst du mich
+t0 1 „Gaslicht“-Monster, das du kontrollierst, kann in diesem Zug nicht als Ziel gewählt werden.
+l1 Jetzt nicht mehr
+t1 Zahle stattdessen 2 Mana: Beschwöre außerdem 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners.
+## Gaslight Smoke Machine
+n Gaslicht-Nebelmaschine
+l0 Den Eingang vernebeln
+t0 Einmal pro Zug, wenn dein Gegner ein Monster beschwört: Beschwöre 1 Illusions-Token (0/0) auf sein Spielfeld.
+l1 Den Nebel lichten
+t1 Zahle 2 Mana: Zerstöre 1 Illusions-Token; ziehe 1 Karte.
+## Gaslight Stage Hypnotist
+n Gaslicht-Bühnenhypnotiseur
+l0 Du wirst müde
+t0 Einmal pro Zug: Zerstöre 1 Illusions-Token, den dein Gegner kontrolliert; 1 Monster, das er kontrolliert, verliert dauerhaft 300 ATK.
+## Gaslight Understudy
+n Gaslicht-Zweitbesetzung
+l0 Die Rolle lernen
+t0 Wenn diese Karte beschworen wird: Beschwöre 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners.
+l1 Posthume Vorstellung
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Beschwöre 1 Illusions-Token auf das Spielfeld deines Gegners.
+## Gaslight Usher
+n Gaslicht-Platzanweiser
+l0 Hier entlang
+t0 Beschwöre 2 Illusions-Token (0/0) auf das Spielfeld deines Gegners.
+## Gaslight, Standing Ovation
+n Gaslicht, Stehende Ovationen
+s Dein Gegner kontrolliert einen Illusions-Token — zahle 2 Mana.
+l0 Zugabe
+t0 Falls diese Karte beschworen wird: Beschwöre 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners.
+## Gaslight, the Grand Premiere
+n Gaslicht, die Große Premiere
+s Dein Gegner kontrolliert 3+ Monster — zahle 3 Mana.
+l0 Volles Haus
+t0 Falls diese Karte beschworen wird: Fülle die leeren Monsterzonen deines Gegners mit Illusions-Token (0/0).
+l1 Licht aus
+t1 Zahle 3 Mana: Zerstöre alle Illusions-Token; 1 Monster, das dein Gegner kontrolliert, verliert 400 ATK für jeden.
+## Gaslight, the Vanishing Act
+n Gaslicht, der Verschwindetrick
+s Dein Gegner kontrolliert 2+ Monster, darunter einen Illusions-Token. Kosten 3 Mana.
+l0 Das große Verschwinden
+t0 Wenn diese Karte beschworen wird: Zerstöre alle Illusions-Token, die dein Gegner kontrolliert; ziehe 1 Karte für jeden (max. 3).
+l1 Zugabe aus dem Nichts
+t1 Zahle 2 Mana: Beschwöre 1 Illusions-Token (0/0) auf das Spielfeld deines Gegners; 1 Monster, das er kontrolliert, verliert bis zum Ende dieses Zuges 400 ATK.
+## Genostitched Apex Chimera
+n Gennaht-Spitzenchimäre
+s Du kontrollierst ein Monster mit ausgerüstetem Artefakt. Kosten 2 Mana.
+l0 Die Gefallenen transplantieren
+t0 Wenn diese Karte beschworen wird: Rüste diese Karte mit 1 Artefakt aus deinem Friedhof aus.
+l1 Spitzen-Evolution
+t1 Solange sie mit einem Artefakt ausgerüstet ist, kannst du 2 Mana zahlen: Diese Karte erhält dauerhaft 400 ATK.
+## Genostitched Donor List
+n Gennaht-Spenderliste
+l0 Spenderliste
+t0 Füge deiner Hand 1 Artefakt aus deinem Deck hinzu.
+l1 Prioritätsspender
+t1 Zahle stattdessen 3 Mana: Ziehe außerdem 1 Karte.
+## Genostitched Dressed to Kill
+n Gennaht-Zum Töten gekleidet
+l0 Tödliches Outfit
+t0 Einmal pro Zug, falls diese Karte ein Artefakt ausgerüstet hat: Zahle 2 Mana; diese Karte kann in dieser Battle Phase ein weiteres Mal angreifen.
+## Genostitched Field Surgery
+n Gennaht-Feldchirurgie
+l0 Feldchirurgie
+t0 Rüste 1 Monster, das du kontrollierst, mit 1 Artefakt aus deiner Hand aus; es erhält bis zum Ende dieses Zuges 300 DEF.
+l1 Tiefes Transplantat
+t1 Zahle stattdessen 2 Mana: Der Bonus ist dauerhaft.
+## Genostitched Fourth Arm
+n Gennaht-Vierter Arm
+l0 Verlängerte Reichweite
+t0 Einmal pro Zug, wenn das ausgerüstete Monster ein Monster im Kampf zerstört: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 300 ATK.
+## Genostitched Grafter
+n Gennaht-Transplanteur
+l0 Selbsttransplantat
+t0 Wenn diese Karte beschworen wird: Du kannst diese Karte mit 1 Artefakt aus deiner Hand ausrüsten.
+l1 Wildwuchs
+t1 Solange sie mit einem Artefakt ausgerüstet ist, kannst du 2 Mana zahlen: Diese Karte erhält dauerhaft 500 ATK.
+## Genostitched Hand-Me-Down
+n Gennaht-Erbstück
+l0 Abgetragen und weitergereicht
+t0 Wenn diese Karte beschworen wird: Du kannst diese Karte mit 1 Artefakt aus deinem Friedhof ausrüsten.
+l1 Maßgeschneidert
+t1 Zahle stattdessen 2 Mana: Rüste diese Karte mit 1 Artefakt aus deinem Deck aus.
+## Genostitched Loose Ends
+n Gennaht-Lose Fäden
+l0 Den Faden kappen
+t0 Zahle 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; ziehe 2 Karten und erhalte 1 Mana.
+l1 Vernähen
+t1 Zahle stattdessen 2 Mana: Gib außerdem 1 „Gennaht“-Monster aus deinem Friedhof auf deine Hand zurück.
+## Genostitched Magnum Opus
+n Gennaht-Magnum Opus
+l0 Selbstmontage
+t0 Wenn diese Karte beschworen wird: Rüste diese Karte mit 1 Artefakt aus deinem Friedhof aus.
+l1 Unantastbares Design
+t1 Solange sie mit einem Artefakt ausgerüstet ist, zahle 2 Mana: Diese Karte kann in diesem Zug nicht als Ziel gewählt werden.
+## Genostitched Prime Specimen
+n Gennaht-Prachtexemplar
+l0 Perfektioniertes Transplantat
+t0 Wenn diese Karte beschworen wird: Du kannst diese Karte mit 1 Artefakt aus deinem Deck ausrüsten.
+l1 Totalabstoßung
+t1 Solange sie mit einem Artefakt ausgerüstet ist, kannst du 3 Mana zahlen: Zerstöre 1 Monster, das dein Gegner kontrolliert, dann erhält diese Karte dauerhaft 500 ATK.
+## Genostitched Quick Change
+n Gennaht-Schnellwechsel
+l0 Schnellwechsel
+t0 Zahle 1 Mana: Verlege 1 Artefakt, das du kontrollierst, auf dein stärkstes Monster.
+l1 Showtime
+t1 Zahle stattdessen 2 Mana: Der neue Träger erhält außerdem bis zum Ende dieses Zuges 400 ATK.
+## Genostitched Scrapling
+n Gennaht-Schrottling
+l0 Sammlerinstinkt
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 Artefakt aus deinem Deck hinzufügen.
+l1 Rückkopplungsschleife
+t1 Solange sie mit einem Artefakt ausgerüstet ist, kannst du 1 Mana zahlen: Ziehe 1 Karte.
+## Genostitched Seamstress
+n Gennaht-Näherin
+l0 Den Faden einfädeln
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 Artefakt aus deinem Friedhof hinzu.
+l1 Annähen
+t1 Zahle stattdessen 2 Mana: Rüste diese Karte mit 1 Artefakt aus deinem Friedhof aus.
+## Genostitched Sutureling
+n Gennaht-Nahtling
+l0 Die Naht platzt
+t0 Wenn diese Karte zerstört wird: Du kannst deiner Hand 1 Artefakt aus deinem Friedhof hinzufügen.
+## Genostitched Third Arm
+n Gennaht-Dritter Arm
+l0 Verlängerte Reichweite
+t0 Einmal pro Zug, wenn das ausgerüstete Monster ein Monster im Kampf zerstört: Ziehe 1 Karte.
+## Genostitched Vivisector
+n Gennaht-Vivisekteur
+l0 Präzisionsschnitt
+t0 Solange sie mit einem Artefakt ausgerüstet ist, kannst du 2 Mana zahlen: Zerstöre 1 Monster mit 1600 oder weniger ATK, das dein Gegner kontrolliert.
+## Genostitched, the Composite God
+n Gennaht, der Zusammengesetzte Gott
+s Du kontrollierst ein Monster mit ausgerüstetem Artefakt und hast 2+ Artefakte in deinem Friedhof. Kosten 3 Mana.
+l0 Montierte Göttlichkeit
+t0 Wenn diese Karte beschworen wird: Rüste diese Karte mit bis zu 2 Artefakten aus deinem Friedhof aus.
+l1 Göttliche Sektion
+t1 Solange sie mit einem Artefakt ausgerüstet ist, zahle 3 Mana: Zerstöre 1 Monster mit 2000 oder weniger ATK, das dein Gegner kontrolliert; diese Karte erhält dauerhaft 300 ATK.
+## Gift Horse
+n Geschenkter Gaul
+l0 Nicht ins Maul schauen
+t0 Einmal pro Zug, falls du diese Karte besitzt: Übergib die Kontrolle über sie deinem Gegner; ziehe 2 Karten.
+## Glass Cannon
+n Glaskanone
+## Glasswarden, the Unblinking
+n Glaswächter, der Niemals Blinzelt
+s Du kontrollierst ein verdecktes Monster. Kosten 2 Mana.
+l0 Nichts bleibt verborgen
+t0 Wenn diese Karte beschworen wird: Decke 1 verdecktes Monster auf, das du kontrollierst.
+## Grale, Who Collects on Sundays
+n Grale, der sonntags kassiert
+l0 Kassiert sonntags
+t0 Wenn diese Karte beschworen wird: Belege 1 Monster, das dein Gegner kontrolliert, mit einem Pfandrecht von 1 (während jeder Standby Phase seines Kontrolleurs zahlt dieser so viel Mana, sonst wird es zerstört).
+l1 Zinsen
+t1 Zahle 2 Mana: Erhöhe das Pfandrecht auf 1 Monster, das dein Gegner kontrolliert, um 1.
+## Grave Call
+n Ruf aus dem Grab
+l0 Ruf aus der Tiefe
+t0 Zahle 1 Mana; füge deiner Hand 1 Karte aus deinem Friedhof hinzu.
+## Gravekeeper's Servant
+n Diener des Friedhofswärters
+l0 Pflicht über den Tod hinaus
+t0 Falls diese Karte in deinem Friedhof liegt: Du kannst sie verbannen; ziehe 1 Karte.
+## Gravemaw Bonepicker
+n Grabschlund-Knochenpicker
+l0 Die Knochen abklauben
+t0 Wenn diese Karte beschworen wird: Verbanne bis zu 2 Monster aus deinem Friedhof; diese Karte erhält 300 ATK für jedes deiner verbannten Monster.
+l1 Blank picken
+t1 Zahle stattdessen 2 Mana: Verbanne bis zu 4 Monster aus deinem Friedhof; diese Karte erhält 300 ATK für jedes deiner verbannten Monster.
+l2 Ein Hühnchen zu rupfen
+t2 Einmal pro Zug: Zahle 2 Mana; lege 1 deiner verbannten Monster in deinen Friedhof zurück.
+## Gravemaw Butcher
+n Grabschlund-Schlachter
+l0 Den Schlund füttern
+t0 Wenn diese Karte beschworen wird: Du kannst 1 anderes Monster zerstören, das du kontrollierst; ziehe 1 Karte.
+l1 Fett werden
+t1 Du kannst 2 Mana zahlen: Diese Karte erhält dauerhaft 300 ATK.
+## Gravemaw Cold Storage
+n Grabschlund-Kühlhaus
+l0 Auftauen
+t0 Einmal pro Zug: Spezialbeschwöre 1 „Grabschlund“-Monster der Stufe 1 verdeckt aus deinem Friedhof.
+l1 Schockauftauen
+t1 Zahle stattdessen 4 Mana: Spezialbeschwöre 1 „Grabschlund“-Monster offen aus deinem Friedhof.
+## Gravemaw Feast
+n Grabschlund-Festmahl
+l0 Festmahl
+t0 Zerstöre 1 Monster, das du kontrollierst; füge deinem Gegner 500 Schaden zu, und du erhältst 500 LP.
+l1 Großes Festmahl
+t1 Zerstöre 1 Monster, das du kontrollierst; füge deinem Gegner 900 Schaden zu, und du erhältst 900 LP.
+## Gravemaw Feeding Trough
+n Grabschlund-Futtertrog
+l0 Voll halten
+t0 Während deiner Standby Phase: Mille 2 Karten.
+l1 Reste kehren zurück
+t1 Einmal pro Zug — zahle 2 Mana: Lege 1 deiner verbannten Karten in deinen Friedhof zurück; erhalte 1 Mana.
+## Gravemaw Gnawer
+n Grabschlund-Nager
+l0 Erster Biss
+t0 Wenn diese Karte beschworen wird: Mille 2 Karten.
+l1 Sich zurücknagen
+t1 Zahle 1 Mana und verbanne 1 andere Karte aus deinem Friedhof: Spezialbeschwöre diese Karte aus deinem Friedhof.
+## Gravemaw Gulp
+n Grabschlund-Schluck
+l0 Schluck
+t0 Verbanne 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Im Ganzen verschlingen
+t1 Zahle stattdessen 4 Mana: Ohne ATK-Grenze.
+## Gravemaw Leftovers
+n Grabschlund-Reste
+l0 Den Teller auskratzen
+t0 Zahle 1 Mana: Lege bis zu 3 deiner verbannten „Grabschlund“-Karten in deinen Friedhof zurück.
+l1 Mitternachtssnack
+t1 Zahle stattdessen 1 Mana: Lege bis zu 2 deiner verbannten „Grabschlund“-Karten in deinen Friedhof zurück; ziehe 1 Karte.
+## Gravemaw Nibbler
+n Grabschlund-Knabberer
+l0 Grasen
+t0 Wenn diese Karte beschworen wird: Lege die obersten 2 Karten deines Decks auf den Friedhof.
+l1 Schlingen
+t1 Zahle stattdessen 1 Mana: Lege die obersten 4 Karten deines Decks auf den Friedhof; erhalte 1 Mana.
+## Gravemaw Ossuary
+n Grabschlund-Beinhaus
+l0 Knochenernte
+t0 Während deiner Standby Phase: Du kannst 1 „Grabschlund“-Monster der Stufe 1 aus deinem Friedhof spezialbeschwören.
+l1 Die Knochen mahlen
+t1 Du kannst 2 Mana zahlen und 1 „Grabschlund“-Monster zerstören, das du kontrollierst; ziehe 1 Karte.
+## Gravemaw Second Helping
+n Grabschlund-Nachschlag
+l0 Nachschlag
+t0 Lege bis zu 2 deiner verbannten Karten in deinen Friedhof zurück; mille 2 Karten.
+l1 Dritte Portion
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre außerdem 1 „Grabschlund“-Monster der Stufe 1 aus deinem Friedhof.
+## Gravemaw Sepulcher Beast
+n Grabschlund-Gruftbestie
+l0 Gruftmahl
+t0 Wenn diese Karte beschworen wird: Verbanne bis zu 2 Karten aus deinem Friedhof; ziehe 1 Karte.
+l1 Schlingendes Mahl
+t1 Zahle stattdessen 2 Mana: Verbanne bis zu 3; ziehe 1.
+## Gravemaw Stolen Supper
+n Grabschlund-Gestohlenes Abendmahl
+l0 Gestohlenes Abendmahl
+t0 Zahle 1 Mana: Verbanne 1 Karte aus dem Friedhof deines Gegners.
+l1 Abgeräumter Tisch
+t1 Zahle stattdessen 2 Mana: Verbanne bis zu 3 Karten aus dem Friedhof deines Gegners; erhalte 300 LP.
+## Gravemaw Tyrant
+n Grabschlund-Tyrann
+l0 Die Schwachen verschlingen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 anderes Monster zerstören, das du kontrollierst; füge deinem Gegner 800 Schaden zu.
+l1 Endloser Appetit
+t1 Du kannst 3 Mana zahlen und 1 anderes Monster zerstören, das du kontrollierst; diese Karte erhält dauerhaft 500 ATK, und füge deinem Gegner 300 Schaden zu.
+## Gravemaw Whelp
+n Grabschlund-Welpe
+l0 Sterbende Bosheit
+t0 Wenn diese Karte zerstört wird: Füge deinem Gegner 300 Schaden zu.
+l1 Nagender Hunger
+t1 Du kannst 1 Mana zahlen und diese Karte aus deiner Hand auf den Friedhof legen; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 300 ATK.
+## Gravemaw, Maw of the World
+n Grabschlund, Schlund der Welt
+s 5+ deiner Karten sind verbannt. Kosten 3 Mana.
+l0 Die Welt kehrt zurück
+t0 Wenn diese Karte beschworen wird: Lege bis zu 3 deiner verbannten Karten in deinen Friedhof zurück; diese Karte erhält dauerhaft 200 ATK pro zurückgelegter Karte.
+l1 In die Welt beißen
+t1 Einmal pro Zug — zahle 3 Mana: Verbanne 1 Karte, die dein Gegner kontrolliert.
+## Gravemaw, the Bottomless
+n Grabschlund, der Bodenlose
+s Kosten 1 Mana. Verbanne 4 Monster aus deinem Friedhof.
+l0 Endloser Hunger
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 Monster aus deinem Friedhof.
+## Grief Counselor
+n Trauerbegleiter
+l0 Verlust verarbeiten
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, zerstört wird: Ziehe 1 Karte.
+l1 Trauersitzung
+t1 Einmal pro Zug: Zahle 1 Mana; erhalte 400 LP.
+## Grieve, Who Comes After
+n Griev, der danach kommt
+l0 Kommt danach
+t0 HAND · Lege diese Karte aus deiner Hand auf den Friedhof, spezialbeschwöre dann 1 Monster mit 1800 oder weniger ATK aus deinem Friedhof.
+## Grinner, Who Plays the Table
+n Grinser, der den Tisch bespielt
+l0 Bespielt den Tisch
+t0 Wenn diese Karte beschworen wird: Wirf eine Münze. Kopf — dein Gegner wirft 1 zufällige Karte ab. Zahl — du wirfst 1 zufällige Karte ab.
+l1 Den Einsatz erhöhen
+t1 Zahle 2 Mana: Wirf eine Münze. Kopf — diese Karte erhält bis zum Ende des Zuges 900 ATK. Zahl — sie verliert bis zum Ende des Zuges 900 ATK.
+## Grunn, Who Eats His Own
+n Grunn, der die Eigenen frisst
+s Kosten 1 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+l0 Immer noch Hunger
+t0 Wenn diese Karte beschworen wird: Bis zu 2 Monster, die dein Gegner kontrolliert, verlieren dauerhaft 500 ATK.
+## Guardian Amulet
+n Wächteramulett
+l0 Schützender Segen
+t0 Während deiner Standby Phase: Du kannst 300 LP erhalten.
+## Guild Tariff
+n Zunftzoll
+## Halo Executor
+n Halo-Vollstrecker
+l0 Endgültiges Urteil
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Karte aus einem der beiden Friedhöfe verbannen.
+## Head Over Heels
+n Hals über Kopf
+l0 Hals über Kopf
+t0 Zahle 1 Mana: 1 Monster auf dem Spielfeld tauscht bis zum Ende dieses Zuges ATK und DEF.
+l1 Drunter und drüber
+t1 Zahle stattdessen 2 Mana: Bis zu 2 Monster.
+## Heads You Lose
+n Kopf — du verlierst
+l0 Kopf — du verlierst
+t0 Zahle 1 Mana: Wirf eine Münze. Kopf — zerstöre 1 Monster auf dem Spielfeld. Zahl — zerstöre stattdessen 1 Monster, das du kontrollierst (kontrollierst du keins, passiert nichts).
+l1 Alles oder nichts
+t1 Zahle stattdessen 3 Mana: Wirf zwei Münzen. Landet mindestens eine auf Kopf, zerstöre 1 Monster auf dem Spielfeld. Landen beide auf Zahl, zerstöre 1 Monster, das du kontrollierst, und dein Gegner zieht 1 Karte.
+## Healing Spring
+n Heilquelle
+l0 Quellwasser
+t0 Zahle 1 Mana: Erhalte 1000 LP.
+l1 Heilige Quelle
+t1 Zahle 2 Mana; erhalte 2200 LP.
+## Heart of the Forge
+n Herz der Schmiede
+l0 Anfeuern
+t0 Füge deiner Hand 1 „Schmiedeherz“-Karte aus deinem Deck hinzu.
+l1 Weißglühende Schmiede
+t1 Füge deiner Hand 1 „Schmiedeherz“-Karte aus deinem Deck hinzu, dann erhält 1 Monster, das du kontrollierst, dauerhaft 400 ATK.
+## Heart of the Shrine
+n Herz des Schreins
+l0 Ruf des Schreins
+t0 Während deiner Standby Phase: Du kannst deiner Hand 1 Drachen-Monster der Stufe 1 aus deinem Deck hinzufügen.
+l1 Herzfeuer-Beschwörung
+t1 Du kannst 3 Mana zahlen: Spezialbeschwöre 1 Drachen-Monster der Stufe 1 aus deiner Hand.
+## Heavenly Acolyte
+n Himmels-Akolyth
+l0 Hingabe
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Himmels“-Karte aus deinem Deck hinzufügen.
+## Heavenly Altarpiece
+n Himmels-Altarbild
+l0 Morgengabe
+t0 Zahle 1 Mana: Erhalte 300 LP.
+## Heavenly Archon
+n Himmels-Archon
+l0 Die Heerschar steigt herab
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Himmels“-Monster der Stufe 1 aus deinem Friedhof.
+l1 Verstummendes Licht
+t1 Zahle 3 Mana: Annulliere die Effekte von 1 Monster, das dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+## Heavenly Ascension
+n Himmels-Aufstieg
+l0 Aufstieg
+t0 Spezialbeschwöre bis zu 2 „Himmels“-Monster aus deiner Hand.
+## Heavenly Benediction
+n Himmels-Benediktion
+l0 Benediktion
+t0 1 Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden; erhalte 300 LP.
+l1 Zwillingssegen
+t1 Zahle stattdessen 2 Mana: Bis zu 2 Monster; erhalte 500 LP.
+## Heavenly Bodyguard
+n Himmels-Leibwächter
+## Heavenly Choirmaid
+n Himmels-Chormagd
+l0 Erhörtes Gebet
+t0 Du kannst diese Karte aus deiner Hand auf den Friedhof legen; spezialbeschwöre 1 „Himmels“-Monster der Stufe 1 aus deinem Deck.
+## Heavenly Collection Plate
+n Himmels-Kollektenteller
+l0 Den Teller weiterreichen
+t0 Einmal pro Zug: Erhalte 300 LP.
+l1 Großzügiger Sonntag
+t1 Zahle stattdessen 2 Mana, falls du 2+ Monster kontrollierst: Erhalte 300 LP und ziehe 1 Karte.
+## Heavenly Empyrean, the First Light
+n Himmels-Empyreum, das Erste Licht
+s Du kontrollierst „Himmels-Seraphssouverän“. Kosten 4 Mana.
+l0 Erstes Licht
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Himmels“-Monster aus deinem Friedhof. Diese Karte kann in diesem Zug nicht zerstört werden.
+## Heavenly Errand Angel
+n Himmels-Botenengel
+l0 Kleine Wunder
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Himmels“-Zauber aus deinem Deck hinzu.
+l1 Eilzustellung
+t1 Zahle stattdessen 2 Mana: Erhalte außerdem 300 LP.
+## Heavenly Herald
+n Himmels-Herold
+l0 Fanfarenstoß
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Himmels“-Monster aus deinem Friedhof hinzufügen.
+## Heavenly Highest Choir
+n Himmels-Höchster Chor
+s Du kontrollierst 2+ „Himmels“-Monster und hast 5+ Mana verfügbar. Kosten 4 Mana.
+l0 Der Chor versammelt sich
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 „Himmels“-Monster aus deinem Friedhof; sie können in diesem Zug nicht zerstört werden.
+l1 Schleier aus Gesang
+t1 Zahle 2 Mana: 1 „Himmels“-Monster, das du kontrollierst, kann in diesem Zug nicht als Ziel gewählt werden.
+## Heavenly Intervention
+n Himmels-Intervention
+l0 Intervention
+t0 Zahle 2 Mana: Gib 1 Monster, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück.
+l1 Göttliches Veto
+t1 Zahle stattdessen 4 Mana: Verbanne es stattdessen.
+## Heavenly Reliquary
+n Himmels-Reliquiar
+l0 Das Reliquiar öffnen
+t0 Füge deiner Hand 1 „Himmels“-Karte aus deinem Deck hinzu.
+l1 Heilige Entsiegelung
+t1 Füge deiner Hand 1 „Himmels“-Karte aus deinem Deck hinzu, spezialbeschwöre dann 1 „Himmels“-Monster der Stufe 1 aus deiner Hand.
+## Heavenly Second Coming
+n Himmels-Wiederkunft
+l0 Wiederkunft
+t0 Zahle 3 Mana: Spezialbeschwöre 1 „Himmels“-Monster aus deinem Friedhof.
+l1 In Herrlichkeit
+t1 Zahle stattdessen 5 Mana: Es erhält außerdem dauerhaft 500 ATK und 500 DEF.
+## Heavenly Seraph Sovereign
+n Himmels-Seraphssouverän
+l0 Segen des Souveräns
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Himmels“-Karte aus deinem Deck hinzufügen.
+l1 Wort der Stille
+t1 Du kannst 3 Mana zahlen: Wähle 1 Karte, die dein Gegner kontrolliert, als Ziel; ihre Effekte sind bis zum Ende des Zuges annulliert.
+## Heavenly Summons
+n Himmels-Berufung
+l0 Himmels-Berufung
+t0 Spezialbeschwöre 1 „Himmels“-Monster mit 1400 oder weniger ATK aus deinem Deck.
+l1 Höchste Berufung
+t1 Zahle stattdessen 4 Mana: Ohne ATK-Grenze; es kann in diesem Zug nicht zerstört werden.
+## Heavenly Vindicator
+n Himmels-Verteidiger
+l0 Unter meine Fittiche
+t0 Wenn diese Karte beschworen wird: 1 „Himmels“-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+l1 Dauerhafter Schutz
+t1 Zahle stattdessen 2 Mana: Es erhält außerdem dauerhaft 400 DEF.
+## Herald of the Lightless
+n Herold der Lichtlosen
+l0 Dunkle Verkündung
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Lichtlos“-Zauber aus deinem Deck verdeckt setzen.
+l1 Letzte Predigt
+t1 Falls diese Karte in deinem Friedhof liegt: Du kannst 2 Mana zahlen und sie verbannen; füge deiner Hand 1 „Lichtlos“-Monster aus deinem Deck hinzu.
+## Hessel of the Crossroads
+n Hessel von der Kreuzung
+l0 Handel an der Kreuzung
+t0 Wenn diese Karte beschworen wird: Dein Gegner zieht 1 Karte; du ziehst 2 Karten.
+l1 Teufelspakt
+t1 Zahle stattdessen 2 Mana: Dein Gegner zieht 1 Karte; du ziehst 3 Karten, aber du überspringst deine nächste Draw Phase.
+## Hest, Who Looks Twice
+n Hest, die zweimal hinsieht
+l0 Der zweite Blick
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; decke 1 verdecktes Monster auf dem Spielfeld auf.
+## Hexweaver Apprentice
+n Hexweber-Lehrling
+l0 Der erste Faden
+t0 Du kannst diese Karte aus deiner Hand auf den Friedhof legen; setze 1 „Hexweber“-Zauber aus deinem Deck.
+## Hexweaver Bargain Bobbin
+n Hexweber-Schnäppchenspule
+## Hexweaver Curse Broker
+n Hexweber-Fluchmakler
+l0 Maklergebühr
+t0 Wenn diese Karte beschworen wird, falls du 5+ Mana hast: Ziehe 1 Karte und erhalte 1 Mana.
+l1 Leerverkauf
+t1 Zahle 2 Mana: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 400 ATK.
+## Hexweaver Grand Magus
+n Hexweber-Großmagus
+l0 Großes Muster
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Hexweber“-Zauber aus deinem Deck setzen, ziehe dann 1 Karte.
+l1 Auftrennen und wiederherstellen
+t1 Du kannst 3 Mana zahlen: Gib 1 Zauber aus deinem Friedhof auf deine Hand zurück.
+## Hexweaver Loomguard
+n Hexweber-Webstuhlwache
+l0 Den Webstuhl schützen
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 1 Mana zahlen; setze 1 „Hexweber“-Zauber aus deinem Deck.
+## Hexweaver Loose Thread
+n Hexweber-Loser Faden
+l0 Am Faden ziehen
+t0 Wenn diese Karte beschworen wird: Erhalte 1 Mana.
+l1 Weiterziehen
+t1 Zahle stattdessen 1 Mana: Erhalte jetzt 1 Mana und 1 weiteres in deinem nächsten Zug.
+## Hexweaver Rethread
+n Hexweber-Neueinfädelung
+l0 Neu einfädeln
+t0 Zahle 1 Mana: Gib 1 Zauber aus deinem Friedhof auf deine Hand zurück; erhalte 1 Mana.
+l1 Doppelstich
+t1 Zahle stattdessen 1 Mana: Gib bis zu 2 Zauber aus deinem Friedhof auf deine Hand zurück.
+## Hexweaver Scribe
+n Hexweber-Schreiber
+l0 Das Gewebe umschreiben
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Zauber aus deinem Friedhof auf deine Hand zurückgeben.
+## Hexweaver Second Stitch
+n Hexweber-Zweiter Stich
+l0 Zweiter Stich
+t0 Gib 1 Schnellzauber aus deinem Friedhof auf deine Hand zurück; erhalte 1 Mana.
+l1 Doppelstich
+t1 Zahle stattdessen 2 Mana: Gib 2 zurück.
+## Hexweaver Snip
+n Hexweber-Schnipp
+l0 Schnipp
+t0 Gib 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert, auf die Hand zurück; ziehe 1 Karte.
+l1 Aus dem Gewebe geschnitten
+t1 Zahle stattdessen 4 Mana: Verbanne es; ziehe 1 Karte.
+## Hexweaver Spindlewitch
+n Hexweber-Spindelhexe
+l0 Den ersten Faden spinnen
+t0 Wenn diese Karte beschworen wird: Setze 1 „Hexweber“-Zauber aus deinem Deck.
+l1 Die Spule zurückdrehen
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Gib 1 Zauber aus deinem Friedhof auf deine Hand zurück.
+## Hexweaver Tapestry of Debts
+n Hexweber-Wandteppich der Schulden
+l0 Wieder einweben
+t0 Einmal pro Zug — zahle 2 Mana: Setze 1 „Hexweber“-Zauber aus deinem Friedhof.
+## Hexweaver Unravel
+n Hexweber-Auftrennen
+l0 Auftrennen
+t0 Zahle 2 Mana: Gib 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert, auf die Hand zurück.
+l1 Aufgelöst
+t1 Zahle stattdessen 4 Mana: Verbanne 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert.
+## Hexweaver's Loom
+n Webstuhl des Hexwebers
+l0 Den Faden spinnen
+t0 Füge deiner Hand 1 „Hexweber“-Karte aus deinem Deck hinzu.
+l1 Das Muster weben
+t1 Füge deiner Hand 1 „Hexweber“-Karte aus deinem Deck hinzu, ziehe dann 1 Karte.
+## Hexweaver, Loom of Fate
+n Hexweber, Webstuhl des Schicksals
+s Du hast 5 oder mehr Mana. Kosten 2 Mana.
+l0 Das Schicksal neu einfädeln
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand bis zu 2 Zauber aus deinem Friedhof hinzu.
+## Hexweaver, Looming Large
+n Hexweber, Drohend Groß
+l0 Eingewebte Weisheit
+t0 Wenn diese Karte beschworen wird, falls du 6 oder mehr Mana hast: Ziehe 2 Karten.
+l1 Das Gewebe erzwingen
+t1 Zahle stattdessen 2 Mana: Ziehe 2 Karten, egal wie viel Mana du hast.
+l2 Neu gewebtes Schicksal
+t2 Einmal pro Zug: Zahle 3 Mana; gib 1 Monster, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück.
+## Hexweaver, the Pattern Beneath
+n Hexweber, das Muster Darunter
+s 4+ Zauber in deinem Friedhof. Kosten 3 Mana.
+l0 Das Muster lesen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand bis zu 2 Zauber aus deinem Friedhof hinzu; erhalte 1 Mana.
+l1 Ihr Werk auftrennen
+t1 Zahle 2 Mana: Annulliere die Effekte von 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+## High Stakes
+n Hohe Einsätze
+l0 Hohe Einsätze
+t0 Zahle 2 Mana: Nur während der Main Phase deines Gegners: Bis zum Ende deines nächsten Zuges wird sämtlicher Kampfschaden an beiden Spielern verdoppelt.
+## Hold the Line
+n Die Stellung halten
+l0 Die Stellung halten
+t0 SCHNELL · Zahle 1 Mana: Wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; es kann in diesem Zug nicht angreifen.
+## Hunter's Horn
+n Jagdhorn
+l0 Zur Jagd blasen
+t0 Du kannst 3 Mana zahlen: Wähle 1 Monster, das du kontrollierst, als Ziel; es kann in diesem Zug ein weiteres Mal angreifen.
+## Ice Warden
+n Eiswächter
+l0 Frostatem
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 1 Mana zahlen; es verliert 300 ATK.
+## Ignis the Pyromancer
+n Ignis der Pyromant
+l0 Feuersturm
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; füge deinem Gegner 500 Schaden zu.
+## Ilsa of the Long Line
+n Ilsa von der Langen Linie
+s Du kontrollierst 3 oder mehr Monster. Kosten 2 Mana.
+l0 Die Stellung halten
+t0 Wenn diese Karte beschworen wird: Alle Monster, die du kontrollierst, erhalten bis zum Ende des Zuges 300 ATK.
+## Immortal Demon
+n Unsterblicher Dämon
+s Solange keine Reliquien auf dem Spielfeld oder in einer Verbannung liegen und du 2+ Reliquien in deinem Friedhof hast: Zahle 2 Mana.
+l0 Abschiedsfluch
+t0 Falls diese Karte vom Spielfeld oder aus dem Extra Deck auf den Friedhof gelegt wird: Ziehe 2 Karten, danach kannst du die Effekte von 1 Karte auf dem Spielfeld annullieren.
+## Immovable Object
+n Unbewegliches Objekt
+## Implosion
+n Implosion
+l0 Implosion
+t0 Zahle 2 Mana: Verbanne alle Monster, die dein Gegner kontrolliert, aber du kannst in diesem Zug nicht direkt angreifen.
+## Iron Resolve
+n Eiserner Wille
+l0 Standhaft bleiben
+t0 Wähle 1 Monster, das du kontrollierst, als Ziel; es erhält bis zum Ende des Zuges 500 DEF.
+l1 Unzerbrechlich
+t1 Wähle 1 Monster, das du kontrollierst, als Ziel; es erhält bis zum Ende des Zuges 1200 DEF.
+## Kindlekin Ashling
+n Zundersippe-Äscherling
+## Kindlekin Bonfire Chief
+n Zundersippe-Lagerfeuerhäuptling
+l0 Alle zurück ans Feuer
+t0 Einmal pro Zug — zahle 2 Mana: Spezialbeschwöre bis zu 2 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+## Kindlekin Cindertail
+n Zundersippe-Aschenschweif
+l0 Mitkommen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 FEUER-Monster der Stufe 1 aus deiner Hand spezialbeschwören.
+l1 Warme Fährte
+t1 Wenn diese Karte zerstört wird: Füge deiner Hand 1 FEUER-Monster der Stufe 1 aus deinem Friedhof hinzu.
+## Kindlekin Emberthrone
+n Zundersippe-Glutthron
+s Du kontrollierst 3+ Monster. Kosten 2 Mana.
+l0 Ruf zu den Kohlen
+t0 Einmal pro Zug: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 mit 1000 oder weniger ATK aus deinem Friedhof.
+l1 Ruft sie alle
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre bis zu 2 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+l2 Das Rudel wärmen
+t2 Du kannst 2 Mana zahlen: Bis zu 3 BESTIE-Monster, die du kontrollierst, erhalten bis zum Ende dieses Zuges 300 ATK.
+## Kindlekin Emberwing
+n Zundersippe-Glutschwinge
+l0 Die Asche entfachen
+t0 Einmal pro Zug: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+l1 Alle entfachen
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre bis zu 2 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+## Kindlekin Fire Marshal
+n Zundersippe-Brandmeister
+l0 Appell
+t0 Einmal pro Zug: Zahle 2 Mana; gib 1 Monster der Stufe 1 aus deinem Friedhof auf deine Hand zurück.
+## Kindlekin Flickerpaw
+n Zundersippe-Flackerpfote
+l0 Den Wurf wittern
+t0 Falls diese Karte normalbeschworen wird: Füge deiner Hand 1 FEUER-Monster der Stufe 1 aus deinem Deck hinzu.
+l1 Den Wurf rufen
+t1 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deiner Hand.
+## Kindlekin Hearthnurse
+n Zundersippe-Herdamme
+l0 Aus dem Bau
+t0 Einmal pro Zug: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 mit 1000 oder weniger ATK aus deiner Hand.
+l1 Aus dem tiefen Bau
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deinem Deck.
+## Kindlekin Hearthstone
+n Zundersippe-Herdstein
+l0 Warm gehalten
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, zerstört wird: Füge deiner Hand 1 FEUER-Monster der Stufe 1 aus deinem Friedhof hinzu.
+l1 Den Stein schüren
+t1 Zahle 2 Mana: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deiner Hand.
+## Kindlekin Pile On
+n Zundersippe-Alle drauf
+l0 Alle drauf
+t0 Spezialbeschwöre bis zu 3 FEUER-Monster der Stufe 1 mit 1000 oder weniger ATK aus deiner Hand.
+l1 Wirklich alle drauf
+t1 Zahle stattdessen 3 Mana: Aus deiner Hand oder deinem Friedhof.
+## Kindlekin Plus-One
+n Zundersippe-Plus eins
+l0 Plus eins
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Zundersippe“-Monster aus deiner Hand spezialbeschwören.
+l1 Zu dritt
+t1 Zahle stattdessen 1 Mana: Spezialbeschwöre bis zu 2 „Zundersippe“-Monster aus deiner Hand.
+## Kindlekin Pyre Warden
+n Zundersippe-Feuerwache
+s Du kontrollierst 2+ Monster. Kosten 1 Mana.
+l0 Das Feuer hüten
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+l1 Zunder suchen
+t1 Du kannst 2 Mana zahlen: Füge deiner Hand 1 FEUER-Monster der Stufe 1 aus deinem Deck hinzu.
+## Kindlekin Pyrewhelp
+n Zundersippe-Feuerwelpe
+l0 Funkenschauer
+t0 Wenn diese Karte zerstört wird: Spezialbeschwöre 1 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+l1 Schüren
+t1 Du kannst 2 Mana zahlen: 1 FEUER-Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 500 ATK.
+## Kindlekin Rekindle
+n Zundersippe-Neuentfachung
+l0 Neu entfachen
+t0 Zahle 1 Mana: Gib 1 Monster der Stufe 1 aus deinem Friedhof auf deine Hand zurück.
+l1 Aus der Glut
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre es stattdessen.
+## Kindlekin Sift the Ashes
+n Zundersippe-Asche sieben
+l0 Die Asche sieben
+t0 Zahle 1 Mana: Lege die obersten 4 Karten deines Decks auf den Friedhof; füge deiner Hand 1 „Zundersippe“-Karte darunter hinzu.
+l1 Jeder letzte Funke
+t1 Zahle stattdessen 1 Mana: Füge deiner Hand ALLE „Zundersippe“-Karten darunter hinzu.
+## Kindlekin Spark
+n Zundersippe-Funke
+l0 Fangen
+t0 Wenn diese Karte beschworen wird: Erhalte 1 Mana.
+## Kindlekin Tinderfall
+n Zundersippe-Zunderfall
+l0 Zunderfall
+t0 Zahle 1 Mana: Füge deiner Hand 1 FEUER-Monster der Stufe 1 aus deinem Deck hinzu; erhalte 2 Mana.
+## Kindlekin Warm Glow
+n Zundersippe-Warmer Schein
+l0 Warmer Schein
+t0 Bis zu 3 deiner Monster der Stufe 1 erhalten bis zum Ende dieses Zuges 300 ATK.
+l1 Herdfeuer-Aura
+t1 Zahle stattdessen 2 Mana: Bis zu 5; sie können in diesem Zug außerdem nicht zerstört werden.
+## Kindlekin Warm Memories
+n Zundersippe-Warme Erinnerungen
+l0 Warme Erinnerungen
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, zerstört wird: Erhalte 300 LP.
+l1 Die Wärme teilen
+t1 Einmal pro Zug: Zahle 1 Mana; 1 Monster der Stufe 1, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK.
+## Kindlekin, the Last Ember
+n Zundersippe, die Letzte Glut
+s Du kontrollierst 4+ Monster und 6+ Karten in deinem Friedhof. Kosten 4 Mana. Verbanne 2 Monster aus deinem Friedhof.
+l0 Alles brennt
+t0 Wenn diese Karte beschworen wird: Zerstöre alle Monster auf dem Spielfeld außer BESTIE-Monstern.
+l1 Aus der Asche
+t1 Du kannst 3 Mana zahlen: Spezialbeschwöre bis zu 2 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+## Kindlekin, the Thousandth Flame
+n Zundersippe, die Tausendste Flamme
+s Du kontrollierst 3+ „Zundersippe“-Monster. Kosten 3 Mana.
+l0 Tausend Funken
+t0 Wenn diese Karte beschworen wird: Alle Monster der Stufe 1, die du kontrollierst, erhalten bis zum Ende dieses Zuges 500 ATK; diese Karte kann in diesem Zug zweimal angreifen.
+l1 Neu entfachte Legion
+t1 Zahle 3 Mana: Spezialbeschwöre bis zu 2 FEUER-Monster der Stufe 1 aus deinem Friedhof.
+## King of Deckay
+n König des Deckay
+s 8+ Monster in deinem Friedhof und 5+ Mana verfügbar — die Beschwörung selbst kostet nichts.
+l0 Krönung der Fäulnis
+t0 Falls diese Karte beschworen wird: Mille 10 Karten.
+l1 Die Fäulnis verzehrt alles
+t1 Zerstöre alle anderen Karten auf dem Spielfeld. Erhalte 200 Schaden für jede zerstörte Karte.
+l2 Mit Unrat gekrönt
+t2 Falls du in diesem oder im letzten Zug gemillt hast: Diese Karte kann in diesem Zug nicht als Ziel gewählt werden und ist von Effekten deines Gegners unberührt.
+## King's Crown
+n Königskrone
+l0 Macht des Königs
+t0 Während deiner Standby Phase: Du kannst in diesem Zug 1 zusätzliches Mana erhalten und 200 LP heilen.
+## Lantern Sprite
+n Laternenwicht
+l0 Letztes Licht
+t0 Wenn diese Karte zerstört wird: Du erhältst 500 LP.
+## Late Bloomer
+n Spätzünder
+l0 …zündet spät
+t0 Wenn diese Karte beschworen wird: Ziehe 1 Karte.
+l1 Volle Blüte
+t1 Zahle stattdessen 2 Mana: Ziehe 2 Karten.
+## Ledger of Small Debts
+n Verzeichnis kleiner Schulden
+l0 Kleine Schulden
+t0 Einmal pro Zug: Zahle 800 LP; erhalte in diesem Zug 1 Mana.
+l1 Größere Schulden
+t1 Zahle 1 Mana und 1500 LP: Ziehe 2 Karten.
+## Left Hand of the Hangman
+n Linke Hand des Henkers
+l0 Die Falltür
+t0 Wenn diese Karte beschworen wird: Zerstöre das offene Monster ihr gegenüber, falls dessen ATK niedriger ist als der dieser Karte.
+l1 Die Falltür
+t1 Wenn diese Karte in eine andere Zone zieht: Zerstöre das offene Monster ihr gegenüber, falls dessen ATK niedriger ist als der dieser Karte.
+l2 Den Galgen entlang
+t2 Zahle 2 Mana: Bewege diese Karte in eine benachbarte leere Zone; sie kann in diesem Zug nicht angreifen.
+## Light Dragon
+n Lichtdrache
+l0 Lichtsturm
+t0 Einmal pro Zug: Du kannst 3 Mana zahlen; erhalte 600 LP und füge deinem Gegner 600 Schaden zu.
+## Lightless Acolyte
+n Lichtlos-Akolyth
+l0 Geflüsterte Gabe
+t0 Du kannst diese Karte aus deiner Hand auf den Friedhof legen; füge deiner Hand 1 „Lichtlos“-Karte aus deinem Deck hinzu, und falls du das tust, ziehe 1 Karte.
+l1 Griff von unten
+t1 Falls diese Karte in deinem Friedhof liegt: Du kannst 2 Mana zahlen und sie verbannen; drehe 1 Monster, das dein Gegner kontrolliert, verdeckt in die Verteidigungsposition.
+## Lightless Blackout Curtain
+n Lichtlos-Verdunklungsvorhang
+l0 Den Vorhang zuziehen
+t0 Einmal pro Zug: Zahle 2 Mana; setze 1 „Lichtlos“-Monster aus deiner Hand verdeckt.
+## Lightless Candle Snuffer
+n Lichtlos-Kerzenlöscher
+l0 Auslöschen
+t0 Einmal pro Zug — zahle 2 Mana: Zerstöre 1 verdecktes Monster, das dein Gegner kontrolliert.
+## Lightless Closed Casket
+n Lichtlos-Geschlossener Sarg
+l0 Geschlossener Sarg
+t0 Zahle 1 Mana: Setze bis zu 3 „Lichtlos“-Monster aus deiner Hand verdeckt.
+l1 Die Trauernden wecken
+t1 Zahle stattdessen 2 Mana: Setze 2 „Lichtlos“-Monster aus deiner Hand verdeckt; ziehe 2 Karten.
+## Lightless Gravewatcher
+n Lichtlos-Grabwächter
+l0 Wachablösung
+t0 Wenn diese Karte aufgedeckt wird: Drehe 1 Monster, das dein Gegner kontrolliert, verdeckt in die Verteidigungsposition.
+## Lightless Light-Fingered
+n Lichtlos-Langfinger
+l0 Flinke Finger
+t0 Wenn diese Karte aufgedeckt wird: Gib 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert, auf die Hand zurück.
+l1 In der Hand verschwunden
+t1 Einmal pro Zug: Zahle 1 Mana; drehe diese Karte verdeckt in die Verteidigungsposition.
+## Lightless Lights-Out
+n Lichtlos-Licht aus
+l0 Licht aus
+t0 Wenn diese Karte aufgedeckt wird: Setze 1 Monster, das dein Gegner kontrolliert, verdeckt.
+## Lightless Matriarch
+n Lichtlos-Matriarchin
+l0 Verschleierungsbefehl
+t0 Wenn diese Karte beschworen wird: Du kannst bis zu 2 Monster auf dem Spielfeld verdeckt in die Verteidigungsposition drehen.
+l1 Ersticken
+t1 Du kannst 3 Mana zahlen: Zerstöre 1 verdecktes Monster, das dein Gegner kontrolliert, füge deinem Gegner dann 400 Schaden zu.
+## Lightless Pallbearer
+n Lichtlos-Sargträger
+l0 Sie zurücktragen
+t0 Wenn diese Karte beschworen wird: Setze 1 „Lichtlos“-Monster aus deinem Friedhof verdeckt auf dein Spielfeld.
+l1 Stille Prozession
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Lightless Prophet
+n Lichtlos-Prophet
+l0 Das Licht ersticken
+t0 Zahle 1 Mana; wähle 1 LICHT-Monster auf dem Spielfeld als Ziel: Drehe es verdeckt in die Verteidigungsposition.
+## Lightless Ritual
+n Lichtlos-Ritual
+l0 Ritus der Schatten
+t0 Zahle 2 Mana; spezialbeschwöre 1 „Lichtlos“-Monster aus deinem Friedhof oder deiner Verbannung, und falls du das tust, wirft dein Gegner 1 zufällige Karte ab.
+l1 Ritus der Usurpation
+t1 Zahle 4 Mana; spezialbeschwöre 1 „Lichtlos“-Monster aus deinem Friedhof oder deiner Verbannung. Statt des Abwerfens dann: 1 zufällige Karte aus der Hand deines Gegners — ist es ein Monster, spezialbeschwöre es auf DEIN Spielfeld (beim Verlassen kehrt es trotzdem zu seinem Besitzer zurück).
+## Lightless Shade
+n Lichtlos-Schemen
+l0 Schattenruf
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Lichtlos“-Monster aus deinem Friedhof hinzufügen.
+l1 Das Verborgene verschlingen
+t1 Du kannst 2 Mana zahlen: Wähle 1 verdecktes Monster auf dem Spielfeld als Ziel; zerstöre es.
+## Lightless Snuff
+n Lichtlos-Löschhütchen
+l0 Löschen
+t0 Zahle 1 Mana: Drehe 1 offenes Monster, das du kontrollierst, verdeckt.
+l1 Jede Kerze
+t1 Zahle stattdessen 2 Mana: Drehe bis zu 2 deiner Monster verdeckt.
+## Lightless Sudden Dark
+n Lichtlos-Jähes Dunkel
+l0 Jähes Dunkel
+t0 Drehe 1 Monster, das dein Gegner kontrolliert, verdeckt in die Verteidigungsposition.
+l1 Völliges Dunkel
+t1 Zahle stattdessen 3 Mana: Bis zu 2.
+## Lightless Veil
+n Lichtlos-Schleier
+l0 Schleier der Nacht
+t0 Wähle 1 Monster, das du kontrollierst, als Ziel; drehe es verdeckt in die Verteidigungsposition.
+l1 Schleier des tiefen Dunkels
+t1 Drehe 1 Monster, das du kontrollierst, verdeckt in die Verteidigungsposition, ziehe dann 1 Karte, und dein Gegner verliert 1 Mana.
+## Lightless Vigil
+n Lichtlos-Nachtwache
+l0 Die Wache halten
+t0 Setze 1 „Lichtlos“-Monster aus deinem Deck verdeckt auf dein Spielfeld.
+l1 Doppelte Wache
+t1 Zahle stattdessen 3 Mana: Setze 2.
+## Lightless, Hour of None
+n Lichtlos, Stunde der None
+s Du kontrollierst 2+ verdeckte Monster. Kosten 3 Mana.
+l0 Die Stunde schlägt
+t0 Wenn diese Karte beschworen wird: Drehe bis zu 2 Monster, die dein Gegner kontrolliert, verdeckt in die Verteidigungsposition.
+l1 Kein Licht mehr übrig
+t1 Zahle 3 Mana: Zerstöre 1 verdecktes Monster auf dem Spielfeld; ziehe 1 Karte.
+## Lightless, the Last Umbra
+n Lichtlos, die Letzte Umbra
+s Deine LP sind niedriger als die deines Gegners. Kosten 2 Mana.
+l0 Das Licht verschlingen
+t0 Wenn diese Karte beschworen wird: Verbanne 1 Monster, das dein Gegner kontrolliert.
+## Lightning Storm
+n Blitzsturm
+l0 Sturmschlag
+t0 Zahle 4 Mana; zerstöre 1 gegnerisches Monster und füge deinem Gegner 300 Schaden zu.
+## Lightning Strike
+n Blitzeinschlag
+l0 Blitz
+t0 Zahle 1 Mana; 1 gegnerisches Monster verliert dauerhaft 800 ATK.
+l1 Vernichtungsblitz
+t1 Zahle 3 Mana; zerstöre 1 gegnerisches Monster.
+## Load-Bearing Wall
+n Tragende Wand
+## Loaded Dice
+n Gezinkte Würfel
+l0 Nochmal würfeln
+t0 Zahle 2 Mana: Wirf eine Münze. Kopf — ziehe 1 Karte. Zahl — wirf 1 Karte ab.
+## Lock Shields
+n Schilde verzahnen
+l0 Schilde verzahnen
+t0 Zahle 1 Mana: Wähle 1 Monster, das du kontrollierst, als Ziel: Es und die zu ihm benachbarten Monster erhalten bis zum Ende des Zuges 500 DEF.
+l1 Schildwall
+t1 Zahle stattdessen 2 Mana: Sie erhalten 700 DEF und können in diesem Zug nicht zerstört werden.
+## Long Way Home
+n Langer Heimweg
+l0 Langer Heimweg
+t0 Zahle 1 Mana: Lege bis zu 3 deiner verbannten Karten in deinen Friedhof zurück.
+l1 Abkürzung
+t1 Zahle stattdessen 2 Mana: Gib außerdem 1 Karte aus deinem Friedhof auf deine Hand zurück.
+## Lost in the Shuffle
+n Im Mischen verloren
+l0 Im Mischen verloren
+t0 Zahle 2 Mana: Mische 1 Monster mit 1500 oder weniger ATK in das Deck seines Besitzers.
+l1 Nie wieder gesehen
+t1 Zahle stattdessen 4 Mana: Beliebiger ATK.
+## Lyra the Warden
+n Lyra die Wächterin
+l0 Segen
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; erhalte 800 LP.
+## Lyria Chimewisp
+n Lyria-Glockenwisp
+l0 Erstes Glockenspiel
+t0 FLIPP: Du kannst deiner Hand 1 „Lyria“-Karte aus deinem Deck hinzufügen.
+## Lyria Curtain Call
+n Lyria-Vorhangruf
+l0 Vorhangruf
+t0 Wenn diese Karte beschworen wird: Decke bis zu 2 deiner verdeckten Monster auf.
+l1 Stehende Ovationen
+t1 Zahle stattdessen 2 Mana: Die aufgedeckten Monster erhalten außerdem bis zum Ende dieses Zuges 400 ATK.
+l2 Sich verbeugen
+t2 Einmal pro Zug: Zahle 1 Mana; drehe diese Karte verdeckt in die Verteidigungsposition.
+## Lyria Drummer
+n Lyria-Trommler
+l0 Donnerschlag
+t0 FLIPP: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 400 ATK.
+## Lyria Flautist
+n Lyria-Flötistin
+l0 Wiegenlied
+t0 FLIPP: Du kannst 1 Monster, das dein Gegner kontrolliert, verdeckt in die Verteidigungsposition drehen.
+## Lyria Green Room
+n Lyria-Künstlerzimmer
+l0 Auf die Plätze
+t0 Einmal pro Zug: Zahle 2 Mana; spezialbeschwöre 1 „Lyria“-Monster verdeckt aus deinem Friedhof.
+## Lyria Harpist
+n Lyria-Harfenistin
+l0 Zweiter Satz
+t0 FLIPP: Du kannst 1 „Lyria“-Monster der Stufe 1 aus deiner Hand verdeckt in Verteidigungsposition spezialbeschwören.
+## Lyria Hushabye
+n Lyria-Schlummerlied
+l0 Schlummerlied
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Lyria“-Monster aus deiner Hand verdeckt setzen.
+l1 Schlaf gut
+t1 Zahle stattdessen 2 Mana: Setze 1 Monster mit beliebigem Namen aus deiner Hand verdeckt, und ziehe 1 Karte.
+## Lyria Intermission
+n Lyria-Pause
+l0 Pause
+t0 Drehe 1 Monster, das du kontrollierst, verdeckt in die Verteidigungsposition; es erhält bis zum Ende dieses Zuges 500 DEF.
+l1 Verlängerte Pause
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Lyria Orchestra Pit
+n Lyria-Orchestergraben
+l0 Die Kapelle spielt auf
+t0 Einmal pro Zug, wenn eines deiner Monster aufgedeckt wird: Ziehe 1 Karte.
+l1 Einsatz des Dirigenten
+t1 Zahle 2 Mana: Decke 1 deiner verdeckten Monster auf.
+## Lyria Prima Voce
+n Lyria-Prima Voce
+l0 Glaszerspringender Ton
+t0 FLIPP: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 500 ATK.
+l1 Auftritt der Solistin
+t1 Zahle 2 Mana: Decke 1 deiner verdeckten Monster auf.
+## Lyria Quiet Crescendo
+n Lyria-Leises Crescendo
+l0 Leises Crescendo
+t0 Zahle 1 Mana: 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK für jedes deiner verdeckten Monster.
+l1 Fortissimo
+t1 Zahle stattdessen 3 Mana: Der Bonus ist dauerhaft.
+## Lyria Second Movement
+n Lyria-Zweiter Satz
+l0 Zweiter Satz
+t0 Zahle 1 Mana: Setze 1 Monster aus deinem Friedhof verdeckt auf dein Spielfeld; erhalte 1 Mana.
+l1 Reprise
+t1 Zahle stattdessen 3 Mana: Setze 2 „Lyria“-Monster aus deinem Friedhof verdeckt; ziehe 1 Karte.
+## Lyria Standing Room Only
+n Lyria-Nur noch Stehplätze
+l0 Nur noch Stehplätze
+t0 Setze bis zu 2 „Lyria“-Monster aus deiner Hand verdeckt.
+l1 Ausverkaufte Vorstellung
+t1 Zahle stattdessen 3 Mana: Aus deiner Hand oder deinem Friedhof.
+## Lyria Understage
+n Lyria-Unterbühne
+l0 Auftritt durch die Falltür
+t0 FLIPP: Spezialbeschwöre 1 „Lyria“-Monster der Stufe 1 verdeckt aus deinem Deck.
+l1 Wieder nach unten
+t1 Zahle 1 Mana: Drehe diese Karte verdeckt in die Verteidigungsposition.
+## Lyria, the Encore Eternal
+n Lyria, die Ewige Zugabe
+s Du kontrollierst 3+ verdeckte Monster. Kosten 3 Mana.
+l0 Vorhang auf
+t0 Wenn diese Karte beschworen wird: Decke alle deine verdeckten Monster auf; sie erhalten bis zum Ende dieses Zuges 300 ATK.
+l1 Die Bühne zurücksetzen
+t1 Zahle 2 Mana: Drehe bis zu 2 deiner Monster verdeckt.
+## Lyria, the Final Overture
+n Lyria, die Letzte Ouvertüre
+s Du kontrollierst 2+ verdeckte Monster. Kosten 2 Mana.
+l0 Der Vorhang hebt sich
+t0 Wenn diese Karte beschworen wird: Decke alle verdeckten Monster auf, die du kontrollierst.
+## Lyria, the Grand Conductor
+n Lyria, die Große Dirigentin
+l0 Nehmt eure Plätze ein
+t0 Wenn diese Karte beschworen wird: Du kannst bis zu 2 Monster, die du kontrollierst, verdeckt in die Verteidigungsposition drehen.
+l1 Den Taktstock heben
+t1 Du kannst 3 Mana zahlen: Decke bis zu 2 verdeckte Monster auf, die du kontrollierst.
+## Maeva the Pale
+n Maeva die Bleiche
+l0 Dämmerwende
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; drehe 1 gegnerisches Monster verdeckt in die Verteidigungsposition.
+## Magma Golem
+n Magma-Golem
+l0 Eruption
+t0 Wenn diese Karte beschworen wird: Du kannst 2 Mana zahlen; beide Spieler erhalten 500 Schaden.
+## Maiden of the Dragon Shrine
+n Maid des Drachenschreins
+l0 Schreinritual
+t0 Falls diese Karte spezialbeschworen wird: Du kannst 1 Zauber aus deinem Deck setzen, der „Drache“ erwähnt. Er kann in diesem Zug aktiviert werden.
+l1 Urteil des Schreins
+t1 Zahle 4 Mana; lege diese Karte auf den Friedhof, zerstöre dann alle Nicht-Drachen-Monster auf beiden Spielfeldern.
+## Mana Burn
+n Manabrand
+l0 Entzug
+t0 Zahle 1 Mana; dein Gegner verliert 2 Mana.
+l1 Seelenfeuer
+t1 Zahle 2 Mana; dein Gegner verliert 2 Mana und erhält 400 Schaden.
+## Mana Crystal
+n Manakristall
+l0 Kristallfluss
+t0 Während deiner Standby Phase: Du kannst in diesem Zug 1 zusätzliches Mana erhalten.
+## Mana Font
+n Manaquell
+l0 Nippen
+t0 Zahle 1 Mana: Erhalte in diesem Zug 2 Mana.
+l1 Tiefer Zug
+t1 Erhalte in diesem Zug 4 Mana.
+## Mana Gatherer
+n Manasammler
+l0 Manaernte
+t0 Während deiner Standby Phase: Du kannst in diesem Zug 1 zusätzliches Mana erhalten.
+## Manacle Assessor
+n Manakel-Schätzer
+l0 Schätzen
+t0 Wenn diese Karte beschworen wird: Dein Gegner verliert 2 Mana; du erhältst 1 Mana.
+l1 Neu schätzen
+t1 Du kannst 3 Mana zahlen: Dein Gegner verliert 2 Mana, und du hast in deinem nächsten Zug 2 Mana mehr.
+## Manacle Bailiff
+n Manakel-Gerichtsvollzieher
+l0 Das Gewölbe versiegeln
+t0 Wenn diese Karte beschworen wird: Dein Gegner hat in seinem nächsten Zug 2 Mana weniger.
+l1 Fest verriegeln
+t1 Zahle stattdessen 3 Mana: Dein Gegner hat in seinem nächsten Zug 3 Mana weniger, und du hast in deinem 1 mehr.
+## Manacle Buyout
+n Manakel-Aufkauf
+l0 Aufkauf
+t0 Zahle 4 Mana: Gib 1 Monster, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück; ziehe 1 Karte.
+l1 Feindliche Übernahme
+t1 Zahle stattdessen 6 Mana: Verbanne es stattdessen; ziehe 1 Karte.
+## Manacle Chancellor of Coin
+n Manakel-Münzkanzler
+l0 Die Bücher prüfen
+t0 Wenn diese Karte beschworen wird, falls du 6+ Mana hast: Ziehe 1 Karte.
+l1 Vermögen beschlagnahmen
+t1 Zahle 3 Mana: Dein Gegner verliert 2 Mana; du erhältst 1 Mana.
+## Manacle Coinbiter
+n Manakel-Münzbeißer
+l0 Auf die Münze beißen
+t0 Einmal pro Zug, im Zug beider Spieler: Dein Gegner verliert 1 Mana.
+l1 Tiefer beißen
+t1 Zahle stattdessen 2 Mana: Dein Gegner hat in seinem nächsten Zug 2 Mana weniger.
+## Manacle Compound Interest
+n Manakel-Zinseszins
+l0 Zinseszins
+t0 Einmal pro Zug: Zahle 2 Mana; du hast in deinem nächsten Zug 3 Mana mehr.
+## Manacle Countinghouse
+n Manakel-Kontor
+l0 Das Haus zählt immer
+t0 Während deiner Standby Phase: Erhalte 1 Mana.
+l1 Eintreiben
+t1 Du kannst 2 Mana zahlen: Dein Gegner verliert 1 Mana.
+## Manacle Debt Collector
+n Manakel-Schuldeneintreiber
+s Du hast 5+ Mana verfügbar. Kosten 2 Mana.
+l0 Zum Kassieren gekommen
+t0 Wenn diese Karte beschworen wird: Dein Gegner hat in seinem nächsten Zug 2 Mana weniger.
+l1 Nimm es sofort
+t1 Du kannst 2 Mana zahlen: Dein Gegner verliert 2 Mana.
+## Manacle Debtwarden
+n Manakel-Schuldenwärter
+l0 In die Schuld eintreten
+t0 Wenn diese Karte beschworen wird: Dein Gegner hat in seinem nächsten Zug 1 Mana weniger, und du hast in deinem 1 mehr.
+## Manacle Foreclosure
+n Manakel-Zwangsvollstreckung
+l0 Zwangsvollstreckung
+t0 Zerstöre 1 Monster mit 2000 oder weniger ATK, das dein Gegner kontrolliert; dein Gegner verliert 1 Mana.
+l1 Totalpfändung
+t1 Zahle stattdessen 5 Mana: Ohne ATK-Grenze.
+## Manacle Gleaner
+n Manakel-Ährenleser
+l0 Auflesen
+t0 Einmal pro Zug: Erhalte 1 Mana.
+## Manacle Hidden Fees
+n Manakel-Versteckte Gebühren
+l0 Versteckte Gebühren
+t0 Zahle 2 Mana: Dein Gegner hat in seinem nächsten Zug 2 Mana weniger.
+l1 AGB
+t1 Zahle stattdessen 4 Mana: Er hat 3 Mana weniger und du hast in deinem nächsten Zug 1 mehr.
+## Manacle Ledgerkeeper
+n Manakel-Buchführer
+l0 Das Buch konsultieren
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; füge deiner Hand 1 FINSTERNIS-Monster der Stufe 1 aus deinem Deck hinzu.
+l1 Oben abschöpfen
+t1 Du kannst 2 Mana zahlen: Dein Gegner verliert 1 Mana und du erhältst 1 Mana.
+## Manacle Levy
+n Manakel-Abgabe
+l0 Abgabe
+t0 Zahle 1 Mana: Dein Gegner verliert 2 Mana.
+## Manacle Loan Shark
+n Manakel-Kredithai
+l0 Räuberische Konditionen
+t0 Wenn diese Karte beschworen wird: Dein Gegner hat in seinem nächsten Zug 1 Mana weniger.
+l1 Verschärfte Grausamkeit
+t1 Zahle stattdessen 2 Mana: Dein Gegner hat in seinem nächsten Zug 2 Mana weniger.
+l2 Eintreibungsrunden
+t2 Einmal pro Zug: Zahle 2 Mana; dein Gegner hat in seinem nächsten Zug 1 Mana weniger.
+## Manacle Pawnbroker
+n Manakel-Pfandleiher
+l0 Eröffnungsangebot
+t0 Wenn diese Karte beschworen wird: Dein Gegner verliert 1 Mana.
+l1 Verschärfte Konditionen
+t1 Zahle stattdessen 2 Mana: Er hat außerdem in seinem nächsten Zug 1 Mana weniger.
+## Manacle Reckoning
+n Manakel-Abrechnung
+l0 Abrechnung
+t0 Zahle 2 Mana: Dein Gegner hat in seinem nächsten Zug 3 Mana weniger.
+## Manacle Silver Spoon
+n Manakel-Silberlöffel
+l0 Glücklich geboren
+t0 Wenn diese Karte beschworen wird, falls du 5 oder mehr Mana hast: Ziehe 1 Karte.
+l1 Altes Geld
+t1 Zahle stattdessen 2 Mana, falls du 8 oder mehr Mana hast: Ziehe 2 Karten.
+## Manacle Tollkeeper
+n Manakel-Zöllner
+l0 Der Zoll
+t0 Falls diese Karte normalbeschworen wird: Dein Gegner hat in seinem nächsten Zug 1 Mana weniger.
+## Manacle Usurer
+n Manakel-Wucherer
+l0 Den Kredit fällig stellen
+t0 Einmal pro Zug, im Zug beider Spieler: Dein Gegner verliert 1 Mana.
+l1 Aufzinsen
+t1 Zahle stattdessen 3 Mana: Dein Gegner hat in seinem nächsten Zug 3 Mana weniger.
+l2 Den Schuldner finden
+t2 Du kannst 2 Mana zahlen: Füge deiner Hand 1 FINSTERNIS-Monster der Stufe 1 aus deinem Deck hinzu.
+## Manacle Vault Door
+n Manakel-Tresortür
+l0 Zinsen laufen auf
+t0 Während deiner Standby Phase: Erhalte 1 Mana.
+l1 Den Tresor zuschlagen
+t1 Einmal pro Zug — zahle 2 Mana: Dein Gegner verliert 1 Mana.
+## Manacle Wage Garnish
+n Manakel-Lohnpfändung
+l0 Lohnpfändung
+t0 Dein Gegner hat in seinem nächsten Zug 1 Mana weniger; du hast in deinem 1 mehr.
+l1 Volle Pfändung
+t1 Zahle stattdessen 3 Mana: 2 weniger / 2 mehr.
+## Manacle, the Crown Debt
+n Manakel, die Kronschuld
+s Du hast 8+ Mana verfügbar. Kosten 5 Mana.
+l0 Die Krone kassiert
+t0 Wenn diese Karte beschworen wird: Dein Gegner verliert 3 Mana.
+l1 Königliche Dividende
+t1 Zahle 4 Mana: Ziehe 2 Karten; du hast in deinem nächsten Zug 2 Mana mehr.
+## Manacle, the Final Ledger
+n Manakel, das Letzte Hauptbuch
+s Du hast 7+ Mana verfügbar und 6+ Karten in deinem Friedhof. Kosten 4 Mana.
+l0 Das Buch schließen
+t0 Wenn diese Karte beschworen wird: Dein Gegner hat in seinem nächsten Zug 3 Mana weniger, und du hast in deinem 2 mehr.
+l1 Vollstrecken
+t1 Zahle stattdessen 5 Mana: Dein Gegner hat in seinem nächsten Zug 5 Mana weniger.
+l2 Die Namen verlesen
+t2 Du kannst 2 Mana zahlen: Füge deiner Hand 1 FINSTERNIS-Monster der Stufe 1 aus deinem Deck hinzu.
+## Marrow, Who Holds Every Card
+n Marrow, der jede Karte hält
+l0 Teil mir aus
+t0 Zahle 2 Mana: Ziehe 1 Karte, dann zieht dein Gegner 1 Karte.
+## Maw of the Underworld
+n Schlund der Unterwelt
+l0 Hungernder Schlund
+t0 Zerstöre 1 Monster, das du kontrollierst; 1 Monster, das du kontrollierst, erhält bis zum Ende des Zuges 800 ATK.
+## Mechination Assemblage
+n Maschination-Baugruppe
+s Du kontrollierst 2+ Monster. Kosten 2 Mana.
+l0 Passgenau
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 ERDE-Monster der Stufe 2 aus deinem Deck hinzu.
+l1 Verwertung
+t1 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+## Mechination Assembly Line
+n Maschination-Montagelinie
+l0 Nachtschicht
+t0 Während deiner Standby Phase: Füge deiner Hand 1 ERDE-Monster der Stufe 1 aus deinem Friedhof hinzu.
+l1 Eilauftrag
+t1 Du kannst 2 Mana zahlen: Füge deiner Hand 1 ERDE-Monster der Stufe 1 aus deinem Deck hinzu.
+## Mechination Blueprint
+n Maschination-Blaupause
+l0 Blaupause
+t0 Zahle 1 Mana: Füge deiner Hand 1 ERDE-Monster der Stufe 1 aus deinem Deck hinzu; erhalte 1 Mana.
+## Mechination Boltling
+n Maschination-Bolzling
+l0 Hochziehen
+t0 Einmal pro Zug: Spezialbeschwöre 1 Monster der Stufe 1 mit 1000 oder weniger ATK aus deiner Hand.
+l1 Zurückziehen
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre 1 Monster der Stufe 1 aus deinem Friedhof.
+## Mechination Cogwright
+n Maschination-Zahnradbauer
+l0 Den Plan lesen
+t0 Falls diese Karte normalbeschworen wird: Füge deiner Hand 1 ERDE-Monster der Stufe 1 aus deinem Deck hinzu.
+l1 Das Teil einpassen
+t1 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 ERDE-Monster der Stufe 1 aus deiner Hand.
+## Mechination Crumple Zone
+n Maschination-Knautschzone
+l0 Verstärkter Rahmen
+t0 Einmal pro Zug: Zahle 2 Mana; 1 MECHA-Monster, das du kontrollierst, erhält dauerhaft 400 DEF.
+## Mechination Emergency Shift
+n Maschination-Notschicht
+l0 Notschicht
+t0 Spezialbeschwöre bis zu 2 MECHA-Monster aus deiner Hand.
+l1 Alle Mann an Deck
+t1 Zahle stattdessen 3 Mana: Sie erhalten bis zum Ende dieses Zuges 300 DEF.
+## Mechination Gear Vault
+n Maschination-Zahnradlager
+l0 Teile anfordern
+t0 Einmal pro Zug — zahle 2 Mana: Füge deiner Hand 1 ERDE-Monster der Stufe 2 aus deinem Deck hinzu.
+## Mechination Gearmaw
+n Maschination-Zahnradmaul
+l0 Das Getriebe blockieren
+t0 Du kannst 2 Mana zahlen: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Mechination Hammerhand
+n Maschination-Hammerhand
+l0 Das schwere Gerät rufen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 ERDE-Monster der Stufe 2 aus deinem Deck hinzu.
+l1 Das kleine Gerät rufen
+t1 Du kannst 2 Mana zahlen: Füge deiner Hand 1 ERDE-Monster der Stufe 1 aus deinem Deck hinzu.
+## Mechination Jumpstart
+n Maschination-Starthilfe
+l0 Starthilfe
+t0 Wenn diese Karte beschworen wird: 1 anderes MECHA-Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK.
+l1 Volle Ladung
+t1 Zahle stattdessen 1 Mana: Der Bonus ist dauerhaft.
+## Mechination Kilnwarden
+n Maschination-Ofenwärter
+l0 Neu gießen
+t0 Einmal pro Zug: Spezialbeschwöre 1 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+l1 Zweimal neu gießen
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre bis zu 2 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+## Mechination Night Shift
+n Maschination-Nachtschicht
+l0 Nachtschicht
+t0 Wenn diese Karte beschworen wird: Gib 1 MECHA-Monster aus deinem Friedhof auf deine Hand zurück.
+l1 Doppelschicht
+t1 Zahle stattdessen 2 Mana: Gib 2 MECHA-Monster aus deinem Friedhof auf deine Hand zurück.
+l2 Überstunden
+t2 Einmal pro Zug: Zahle 2 Mana; diese Karte erhält dauerhaft 300 ATK.
+## Mechination Overdrive
+n Maschination-Übersteuerung
+l0 Übersteuerung
+t0 Zahle 2 Mana: Spezialbeschwöre 1 MECHA-Monster aus deiner Hand.
+## Mechination Overseer
+n Maschination-Aufseher
+l0 Zweite Schicht
+t0 Einmal pro Zug: 1 MECHA-Monster mit 1500 oder weniger ATK, das du kontrollierst, kann in diesem Zug zweimal angreifen.
+l1 Doppelschicht
+t1 Zahle stattdessen 4 Mana: Bis zu 2 MECHA-Monster, die du kontrollierst, können in diesem Zug je zweimal angreifen.
+l2 Übertakten
+t2 Du kannst 2 Mana zahlen: 1 MECHA-Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 600 ATK.
+## Mechination Pistonlord
+n Maschination-Kolbenfürst
+l0 Durchfahren
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Härter fahren
+t1 Du kannst 3 Mana zahlen: Zerstöre 1 Monster mit 2500 oder weniger ATK, das dein Gegner kontrolliert.
+## Mechination Production Quota
+n Maschination-Produktionsquote
+l0 Die Quote erfüllen
+t0 Füge deiner Hand bis zu 2 ERDE-Monster der Stufe 1 aus deinem Friedhof hinzu.
+l1 Die Quote übertreffen
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre 1 davon.
+## Mechination Ratchet
+n Maschination-Ratsche
+l0 Eine Raste fester
+t0 Wenn diese Karte beschworen wird: Erhalte 1 Mana.
+## Mechination Recall Notice
+n Maschination-Rückrufbescheid
+l0 Rückrufbescheid
+t0 Zahle 1 Mana: Gib 1 MECHA-Monster, das du kontrollierst, auf deine Hand zurück; erhalte 1 Mana.
+l1 Volle Erstattung
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Mechination Recast
+n Maschination-Neuguss
+l0 Neuguss
+t0 Zahle 1 Mana: Spezialbeschwöre 1 Monster der Stufe 1 aus deinem Friedhof.
+## Mechination Rivetrunner
+n Maschination-Nietenläufer
+l0 Die Linie entlangsprinten
+t0 Falls diese Karte normalbeschworen wird: Spezialbeschwöre 1 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+l1 Frisch vom Band
+t1 Zahle stattdessen 2 Mana: Stattdessen aus deinem Deck (mit 1000 oder weniger ATK).
+## Mechination Shift Supervisor
+n Maschination-Schichtleiter
+l0 Doppelschicht
+t0 Einmal pro Zug — zahle 2 Mana: 1 MECHA-Monster, das du kontrollierst, kann in diesem Zug zweimal angreifen.
+## Mechination Spindle
+n Maschination-Spindel
+l0 Abwickeln
+t0 Einmal pro Zug: Lege diese Karte aus deiner Hand auf den Friedhof; spezialbeschwöre 1 MECHA-Monster der Stufe 1 aus deinem Friedhof.
+## Mechination Trade-In
+n Maschination-Inzahlungnahme
+l0 In Zahlung geben
+t0 Zahle 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; füge deiner Hand 1 Artefakt aus deinem Deck hinzu und erhalte 1 Mana.
+l1 Treuebonus
+t1 Zahle stattdessen 1 Mana: Erhalte außerdem 2 Mana.
+## Mechination Worldgear
+n Maschination-Weltgetriebe
+s Du kontrollierst 3+ Monster und 5+ Karten in deinem Friedhof. Kosten 3 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+l0 Die große Umdrehung
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+l1 Die größere Umdrehung
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre bis zu 2 ERDE-Monster der Stufe 2 aus deinem Friedhof.
+l2 Das Getriebe ausschlachten
+t2 Du kannst 3 Mana zahlen: Zerstöre 1 Karte, die dein Gegner kontrolliert.
+## Mechination, Prime Motor
+n Maschination, Erster Beweger
+s Du kontrollierst 3+ „Maschination“-Monster. Kosten 3 Mana.
+l0 Drehmoment der Zeitalter
+t0 Wenn diese Karte beschworen wird: Bis zu 2 MECHA-Monster, die du kontrollierst, erhalten dauerhaft 400 ATK.
+l1 Nachtschicht-Appell
+t1 Zahle 3 Mana: Spezialbeschwöre bis zu 2 ERDE-Monster der Stufe 1 aus deinem Friedhof.
+## Method Actor
+n Method Actor
+l0 Method Acting
+t0 Wenn diese Karte beschworen wird: Ihre ATK und DEF werden bis zum Ende dieses Zuges zu denen von 1 Monster auf dem Spielfeld.
+l1 Szenendieb
+t1 Zahle stattdessen 1 Mana: Sie erhält obendrauf 300 ATK.
+## Middle Management
+n Mittleres Management
+l0 Delegieren
+t0 Einmal pro Zug: Zahle 1 Mana; spezialbeschwöre 1 Monster der Stufe 1 aus deiner Hand.
+## Mimicrypt Archivist
+n Mimikrypt-Archivar
+l0 Das Original ausleihen
+t0 Zahle 3 Mana: Übernimm bis zur End Phase die Kontrolle über 1 Monster, das dein Gegner kontrolliert.
+## Mimicrypt Borrowed Words
+n Mimikrypt-Geliehene Worte
+l0 Geliehene Worte
+t0 Wähle 1 Zauber im Friedhof deines Gegners; löse seinen Effekt auf, als wäre er deiner.
+l1 Zu eigen gemachte Worte
+t1 Zahle stattdessen 3 Mana: Verbanne ihn danach.
+## Mimicrypt Cold Read
+n Mimikrypt-Kaltes Lesen
+l0 Kaltes Lesen
+t0 Sieh dir die Hand deines Gegners an und wähle 1 Karte; er wirft sie ab.
+l1 Tiefes Lesen
+t1 Zahle stattdessen 4 Mana: Ziehe außerdem 1 Karte.
+## Mimicrypt Encore
+n Mimikrypt-Zugabe
+l0 Zugabe!
+t0 Spezialbeschwöre eine Kopie von 1 Monster, das dein Gegner kontrolliert, auf dein Spielfeld. Sie verschwindet während der End Phase.
+## Mimicrypt Forgery
+n Mimikrypt-Fälschung
+l0 Perfekte Fälschung
+t0 1 Monster, das du kontrollierst, kopiert bis zum Ende des Zuges ATK und DEF von 1 Monster, das dein Gegner kontrolliert.
+## Mimicrypt Ghoul
+n Mimikrypt-Ghul
+l0 Grabraub
+t0 Wenn diese Karte beschworen wird: Verbanne 1 Karte aus dem Friedhof deines Gegners.
+l1 Doppelte Beute
+t1 Zahle stattdessen 1 Mana: Verbanne bis zu 2.
+## Mimicrypt Mirrorborn
+n Mimikrypt-Spiegelgeborener
+l0 Spiegelhaltung
+t0 Einmal pro Zug: Diese Karte kopiert bis zum Ende dieses Zuges ATK und DEF von 1 Monster auf dem Spielfeld.
+l1 Perfekte Spiegelung
+t1 Zahle stattdessen 2 Mana: Sie kann in diesem Zug außerdem nicht durch Kampf zerstört werden.
+## Mimicrypt Siphon
+n Mimikrypt-Siphon
+l0 Das Original anzapfen
+t0 1 Monster, das dein Gegner kontrolliert, verliert 400 ATK; 1 Monster, das du kontrollierst, erhält 400 ATK.
+## Mimicrypt Understudy
+n Mimikrypt-Zweitbesetzung
+l0 Die Szene stehlen
+t0 Zahle 2 Mana: Wähle 1 Zauber im Friedhof deines Gegners — löse seinen Effekt auf, als wäre er deiner.
+## Mimicrypt Wax Museum
+n Mimikrypt-Wachsfigurenkabinett
+l0 Neues Ausstellungsstück
+t0 Einmal pro Zug — zahle 3 Mana: Spezialbeschwöre 1 Monster aus dem Friedhof deines GEGNERS auf dein Spielfeld.
+## Mimicrypt Waxchild
+n Mimikrypt-Wachskind
+l0 Geliehenes Gesicht
+t0 Wenn diese Karte beschworen wird: Diese Karte kopiert bis zum Ende dieses Zuges ATK und DEF von 1 Monster auf dem Spielfeld.
+l1 In Erinnerung zerschmelzen
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Verbanne 1 Karte aus dem Friedhof deines Gegners.
+## Mimicrypt, Palimpsest
+n Mimikrypt, Palimpsest
+s Der Friedhof deines Gegners enthält 6+ Karten — zahle 2 Mana.
+l0 Die Seite abschaben
+t0 Falls diese Karte beschworen wird: Du kannst bis zu 2 Karten aus dem Friedhof deines Gegners verbannen.
+l1 Untertext
+t1 Zahle 2 Mana: Kopiere bis zum Ende des Zuges ATK und DEF von 1 Monster auf dem Spielfeld.
+## Mimicrypt, the Borrowed King
+n Mimikrypt, der Geliehene König
+s Der Friedhof deines Gegners enthält 8+ Karten — zahle 3 Mana.
+l0 Krone der Spiegel
+t0 Falls diese Karte beschworen wird: Du kannst bis zum Ende des Zuges ATK und DEF von 1 Monster auf dem Spielfeld kopieren.
+l1 Die Toten befehligen
+t1 Zahle 3 Mana: Spezialbeschwöre 1 Monster aus dem Friedhof deines GEGNERS auf dein Spielfeld.
+## Mimicrypt, the Faceless Court
+n Mimikrypt, der Gesichtslose Hof
+s Der Friedhof deines Gegners enthält 10+ Karten. Kosten 3 Mana.
+l0 Die Verhandlung beginnt
+t0 Wenn diese Karte beschworen wird: Diese Karte kopiert bis zum Ende dieses Zuges ATK und DEF von 1 Monster auf dem Spielfeld.
+l1 Urteil in Abwesenheit
+t1 Zahle 3 Mana: Übernimm bis zur End Phase die Kontrolle über 1 Monster, das dein Gegner kontrolliert.
+## Mireback Toad
+n Sumpfrücken-Kröte
+l0 Abschiedsgeschenk
+t0 Wenn diese Karte zerstört wird: Ziehe 1 Karte.
+## Mist Sorceress
+n Nebelzauberin
+l0 Nebelgabe
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Karte ziehen.
+l1 Nebelgriff
+t1 Wenn diese Karte beschworen wird: Du kannst 2 Mana zahlen; zerstöre 1 gegnerisches Monster.
+## Moral Support
+n Moralische Unterstützung
+l0 Aufmunterung
+t0 Einmal pro Zug: 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 200 ATK.
+## Mythic Colossus
+n Mythischer Koloss
+## Needle in a Haystack
+n Nadel im Heuhaufen
+l0 Nadel im Heuhaufen
+t0 Zahle 1 Mana: Lege die obersten 4 Karten deines Decks auf den Friedhof; füge deiner Hand 1 Monster der Stufe 1 darunter hinzu.
+l1 Magnet
+t1 Zahle stattdessen 1 Mana: Oberste 5 Karten; füge bis zu 2 Monster der Stufe 1 darunter hinzu.
+## Nell, Who Bets the Rent
+n Nell, die die Miete verwettet
+l0 Verwettet die Miete
+t0 Zahle 1 Mana: Wirf eine Münze. Kopf — gib 1 Monster mit 1800 oder weniger ATK, das dein Gegner kontrolliert, auf die Hand zurück. Zahl — gib diese Karte auf deine Hand zurück.
+## Night Owl
+n Nachteule
+l0 Nachtschicht
+t0 Wenn diese Karte aufgedeckt wird: Gib 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert, auf die Hand zurück.
+## Nimble Goblin
+n Flinker Goblin
+l0 Anfeuern
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; 1 deiner Monster erhält bis zum Ende des Zuges 400 ATK.
+## Nix the Tidecaller
+n Nix die Gezeitenruferin
+l0 Sog
+t0 Schnell, einmal pro Zug: Du kannst 2 Mana zahlen; gib 1 Monster mit 1500 ATK oder weniger als Ziel auf die Hand seines Besitzers zurück.
+## Nothing Kept
+n Nichts behalten
+l0 Nichts behalten
+t0 SCHNELL · Zahle 2 Mana: Verbanne 1 Monster auf dem Spielfeld.
+## Nothing Personal
+n Nichts Persönliches
+l0 Nichts Persönliches
+t0 SCHNELL · Zahle 2 Mana: Wähle 1 Monster auf dem Spielfeld als Ziel; entferne alle ATK- und DEF-Veränderungen von ihm.
+## Nothing Was Written
+n Nichts wurde geschrieben
+l0 Nichts wurde geschrieben
+t0 SCHNELL · Zahle 2 Mana: Mische 1 Karte, die dein Gegner kontrolliert, in sein Deck.
+## Nothing to Aim At
+n Nichts zum Anvisieren
+l0 Nichts zum Anvisieren
+t0 SCHNELL · Zahle 1 Mana: Wähle 1 Monster, das du kontrollierst, als Ziel; es kann in diesem Zug nicht von Karteneffekten deines Gegners als Ziel gewählt werden.
+## Novice of the Dragon Shrine
+n Novize des Drachenschreins
+l0 Erste Opfergabe
+t0 Falls diese Karte normalbeschworen wird: Spezialbeschwöre 1 Drachen-Monster der Stufe 1 aus deiner Hand.
+l1 Große Opfergabe
+t1 Zahle stattdessen 2 Mana: Stattdessen aus deinem Deck.
+## Obsidian Juggernaut
+n Obsidian-Moloch
+l0 Zermalmende Ankunft
+t0 Falls diese Karte normalbeschworen wird: Du kannst 1 Monster zerstören, das dein Gegner kontrolliert.
+## Old Tricks
+n Alte Tricks
+l0 Alte Tricks
+t0 Einmal pro Zug: Zahle 1 Mana; gib 1 Zauber aus deinem Friedhof auf deine Hand zurück.
+## One More Hour
+n Noch eine Stunde
+l0 Noch eine Stunde
+t0 Zahle 2 Mana: Du kannst in diesem Zug eine zusätzliche Normalbeschwörung durchführen.
+## Open Book Test
+n Open-Book-Prüfung
+l0 Offenes Buch
+t0 Zahle 2 Mana: Sieh dir die Hand deines Gegners an und wähle 1 Karte; er wirft sie ab.
+l1 Unangekündigter Test
+t1 Zahle stattdessen 4 Mana: Wähle 2 Karten.
+## Ossian the Tithekeeper
+n Ossian der Zehntwahrer
+l0 Zehnt
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; dein Gegner hat im nächsten Zug 2 Mana weniger.
+## Ossic, the Second Grave
+n Ossic, das Zweite Grab
+l0 Die zweite Bestattung
+t0 FRIEDHOF · Verbanne diese Karte aus deinem Friedhof, füge deiner Hand dann 1 Karte aus deinem Friedhof hinzu.
+## Otho the Vaultkeep
+n Otho der Gewölbewart
+l0 Tiefe Schatullen
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; du hast im nächsten Zug 3 zusätzliches Mana.
+## Paid in Advance
+n Im Voraus bezahlt
+l0 Im Voraus bezahlt
+t0 SCHNELL · Zahle 1 Mana und wirf 1 Karte aus deiner Hand ab: Erhalte in diesem Zug 4 Mana.
+## Paperbound Auditor
+n Aktenbund-Prüfer
+l0 Unangekündigte Prüfung
+t0 Einmal pro Zug: Annulliere die Effekte von 1 Karte, die dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+l1 Unstimmigkeit gefunden
+t1 Zahle stattdessen 4 Mana: Sie verliert außerdem bis zum Ende dieses Zuges 500 ATK.
+## Paperbound Cease and Desist
+n Aktenbund-Unterlassungsverfügung
+l0 Unterlassen
+t0 Annulliere die Effekte von 1 Karte, die dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+l1 Pauschalverfügung
+t1 Zahle stattdessen 4 Mana: Bis zu 2 Karten.
+## Paperbound Commissioner
+n Aktenbund-Kommissar
+l0 Mittagspause
+t0 Wenn diese Karte beschworen wird: Ändere ALLE Monster deines Gegners in die Verteidigungsposition.
+l1 Auf unbestimmte Zeit geschlossen
+t1 Zahle stattdessen 3 Mana: Drehe außerdem 1 davon verdeckt.
+l2 Nicht meine Abteilung
+t2 Einmal pro Zug, im Zug beider Spieler: Zahle 2 Mana; 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Paperbound File Clerk
+n Aktenbund-Registrator
+l0 Ziehen Sie eine Nummer
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Bitte hier warten
+t1 Zahle stattdessen 2 Mana: Es kann in diesem Zug außerdem seine Kampfposition nicht ändern.
+## Paperbound Filing Deadline
+n Aktenbund-Abgabefrist
+l0 Frist verpasst
+t0 Wenn dein Gegner ein Monster beschwört: Es kann in diesem Zug nicht angreifen.
+l1 Rundweg abgelehnt
+t1 Zahle stattdessen 3 Mana: Ändere es außerdem in die Verteidigungsposition; es kann in diesem Zug seine Position nicht ändern.
+## Paperbound Head of Department
+n Aktenbund-Abteilungsleiter
+l0 Antrag abgelehnt
+t0 Wenn diese Karte beschworen wird: Dein Gegner kann für den Rest dieses Zuges nicht spezialbeschwören.
+l1 Setzen Sie sich und warten Sie
+t1 Zahle 2 Mana: Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition; es kann in diesem Zug seine Position nicht ändern.
+## Paperbound In Triplicate
+n Aktenbund-In dreifacher Ausfertigung
+l0 In dreifacher Ausfertigung
+t0 Zahle 2 Mana: Ändere bis zu 3 Monster deines Gegners in die Verteidigungsposition.
+l1 Notariell beglaubigt
+t1 Zahle stattdessen 4 Mana: Sie können in diesem Zug außerdem ihre Position nicht ändern.
+## Paperbound Lost Form 27-B
+n Aktenbund-Verlorenes Formular 27-B
+l0 In der Ablage verloren
+t0 Zahle 2 Mana: Drehe 1 offenes Monster, das dein Gegner kontrolliert, verdeckt.
+l1 Hat nie existiert
+t1 Zahle stattdessen 4 Mana: Bis zu 2.
+## Paperbound Notary
+n Aktenbund-Notar
+l0 Beglaubigte Verzögerung
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Dreifach versiegelt
+t1 Zahle stattdessen 1 Mana: Es kann in diesem Zug außerdem seine Kampfposition nicht ändern.
+## Paperbound Office Hours
+n Aktenbund-Sprechzeiten
+l0 Sprechzeiten
+t0 Zahle 1 Mana: Dein Gegner kann für den Rest dieses Zuges nicht spezialbeschwören.
+l1 Nur nach Termin
+t1 Zahle stattdessen 2 Mana: Außerdem kann 1 Monster, das er kontrolliert, in diesem Zug nicht angreifen.
+## Paperbound Records Office
+n Aktenbund-Registratur
+l0 Unter D ablegen
+t0 Einmal pro Zug: Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition.
+l1 Im Archiv verloren
+t1 Zahle 3 Mana: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen; ziehe 1 Karte.
+## Paperbound Red Tape
+n Aktenbund-Amtsschimmel
+l0 Amtsschimmel
+t0 Zahle 1 Mana: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Kilometerweise davon
+t1 Zahle stattdessen 2 Mana: Bis zu 2 Monster.
+## Paperbound Rubber Stamp
+n Aktenbund-Gummistempel
+l0 Gestempelt und abgelegt
+t0 Wenn diese Karte beschworen wird: Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition.
+l1 Für immer abgelegt
+t1 Zahle stattdessen 1 Mana: Es kann in diesem Zug außerdem seine Position nicht ändern.
+## Paperbound Waiting Room
+n Aktenbund-Wartezimmer
+l0 Bitte warten
+t0 Einmal pro Zug: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Geschätzte Wartezeit: ewig
+t1 Zahle stattdessen 3 Mana: Außerdem kann dein Gegner in diesem Zug nicht spezialbeschwören.
+## Paperbound, Supreme Bureau
+n Aktenbund, Oberste Behörde
+s Dein Gegner kontrolliert 3+ Monster. Kosten 3 Mana.
+l0 Behördenbeschluss
+t0 Wenn diese Karte beschworen wird: Alle Monster deines Gegners können in diesem Zug nicht angreifen.
+l1 Genehmigung entzogen
+t1 Zahle 2 Mana: Dein Gegner kann in diesem Zug nicht spezialbeschwören.
+## Paperbound, the Final Rejection
+n Aktenbund, die Endgültige Ablehnung
+s Du kontrollierst 2+ Monster und hast 4+ Karten in deinem Friedhof. Kosten 3 Mana.
+l0 Antrag abgelehnt
+t0 Wenn diese Karte beschworen wird: Ändere alle Monster deines Gegners in die Verteidigungsposition.
+l1 Endgültig abgelehnt
+t1 Zahle stattdessen 2 Mana: Außerdem können bis zu 2 davon in diesem Zug nicht angreifen.
+l2 Abgelehnt
+t2 Einmal pro Zug, im Zug beider Spieler: Zahle 2 Mana; annulliere die Effekte von 1 Karte auf dem Spielfeld bis zum Ende dieses Zuges.
+## Parley
+n Verhandlung
+l0 Verhandlung
+t0 Zahle 1 Mana: Nur während einer Battle Phase: Beende die Battle Phase. Dein Gegner zieht 1 Karte.
+## Participation Trophy
+n Teilnehmerpokal
+l0 Trotzdem feiern
+t0 Einmal pro Zug, wenn das ausgerüstete Monster ein Monster im Kampf zerstört: Erhalte 300 LP.
+## Past Your Bedtime
+n Längst Schlafenszeit
+l0 Längst Schlafenszeit
+t0 Zahle 3 Mana: Gib bis zu 5 Monster mit 1200 oder weniger ATK auf die Hände ihrer Besitzer zurück.
+l1 Licht aus um neun
+t1 Zahle stattdessen 5 Mana: 1800 oder weniger.
+## Pennywhistle, Who Calls It in the Air
+n Pennywhistle, die es in der Luft ansagt
+l0 Sagt es in der Luft an
+t0 Wenn diese Karte beschworen wird: Wirf eine Münze. Kopf — füge deiner Hand 1 Zauber aus deinem Deck hinzu. Zahl — lege die obersten 2 Karten deines Decks auf den Friedhof.
+l1 Verdoppeln
+t1 Zahle 1 Mana: Wirf eine Münze. Kopf — erhalte in diesem Zug 2 Mana. Zahl — du hast in deinem nächsten Zug 1 Mana weniger.
+## Petitioner of the Dragon Shrine
+n Bittsteller des Drachenschreins
+l0 Demütiges Gesuch
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Drachenschrein“-Karte aus deinem Deck hinzu.
+l1 Erhörtes Gebet
+t1 Zahle stattdessen 2 Mana: Füge deiner Hand 1 „Drachenschrein“-Karte UND 1 Drachen-Monster aus deinem Deck hinzu.
+## Pillow Fort
+n Kissenfestung
+l0 Kissenfestung
+t0 Zahle 1 Mana: Du erhältst für den Rest dieses Zuges keinen Kampfschaden.
+l1 Verstärkte Polster
+t1 Zahle stattdessen 2 Mana: Außerdem erhält 1 Monster, das du kontrollierst, bis zum Ende dieses Zuges 500 DEF.
+## Planned Obsolescence
+n Geplante Obsoleszenz
+l0 Geplante Obsoleszenz
+t0 Zahle 1 Mana: Zerstöre 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert.
+l1 Support eingestellt
+t1 Zahle stattdessen 2 Mana: Zerstöre bis zu 2.
+## Plot Armor
+n Drehbuchpanzer
+l0 Drehbuchpanzer
+t0 Zahle 1 Mana: 1 Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+l1 Hauptfigur
+t1 Zahle stattdessen 3 Mana: Es erhält außerdem bis zum Ende dieses Zuges 500 ATK.
+## Poacher's Lantern
+n Wilderer-Laterne
+l0 Wilderer-Laterne
+t0 Zahle 2 Mana (jeder Spieler darf dies aktivieren): Spezialbeschwöre 1 Monster mit 2000 oder weniger ATK aus dem Friedhof des ANDEREN Spielers auf dein Spielfeld. Es kann in diesem Zug nicht angreifen und wird verbannt, wenn es das Spielfeld verlässt.
+## Pound of Flesh
+n Ein Pfund Fleisch
+l0 Ein Pfund Fleisch
+t0 Zahle 1 Mana und 1500 LP: Zerstöre 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Zwei Pfund Fleisch
+t1 Zahle stattdessen 2 Mana und 3000 LP: Zerstöre 1 Monster mit 3000 oder weniger ATK, das dein Gegner kontrolliert.
+## Powderkeg Blastplate
+n Pulverfass-Sprengplatte
+l0 Schrapnell
+t0 Wenn diese Karte zerstört wird: 1 Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 400 ATK.
+## Powderkeg Brass Sweep
+n Pulverfass-Hülsenkehren
+l0 Hülsen kehren
+t0 Zahle 1 Mana: Gib bis zu 2 „Pulverfass“-Artefakte aus deinem Friedhof auf deine Hand zurück.
+l1 Reiner Tisch
+t1 Zahle stattdessen 2 Mana: Bis zu 3 Artefakte mit BELIEBIGEM Namen.
+## Powderkeg Cannoneer
+n Pulverfass-Kanonier
+l0 Feuer erwidern
+t0 Im Zug beider Spieler: Zerstöre 1 Artefakt, das du kontrollierst; zerstöre 1 Monster mit 1000 oder weniger ATK, das dein Gegner kontrolliert. (Kein Einmal-pro-Zug-Limit — die Munition ist das Limit.)
+l1 Schwerer Schuss
+t1 Zahle stattdessen 3 Mana: 2000 oder weniger.
+## Powderkeg Chain Reaction
+n Pulverfass-Kettenreaktion
+l0 Kettenreaktion
+t0 Zerstöre bis zu 2 Artefakte, die du kontrollierst; zerstöre bis zu 2 Monster mit 1000 oder weniger ATK, die dein Gegner kontrolliert.
+l1 Sympathetische Detonation
+t1 Zahle stattdessen 3 Mana: 1600 oder weniger.
+## Powderkeg Demolitionist
+n Pulverfass-Sprengmeister
+l0 Kontrollierte Sprengung
+t0 Zahle 2 Mana: Zerstöre 1 Artefakt, das du kontrollierst; zerstöre 1 Zauber oder Artefakt, den/das dein Gegner kontrolliert.
+## Powderkeg Duck and Cover
+n Pulverfass-In Deckung
+l0 In Deckung
+t0 Zerstöre 1 Artefakt, das du kontrollierst; 1 Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+l1 Hinter die Sandsäcke
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Powderkeg Fusewright
+n Pulverfass-Zündschnurmacher
+l0 Die Ladung neu verkabeln
+t0 Wenn diese Karte beschworen wird: Lege 1 „Pulverfass“-Artefakt aus deinem Friedhof in deine Artefaktzone.
+l1 Frische Zündschnur
+t1 Zahle stattdessen 2 Mana: Aus deinem Deck; ziehe 1 Karte.
+## Powderkeg Loader
+n Pulverfass-Ladeschütze
+l0 Das Gestell bestücken
+t0 Wenn diese Karte beschworen wird: Lege 1 „Pulverfass“-Artefakt aus deinem Deck in deine Artefaktzone.
+l1 Doppelt laden
+t1 Zahle stattdessen 2 Mana: Füge außerdem 1 weiteres deiner Hand hinzu.
+## Powderkeg Magazine
+n Pulverfass-Munitionslager
+l0 Vorrat anlegen
+t0 Einmal pro Zug: Zahle 1 Mana; lege 1 anderes „Pulverfass“-Artefakt aus deinem Deck in deine Artefaktzone.
+l1 Durchzündung
+t1 Wenn diese Karte zerstört wird: Ziehe 1 Karte.
+## Powderkeg Misfire
+n Pulverfass-Versager
+l0 Versager
+t0 Zahle 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; ziehe 2 Karten und erhalte 1 Mana.
+l1 Das Fass bergen
+t1 Zahle stattdessen 1 Mana: Erhalte außerdem 1 Mana.
+## Powderkeg Munitions Dump
+n Pulverfass-Munitionsdepot
+l0 Tief gestapelt
+t0 Wenn diese Karte zerstört wird: Lege 1 „Pulverfass“-Artefakt aus deinem Deck in deine Artefaktzone.
+l1 Eine Kiste aufbrechen
+t1 Einmal pro Zug — zahle 1 Mana: Zerstöre 1 anderes Artefakt, das du kontrollierst; ziehe 1 Karte.
+## Powderkeg Point-Blank
+n Pulverfass-Kernschuss
+l0 Kernschuss
+t0 Zahle 1 Mana: Zerstöre 1 Artefakt, das du kontrollierst; zerstöre 1 Karte, die dein Gegner kontrolliert. (Kein Einmal-pro-Zug-Limit.)
+l1 Volle Breitseite
+t1 Zahle stattdessen 3 Mana: Zerstöre 2 deiner Artefakte; zerstöre bis zu 2 Karten deines Gegners.
+## Powderkeg Quartermaster
+n Pulverfass-Quartiermeister
+l0 Anforderung
+t0 Wenn diese Karte beschworen wird: Lege bis zu 2 „Pulverfass“-Artefakte aus deinem Deck in deine Artefaktzone.
+l1 Volles Verzeichnis
+t1 Zahle stattdessen 3 Mana: Ziehe außerdem 1 Karte.
+## Powderkeg Shellcrate
+n Pulverfass-Granatenkiste
+l0 Treibladung
+t0 Wenn diese Karte zerstört wird: Erhalte 1 Mana.
+## Powderkeg Sparkplug
+n Pulverfass-Zündkerze
+l0 Kurze Zündschnur
+t0 Einmal pro Zug: Zerstöre 1 Artefakt, das du kontrollierst; ziehe 1 Karte.
+l1 Kettenreaktion
+t1 Zahle stattdessen 2 Mana: Ziehe 2 Karten.
+## Powderkeg, First Spark
+n Pulverfass, Erster Funke
+s Du kontrollierst 1+ Artefakt und hast 2+ Karten in deinem Friedhof. Kosten 2 Mana.
+l0 Eröffnungsschuss
+t0 Wenn diese Karte beschworen wird: Lege 1 „Pulverfass“-Artefakt aus deinem Deck in deine Artefaktzone.
+l1 Warnschuss
+t1 Einmal pro Zug, im Zug beider Spieler: Zerstöre 1 Artefakt, das du kontrollierst; annulliere die Effekte von 1 Karte auf dem Spielfeld bis zum Ende dieses Zuges.
+## Powderkeg, Zero Hour
+n Pulverfass, Stunde Null
+s 4+ Artefakte in deinem Friedhof. Kosten 3 Mana.
+l0 Alles laden
+t0 Wenn diese Karte beschworen wird: Lege bis zu 2 „Pulverfass“-Artefakte aus deinem Friedhof in deine Artefaktzone.
+l1 Feuer frei
+t1 Zerstöre 1 Artefakt, das du kontrollierst; zerstöre 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert.
+## Powderkeg, the Last Salvo
+n Pulverfass, die Letzte Salve
+s Du kontrollierst 2 Artefakte und hast 3+ Artefakte in deinem Friedhof. Kosten 3 Mana.
+l0 Feuer frei
+t0 Im Zug beider Spieler: Zerstöre 1 Artefakt, das du kontrollierst; zerstöre 1 Karte, die dein Gegner kontrolliert. (Kein Einmal-pro-Zug-Limit — die Munition ist das Limit.)
+l1 Nachladen
+t1 Einmal pro Zug: Zahle 2 Mana; lege 1 „Pulverfass“-Artefakt aus deinem Friedhof zurück in deine Artefaktzone.
+## Purge
+n Säuberung
+l0 Säuberung
+t0 Wähle 1 Monster auf dem Spielfeld als Ziel; seine ATK und DEF kehren zu ihren ursprünglichen Werten zurück (alle temporären und dauerhaften Veränderungen werden entfernt).
+## Put a Pin in It
+n Später drüber reden
+l0 Später drüber reden
+t0 Zahle 2 Mana: Drehe 1 offenes Monster, das dein Gegner kontrolliert, verdeckt.
+l1 Auf unbestimmte Zeit vertagt
+t1 Zahle stattdessen 4 Mana: Bis zu 2.
+## Rainy-Day Fund
+n Notgroschen
+l0 Notgroschen
+t0 Während deiner Standby Phase: Erhalte 200 LP.
+l1 Das Sparschwein schlachten
+t1 Du kannst diese Karte auf den Friedhof legen: Erhalte 800 LP.
+## Raise the Failsafes
+n Die Failsafes hochfahren
+l0 Systeme online bringen
+t0 Setze bis zu 2 „Failsafe“-Artefakte aus deinem Deck aufs Spielfeld.
+## Rally the Weak
+n Die Schwachen sammeln
+l0 Die Schwachen sammeln
+t0 Zahle 1 Mana: Spezialbeschwöre bis zu 3 Monster ohne Effekte aus deinem Deck in Verteidigungsposition.
+## Ram's Head
+n Widderkopf
+## Reactive Plating
+n Reaktivpanzerung
+l0 Abstützen
+t0 Wähle 1 Monster, das du kontrollierst, als Ziel; es erhält bis zum Ende des Zuges 800 DEF.
+l1 Voller Einsatz
+t1 Wähle 1 Monster, das du kontrollierst, als Ziel; es erhält bis zum Ende des Zuges 800 DEF, lege dann 1 „Barrieren“-Artefakt aus deinem Deck aufs Spielfeld.
+## Rebirth
+n Wiedergeburt
+l0 Wiedergeburt
+t0 Zahle 2 Mana; spezialbeschwöre 1 Monster aus deinem Friedhof.
+## Redactor Archivist
+n Redaktor-Archivar
+l0 Über die Schulter lesen
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Zahle 1 Mana; ziehe 1 Karte.
+## Redactor Black Vault
+n Redaktor-Schwarzes Gewölbe
+l0 Ins Gewölbe damit
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Er wirft 1 zufällige Karte ab.
+l1 Gewölbe läuft über
+t1 Zahle 2 Mana: Lege die obersten 2 Karten des Decks deines Gegners auf den Friedhof.
+## Redactor Blackbar
+n Redaktor-Schwarzbalken
+l0 Stark geschwärzt
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: 1 Monster, das er kontrolliert, verliert dauerhaft 300 ATK.
+l1 Nichts mehr zu lesen
+t1 Zahle stattdessen 2 Mana: 500.
+l2 Tilgen
+t2 Einmal pro Zug: Zahle 2 Mana; verbanne 1 Karte aus dem Friedhof deines Gegners.
+## Redactor Burn Before Reading
+n Redaktor-Vor dem Lesen verbrennen
+l0 Vor dem Lesen verbrennen
+t0 Zahle 2 Mana: Lege die obersten 3 Karten des Decks deines Gegners auf den Friedhof.
+l1 Asche zu Archiven
+t1 Zahle stattdessen 3 Mana: Verbanne außerdem 1 Karte aus seinem Friedhof.
+## Redactor Censor
+n Redaktor-Zensor
+l0 Das streichen wir
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Lege die oberste Karte seines Decks auf den Friedhof.
+l1 Alles streichen
+t1 Zahle stattdessen 2 Mana: Die obersten 2.
+## Redactor Chief Censor
+n Redaktor-Chefzensor
+l0 Gestrichene Passagen
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Lege die obersten 2 Karten seines Decks auf den Friedhof.
+l1 Belegexemplar
+t1 Zahle 2 Mana: Dein Gegner zieht 1 Karte.
+## Redactor Classified
+n Redaktor-Verschlusssache
+l0 Verschlusssache
+t0 Zahle 2 Mana: 1 offenes Monster, das dein Gegner kontrolliert, kann in diesem Zug seine Position nicht ändern; drehe es dann verdeckt.
+l1 Über deiner Freigabestufe
+t1 Zahle stattdessen 4 Mana: Bis zu 2.
+## Redactor Errata Slip
+n Redaktor-Korrekturzettel
+l0 Korrekturzettel
+t0 Dein Gegner zieht 1 Karte; du ziehst 1 Karte.
+l1 Erweiterte Berichtigung
+t1 Zahle stattdessen 2 Mana: Du ziehst stattdessen 2.
+## Redactor Freedom of Information
+n Redaktor-Informationsfreiheit
+l0 Informationsfreiheit
+t0 Zahle 1 Mana: Wirf 1 Karte ab; ziehe 2 Karten.
+l1 Vollständige Offenlegung
+t1 Zahle stattdessen 2 Mana: Ziehe 3 Karten.
+## Redactor Inkling
+n Redaktor-Tintling
+l0 Jedes Wort kostet
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Diese Karte erhält dauerhaft 200 ATK.
+l1 Jeder Buchstabe auch
+t1 Zahle stattdessen 1 Mana: 200 ATK und 200 DEF.
+## Redactor Mandatory Reading
+n Redaktor-Pflichtlektüre
+l0 Pflichtlektüre
+t0 Zahle 1 Mana: Dein Gegner zieht 1 Karte.
+l1 Hausaufgaben verteilt
+t1 Zahle stattdessen 2 Mana: Du ziehst ebenfalls 1 Karte.
+## Redactor Minister of Records
+n Redaktor-Archivminister
+l0 Staatsgeheimnis
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Er wirft 1 zufällige Karte ab.
+l1 Vom Staat versiegelt
+t1 Zahle stattdessen 2 Mana: Er hat außerdem in seinem nächsten Zug 1 Mana weniger.
+## Redactor Ministry Seal
+n Redaktor-Ministeriumssiegel
+l0 Amtsgeheimnisse
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Er hat in seinem nächsten Zug 1 Mana weniger.
+l1 Streng geheim
+t1 Zahle stattdessen 2 Mana: Lege außerdem die oberste Karte seines Decks auf den Friedhof.
+## Redactor Proofreader
+n Redaktor-Korrekturleser
+l0 Jedes Wort kostet
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Erhalte 1 Mana.
+l1 Einzelpostengebühr
+t1 Zahle stattdessen 1 Mana: Ziehe außerdem 1 Karte.
+## Redactor Struck from Record
+n Redaktor-Aus dem Protokoll gestrichen
+l0 Aus dem Protokoll gestrichen
+t0 Verbanne bis zu 2 Karten aus dem Friedhof deines Gegners; ziehe 1 Karte.
+l1 Bereinigte Ausgabe
+t1 Zahle stattdessen 3 Mana: Bis zu 4.
+## Redactor, Final Edition
+n Redaktor, Letzte Ausgabe
+s 5+ Karten in deinem Friedhof. Opfere 1 Monster, das du kontrollierst. Kosten 3 Mana.
+l0 Redaktionsschluss
+t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Er wirft 1 zufällige Karte ab.
+l1 Druck stoppen
+t1 Zahle stattdessen 2 Mana: Lege außerdem die obersten 2 Karten seines Decks auf den Friedhof.
+l2 Das Archiv einstampfen
+t2 Einmal pro Zug: Zahle 2 Mana; verbanne bis zu 3 Karten aus dem Friedhof deines Gegners.
+## Redactor, the Unprinted Truth
+n Redaktor, die Ungedruckte Wahrheit
+s Der Friedhof deines Gegners enthält 6+ Karten. Kosten 3 Mana.
+l0 Zwangslektüre
+t0 Wenn diese Karte beschworen wird: Dein Gegner zieht 2 Karten, dann wirft er 2 zufällige Karten ab.
+l1 Die Tinte versiegt
+t1 Zahle 2 Mana, wenn dein Gegner außerhalb seiner Draw Phase zieht: 1 Monster, das er kontrolliert, verliert dauerhaft 400 ATK.
+## Retail Therapy
+n Einkaufstherapie
+l0 Einkaufstherapie
+t0 Zahle 3 Mana: Füge deiner Hand 1 Artefakt aus deinem Deck hinzu; erhalte 300 LP.
+l1 Gönn dir was
+t1 Zahle stattdessen 4 Mana: Erhalte 600 LP und ziehe 1 Karte.
+## Rising Tide
+n Steigende Flut
+l0 Steigende Flut
+t0 Füge deiner Hand 1 „Gezeitenbann“-Monster aus deinem Deck hinzu.
+l1 Springflut
+t1 Füge deiner Hand 1 „Gezeitenbann“-Monster aus deinem Deck hinzu, spezialbeschwöre dann 1 „Gezeitenbann“-Monster der Stufe 1 aus deiner Hand.
+## Rook's Gambit
+n Turmgambit
+l0 Rochade
+t0 Einmal pro Zug: Bewege diese Karte in eine beliebige leere Monsterzone, die du kontrollierst.
+## Rune Blade
+n Runenklinge
+## Ryka the Warhorn
+n Ryka das Kriegshorn
+l0 Zum Angriff blasen
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; 1 eigenes Monster mit 2000 ATK oder weniger als Ziel kann in dieser Battle Phase ein weiteres Mal angreifen.
+## Sabine, Who Wagers the Crown
+n Sabine, die die Krone verwettet
+s Deine LP sind niedriger als die deines Gegners und 4+ Zauber liegen in deinem Friedhof — zahle 3 Mana.
+l0 Verwettet die Krone
+t0 Wenn diese Karte beschworen wird: Wirf eine Münze. Kopf — zerstöre alle Monster, die dein Gegner kontrolliert. Zahl — zerstöre alle anderen Monster, die du kontrollierst.
+l1 Alles oder nichts
+t1 Zahle 2 Mana: Wirf eine Münze. Kopf — diese Karte kann in dieser Battle Phase zweimal angreifen. Zahl — sie kann in diesem Zug nicht angreifen.
+## Sable the Veilkeeper
+n Sable die Schleierhüterin
+l0 Nachtumhang
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; spezialbeschwöre 1 Monster aus deiner Hand verdeckt in Verteidigungsposition.
+## Sacrificial Ham
+n Opferschinken
+l0 Stirbt wunderschön
+t0 Wenn diese Karte geopfert wird: Erhalte 300 LP.
+## Sacrilegion Acolyte
+n Sakrilegion-Akolyth
+l0 Den Ritus lesen
+t0 Falls diese Karte normalbeschworen wird: Füge deiner Hand 1 LICHT-Monster der Stufe 1 aus deinem Deck hinzu.
+l1 Die Gefallenen erheben
+t1 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Altar Boy
+n Sakrilegion-Altarjunge
+l0 Williger Dienst
+t0 Wenn diese Karte geopfert wird: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Botengang des Glaubens
+t1 Zahle 1 Mana und lege diese Karte aus deiner Hand auf den Friedhof: Füge deiner Hand 1 „Sakrilegion“-Karte aus deinem Deck hinzu.
+## Sacrilegion Binding Chain
+n Sakrilegion-Bindende Kette
+l0 Binden
+t0 Wenn diese Karte angelegt wird: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Sacrilegion Blood Dividend
+n Sakrilegion-Blutdividende
+l0 Blutdividende
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, geopfert wird: Erhalte 300 LP.
+l1 Sonderdividende
+t1 Zahle stattdessen 1 Mana: Ziehe außerdem 1 Karte.
+## Sacrilegion Broken Vow
+n Sakrilegion-Gebrochenes Gelübde
+s Du kontrollierst keine Monster und 5+ Karten in deinem Friedhof. Kosten 3 Mana.
+l0 Von vorn beginnen
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Den Eid auflösen
+t1 Du kannst 3 Mana zahlen: Verbanne 1 Karte aus einem der beiden Friedhöfe.
+## Sacrilegion Cold Congregation
+n Sakrilegion-Kalte Gemeinde
+l0 Kalte Gemeinde
+t0 Zahle 2 Mana: Spezialbeschwöre bis zu 2 „Sakrilegion“-Monster verdeckt aus deinem Friedhof.
+l1 Volle Bänke
+t1 Zahle stattdessen 4 Mana: Bis zu 3.
+## Sacrilegion Covenant Stone
+n Sakrilegion-Bundesstein
+l0 Der Stein erinnert sich
+t0 Während deiner Standby Phase: Füge deiner Hand 1 LICHT-Monster der Stufe 1 aus deinem Friedhof hinzu.
+l1 Der Stein antwortet
+t1 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Divine Exchange
+n Sakrilegion-Göttlicher Tausch
+l0 Göttlicher Tausch
+t0 Zerstöre 1 Monster, das du kontrollierst; spezialbeschwöre 1 LICHT-Monster der Stufe 2 aus deinem Friedhof.
+l1 Günstige Konditionen
+t1 Zahle stattdessen 3 Mana: Erhalte außerdem 2 Mana.
+## Sacrilegion First Sacrament
+n Sakrilegion-Erstes Sakrament
+s Opfere 1 Monster, das du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. Kosten 2 Mana.
+## Sacrilegion Grand Sacrist
+n Sakrilegion-Großsakristan
+l0 Gesammelte Reliquien
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Sakrilegion“-Karte aus deinem Friedhof hinzu.
+## Sacrilegion Herald
+n Sakrilegion-Herold
+l0 Den Eid blasen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 LICHT-Monster der Stufe 2 aus deinem Deck hinzu.
+l1 Leiser blasen
+t1 Du kannst 2 Mana zahlen: Füge deiner Hand 1 LICHT-Monster der Stufe 1 aus deinem Deck hinzu.
+## Sacrilegion Mass Offering
+n Sakrilegion-Messopfer
+l0 Messopfer
+t0 Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Hochamt
+t1 Zahle stattdessen 3 Mana: Bis zu 3.
+## Sacrilegion Oathling
+n Sakrilegion-Eidling
+## Sacrilegion Ossuary Altar
+n Sakrilegion-Beinhausaltar
+l0 Jeder Knochen gezählt
+t0 Einmal pro Zug, wenn ein Monster, das du kontrollierst, geopfert wird: Ziehe 1 Karte.
+l1 Die Gläubigen erheben
+t1 Zahle 2 Mana: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Pledgebearer
+n Sakrilegion-Gelübdeträger
+l0 Das Gelübde ablegen
+t0 Einmal pro Zug: Lege diese Karte aus deiner Hand auf den Friedhof; spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Rite of Return
+n Sakrilegion-Ritus der Rückkehr
+l0 Ritus der Rückkehr
+t0 Zahle 1 Mana: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof; erhalte 2 Mana.
+## Sacrilegion Sanctifier
+n Sakrilegion-Weiher
+l0 Festnageln
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Fortschicken
+t1 Zahle stattdessen 3 Mana: Gib dieses Monster auf die Hand seines Besitzers zurück.
+l2 Die Gefallenen erheben
+t2 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Second Sacrament
+n Sakrilegion-Zweites Sakrament
+s Opfere 2 Monster, die du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. Kosten 3 Mana.
+l0 Den Geringsten zurückholen
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Zwei zurückholen
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+## Sacrilegion Severance
+n Sakrilegion-Abfindung
+l0 Abfindung
+t0 Zahle 1 Mana: Zerstöre 1 Monster, das du kontrollierst; erhalte 2 Mana.
+l1 Goldener Fallschirm
+t1 Zahle stattdessen 2 Mana: Erhalte 3 Mana und ziehe 1 Karte.
+## Sacrilegion Sworn Oath
+n Sakrilegion-Geschworener Eid
+l0 Geschworener Eid
+t0 Zahle 1 Mana: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deiner Hand.
+## Sacrilegion Third Sacrament
+n Sakrilegion-Drittes Sakrament
+s Opfere 1 Monster, das du kontrollierst, und 2 Monster, die dein Gegner kontrolliert. Kosten 4 Mana.
+## Sacrilegion Twice-Blessed
+n Sakrilegion-Zweifach Gesegneter
+## Sacrilegion Vowkeeper
+n Sakrilegion-Gelübdewahrer
+l0 Das Gelübde halten
+t0 Einmal pro Zug: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 mit 1000 oder weniger ATK aus deinem Friedhof.
+l1 Das Gelübde brechen
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Deck.
+## Sacrilegion Willing Lamb
+n Sakrilegion-Williges Lamm
+l0 Willig
+t0 Wenn diese Karte geopfert wird: Ziehe 1 Karte.
+l1 Wieder freiwillig
+t1 Einmal pro Zug, solange diese Karte in deinem Friedhof liegt: Zahle 2 Mana; setze sie verdeckt auf dein Spielfeld.
+## Sacrilegion, Communion of Bone
+n Sakrilegion, Kommunion aus Knochen
+s Opfere 1 Monster, das du kontrollierst, und 1 deines Gegners. 6+ Karten in deinem Friedhof. Kosten 4 Mana.
+l0 Kommunion
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Letzter Ritus
+t1 Zahle 3 Mana und opfere 1 anderes Monster, das du kontrollierst: Zerstöre 1 Monster, das dein Gegner kontrolliert.
+## Sacrilegion, the Last Oath
+n Sakrilegion, der Letzte Eid
+s Opfere 2 Monster, die du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. 8+ Karten in deinem Friedhof. Kosten 5 Mana.
+l0 Der Eid ist gehalten
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
+l1 Der Eid wird erhoben
+t1 Zahle stattdessen 4 Mana: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 2 aus deinem Friedhof.
+l2 Haltet sie nieder
+t2 Du kannst 3 Mana zahlen: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Second Opinion
+n Zweitmeinung
+l0 Zweitmeinung
+t0 Zahle 2 Mana: Wirf 1 Karte ab; ziehe 2 Karten.
+l1 Drittmeinung
+t1 Zahle stattdessen 3 Mana: Wirf 1 Karte ab; ziehe 3 Karten.
+## Second Sight
+n Zweites Gesicht
+l0 Blick
+t0 Ziehe 1 Karte.
+l1 Klare Sicht
+t1 Ziehe 2 Karten.
+## Second Thoughts
+n Zweite Gedanken
+l0 Zweite Gedanken
+t0 Wenn diese Karte beschworen wird: Gib 1 Zauber oder Artefakt, den/das du kontrollierst, auf deine Hand zurück.
+l1 Bei näherer Betrachtung
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Second Wind
+n Zweiter Atem
+l0 Zweiter Atem
+t0 Zahle 2 Mana: Du darfst in diesem Zug 1 zusätzliches Monster normalbeschwören.
+l1 Dritter Atem
+t1 Zahle stattdessen 4 Mana: 2 zusätzliche.
+## Security Blanket
+n Schmusedecke
+l0 Zugedeckt
+t0 Beim Ausspielen: 1 Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+## Sentry Totem
+n Wachtotem
+l0 Warnschuss
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 1 Mana zahlen; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 300 ATK.
+## Seraph of Dawn
+n Seraph der Morgenröte
+l0 Erstes Licht
+t0 Wenn diese Karte beschworen wird: Du erhältst 1000 LP.
+l1 Gnade der Morgenröte
+t1 Du kannst 3 Mana zahlen: Spezialbeschwöre 1 Monster der Stufe 1 aus deinem Friedhof.
+## Serjeant Halloway
+n Serjeant Halloway
+l0 Angetreten
+t0 Zahle 1 Mana: Bewege diese Karte in eine leere Monsterzone, die du kontrollierst.
+## Set in Stone
+n In Stein gemeißelt
+l0 In Stein gemeißelt
+t0 SCHNELL · Zahle 1 Mana: Wähle 1 Monster auf dem Spielfeld als Ziel; es kann in diesem Zug seine Kampfposition nicht ändern.
+## Shadow Grasp
+n Schattengriff
+l0 Griff aus dem Dunkel
+t0 Zahle 1 Mana; gib 1 gegnerisches Monster auf die Hand zurück.
+## Shadow Panther
+n Schattenpanther
+l0 Schattensprung
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; gib 1 gegnerisches Monster auf die Hand zurück.
+## Sharpening Stone
+n Schleifstein
+## Shield Warden
+n Schildwächter
+## Show Me Your Hands
+n Zeig mir deine Hände
+l0 Zeig mir deine Hände
+t0 Zahle 1 Mana: Sieh dir die Hand deines Gegners an und wähle 1 Karte darin; er wirft diese Karte ab.
+## Shrinekeeper Dragon
+n Schreinhüter-Drache
+l0 Morgenritus
+t0 Während deiner Standby Phase: Du kannst 1 Drachen-Monster der Stufe 1 aus deinem Friedhof spezialbeschwören.
+l1 Wächteratem
+t1 Du kannst 2 Mana zahlen: Wähle 1 Drachen-Monster, das du kontrollierst, als Ziel; es erhält bis zum Ende dieses Zuges 500 DEF.
+## Sift, Who Reads the Bones
+n Sift, die die Knochen liest
+l0 Die Knochen werfen
+t0 Wenn diese Karte beschworen wird: Lege die obersten 2 Karten deines Decks auf den Friedhof.
+l1 Noch einmal lesen
+t1 FRIEDHOF · Du kannst 1 Mana zahlen; verbanne diese Karte aus deinem Friedhof, füge deiner Hand dann 1 Monster aus deinem Friedhof hinzu.
+## Sign in Blood
+n Mit Blut unterschreiben
+l0 Mit Blut unterschreiben
+t0 Zahle 2 Mana und 2000 LP: Spezialbeschwöre 1 Monster der Stufe 2 aus deinem Deck. Seine Effekte sind bis zur End Phase annulliert, und es kann in diesem Zug nicht angreifen.
+## Signs of Deckay
+n Zeichen des Deckay
+l0 Das Verlorene zurückholen
+t0 Während deiner Standby Phase: Du kannst bis zu 2 Karten aus deinem Friedhof in dein Deck mischen.
+## Silt the Dredger
+n Silt der Baggerer
+l0 Ausbaggern
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; lege die obersten 3 Karten deines Decks auf den Friedhof.
+## Silver Lining
+n Silberstreif
+l0 Silberstreif
+t0 Zahle 1 Mana: Falls dein Gegner mehr Monster kontrolliert als du: Ziehe 2 Karten und erhalte 1 Mana.
+l1 Wolkenlücke
+t1 Zahle stattdessen 2 Mana: Erhalte außerdem 2 Mana.
+## Skarn, the Second Hunger
+n Skarn, der Zweite Hunger
+s Dein Gegner kontrolliert 2 oder mehr Monster. Kosten 3 Mana.
+l0 Beide Kiefer
+t0 Wenn diese Karte beschworen wird: Sie kann in diesem Zug 1 zusätzlichen Angriff durchführen.
+## Skimmed Off the Top
+n Oben abgeschöpft
+l0 Oben abgeschöpft
+t0 Zahle 1 Mana: Aktiviere dies, wenn dein Gegner eine Karte oder einen Effekt aktiviert, die/der ihm Mana geben würde: Er erhält nichts davon — du erhältst das Mana stattdessen (im Gegnerzug abgeschöpftes Mana wird deinem nächsten Zug gutgeschrieben).
+## Sleep On It
+n Eine Nacht drüber schlafen
+l0 Eine Nacht drüber schlafen
+t0 Zahle 1 Mana: Du hast in deinem nächsten Zug 3 Mana mehr.
+l1 Wie ein Stein geschlafen
+t1 Zahle stattdessen 1 Mana: 3 mehr.
+## Sleightwind Bait-and-Switch
+n Trickwind-Lockvogeltaktik
+l0 Lockvogeltaktik
+t0 Zahle 1 Mana: Gib 1 deiner Monster auf deine Hand zurück; setze 1 Monster aus deiner Hand verdeckt.
+l1 Doppelblind
+t1 Zahle stattdessen 2 Mana: Ziehe außerdem 1 Karte.
+## Sleightwind Card Counter
+n Trickwind-Kartenzähler
+l0 Karten zählen
+t0 Wenn diese Karte beschworen wird, falls dein Gegner mehr Handkarten hat als du: Ziehe 1 Karte.
+l1 Das Haus verliert immer
+t1 Zahle stattdessen 2 Mana: Ziehe, bis du seine Handkartenzahl erreichst (max. 3).
+## Sleightwind Choir of Two
+n Trickwind-Chor der Zwei
+s 3+ Karten in deinem Friedhof. Kosten 2 Mana.
+l0 Zurücksingen
+t0 Einmal pro Zug: Füge deiner Hand 1 Monster aus deinem Friedhof hinzu.
+l1 Alles zurücksingen
+t1 Zahle stattdessen 3 Mana: Füge deiner Hand bis zu 2 Karten aus deinem Friedhof hinzu.
+l2 Die Luft stillen
+t2 Du kannst 2 Mana zahlen: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Sleightwind Curtainjumper
+n Trickwind-Vorhangspringer
+l0 Schreckmoment
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 500 ATK.
+l1 Lass sie lieber verschwinden
+t1 Zahle 2 Mana: Gib 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück.
+## Sleightwind Doubtbringer
+n Trickwind-Zweifelsäer
+l0 Zweite Gedanken
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; annulliere die Effekte von 1 Karte auf dem Spielfeld bis zum Ende dieses Zuges.
+l1 Bleibender Zweifel
+t1 Zahle stattdessen 3 Mana: Lass diese Karte außerdem dauerhaft 500 ATK verlieren.
+l2 Ein Flüstern erinnern
+t2 Du kannst 2 Mana zahlen: Füge deiner Hand 1 WIND-Monster der Stufe 1 aus deinem Friedhof hinzu.
+## Sleightwind False Bottom
+n Trickwind-Doppelter Boden
+l0 Doppeltes Futter
+t0 Einmal pro Zug — zahle 1 Mana: Wirf 1 Karte ab; ziehe 1 Karte.
+## Sleightwind Hush
+n Trickwind-Pst
+l0 Pst
+t0 Zahle 1 Mana: Füge deiner Hand 1 WIND-Monster der Stufe 1 aus deinem Friedhof hinzu.
+## Sleightwind Marked Deck
+n Trickwind-Gezinktes Deck
+l0 Gezinktes Deck
+t0 Einmal pro Zug: Wirf 1 Karte ab; ziehe 1 Karte.
+l1 Gestapeltes Deck
+t1 Zahle stattdessen 2 Mana: Wirf 1 Karte ab; ziehe 2 Karten.
+## Sleightwind Maskbearer
+n Trickwind-Maskenträger
+l0 Das Gesicht nehmen
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+l1 Die Erinnerung nehmen
+t1 Du kannst 3 Mana zahlen: Verbanne 1 Karte aus dem Friedhof deines Gegners.
+## Sleightwind Misdirection
+n Trickwind-Ablenkungsmanöver
+l0 Ablenkungsmanöver
+t0 Annulliere die Effekte von 1 Karte auf dem Spielfeld bis zum Ende dieses Zuges.
+l1 Schau mal da drüben
+t1 Zahle stattdessen 3 Mana: Ziehe außerdem 1 Karte.
+## Sleightwind Nothing to See
+n Trickwind-Nichts zu sehen
+l0 Nichts zu sehen
+t0 Zahle 1 Mana: Gib 1 deiner verdeckten Monster auf deine Hand zurück; ziehe 2 Karten und erhalte 1 Mana.
+l1 Weitergehen
+t1 Zahle stattdessen 2 Mana: Ziehe stattdessen 3 Karten.
+## Sleightwind Palmist
+n Trickwind-Handleser
+l0 Palmieren und tauschen
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; ziehe 1 Karte.
+l1 Aus der Hand lesen
+t1 Wenn diese Karte beschworen wird: Füge deiner Hand 1 WIND-Monster der Stufe 1 aus deinem Friedhof hinzu.
+## Sleightwind Rigged Deck
+n Trickwind-Manipuliertes Deck
+l0 Manipuliertes Deck
+t0 Wirf 2 Karten ab; ziehe 3.
+l1 Tiefer gestapelt
+t1 Zahle stattdessen 2 Mana: Erhalte außerdem 1 Mana.
+## Sleightwind Second Face
+n Trickwind-Zweites Gesicht
+l0 Zweites Gesicht
+t0 Zahle 1 Mana: Füge deiner Hand 1 WIND-Monster der Stufe 1 aus deinem Deck hinzu; erhalte 2 Mana.
+## Sleightwind Thornmother
+n Trickwind-Dornenmutter
+l0 Kriechende Ranke
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 600 ATK.
+## Sleightwind Whisperer
+n Trickwind-Flüsterer
+l0 Pst
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Ganz still
+t1 Zahle stattdessen 2 Mana: Dieses Monster kann in diesem Zug außerdem seine Kampfposition nicht ändern.
+## Sleightwind the Unwitnessed
+n Trickwind der Unbezeugte
+s 6+ Karten in deinem Friedhof und du kontrollierst keine Monster. Kosten 3 Mana.
+l0 Ungeschehen machen
+t0 Einmal pro Zug: Annulliere die Effekte von 1 Karte mit 2000 oder weniger ATK, die dein Gegner kontrolliert, bis zum Ende dieses Zuges.
+l1 Restlos ungeschehen
+t1 Zahle stattdessen 4 Mana: Gib diese Karte außerdem auf die Hand ihres Besitzers zurück.
+l2 Nichts ging verloren
+t2 Du kannst 2 Mana zahlen: Füge deiner Hand 1 WIND-Monster der Stufe 1 aus deinem Friedhof hinzu.
+## Sleightwind, Ace Up the Sleeve
+n Trickwind, Ass im Ärmel
+l0 Ass im Ärmel
+t0 Einmal pro Zug, im Zug beider Spieler: Wirf diese Karte aus deiner Hand ab; gib 1 Monster, das dein Gegner kontrolliert, auf die Hand seines Besitzers zurück.
+l1 Zweites Ass
+t1 Einmal pro Zug: Zahle 1 Mana; wirf 1 Karte ab; ziehe 1 Karte.
+## Sleightwind, the Perfect Trick
+n Trickwind, der Perfekte Trick
+s 5+ Karten in deinem Friedhof und dein Gegner kontrolliert mehr Monster als du. Kosten 3 Mana.
+l0 Das Prestige
+t0 Wenn diese Karte beschworen wird: Gib bis zu 2 Monster mit 2000 oder weniger ATK, die dein Gegner kontrolliert, auf die Hand ihres Besitzers zurück.
+l1 Zugabe aus dem Ärmel
+t1 Zahle 2 Mana: Füge deiner Hand 1 Monster aus deinem Friedhof hinzu.
+## Slow to Anger
+n Langsam zum Zorn
+l0 …zum Zorn
+t0 Einmal pro Zug: Zahle 2 Mana; diese Karte erhält dauerhaft 400 ATK.
+## Slowburn Candlewick
+n Schwelbrand-Kerzendocht
+l0 Die Zündschnur legen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Schwelbrand“-Zauber aus deinem Deck setzen.
+l1 Beide Zündschnüre legen
+t1 Zahle stattdessen 2 Mana: Setze bis zu 2 mit unterschiedlichen Namen.
+## Slowburn Chandler
+n Schwelbrand-Kerzenzieher
+l0 Neuer Docht
+t0 Zahle 1 Mana: Gib 1 „Schwelbrand“-Karte aus deinem Friedhof auf deine Hand zurück.
+l1 Die Flamme ersticken
+t1 Zahle 2 Mana: Dein Gegner kann in diesem Zug nicht spezialbeschwören.
+## Slowburn Emberlord
+n Schwelbrand-Glutfürst
+l0 Früh anzünden
+t0 Einmal pro Zug — zahle 3 Mana: Löse den GELADEN-Effekt von 1 deiner gesetzten „Schwelbrand“-Zauber aus, der vor diesem Zug gesetzt wurde.
+## Slowburn Fire Watch
+n Schwelbrand-Feuerwache
+l0 Nachtwache
+t0 Während deiner Standby Phase: Du kannst 1 „Schwelbrand“-Zauber aus deiner Hand setzen.
+l1 Die Kohlen schüren
+t1 Zahle 2 Mana: Gib 1 „Schwelbrand“-Karte aus deinem Friedhof auf deine Hand zurück.
+## Slowburn Matchseller
+n Schwelbrand-Streichholzverkäufer
+l0 Ein Streichholz für jeden
+t0 Wenn diese Karte beschworen wird: Setze 1 „Schwelbrand“-Zauber aus deinem Deck.
+l1 Das letzte Streichholz
+t1 Zahle 2 Mana und verbanne diese Karte aus deinem Friedhof: Gib 1 „Schwelbrand“-Zauber aus deinem Friedhof auf deine Hand zurück.
+## Slowburn Pyrekeeper
+n Schwelbrand-Feuerhüter
+l0 Zünden
+t0 Zahle 3 Mana: Löse den GELADEN-Effekt von 1 deiner gesetzten „Schwelbrand“-Zauber aus, der vor diesem Zug gesetzt wurde.
+## Slowburn, Backdraft
+n Schwelbrand, Backdraft
+s Dein Gegner kontrolliert mehr Monster als du — zahle 2 Mana.
+l0 Luftstoß
+t0 Falls diese Karte beschworen wird: Erhalte in diesem Zug 2 Mana.
+l1 Türflamme
+t1 Zahle 2 Mana: 1 Monster, das dein Gegner kontrolliert, verliert 600 ATK.
+## Slowburn, the Inevitable Spark
+n Schwelbrand, der Unausweichliche Funke
+s 3+ Zauber in deinem Friedhof. Kosten 3 Mana.
+l0 Die Leitungen legen
+t0 Wenn diese Karte beschworen wird: Setze bis zu 2 „Schwelbrand“-Zauber aus deinem Deck.
+l1 Es brannte längst
+t1 Einmal pro Zug — zahle 2 Mana: Löse den GELADEN-Effekt von 1 deiner gesetzten „Schwelbrand“-Zauber aus, der vor diesem Zug gesetzt wurde.
+## Slowburn, the Patient Flame
+n Schwelbrand, die Geduldige Flamme
+s 2+ Zauber in deinem Friedhof — zahle 3 Mana.
+l0 Das lange Spiel
+t0 Falls diese Karte beschworen wird: Du kannst bis zu 2 „Schwelbrand“-Zauber aus deinem Deck setzen.
+l1 Zünden
+t1 Zahle 2 Mana: Löse den GELADEN-Effekt von 1 deiner gesetzten „Schwelbrand“-Zauber aus, der vor diesem Zug gesetzt wurde.
+## Slowburn: Banked Flame
+n Schwelbrand: Gedeckte Glut
+l0 Zündschnur brennt
+t0 Ziehe 1 Karte.
+l1 Geladen: Flashover
+t1 Geladen (automatisch in deiner Standby Phase): Ziehe 2 Karten und erhalte in diesem Zug 2 Mana.
+## Slowburn: Deep Coals
+n Schwelbrand: Tiefe Kohlen
+l0 Zündschnur brennt
+t0 1 Monster, das dein Gegner kontrolliert, verliert 400 ATK.
+l1 Geladen: Eruption
+t1 Geladen (automatisch in deiner Standby Phase): Zerstöre bis zu 2 Monster, die dein Gegner kontrolliert.
+## Slowburn: Long Fuse
+n Schwelbrand: Lange Zündschnur
+l0 Kurzes Ende
+t0 Ziehe 1 Karte.
+l1 Langes Ende (Geladen)
+t1 GELADEN (automatisch in deiner Standby Phase): Füge deiner Hand 1 „Schwelbrand“-Karte aus deinem Deck hinzu; erhalte 2 Mana.
+## Slowburn: Powder Trail
+n Schwelbrand: Pulverspur
+l0 Dünne Spur
+t0 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 300 ATK.
+l1 Ende der Spur (Geladen)
+t1 GELADEN (automatisch in deiner Standby Phase): Zerstöre 1 Monster, das dein Gegner kontrolliert; 1 anderes Monster, das er kontrolliert, verliert dauerhaft 500 ATK.
+## Slowburn: Tripwire
+n Schwelbrand: Stolperdraht
+l0 Zündschnur brennt
+t0 Ändere 1 Monster, das dein Gegner kontrolliert, in die Verteidigungsposition.
+l1 Geladen: Feuerlinie
+t1 Geladen (automatisch in deiner Standby Phase): Ändere ALLE Monster deines Gegners in die Verteidigungsposition.
+## Small Favors
+n Kleine Gefälligkeiten
+l0 Kleine Gefälligkeiten
+t0 Zahle 1 Mana: Gib 1 Monster der Stufe 1 aus deinem Friedhof auf deine Hand zurück; ziehe 1 Karte.
+l1 Kleine Wunder
+t1 Zahle stattdessen 2 Mana: Spezialbeschwöre es stattdessen; ziehe 1 Karte.
+## Snooze Button
+n Schlummertaste
+l0 Noch fünf Minuten
+t0 Einmal pro Zug: 1 Monster mit 1800 oder weniger ATK, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+l1 Bitte nicht stören
+t1 Zahle stattdessen 3 Mana: Es kann in diesem Zug außerdem seine Kampfposition nicht ändern.
+## Snugglet Acorn
+n Schmuseling-Eichel
+l0 Verstecken
+t0 Einmal pro Zug: Zahle 1 Mana; gib 1 „Schmuseling“-Monster aus deinem Friedhof auf deine Hand zurück.
+## Snugglet Beanbag Throne
+n Schmuseling-Sitzsackthron
+l0 Königliche Audienz
+t0 Einmal pro Zug — zahle 2 Mana: Füge deiner Hand 1 „Schmuseling“-Karte aus deinem Deck hinzu.
+## Snugglet Blanket Fortress
+n Schmuseling-Deckenfestung
+s Du kontrollierst 3 „Schmuseling“-Monster und hast 3+ Karten in deinem Friedhof. Opfere 1 Monster, das du kontrollierst. Kosten 3 Mana.
+l0 Die Decke festziehen
+t0 Einmal pro Zug, im Zug beider Spieler: Zahle 2 Mana; 1 „Schmuseling“-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+## Snugglet Bumble
+n Schmuseling-Brummel
+l0 Herumschwirren
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Schmuseling“-Monster aus deinem Deck hinzu.
+l1 Fleißige Biene
+t1 Zahle stattdessen 2 Mana: Füge außerdem 1 „Schmuseling“-Zauber hinzu.
+## Snugglet Cuddlepile, Three Deep
+n Schmuseling-Kuschelhaufen, Drei Hoch
+s Du kontrollierst 3 „Schmuseling“-Monster. Opfere 1 Monster, das du kontrollierst. Kosten 2 Mana.
+l0 Einer passt noch rein
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Schmuseling“-Monster aus deinem Friedhof.
+## Snugglet Group Hug
+n Schmuseling-Gruppenkuscheln
+l0 Gruppenkuscheln
+t0 Bis zu 3 „Schmuseling“-Monster, die du kontrollierst, können in diesem Zug nicht zerstört werden.
+l1 Fester drücken
+t1 Zahle stattdessen 2 Mana: Sie erhalten außerdem bis zum Ende dieses Zuges 400 ATK.
+## Snugglet Mopsy
+n Schmuseling-Mopsi
+l0 Glückspfote
+t0 Wenn diese Karte beschworen wird: Erhalte 1 Mana.
+l1 Glückssträhne
+t1 Zahle stattdessen 1 Mana: Außerdem 1 mehr in deinem nächsten Zug.
+## Snugglet Nap Time
+n Schmuseling-Mittagsschlaf
+l0 Mittagsschlaf
+t0 Zahle 1 Mana: Bis zu 3 deiner „Schmuseling“-Monster können in diesem Zug nicht zerstört werden.
+l1 Tiefschlaf
+t1 Zahle stattdessen 2 Mana: Sie erhalten außerdem bis zum Ende dieses Zuges 300 DEF.
+## Snugglet Nightcap
+n Schmuseling-Schlafmütze
+l0 Einer passt noch rein
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Schmuseling“-Monster aus deiner Hand spezialbeschwören.
+## Snugglet Nightlight
+n Schmuseling-Nachtlicht
+l0 Für Freunde leuchten
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Schmuseling“-Monster aus deinem Deck hinzu.
+## Snugglet Pebble
+n Schmuseling-Kiesel
+## Snugglet Pile-Up
+n Schmuseling-Auftürmen
+l0 Auftürmen
+t0 Zahle 1 Mana: Spezialbeschwöre bis zu 2 „Schmuseling“-Monster aus deiner Hand.
+l1 Alle mit rein
+t1 Zahle stattdessen 3 Mana: Aus deiner Hand oder deinem Friedhof.
+## Snugglet Puddle
+n Schmuseling-Pfütze
+l0 Fröhliches Platschen
+t0 Wenn diese Karte beschworen wird, falls du 3 Monster kontrollierst: Ziehe 1 Karte.
+l1 Arschbombe!
+t1 Zahle stattdessen 1 Mana: Ziehe 2 Karten.
+## Snugglet Sofa
+n Schmuseling-Sofa
+l0 Rutsch mal rüber
+t0 Einmal pro Zug: Zahle 2 Mana; spezialbeschwöre 1 „Schmuseling“-Monster aus deinem Friedhof.
+## Snugglet Story Time
+n Schmuseling-Vorlesestunde
+l0 Vorlesestunde
+t0 Spezialbeschwöre bis zu 2 „Schmuseling“-Monster aus deinem Friedhof.
+l1 Noch ein Kapitel
+t1 Zahle stattdessen 2 Mana: Sie erhalten dauerhaft 300 DEF.
+## Snugglet Whiskers
+n Schmuseling-Schnurrhaar
+l0 Ansprung
+t0 Einmal pro Zug: 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 300 ATK.
+## Snugglet, Big Spoon
+n Schmuseling, Großer Löffel
+s Du kontrollierst 3 „Schmuseling“-Monster. Kosten 3 Mana; opfere 1 Monster, das du kontrollierst.
+l0 Alle rein
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Schmuseling“-Monster aus deinem Friedhof.
+l1 Fest im Arm halten
+t1 Zahle 2 Mana: 1 „Schmuseling“-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
+## Snugglet, the Whole Squish
+n Schmuseling, das Ganze Knuddelknäuel
+s Du kontrollierst 3 „Schmuseling“-Monster und hast 5+ Karten in deinem Friedhof. Opfere 2 Monster, die du kontrollierst. Kosten 4 Mana.
+l0 Die ganze Familie
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 „Schmuseling“-Monster aus deinem Friedhof.
+l1 Gruppenkuscheln
+t1 Einmal pro Zug: Zahle 2 Mana; bis zu 3 „Schmuseling“-Monster, die du kontrollierst, erhalten bis zum Ende dieses Zuges 400 ATK.
+## Soul Devourer
+n Seelenverschlinger
+l0 Letzter Hunger
+t0 Wenn diese Karte zerstört wird: Dein Gegner wirft 1 zufällige Karte ab und du ziehst 1 Karte.
+## Soul Grasp
+n Seelengriff
+l0 Griff
+t0 Zahle 1 Mana; dein Gegner wirft 1 zufällige Karte ab.
+l1 Doppelgriff
+t1 Zahle 3 Mana; dein Gegner wirft 2 zufällige Karten ab.
+## Spark Wolf
+n Funkenwolf
+l0 Funkenbiss
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Mana zahlen; füge deinem Gegner 400 Schaden zu.
+## Spoiler Alert
+n Spoilerwarnung
+l0 Spoilerwarnung
+t0 Zahle 2 Mana: Setze 1 Zauber aus deinem Deck verdeckt (in diesem Zug nutzbar).
+l1 Das Ende lesen
+t1 Zahle stattdessen 3 Mana: Decke außerdem die oberste Karte deines Decks auf; du darfst sie nach unten legen.
+## Spring Cleaning
+n Frühjahrsputz
+l0 Frühjahrsputz
+t0 Zahle 1 Mana: Wirf 1 Karte ab; ziehe 2 Karten und erhalte 1 Mana.
+l1 Grundreinigung
+t1 Zahle stattdessen 1 Mana: Ziehe stattdessen 3 Karten.
+## Stare Down
+n Niederstarren
+l0 Niederstarren
+t0 Zahle 1 Mana: Wähle 1 Monster, das du kontrollierst, als Ziel: Bis zum Ende des Zuges erhält es ATK in Höhe des halben ATK des Monsters ihm gegenüber.
+l1 Todesblick
+t1 Zahle stattdessen 2 Mana: Es erhält ATK in Höhe des vollen ATK des Monsters ihm gegenüber.
+## Stone That Would Not Break
+n Stein, der nicht brechen wollte
+## Stone Wall
+n Steinwall
+l0 Steinhaut
+t0 Zahle 1 Mana: 1 deiner Monster erhält dauerhaft 700 DEF.
+l1 Lebender Fels
+t1 Zahle 2 Mana; 1 deiner Monster erhält dauerhaft 500 DEF und 500 ATK.
+## Storm Hawk
+n Sturmfalke
+## Storm Siren
+n Sturmsirene
+l0 Heulender Zoll
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 1 Mana zahlen; dein Gegner verliert 1 Mana.
+## Strip the Fittings
+n Die Beschläge abmontieren
+l0 Die Beschläge abmontieren
+t0 SCHNELL · Zahle 1 Mana: Gib 1 Artefakt, das du kontrollierst, auf deine Hand zurück, ziehe dann 1 Karte.
+## Sudden Squall
+n Plötzliche Bö
+l0 Bö
+t0 Wähle 1 Monster auf dem Spielfeld als Ziel; es verliert bis zum Ende des Zuges 600 ATK.
+l1 Tobende Bö
+t1 Wähle 1 Monster auf dem Spielfeld als Ziel; es verliert bis zum Ende des Zuges 1200 ATK.
+## Sunscale Basilisk
+n Sonnenschuppen-Basilisk
+l0 Durchdringender Blick
+t0 Du kannst 2 Mana zahlen: Wähle 1 verdecktes Monster auf dem Spielfeld als Ziel; zerstöre es.
+## Suture Rig
+n Nahtgerüst
+## Sworn Statement
+n Eidesstattliche Erklärung
+l0 Eidesstattliche Erklärung
+t0 Zahle 1 Mana: Sage Monster, Zauber oder Artefakt an, decke dann die oberste Karte deines Decks auf: Ist sie von der angesagten Art, füge sie deiner Hand hinzu; andernfalls lege sie auf den Friedhof.
+l1 Zweifach geschworen
+t1 Zahle stattdessen 2 Mana: Decke stattdessen die obersten 2 Karten auf — Treffer gehen auf deine Hand, der Rest auf den Friedhof.
+## Sworn to the Gate
+n Dem Tor geschworen
+## The Armorer's Debt
+n Die Schuld des Waffenschmieds
+l0 Die Schuld des Waffenschmieds
+t0 Zahle 1 Mana: Füge deiner Hand 1 Artefakt aus deinem Friedhof hinzu.
+## The Ascetic of the Ninth Stair
+n Der Asket der Neunten Stufe
+s Du hast keine Handkarten — zahle 3 Mana.
+l0 Die neunte Stufe
+t0 Wenn diese Karte beschworen wird: Ziehe 2 Karten.
+## The Bailiff at the Door
+n Der Vollzieher vor der Tür
+l0 Klopf, klopf
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster mit einem Pfandrecht; ziehe 1 Karte.
+## The Better Offer
+n Das bessere Angebot
+l0 Das bessere Angebot
+t0 Zahle 4 Mana: Übernimm bis zur End Phase die Kontrolle über 1 Monster, das dein Gegner kontrolliert.
+## The Broker of Both Sides
+n Der Makler beider Seiten
+s Ein Monster auf dem Spielfeld wird von jemand anderem kontrolliert als seinem Besitzer — zahle 2 Mana.
+l0 Beide Seiten des Geschäfts
+t0 Wenn diese Karte beschworen wird: Tauscht die Kontrolle über 1 anderes Monster, das du kontrollierst, und 1 Monster, das dein Gegner kontrolliert.
+## The Changeling Cradle
+n Die Wechselbalg-Wiege
+l0 Kuckucksei
+t0 Wenn diese Karte beschworen wird: Tauscht die Kontrolle über diese Karte und 1 Monster der Stufe 1, das dein Gegner kontrolliert; das Monster, das du nimmst, kann in diesem Zug nicht angreifen.
+## The Closed Gate
+n Das Geschlossene Tor
+l0 Das Geschlossene Tor
+t0 Zahle 3 Mana: Dein Gegner kann für den Rest dieses Zuges nicht spezialbeschwören.
+## The Culling Season
+n Die Zeit der Auslese
+l0 Die Zeit der Auslese
+t0 Zahle 4 Mana: Zerstöre alle Monster auf dem Spielfeld, außer Bestien.
+## The Debt Made Flesh
+n Die fleischgewordene Schuld
+s Deine LP sind 4000 oder weniger. Kosten 3 Mana. Verbanne 2 Monster aus deinem Friedhof.
+l0 Zahltag
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster, das dein Gegner kontrolliert.
+## The Door That Held
+n Die Tür, die hielt
+s Du kontrollierst keine Monster. Kosten 1 Mana.
+l0 Nichts kommt durch
+t0 Wenn diese Karte beschworen wird: Sie kann in diesem Zug nicht zerstört werden.
+## The Duelist's Code
+n Der Kodex des Duellanten
+## The Empty Chair
+n Der Leere Stuhl
+## The Empty Shrine
+n Der Leere Schrein
+l0 Was der Schrein zurückruft
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; spezialbeschwöre 1 Monster aus einer der beiden Verbannungen auf dein Spielfeld.
+## The Fallen One
+n Der Gefallene
+l0 Stürzt sie hinab
+t0 Verbanne 1 Reliquie aus deinem Extra Deck: Du kannst 1 Reliquie, die dein Gegner kontrolliert, ins Extra Deck zurückschicken.
+l1 Die Erhobenen verstummen lassen
+t1 Zahle 2 Mana, im Zug beider Spieler: Für den Rest dieses Zuges kann dein Gegner keine Effekte spezialbeschworener Monster auf dem Spielfeld aktivieren.
+## The Forbidden Name
+n Der Verbotene Name
+l0 Der Verbotene Name
+t0 Zahle 2 Mana: Sage einen Kartennamen an; kein Spieler kann in diesem und im nächsten Zug Effekte von Karten mit diesem Namen aktivieren.
+l1 Unausgesprochener Name
+t1 Zahle stattdessen 3 Mana: Du kannst diese Karte auch im Zug deines Gegners aus deiner Hand aktivieren, aber du überspringst deine nächste Battle Phase.
+## The Held Wall
+n Der Gehaltene Wall
+l0 Der Gehaltene Wall
+t0 SCHNELL · Zahle 2 Mana: Du erhältst für den Rest dieses Zuges keinen Kampfschaden.
+## The Hour Merchant
+n Der Stundenhändler
+s Du hast 6 oder mehr Mana. Kosten 4 Mana.
+l0 Stunden gegen Seiten
+t0 Wenn diese Karte beschworen wird: Ziehe 2 Karten.
+## The House Always Wins
+n Das Haus gewinnt immer
+s 3+ Zauber in deinem Friedhof — zahle 2 Mana.
+l0 Das Haus gewinnt immer
+t0 Wenn diese Karte beschworen wird: Wirf 3 Münzen. Für jeden Kopf zerstöre 1 Monster, das dein Gegner kontrolliert; für jede Zahl erhältst du 500 Schaden.
+## The Last Asemir
+n Der Letzte Asemir
+s Solange dein Gegner ein Monster mit 2500+ ATK kontrolliert und du 5+ Mana verfügbar hast: Zahle 2 Mana.
+l0 Das Urteil
+t0 Wenn diese Karte beschworen wird: Jedes Monster auf dem Spielfeld wechselt in die Angriffsposition.
+l1 Der Lange Rückweg
+t1 Falls diese Karte aus dem Extra Deck auf den Friedhof gelegt wird: Jede verbannte Karte kehrt in das Deck oder Extra Deck ihres Besitzers zurück.
+## The Liberator
+n Der Befreier
+## The Long Reading
+n Die Lange Lesung
+l0 Die Lange Lesung
+t0 Zahle 1 Mana: Lege die obersten 3 Karten deines Decks auf den Friedhof, ziehe dann 1 Karte.
+## The Long Way Back
+n Der Lange Rückweg
+l0 Der Lange Rückweg
+t0 Zahle 3 Mana: Spezialbeschwöre 1 Monster aus einer der beiden Verbannungen auf dein Spielfeld.
+## The Mirror Hour
+n Die Spiegelstunde
+l0 Die Spiegelstunde
+t0 Zahle 3 Mana: Wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; spezialbeschwöre eine Kopie davon auf dein Spielfeld. Die Kopie verschwindet während der End Phase.
+## The Nameless One
+n Der Namenlose
+l0 Unausgesprochener Befehl
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster auf dem Spielfeld verdeckt in die Verteidigungsposition drehen.
+## The Rust Crown
+n Die Rostkrone
+l0 Kriechende Korrosion
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; es verliert dauerhaft 600 DEF.
+## The Second Copy
+n Die Zweite Abschrift
+l0 Die Zweite Abschrift
+t0 Zahle 1 Mana: Mische 3 Karten aus deinem Friedhof in dein Deck, ziehe dann 1 Karte.
+## The Sleeper in the Wall
+n Der Schläfer in der Wand
+l0 Erwachender Schlag
+t0 FLIPP: Zerstöre 1 Monster, das dein Gegner kontrolliert.
+## The Slow Drowning
+n Das Langsame Ertrinken
+l0 Das Langsame Ertrinken
+t0 Zahle 3 Mana: Lege die obersten 4 Karten des Decks deines Gegners auf seinen Friedhof.
+## The Toll Gate
+n Das Zolltor
+l0 Das Zolltor
+t0 Zahle 2 Mana: Verbanne 1 Karte aus einem der beiden Friedhöfe, ziehe dann 1 Karte.
+## The Turned Shield
+n Der Gewendete Schild
+l0 Der Gewendete Schild
+t0 SCHNELL · Zahle 2 Mana: Wähle 1 Monster auf dem Spielfeld als Ziel; es tauscht bis zur End Phase ATK und DEF.
+## The Unbroken Oath
+n Der Ungebrochene Eid
+l0 Der Ungebrochene Eid
+t0 Einmal pro Duell. Zahle 2 Mana: Annulliere die Effekte aller Karten, die dein Gegner kontrolliert, bis zum Ende dieses Zuges. Du kannst für den Rest dieses Zuges keine anderen Zauber aktivieren.
+## The Understudy
+n Die Zweitbesetzung
+l0 In die Rolle schlüpfen
+t0 Du kannst 1 Mana zahlen: Opfere diese Karte; spezialbeschwöre 1 Monster der Stufe 2 aus deiner Hand.
+## The Unturned Card
+n Die Ungewendete Karte
+l0 Die Ungewendete Karte
+t0 Zahle 2 Mana: Verbanne 1 verdecktes Monster auf dem Spielfeld, ohne es aufzudecken.
+## The Usurer's Terms
+n Die Konditionen des Wucherers
+l0 Die Konditionen des Wucherers
+t0 Zahle 1 Mana: Erhalte in diesem Zug 4 Mana. In deinem nächsten Zug hast du 3 Mana weniger. Kannst du den vollen Betrag nicht decken, verlierst du 1500 LP für jedes Mana, das du nicht zahlen konntest.
+l1 Das Kleingedruckte des Wucherers
+t1 Zahle stattdessen 1 Mana: Erhalte in diesem Zug 6 Mana; im nächsten Zug 5 weniger — gleiche Konditionen.
+## The Watchman's Bell
+n Die Glocke des Wächters
+l0 Zur Warnung geschlagen
+t0 Wenn dein Gegner ein Monster beschwört: Dieses Monster verliert bis zum Ende des Zuges 600 ATK.
+## The White Elephant
+n Der Weiße Elefant
+## Thelenn, Called Back
+n Thelenn, Zurückgerufen
+s 2 oder mehr Karten in deiner Verbannung. Kosten 2 Mana.
+l0 Komm zurück
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 verbanntes Monster auf dein Spielfeld.
+## Thunder Roc
+n Donnerroch
+l0 Sturmherold
+t0 Wenn diese Karte beschworen wird: Füge deinem Gegner 500 Schaden zu.
+l1 Knisternder Sturmwind
+t1 Du kannst 3 Mana zahlen: Dein Gegner wirft 1 zufällige Karte ab.
+## Tidebound Backwash
+n Gezeitenbann-Rücksog
+l0 Rücksog
+t0 Wenn diese Karte beschworen wird: Du kannst 1 anderes Monster, das du kontrollierst, auf deine Hand zurückgeben; falls du das tust, ziehe 1 Karte.
+l1 Sog
+t1 Zahle stattdessen 2 Mana: Gib 1 anderes Monster auf einem der beiden Spielfelder auf die Hand seines Besitzers zurück.
+## Tidebound Beachcomber
+n Gezeitenbann-Strandgutsammler
+l0 Die Untiefen durchkämmen
+t0 Wenn diese Karte beschworen wird: Du kannst 2 Mana zahlen; gib 1 Zauber oder Artefakt, das dein Gegner kontrolliert, auf die Hand zurück.
+l1 Springflut
+t1 Zahle stattdessen 4 Mana: Gib 1 Zauber oder Artefakt UND 1 Monster, die dein Gegner kontrolliert, auf die Hand zurück.
+l2 Wer's findet, darf's behalten
+t2 Einmal pro Zug, wenn eine Karte vom Spielfeld auf die Hand deines Gegners zurückgegeben wird: Erhalte 1 Mana.
+## Tidebound Beachhead
+n Gezeitenbann-Brückenkopf
+l0 Brückenkopf
+t0 Spezialbeschwöre 1 „Gezeitenbann“-Monster aus deiner Hand; ziehe 1 Karte.
+l1 Zweite Landung
+t1 Zahle stattdessen 2 Mana: Stattdessen aus deinem Friedhof.
+## Tidebound Current-Caller
+n Gezeitenbann-Strömungsrufer
+l0 Unterströmung
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster der Stufe 1 auf dem Spielfeld auf die Hand seines Besitzers zurückgeben.
+l1 Die Strömung rufen
+t1 Du kannst 3 Mana zahlen: Dein Gegner verliert 1 Mana und du ziehst 1 Karte.
+## Tidebound Deepcaller
+n Gezeitenbann-Tiefenrufer
+l0 In die Tiefe rufen
+t0 Wenn diese Karte beschworen wird: Gib 1 Zauber oder Artefakt, das dein Gegner kontrolliert, auf die Hand zurück.
+l1 Noch tiefer
+t1 Zahle stattdessen 3 Mana: Gib außerdem 1 Monster mit 1500 oder weniger ATK zurück.
+## Tidebound Ebb and Flow
+n Gezeitenbann-Ebbe und Flut
+l0 Ebbe
+t0 Zahle 1 Mana: Gib bis zu 3 Monster, die du kontrollierst, auf deine Hand zurück.
+l1 Flut
+t1 Zahle stattdessen 2 Mana: Gib 2 Monster, die du kontrollierst, auf deine Hand zurück; ziehe 2 Karten.
+## Tidebound Leviathan
+n Gezeitenbann-Leviathan
+l0 Reißende Flut
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster, das dein Gegner kontrolliert, auf die Hand zurückgeben.
+l1 Wucht der Tiefe
+t1 Du kannst 3 Mana zahlen: Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+## Tidebound Message in a Bottle
+n Gezeitenbann-Flaschenpost
+l0 Entkorkt
+t0 Einmal pro Zug: Gib 1 „Gezeitenbann“-Monster aus deinem Friedhof auf deine Hand zurück.
+l1 Beantwortete Botschaft
+t1 Zahle stattdessen 3 Mana: Spezialbeschwöre 1 „Gezeitenbann“-Monster verdeckt aus deinem Friedhof.
+## Tidebound Mirrorshell
+n Gezeitenbann-Spiegelmuschel
+l0 Dämpfen
+t0 Wenn dein Gegner ein Monster beschwört: Du kannst 1 Mana zahlen; 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 400 ATK.
+l1 Stille Wasser
+t1 Während deiner Standby Phase: Du kannst 2 Mana zahlen; du erhältst 400 LP.
+## Tidebound Moon Pull
+n Gezeitenbann-Mondsog
+l0 Sog des Mondes
+t0 Einmal pro Zug, wenn eine Karte vom Spielfeld auf die Hand deines Gegners zurückgegeben wird: Ziehe 1 Karte.
+l1 Auflaufende Flut
+t1 Zahle 2 Mana: Gib 1 „Gezeitenbann“-Monster aus deinem Friedhof auf deine Hand zurück.
+## Tidebound Riptide
+n Gezeitenbann-Reißstrom
+l0 Reißstrom
+t0 Gib bis zu 2 Monster mit 1200 oder weniger ATK auf die Hände ihrer Besitzer zurück.
+l1 Steigender Sog
+t1 Zahle stattdessen 4 Mana: Beliebiger ATK.
+## Tidebound Skimmer
+n Gezeitenbann-Gleiter
+l0 Sog der Ebbe
+t0 Wenn diese Karte beschworen wird: Dein Gegner verliert 1 Mana.
+l1 Untertauchen
+t1 Du kannst 2 Mana zahlen: Gib diese Karte auf deine Hand zurück.
+## Tidebound Tidepooler
+n Gezeitenbann-Tümpelstöberer
+l0 Den Fang sammeln
+t0 Wenn diese Karte beschworen wird: Du kannst 1 anderes Monster, das du kontrollierst, auf deine Hand zurückgeben; ziehe 1 Karte.
+l1 Davonschlüpfen
+t1 Zahle 2 Mana: Gib diese Karte auf deine Hand zurück; 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 400 ATK.
+## Tidebound Undertow
+n Gezeitenbann-Sog
+l0 Sog
+t0 Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+l1 Verschlingender Sog
+t1 Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück, ziehe dann 1 Karte.
+## Tidebound Wave Goodbye
+n Gezeitenbann-Abschiedswelle
+l0 Abschiedswelle
+t0 Zahle 1 Mana: Gib 1 Monster mit 1500 oder weniger ATK auf die Hand seines Besitzers zurück.
+l1 Der lange Abschied
+t1 Zahle stattdessen 3 Mana: Gib 1 Monster mit beliebigem ATK auf die Hand seines Besitzers zurück, ziehe dann 1 Karte.
+## Tidebound, the King Tide
+n Gezeitenbann, die Königsflut
+s 5+ Karten in deinem Friedhof. Kosten 3 Mana.
+l0 Die Königsflut
+t0 Wenn diese Karte beschworen wird: Gib 1 Karte, die dein Gegner kontrolliert, auf die Hand ihres Besitzers zurück.
+l1 Die Küste leerfegen
+t1 Zahle 3 Mana: Gib 1 Monster auf dem Spielfeld auf die Hand seines Besitzers zurück.
+## Tidebound, the Returning Sea
+n Gezeitenbann, die Wiederkehrende See
+s Dein Gegner kontrolliert mehr Monster als du. Kosten 2 Mana.
+l0 Die See fordert zurück
+t0 Wenn diese Karte beschworen wird: Du kannst 2 Mana zahlen; gib 1 Monster, das dein Gegner kontrolliert, auf die Hand zurück.
+## Toll of the Late Hour
+n Zoll der Späten Stunde
+l0 Die späte Stunde
+t0 Während deiner End Phase: Du kannst 1 Mana zahlen; füge deiner Hand 1 Monster aus deinem Friedhof hinzu.
+## Tomb Mouse
+n Grabmaus
+l0 Kleiner Stöberer
+t0 Wenn diese Karte zerstört wird: Du kannst deiner Hand 1 Monster der Stufe 1 aus deinem Deck hinzufügen.
+## Total Eclipse
+n Totale Finsternis
+l0 Totale Finsternis
+t0 Drehe bis zu 5 Monster auf dem Spielfeld verdeckt in die Verteidigungsposition.
+## Trample the Line
+n Die Linie niedertrampeln
+l0 Die Linie niedertrampeln
+t0 Zahle 1 Mana: Wähle 1 Monster, das du kontrollierst, als Ziel: Es fügt in diesem Zug durchdringenden Kampfschaden (Piercing) zu und erhält bis zum Ende des Zuges 300 ATK.
+l1 Die ganze Linie niedertrampeln
+t1 Zahle stattdessen 3 Mana: Alle Monster, die du kontrollierst, fügen in diesem Zug durchdringenden Kampfschaden (Piercing) zu (kein ATK-Bonus).
+## Trapline Basecamp
+n Fallenlinie-Basislager
+l0 Die Linie neu bestücken
+t0 Während deiner Standby Phase: Setze 1 „Fallenlinie“-Zauber aus deinem Deck verdeckt.
+l1 Bergungstour
+t1 Einmal pro Zug: Zahle 2 Mana; gib 1 „Fallenlinie“-Zauber aus deinem Friedhof auf deine Hand zurück.
+## Trapline Bear Hug
+n Fallenlinie-Bärenumarmung
+l0 Bärenumarmung
+t0 Wenn ein Angriff angesagt wird: Zahle 2 Mana; drehe das angreifende Monster verdeckt (der Angriff wird abgebrochen); danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Erdrückende Umarmung
+t1 Zahle stattdessen 3 Mana: Es kann außerdem in diesem Zug seine Position nicht ändern.
+## Trapline Decoy
+n Fallenlinie-Köder
+l0 Köder
+t0 Wenn ein Angriff angesagt wird: Zahle 1 Mana; 1 Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Überzeugender Köder
+t1 Zahle stattdessen 2 Mana: Du erhältst außerdem in diesem Zug keinen Kampfschaden.
+## Trapline Double Back
+n Fallenlinie-Kehrtwende
+l0 Kehrtwende
+t0 Zahle 1 Mana: Gib 1 „Fallenlinie“-Schnellzauber aus deinem Friedhof auf deine Hand zurück; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Die Linie zurückverfolgen
+t1 Zahle stattdessen 2 Mana: Gib 2 zurück.
+## Trapline Jawsmith
+n Fallenlinie-Zahnschmied
+l0 Frische Zähne
+t0 Einmal pro Zug — zahle 1 Mana: Setze 1 „Fallenlinie“-Schnellzauber aus deiner Hand verdeckt; ziehe 1 Karte.
+## Trapline Pitfall
+n Fallenlinie-Fallgrube
+l0 Fallgrube
+t0 Wenn dein Gegner ein Monster beschwört: Zahle 2 Mana; gib 1 Monster, das er kontrolliert, auf die Hand zurück; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Kein Boden
+t1 Zahle stattdessen 4 Mana: Mische es stattdessen ins Deck.
+## Trapline Row of Teeth
+n Fallenlinie-Zahnreihe
+l0 Zahnreihe
+t0 Wenn ein Angriff angesagt wird: Zahle 4 Mana; zerstöre ALLE Monster in Angriffsposition, die dein Gegner kontrolliert; danach darfst du 1 „Fallenlinie“-Karte mit anderem Namen aus deiner Hand setzen.
+l1 Die ganze Reihe
+t1 Zahle stattdessen 5 Mana: Setze danach bis zu 2 „Fallenlinie“-Karten aus deiner Hand.
+## Trapline Scout
+n Fallenlinie-Späher
+l0 Die Linie ablaufen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Fallenlinie“-Zauber aus deinem Friedhof hinzu.
+l1 Neu spannen
+t1 Zahle stattdessen 2 Mana: Setze ihn stattdessen direkt (in diesem Zug nutzbar).
+## Trapline Smoke Signal
+n Fallenlinie-Rauchzeichen
+l0 Rauchzeichen
+t0 SCHNELL · Zahle 1 Mana: Ziehe 1 Karte; danach darfst du 1 „Fallenlinie“-Schnellzauber mit anderem Namen aus deiner Hand setzen; erhalte 1 Mana.
+l1 Signalfeuer
+t1 Zahle stattdessen 1 Mana: Erhalte außerdem 1 Mana.
+## Trapline Snare Wire
+n Fallenlinie-Schlingdraht
+l0 Schlingdraht
+t0 Wenn ein Angriff angesagt wird: Das angreifende Monster verliert bis zum Ende dieses Zuges 600 ATK; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Hoch hinaufgezogen
+t1 Zahle stattdessen 3 Mana: Drehe den Angreifer verdeckt (der Angriff wird abgebrochen); danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+## Trapline Springloaded
+n Fallenlinie-Schnappfeder
+l0 Federgespannt
+t0 Wenn dein Gegner ein Monster beschwört: Es verliert dauerhaft 800 ATK; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Zugeschnappt
+t1 Zahle stattdessen 4 Mana: Zerstöre es (2000 oder weniger ATK); danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+## Trapline Toolshed
+n Fallenlinie-Geräteschuppen
+l0 Die Federn ölen
+t0 Während deiner Standby Phase: Setze 1 „Fallenlinie“-Schnellzauber aus deinem Friedhof verdeckt.
+l1 Die Linien kontrollieren
+t1 Zahle 2 Mana: Ziehe 1 Karte.
+## Trapline Tripwire
+n Fallenlinie-Stolperdraht
+l0 Stolperdraht
+t0 Wenn ein Angriff angesagt wird: Zahle 1 Mana; das angreifende Monster verliert bis zum Ende dieses Zuges 800 ATK; danach darfst du 1 „Fallenlinie“-Karte mit anderem Namen aus deiner Hand setzen.
+l1 Verheddert
+t1 Zahle stattdessen 2 Mana: Es kann außerdem in diesem Zug nicht erneut angreifen.
+## Trapline Warden
+n Fallenlinie-Aufseher
+l0 Die Linie legen
+t0 Wenn diese Karte beschworen wird: Setze 1 „Fallenlinie“-Zauber aus deinem Deck verdeckt (in diesem Zug nutzbar).
+l1 Das ganze Tal abdecken
+t1 Zahle stattdessen 2 Mana: Setze 2.
+## Trapline Warm Welcome
+n Fallenlinie-Herzlicher Empfang
+l0 Herzlicher Empfang
+t0 Wenn dein Gegner ein Monster beschwört: Zahle 3 Mana; zerstöre 1 Monster, das er kontrolliert, zerstöre dann alle Monster in Verteidigungsposition auf dem Spielfeld mit derselben Stufe; danach darfst du 1 „Fallenlinie“-Karte aus deiner Hand setzen.
+l1 Zu lange geblieben
+t1 Zahle stattdessen 4 Mana: Außerdem kann dein Gegner für den Rest dieses Zuges nicht spezialbeschwören.
+## Trapline Weaver
+n Fallenlinie-Weber
+l0 Die Linie spinnen
+t0 Einmal pro Zug: Zahle 1 Mana; setze 1 „Fallenlinie“-Schnellzauber aus deiner Hand verdeckt; ziehe 1 Karte.
+## Trapline, Season of Snares
+n Fallenlinie, Zeit der Schlingen
+s 3+ Karten in deinem Friedhof. Kosten 2 Mana.
+l0 Die Linie abernten
+t0 Wenn diese Karte beschworen wird: Gib bis zu 2 „Fallenlinie“-Zauber aus deinem Friedhof auf deine Hand zurück.
+l1 Schnelle Schlinge
+t1 Einmal pro Zug, im Zug beider Spieler: Zahle 2 Mana; 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Trapline, the Patient Jaw
+n Fallenlinie, das Geduldige Fangeisen
+s 4+ Karten in deinem Friedhof. Kosten 3 Mana.
+l0 Schnellender Stahl
+t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster mit 2000 oder weniger ATK, das dein Gegner kontrolliert.
+l1 Die Falle neu spannen
+t1 Einmal pro Zug, im Zug beider Spieler: Zahle 1 Mana; setze 1 „Fallenlinie“-Schnellzauber aus deiner Hand verdeckt.
+## Trapline, the Silent Season
+n Fallenlinie, die Stille Jahreszeit
+s 3+ Zauber in deinem Friedhof. Kosten 3 Mana.
+l0 Jede Schlinge neu spannen
+t0 Wenn diese Karte beschworen wird: Setze bis zu 2 „Fallenlinie“-Zauber aus deinem Friedhof verdeckt.
+l1 Zeit der Stille
+t1 Zahle 2 Mana: 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 500 ATK.
+## Trophy Hunter
+n Trophäenjäger
+l0 Freiwild
+t0 Einmal pro Zug, wenn diese Karte ein Monster im Kampf zerstört: Ziehe 1 Karte.
+## Twin Wyrms of the Dragon Shrine
+n Zwillingswyrms des Drachenschreins
+l0 Zwei am Tor
+t0 Wenn diese Karte beschworen wird, falls du ein anderes Monster kontrollierst: Ziehe 1 Karte.
+l1 Den Zweiten wecken
+t1 Einmal pro Zug — zahle 2 Mana: Spezialbeschwöre 1 Drachen-Monster der Stufe 1 aus deinem Friedhof; es erhält dauerhaft 200 DEF.
+## Two Birds, One Stone
+n Zwei Fliegen, eine Klappe
+## Vampiric Chalice
+n Vampirkelch
+l0 Blutzoll
+t0 Während deiner Standby Phase: Du kannst deinem Gegner 200 Schaden zufügen und du erhältst 200 LP.
+## Velvet Rope
+n Samtkordel
+l0 Nicht auf der Liste
+t0 Zahle 2 Mana: Dein Gegner kann für den Rest dieses Zuges nicht spezialbeschwören.
+l1 Dresscode
+t1 Zahle stattdessen 3 Mana: Außerdem kann 1 Monster, das er kontrolliert, in diesem Zug nicht angreifen.
+## Vess the Scrivener
+n Vess der Schreiber
+l0 Palimpsest
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen und 1 Karte abwerfen; ziehe 2 Karten.
+## Vetch, Who Never Forgets a Face
+n Vetch, der nie ein Gesicht vergisst
+l0 Vergisst nie ein Gesicht
+t0 Wenn diese Karte beschworen wird: Belege 1 Monster mit 1500 oder weniger ATK, das dein Gegner kontrolliert, mit einem Pfandrecht von 1.
+l1 Ein Gesicht in der Menge
+t1 Zahle 1 Mana und wirf diese Karte ab: Belege 1 Monster, das dein Gegner kontrolliert, mit einem Pfandrecht von 1.
+## Void Exchange
+n Leerentausch
+l0 Leerentausch
+t0 Verbanne 1 Karte aus deinem Friedhof; ziehe 2 Karten.
+## Volte-Face
+n Volte-Face
+l0 Kehrtwendung
+t0 Wenn diese Karte ihre Kampfposition ändert: Ziehe 1 Karte.
+l1 Doppelte Wendung
+t1 Zahle 1 Mana: Diese Karte darf in diesem Zug ihre Kampfposition ein zusätzliches Mal ändern.
+## Vow of Poverty
+n Armutsgelübde
+## War Banner
+n Kriegsbanner
+l0 Kriegsschrei
+t0 Einmal pro Zug: Du kannst 1 Mana zahlen; 1 deiner Monster erhält bis zum Ende des Zuges 300 ATK.
+## Warden of the Reliquary
+n Wächter des Reliquiars
+## Warhorn of the Ancients
+n Kriegshorn der Uralten
+l0 Den uralten Ruf erschallen lassen
+t0 Du kannst 4 Mana zahlen: Spezialbeschwöre 1 Monster der Stufe 2 aus deiner Hand.
+## Weather Eye
+n Wetterauge
+l0 Wetterauge
+t0 Wenn diese Karte beschworen wird: Decke die oberste Karte deines Decks auf; du darfst sie nach unten legen.
+l1 Sturmwarnung
+t1 Zahle stattdessen 1 Mana: Ziehe danach außerdem 1 Karte.
+## Wenna, Who Waits Outside
+n Wenna, die draußen wartet
+l0 Wartet vor der Tür
+t0 HAND · Verbanne diese Karte aus deiner Hand, spezialbeschwöre dann 1 Monster mit 2000 oder weniger ATK aus einer der beiden Verbannungen auf dein Spielfeld.
+## What Falls From Their Hand
+n Was aus ihrer Hand fällt
+l0 Was fällt
+t0 Zahle 3 Mana: Decke 1 zufällige Karte aus der Hand deines Gegners auf. Ist sie ein Monster, spezialbeschwöre sie auf dein Spielfeld; andernfalls lege sie auf den Friedhof.
+## Woven Fate
+n Gewobenes Schicksal
+l0 Verworrenes Schicksal
+t0 Wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; es verliert bis zum Ende des Zuges 600 ATK.
+l1 Neu gewobenes Schicksal
+t1 Wähle 1 Monster, das dein Gegner kontrolliert, als Ziel; es verliert bis zum Ende des Zuges 600 ATK, setze dann 1 „Hexweber“-Zauber aus deinem Deck.
+## Wren, Who Learns by Watching
+n Wren, die durch Zusehen lernt
+l0 Lernt durch Zusehen
+t0 Einmal pro Zug: Du kannst 2 Mana zahlen; wähle 1 Monster auf dem Spielfeld als Ziel; ATK und DEF dieser Karte entsprechen bis zur End Phase denen dieses Monsters.
+## Wyldpack Alpha
+n Wyldrudel-Alpha
+l0 Das ganze Rudel
+t0 Falls diese Karte spezialbeschworen wurde: Du kannst bis zu 2 „Wyldrudel“-Monster aus deiner Hand spezialbeschwören.
+l1 Befehl des Alphas
+t1 Du kannst 3 Mana zahlen: Wähle 1 „Wyldrudel“-Monster, das du kontrollierst, als Ziel; es kann in diesem Zug ein zusätzliches Mal angreifen.
+## Wyldpack Bare Fangs
+n Wyldrudel-Zähnefletschen
+l0 Zähnefletschen
+t0 1 „Wyldrudel“-Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 500 ATK.
+l1 Alle Zähne gebleckt
+t1 Zahle stattdessen 2 Mana: Bis zu 3 erhalten bis zum Ende dieses Zuges 400 ATK.
+## Wyldpack Cub
+n Wyldrudel-Welpe
+l0 Eifriges Kläffen
+t0 Wenn diese Karte beschworen wird: Du kannst deiner Hand 1 „Wyldrudel“-Monster aus deinem Deck hinzufügen.
+## Wyldpack Denmother
+n Wyldrudel-Höhlenmutter
+l0 Den Wurf versammeln
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Wyldrudel“-Monster der Stufe 1 aus deinem Friedhof spezialbeschwören.
+l1 Der ganze Wurf
+t1 Zahle stattdessen 2 Mana: Bis zu 2.
+## Wyldpack Fetch
+n Wyldrudel-Apport
+l0 Apport!
+t0 Wenn diese Karte beschworen wird: Gib 1 „Wyldrudel“-Monster aus deinem Friedhof auf deine Hand zurück.
+l1 Braver Hund
+t1 Zahle stattdessen 2 Mana: Gib 1 beliebiges BESTIE-Monster aus deinem Friedhof auf deine Hand zurück.
+## Wyldpack Full Moon
+n Wyldrudel-Vollmond
+l0 Vollmond
+t0 Spezialbeschwöre bis zu 2 „Wyldrudel“-Monster aus deinem Friedhof.
+l1 Blutmond
+t1 Zahle stattdessen 4 Mana: Sie erhalten dauerhaft 300 ATK.
+## Wyldpack Hackles
+n Wyldrudel-Nackenfell
+l0 Gesträubtes Nackenfell
+t0 Zahle 1 Mana: 1 „Wyldrudel“-Monster, das du kontrollierst, erhält bis zum Ende dieses Zuges 700 ATK.
+l1 Das ganze Rudel sträubt sich
+t1 Zahle stattdessen 2 Mana: Bis zu 5 „Wyldrudel“-Monster, die du kontrollierst, erhalten bis zum Ende dieses Zuges 400 ATK.
+## Wyldpack Howler
+n Wyldrudel-Heuler
+l0 Heulruf
+t0 Wenn diese Karte normalbeschworen wird: Du kannst 1 „Wyldrudel“-Monster der Stufe 1 aus deiner Hand spezialbeschwören.
+## Wyldpack Hunting Grounds
+n Wyldrudel-Jagdgründe
+l0 Die Gefallenen aufspüren
+t0 Einmal pro Zug — zahle 2 Mana: Füge deiner Hand 1 „Wyldrudel“-Monster aus deinem Friedhof hinzu.
+## Wyldpack Loneshadow
+n Wyldrudel-Einzelschatten
+l0 Mit dem Rudel laufen
+t0 Wenn diese Karte beschworen wird, falls du 3+ Monster kontrollierst: Diese Karte erhält bis zum Ende dieses Zuges 400 ATK.
+## Wyldpack Matriarch
+n Wyldrudel-Matriarchin
+l0 Das Rudel anführen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 „Wyldrudel“-Monster der Stufe 1 aus deiner Hand spezialbeschwören.
+l1 Die Jungen versammeln
+t1 Du kannst 2 Mana zahlen: Füge deiner Hand 1 „Wyldrudel“-Monster aus deinem Deck hinzu.
+## Wyldpack Off the Leash
+n Wyldrudel-Von der Leine
+l0 Aus dem Halsband schlüpfen
+t0 Zahle 2 Mana: Bis zu 5 BESTIE-Monster, die du kontrollierst, erhalten bis zum Ende dieses Zuges 400 ATK.
+l1 Kommt nie zurück
+t1 Zahle stattdessen 4 Mana: Bis zu 5 BESTIE-Monster, die du kontrollierst, erhalten dauerhaft 400 ATK.
+## Wyldpack Stalker
+n Wyldrudel-Pirschjäger
+l0 Zur Strecke bringen
+t0 Falls diese Karte spezialbeschworen wurde, kannst du 1 Mana zahlen: 1 Monster, das dein Gegner kontrolliert, verliert dauerhaft 400 ATK.
+## Wyldpack Top Dog
+n Wyldrudel-Leitwolf
+l0 Anteil des Alphas
+t0 Einmal pro Zug: Zahle 1 Mana; 1 „Wyldrudel“-Monster, das du kontrollierst, erhält dauerhaft 300 ATK.
+## Wyldpack Underdog
+n Wyldrudel-Außenseiter
+l0 Außenseitergeschichte
+t0 Wenn diese Karte beschworen wird, falls dein Gegner mehr Monster kontrolliert als du: Ziehe 1 Karte.
+l1 Allen Widrigkeiten zum Trotz
+t1 Zahle stattdessen 1 Mana: Ziehe stattdessen 2 Karten.
+## Wyldpack Ur-Alpha
+n Wyldrudel-Ur-Alpha
+s Du kontrollierst 3+ „Wyldrudel“-Monster. Kosten 2 Mana.
+l0 Heulen der Zeitalter
+t0 Wenn diese Karte beschworen wird: Alle „Wyldrudel“-Monster, die du kontrollierst, erhalten bis zum Ende des Zuges 300 ATK, und diese Karte kann in diesem Zug 1 zusätzlichen Angriff durchführen.
+## Wyldpack, the First Howl
+n Wyldrudel, das Erste Heulen
+s Du kontrollierst 3+ „Wyldrudel“-Monster. Kosten 3 Mana.
+l0 Das Erste Heulen
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 „Wyldrudel“-Monster der Stufe 1 aus deinem Friedhof; alle „Wyldrudel“-Monster, die du kontrollierst, erhalten bis zum Ende dieses Zuges 300 ATK.
+l1 Dem Ruf folgen
+t1 Zahle 3 Mana: 1 „Wyldrudel“-Monster, das du kontrollierst, kann in diesem Zug zweimal angreifen.
+## Wyrm Eternal, Shrine Ascendant
+n Ewiger Wyrm, Erhabener des Schreins
+s Du kontrollierst ein „Drachenschrein“-Monster. Kosten 3 Mana.
+l0 Der Schrein erhebt sich
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 Drachen-Monster aus deinem Friedhof, und alle Drachen-Monster, die du kontrollierst, erhalten bis zum Ende des Zuges 300 ATK.
+## Yard Sentence
+n Hofstrafe
+l0 Hofstrafe
+t0 Zahle 1 Mana: Lege 1 Monster mit weniger als 2000 ATK aus deinem Deck auf den Friedhof, erhalte dann 1 Mana.
+l1 Harte Strafe
+t1 Zahle stattdessen 3 Mana: Lege 2 Monster mit beliebigen Werten auf den Friedhof, aber erhalte kein Mana.

@@ -183,7 +183,7 @@ namespace Rouge.Tcg.UI
             entries.Sort((a, b) => string.Compare(a.term, b.term, System.StringComparison.OrdinalIgnoreCase));
 
             var builder = new System.Text.StringBuilder();
-            builder.Append("<color=#8C7B5F>").Append(entries.Count).Append(" terms. Card texts use exactly these words.</color>\n");
+            builder.Append("<color=#8C7B5F>").Append(Loc.F("{0} terms. Card texts use exactly these words.", entries.Count)).Append("</color>\n");
             char group = '\0';
             foreach (var (term, meaning) in entries)
             {

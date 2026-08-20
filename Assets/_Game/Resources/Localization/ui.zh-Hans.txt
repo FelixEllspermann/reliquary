@@ -395,3 +395,4 @@ DAY {0} · +{1} COINS	第{0}天 · +{1}金币
 +{0} COINS PER DAY	每天+{0}金币
 DAY {0} SEALED	第{0}天已封印
 SEAL READY	封印就绪
+{0} terms. Card texts use exactly these words.	{0} 个词条。卡牌文本使用的正是这些词。

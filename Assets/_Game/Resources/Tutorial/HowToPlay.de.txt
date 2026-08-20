@@ -1,0 +1,145 @@
+# DAS ZIEL
+Zwei Duellanten, zwei Sammlungen, ein Tisch. Du gewinnst in dem Moment, in dem die Lebenspunkte deines Gegners 0 erreichen — oder wenn er von einem leeren Deck ziehen müsste und nicht kann. Alles Weitere in diesem Buch handelt davon, wie du dorthin kommst: Mana zum Ausgeben, Monster zum Beschwören, Zauber zum Antworten und Reliquien, die das Spiel besiegeln.
+
+Wenn du noch nie ein Kartenspiel dieser Art gespielt hast, lies zuerst DER TISCH, DEIN ZUG und KAMPF. Der Rest kann warten, bis er dran ist.
+
+[img:board|Deine Tischseite liegt unten, die deines Gegners oben.]
+
+# DER TISCH
+Jeder Duellant hat fünf Monster-Zonen in einer Reihe, drei Zauber-Zonen für gesetzte Zauber, zwei Artefakt-Zonen, ein Deck, einen Friedhof, eine Verbannung und ein Extra Deck. Deine Hand liegt am unteren Bildschirmrand; die Rückseiten der gegnerischen Hand siehst du oben. Deine Spielerkarte — dein Held — steht links in deiner Reihe; deine Lebenspunkte und dein Mana stehen auf der Tafel rechts daneben.
+
+[img:plate|Lebenspunkte oben, Mana darunter. Beide zählen sichtbar mit, wenn sie sich ändern.]
+
+Lebenspunkte: Du startest mit 8000 (manche Helden bringen etwas mehr oder weniger mit). Schaden — aus Kampf oder durch Effekte — senkt sie; Heilung bringt sie zurück. Nach oben gibt es keine Grenze.
+
+Mana: Wird zu Beginn jedes deiner Züge aufgefüllt. 3 in deinem ersten Zug, danach jeden Zug eins mehr, bis maximal 10. Ungenutztes Mana verfällt am Ende deines Zuges, sofern keine Karte etwas anderes sagt. Mana bezahlt Zauber, INFUSED-Effekte, Helden-Effekte und Reliquien-Beschwörungen — normale Monstereffekte kosten keins.
+
+Handlimit: 8. Hältst du am Ende deines Zuges mehr, wirfst du bis auf 8 ab.
+
+[img:phases|Die Phasenleiste. Der beleuchtete Schritt zeigt, wo das Duell gerade steht.]
+
+# DEIN ZUG
+Ein Zug durchläuft fünf Phasen, immer in dieser Reihenfolge:
+
+- DRAW PHASE — ziehe 1 Karte. Wer beginnt, überspringt sie in seinem allerersten Zug (er startet mit 5 Karten, der andere Spieler mit 6).
+- STANDBY PHASE — Effekte mit „während deiner Standby Phase“ passieren jetzt. Zölle und Unterhalt werden hier bezahlt.
+- MAIN PHASE — das Herz des Zuges. Beschwöre oder setze ein Monster, spiele Zauber und Artefakte, aktiviere Ignitionseffekte, ändere Kampfpositionen, beschwöre eine Reliquie. In beliebiger Reihenfolge, so oft es dein Mana und deine Regeln erlauben.
+- BATTLE PHASE — greife mit deinen offenen Monstern in Angriffsposition an. Wer beginnt, hat in seinem allerersten Zug keine Battle Phase.
+- END PHASE — „während deiner End Phase“-Effekte, Handlimit, und der Zug geht über.
+
+Die Main Phase und die Battle Phase kannst du über die Phasenknöpfe jederzeit beenden; das Spiel zwingt dich nie zum Angriff.
+
+[img:hand|Deine Hand. Karten, die du jetzt spielen kannst, sind umrandet; zieh sie auf den Tisch oder klicke für Optionen.]
+
+# DIE KARTEN
+Jede Karte gehört zu einer von vier Arten — plus der Held.
+
+MONSTER tragen eine Stufe (1 bis 3), ein Attribut (Feuer, Wasser, Wind, Erde, Licht, Finsternis), einen Typ (Drache, Mensch, Bestie, Mecha, Engel, Dämon, Mythos, Tier …) sowie ATK / DEF. Sie kämpfen, sie verteidigen, und die meisten haben Effekte.
+
+ZAUBER werden für Mana aus der Hand gespielt und gehen danach auf den Friedhof. Normale Zauber spielst du in deiner Main Phase; SCHNELL-Zauber kannst du auch als Reaktion spielen — im Zug des Gegners, mitten in einer Kette, wenn ein Angriff angesagt wird. Jeder Zauber kann auch verdeckt gesetzt und später benutzt werden.
+
+ARTEFAKTE bleiben auf dem Tisch. Manche werden an ein Monster angelegt (Bonus-ATK/DEF und Effekte für den Träger), manche sind Feld-Artefakte, manche liegen auf deinem Spieler-Platz. Die Artefakt-Zonen fassen zwei; gesetzte Zauber warten in den drei Zauber-Zonen.
+
+[img:artifacts|Zwei Spieler-Artefakte in den Artefakt-Zonen. Sie bleiben, bis etwas sie entfernt.]
+
+RELIQUIEN wohnen in deinem Extra Deck. Jede nennt ihre eigenen Beschwörungsvoraussetzungen auf der Karte — ein gefüllter Friedhof, drei Monster, ein Held in Bedrängnis — plus einen Mana-Preis und manchmal Opfer. Erfülle die Bedingungen und du kannst sie in deiner Main Phase rufen.
+
+DIE SPIELERKARTE ist dein Held. Sie legt deine Start-Lebenspunkte fest und gibt dir einen Helden-Effekt: 2 Mana, einmal pro Zug, immer verfügbar. Helden können nicht angegriffen oder zerstört werden.
+
+[img:card|Anatomie eines Monsters: Name und Stufen-Wappen oben, Attribut und Typ unter dem Artwork, ATK und DEF unten, Effekte im Textfeld.]
+
+[img:effectbox|Im Duell: Klicke eine Karte an und das INSPECT-Panel links listet ihre Effekte — Kosten-Abzeichen zuerst, dann, wann sie feuern.]
+
+# BESCHWÖREN
+NORMALBESCHWÖRUNG — einmal pro Zug, aus deiner Hand, in deiner Main Phase. Ein Monster der Stufe 1 kommt gratis. Eine Stufe 2 braucht 1 Opfer, eine Stufe 3 braucht 2: Schicke zuerst so viele Monster, die du kontrollierst, auf den Friedhof. Statt offen zu beschwören, kannst du das Monster verdeckt in Verteidigungsposition SETZEN — auch das verbraucht deine Normalbeschwörung.
+
+SPEZIALBESCHWÖRUNG — jede Beschwörung, die keine Normalbeschwörung ist. Karten machen es: „Spezialbeschwöre 1 Monster aus deinem Friedhof“, „du kannst diese Karte aus deiner Hand spezialbeschwören, falls …“. Spezialbeschwörungen verbrauchen deine Normalbeschwörung nicht und es gibt kein Limit pro Zug — außer dass jeder Kartenname seine eigene „du kannst diese Karte spezialbeschwören“-Bedingung nur einmal pro Zug nutzen kann.
+
+RELIQUIEN-BESCHWÖRUNG — aus dem Extra Deck, in deiner Main Phase, sobald die aufgedruckten Voraussetzungen erfüllt sind. Zahle das Mana, bringe die verlangten Opfer (manche nehmen sie vom gegnerischen Spielfeld), wähle eine Zone.
+
+Jedes beschworene Monster bekommt eine Zone und eine Kampfposition. Offene ANGRIFFSposition kämpft mit ATK; VERTEIDIGUNGSposition hält mit DEF und fügt keinen Schaden zu. Verdeckte Monster sind immer in Verteidigung; niemand weiß, was sie sind, bis sie aufgedeckt werden.
+
+[img:zones-attack|Zwei Monster in Angriffsposition und ein gesetztes Monster: verdeckt, nichts als sein Rücken.]
+
+[img:zones-defense|Verteidigungsposition liegt quer — ihre DEF zeigt zum Angreifer.]
+
+# KAMPF
+In deiner Battle Phase darf jedes offene Monster in Angriffsposition einmal angreifen. Klicke es an, dann das Ziel — oder den gegnerischen Helden für einen direkten Angriff. Ein direkter Angriff ist nur möglich, solange dein Gegner keine Monster kontrolliert. Im Zug seiner Beschwörung kann ein Monster normal angreifen, sofern seine Karte nichts anderes sagt.
+
+- Angriff auf ANGRIFFSposition: Der höhere ATK gewinnt, der Verlierer wird zerstört, und die Differenz wird dem Kontrolleur des Verlierers als Schaden zugefügt. Gleicher ATK: Beide werden zerstört, niemand erhält Schaden.
+- Angriff auf VERTEIDIGUNGSposition: Dein ATK gegen dessen DEF. Höherer ATK zerstört den Verteidiger — ohne Schaden. Niedrigerer ATK: Dein Monster überlebt, aber DU erhältst die Differenz. Gleichstand: Nichts passiert.
+- Ein Angriff auf ein verdecktes Monster deckt es zuerst auf; hat es einen FLIPP-Effekt, feuert er.
+- Direkter Angriff: voller ATK als Schaden.
+
+Die Kampfposition kann pro Monster einmal pro Zug geändert werden, in deiner Main Phase — aber nicht im Zug der Beschwörung und nicht, nachdem es angegriffen hat. Ein verdecktes Monster offen in die Angriffsposition zu drehen zählt als sein Positionswechsel.
+
+# EFFEKTE
+Der Kartentext sagt dir, wann ein Effekt passiert und was er kostet. Die Wörter sind immer dieselben — lerne sie einmal:
+
+- BEI BESCHWÖRUNG — wenn diese Karte beschworen wird. Löst von selbst aus; du wählst die Ziele.
+- IGNITION — du aktivierst ihn in deiner Main Phase („Einmal pro Zug: …“).
+- SCHNELL — aktivierbar, wann immer ein Reaktionsfenster offen ist, auch im Zug des Gegners.
+- PASSIV — immer an, solange die Karte offen auf dem Spielfeld liegt. Keine Aktivierung, keine Kosten.
+- STANDBY / END PHASE — passiert in dieser Phase deines Zuges.
+- FLIPP — wenn die verdeckte Karte offen gedreht wird, durch dich oder durch einen Angriff.
+- HAND / FRIEDHOF — manche Effekte werden aus der Hand oder aus dem Friedhof benutzt; der Stapel leuchtet, wenn etwas darin handeln kann. Klicke den Stapel an.
+- EINMAL PRO ZUG — genau das. Manche Effekte gelten einmal pro Zug und Kartenname.
+
+Kosten kommen zuerst, Effekte danach: „Zahle 2 Mana: Ziehe 1 Karte“ heißt, das Mana ist weg, selbst wenn das Ziehen annulliert wird. Kann ein Effekt gerade unmöglich abgehandelt werden — kein legales Ziel, keine freie Zone für eine Beschwörung —, kannst du ihn gar nicht erst aktivieren.
+
+[img:activation|Wenn ein Effekt aktiviert wird, treten Karte und Text hervor, damit beide Duellanten lesen können, was passiert.]
+
+# INFUSED-EFFEKTE
+Viele Karten tragen einen INFUSED-Effekt: eine stärkere Version, die immer Mana kostet. Zwei Spielarten:
+
+- GEKOPPELT („Zahle stattdessen 2 Mana: …“) verbessert den Effekt darüber. Pro Zug nutzt du entweder die einfache Version oder die INFUSED-Version, nie beide.
+- EIGENSTÄNDIG ist eine eigene, separate Fähigkeit. Sie läuft neben allem anderen auf der Karte.
+
+Beim Lesen einer Karte achte auf das Mana-Abzeichen: blau mit Zahl = kostet so viel, grünes NO MANA = gratis.
+
+[img:cardtext|Das Kartentext-Panel schlüsselt es auf: Kosten-Abzeichen, Name des Effekts, wann er aktiviert wird, einmal pro Zug oder nicht.]
+
+# KETTEN UND REAKTIONEN
+Wann immer eine Karte aktiviert, ein Monster beschworen oder ein Angriff angesagt wird, bekommt dein Gegner ein Reaktionsfenster — und du ebenso, wenn er handelt. Mit einem Schnelleffekt zu antworten baut eine KETTE: Glied 1, Glied 2, Glied 3 … Sobald niemand mehr ein Glied anhängt, wird die Kette rückwärts abgehandelt, letztes Glied zuerst.
+
+Wenn ein zweiter Effekt auf den ersten antwortet, klappt oben am Bildschirm eine Kettenanzeige herunter und listet die Glieder der Reihe nach — deine in Türkis, seine in Rot. Sie zeigt BUILDING CHAIN, während Glieder dazukommen, und RESOLVING, während sie feuern, letztes Glied zuerst.
+
+Während eine Kette abgehandelt wird, kann nichts Neues aktiviert werden — nicht einmal Effekte, die normalerweise auslösen würden. Sie warten, bis die Kette fertig ist, und feuern danach. Eine annullierte Karte trägt ein violettes NEG-Abzeichen und ihre Effekte tun bis zum Ende des Zuges nichts; versucht sie es trotzdem, sagt das Spiel Bescheid und macht weiter.
+
+[img:log|Das Duell-Log rechts hält jede Aktivierung, Zahlung und jedes Ergebnis der Reihe nach fest. Im Zweifel: nachlesen.]
+
+Der REAKTIONS-Schalter unten links schaltet die automatischen Angebote ab: Die Aktionen deines Gegners halten nicht mehr für dich an, nur deine eigenen Auslöser fragen noch. Praktisch, wenn deine Hand keine Antworten hält.
+
+[img:reactions|Reaktionen an: Das Spiel pausiert und bietet dir Antworten an. Aus: Nur deine eigenen Auslöser fragen.]
+
+# DIE STAPEL
+FRIEDHOF — wohin zerstörte, benutzte und abgeworfene Karten gehen. Viele Effekte holen Karten von hier zurück oder zählen, was darin liegt. Klicke einen Stapel an, um ihn durchzusehen.
+
+VERBANNUNG — der zweite Friedhof. Verbannte Karten sind aus dem Duell, es sei denn, eine Karte holt sie gezielt zurück. Manche Reliquien zählen sie.
+
+DECK — verdeckt, gemischt. „Suchen“-Effekte finden eine Karte darin; „Mill“ legt Karten von oben auf den Friedhof. Ein leeres Deck ist in Ordnung — ziehen zu müssen und nicht zu können ist die Niederlage.
+
+EXTRA DECK — deine Reliquien, bis zu 20. Sie werden nie gezogen; sie warten auf ihre Bedingungen.
+
+[img:piles|Deck, Friedhof, Verbannung und Extra Deck liegen am Rand deiner Seite. Zahlen zeigen, was drin ist.]
+
+# DER DECK-BUILDER
+Ein Deck umfasst 40 bis 80 Karten, höchstens 3 Kopien einer Karte, dazu einen Helden und bis zu 20 Reliquien im Extra Deck. Die Banlist kann die Kopien bestimmter Karten senken — das Limit steht auf der Kachel und wird beim Speichern durchgesetzt.
+
+Du kannst nur mit Karten bauen, die du besitzt. Jede Karte existiert außerdem in vier Finishes — Plain, Glossy, Rainbow, Static — und das Finish der Kopie, die du einbaust, ist das Finish, das auf den Tisch kommt. Karten, die du nicht ziehen kannst, lassen sich aus Staub herstellen; das Entstauben einer überzähligen Kopie gibt Staub zurück.
+
+[img:deckbuilder|Das Deck-Panel: Name, Held, der Zähler gegen 40–80 und jede Kopie, die du eingebaut hast.]
+
+[img:deckbalance|DECK BALANCE zeigt, wie viele Monster der Stufen 1, 2 und 3 du spielst — und sagt dir, wann das Deck legal ist.]
+
+# WO DU SPIELST
+- SOLO — Bots jeder Gangart. Gut, um ein Deck zu lernen.
+- PLAY — die Online-Warteschlange für Münzen und Rang, private Lobbys mit Code und WATCH, um live zuzuschauen.
+- CHALLENGES — der Turm: fünfzehn Ebenen, fünfzehn Wächter, Packs bei jedem ersten Sieg.
+- DRAFT — baue aus einem frischen Pool und steige mit dem Gedrafteten auf.
+- SHOP — Packs, der Hero Cache und Kosmetisches; STATISTICS zeigt, was gewinnt.
+
+Jeder Online-Sieg, jede Niederlage und jedes Unentschieden bringt Münzen. Rangpunkte bewegen dich durch zehn Siegel mit je fünf Stufen; eine Saison dauert einen Monat.
+
+# NOCH EIN LETZTES
+Kartentext schlägt dieses Buch. Wo eine Karte etwas sagt, das die Regeln nicht sagen, hat die Karte recht — die Sammlung ist voller Ausnahmen, und das GLOSSAR nebenan erklärt jedes Wort, das sie benutzen.

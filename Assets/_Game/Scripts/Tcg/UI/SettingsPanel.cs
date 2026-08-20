@@ -176,18 +176,30 @@ namespace Rouge.Tcg.UI
             MakeRoomForRow(targetY);
         }
 
+        /// <summary>Reihenfolge des Sprachwechslers — neue Sprachen hier anhängen.</summary>
+        private static readonly string[] LanguageCycle = { Loc.English, Loc.German, Loc.ChineseSimplified };
+
+        private static string LanguageDisplayName(string language) => language switch
+        {
+            Loc.ChineseSimplified => "简体中文",
+            Loc.German => "DEUTSCH",
+            _ => "ENGLISH"
+        };
+
         private void UpdateLanguageValue()
         {
             if (languageValue == null) return;
-            languageValue.text = Loc.Language == Loc.ChineseSimplified ? "简体中文 ‹›" : "ENGLISH ‹›";
+            languageValue.text = LanguageDisplayName(Loc.Language) + " ‹›";
         }
 
         private void CycleLanguage()
         {
             SfxManager.Click();
             PlayerPrefs.Save();
+            int index = System.Array.IndexOf(LanguageCycle, Loc.Language);
+            string next = LanguageCycle[(index + 1 + LanguageCycle.Length) % LanguageCycle.Length];
             // Wechsel + Neuladen der Szene: alle Menüs bauen sich in der neuen Sprache auf
-            LocBoot.Switch(Loc.Language == Loc.English ? Loc.ChineseSimplified : Loc.English);
+            LocBoot.Switch(next);
         }
 
         /// <summary>

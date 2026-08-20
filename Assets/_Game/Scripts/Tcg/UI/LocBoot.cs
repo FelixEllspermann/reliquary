@@ -81,7 +81,10 @@ namespace Rouge.Tcg.UI
             }
 
             Loc.SetTables(LoadUiTable(language), LoadCardTable(language));
-            EnsureCjkFallback();
+            // Nur Chinesisch braucht die Laufzeit-Schrift; die Projekt-Fonts sind
+            // Dynamic und tragen alle lateinischen Glyphen (Umlaute, ß, „“) selbst.
+            if (language == Loc.ChineseSimplified) EnsureCjkFallback();
+            else RemoveFallback();
         }
 
         /// <summary>Sprache wechseln und die aktive Szene neu laden (Menüs bauen sich neu auf).</summary>
@@ -106,7 +109,9 @@ namespace Rouge.Tcg.UI
                 int tab = raw.IndexOf('\t');
                 if (tab <= 0) continue;
                 string key = raw.Substring(0, tab);
-                string value = raw.Substring(tab + 1).Trim();
+                // NICHT trimmen: Vorlagen-Bausteine („anderen “, „ Stufe {0}“)
+                // tragen ihre Leerzeichen selbst.
+                string value = raw.Substring(tab + 1);
                 if (key.Length > 0 && value.Length > 0) table[key] = value;
             }
             return table;

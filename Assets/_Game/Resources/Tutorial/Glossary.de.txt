@@ -1,0 +1,114 @@
+Aktivieren (Activate) :: Einen Zauber, ein Artefakt oder einen Effekt einsetzen. Kosten werden bei der Aktivierung gezahlt; der Effekt wird danach abgehandelt — oder als Kettenglied, falls jemand reagiert.
+Archetyp (Archetype) :: Eine benannte Kartenfamilie, die zusammenspielt und meist ein Namenspräfix teilt („Gezeitenbann“, „Erzdämon“). Unterstützungskarten, die einen Archetyp nennen, gehören ebenfalls dazu. Der Deck-Builder kann nach Archetyp filtern.
+Artefakt (Artifact) :: Eine Karte, die auf dem Tisch bleibt. Monster-Artefakte werden an ein Monster angelegt (Bonus-ATK/DEF und Effekte für den Träger), Feld-Artefakte wirken auf den ganzen Tisch, Spieler-Artefakte liegen auf deinem Helden. Zwei Artefakt-Zonen pro Duellant.
+ATK (ATK) :: Angriffsstärke. Zählt, wenn ein Monster angreift oder in Angriffsposition angegriffen wird. Wird durch Effekte verändert — vorübergehend („bis zum Ende des Zuges“) oder dauerhaft.
+Angriffsposition (Attack Position) :: Ein aufrecht stehendes, offenes Monster. Es kann angreifen und kämpft mit seinem ATK; verliert es einen Kampf, erhält sein Kontrolleur die Differenz als Schaden.
+Attribut (Attribute) :: Das Element eines Monsters: Feuer, Wasser, Wind, Erde, Licht oder Finsternis. Manche Effekte und Beschwörungsbedingungen fragen danach.
+Verbannen (Banish) :: Eine Karte in die Verbannung legen — den zweiten Friedhof. Verbannte Karten sind aus dem Duell, es sei denn, eine Karte holt sie gezielt zurück.
+Verbannung (Banishment) :: Der Stapel der verbannten Karten. Manche Effekte holen sie zurück, manche Reliquien zählen sie.
+Banlist (Banlist) :: Die Liste der Karten, die auf 2, 1 oder 0 Kopien pro Deck begrenzt sind. Wird beim Speichern eines Decks durchgesetzt; das Limit steht im Deck-Builder auf der Kachel.
+Kampfschaden (Battle damage) :: Schaden aus einem Kampf: die ATK-Differenz oder der volle ATK eines direkten Angriffs. Nicht dasselbe wie Effektschaden — manche Karten verhindern nur eines davon.
+Battle Phase (Battle Phase) :: Die vierte Phase eines Zuges. Jedes offene Monster in Angriffsposition darf einmal angreifen. Der beginnende Duellant hat in seinem allerersten Zug keine Battle Phase.
+Kampfposition (Battle position) :: Angriff oder Verteidigung. Wird pro Monster einmal pro Zug in der Main Phase geändert — nicht im Zug der Beschwörung und nicht nach einem Angriff.
+Bounce (Bounce) :: Umgangssprachlich für „auf die Hand zurückgeben“. Ein zurückgegebenes Monster verliert alles, was es auf dem Spielfeld erhalten hat.
+Kartenart (Card type) :: Monster, Zauber, Artefakt, Reliquie oder Spielerkarte. Manche Effekte verlangen, eine anzusagen.
+Kette (Chain) :: Ein Stapel von Aktivierungen. Antwortet ein Effekt auf einen anderen, bilden sie Glieder 1, 2, 3 …; sobald niemand mehr ein Glied anhängt, wird die Kette rückwärts abgehandelt, letztes Glied zuerst. Während eine Kette abgehandelt wird, kann nichts Neues aktiviert werden.
+Geladen (Charged) :: Eine „Schwelbrand“-Mechanik: Ein Zauber, der vor diesem Zug gesetzt wurde, kann während deiner Standby Phase eine stärkere, geladene Version zünden.
+Münzen (Coins) :: Die Währung, die man durch Duelle verdient. Kauft Packs und Kosmetisches.
+Kontinuierlicher Effekt (Continuous effect) :: Siehe Passiv.
+Kontrolle (Control) :: Auf wessen Spielfeld eine Karte liegt. Manche Effekte übernehmen die Kontrolle über ein Monster; der Besitzer ändert sich nicht — die Karte kehrt auf die Hand oder in den Friedhof ihres Besitzers zurück, wenn sie das Spielfeld verlässt.
+Kosten (Cost) :: Was du für eine Aktivierung zahlst: Mana, ein Abwerfen, ein Opfer, das Verbannen einer Karte. Kosten sind auch dann gezahlt, wenn der Effekt später annulliert wird.
+Marke (Counter) :: Ein Marker, den ein Effekt auf eine Karte legt. Todesmarken werden als Totenkopf mit Zahl angezeigt; die Karte erklärt, was passiert, wenn sie sich stapeln.
+Gekoppelt (Coupled) :: Ein INFUSED-Effekt, der den Effekt darüber verbessert („Zahle stattdessen 2 Mana: …“). Pro Zug nutzt du entweder die einfache Version oder die gekoppelte, nie beide.
+Herstellen (Craft) :: Staub in eine fehlende Karte verwandeln. Das Entstauben einer überzähligen Kopie gibt Staub zurück.
+Todesmarke (Death counter) :: Eine Marke, die während der End Phases hochzählt; erreicht eine Karte ihr aufgedrucktes Limit, wird sie zerstört. Angezeigt als Totenkopf mit Zahl.
+Deck (Deck) :: Dein Hauptstapel, 40 bis 80 Karten, höchstens 3 Kopien einer Karte. Gemischt, verdeckt; du ziehst von oben.
+Verteidigungsposition (Defense Position) :: Ein quer liegendes Monster. Es kann nicht angreifen, hält mit seiner DEF und fügt keinen Kampfschaden zu. Verdeckte Monster sind immer in Verteidigung.
+DEF (DEF) :: Verteidigungsstärke — zählt, wenn ein Monster in Verteidigungsposition angegriffen wird. Ist der ATK des Angreifers niedriger, erhält der Kontrolleur des Angreifers die Differenz.
+Zerstören (Destroy) :: Eine Karte durch Kampf oder Effekt vom Spielfeld auf den Friedhof schicken. „Kann nicht zerstört werden“ schützt genau davor — nicht vor Verbannen, Zurückgeben oder Opfern.
+Direkter Angriff (Direct attack) :: Ein Angriff auf den gegnerischen Helden statt auf ein Monster. Nur möglich, solange der Gegner keine Monster kontrolliert. Fügt den vollen ATK des Angreifers als Schaden zu.
+Abwerfen (Discard) :: Eine Karte aus deiner Hand auf den Friedhof legen. „Zufällige“ Abwürfe bestimmt der Zufall, andere der abwerfende Spieler.
+Draft (Draft) :: Ein Modus, in dem du aus einem frischen Kartenpool ein Deck baust und mit dem Gedrafteten aufsteigst.
+Draw Phase (Draw Phase) :: Die erste Phase eines Zuges: Ziehe 1 Karte. Der beginnende Duellant überspringt sie in seinem allerersten Zug.
+Staub (Dust) :: Das, was aus einer entstaubten Karte wird. Gib ihn aus, um Karten herzustellen.
+Effektschaden (Effect damage) :: Schaden durch einen Karteneffekt statt durch Kampf („füge 800 Schaden zu“). Manche Karten verhindern nur eines von beidem.
+End Phase (End Phase) :: Die letzte Phase eines Zuges: „während deiner End Phase“-Effekte, Handlimit, dann geht der Zug über.
+Ausrüsten (Equip) :: Ein Monster-Artefakt an ein Monster anlegen — den Träger. Verlässt der Träger das Spielfeld, geht das Artefakt auf den Friedhof.
+Extra Deck (Extra Deck) :: Deine Reliquien, bis zu 20. Werden nie gezogen; jede wartet auf ihre aufgedruckten Beschwörungsvoraussetzungen.
+Verdeckt (Face-down) :: Eine versteckt gespielte Karte. Verdeckte Monster sind immer in Verteidigungsposition; verdeckte Zauber sind gesetzt und können später aktiviert werden.
+Spielfeld (Field) :: Der Tisch: alle Zonen beider Duellanten. „Auf dem Spielfeld“ heißt offen oder verdeckt in einer Monster- oder Artefakt-Zone.
+Feld-Artefakt (Field Artifact) :: Ein Artefakt, das in einer Artefakt-Zone liegt und den ganzen Tisch beeinflusst, nicht ein einzelnes Monster.
+Finish (Finish) :: Das Aussehen einer Kartenkopie: Plain, Glossy, Rainbow oder Static. Rein kosmetisch; das Finish der Kopie, die du ins Deck baust, kommt auch auf den Tisch.
+Verpuffen (Fizzle) :: Wenn ein Effekt abgehandelt wird, aber nichts Legales mehr zu tun ist — sein Ziel ist weg, seine Zone voll. Der Effekt tut nichts; die Kosten bleiben gezahlt.
+FLIPP (Flip) :: Ein verdecktes Monster offen drehen — freiwillig (in die Angriffsposition), durch einen Angriff oder durch einen Effekt. FLIPP-Effekte feuern, wenn das passiert.
+Friedhof (Graveyard) :: Wohin zerstörte, benutzte und abgeworfene Karten gehen. Viele Effekte holen Karten von hier zurück oder zählen, was darin liegt. Klick auf den Stapel, um ihn durchzusehen.
+Hand (Hand) :: Die Karten, die du hältst. Limit 8 am Ende deines Zuges.
+Handlimit (Hand limit) :: 8. Hältst du während deiner End Phase mehr, wirfst du bis auf 8 ab.
+Held (Hero) :: Siehe Spielerkarte.
+Ignitionseffekt (Ignition effect) :: Ein Effekt, den du selbst in deiner Main Phase aktivierst („Einmal pro Zug: …“).
+Illusions-Token (Illusion Token) :: Ein 0/0-Token, den der „Gaslicht“-Archetyp auf das gegnerische Spielfeld stellt. Er blockiert eine Zone und kann gewinnbringend zerstört werden.
+INFUSED (Infused) :: Ein stärkerer Effekt auf einer Karte, der immer Mana kostet. Entweder gekoppelt (Verbesserung des Effekts darüber) oder eigenständig (eigene Fähigkeit).
+Stufe (Level) :: 1, 2 oder 3, im Wappen angezeigt. Eine Stufe 2 braucht 1 Opfer für die Normalbeschwörung, eine Stufe 3 braucht 2. Reliquien sind Stufe 3.
+Lebenspunkte (Life Points) :: Deine Gesundheit. 8000 zu Beginn (manche Helden weichen ab). Bei 0 ist das Duell verloren.
+LP (LP) :: Kurz für Lebenspunkte.
+Main Phase (Main Phase) :: Die dritte Phase eines Zuges: beschwören, Zauber und Artefakte spielen, Ignitionseffekte aktivieren, Positionen ändern, Reliquien rufen.
+Mana (Mana) :: Die Ressource für Zauber, INFUSED-Effekte, Helden-Effekte und Reliquien-Beschwörungen. Füllt sich in jedem deiner Züge: zuerst 3, dann jeden Zug eins mehr bis 10. Ungenutztes Mana verfällt, sofern keine Karte etwas anderes sagt.
+Mill (Mill) :: Karten von oben von einem Deck auf den Friedhof legen. Vom eigenen oder vom gegnerischen.
+Monster (Monster) :: Eine Karte, die kämpft. Stufe, Attribut, Typ, ATK, DEF — und meistens Effekte.
+Monster-Artefakt (Monster Artifact) :: Ein Artefakt, das an ein einzelnes Monster angelegt wird.
+Monster-Typ (Monster Type) :: Drache, Mensch, Bestie, Mecha, Engel, Dämon, Mythos, Tier … Manche Effekte achten darauf.
+Annullieren (Negate) :: Die Effekte einer Karte abschalten. Eine annullierte Karte trägt bis zum Ende des Zuges ein violettes NEG-Abzeichen; versucht sie zu wirken, passiert nichts.
+Normalbeschwörung (Normal Summon) :: Ein Monster aus deiner Hand in deiner Main Phase spielen, einmal pro Zug. Gratis für Stufe 1; 1 Opfer für Stufe 2, 2 für Stufe 3. Auch das verdeckte Setzen eines Monsters verbraucht sie.
+Einmal pro Zug (Once per turn) :: Der Effekt kann jeden Zug einmal benutzt werden. Manche gelten einmal pro Zug und Kartenname — drei Kopien teilen sich eine Nutzung.
+Besitzer (Owner) :: Aus wessen Deck eine Karte stammt. Karten kehren auf die Hand, ins Deck oder auf den Friedhof ihres Besitzers zurück, auch nachdem die Kontrolle gewechselt hat.
+Passiv (Passive) :: Ein Effekt, der einfach an ist, solange die Karte offen auf dem Spielfeld liegt. Keine Aktivierung, keine Kosten, kein Kettenglied.
+Phase (Phase) :: Einer der fünf Schritte eines Zuges: Draw, Standby, Main, Battle, End.
+Spielerkarte (Player Card) :: Dein Held. Legt deine Start-Lebenspunkte fest und gibt dir einen Helden-Effekt für 2 Mana, einmal pro Zug. Kann nicht angegriffen oder zerstört werden.
+Positionswechsel (Position change) :: Ein Monster zwischen Angriff und Verteidigung umschalten. Einmal pro Zug und Monster, in deiner Main Phase.
+Schnellzauber (Quick Spell) :: Ein Zauber, den du als Reaktion aktivieren kannst — im Zug des Gegners, innerhalb einer Kette, wenn ein Angriff angesagt wird. Auch in deiner eigenen Main Phase nutzbar.
+Rang (Rank) :: Zehn Siegel mit je fünf Stufen. Ranglisten-Duelle bewegen dich über Rangpunkte auf oder ab; eine Saison dauert einen Monat.
+Seltenheit (Rarity) :: Gewöhnlich, Ungewöhnlich, Selten oder Legendär — wie oft eine Karte aus Packs fällt. Sagt nichts über Stärke aus.
+Reaktions-Schalter (Reactions toggle) :: Der Schalter unten links im Duell. Ist er aus, bietet dir das Spiel keine Reaktionen auf gegnerische Aktionen mehr an; deine eigenen Auslöser fragen weiterhin.
+Reliquie (Reliquary) :: Ein Boss-Monster aus dem Extra Deck. Beschwörungsvoraussetzungen, Mana-Preis und Opfer stehen auf der Karte. Belegt eine Monster-Zone wie jedes Monster.
+Reliquien-Beschwörung (Reliquary Summon) :: Eine Reliquie aus dem Extra Deck rufen, sobald ihre Voraussetzungen erfüllt sind, in deiner Main Phase.
+Reaktionsfenster (Response window) :: Der Moment nach einer Aktivierung, einer Beschwörung oder einer Angriffsansage, in dem der andere Duellant mit einem Schnelleffekt antworten darf. Eine Antwort startet eine Kette.
+Auf die Hand zurückgeben (Return to hand) :: Eine Karte vom Spielfeld auf die Hand ihres Besitzers zurückbewegen. Siehe Bounce.
+Aufdecken (Reveal) :: Eine Karte beiden Spielern zeigen — eine gesuchte Karte, eine zufällige Handkarte, die oberste Karte eines Decks.
+Suchen (Search) :: Eine bestimmte Karte aus deinem Deck auf die Hand nehmen. Das Deck wird danach gemischt.
+Saison (Season) :: Ein Monat Ranglistenspiel. Jeden Monat beginnt eine neue Saison.
+Setzen (Set) :: Eine Karte verdeckt spielen: ein Monster in Verteidigungsposition (verbraucht deine Normalbeschwörung) oder einen Zauber für später.
+Ins Deck mischen (Shuffle into the Deck) :: Eine Karte ins Deck ihres Besitzers zurücklegen und mischen. Anders als auf die Hand zurückgeben — die Karte ist eine Weile außer Reichweite.
+Spezialbeschwörung (Special Summon) :: Jede Beschwörung, die keine Normalbeschwörung ist — durch einen Effekt oder durch die eigene Bedingung eines Monsters („du kannst diese Karte aus deiner Hand spezialbeschwören, falls …“). Eigene Bedingungen funktionieren einmal pro Zug und Kartenname.
+Zauber (Spell) :: Eine Karte, die für Mana aus der Hand gespielt wird und danach auf den Friedhof geht. Normale Zauber in deiner Main Phase; Schnellzauber, wann immer ein Reaktionsfenster offen ist.
+Eigenständig (Standalone) :: Ein INFUSED-Effekt, der eine eigene Fähigkeit ist, unabhängig von den anderen Effekten der Karte.
+Standby Phase (Standby Phase) :: Die zweite Phase eines Zuges: „während deiner Standby Phase“-Effekte, Zölle und Unterhalt.
+Beschwörungsvoraussetzung (Summon requirement) :: Was eine Reliquie verlangt, bevor sie gerufen werden kann: ein Zustand des Spielfelds, des Friedhofs, deiner Lebenspunkte — plus Mana und manchmal Opfer.
+Ziel (Target) :: Die Karte, auf die ein Effekt zielt, gewählt bei der Aktivierung. „Kann nicht als Ziel gewählt werden“ macht eine Karte genau dagegen immun.
+Token (Token) :: Ein Monster, das von einem Effekt erschaffen statt aus einem Deck gezogen wird. Es verschwindet, statt auf den Friedhof zu gehen.
+Opfern (Tribute) :: Ein Monster, das du kontrollierst, als Preis auf den Friedhof schicken — für eine Normalbeschwörung der Stufe 2 oder 3 oder für eine Reliquie. Manche Reliquien nehmen Opfer vom gegnerischen Spielfeld.
+Zugspieler (Turn player) :: Der Duellant, der am Zug ist.
+Typ (Type) :: Siehe Monster-Typ.
+Bis zum Ende des Zuges (Until the end of the turn) :: Eine vorübergehende Änderung, die in der End Phase zurückgenommen wird. Dauerhafte Änderungen bleiben, bis die Karte das Spielfeld verlässt.
+Vanilla (Vanilla) :: Ein Monster ohne Effekte. Manche Karten unterstützen genau diese.
+Zone (Zone) :: Ein Platz auf dem Tisch. Fünf Monster-Zonen, drei Zauber-Zonen und zwei Artefakt-Zonen pro Duellant. Wohin du eine Karte legst, ist deine Entscheidung.
+Zauber-Zone (Spell Zone) :: Einer von drei Plätzen, in denen ein gesetzter Zauber verdeckt wartet, bis du ihn aktivierst. Drei pro Duellant.
+Benachbart (Adjacent) :: Die Monster in den beiden Zonen direkt links und rechts einer Karte, auf derselben Tischseite. Auren und Schutzeffekte „für benachbarte Monster“ meinen genau diese — lässt du eine Lücke, gelten sie nicht mehr.
+Gegenüber (Facing) :: Das gegnerische Monster in der Zone direkt gegenüber einer Karte (Zone 1 liegt Zone 1 gegenüber usw.). Effekte auf „das Monster gegenüber dieser Karte“ treffen nichts, wenn die Zone leer ist.
+Bewegen (Move) :: Ein Effekt, der ein Monster in eine andere leere Monster-Zone seiner Seite verschiebt. Bewegen ändert, wer benachbart ist und wer gegenüberliegt — manche Karten lösen aus, wenn sie sich bewegen.
+Münzwurf (Coin flip) :: Ein Effekt wirft eine Münze: Kopf oder Zahl, beide gleich wahrscheinlich. Die Karte sagt, was jedes Ergebnis tut — Zahl ist nie „nichts passiert“, sondern die andere Seite der Wette. Ziele für ein Ergebnis werden nach dem Wurf gewählt.
+Kopf (Heads) :: Die gute Seite eines Münzwurfs — meistens.
+Zahl (Tails) :: Die andere Seite eines Münzwurfs. Manche Karten lassen dich neu werfen oder zählen Zahl als Kopf.
+LP-Kosten (LP cost) :: Lebenspunkte, die als Preis gezahlt werden („Zahle 1 Mana und 1000 LP: …“). Zum Zahlen musst du mindestens 1 LP behalten. Anders als Schaden: Manche Karten machen LP-Kosten gratis, keine macht Schaden gratis.
+Mana-Schulden (Mana debt) :: „In deinem nächsten Zug hast du N Mana weniger.“ Die Schulden werden zu Beginn jenes Zuges eingetrieben; jedes Mana, das du nicht decken kannst, kostet stattdessen 1500 LP.
+Pfandrecht (Lien) :: Ein Marker mit Betrag auf einem Monster, angezeigt als LIEN-Abzeichen. Während jeder Standby Phase seines Kontrolleurs zahlt dieser so viel Mana, sonst wird das Monster zerstört. Pfandrechte können erhöht werden und bleiben bei Kontrollwechsel bestehen.
+Kontrolltausch (Swap control) :: Zwei Monster wechseln dauerhaft die Seiten — keine Rückkehr in der End Phase, anders als „übernimm die Kontrolle bis zum Ende des Zuges“. Das erhaltene Monster kann in diesem Zug nicht angreifen.
+Wildern (Poach) :: Ein Monster aus dem Friedhof des ANDEREN Spielers auf das eigene Spielfeld spezialbeschwören. Ein gewildertes Monster wird verbannt, wenn es das Spielfeld verlässt.
+Piercing (Piercing) :: Greift ein Angreifer mit Piercing ein Monster in Verteidigungsposition mit niedrigerer DEF an, wird die Differenz trotzdem als Kampfschaden zugefügt.
+Einmal pro Duell (Once per Duel) :: Ein hartes Limit: Der Effekt kann im ganzen Duell einmal pro Spieler und Kartenname benutzt werden — eine zweite Kopie setzt es nicht zurück.
+Kann nicht normalbeschworen werden (Cannot be Normal Summoned) :: Das Monster kommt nur über seine eigene Spezialbeschwörungs-Bedingung oder einen anderen Effekt aufs Spielfeld — nie über eine Normalbeschwörung oder ein Setzen.
+Kann nicht geopfert werden (Cannot be Tributed) :: Das Monster kann nicht als Opfer für eine Normalbeschwörung oder eine Reliquie gezahlt werden. Nützlich, wenn es ein Geschenk ist, das der Gegner behalten soll.
+Zaubersteuer (Spell tax) :: Solange ein „Zunftzoll“ offen liegt, kostet jeder Zauber beide Duellanten 1 Mana mehr — auch die, die gratis wären.
+Angriffslimit (Attack limit) :: Solange „Der Kodex des Duellanten“ offen liegt, darf jeder Duellant nur einen Angriff pro Battle Phase ansagen.
+Doppelter Kampfschaden (Double battle damage) :: Solange „Hohe Einsätze“ läuft, wird jeder Kampfschaden an beiden Duellanten verdoppelt — in der gegnerischen Battle Phase und in deiner eigenen.
+Eine Art ansagen (Declare a type) :: Du sagst Monster, Zauber oder Artefakt an, bevor Karten aufgedeckt werden; Treffer behältst du, der Rest geht auf den Friedhof.
+Direkter Angriff (halbiert) (Direct attack (halved)) :: Ein Monster, das an den gegnerischen Monstern vorbei direkt angreifen darf, dabei aber nur seinen halben ATK zufügt.
