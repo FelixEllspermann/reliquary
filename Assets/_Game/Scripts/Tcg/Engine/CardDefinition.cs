@@ -268,125 +268,125 @@ namespace Rouge.Tcg
 
             if (auraAtkBonus != 0 || auraDefBonus != 0)
             {
-                string scope = auraOnlyFaceDown ? "face-down " : "";
+                string scope = auraOnlyFaceDown ? Loc.T("face-down ") : "";
                 string named = string.IsNullOrEmpty(auraNameFilter) ? "" : $" \"{auraNameFilter}\"";
-                string typed = auraUseTypeFilter ? $" {auraTypeFilter.ToString().ToUpperInvariant()}" : "";
-                string leveled = auraLevelFilter > 0 ? $" Level {auraLevelFilter}" : "";
-                string other = auraExcludesSelf ? "other " : "";
+                string typed = auraUseTypeFilter ? " " + Loc.T(auraTypeFilter.ToString().ToUpperInvariant()) : "";
+                string leveled = auraLevelFilter > 0 ? Loc.F(" Level {0}", auraLevelFilter) : "";
+                string other = auraExcludesSelf ? Loc.T("other ") : "";
                 string bonus = auraAtkBonus != 0 && auraDefBonus != 0
-                    ? $"{Signed(auraAtkBonus)} ATK and {Signed(auraDefBonus)} DEF"
-                    : auraAtkBonus != 0 ? $"{Signed(auraAtkBonus)} ATK" : $"{Signed(auraDefBonus)} DEF";
+                    ? Loc.F("{0} ATK and {1} DEF", Signed(auraAtkBonus), Signed(auraDefBonus))
+                    : auraAtkBonus != 0 ? Loc.F("{0} ATK", Signed(auraAtkBonus)) : Loc.F("{0} DEF", Signed(auraDefBonus));
                 lines.Add($"Your {other}{scope}{named}{typed}{leveled} monsters gain {bonus}.".Replace("  ", " "));
             }
 
             if (passiveAtkPerCount > 0)
-                lines.Add($"This card gains {passiveAtkPerCount} ATK for each of {CountName(passiveAtkPerCountKind)}.");
+                lines.Add(Loc.F("This card gains {0} ATK for each of {1}.", passiveAtkPerCount, CountName(passiveAtkPerCountKind)));
             if (passiveDefPerCount > 0)
-                lines.Add($"This card gains {passiveDefPerCount} DEF for each of {CountName(passiveDefPerCountKind)}.");
+                lines.Add(Loc.F("This card gains {0} DEF for each of {1}.", passiveDefPerCount, CountName(passiveDefPerCountKind)));
             if (passiveCannotAttack)
-                lines.Add("This card cannot attack.");
+                lines.Add(Loc.T("This card cannot attack."));
             if (passiveNoAttackOnSummonTurn)
-                lines.Add("This card cannot attack during the turn it is Summoned.");
+                lines.Add(Loc.T("This card cannot attack during the turn it is Summoned."));
             if (passiveNoDirectAttackOnSummonTurn)
-                lines.Add("This card cannot attack directly during the turn it is Summoned.");
+                lines.Add(Loc.T("This card cannot attack directly during the turn it is Summoned."));
             if (passiveTaunt)
-                lines.Add("Your opponent's attacks must target this card.");
+                lines.Add(Loc.T("Your opponent's attacks must target this card."));
             if (battleShieldMinOwnArtifacts > 0)
-                lines.Add($"While you control {battleShieldMinOwnArtifacts}+ Artifacts, this card cannot be destroyed by battle.");
+                lines.Add(Loc.F("While you control {0}+ Artifacts, this card cannot be destroyed by battle.", battleShieldMinOwnArtifacts));
             if (tributeWorth > 1)
-                lines.Add($"Counts as {tributeWorth} tributes for a Reliquary Summon.");
+                lines.Add(Loc.F("Counts as {0} tributes for a Reliquary Summon.", tributeWorth));
             if (!string.IsNullOrEmpty(protectsNamedFromTargeting))
-                lines.Add($"Your other \"{protectsNamedFromTargeting}\" cards cannot be targeted by your opponent's effects.");
+                lines.Add(Loc.F("Your other \"{0}\" cards cannot be targeted by your opponent's effects.", protectsNamedFromTargeting));
             if (conditionalDoubleAttack)
-                lines.Add($"Can attack twice each Battle Phase while you control another face-up {doubleAttackAttribute.ToString().ToUpperInvariant()} monster.");
+                lines.Add(Loc.F("Can attack twice each Battle Phase while you control another face-up {0} monster.", Loc.T(doubleAttackAttribute.ToString().ToUpperInvariant())));
             if (fieldLimitCount > 0 && !string.IsNullOrEmpty(fieldLimitName))
-                lines.Add($"You cannot Summon or Set this card while you control {fieldLimitCount} \"{fieldLimitName}\" monsters.");
+                lines.Add(Loc.F("You cannot Summon or Set this card while you control {0} \"{1}\" monsters.", fieldLimitCount, fieldLimitName));
             if (passiveBurnPerMill > 0)
-                lines.Add($"Every time you mill 1 or more cards: deal {passiveBurnPerMill} damage to your opponent.");
+                lines.Add(Loc.F("Every time you mill 1 or more cards: deal {0} damage to your opponent.", passiveBurnPerMill));
             if (passiveBlockReliquarySummons)
-                lines.Add("While this card is on the field, neither player can Special Summon Reliquaries.");
+                lines.Add(Loc.T("While this card is on the field, neither player can Special Summon Reliquaries."));
             if (passiveNoBattleDestroy)
-                lines.Add("This card cannot be destroyed by battle.");
+                lines.Add(Loc.T("This card cannot be destroyed by battle."));
             if (passiveUntargetable)
-                lines.Add("This card cannot be targeted by your opponent's effects.");
+                lines.Add(Loc.T("This card cannot be targeted by your opponent's effects."));
             if (passiveNoBattleDamageInvolving)
-                lines.Add("Neither player takes battle damage from battles involving this card.");
+                lines.Add(Loc.T("Neither player takes battle damage from battles involving this card."));
             if (passiveRedirectBattleDamage)
-                lines.Add("Your opponent takes all battle damage you would take instead.");
+                lines.Add(Loc.T("Your opponent takes all battle damage you would take instead."));
             if (passiveDeathCounterLimit > 0)
-                lines.Add($"During each End Phase: put a Death Counter on this card. With {passiveDeathCounterLimit} Death Counters, it is sent to the Graveyard.");
+                lines.Add(Loc.F("During each End Phase: put a Death Counter on this card. With {0} Death Counters, it is sent to the Graveyard.", passiveDeathCounterLimit));
             if (passiveOpponentMillAmplify > 0)
-                lines.Add($"Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {passiveOpponentMillAmplify} more.");
+                lines.Add(Loc.F("Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {0} more.", passiveOpponentMillAmplify));
             if (passiveProtectAllFromTargetingAndAttacks)
-                lines.Add("While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.");
+                lines.Add(Loc.T("While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks."));
             if (passiveEndPhaseLpToll > 0)
-                lines.Add($"During each End Phase: pay {passiveEndPhaseLpToll} LP or destroy this card.");
+                lines.Add(Loc.F("During each End Phase: pay {0} LP or destroy this card.", passiveEndPhaseLpToll));
             if (passiveOpponentMustSetSpells)
-                lines.Add("While this card is face-up on the field, your opponent must Set Spells before activating them.");
+                lines.Add(Loc.T("While this card is face-up on the field, your opponent must Set Spells before activating them."));
 
             // --- The Small Print ---
             if (auraAdjacentOnly && (auraAtkBonus != 0 || auraDefBonus != 0))
-                lines.Add("(The aura above applies only to monsters adjacent to this card.)");
+                lines.Add(Loc.T("(The aura above applies only to monsters adjacent to this card.)"));
             if (auraAloneOnly && auraAtkBonus != 0)
-                lines.Add("(The aura above applies only to your monsters with no adjacent monster.)");
+                lines.Add(Loc.T("(The aura above applies only to your monsters with no adjacent monster.)"));
             if (auraCrowdedAtkPenalty > 0)
-                lines.Add($"Your monsters with an adjacent monster lose {auraCrowdedAtkPenalty} ATK.");
+                lines.Add(Loc.F("Your monsters with an adjacent monster lose {0} ATK.", auraCrowdedAtkPenalty));
             if (facingAtkPenalty > 0)
-                lines.Add($"The monster facing this card loses {facingAtkPenalty} ATK.");
+                lines.Add(Loc.F("The monster facing this card loses {0} ATK.", facingAtkPenalty));
             if (passiveAdjacentNoEffectDestroy)
-                lines.Add("Monsters adjacent to this card cannot be destroyed by card effects.");
+                lines.Add(Loc.T("Monsters adjacent to this card cannot be destroyed by card effects."));
             if (passiveAdjacentNoBattleDestroy)
-                lines.Add("Monsters adjacent to this card cannot be destroyed by battle.");
+                lines.Add(Loc.T("Monsters adjacent to this card cannot be destroyed by battle."));
             if (passiveAdjacentDebuffOnDestroy > 0)
-                lines.Add($"When this card is destroyed: the monsters adjacent to it permanently lose {passiveAdjacentDebuffOnDestroy} ATK and DEF.");
+                lines.Add(Loc.F("When this card is destroyed: the monsters adjacent to it permanently lose {0} ATK and DEF.", passiveAdjacentDebuffOnDestroy));
             if (passiveNoEffectDestroy)
-                lines.Add("This card cannot be destroyed by card effects.");
+                lines.Add(Loc.T("This card cannot be destroyed by card effects."));
             if (passiveCannotBeTributed)
-                lines.Add("This card cannot be Tributed.");
+                lines.Add(Loc.T("This card cannot be Tributed."));
             if (passiveCannotChangePosition)
-                lines.Add("This card cannot change its battle position.");
+                lines.Add(Loc.T("This card cannot change its battle position."));
             if (passiveNoAttackAfterPositionChange)
-                lines.Add("If this card changed its battle position this turn, it cannot attack.");
+                lines.Add(Loc.T("If this card changed its battle position this turn, it cannot attack."));
             if (passiveNoNormalSummon)
-                lines.Add("Cannot be Normal Summoned or Set.");
+                lines.Add(Loc.T("Cannot be Normal Summoned or Set."));
             if (passiveControllerStandbyLpLoss > 0)
-                lines.Add($"During each of its controller's Standby Phases: its controller loses {passiveControllerStandbyLpLoss} LP.");
+                lines.Add(Loc.F("During each of its controller's Standby Phases: its controller loses {0} LP.", passiveControllerStandbyLpLoss));
             if (passiveOwnerNoOtherSpecialSummons)
-                lines.Add("While this card is on the field, you cannot Special Summon other monsters.");
+                lines.Add(Loc.T("While this card is on the field, you cannot Special Summon other monsters."));
             if (passiveLoneImmunity)
-                lines.Add("While you control no other monsters, this card cannot be destroyed by battle or by card effects.");
+                lines.Add(Loc.T("While you control no other monsters, this card cannot be destroyed by battle or by card effects."));
             if (passiveLowHandImmunity)
-                lines.Add("While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.");
+                lines.Add(Loc.T("While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects."));
             if (passivePiercing)
-                lines.Add("Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.");
+                lines.Add(Loc.T("Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage."));
             if (passiveBearerPiercing)
-                lines.Add("The equipped monster inflicts piercing battle damage.");
+                lines.Add(Loc.T("The equipped monster inflicts piercing battle damage."));
             if (passiveBreakOnFailedPierce)
-                lines.Add("If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.");
+                lines.Add(Loc.T("If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card."));
             if (passiveDirectAttackHalved)
-                lines.Add("This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.");
+                lines.Add(Loc.T("This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved."));
             if (passiveNoDirectAttack)
-                lines.Add("This card cannot attack directly.");
+                lines.Add(Loc.T("This card cannot attack directly."));
             if (passiveSpellTaxBoth)
-                lines.Add("Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.");
+                lines.Add(Loc.T("Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card."));
             if (passiveOneAttackBonus > 0)
-                lines.Add($"Each player may declare only one attack per Battle Phase. Attacking monsters gain {passiveOneAttackBonus} ATK during the battle.");
+                lines.Add(Loc.F("Each player may declare only one attack per Battle Phase. Attacking monsters gain {0} ATK during the battle.", passiveOneAttackBonus));
             if (passiveStandbyBonusMana > 0)
-                lines.Add($"During your Standby Phase: gain {passiveStandbyBonusMana} additional Mana this turn.");
+                lines.Add(Loc.F("During your Standby Phase: gain {0} additional Mana this turn.", passiveStandbyBonusMana));
             if (passiveHandCapForSurvival > 0)
-                lines.Add($"During your End Phase, if you hold more than {passiveHandCapForSurvival} cards, destroy this card.");
+                lines.Add(Loc.F("During your End Phase, if you hold more than {0} cards, destroy this card.", passiveHandCapForSurvival));
             if (passiveDestroyWhenLifeAtMost > 0)
-                lines.Add($"When your LP are {passiveDestroyWhenLifeAtMost} or less, this card is destroyed.");
+                lines.Add(Loc.F("When your LP are {0} or less, this card is destroyed.", passiveDestroyWhenLifeAtMost));
             if (passiveLifeCostsFree)
-                lines.Add("LP costs you pay are reduced to 0.");
+                lines.Add(Loc.T("LP costs you pay are reduced to 0."));
             if (passiveCoinChoose)
-                lines.Add("Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.");
+                lines.Add(Loc.T("Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card."));
             if (passiveTailsAsHeadsWhenBehind)
-                lines.Add("While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.");
+                lines.Add(Loc.T("While your LP are lower than your opponent's, your coin flips that land Tails count as Heads."));
             if (passiveLienAtkPenalty > 0)
-                lines.Add($"Monsters with a Lien lose {passiveLienAtkPenalty} ATK.");
+                lines.Add(Loc.F("Monsters with a Lien lose {0} ATK.", passiveLienAtkPenalty));
             if (passiveStolenAtkBonus > 0)
-                lines.Add($"Monsters you control but do not own gain {passiveStolenAtkBonus} ATK.");
+                lines.Add(Loc.F("Monsters you control but do not own gain {0} ATK.", passiveStolenAtkBonus));
 
             return lines;
         }
@@ -398,17 +398,17 @@ namespace Rouge.Tcg
         {
             switch (kind)
             {
-                case EffectCountKind.OwnArtifactsOnField: return "your Artifacts on the field";
-                case EffectCountKind.OwnGraveyardArtifacts: return "the Artifacts in your Graveyard";
-                case EffectCountKind.OwnFaceDownMonsters: return "your face-down monsters";
-                case EffectCountKind.OwnBanishedMonsters: return "your banished monsters";
-                case EffectCountKind.OwnGraveyardCards: return "the cards in your Graveyard";
-                case EffectCountKind.EquippedArtifactsOnSelf: return "its equipped Artifacts";
-                case EffectCountKind.OpponentFaceDownMonsters: return "your opponent's face-down monsters";
-                case EffectCountKind.OpponentIllusionTokens: return "the Illusion Tokens your opponent controls";
-                case EffectCountKind.OwnHandCards: return "the cards in your hand";
-                case EffectCountKind.OwnGraveyardSpells: return "the Spells in your Graveyard";
-                default: return "your monsters on the field";
+                case EffectCountKind.OwnArtifactsOnField: return Loc.T("your Artifacts on the field");
+                case EffectCountKind.OwnGraveyardArtifacts: return Loc.T("the Artifacts in your Graveyard");
+                case EffectCountKind.OwnFaceDownMonsters: return Loc.T("your face-down monsters");
+                case EffectCountKind.OwnBanishedMonsters: return Loc.T("your banished monsters");
+                case EffectCountKind.OwnGraveyardCards: return Loc.T("the cards in your Graveyard");
+                case EffectCountKind.EquippedArtifactsOnSelf: return Loc.T("its equipped Artifacts");
+                case EffectCountKind.OpponentFaceDownMonsters: return Loc.T("your opponent's face-down monsters");
+                case EffectCountKind.OpponentIllusionTokens: return Loc.T("the Illusion Tokens your opponent controls");
+                case EffectCountKind.OwnHandCards: return Loc.T("the cards in your hand");
+                case EffectCountKind.OwnGraveyardSpells: return Loc.T("the Spells in your Graveyard");
+                default: return Loc.T("your monsters on the field");
             }
         }
 

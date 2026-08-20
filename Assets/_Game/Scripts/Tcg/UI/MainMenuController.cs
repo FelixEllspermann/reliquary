@@ -319,7 +319,7 @@ namespace Rouge.Tcg.UI
             if (playerRank != null)
                 playerRank.text = online
                     ? PlayerProfile.Rank.Seal.Label.ToUpperInvariant()
-                    : "OFFLINE — NO ACCOUNT";
+                    : Loc.T("OFFLINE — NO ACCOUNT");
             EnsurePlateButton(online);
             if (coinsText != null)
             {
@@ -330,34 +330,34 @@ namespace Rouge.Tcg.UI
             // Lebende Parchment-Strips
             int duelists = Mathf.Max(1, PlayerProfile.OnlineCount);
             if (playStrip != null)
-                playStrip.text = online ? $"{duelists} duelist{(duelists == 1 ? "" : "s")} in the vault — +100 coins per duel" : "Requires an account — log in first";
+                playStrip.text = online ? Loc.F("{0} duelists in the vault — +100 coins per duel", duelists) : Loc.T("Requires an account — log in first");
             if (soloStrip != null)
-                soloStrip.text = "The Warden awaits — +50 coins per trial";
+                soloStrip.text = Loc.T("The Warden awaits — +50 coins per trial");
             if (challengesStrip != null)
             {
                 int sealedFloors = PlayerProfile.TowerFloor;
-                challengesStrip.text = !online ? "Requires an account — log in first"
-                    : sealedFloors <= 0 ? "The Tower rises — its keepers await"
-                    : $"The Tower — {sealedFloors} floor{(sealedFloors == 1 ? "" : "s")} sealed";
+                challengesStrip.text = !online ? Loc.T("Requires an account — log in first")
+                    : sealedFloors <= 0 ? Loc.T("The Tower rises — its keepers await")
+                    : Loc.F("The Tower — {0} floors sealed", sealedFloors);
             }
             if (shopStrip != null)
             {
                 int packs = 0;
                 foreach (var count in PlayerProfile.PackInventory.Values) packs += count;
-                shopStrip.text = !online ? "Requires an account — log in first"
-                    : packs > 0 ? $"{packs} unopened pack{(packs == 1 ? "" : "s")} waiting in your vault"
-                    : "Relic Pack — five cards per seal";
+                shopStrip.text = !online ? Loc.T("Requires an account — log in first")
+                    : packs > 0 ? Loc.F("{0} unopened packs waiting in your vault", packs)
+                    : Loc.T("Relic Pack — five cards per seal");
             }
             if (decksStrip != null)
                 decksStrip.text = online
-                    ? $"{PlayerProfile.Decks.Count} deck{(PlayerProfile.Decks.Count == 1 ? "" : "s")} · {PlayerProfile.Collection.Count} unique cards collected"
-                    : "Browse the starter decks";
+                    ? Loc.F("{0} decks · {1} unique cards collected", PlayerProfile.Decks.Count, PlayerProfile.Collection.Count)
+                    : Loc.T("Browse the starter decks");
 
             RefreshActiveDeck();
             RefreshDaily();
 
             if (onlineText != null)
-                onlineText.text = online ? $"{duelists} DUELIST{(duelists == 1 ? "" : "S")} ONLINE" : "OFFLINE MODE";
+                onlineText.text = online ? Loc.F("{0} DUELISTS ONLINE", duelists) : Loc.T("OFFLINE MODE");
 
             // Alte Fallback-Texte leeren, falls noch verdrahtet
             if (infoText != null) infoText.text = "";
@@ -372,10 +372,10 @@ namespace Rouge.Tcg.UI
                 int index = Mathf.Clamp(PlayerPrefs.GetInt(ActiveDeckPrefKey, 0), 0, PlayerProfile.Decks.Count - 1);
                 deck = PlayerProfile.Decks[index];
             }
-            if (activeDeckName != null) activeDeckName.text = deck != null ? deck.Name : "No deck";
+            if (activeDeckName != null) activeDeckName.text = deck != null ? deck.Name : Loc.T("No deck");
             if (activeDeckComposition != null)
             {
-                if (deck == null || catalog == null) activeDeckComposition.text = "Create a deck in the workshop";
+                if (deck == null || catalog == null) activeDeckComposition.text = Loc.T("Create a deck in the workshop");
                 else
                 {
                     int monsters = 0, spells = 0, artifacts = 0;
@@ -386,7 +386,7 @@ namespace Rouge.Tcg.UI
                         else if (definition is SpellCardData) spells++;
                         else if (definition is ArtifactCardData) artifacts++;
                     }
-                    activeDeckComposition.text = $"{deck.Cards.Count} cards · {monsters} monsters · {spells} spells · {artifacts} artifacts";
+                    activeDeckComposition.text = Loc.F("{0} cards · {1} monsters · {2} spells · {3} artifacts", deck.Cards.Count, monsters, spells, artifacts);
                 }
             }
         }
@@ -409,10 +409,10 @@ namespace Rouge.Tcg.UI
 
             if (dailyRewardText != null)
                 dailyRewardText.text = claimable
-                    ? $"DAY {shownDay} · +{PlayerProfile.DailyRewardCoins} COINS"
-                    : streak == 0 ? $"+{PlayerProfile.DailyRewardCoins} COINS PER DAY" : $"DAY {shownDay} SEALED";
+                    ? Loc.F("DAY {0} · +{1} COINS", shownDay, PlayerProfile.DailyRewardCoins)
+                    : streak == 0 ? Loc.F("+{0} COINS PER DAY", PlayerProfile.DailyRewardCoins) : Loc.F("DAY {0} SEALED", shownDay);
             if (dailyResetText != null && (claimable || !online))
-                dailyResetText.text = !online ? "LOG IN TO CLAIM" : "SEAL READY";
+                dailyResetText.text = Loc.T(!online ? "LOG IN TO CLAIM" : "SEAL READY");
             if (claimButton != null) claimButton.gameObject.SetActive(claimable);
             if (claimedChip != null) claimedChip.SetActive(online && !claimable && streak > 0);
         }

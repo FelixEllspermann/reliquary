@@ -333,7 +333,7 @@ namespace Rouge.Tcg.UI
         {
             if (pileViewer != null) pileViewer.CloseIfBrowsing();
             currentMain = request;
-            SetStatus("Your Main Phase — click a card or drag it onto a zone.");
+            SetStatus(Loc.T("Your Main Phase — click a card or drag it onto a zone."));
             if (battlePhaseButton != null)
                 battlePhaseButton.gameObject.SetActive(request.Options.Any(o => o.Kind == MainActionKind.ToBattlePhase));
             if (endTurnButton != null) endTurnButton.gameObject.SetActive(true);
@@ -464,7 +464,7 @@ namespace Rouge.Tcg.UI
         {
             if (responseToggleLabel != null)
             {
-                responseToggleLabel.text = ResponsesEnabled ? "REACTIONS · ON" : "REACTIONS · OFF";
+                responseToggleLabel.text = Loc.T(ResponsesEnabled ? "REACTIONS · ON" : "REACTIONS · OFF");
                 responseToggleLabel.color = ResponsesEnabled
                     ? new Color(0.56f, 0.90f, 0.66f, 1f)
                     : new Color(0.72f, 0.55f, 0.45f, 1f);
@@ -884,7 +884,7 @@ namespace Rouge.Tcg.UI
             if (cancelButton != null) cancelButton.gameObject.SetActive(false);
             if (currentBattle != null)
             {
-                SetStatus("Battle Phase — click a monster that can attack.");
+                SetStatus(Loc.T("Battle Phase — click a monster that can attack."));
                 ReapplyHighlights();
             }
         }

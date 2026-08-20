@@ -105,43 +105,43 @@ namespace Rouge.Tcg
         {
             if (!canSelfSpecialSummon) return "";
             var parts = new System.Collections.Generic.List<string>();
-            string side = selfSummonChecksOpponentField ? "your opponent controls" : "you control";
+            string side = Loc.T(selfSummonChecksOpponentField ? "your opponent controls" : "you control");
             if (!string.IsNullOrEmpty(selfSummonRequiresNameOnField))
             {
                 int needed = Mathf.Max(1, selfSummonRequiredNameCount);
                 parts.Add(needed > 1
-                    ? $"{side} {needed}+ \"{selfSummonRequiresNameOnField}\" monsters"
-                    : $"{side} a \"{selfSummonRequiresNameOnField}\" monster");
+                    ? Loc.F("{0} {1}+ \"{2}\" monsters", side, needed, selfSummonRequiresNameOnField)
+                    : Loc.F("{0} a \"{1}\" monster", side, selfSummonRequiresNameOnField));
             }
             if (selfSummonRequiresAttribute)
-                parts.Add($"{side} a {selfSummonRequiredAttribute.ToString().ToUpperInvariant()} monster");
+                parts.Add(Loc.F("{0} a {1} monster", side, Loc.T(selfSummonRequiredAttribute.ToString().ToUpperInvariant())));
             if (selfSummonRequiresFaceDownOnField)
-                parts.Add("there is a face-down monster on the field");
+                parts.Add(Loc.T("there is a face-down monster on the field"));
             if (selfSummonRequiresArtifact)
-                parts.Add("you control an Artifact");
+                parts.Add(Loc.T("you control an Artifact"));
             if (selfSummonRequiresOpponentMonsters > 0)
-                parts.Add($"your opponent controls {selfSummonRequiresOpponentMonsters}+ monsters");
+                parts.Add(Loc.F("your opponent controls {0}+ monsters", selfSummonRequiresOpponentMonsters));
             if (selfSummonRequiresMilled)
-                parts.Add("you milled this or last turn");
+                parts.Add(Loc.T("you milled this or last turn"));
             if (selfSummonRequiresGraveNamedCount > 0)
                 parts.Add(string.IsNullOrEmpty(selfSummonRequiresGraveNamed)
-                    ? $"you have {selfSummonRequiresGraveNamedCount}+ cards in your Graveyard"
-                    : $"you have {selfSummonRequiresGraveNamedCount}+ \"{selfSummonRequiresGraveNamed}\" cards in your Graveyard");
-            if (selfSummonRequiresNoOwnMonsters) parts.Add("you control no monsters");
-            if (selfSummonRequiresOwnMonsters > 0) parts.Add($"you control {selfSummonRequiresOwnMonsters}+ monsters");
-            if (selfSummonRequiresLifeBelowOpponent) parts.Add("your LP are lower than your opponent's");
-            if (selfSummonRequiresHandAtMost > 0) parts.Add($"you have {selfSummonRequiresHandAtMost} or fewer other cards in your hand");
-            if (selfSummonRequiresHandAtLeast > 0) parts.Add($"you have {selfSummonRequiresHandAtLeast}+ other cards in your hand");
-            if (selfSummonRequiresOpponentDefenseMonster) parts.Add("your opponent controls a Defense Position monster");
-            if (selfSummonRequiresLienOnField) parts.Add("a monster with a Lien is on the field");
+                    ? Loc.F("you have {0}+ cards in your Graveyard", selfSummonRequiresGraveNamedCount)
+                    : Loc.F("you have {0}+ \"{1}\" cards in your Graveyard", selfSummonRequiresGraveNamedCount, selfSummonRequiresGraveNamed));
+            if (selfSummonRequiresNoOwnMonsters) parts.Add(Loc.T("you control no monsters"));
+            if (selfSummonRequiresOwnMonsters > 0) parts.Add(Loc.F("you control {0}+ monsters", selfSummonRequiresOwnMonsters));
+            if (selfSummonRequiresLifeBelowOpponent) parts.Add(Loc.T("your LP are lower than your opponent's"));
+            if (selfSummonRequiresHandAtMost > 0) parts.Add(Loc.F("you have {0} or fewer other cards in your hand", selfSummonRequiresHandAtMost));
+            if (selfSummonRequiresHandAtLeast > 0) parts.Add(Loc.F("you have {0}+ other cards in your hand", selfSummonRequiresHandAtLeast));
+            if (selfSummonRequiresOpponentDefenseMonster) parts.Add(Loc.T("your opponent controls a Defense Position monster"));
+            if (selfSummonRequiresLienOnField) parts.Add(Loc.T("a monster with a Lien is on the field"));
 
             // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
             // der Kartentext sagt es jedes Mal dazu.
-            string position = selfSummonPosition == BattlePosition.Defense ? " in Defense Position" : "";
-            string cost = selfSummonLifeCost > 0 ? $" by paying {selfSummonLifeCost} LP" : "";
+            string position = selfSummonPosition == BattlePosition.Defense ? Loc.T(" in Defense Position") : "";
+            string cost = selfSummonLifeCost > 0 ? Loc.F(" by paying {0} LP", selfSummonLifeCost) : "";
             if (parts.Count == 0)
-                return $"You can Special Summon this card from your hand{position}{cost} (once per turn).";
-            return $"While {string.Join(" and ", parts)}: You can Special Summon this card from your hand{position}{cost} (once per turn).";
+                return Loc.F("You can Special Summon this card from your hand{0}{1} (once per turn).", position, cost);
+            return Loc.F("While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).", string.Join(Loc.T(" and "), parts), position, cost);
         }
 
         /// <summary>Anzeige-Farbe des Attributs — Pip-Farben aus dem Reliquary-Design-Handoff.</summary>
@@ -162,7 +162,7 @@ namespace Rouge.Tcg
         public string AttributeTypeRichText()
         {
             string hex = ColorUtility.ToHtmlStringRGB(AttributeColor(attribute));
-            return $"<color=#{hex}>{attribute}</color> {monsterType}";
+            return $"<color=#{hex}>{Loc.T(attribute.ToString())}</color> {Loc.T(monsterType.ToString())}";
         }
     }
 }

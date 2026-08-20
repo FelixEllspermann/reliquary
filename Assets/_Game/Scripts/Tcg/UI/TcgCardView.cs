@@ -282,7 +282,7 @@ namespace Rouge.Tcg.UI
             // Name (Cinzel, nameInk, einzeilig)
             if (nameText != null)
             {
-                nameText.text = definition.cardName;
+                nameText.text = Loc.CardName(definition.cardName);
                 nameText.color = inks.name;
             }
 
@@ -303,7 +303,7 @@ namespace Rouge.Tcg.UI
             }
 
             // Badge-Text + dynamische Breite, Meta-Strip füllt den Rest
-            string badge = isReliquary ? "RELIQUARY" : monster != null ? "MONSTER" : spell != null ? "SPELL" : artifact != null ? "ARTIFACT" : "PLAYER";
+            string badge = Loc.T(isReliquary ? "RELIQUARY" : monster != null ? "MONSTER" : spell != null ? "SPELL" : artifact != null ? "ARTIFACT" : "PLAYER");
             if (badgeText != null)
             {
                 badgeText.text = badge;
@@ -316,23 +316,23 @@ namespace Rouge.Tcg.UI
             bool showPip = monster != null;
             if (monster != null)
             {
-                left = monster.attribute.ToString().ToUpperInvariant();
-                right = monster.monsterType.ToString().ToUpperInvariant();
+                left = Loc.T(monster.attribute.ToString().ToUpperInvariant());
+                right = Loc.T(monster.monsterType.ToString().ToUpperInvariant());
                 if (pipImage != null) pipImage.color = AttributePipColor(monster.attribute);
             }
             else if (spell != null)
             {
-                left = "SPELL";
-                right = spell.speed == SpellSpeed.Quick ? "QUICK" : "NORMAL";
+                left = Loc.T("SPELL");
+                right = Loc.T(spell.speed == SpellSpeed.Quick ? "QUICK" : "NORMAL");
             }
             else if (artifact != null)
             {
-                left = "ARTIFACT";
-                right = ArtifactSlotName(artifact.slot).ToUpperInvariant();
+                left = Loc.T("ARTIFACT");
+                right = Loc.T(ArtifactSlotName(artifact.slot).ToUpperInvariant());
             }
             else
             {
-                left = "HERO";
+                left = Loc.T("HERO");
                 right = playerCard != null ? $"{playerCard.startLifePoints} LP" : "";
             }
             if (pipRect != null) pipRect.gameObject.SetActive(showPip);
@@ -443,7 +443,7 @@ namespace Rouge.Tcg.UI
             if (lienChip != null)
             {
                 lienChip.gameObject.SetActive(lien > 0);
-                if (lien > 0 && lienText != null) lienText.text = "LIEN " + lien;
+                if (lien > 0 && lienText != null) lienText.text = Loc.T("LIEN") + " " + lien;
             }
 
             float x = 0f;
@@ -579,7 +579,7 @@ namespace Rouge.Tcg.UI
             if (cChassis != null) cChassis.sprite = skin.CompactChassisFor(definition);
             if (cName != null)
             {
-                cName.text = definition.cardName;
+                cName.text = Loc.CardName(definition.cardName);
                 cName.color = inks.name;
             }
             if (cArt != null)
@@ -598,12 +598,12 @@ namespace Rouge.Tcg.UI
                 if (cPip != null) cPip.color = AttributePipColor(monster.attribute);
                 if (cAttr != null)
                 {
-                    cAttr.text = monster.attribute.ToString().ToUpperInvariant();
+                    cAttr.text = Loc.T(monster.attribute.ToString().ToUpperInvariant());
                     cAttr.color = inks.metaStrong;
                 }
                 if (cType != null)
                 {
-                    cType.text = monster.monsterType.ToString().ToUpperInvariant();
+                    cType.text = Loc.T(monster.monsterType.ToString().ToUpperInvariant());
                     cType.color = inks.metaMuted;
                 }
                 if (cAtk != null) cAtk.text = ColorizeStat(instance.CurrentAtk, monster.atk, inks.statInkStrong);
@@ -617,10 +617,10 @@ namespace Rouge.Tcg.UI
             else if (cFooter != null)
             {
                 string footer = spell != null
-                    ? (spell.speed == SpellSpeed.Quick ? "QUICK SPELL" : "SPELL")
+                    ? Loc.T(spell.speed == SpellSpeed.Quick ? "QUICK SPELL" : "SPELL")
                     : artifact != null
-                        ? $"ARTIFACT · {ArtifactSlotName(artifact.slot).ToUpperInvariant()}"
-                        : "HERO";
+                        ? $"{Loc.T("ARTIFACT")} · {Loc.T(ArtifactSlotName(artifact.slot).ToUpperInvariant())}"
+                        : Loc.T("HERO");
                 cFooter.text = footer;
             }
         }
@@ -648,18 +648,18 @@ namespace Rouge.Tcg.UI
             if (definition is ReliquaryCardData reliquaryData)
             {
                 if (!string.IsNullOrWhiteSpace(reliquaryData.summonText))
-                    prefix = $"<b>SUMMON:</b> {reliquaryData.summonText}";
+                    prefix = $"<b>{Loc.T("SUMMON:")}</b> {Loc.CardSummon(definition.cardName, reliquaryData.summonText)}";
             }
             else if (definition is MonsterCardData monsterData)
             {
                 string condition = monsterData.SelfSummonConditionText();
-                if (!string.IsNullOrEmpty(condition)) prefix = $"<b>SUMMON:</b> {condition}";
+                if (!string.IsNullOrEmpty(condition)) prefix = $"<b>{Loc.T("SUMMON:")}</b> {condition}";
             }
             // Dauerhafte Passiv-Fähigkeiten (Aura, Spott, Kampf-Schild, Rabatt ...)
             var passives = definition.BuildPassiveLines();
             if (passives.Count > 0)
             {
-                string block = "<b>PASSIVE:</b> " + string.Join(" ", passives);
+                string block = $"<b>{Loc.T("PASSIVE:")}</b> " + string.Join(" ", passives);
                 prefix = prefix.Length > 0 ? prefix + "\n" + block : block;
             }
 
@@ -671,24 +671,25 @@ namespace Rouge.Tcg.UI
         private static string BuildEffectList(CardDefinition definition)
         {
             var sb = new System.Text.StringBuilder();
-            foreach (var effect in definition.effects)
+            for (int i = 0; i < definition.effects.Count; i++)
             {
+                var effect = definition.effects[i];
                 if (effect == null || string.IsNullOrWhiteSpace(effect.text)) continue;
                 if (sb.Length > 0) sb.Append('\n');
                 string head;
                 // Manakosten in Mana-Blau: auf der Karte selbst ist der Platz knapp,
                 // die Farbe reicht — das volle Badge trägt die Inspect-Ansicht.
                 // Dunkler Ton, weil das Textfeld der Karte hell ist.
-                string costPart = effect.manaCost > 0 ? $" <color=#155A8A>{effect.manaCost} MANA</color>" : "";
+                string costPart = effect.manaCost > 0 ? $" <color=#155A8A>{Loc.F("{0} MANA", effect.manaCost)}</color>" : "";
                 if (effect.isInfused)
                 {
                     // Coupled = Entweder-oder-Upgrade des Normal-Effekts → "OR INFUSED"
                     head = effect.infusedKind == InfusedKind.Coupled
-                        ? $"OR INFUSED{costPart}:"
-                        : $"INFUSED{costPart}:";
+                        ? $"{Loc.T("OR INFUSED")}{costPart}:"
+                        : $"{Loc.T("INFUSED")}{costPart}:";
                 }
-                else head = $"NORMAL{costPart}:";
-                sb.Append("<b>").Append(head).Append("</b> ").Append(effect.text);
+                else head = $"{Loc.T("NORMAL")}{costPart}:";
+                sb.Append("<b>").Append(head).Append("</b> ").Append(Loc.CardText(definition.cardName, i, effect.text));
             }
             return sb.ToString();
         }

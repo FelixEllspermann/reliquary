@@ -307,7 +307,7 @@ namespace Rouge.Tcg.UI
             typeChipButtons[4] = copy.GetComponent<Button>();
             typeChipBgs[4] = FindSame(template.gameObject, copy, typeChipBgs.Length > 3 ? typeChipBgs[3] : null);
             typeChipLabels[4] = FindSame(template.gameObject, copy, typeChipLabels.Length > 3 ? typeChipLabels[3] : null);
-            if (typeChipLabels[4] != null) typeChipLabels[4].text = TypeChipNames[4];
+            if (typeChipLabels[4] != null) typeChipLabels[4].text = Loc.T(TypeChipNames[4]);
         }
 
         /// <summary>Findet in einer Kopie das Gegenstück zu einer Komponente der Vorlage.</summary>
@@ -437,11 +437,11 @@ namespace Rouge.Tcg.UI
             dropdownLayout.flexibleWidth = 0f;
             sortDropdown.onValueChanged.RemoveAllListeners();
             sortDropdown.ClearOptions();
-            sortDropdown.AddOptions(new List<string>(SortOptionNames));
+            sortDropdown.AddOptions(SortOptionNames.Select(Loc.T).ToList());
             sortDropdown.SetValueWithoutNotify(sortMode);
             sortDropdown.onValueChanged.AddListener(OnSortModeChanged);
 
-            var dirChip = CloneToolbarChip("SortDirChip", "DESC", 64f, rowRect, out sortDirBg, out sortDirLabel);
+            var dirChip = CloneToolbarChip("SortDirChip", Loc.T("DESC"), 64f, rowRect, out sortDirBg, out sortDirLabel);
             if (dirChip != null)
                 dirChip.GetComponent<Button>().onClick.AddListener(() =>
                 {
@@ -459,7 +459,7 @@ namespace Rouge.Tcg.UI
             for (int i = 0; i < ownedNames.Length; i++)
             {
                 int index = i;
-                var chip = CloneToolbarChip("OwnedChip" + ownedNames[i], ownedNames[i],
+                var chip = CloneToolbarChip("OwnedChip" + ownedNames[i], Loc.T(ownedNames[i]),
                     i == 2 ? 84f : i == 3 ? 60f : 74f, rowRect, out ownedChipBgs[i], out ownedChipLabels[i]);
                 ownedChips[i] = chip;
                 if (chip != null)
@@ -497,7 +497,7 @@ namespace Rouge.Tcg.UI
             archetypeDropdown.ClearOptions();
             // "NO ARCHETYPE" steht gleich hinter "ALL": die Generics sind eine
             // eigene Gruppe, keine Restmenge irgendwo unten in der Liste.
-            var archOptions = new List<string> { "ALL ARCHETYPES", "NO ARCHETYPE" };
+            var archOptions = new List<string> { Loc.T("ALL ARCHETYPES"), Loc.T("NO ARCHETYPE") };
             archOptions.AddRange(ArchetypeCatalog.Names.Select(n => n.ToUpperInvariant()));
             archetypeDropdown.AddOptions(archOptions);
             archetypeDropdown.SetValueWithoutNotify(archetypeFilter);
@@ -583,7 +583,7 @@ namespace Rouge.Tcg.UI
             var gold = new Color(200f / 255f, 164f / 255f, 92f / 255f, 1f);
             if (sortDirLabel != null)
             {
-                sortDirLabel.text = sortAscending ? "ASC" : "DESC";
+                sortDirLabel.text = Loc.T(sortAscending ? "ASC" : "DESC");
                 StyleChip(sortDirBg, sortDirLabel, true, gold);
             }
             // Ohne Sammlung (offline/Sandbox) gibt es keinen Besitz zu filtern
@@ -670,6 +670,9 @@ namespace Rouge.Tcg.UI
             {
                 string query = search.Trim().ToLowerInvariant();
                 string haystack = card.cardName.ToLowerInvariant();
+                // In anderer Sprache findet die Suche auch den übersetzten Namen
+                var localizedName = Loc.CardNameOrNull(card.cardName);
+                if (localizedName != null) haystack += " " + localizedName.ToLowerInvariant();
                 if (card is MonsterCardData m)
                 {
                     haystack += " " + m.attribute.ToString().ToLowerInvariant() + " " + m.monsterType.ToString().ToLowerInvariant() + " monster";
@@ -806,8 +809,8 @@ namespace Rouge.Tcg.UI
             if (label != null)
             {
                 label.text = deck != null && !string.IsNullOrEmpty(deck.Hero)
-                    ? "HERO · " + deck.Hero.ToUpperInvariant()
-                    : "CHOOSE YOUR HERO";
+                    ? Loc.T("HERO") + " · " + Loc.CardName(deck.Hero).ToUpperInvariant()
+                    : Loc.T("CHOOSE YOUR HERO");
                 label.enableAutoSizing = true;
                 label.fontSizeMin = 9f;
             }
@@ -887,7 +890,7 @@ namespace Rouge.Tcg.UI
                     pillTextGo.anchorMin = Vector2.zero; pillTextGo.anchorMax = Vector2.one;
                     pillTextGo.offsetMin = Vector2.zero; pillTextGo.offsetMax = Vector2.zero;
                     var pillText = pillTextGo.gameObject.AddComponent<TextMeshProUGUI>();
-                    pillText.text = "HERO CACHE · SHOP";
+                    pillText.text = Loc.T("HERO CACHE · SHOP");
                     pillText.fontSize = 14f;
                     pillText.alignment = TextAlignmentOptions.Center;
                     pillText.color = new Color(1f, 194f / 255f, 77f / 255f, 1f);
@@ -966,7 +969,7 @@ namespace Rouge.Tcg.UI
             title.pivot = new Vector2(0.5f, 1f);
             title.offsetMin = new Vector2(60f, -80f); title.offsetMax = new Vector2(-60f, -30f);
             var titleText = title.gameObject.AddComponent<TextMeshProUGUI>();
-            titleText.text = "CHOOSE YOUR HERO";
+            titleText.text = Loc.T("CHOOSE YOUR HERO");
             titleText.fontSize = 30f;
             titleText.characterSpacing = 10f;
             titleText.alignment = TextAlignmentOptions.Center;
@@ -1705,7 +1708,7 @@ namespace Rouge.Tcg.UI
                              $"<color=#8C7B5F> / {m.monsterType.ToString().ToUpperInvariant()} · LV {m.level} · {m.atk} ATK / {m.def} DEF</color>";
                     break;
                 case SpellCardData s:
-                    header = $"<color=#8FC6D2>{(s.speed == SpellSpeed.Quick ? "QUICK SPELL" : "SPELL")}</color>";
+                    header = $"<color=#8FC6D2>{Loc.T(s.speed == SpellSpeed.Quick ? "QUICK SPELL" : "SPELL")}</color>";
                     break;
                 case ArtifactCardData a:
                     header = $"<color=#B9A3E0>ARTIFACT / {TcgCardView.ArtifactSlotName(a.slot).ToUpperInvariant()}</color>" +
@@ -1843,7 +1846,7 @@ namespace Rouge.Tcg.UI
 
         private void RefreshSaveButton()
         {
-            if (saveLabel != null) saveLabel.text = savedState ? "SAVED ✓" : "SAVE DECK";
+            if (saveLabel != null) saveLabel.text = Loc.T(savedState ? "SAVED ✓" : "SAVE DECK");
         }
 
         private void SaveCurrentDeck()

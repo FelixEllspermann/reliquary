@@ -175,11 +175,11 @@ namespace Rouge.Tcg.UI
 
             string family = VersionFamily(CurrentVersion);
             int total = sections.Sum(s => s.cards.Count);
-            Text(Panel(root, "Title", 80f, 80f, 38f, 984f), "NEW CARDS", 42f, Ink, TextAlignmentOptions.Center);
+            Text(Panel(root, "Title", 80f, 80f, 38f, 984f), Loc.T("NEW CARDS"), 42f, Ink, TextAlignmentOptions.Center);
             Text(Panel(root, "Sub", 80f, 80f, 98f, 950f),
                 total > 0
-                    ? $"{total} CARDS ADDED IN {family} AND ITS PATCHES · POINT AT A CARD TO READ IT"
-                    : $"NOTHING NEW IN {family} YET",
+                    ? Loc.F("{0} CARDS ADDED IN {1} AND ITS PATCHES · POINT AT A CARD TO READ IT", total, family)
+                    : Loc.F("NOTHING NEW IN {0} YET", family),
                 19f, InkDim, TextAlignmentOptions.Center);
 
             var panel = Panel(root, "Body", 80f, 80f, 142f, 34f);
@@ -231,7 +231,7 @@ namespace Rouge.Tcg.UI
             previewRules.alignment = TextAlignmentOptions.TopLeft;
             previewRules.textWrappingMode = TextWrappingModes.Normal;
             previewRules.raycastTarget = false;
-            previewRules.text = "Point at a card to read it.";
+            previewRules.text = Loc.T("Point at a card to read it.");
             ApplyFont(previewRules);
 
             var back = BackRow(left, out var backLabel);
@@ -292,7 +292,7 @@ namespace Rouge.Tcg.UI
                 var element = chipGo.AddComponent<LayoutElement>();
                 element.preferredWidth = i == 0 ? 72f : 118f;
                 element.preferredHeight = 34f;
-                var label = Text(Panel(chipGo.transform, "Label", 0f, 0f, 0f, 0f), KindNames[i], 14f, InkDim, TextAlignmentOptions.Center);
+                var label = Text(Panel(chipGo.transform, "Label", 0f, 0f, 0f, 0f), Loc.T(KindNames[i]), 14f, InkDim, TextAlignmentOptions.Center);
                 label.characterSpacing = 2f;
                 var button = chipGo.AddComponent<Button>();
                 button.transition = Selectable.Transition.None;
@@ -319,7 +319,7 @@ namespace Rouge.Tcg.UI
             bg.sprite = cardSkin != null ? cardSkin.badgeEmber : null;
             bg.type = bg.sprite != null ? Image.Type.Sliced : Image.Type.Simple;
             bg.color = bg.sprite != null ? Color.white : Gold;
-            label = Text(Panel(rect, "Label", 0f, 0f, 0f, 0f), "BACK TO MENU", 21f, Hex("#231A12"), TextAlignmentOptions.Center);
+            label = Text(Panel(rect, "Label", 0f, 0f, 0f, 0f), Loc.T("BACK TO MENU"), 21f, Hex("#231A12"), TextAlignmentOptions.Center);
             label.fontStyle = FontStyles.Bold;
             var button = rect.gameObject.AddComponent<Button>();
             button.transition = Selectable.Transition.None;
@@ -335,7 +335,7 @@ namespace Rouge.Tcg.UI
             for (int i = listContent.childCount - 1; i >= 0; i--) Destroy(listContent.GetChild(i).gameObject);
             preview.gameObject.SetActive(false);
             previewName.text = "";
-            previewRules.text = "Point at a card to read it.";
+            previewRules.text = Loc.T("Point at a card to read it.");
             fill = StartCoroutine(FillRoutine());
         }
 
@@ -356,7 +356,7 @@ namespace Rouge.Tcg.UI
                 shown += cards.Count;
 
                 string title = string.IsNullOrEmpty(section.title) ? section.version : $"{section.version} · {section.title}";
-                var header = Text(Row(listContent, "Header_" + section.version, 44f), $"{title}   <color=#8C7B5F>— {cards.Count} CARDS</color>",
+                var header = Text(Row(listContent, "Header_" + section.version, 44f), $"{title}   <color=#8C7B5F>{Loc.F("— {0} CARDS", cards.Count)}</color>",
                     22f, Ink, TextAlignmentOptions.BottomLeft);
                 header.characterSpacing = 1.5f;
 
@@ -380,8 +380,8 @@ namespace Rouge.Tcg.UI
                 }
             }
             countText.text = shown == all
-                ? $"{all} NEW CARDS"
-                : $"{shown} OF {all} NEW CARDS SHOWN";
+                ? Loc.F("{0} NEW CARDS", all)
+                : Loc.F("{0} OF {1} NEW CARDS SHOWN", shown, all);
             LayoutRebuilder.ForceRebuildLayoutImmediate(listContent);
             listScroll.verticalNormalizedPosition = 1f;
             fill = null;
@@ -417,7 +417,7 @@ namespace Rouge.Tcg.UI
             preview.gameObject.SetActive(true);
             preview.Show(new CardInstance(definition, null), false, upright: true);
             preview.SetHighlight(false);
-            previewName.text = definition.cardName;
+            previewName.text = Loc.CardName(definition.cardName);
             previewRules.text = CardDetailPanel.BuildFormattedRulesText(definition);
         }
 

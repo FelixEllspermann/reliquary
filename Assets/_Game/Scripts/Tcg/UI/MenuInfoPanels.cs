@@ -76,7 +76,7 @@ namespace Rouge.Tcg.UI
 
             if (!string.IsNullOrEmpty(discordUrl) && banlistButton != null)
             {
-                var discord = CloneRailButton(parent, "DiscordButton", "DISCORD", 128f, ref x, y);
+                var discord = CloneRailButton(parent, "DiscordButton", Loc.T("DISCORD"), 128f, ref x, y);
                 // Discord-Blau statt Topbar-Rot: gedreht wird nur der rote Farbton
                 // (beide Fenster, weil Rot im Farbkreis um die Null liegt) — das
                 // Gold der übrigen Topbar bleibt außen vor.
@@ -90,10 +90,10 @@ namespace Rouge.Tcg.UI
                 });
             }
 
-            var howTo = CloneRailButton(parent, "HowToPlayButton", "HOW TO PLAY", 156f, ref x, y);
+            var howTo = CloneRailButton(parent, "HowToPlayButton", Loc.T("HOW TO PLAY"), 156f, ref x, y);
             howTo.onClick.AddListener(() => { SfxManager.Click(); ShowHowToPlay(); });
 
-            var glossary = CloneRailButton(parent, "GlossaryButton", "GLOSSARY", 128f, ref x, y);
+            var glossary = CloneRailButton(parent, "GlossaryButton", Loc.T("GLOSSARY"), 128f, ref x, y);
             glossary.onClick.AddListener(() => { SfxManager.Click(); ShowGlossary(); });
         }
 
@@ -123,7 +123,7 @@ namespace Rouge.Tcg.UI
         public void ShowNews()
         {
             var notes = Resources.Load<TextAsset>("PatchNotes");
-            Show("NEWS", "PATCH NOTES · WHAT CHANGED", notes != null
+            Show(Loc.T("NEWS"), Loc.T("PATCH NOTES · WHAT CHANGED"), notes != null
                 ? Colourise(notes.text)
                 : "<color=#8C7B5F>No patch notes found.</color>");
             // Nur die Patch Notes führen zur NEW-CARDS-Szene — jede andere
@@ -133,7 +133,7 @@ namespace Rouge.Tcg.UI
 
         public void ShowBanlist()
         {
-            Show("BANLIST", "CARD LIMITS · ENFORCED WHEN A DECK IS SAVED",
+            Show(Loc.T("BANLIST"), Loc.T("CARD LIMITS · ENFORCED WHEN A DECK IS SAVED"),
                 BuildBanlistText() + BuildHistoryText());
         }
 
@@ -145,13 +145,15 @@ namespace Rouge.Tcg.UI
         /// </summary>
         public void ShowHowToPlay()
         {
-            var text = Resources.Load<TextAsset>("Tutorial/HowToPlay");
+            // Übersetzte Fassung zuerst; ohne sie bleibt es beim Englischen
+            var text = Loc.Active ? Resources.Load<TextAsset>($"Tutorial/HowToPlay.{Loc.Language}") : null;
+            if (text == null) text = Resources.Load<TextAsset>("Tutorial/HowToPlay");
             if (text == null)
             {
-                Show("HOW TO PLAY", "THE RULES OF THE VAULT", "<color=#8C7B5F>No tutorial found.</color>");
+                Show(Loc.T("HOW TO PLAY"), Loc.T("THE RULES OF THE VAULT"), "<color=#8C7B5F>No tutorial found.</color>");
                 return;
             }
-            ShowBlocks("HOW TO PLAY", "THE RULES OF THE VAULT · SCROLL TO READ", ParseTutorial(text.text));
+            ShowBlocks(Loc.T("HOW TO PLAY"), Loc.T("THE RULES OF THE VAULT · SCROLL TO READ"), ParseTutorial(text.text));
         }
 
         /// <summary>
@@ -160,8 +162,9 @@ namespace Rouge.Tcg.UI
         /// </summary>
         public void ShowGlossary()
         {
-            var text = Resources.Load<TextAsset>("Tutorial/Glossary");
-            Show("GLOSSARY", "EVERY TERM OF THE GAME · A TO Z", text != null
+            var text = Loc.Active ? Resources.Load<TextAsset>($"Tutorial/Glossary.{Loc.Language}") : null;
+            if (text == null) text = Resources.Load<TextAsset>("Tutorial/Glossary");
+            Show(Loc.T("GLOSSARY"), Loc.T("EVERY TERM OF THE GAME · A TO Z"), text != null
                 ? BuildGlossaryText(text.text)
                 : "<color=#8C7B5F>No glossary found.</color>");
         }
@@ -622,9 +625,9 @@ namespace Rouge.Tcg.UI
         private void BuildCloseButton(RectTransform panel)
         {
             if (buttonTemplate == null) return;
-            closeButton = ClonePanelButton(panel, "CloseButton", "CLOSE", 140f, Hide);
+            closeButton = ClonePanelButton(panel, "CloseButton", Loc.T("CLOSE"), 140f, Hide);
             // NEW CARDS: nur in den Patch Notes sichtbar — führt in die Karten-Szene
-            newCardsButton = ClonePanelButton(panel, "NewCardsButton", "NEW CARDS", 170f, () =>
+            newCardsButton = ClonePanelButton(panel, "NewCardsButton", Loc.T("NEW CARDS"), 170f, () =>
             {
                 Hide();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(newCardsSceneName);

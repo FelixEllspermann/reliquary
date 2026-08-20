@@ -28,6 +28,7 @@ namespace Rouge.Tcg.UI
         /// <summary>Kartennamen nach erstem Buchstaben gebündelt, je Bündel längste zuerst.</summary>
         private static Dictionary<char, List<string>> namesByFirstChar;
         private static Dictionary<string, int> kindByName;
+        private static Dictionary<string, string> aliasToEnglish;   // übersetzter Name -> englischer Schlüssel
 
         private TMP_Text text;
 
@@ -144,6 +145,7 @@ namespace Rouge.Tcg.UI
             namesByFirstChar = new Dictionary<char, List<string>>();
             kindByName = new Dictionary<string, int>();
 
+            aliasToEnglish = new Dictionary<string, string>();
             foreach (var card in catalog.cards)
             {
                 if (card == null || string.IsNullOrEmpty(card.cardName)) continue;
@@ -157,6 +159,20 @@ namespace Rouge.Tcg.UI
                     namesByFirstChar[key] = bucket;
                 }
                 bucket.Add(card.cardName);
+
+                // In anderer Sprache verlinken auch die übersetzten Namen (zh-Texte)
+                var localized = Loc.CardNameOrNull(card.cardName);
+                if (localized != null && !kindByName.ContainsKey(localized))
+                {
+                    kindByName[localized] = KindOf(card);
+                    aliasToEnglish[localized] = card.cardName;
+                    if (!namesByFirstChar.TryGetValue(localized[0], out var localizedBucket))
+                    {
+                        localizedBucket = new List<string>();
+                        namesByFirstChar[localized[0]] = localizedBucket;
+                    }
+                    localizedBucket.Add(localized);
+                }
             }
             foreach (var bucket in namesByFirstChar.Values)
                 bucket.Sort((a, b) => b.Length.CompareTo(a.Length));
@@ -167,7 +183,9 @@ namespace Rouge.Tcg.UI
             if (panel == null || catalog == null || text == null) return;
             int linkIndex = TMP_TextUtilities.FindIntersectingLink(text, eventData.position, eventData.enterEventCamera);
             if (linkIndex < 0) return;
-            var definition = catalog.FindByName(text.textInfo.linkInfo[linkIndex].GetLinkID());
+            string linkId = text.textInfo.linkInfo[linkIndex].GetLinkID();
+            if (aliasToEnglish != null && aliasToEnglish.TryGetValue(linkId, out var english)) linkId = english;
+            var definition = catalog.FindByName(linkId);
             if (definition != null) panel.ShowDefinition(definition);
         }
     }

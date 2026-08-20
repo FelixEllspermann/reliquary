@@ -38,6 +38,7 @@ namespace Rouge.Tcg.UI
         private Slider shakeSlider;
         private TMP_Text shakePercent;
         private TMP_Text sfxLabel;      // gemerkt, damit die dritte Zeile ihn klonen kann
+        private TMP_Text languageValue; // klickbarer Sprachwechsler (vierte Zeile)
         private float rowSpacing = 52f;
 
         private void Awake()
@@ -48,6 +49,7 @@ namespace Rouge.Tcg.UI
             if (musicSlider != null) musicSlider.onValueChanged.AddListener(OnMusicChanged);
             BuildSfxRow();
             BuildShakeRow();
+            BuildLanguageRow();
             if (overlay != null) overlay.SetActive(false);
         }
 
@@ -96,7 +98,7 @@ namespace Rouge.Tcg.UI
             if (label != null)
             {
                 sfxLabel = CopyToRow(label.gameObject, parent, "SfxLabel", targetY).GetComponent<TMP_Text>();
-                if (sfxLabel != null) sfxLabel.text = "SOUND";
+                if (sfxLabel != null) sfxLabel.text = Loc.T("SOUND");
             }
 
             if (sfxSlider == null) return;
@@ -126,10 +128,10 @@ namespace Rouge.Tcg.UI
             if (sfxLabel != null)
             {
                 var labelCopy = CopyToRow(sfxLabel.gameObject, parent, "ShakeLabel", targetY).GetComponent<TMP_Text>();
-                if (labelCopy != null) labelCopy.text = "SCREEN SHAKE";
+                if (labelCopy != null) labelCopy.text = Loc.T("SCREEN SHAKE");
             }
 
-            MakeRoomForThirdRow();
+            MakeRoomForRow(targetY);
 
             if (shakeSlider == null) return;
             shakeSlider.minValue = 0f;
@@ -139,14 +141,64 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>
-        /// Das Panel war für zwei Zeilen gebaut — die dritte braucht Platz, sonst liegt
+        /// Vierte Zeile: die Sprache. Beschriftung links wie bei den Reglern, rechts
+        /// statt Slider ein klickbarer Wert (ENGLISH / 简体中文) — ein Klick wechselt
+        /// und lädt das Menü in der neuen Sprache neu.
+        /// </summary>
+        private void BuildLanguageRow()
+        {
+            if (shakeSlider == null || shakePercent == null || sfxLabel == null) return;
+            var parent = shakeSlider.transform.parent as RectTransform;
+            if (parent == null) return;
+
+            float shakeY = ((RectTransform)shakeSlider.transform).anchoredPosition.y;
+            float targetY = shakeY - rowSpacing;
+
+            var label = CopyToRow(sfxLabel.gameObject, parent, "LanguageLabel", targetY).GetComponent<TMP_Text>();
+            if (label != null) label.text = Loc.T("LANGUAGE");
+
+            languageValue = CopyToRow(shakePercent.gameObject, parent, "LanguageValue", targetY).GetComponent<TMP_Text>();
+            if (languageValue != null)
+            {
+                // Breiter als die Prozentwerte, damit der Sprachname und der
+                // Klickbereich Platz haben; die Schrift kommt über den TMP-Fallback
+                // auch mit chinesischen Glyphen zurecht (LocBoot).
+                var rect = (RectTransform)languageValue.transform;
+                rect.sizeDelta = new Vector2(rect.sizeDelta.x + 150f, rect.sizeDelta.y + 10f);
+                rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - 75f, rect.anchoredPosition.y);
+                UpdateLanguageValue();
+                var button = languageValue.gameObject.AddComponent<Button>();
+                button.transition = Selectable.Transition.None;
+                button.onClick.AddListener(CycleLanguage);
+            }
+
+            // Der Regler-Platz der Zeile bleibt leer — der Wert selbst ist der Knopf.
+            MakeRoomForRow(targetY);
+        }
+
+        private void UpdateLanguageValue()
+        {
+            if (languageValue == null) return;
+            languageValue.text = Loc.Language == Loc.ChineseSimplified ? "简体中文 ‹›" : "ENGLISH ‹›";
+        }
+
+        private void CycleLanguage()
+        {
+            SfxManager.Click();
+            PlayerPrefs.Save();
+            // Wechsel + Neuladen der Szene: alle Menüs bauen sich in der neuen Sprache auf
+            LocBoot.Switch(Loc.Language == Loc.English ? Loc.ChineseSimplified : Loc.English);
+        }
+
+        /// <summary>
+        /// Das Panel war für zwei Zeilen gebaut — jede weitere braucht Platz, sonst liegt
         /// der DONE-Knopf auf dem Regler. Panel wächst nach unten, alles unterhalb der
         /// neuen Zeile rutscht mit.
         /// </summary>
-        private void MakeRoomForThirdRow()
+        private void MakeRoomForRow(float rowY)
         {
-            if (panel == null || shakeSlider == null) return;
-            float shakeY = ((RectTransform)shakeSlider.transform).anchoredPosition.y;
+            if (panel == null) return;
+            float shakeY = rowY;
             float oldHeight = panel.rect.height;
 
             // Der sichtbare Kasten sind eigene Kinder (Hintergrund, Rahmen) mit fester
@@ -200,7 +252,7 @@ namespace Rouge.Tcg.UI
         private void UpdateShakeLabel(float value)
         {
             if (shakePercent == null) return;
-            shakePercent.text = value <= 0.001f ? "OFF" : $"{Mathf.RoundToInt(value / 1.5f * 100f)}%";
+            shakePercent.text = value <= 0.001f ? Loc.T("OFF") : $"{Mathf.RoundToInt(value / 1.5f * 100f)}%";
         }
 
         private static GameObject CopyToRow(GameObject original, RectTransform parent, string name, float y)
