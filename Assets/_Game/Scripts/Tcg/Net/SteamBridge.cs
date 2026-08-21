@@ -24,6 +24,21 @@ namespace Rouge.Tcg.Net
         /// <summary>Steam-Anzeigename (leer, wenn nicht verfügbar).</summary>
         public static string PersonaName { get; private set; } = "";
 
+        /// <summary>
+        /// Die Sprache, in der Steam dieses Spiel ausliefert (API-Code wie
+        /// "english", "german", "schinese") — leer, wenn Steam nicht läuft.
+        /// </summary>
+        public static string GameLanguage
+        {
+            get
+            {
+#if STEAMWORKS_NET
+                if (Available) return Steamworks.SteamApps.GetCurrentGameLanguage() ?? "";
+#endif
+                return "";
+            }
+        }
+
         /// <summary>Warum Steam nicht bereit ist — für die Statuszeile im Login.</summary>
         public static string UnavailableReason { get; private set; } = "Steam support is not built into this version.";
 

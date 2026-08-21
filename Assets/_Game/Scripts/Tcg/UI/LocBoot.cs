@@ -35,7 +35,14 @@ namespace Rouge.Tcg.UI
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Boot()
         {
-            Apply(PlayerPrefs.GetString(PrefKey, Loc.English));
+            // Manuelle Wahl (Settings) gewinnt; ohne sie folgt das Spiel bei jedem
+            // Start der Steam-Sprache (bzw. der OS-Sprache, wenn Steam nicht läuft).
+            // Die Auto-Erkennung wird bewusst NICHT gespeichert — erst der erste
+            // Wechsel im Settings-Menü legt die Wahl fest.
+            Apply(PlayerPrefs.HasKey(PrefKey)
+                    ? PlayerPrefs.GetString(PrefKey, Loc.English)
+                    : DetectDefaultLanguage(),
+                persist: false);
             if (!hooked)
             {
                 hooked = true;
@@ -68,10 +75,34 @@ namespace Rouge.Tcg.UI
             }
         }
 
-        /// <summary>Sprache setzen + Tabellen (neu) laden. Persistiert die Wahl.</summary>
-        public static void Apply(string language)
+        /// <summary>
+        /// Ohne gespeicherte Wahl: die Sprache, in der Steam das Spiel ausliefert,
+        /// sonst die OS-Sprache, sonst Englisch. Initialise ist idempotent — so ist
+        /// die Reihenfolge der Boot-Hooks (LocBoot vs. SteamRuntime) egal.
+        /// </summary>
+        private static string DetectDefaultLanguage()
         {
-            PlayerPrefs.SetString(PrefKey, language);
+            Net.SteamBridge.Initialise();
+            switch (Net.SteamBridge.GameLanguage)
+            {
+                case "german": return Loc.German;
+                case "schinese": return Loc.ChineseSimplified;
+                case "": break;                 // kein Steam — das OS fragen
+                default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
+            }
+            switch (Application.systemLanguage)
+            {
+                case SystemLanguage.German: return Loc.German;
+                case SystemLanguage.Chinese:
+                case SystemLanguage.ChineseSimplified: return Loc.ChineseSimplified;
+                default: return Loc.English;
+            }
+        }
+
+        /// <summary>Sprache setzen + Tabellen (neu) laden. Persistiert nur auf Wunsch.</summary>
+        public static void Apply(string language, bool persist = true)
+        {
+            if (persist) PlayerPrefs.SetString(PrefKey, language);
             Loc.Language = language;
             if (language == Loc.English)
             {

@@ -166,14 +166,62 @@ namespace Rouge.Tcg.UI
                 var rect = (RectTransform)languageValue.transform;
                 rect.sizeDelta = new Vector2(rect.sizeDelta.x + 150f, rect.sizeDelta.y + 10f);
                 rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - 75f, rect.anchoredPosition.y);
+                languageValue.alignment = TextAlignmentOptions.Center;
                 UpdateLanguageValue();
-                var button = languageValue.gameObject.AddComponent<Button>();
-                button.transition = Selectable.Transition.None;
-                button.onClick.AddListener(CycleLanguage);
+                MakeClickable(languageValue, () => CycleLanguage(+1));
+                BuildArrow(rect, left: true);
+                BuildArrow(rect, left: false);
             }
 
             // Der Regler-Platz der Zeile bleibt leer — der Wert selbst ist der Knopf.
             MakeRoomForRow(targetY);
+        }
+
+        /// <summary>
+        /// Macht ein TMP-Label per Maus klickbar. Die geklonten Prozent-Labels sind
+        /// reine Anzeigen (raycastTarget aus) — ohne Raycast-Ziel und targetGraphic
+        /// trifft der Mausklick den Button nie. Hover hellt den Text leicht auf.
+        /// </summary>
+        private static void MakeClickable(TMP_Text text, UnityEngine.Events.UnityAction onClick)
+        {
+            text.raycastTarget = true;
+            var button = text.gameObject.AddComponent<Button>();
+            button.targetGraphic = text;
+            button.transition = Selectable.Transition.ColorTint;
+            var colors = button.colors;
+            colors.normalColor = new Color(1f, 1f, 1f, 0.82f);
+            colors.highlightedColor = Color.white;
+            colors.pressedColor = new Color(1f, 1f, 1f, 0.55f);
+            colors.selectedColor = colors.normalColor;
+            colors.fadeDuration = 0.08f;
+            button.colors = colors;
+            button.onClick.AddListener(onClick);
+        }
+
+        /// <summary>
+        /// ‹/›-Knopf an der Kante des Sprachwerts — blättert rückwärts/vorwärts.
+        /// Als Kind des Wert-Rects verankert, damit keine Pivot-Arithmetik nötig ist;
+        /// der Kind-Raycast gewinnt gegen den Wert-Button darunter.
+        /// </summary>
+        private void BuildArrow(RectTransform valueRect, bool left)
+        {
+            var go = new GameObject(left ? "LanguagePrev" : "LanguageNext", typeof(RectTransform));
+            go.transform.SetParent(valueRect, false);
+            var arrow = go.AddComponent<TextMeshProUGUI>();
+            arrow.font = languageValue.font;
+            arrow.fontSharedMaterial = languageValue.fontSharedMaterial;
+            arrow.fontSize = languageValue.fontSize * 1.25f;
+            arrow.color = languageValue.color;
+            arrow.text = left ? "‹" : "›";
+            arrow.alignment = TextAlignmentOptions.Center;
+
+            var rect = (RectTransform)go.transform;
+            rect.anchorMin = rect.anchorMax = new Vector2(left ? 0f : 1f, 0.5f);
+            rect.pivot = new Vector2(left ? 0f : 1f, 0.5f);
+            rect.sizeDelta = new Vector2(44f, valueRect.rect.height + 10f);
+            rect.anchoredPosition = Vector2.zero;
+
+            MakeClickable(arrow, () => CycleLanguage(left ? -1 : +1));
         }
 
         /// <summary>Reihenfolge des Sprachwechslers — neue Sprachen hier anhängen.</summary>
@@ -189,15 +237,15 @@ namespace Rouge.Tcg.UI
         private void UpdateLanguageValue()
         {
             if (languageValue == null) return;
-            languageValue.text = LanguageDisplayName(Loc.Language) + " ‹›";
+            languageValue.text = LanguageDisplayName(Loc.Language);
         }
 
-        private void CycleLanguage()
+        private void CycleLanguage(int direction)
         {
             SfxManager.Click();
             PlayerPrefs.Save();
             int index = System.Array.IndexOf(LanguageCycle, Loc.Language);
-            string next = LanguageCycle[(index + 1 + LanguageCycle.Length) % LanguageCycle.Length];
+            string next = LanguageCycle[(index + direction + LanguageCycle.Length) % LanguageCycle.Length];
             // Wechsel + Neuladen der Szene: alle Menüs bauen sich in der neuen Sprache auf
             LocBoot.Switch(next);
         }
