@@ -395,3 +395,29 @@ SHOWCASE — CLICK A SLOT TO DISPLAY A CARD	VITRINE — KLICKE EINEN PLATZ, UM E
 ENTER THE VAULT	BETRITT DAS GEWÖLBE
 THE VAULT'S ONE SEAL	DAS EINE SIEGEL DES GEWÖLBES
 {0} terms. Card texts use exactly these words.	{0} Begriffe. Kartentexte verwenden genau diese Wörter.
+# ---------- Login ----------
+SIGN IN	ANMELDEN
+REGISTER	REGISTRIEREN
+LOG IN	EINLOGGEN
+CREATE ACCOUNT	KONTO ERSTELLEN
+UNSEALING…	ENTSIEGELN…
+DUELIST NAME	DUELLANTEN-NAME
+PASSWORD	PASSWORT
+SHOW	ZEIGEN
+HIDE	VERBERGEN
+Keep me sealed in	Angemeldet bleiben
+Lost your seal?	Siegel verloren?
+Your name, duelist	Dein Name, Duellant
+Your seal phrase	Deine Siegelphrase
+CONTINUE WITH STEAM	WEITER MIT STEAM
+CONTINUE AS {0}	WEITER ALS {0}
+Reaching for the vault…	Verbinde mit dem Gewölbe…
+Vault unreachable — retrying may help	Gewölbe nicht erreichbar — ein neuer Versuch kann helfen
+Vault unreachable — retrying…	Gewölbe nicht erreichbar — neuer Versuch…
+Connected to the vault	Mit dem Gewölbe verbunden
+Not connected to the vault.	Keine Verbindung zum Gewölbe.
+Name too short (min. 3 characters).	Name zu kurz (mind. 3 Zeichen).
+Password too short (min. 4 characters).	Passwort zu kurz (mind. 4 Zeichen).
+Your vault holds {0} cards and {1} deck.	Dein Gewölbe enthält {0} Karten und {1} Deck.
+Your vault holds {0} cards and {1} decks.	Dein Gewölbe enthält {0} Karten und {1} Decks.
+APPLY	ANWENDEN

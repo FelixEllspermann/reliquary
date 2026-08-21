@@ -396,3 +396,29 @@ DAY {0} · +{1} COINS	第{0}天 · +{1}金币
 DAY {0} SEALED	第{0}天已封印
 SEAL READY	封印就绪
 {0} terms. Card texts use exactly these words.	{0} 个词条。卡牌文本使用的正是这些词。
+# ---------- Login ----------
+SIGN IN	登录
+REGISTER	注册
+LOG IN	登录
+CREATE ACCOUNT	创建账户
+UNSEALING…	解封中…
+DUELIST NAME	决斗者名称
+PASSWORD	密码
+SHOW	显示
+HIDE	隐藏
+Keep me sealed in	保持登录
+Lost your seal?	封印丢失了？
+Your name, duelist	你的名字，决斗者
+Your seal phrase	你的封印咒语
+CONTINUE WITH STEAM	通过 STEAM 继续
+CONTINUE AS {0}	以 {0} 的身份继续
+Reaching for the vault…	正在连接秘库…
+Vault unreachable — retrying may help	无法连接秘库——重试可能有用
+Vault unreachable — retrying…	无法连接秘库——正在重试…
+Connected to the vault	已连接秘库
+Not connected to the vault.	尚未连接秘库。
+Name too short (min. 3 characters).	名字太短（至少3个字符）。
+Password too short (min. 4 characters).	密码太短（至少4个字符）。
+Your vault holds {0} cards and {1} deck.	你的秘库中有{0}张卡和{1}副卡组。
+Your vault holds {0} cards and {1} decks.	你的秘库中有{0}张卡和{1}副卡组。
+APPLY	应用

@@ -39,6 +39,9 @@ namespace Rouge.Tcg.UI
         private TMP_Text shakePercent;
         private TMP_Text sfxLabel;      // gemerkt, damit die dritte Zeile ihn klonen kann
         private TMP_Text languageValue; // klickbarer Sprachwechsler (vierte Zeile)
+        private string pendingLanguage; // Auswahl in der Zeile — wirkt erst mit ANWENDEN
+        private Button applyButton;
+        private CanvasGroup applyGroup;
         private float rowSpacing = 52f;
 
         private void Awake()
@@ -67,6 +70,10 @@ namespace Rouge.Tcg.UI
 
             if (shakeSlider != null) shakeSlider.SetValueWithoutNotify(ScreenShake.Strength);
             UpdateShakeLabel(ScreenShake.Strength);
+
+            pendingLanguage = Loc.Language;
+            UpdateLanguageValue();
+            RefreshApplyState();
             StartAnim(true);
         }
 
@@ -142,8 +149,9 @@ namespace Rouge.Tcg.UI
 
         /// <summary>
         /// Vierte Zeile: die Sprache. Beschriftung links wie bei den Reglern, rechts
-        /// statt Slider ein klickbarer Wert (ENGLISH / 简体中文) — ein Klick wechselt
-        /// und lädt das Menü in der neuen Sprache neu.
+        /// ein Wert mit ‹/›-Pfeilen. Blättern ändert nur die AUSWAHL — gewechselt
+        /// wird erst mit ANWENDEN (Knopf neben FERTIG), das lädt die Szene neu und
+        /// schließt damit auch das Menü.
         /// </summary>
         private void BuildLanguageRow()
         {
@@ -167,14 +175,51 @@ namespace Rouge.Tcg.UI
                 rect.sizeDelta = new Vector2(rect.sizeDelta.x + 150f, rect.sizeDelta.y + 10f);
                 rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - 75f, rect.anchoredPosition.y);
                 languageValue.alignment = TextAlignmentOptions.Center;
+                pendingLanguage = Loc.Language;
                 UpdateLanguageValue();
                 MakeClickable(languageValue, () => CycleLanguage(+1));
                 BuildArrow(rect, left: true);
                 BuildArrow(rect, left: false);
             }
 
+            BuildApplyButton();
+
             // Der Regler-Platz der Zeile bleibt leer — der Wert selbst ist der Knopf.
             MakeRoomForRow(targetY);
+        }
+
+        /// <summary>
+        /// ANWENDEN neben FERTIG — ausgegraut, solange die Auswahl der aktiven
+        /// Sprache entspricht. Der Klon übernimmt den FERTIG-Stil; seine
+        /// Inspector-Listener werden durch ein frisches Event ersetzt.
+        /// </summary>
+        private void BuildApplyButton()
+        {
+            if (doneButton == null) return;
+            var doneRect = (RectTransform)doneButton.transform;
+            var go = Instantiate(doneButton.gameObject, doneRect.parent);
+            go.name = "ApplyButton";
+
+            applyButton = go.GetComponent<Button>();
+            applyButton.onClick = new Button.ButtonClickedEvent();
+            applyButton.onClick.AddListener(ApplyLanguage);
+            applyGroup = go.AddComponent<CanvasGroup>();
+
+            var applyRect = (RectTransform)go.transform;
+            applyRect.sizeDelta = new Vector2(applyRect.sizeDelta.x + 36f, applyRect.sizeDelta.y);
+
+            var labelText = go.GetComponentInChildren<TMP_Text>();
+            if (labelText != null) labelText.text = Loc.T("APPLY");
+
+            // FERTIG nach links, ANWENDEN rechts daneben — Kantenabstand = gap.
+            const float gap = 12f;
+            float doneW = doneRect.sizeDelta.x;
+            float applyW = applyRect.sizeDelta.x;
+            float baseX = doneRect.anchoredPosition.x;
+            doneRect.anchoredPosition = new Vector2(baseX - (applyW + gap) * 0.5f, doneRect.anchoredPosition.y);
+            applyRect.anchoredPosition = new Vector2(baseX + (doneW + gap) * 0.5f, applyRect.anchoredPosition.y);
+
+            RefreshApplyState();
         }
 
         /// <summary>
@@ -237,17 +282,34 @@ namespace Rouge.Tcg.UI
         private void UpdateLanguageValue()
         {
             if (languageValue == null) return;
-            languageValue.text = LanguageDisplayName(Loc.Language);
+            languageValue.text = LanguageDisplayName(pendingLanguage ?? Loc.Language);
         }
 
+        /// <summary>Blättert nur die Auswahl — gewechselt wird erst mit ANWENDEN.</summary>
         private void CycleLanguage(int direction)
         {
             SfxManager.Click();
-            PlayerPrefs.Save();
-            int index = System.Array.IndexOf(LanguageCycle, Loc.Language);
-            string next = LanguageCycle[(index + direction + LanguageCycle.Length) % LanguageCycle.Length];
-            // Wechsel + Neuladen der Szene: alle Menüs bauen sich in der neuen Sprache auf
-            LocBoot.Switch(next);
+            int index = System.Array.IndexOf(LanguageCycle, pendingLanguage ?? Loc.Language);
+            pendingLanguage = LanguageCycle[(index + direction + LanguageCycle.Length) % LanguageCycle.Length];
+            UpdateLanguageValue();
+            RefreshApplyState();
+        }
+
+        private void RefreshApplyState()
+        {
+            bool dirty = pendingLanguage != null && pendingLanguage != Loc.Language;
+            if (applyButton != null) applyButton.interactable = dirty;
+            if (applyGroup != null) applyGroup.alpha = dirty ? 1f : 0.45f;
+        }
+
+        private void ApplyLanguage()
+        {
+            if (pendingLanguage == null || pendingLanguage == Loc.Language) return;
+            SfxManager.Click();
+            // Wechsel + Neuladen der Szene: alle Menüs bauen sich in der neuen
+            // Sprache auf, das Overlay ist damit zu. Erst hier wird die Wahl
+            // gespeichert — blättern allein ändert nichts.
+            LocBoot.Switch(pendingLanguage);
         }
 
         /// <summary>

@@ -105,10 +105,10 @@ namespace Rouge.Tcg.UI
                 network.OnConnected += HandleConnected;
                 network.OnDisconnected += HandleDisconnected;
                 network.OnMessage += HandleMessage;
-                SetStatus(false, "Reaching for the vault…");
+                SetStatus(false, Loc.T("Reaching for the vault…"));
                 network.Connect();
             }
-            else SetStatus(false, "Vault unreachable — retrying may help");
+            else SetStatus(false, Loc.T("Vault unreachable — retrying may help"));
         }
 
         private void OnDestroy()
@@ -150,7 +150,7 @@ namespace Rouge.Tcg.UI
             ClearError();
             ApplyTabVisual(signInTabBg, signInTabLabel, !register);
             ApplyTabVisual(registerTabBg, registerTabLabel, register);
-            if (primaryLabel != null && !busy) primaryLabel.text = register ? "CREATE ACCOUNT" : "LOG IN";
+            if (primaryLabel != null && !busy) primaryLabel.text = register ? Loc.T("CREATE ACCOUNT") : Loc.T("LOG IN");
         }
 
         private void ApplyTabVisual(Image bg, TMP_Text label, bool active)
@@ -173,7 +173,7 @@ namespace Rouge.Tcg.UI
                 passInput.contentType = showPassword ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
                 passInput.ForceLabelUpdate();
             }
-            if (showPasswordLabel != null) showPasswordLabel.text = showPassword ? "HIDE" : "SHOW";
+            if (showPasswordLabel != null) showPasswordLabel.text = showPassword ? Loc.T("HIDE") : Loc.T("SHOW");
         }
 
         private void ToggleRemember()
@@ -231,7 +231,7 @@ namespace Rouge.Tcg.UI
         private void SetBusy(bool value)
         {
             busy = value;
-            if (primaryLabel != null) primaryLabel.text = value ? "UNSEALING…" : (registerMode ? "CREATE ACCOUNT" : "LOG IN");
+            if (primaryLabel != null) primaryLabel.text = value ? Loc.T("UNSEALING…") : (registerMode ? Loc.T("CREATE ACCOUNT") : Loc.T("LOG IN"));
             if (formGroup != null)
             {
                 formGroup.interactable = !value;
@@ -273,14 +273,14 @@ namespace Rouge.Tcg.UI
         {
             if (retryRoutine != null) { StopCoroutine(retryRoutine); retryRoutine = null; }
             SetAuthEnabled(true);
-            SetStatus(true, "Connected to the vault");
+            SetStatus(true, Loc.T("Connected to the vault"));
         }
 
         private void HandleDisconnected(string reason)
         {
             SetBusy(false);
             SetAuthEnabled(false);
-            SetStatus(false, "Vault unreachable — retrying…");
+            SetStatus(false, Loc.T("Vault unreachable — retrying…"));
             if (retryRoutine == null) retryRoutine = StartCoroutine(RetryConnect());
         }
 
@@ -291,10 +291,10 @@ namespace Rouge.Tcg.UI
             {
                 yield return new WaitForSecondsRealtime(5f);
                 if (network == null || network.IsConnected) break;
-                SetStatus(false, "Reaching for the vault…");
+                SetStatus(false, Loc.T("Reaching for the vault…"));
                 network.Connect();
                 yield return new WaitForSecondsRealtime(2f);
-                if (network != null && !network.IsConnected) SetStatus(false, "Vault unreachable — retrying…");
+                if (network != null && !network.IsConnected) SetStatus(false, Loc.T("Vault unreachable — retrying…"));
             }
             retryRoutine = null;
         }
@@ -302,11 +302,11 @@ namespace Rouge.Tcg.UI
         private void Authenticate(bool register)
         {
             if (busy) return;
-            if (network == null || !network.IsConnected) { ShowError("Not connected to the vault."); return; }
+            if (network == null || !network.IsConnected) { ShowError(Loc.T("Not connected to the vault.")); return; }
             string name = nameInput != null ? nameInput.text.Trim() : "";
             string pass = passInput != null ? passInput.text : "";
-            if (name.Length < 3) { ShowError("Name too short (min. 3 characters)."); return; }
-            if (pass.Length < 4) { ShowError("Password too short (min. 4 characters)."); return; }
+            if (name.Length < 3) { ShowError(Loc.T("Name too short (min. 3 characters).")); return; }
+            if (pass.Length < 4) { ShowError(Loc.T("Password too short (min. 4 characters).")); return; }
             ClearError();
             SetBusy(true);
             if (register) network.SendRegister(name, pass);
@@ -328,15 +328,15 @@ namespace Rouge.Tcg.UI
             if (available && steamLabel != null)
             {
                 steamLabel.text = string.IsNullOrEmpty(SteamBridge.PersonaName)
-                    ? "CONTINUE WITH STEAM"
-                    : $"CONTINUE AS {SteamBridge.PersonaName.ToUpperInvariant()}";
+                    ? Loc.T("CONTINUE WITH STEAM")
+                    : Loc.F("CONTINUE AS {0}", SteamBridge.PersonaName.ToUpperInvariant());
             }
         }
 
         private void AuthenticateWithSteam()
         {
             if (busy) return;
-            if (network == null || !network.IsConnected) { ShowError("Not connected to the vault."); return; }
+            if (network == null || !network.IsConnected) { ShowError(Loc.T("Not connected to the vault.")); return; }
             ClearError();
             SetBusy(true);
             // Das Ticket kommt asynchron — erst wenn Steam es freigegeben hat,
@@ -362,8 +362,9 @@ namespace Rouge.Tcg.UI
 
             int cards = 0;
             foreach (var count in PlayerProfile.Collection.Values) cards += count;
-            string vaultLine = $"Your vault holds {cards} cards and {PlayerProfile.Decks.Count} "
-                + (PlayerProfile.Decks.Count == 1 ? "deck." : "decks.");
+            string vaultLine = PlayerProfile.Decks.Count == 1
+                ? Loc.F("Your vault holds {0} cards and {1} deck.", cards, PlayerProfile.Decks.Count)
+                : Loc.F("Your vault holds {0} cards and {1} decks.", cards, PlayerProfile.Decks.Count);
 
             var transition = VaultEnterTransition.Play(
                 PlayerProfile.AccountName, vaultLine, PlayerProfile.OnlineCount);
