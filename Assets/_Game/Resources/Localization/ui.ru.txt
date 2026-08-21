@@ -1,0 +1,423 @@
+# RELIQUARY — UI-Übersetzung Russisch
+# Format: englischer Text <TAB> Übersetzung. '#' = Kommentar.
+# Werte werden NICHT getrimmt — Leerzeichen in Bausteinen sind Absicht.
+# Konventionen: Anrede „вы"; Zonen groß (Кладбище, Колода, Изгнание, Экстра-колода);
+# ATK/DEF/LP lateinisch, мана kyrillisch; Phasen übersetzt; INFUSED bleibt.
+# ---------- Kartenrahmen / Kartentypen ----------
+MONSTER	МОНСТР
+SPELL	ЗАКЛИНАНИЕ
+ARTIFACT	АРТЕФАКТ
+RELIQUARY	РЕЛИКВИЯ
+PLAYER	ИГРОК
+HERO	ГЕРОЙ
+QUICK	БЫСТРОЕ
+NORMAL	ОБЫЧНОЕ
+QUICK SPELL	БЫСТРОЕ ЗАКЛИНАНИЕ
+Quick Spell	Быстрое заклинание
+Spell Card	Карта заклинания
+Artifact	Артефакт
+Monster	Монстр
+Player	Игрок
+Field	Поле
+FIELD	ПОЛЕ
+LIEN	ЗАЛОГ
+SUMMON:	ПРИЗЫВ:
+PASSIVE:	ПАССИВНО:
+INFUSED	INFUSED
+OR INFUSED	ИЛИ INFUSED
+INFUSED UPGRADE	INFUSED-УЛУЧШЕНИЕ
+RELIQUARY SUMMON	ПРИЗЫВ РЕЛИКВИИ
+SPECIAL SUMMON	ОСОБЫЙ ПРИЗЫВ
+PASSIVE	ПАССИВНО
+{0} MANA	{0} МАНЫ
+NO MANA	БЕЗ МАНЫ
+No effect.	Без эффекта.
+— or, instead —	— или вместо этого —
+Equipped:	Экипировано:
+You cannot see this card.	Вы не видите эту карту.
+Face-down card	Закрытая карта
+{0} • Level {1} • ATK {2} / DEF {3}	{0} • Уровень {1} • ATK {2} / DEF {3}
+Player Card • {0} starting LP	Карта игрока • {0} стартовых LP
+# ---------- Attribute ----------
+FIRE	ОГОНЬ
+WATER	ВОДА
+LIGHT	СВЕТ
+DARK	ТЬМА
+EARTH	ЗЕМЛЯ
+WIND	ВЕТЕР
+Fire	Огонь
+Water	Вода
+Light	Свет
+Dark	Тьма
+Earth	Земля
+Wind	Ветер
+# ---------- Monster-Typen ----------
+DRAGON	ДРАКОН
+HUMAN	ЧЕЛОВЕК
+ANIMAL	ЖИВОТНОЕ
+BEAST	ЗВЕРЬ
+MECHA	МЕХА
+DEMON	ДЕМОН
+ANGEL	АНГЕЛ
+MYTH	МИФ
+Dragon	Дракон
+Human	Человек
+Animal	Животное
+Beast	Зверь
+Mecha	Меха
+Demon	Демон
+Angel	Ангел
+Myth	Миф
+# ---------- Seltenheiten ----------
+COMMON	ОБЫЧНАЯ
+UNCOMMON	НЕОБЫЧНАЯ
+RARE	РЕДКАЯ
+LEGENDARY	ЛЕГЕНДАРНАЯ
+Common	Обычная
+Uncommon	Необычная
+Rare	Редкая
+Legendary	Легендарная
+# ---------- Trigger-Zeilen (Inspect) ----------
+Activate during your Main Phase	Активируется в вашу Главную фазу
+Response — activate any time	Ответ — активируется в любой момент
+On play	При розыгрыше
+When this card is summoned	Когда эта карта призвана
+When this card is destroyed	Когда эта карта уничтожена
+When your opponent summons	Когда противник призывает
+During your Standby Phase	Во время вашей Фазы ожидания
+During your End Phase	Во время вашей Финальной фазы
+When this card is Normal Summoned	Когда эта карта призвана обычным призывом
+Activate from your hand during your Main Phase	Активируется из руки в вашу Главную фазу
+Activate from your Graveyard during your Main Phase	Активируется из Кладбища в вашу Главную фазу
+Response from your hand — activate any time	Ответ из руки — активируется в любой момент
+FLIP — when this card is turned face-up	ПЕРЕВОРОТ — когда эта карта открывается
+ · only if Special Summoned	 · только после особого призыва
+ · once per turn	 · раз в ход
+Standalone effect	Отдельный эффект
+ · standalone	 · отдельный
+Only one effect from this group each turn	Только один эффект из этой группы за ход
+ · only one from this group per turn	 · только один из этой группы за ход
+# ---------- Passiv-Vorlagen ----------
+face-down 	закрытые
+other 	другие
+ Level {0}	 уровня {0}
+{0} ATK and {1} DEF	{0} ATK и {1} DEF
+{0} ATK	{0} ATK
+{0} DEF	{0} DEF
+Your {0}{1}{2}{3}{4} monsters gain {5}.	Ваши {0}{1}{2}{3}{4} монстры получают {5}.
+This card gains {0} ATK for each of {1}.	Эта карта получает {0} ATK за каждую из {1}.
+This card gains {0} DEF for each of {1}.	Эта карта получает {0} DEF за каждую из {1}.
+This card cannot attack.	Эта карта не может атаковать.
+This card cannot attack during the turn it is Summoned.	Эта карта не может атаковать в ход своего призыва.
+This card cannot attack directly during the turn it is Summoned.	Эта карта не может атаковать напрямую в ход своего призыва.
+Your opponent's attacks must target this card.	Атаки противника должны быть нацелены на эту карту.
+While you control {0}+ Artifacts, this card cannot be destroyed by battle.	Пока под вашим контролем {0}+ Артефактов, эта карта не может быть уничтожена в бою.
+Counts as {0} tributes for a Reliquary Summon.	Считается за {0} жертвы при призыве Реликвии.
+Your other \"{0}\" cards cannot be targeted by your opponent's effects.	Ваши другие карты «{0}» не могут становиться целями эффектов противника.
+Can attack twice each Battle Phase while you control another face-up {0} monster.	Может атаковать дважды за Фазу боя, пока под вашим контролем другой открытый монстр {0}.
+You cannot Summon or Set this card while you control {0} \"{1}\" monsters.	Вы не можете призвать или установить эту карту, пока под вашим контролем {0} монстров «{1}».
+Every time you mill 1 or more cards: deal {0} damage to your opponent.	Каждый раз, когда вы отправляете 1 или больше карт с верха Колоды на Кладбище: нанесите противнику {0} урона.
+While this card is on the field, neither player can Special Summon Reliquaries.	Пока эта карта на поле, ни один игрок не может особо призывать Реликвии.
+This card cannot be destroyed by battle.	Эта карта не может быть уничтожена в бою.
+This card cannot be targeted by your opponent's effects.	Эта карта не может становиться целью эффектов противника.
+Neither player takes battle damage from battles involving this card.	Ни один игрок не получает боевой урон в боях с участием этой карты.
+Your opponent takes all battle damage you would take instead.	Весь боевой урон, который получили бы вы, вместо вас получает противник.
+During each End Phase: put a Death Counter on this card. With {0} Death Counters, it is sent to the Graveyard.	В каждую Финальную фазу: положите на эту карту жетон смерти. С {0} жетонами смерти она отправляется на Кладбище.
+Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {0} more.	Каждый раз, когда противник отправляет карты из своей Колоды на Кладбище (кроме как этим эффектом): он отправляет ещё {0}.
+While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.	Пока эта карта на поле, ваши карты не могут становиться целями эффектов или атак противника.
+During each End Phase: pay {0} LP or destroy this card.	В каждую Финальную фазу: заплатите {0} LP, иначе уничтожьте эту карту.
+While this card is face-up on the field, your opponent must Set Spells before activating them.	Пока эта карта в открытую на поле, противник обязан устанавливать заклинания перед активацией.
+(The aura above applies only to monsters adjacent to this card.)	(Аура выше действует только на монстров, соседних с этой картой.)
+(The aura above applies only to your monsters with no adjacent monster.)	(Аура выше действует только на ваших монстров без соседних монстров.)
+Your monsters with an adjacent monster lose {0} ATK.	Ваши монстры с соседним монстром теряют {0} ATK.
+The monster facing this card loses {0} ATK.	Монстр напротив этой карты теряет {0} ATK.
+Monsters adjacent to this card cannot be destroyed by card effects.	Монстры, соседние с этой картой, не могут быть уничтожены эффектами карт.
+Monsters adjacent to this card cannot be destroyed by battle.	Монстры, соседние с этой картой, не могут быть уничтожены в бою.
+When this card is destroyed: the monsters adjacent to it permanently lose {0} ATK and DEF.	Когда эта карта уничтожена: соседние с ней монстры навсегда теряют {0} ATK и DEF.
+This card cannot be destroyed by card effects.	Эта карта не может быть уничтожена эффектами карт.
+This card cannot be Tributed.	Эту карту нельзя приносить в жертву.
+This card cannot change its battle position.	Эта карта не может менять боевую позицию.
+If this card changed its battle position this turn, it cannot attack.	Если эта карта меняла боевую позицию в этом ходу, она не может атаковать.
+Cannot be Normal Summoned or Set.	Нельзя призвать обычным призывом или установить.
+During each of its controller's Standby Phases: its controller loses {0} LP.	В каждую Фазу ожидания её контролёра: контролёр теряет {0} LP.
+While this card is on the field, you cannot Special Summon other monsters.	Пока эта карта на поле, вы не можете особо призывать других монстров.
+While you control no other monsters, this card cannot be destroyed by battle or by card effects.	Пока под вашим контролем нет других монстров, эта карта не может быть уничтожена ни в бою, ни эффектами карт.
+While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.	Пока у вас в руке 1 карта или меньше, эта карта не может становиться целью и не может быть уничтожена эффектами карт.
+Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.	Piercing: когда эта карта атакует монстра в позиции защиты с меньшим DEF, разница наносится как боевой урон.
+The equipped monster inflicts piercing battle damage.	Экипированный монстр наносит пробивной боевой урон (Piercing).
+If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.	Если экипированный монстр атакует монстра в позиции защиты и не уничтожает его, уничтожьте эту карту.
+This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.	Эта карта может атаковать напрямую, даже если противник контролирует монстров; боевой урон её прямых атак делится пополам.
+This card cannot attack directly.	Эта карта не может атаковать напрямую.
+Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.	Заклинания стоят на 1 ману больше для обоих игроков. В вашу Финальную фазу, если вы активировали заклинание в этом ходу, уничтожьте эту карту.
+Each player may declare only one attack per Battle Phase. Attacking monsters gain {0} ATK during the battle.	Каждый игрок может объявить лишь одну атаку за Фазу боя. Атакующие монстры получают {0} ATK на время боя.
+During your Standby Phase: gain {0} additional Mana this turn.	Во время вашей Фазы ожидания: получите {0} дополнительной маны в этом ходу.
+During your End Phase, if you hold more than {0} cards, destroy this card.	Если в вашу Финальную фазу у вас в руке больше {0} карт, уничтожьте эту карту.
+When your LP are {0} or less, this card is destroyed.	Когда ваши LP равны {0} или меньше, эта карта уничтожается.
+LP costs you pay are reduced to 0.	Оплаты LP, которые вы платите, снижаются до 0.
+Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.	Раз в ход, когда вы бросаете монету, бросьте её дважды и выберите, какой результат засчитать. Если обе выпали решкой, уничтожьте эту карту.
+While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.	Пока ваши LP ниже, чем у противника, ваши броски монеты, выпавшие решкой, считаются орлом.
+Monsters with a Lien lose {0} ATK.	Монстры с залогом теряют {0} ATK.
+Monsters you control but do not own gain {0} ATK.	Монстры под вашим контролем, но не в вашей собственности, получают {0} ATK.
+# ---------- Zähl-Namen ----------
+your Artifacts on the field	ваших Артефактов на поле
+the Artifacts in your Graveyard	Артефактов на вашем Кладбище
+your face-down monsters	ваших закрытых монстров
+your banished monsters	ваших изгнанных монстров
+the cards in your Graveyard	карт на вашем Кладбище
+its equipped Artifacts	её экипированных Артефактов
+your opponent's face-down monsters	закрытых монстров противника
+the Illusion Tokens your opponent controls	жетонов иллюзий под контролем противника
+the cards in your hand	карт у вас в руке
+the Spells in your Graveyard	заклинаний на вашем Кладбище
+your monsters on the field	ваших монстров на поле
+# ---------- Selbst-Spezialbeschwörung ----------
+you control	под вашим контролем
+your opponent controls	под контролем противника
+{0} {1}+ \"{2}\" monsters	{0} {1}+ монстров «{2}»
+{0} a \"{1}\" monster	{0} монстр «{1}»
+{0} a {1} monster	{0} монстр {1}
+there is a face-down monster on the field	на поле есть закрытый монстр
+you control an Artifact	под вашим контролем Артефакт
+your opponent controls {0}+ monsters	под контролем противника {0}+ монстров
+you milled this or last turn	вы отправляли карты с верха Колоды на Кладбище в этом или прошлом ходу
+you have {0}+ cards in your Graveyard	на вашем Кладбище {0}+ карт
+you have {0}+ \"{1}\" cards in your Graveyard	на вашем Кладбище {0}+ карт «{1}»
+you control no monsters	под вашим контролем нет монстров
+you control {0}+ monsters	под вашим контролем {0}+ монстров
+your LP are lower than your opponent's	ваши LP ниже, чем у противника
+you have {0} or fewer other cards in your hand	у вас в руке {0} или меньше других карт
+you have {0}+ other cards in your hand	у вас в руке {0}+ других карт
+your opponent controls a Defense Position monster	под контролем противника монстр в позиции защиты
+a monster with a Lien is on the field	на поле есть монстр с залогом
+ in Defense Position	 в позиции защиты
+ by paying {0} LP	, заплатив {0} LP
+You can Special Summon this card from your hand{0}{1} (once per turn).	Вы можете особо призвать эту карту из руки{0}{1} (раз в ход).
+While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).	Пока {0}: вы можете особо призвать эту карту из руки{1}{2} (раз в ход).
+ and 	 и
+# ---------- Hauptmenü & Fenster ----------
+NEWS	НОВОСТИ
+BANLIST	БАН-ЛИСТ
+FEEDBACK	ОТЗЫВ
+SETTINGS	НАСТРОЙКИ
+DISCORD	DISCORD
+HOW TO PLAY	КАК ИГРАТЬ
+GLOSSARY	ГЛОССАРИЙ
+CLOSE	ЗАКРЫТЬ
+NEW CARDS	НОВЫЕ КАРТЫ
+BACK	НАЗАД
+DONE	ГОТОВО
+CANCEL	ОТМЕНА
+Cancel	Отмена
+SEND	ОТПРАВИТЬ
+PLAY	ИГРАТЬ
+SOLO	СОЛО
+DECKS	КОЛОДЫ
+SHOP	МАГАЗИН
+STATISTICS	СТАТИСТИКА
+MAIN MENU	ГЛАВНОЕ МЕНЮ
+PATCH NOTES · WHAT CHANGED	ПАТЧНОУТЫ · ЧТО ИЗМЕНИЛОСЬ
+CARD LIMITS · ENFORCED WHEN A DECK IS SAVED	ЛИМИТЫ КАРТ · ПРИМЕНЯЮТСЯ ПРИ СОХРАНЕНИИ КОЛОДЫ
+THE RULES OF THE VAULT	ПРАВИЛА ХРАНИЛИЩА
+THE RULES OF THE VAULT · SCROLL TO READ	ПРАВИЛА ХРАНИЛИЩА · ПРОКРУТИТЕ, ЧТОБЫ ЧИТАТЬ
+EVERY TERM OF THE GAME · A TO Z	КАЖДЫЙ ТЕРМИН ИГРЫ · ОТ А ДО Я
+MUSIC	МУЗЫКА
+SOUND	ЗВУК
+SCREEN SHAKE	ТРЯСКА
+LANGUAGE	ЯЗЫК
+OFF	ВЫКЛ
+More options will be added here over time.	Со временем здесь появятся новые настройки.
+DAILY SEAL	ЕЖЕДНЕВНАЯ ПЕЧАТЬ
+CLAIM	ЗАБРАТЬ
+CLAIMED	ПОЛУЧЕНО
+CHALLENGES	ИСПЫТАНИЯ
+WORKSHOP	МАСТЕРСКАЯ
+Cosmetics	Косметика
+CUSTOMIZE APPEARANCE & TITLE	НАСТРОЙТЕ ОБЛИК И ТИТУЛ
+Player Profile	Профиль игрока
+LIFETIME RECORD	ОБЩИЙ СЧЁТ
+Recent Matches	Недавние матчи
+LOADING MATCH HISTORY...	ЗАГРУЗКА ИСТОРИИ МАТЧЕЙ...
+LOADING STATISTICS...	ЗАГРУЗКА СТАТИСТИКИ...
+Card Performance	Результаты карт
+Card Details	Детали карты
+DUELIST OF THE VAULT	ДУЭЛЯНТ ХРАНИЛИЩА
+# ---------- Play / Lobby ----------
+ONLINE DUEL	ОНЛАЙН-ДУЭЛЬ
+Online Duel	Онлайн-дуэль
+QUICK MATCH	БЫСТРЫЙ МАТЧ
+PRIVATE LOBBY	ПРИВАТНОЕ ЛОББИ
+CREATE LOBBY	СОЗДАТЬ ЛОББИ
+JOIN DUEL	ПРИСОЕДИНИТЬСЯ
+JOIN WITH A CODE	ВОЙТИ ПО КОДУ
+LOBBY CODE	КОД ЛОББИ
+WATCH	СМОТРЕТЬ
+RANKED DUELS	РЕЙТИНГОВЫЕ ДУЭЛИ
+RANKED QUEUE	РЕЙТИНГОВАЯ ОЧЕРЕДЬ
+Searching for a duelist	Поиск дуэлянта
+Waiting for your opponent to join…	Ожидание подключения противника…
+Choose your deck	Выберите колоду
+You cannot swap decks mid-duel — choose well.	Сменить колоду посреди дуэли нельзя — выбирайте с умом.
+SOLO TRIAL	ОДИНОЧНОЕ ИСПЫТАНИЕ
+TRIAL OF THE WARDEN	ИСПЫТАНИЕ СМОТРИТЕЛЯ
+TRIAL BRIEFING	БРИФИНГ ИСПЫТАНИЯ
+TRIAL REWARD	НАГРАДА ИСПЫТАНИЯ
+DIFFICULTY	СЛОЖНОСТЬ
+FULL DECK · REAL AI	ПОЛНАЯ КОЛОДА · НАСТОЯЩИЙ ИИ
+PLAYS OPENLY · NO TRAPS	ИГРАЕТ В ОТКРЫТУЮ · БЕЗ ЛОВУШЕК
+START DUEL!	НАЧАТЬ ДУЭЛЬ!
+THE TOWER	БАШНЯ
+The Tower rises — its keepers await	Башня возвышается — её хранители ждут
+Every trial pays out — win or learn.	Каждое испытание окупается — победой или уроком.
+# ---------- Duell-HUD ----------
+END TURN	КОНЕЦ ХОДА
+BATTLE	БОЙ
+END BATTLE	КОНЕЦ БОЯ
+SURRENDER	СДАТЬСЯ
+DUEL LOG	ЖУРНАЛ ДУЭЛИ
+INSPECT	ОСМОТР
+SELECT A CARD	ВЫБЕРИТЕ КАРТУ
+OPPONENT	ПРОТИВНИК
+YOU	ВЫ
+PLAYER CARD	КАРТА ИГРОКА
+LIFE	ЖИЗНЬ
+DECK	КОЛОДА
+HAND	РУКА
+GRAVE	КЛАДБИЩЕ
+BANISH	ИЗГНАНИЕ
+GRAVEYARD	КЛАДБИЩЕ
+BANISHED	ИЗГНАНО
+EXTRA DECK	ЭКСТРА-КОЛОДА
+DRAW	ВЗЯТИЕ
+STDBY	ОЖИД.
+MAIN	ГЛАВН.
+END	КОНЕЦ
+MAIN PHASE	ГЛАВНАЯ ФАЗА
+YOUR MAIN PHASE	ВАША ГЛАВНАЯ ФАЗА
+Your Main Phase — click a card or drag it onto a zone.	Ваша Главная фаза — кликните карту или перетащите её в зону.
+Battle Phase — click a monster that can attack.	Фаза боя — кликните монстра, который может атаковать.
+REACTIONS · ON	РЕАКЦИИ · ВКЛ
+REACTIONS · OFF	РЕАКЦИИ · ВЫКЛ
+VICTORY	ПОБЕДА
+DUEL AGAIN	ЕЩЁ ДУЭЛЬ
+QUIT	ВЫЙТИ
+ACTIVATION	АКТИВАЦИЯ
+THE DUEL IS SEALED	ДУЭЛЬ СКРЕПЛЕНА ПЕЧАТЬЮ
+# ---------- Deck Builder ----------
+DECK BUILDER	МАСТЕРСКАЯ КОЛОД
+DECK NAME	НАЗВАНИЕ КОЛОДЫ
+Deck name	Название колоды
+SAVE DECK	СОХРАНИТЬ КОЛОДУ
+SAVED ✓	СОХРАНЕНО ✓
+DELETE	УДАЛИТЬ
+COPY	КОПИЯ
+DECK BALANCE	БАЛАНС КОЛОДЫ
+CARD TEXT	ТЕКСТ КАРТЫ
+Hover over a card to read its text.	Наведите курсор на карту, чтобы прочитать её текст.
+Search name, attribute, type…	Поиск по имени, стихии, типу…
+ALL	ВСЕ
+OWNED	ЕСТЬ
+MISSING	НЕТ
+NEW	НОВОЕ
+TYPE	ТИП
+NAME	ИМЯ
+LEVEL	УРОВЕНЬ
+ATK	ATK
+DEF	DEF
+RARITY	РЕДКОСТЬ
+ASC	ВОЗР.
+DESC	УБЫВ.
+ALL ARCHETYPES	ВСЕ СЕРИИ
+NO ARCHETYPE	БЕЗ СЕРИИ
+CHOOSE YOUR HERO	ВЫБЕРИТЕ ГЕРОЯ
+HERO CACHE · SHOP	ТАЙНИК ГЕРОЕВ · МАГАЗИН
+Your Deck:	Ваша колода:
+LV 1	УР. 1
+LV 2	УР. 2
+LV 3	УР. 3
+STAT	ПАРАМЕТР
+OR	ИЛИ
++ NEW	+ НОВАЯ
+No deck	Нет колоды
+Create a deck in the workshop	Соберите колоду в мастерской
+{0} cards · {1} monsters · {2} spells · {3} artifacts	{0} карт · {1} монстров · {2} заклинаний · {3} артефактов
+# ---------- Shop ----------
+CARD PACKS	НАБОРЫ КАРТ
+Hero Cache	Тайник героев
+Relic Pack	Набор реликвий
+OPEN	ОТКРЫТЬ
+BROWSE	СМОТРЕТЬ
+Card Pool	Пул карт
+Sleeves, frames, mats, coins and titles	Протекторы, рамки, коврики, монеты и титулы
+Paid for with coins — the same purse that buys packs.	Оплачивается монетами — из того же кошелька, что и наборы.
+One Player Card you do not own yet	Одна карта игрока, которой у вас ещё нет
+Every card in the vault — five per seal	Каждая карта Хранилища — пять за печать
+# ---------- NEW-CARDS-Szene ----------
+{0} CARDS ADDED IN {1} AND ITS PATCHES · POINT AT A CARD TO READ IT	НОВЫХ КАРТ В {1} И ЕГО ПАТЧАХ: {0} · НАВЕДИТЕ НА КАРТУ, ЧТОБЫ ПРОЧИТАТЬ
+NOTHING NEW IN {0} YET	В {0} ПОКА НИЧЕГО НОВОГО
+Point at a card to read it.	Наведите на карту, чтобы прочитать её.
+BACK TO MENU	НАЗАД В МЕНЮ
+— {0} CARDS	— КАРТ: {0}
+{0} NEW CARDS	НОВЫХ КАРТ: {0}
+{0} OF {1} NEW CARDS SHOWN	ПОКАЗАНО {0} ИЗ {1} НОВЫХ КАРТ
+# ---------- Hauptmenü dynamisch ----------
+Requires an account — log in first	Нужен аккаунт — сначала войдите
+The Warden awaits — +50 coins per trial	Смотритель ждёт — +50 монет за испытание
+Browse the starter decks	Посмотрите стартовые колоды
+LOG IN TO CLAIM	ВОЙДИТЕ, ЧТОБЫ ЗАБРАТЬ
++150 COINS PER DAY	+150 МОНЕТ В ДЕНЬ
++50 COINS	+50 МОНЕТ
+OFFLINE MODE	ОФЛАЙН-РЕЖИМ
+OFFLINE — NO ACCOUNT	ОФЛАЙН — БЕЗ АККАУНТА
+{0} duelists in the vault — +100 coins per duel	{0} дуэлянтов в Хранилище — +100 монет за дуэль
+The Tower — {0} floors sealed	Башня — запечатано этажей: {0}
+{0} unopened packs waiting in your vault	Нераспечатанных наборов в вашем Хранилище: {0}
+Relic Pack — five cards per seal	Набор реликвий — пять карт за печать
+{0} decks · {1} unique cards collected	{0} колод · собрано уникальных карт: {1}
+{0} DUELISTS ONLINE	ДУЭЛЯНТОВ В СЕТИ: {0}
+DAY {0} · +{1} COINS	ДЕНЬ {0} · +{1} МОНЕТ
++{0} COINS PER DAY	+{0} МОНЕТ В ДЕНЬ
+DAY {0} SEALED	ДЕНЬ {0} ЗАПЕЧАТАН
+SEAL READY	ПЕЧАТЬ ГОТОВА
+Seal your deck, wake the Warden, and duel for the lost relics of the vault.	Запечатайте колоду, разбудите Смотрителя и сражайтесь за утраченные реликвии Хранилища.
+This vault is empty	Это Хранилище пусто
+0 GAMES	0 ИГР
+0 PACKS WAITING	0 НАБОРОВ ЖДЁТ
+BUY PACK · 100	КУПИТЬ НАБОР · 100
+DUELIST	ДУЭЛЯНТ
+Novice	Новичок
+Warden	Смотритель
+Sealed	Запечатан
+Wanderer	Странник
+< MENU	< МЕНЮ
+Turn 1	Ход 1
+SHOWCASE — CLICK A SLOT TO DISPLAY A CARD	ВИТРИНА — КЛИКНИТЕ ЯЧЕЙКУ, ЧТОБЫ ВЫСТАВИТЬ КАРТУ
+ENTER THE VAULT	ВОЙДИТЕ В ХРАНИЛИЩЕ
+THE VAULT'S ONE SEAL	ЕДИНСТВЕННАЯ ПЕЧАТЬ ХРАНИЛИЩА
+{0} terms. Card texts use exactly these words.	Терминов: {0}. Тексты карт используют именно эти слова.
+# ---------- Login ----------
+SIGN IN	ВХОД
+REGISTER	РЕГИСТРАЦИЯ
+LOG IN	ВОЙТИ
+CREATE ACCOUNT	СОЗДАТЬ АККАУНТ
+UNSEALING…	СНЯТИЕ ПЕЧАТИ…
+DUELIST NAME	ИМЯ ДУЭЛЯНТА
+PASSWORD	ПАРОЛЬ
+SHOW	ПОКАЗАТЬ
+HIDE	СКРЫТЬ
+Keep me sealed in	Оставаться в системе
+Lost your seal?	Потеряли печать?
+Your name, duelist	Ваше имя, дуэлянт
+Your seal phrase	Ваша фраза-печать
+CONTINUE WITH STEAM	ВОЙТИ ЧЕРЕЗ STEAM
+CONTINUE AS {0}	ПРОДОЛЖИТЬ КАК {0}
+Reaching for the vault…	Подключение к Хранилищу…
+Vault unreachable — retrying may help	Хранилище недоступно — попробуйте ещё раз
+Vault unreachable — retrying…	Хранилище недоступно — новая попытка…
+Connected to the vault	Подключено к Хранилищу
+Not connected to the vault.	Нет соединения с Хранилищем.
+Name too short (min. 3 characters).	Имя слишком короткое (мин. 3 символа).
+Password too short (min. 4 characters).	Пароль слишком короткий (мин. 4 символа).
+Your vault holds {0} cards and {1} deck.	В вашем Хранилище {0} карт и {1} колода.
+Your vault holds {0} cards and {1} decks.	В вашем Хранилище {0} карт и {1} колод.
+APPLY	ПРИМЕНИТЬ
+SOLO — GEGEN DEN BOT	СОЛО — ПРОТИВ БОТА

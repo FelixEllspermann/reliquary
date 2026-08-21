@@ -22,6 +22,7 @@ namespace Rouge.Tcg
         public const string English = "en";
         public const string ChineseSimplified = "zh-Hans";
         public const string German = "de";
+        public const string Russian = "ru";
 
         /// <summary>Aktive Sprache (Sprachcode). Setzt nur der Client (LocBoot).</summary>
         public static string Language = English;

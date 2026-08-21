@@ -87,6 +87,7 @@ namespace Rouge.Tcg.UI
             {
                 case "german": return Loc.German;
                 case "schinese": return Loc.ChineseSimplified;
+                case "russian": return Loc.Russian;
                 case "": break;                 // kein Steam — das OS fragen
                 default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
             }
@@ -95,6 +96,7 @@ namespace Rouge.Tcg.UI
                 case SystemLanguage.German: return Loc.German;
                 case SystemLanguage.Chinese:
                 case SystemLanguage.ChineseSimplified: return Loc.ChineseSimplified;
+                case SystemLanguage.Russian: return Loc.Russian;
                 default: return Loc.English;
             }
         }
@@ -112,9 +114,10 @@ namespace Rouge.Tcg.UI
             }
 
             Loc.SetTables(LoadUiTable(language), LoadCardTable(language));
-            // Nur Chinesisch braucht die Laufzeit-Schrift; die Projekt-Fonts sind
-            // Dynamic und tragen alle lateinischen Glyphen (Umlaute, ß, „“) selbst.
-            if (language == Loc.ChineseSimplified) EnsureCjkFallback();
+            // Chinesisch und Russisch brauchen die Laufzeit-Schrift: CJK fehlt allen
+            // Projekt-Fonts, Kyrillisch fehlt Cinzel (Überschriften/Kartennamen).
+            // Deutsch kommt ohne aus — lateinische Glyphen tragen die Fonts selbst.
+            if (language == Loc.ChineseSimplified || language == Loc.Russian) EnsureRuntimeFallback();
             else RemoveFallback();
         }
 
@@ -187,11 +190,14 @@ namespace Rouge.Tcg.UI
         // ================== CJK-Schrift ==================
 
         /// <summary>
-        /// Baut die CJK-Schrift aus einer installierten System-Schrift und hängt sie
-        /// als globalen TMP-Fallback ein. Nichts wird ins Projekt geschrieben; im
-        /// Editor wird der Eintrag beim Play-Ende wieder entfernt (Application.quitting).
+        /// Baut die Laufzeit-Schrift aus einer installierten System-Schrift (YaHei
+        /// deckt CJK UND Kyrillisch ab) und hängt sie als globalen TMP-Fallback ein.
+        /// Nichts wird ins Projekt geschrieben; im Editor wird der Eintrag beim
+        /// Play-Ende wieder entfernt (Application.quitting). Public, damit die
+        /// Sprachzeile im Settings-Menü „简体中文“ auch dann zeichnen kann, wenn
+        /// gerade eine andere Sprache aktiv ist (sonst nur Ersatz-Vierecke).
         /// </summary>
-        private static void EnsureCjkFallback()
+        public static void EnsureRuntimeFallback()
         {
             if (cjkFont == null)
             {
