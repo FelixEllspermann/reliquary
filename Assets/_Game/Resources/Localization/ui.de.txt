@@ -97,7 +97,7 @@ Only one effect from this group each turn	Pro Zug nur ein Effekt aus dieser Grup
  · only one from this group per turn	 · pro Zug nur einer aus dieser Gruppe
 # ---------- Passiv-Vorlagen ----------
 face-down 	verdeckten
-other 	anderen
+other 	anderen 
  Level {0}	 Stufe-{0}
 {0} ATK and {1} DEF	{0} ATK und {1} DEF
 {0} ATK	{0} ATK

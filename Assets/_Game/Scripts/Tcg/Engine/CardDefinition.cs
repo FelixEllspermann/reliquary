@@ -269,14 +269,14 @@ namespace Rouge.Tcg
             if (auraAtkBonus != 0 || auraDefBonus != 0)
             {
                 string scope = auraOnlyFaceDown ? Loc.T("face-down ") : "";
-                string named = string.IsNullOrEmpty(auraNameFilter) ? "" : $" \"{auraNameFilter}\"";
+                string named = string.IsNullOrEmpty(auraNameFilter) ? "" : $" \"{Loc.CardName(auraNameFilter)}\"";
                 string typed = auraUseTypeFilter ? " " + Loc.T(auraTypeFilter.ToString().ToUpperInvariant()) : "";
                 string leveled = auraLevelFilter > 0 ? Loc.F(" Level {0}", auraLevelFilter) : "";
                 string other = auraExcludesSelf ? Loc.T("other ") : "";
                 string bonus = auraAtkBonus != 0 && auraDefBonus != 0
                     ? Loc.F("{0} ATK and {1} DEF", Signed(auraAtkBonus), Signed(auraDefBonus))
                     : auraAtkBonus != 0 ? Loc.F("{0} ATK", Signed(auraAtkBonus)) : Loc.F("{0} DEF", Signed(auraDefBonus));
-                lines.Add($"Your {other}{scope}{named}{typed}{leveled} monsters gain {bonus}.".Replace("  ", " "));
+                lines.Add(Loc.F("Your {0}{1}{2}{3}{4} monsters gain {5}.", other, scope, named, typed, leveled, bonus).Replace("  ", " "));
             }
 
             if (passiveAtkPerCount > 0)

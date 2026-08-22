@@ -1,0 +1,114 @@
+Activer (Activate) :: Utiliser un Sort, un Artefact ou un effet. Les coûts sont payés à l'activation ; l'effet se résout ensuite — ou comme maillon d'une chaîne si quelqu'un répond.
+Archétype (Archetype) :: Une famille de cartes nommée qui jouent ensemble, partageant généralement un préfixe de nom (« Marélien », « Archdémon »). Les cartes de soutien qui nomment un archétype en font partie aussi. L'Atelier de decks peut filtrer par archétype.
+Artefact (Artifact) :: Une carte qui reste sur la table. Les Artefacts de Monstre s'équipent à un monstre (bonus ATK/DEF et effets pour le porteur), les Artefacts de Terrain affectent toute la table, les Artefacts de Joueur siègent sur votre héros. Deux Zones Artefact par duelliste.
+ATK (ATK) :: Force d'attaque. Utilisée quand un monstre attaque ou est attaqué en Position d'Attaque. Modifiée par des effets, temporairement (« jusqu'à la fin du tour ») ou de façon permanente.
+Position d'Attaque (Attack Position) :: Un monstre face visible debout. Il peut attaquer et se bat avec son ATK ; s'il perd un combat, son contrôleur reçoit la différence en dommages.
+Attribut (Attribute) :: L'élément d'un monstre : Feu, Eau, Vent, Terre, Lumière ou Ténèbres. Certains effets et conditions d'invocation le demandent.
+Bannir (Banish) :: Déplacer une carte vers la pile de Bannissement — le second cimetière. Les cartes bannies sont hors du duel, sauf si une carte les ramène expressément.
+Bannissement (Banishment) :: La pile des cartes bannies. Certains effets les renvoient, certaines Reliques les comptent.
+Banlist (Banlist) :: La liste des cartes limitées à 2, 1 ou 0 copies par deck. Appliquée à la sauvegarde d'un deck ; la limite est imprimée sur la tuile dans l'Atelier de decks.
+Dommages de combat (Battle damage) :: Dommages issus d'un combat : la différence d'ATK, ou l'ATK totale d'une attaque directe. Distincts des dommages d'effet — certaines cartes empêchent l'un et pas l'autre.
+Battle Phase (Battle Phase) :: La quatrième phase d'un tour. Chaque monstre face visible en Position d'Attaque peut attaquer une fois. Le duelliste qui commence n'a pas de Battle Phase à son tout premier tour.
+Position de combat (Battle position) :: Attaque ou Défense. Changée une fois par tour par monstre durant la Main Phase — pas le tour de son invocation, pas après qu'il a attaqué.
+Renvoi (Bounce) :: Jargon pour « renvoyer dans la main ». Un monstre renvoyé perd tout ce qu'il a gagné sur le Terrain.
+Type de carte (Card type) :: Monstre, Sort, Artefact, Relique ou Carte Joueur. Certains effets vous demandent d'en déclarer un.
+Chaîne (Chain) :: Une pile d'activations. Quand un effet répond à un autre, ils forment les maillons 1, 2, 3… ; dès que personne n'ajoute de maillon, la chaîne se résout à rebours, dernier maillon en premier. Rien de nouveau ne peut être activé pendant qu'une chaîne se résout.
+Chargé (Charged) :: Une mécanique « Braise-Lente » : un Sort posé avant ce tour peut déclencher une version plus forte, chargée, durant votre Standby Phase.
+Pièces (Coins) :: La monnaie gagnée en duel. Achète des boosters et des cosmétiques.
+Effet continu (Continuous effect) :: Voir Passif.
+Contrôle (Control) :: Sur le Terrain de qui se trouve une carte. Certains effets prennent le contrôle d'un monstre ; le propriétaire ne change pas, la carte retourne donc dans le Cimetière ou la main de son propriétaire quand elle quitte le Terrain.
+Coût (Cost) :: Ce que vous payez pour activer : mana, une défausse, un sacrifice, le bannissement d'une carte. Les coûts restent payés même si l'effet est ensuite annulé.
+Compteur (Counter) :: Un marqueur placé sur une carte par un effet. Les Compteurs de Mort s'affichent comme un crâne avec un nombre ; la carte explique ce qui arrive quand ils s'accumulent.
+Couplé (Coupled) :: Un effet INFUSED qui améliore l'effet au-dessus de lui (« À la place, payez 2 mana : … »). Par tour, vous utilisez soit la version simple, soit la version couplée, jamais les deux.
+Créer (Craft) :: Transformer de la poussière en une carte qui vous manque. Désenchanter une copie en trop rend de la poussière.
+Compteur de Mort (Death counter) :: Un compteur qui s'accumule durant les End Phases ; quand une carte atteint sa limite imprimée, elle est détruite. Affiché comme un crâne avec un nombre.
+Deck (Deck) :: Votre pile principale, de 40 à 80 cartes, au plus 3 copies d'une carte. Mélangé, face cachée ; vous piochez du dessus.
+Position de Défense (Defense Position) :: Un monstre couché sur le côté. Il ne peut pas attaquer, tient avec sa DEF et n'inflige aucun dommage de combat. Les monstres face cachée sont toujours en Défense.
+DEF (DEF) :: Force de défense, utilisée quand un monstre est attaqué en Position de Défense. Si l'ATK de l'attaquant est inférieure, le contrôleur de l'attaquant reçoit la différence.
+Détruire (Destroy) :: Envoyer une carte du Terrain au Cimetière par combat ou par effet. « Ne peut pas être détruite » protège exactement de cela — pas du bannissement, du renvoi ni du sacrifice.
+Attaque directe (Direct attack) :: Une attaque sur le héros adverse au lieu d'un monstre. Possible seulement tant qu'il ne contrôle aucun monstre. Inflige l'ATK totale de l'attaquant en dommages.
+Défausser (Discard) :: Envoyer une carte de votre main au Cimetière. Les défausses « au hasard » sont choisies par le hasard, les autres par le joueur qui défausse.
+Draft (Draft) :: Un mode où vous construisez un deck à partir d'une réserve fraîche de cartes et grimpez avec ce que vous avez drafté.
+Draw Phase (Draw Phase) :: La première phase d'un tour : piochez 1 carte. Sautée par le duelliste qui commence à son tout premier tour.
+Poussière (Dust) :: Ce que devient une carte désenchantée. Dépensez-la pour créer des cartes.
+Dommages d'effet (Effect damage) :: Dommages infligés par un effet de carte plutôt que par combat (« infligez 800 dommages »). Certaines cartes empêchent l'un et pas l'autre.
+End Phase (End Phase) :: La dernière phase d'un tour : effets « durant votre End Phase », limite de main, puis le tour passe.
+Équiper (Equip) :: Attacher un Artefact de Monstre à un monstre — le porteur. Si le porteur quitte le Terrain, l'Artefact va au Cimetière.
+Extra Deck (Extra Deck) :: Vos Reliques, jusqu'à 20. Jamais piochées ; chacune attend ses conditions d'Invocation imprimées.
+Face cachée (Face-down) :: Une carte jouée cachée. Les monstres face cachée sont toujours en Position de Défense ; les Sorts face cachée sont Posés et peuvent être activés plus tard.
+Terrain (Field) :: La table : chaque zone des deux duellistes. « Sur le Terrain » signifie face visible ou face cachée dans une Zone Monstre ou Artefact.
+Artefact de Terrain (Field Artifact) :: Un Artefact qui siège dans une Zone Artefact et affecte toute la table, pas un seul monstre.
+Finition (Finish) :: L'apparence d'une copie d'une carte : Plain, Glossy, Rainbow ou Static. Purement cosmétique ; la finition de la copie que vous mettez dans le deck est celle qui arrive sur la table.
+Fizzle (Fizzle) :: Quand un effet se résout mais qu'il ne reste rien de légal à faire — sa cible est partie, sa zone s'est remplie. L'effet ne fait rien ; les coûts restent payés.
+Flip (Flip) :: Retourner un monstre face cachée face visible — par choix (en Position d'Attaque), par une attaque ou par un effet. Les effets FLIP se déclenchent à ce moment.
+Cimetière (Graveyard) :: Où vont les cartes détruites, utilisées et défaussées. Beaucoup d'effets ramènent des cartes d'ici ou comptent ce qu'il contient. Cliquez sur la pile pour la parcourir.
+Main (Hand) :: Les cartes que vous tenez. Limite 8 à la fin de votre tour.
+Limite de main (Hand limit) :: 8. Si vous en tenez plus durant votre End Phase, vous défaussez jusqu'à 8.
+Héros (Hero) :: Voir Carte Joueur.
+Effet d'ignition (Ignition effect) :: Un effet que vous activez vous-même durant votre Main Phase (« Une fois par tour : … »).
+Jeton Illusion (Illusion Token) :: Un Jeton 0/0 que l'archétype « Gaslight » place sur le Terrain adverse. Il occupe une zone et peut être détruit pour en tirer profit.
+INFUSED (Infused) :: Un effet plus fort sur une carte, qui coûte toujours du mana. Soit Couplé (amélioration de l'effet au-dessus), soit Indépendant (sa propre capacité).
+Niveau (Level) :: 1, 2 ou 3, affiché dans le blason. Un Niveau 2 demande 1 Sacrifice pour une Invocation Normale, un Niveau 3 en demande 2. Les Reliques sont de Niveau 3.
+Points de Vie (Life Points) :: Votre santé. 8000 au départ (certains héros diffèrent). À 0, le duel est perdu.
+LP (LP) :: Abréviation de Points de Vie.
+Main Phase (Main Phase) :: La troisième phase d'un tour : invoquer, jouer des Sorts et des Artefacts, activer des effets d'ignition, changer de position, appeler des Reliques.
+Mana (Mana) :: La ressource pour les Sorts, les effets INFUSED, les effets de héros et les Invocations de Relique. Se recharge à chacun de vos tours : 3 d'abord, un de plus chaque tour jusqu'à 10. Le mana non dépensé est perdu, sauf si une carte dit le contraire.
+Meuler (Mill) :: Envoyer des cartes du dessus d'un Deck au Cimetière. Le vôtre ou celui de votre adversaire.
+Monstre (Monster) :: Une carte qui se bat. Niveau, Attribut, Type, ATK, DEF — et généralement des effets.
+Artefact de Monstre (Monster Artifact) :: Un Artefact qui s'équipe à un seul monstre.
+Type de monstre (Monster Type) :: Dragon, Humain, Bête, Mécha, Ange, Démon, Mythe, Animal… Certains effets y prêtent attention.
+Annuler (Negate) :: Désactiver les effets d'une carte. Une carte annulée porte un badge violet NEG jusqu'à la fin du tour ; si elle essaie d'agir, rien ne se passe.
+Invocation Normale (Normal Summon) :: Jouer un monstre depuis votre main durant votre Main Phase, une fois par tour. Gratuit pour le Niveau 1 ; 1 Sacrifice pour le Niveau 2, 2 pour le Niveau 3. Poser un monstre face cachée la consomme aussi.
+Une fois par tour (Once per turn) :: L'effet peut être utilisé une fois chaque tour. Certains sont une fois par tour par nom de carte — trois copies partagent un seul usage.
+Propriétaire (Owner) :: Du deck de qui une carte provient. Les cartes retournent dans la main, le Deck ou le Cimetière de leur propriétaire même après un changement de contrôle.
+Passif (Passive) :: Un effet simplement actif tant que la carte est face visible sur le Terrain. Pas d'activation, pas de coût, pas de maillon de chaîne.
+Phase (Phase) :: L'une des cinq étapes d'un tour : Draw, Standby, Main, Battle, End.
+Carte Joueur (Player Card) :: Votre héros. Fixe vos Points de Vie de départ et vous donne un effet de héros pour 2 mana, une fois par tour. Ne peut être ni attaquée ni détruite.
+Changement de position (Position change) :: Faire passer un monstre d'Attaque à Défense ou inversement. Une fois par tour par monstre, durant votre Main Phase.
+Sort rapide (Quick Spell) :: Un Sort que vous pouvez activer en réponse — durant le tour de votre adversaire, dans une chaîne, quand une attaque est déclarée. Utilisable aussi durant votre propre Main Phase.
+Rang (Rank) :: Dix sceaux de cinq paliers chacun. Les duels classés vous font monter ou descendre par Points de Rang ; une saison dure un mois.
+Rareté (Rarity) :: Commune, Peu commune, Rare ou Légendaire — la fréquence à laquelle une carte sort des boosters. Ne dit rien de sa puissance.
+Interrupteur de réactions (Reactions toggle) :: L'interrupteur en bas à gauche du duel. Désactivé, le jeu cesse de vous proposer des réponses aux actions adverses ; vos propres déclencheurs demandent toujours.
+Relique (Reliquary) :: Un monstre boss de l'Extra Deck. Ses conditions d'Invocation, son prix en mana et ses sacrifices sont imprimés sur la carte. Occupe une Zone Monstre comme tout monstre.
+Invocation de Relique (Reliquary Summon) :: Appeler une Relique depuis l'Extra Deck une fois ses conditions remplies, durant votre Main Phase.
+Fenêtre de réponse (Response window) :: Le moment après une activation, une invocation ou une déclaration d'attaque où l'autre duelliste peut répondre avec un effet Rapide. Répondre démarre une chaîne.
+Renvoyer dans la main (Return to hand) :: Déplacer une carte du Terrain vers la main de son propriétaire. Voir Renvoi.
+Révéler (Reveal) :: Montrer une carte aux deux joueurs — une carte cherchée, une carte au hasard de la main, le dessus d'un Deck.
+Chercher (Search) :: Prendre une carte précise de votre Deck dans votre main. Le Deck est mélangé ensuite.
+Saison (Season) :: Un mois de jeu classé. Une nouvelle saison commence chaque mois.
+Poser (Set) :: Jouer une carte face cachée : un monstre en Position de Défense (consomme votre Invocation Normale), ou un Sort à activer plus tard.
+Mélanger dans le Deck (Shuffle into the Deck) :: Renvoyer une carte dans le Deck de son propriétaire et mélanger. Différent du renvoi dans la main — la carte est hors de portée pour un moment.
+Invocation Spéciale (Special Summon) :: Toute invocation qui n'est pas une Invocation Normale — par un effet, ou par la propre condition d'un monstre (« vous pouvez Invoquer Spécialement cette carte depuis votre main si… »). Les conditions propres fonctionnent une fois par tour par nom de carte.
+Sort (Spell) :: Une carte jouée depuis la main contre du mana et qui va ensuite au Cimetière. Les Sorts normaux durant votre Main Phase ; les Sorts rapides dès qu'une fenêtre de réponse est ouverte.
+Indépendant (Standalone) :: Un effet INFUSED qui est une capacité à part entière, indépendante des autres effets de la carte.
+Standby Phase (Standby Phase) :: La deuxième phase d'un tour : effets « durant votre Standby Phase », tributs et entretien.
+Condition d'Invocation (Summon requirement) :: Ce qu'une Relique exige avant de pouvoir être appelée : un état du Terrain, du Cimetière, de vos Points de Vie — plus du mana et parfois des sacrifices.
+Cible (Target) :: La carte visée par un effet, choisie à l'activation de l'effet. « Ne peut pas être ciblée » rend une carte immunisée exactement contre cela.
+Jeton (Token) :: Un monstre créé par un effet plutôt que pioché d'un deck. Il disparaît au lieu d'aller au Cimetière.
+Sacrifice (Tribute) :: Envoyer un monstre que vous contrôlez au Cimetière comme prix — pour une Invocation Normale de Niveau 2 ou 3, ou pour une Relique. Certaines Reliques prennent des sacrifices sur le Terrain adverse.
+Joueur du tour (Turn player) :: Le duelliste dont c'est le tour.
+Type (Type) :: Voir Type de monstre.
+Jusqu'à la fin du tour (Until the end of the turn) :: Un changement temporaire annulé durant la End Phase. Les changements permanents restent jusqu'à ce que la carte quitte le Terrain.
+Vanille (Vanilla) :: Un monstre sans effets. Certaines cartes soutiennent précisément ceux-là.
+Zone (Zone) :: Un emplacement sur la table. Cinq Zones Monstre, trois Zones Sort et deux Zones Artefact par duelliste. Où vous placez une carte est votre choix.
+Zone Sort (Spell Zone) :: L'un des trois emplacements où un Sort Posé attend face cachée jusqu'à ce que vous l'activiez. Trois par duelliste.
+Adjacent (Adjacent) :: Les monstres dans les deux zones directement à gauche et à droite d'une carte, du même côté de la table. Les auras et protections « pour les monstres adjacents » concernent exactement ceux-là — laissez un trou et elles ne s'appliquent plus.
+En face (Facing) :: Le monstre adverse dans la zone juste en face d'une carte (la zone 1 fait face à la zone 1, etc.). Les effets qui touchent « le monstre en face de cette carte » ne touchent rien si cette zone est vide.
+Déplacer (Move) :: Un effet qui décale un monstre vers une autre Zone Monstre vide de son côté. Se déplacer change qui est adjacent et qui est en face — certaines cartes se déclenchent quand elles se déplacent.
+Lancer de pièce (Coin flip) :: Un effet lance une pièce : Face ou Pile, à chances égales. La carte dit ce que fait chaque résultat — Pile n'est jamais « il ne se passe rien », c'est l'autre côté du pari. Les cibles d'un résultat sont choisies après le lancer.
+Face (Heads) :: Le bon côté d'un lancer de pièce — en général.
+Pile (Tails) :: L'autre côté d'un lancer de pièce. Certaines cartes vous laissent relancer ou compter Pile comme Face.
+Coût en LP (LP cost) :: Des Points de Vie payés comme prix (« Payez 1 mana et 1000 LP : … »). Vous devez garder au moins 1 LP pour payer. Différent des dommages : certaines cartes rendent les coûts en LP gratuits, aucune ne rend les dommages gratuits.
+Dette de mana (Mana debt) :: « Durant votre prochain tour, vous avez N mana de moins. » La dette est prélevée au début de ce tour ; chaque mana que vous ne pouvez pas couvrir coûte 1500 LP à la place.
+Gage (Lien) :: Un marqueur avec un montant sur un monstre, affiché comme badge LIEN. Durant chaque Standby Phase de son contrôleur, celui-ci paie autant de mana, sinon le monstre est détruit. Les Gages peuvent être augmentés, et ils restent lors d'un changement de contrôle.
+Échange de contrôle (Swap control) :: Deux monstres changent de camp de façon permanente — sans retour à la End Phase, contrairement à « prenez le contrôle jusqu'à la fin du tour ». Celui que vous recevez ne peut pas attaquer ce tour-là.
+Braconner (Poach) :: Invoquer Spécialement un monstre du Cimetière de l'AUTRE joueur sur votre propre Terrain. Un monstre braconné est banni s'il quitte le Terrain.
+Piercing (Piercing) :: Quand un attaquant avec Piercing attaque un monstre en Position de Défense avec une DEF inférieure, la différence est quand même infligée en dommages de combat.
+Une fois par Duel (Once per Duel) :: Une limite stricte : l'effet peut être utilisé une fois pour tout le duel par joueur et par nom de carte — une seconde copie ne le réinitialise pas.
+Ne peut pas être Invoqué Normalement (Cannot be Normal Summoned) :: Le monstre n'arrive sur le Terrain que par sa propre condition d'Invocation Spéciale ou un autre effet — jamais par une Invocation Normale ni une Pose.
+Ne peut pas être Sacrifié (Cannot be Tributed) :: Le monstre ne peut pas être payé comme sacrifice pour une Invocation Normale ou une Relique. Utile quand c'est un cadeau que l'adversaire doit garder.
+Taxe sur les Sorts (Spell tax) :: Tant qu'un « Tarif de la Guilde » est face visible, chaque Sort coûte 1 mana de plus aux deux duellistes — même ceux qui seraient gratuits.
+Limite d'attaques (Attack limit) :: Tant que « Le Code du Duelliste » est face visible, chaque duelliste ne peut déclarer qu'une seule attaque par Battle Phase.
+Dommages de combat doublés (Double battle damage) :: Tant que « Gros Enjeux » est actif, tous les dommages de combat infligés à l'un ou l'autre duelliste sont doublés — durant la Battle Phase adverse comme la vôtre.
+Déclarer un type (Declare a type) :: Vous nommez Monstre, Sort ou Artefact avant de révéler des cartes ; celles qui correspondent sont gardées, le reste va au Cimetière.
+Attaque directe (réduite de moitié) (Direct attack (halved)) :: Un monstre qui peut attaquer directement en passant outre les monstres adverses, mais n'inflige ainsi que la moitié de son ATK.

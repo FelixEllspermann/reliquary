@@ -88,6 +88,7 @@ namespace Rouge.Tcg.UI
                 case "german": return Loc.German;
                 case "schinese": return Loc.ChineseSimplified;
                 case "russian": return Loc.Russian;
+                case "french": return Loc.French;
                 case "": break;                 // kein Steam — das OS fragen
                 default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
             }
@@ -97,6 +98,7 @@ namespace Rouge.Tcg.UI
                 case SystemLanguage.Chinese:
                 case SystemLanguage.ChineseSimplified: return Loc.ChineseSimplified;
                 case SystemLanguage.Russian: return Loc.Russian;
+                case SystemLanguage.French: return Loc.French;
                 default: return Loc.English;
             }
         }
@@ -116,7 +118,8 @@ namespace Rouge.Tcg.UI
             Loc.SetTables(LoadUiTable(language), LoadCardTable(language));
             // Chinesisch und Russisch brauchen die Laufzeit-Schrift: CJK fehlt allen
             // Projekt-Fonts, Kyrillisch fehlt Cinzel (Überschriften/Kartennamen).
-            // Deutsch kommt ohne aus — lateinische Glyphen tragen die Fonts selbst.
+            // Deutsch und Französisch kommen ohne aus — lateinische Glyphen (Umlaute,
+            // Akzente, œ, « ») tragen die Dynamic-Fonts selbst.
             if (language == Loc.ChineseSimplified || language == Loc.Russian) EnsureRuntimeFallback();
             else RemoveFallback();
         }

@@ -1,0 +1,145 @@
+# L'OBJECTIF
+Deux duellistes, deux cryptes, une table. Vous gagnez à l'instant où les Points de Vie de votre adversaire atteignent 0 — ou quand il doit piocher dans un Deck vide et ne le peut pas. Tout le reste de ce livre explique comment y parvenir : du mana à dépenser, des monstres à invoquer, des sorts pour répondre, et des Reliques pour sceller la partie.
+
+Si vous n'avez jamais joué à un jeu de cartes de ce genre, lisez d'abord LA TABLE, VOTRE TOUR et LE COMBAT. Le reste peut attendre d'être utile.
+
+[img:board|Votre côté de la table est en bas, celui de votre adversaire en haut.]
+
+# LA TABLE
+Chaque duelliste dispose de cinq Zones Monstre en ligne, de trois Zones Sort pour les sorts Posés, de deux Zones Artefact, d'un Deck, d'un Cimetière, d'une pile de Bannissement et d'un Extra Deck. Votre main repose en bas de l'écran ; le dos de la main adverse apparaît en haut. Votre Carte Joueur — votre héros — se tient à gauche de votre rangée ; vos Points de Vie et votre mana sont sur la plaque à sa droite.
+
+[img:plate|Points de Vie en haut, mana en dessous. Les deux défilent quand ils changent.]
+
+Points de Vie : vous commencez avec 8000 (certains héros en apportent un peu plus ou un peu moins). Les dommages — de combat ou d'effets — les font baisser ; les soins les font remonter. Il n'y a pas de plafond.
+
+Mana : rechargé au début de chacun de vos tours. 3 à votre premier tour, un de plus à chaque tour suivant, jusqu'à 10. Le mana non dépensé disparaît à la fin de votre tour, sauf si une carte dit le contraire. Le mana paie les sorts, les effets INFUSED, les effets de héros et les Invocations de Relique — les effets de monstre normaux ne coûtent rien.
+
+Limite de main : 8. Si vous en tenez plus à la fin de votre tour, vous défaussez jusqu'à 8.
+
+[img:phases|La barre des phases. L'étape allumée indique où en est le duel.]
+
+# VOTRE TOUR
+Un tour traverse cinq phases, toujours dans cet ordre :
+
+- DRAW PHASE — piochez 1 carte. Celui qui commence la saute à son tout premier tour (il démarre avec 5 cartes, l'autre joueur avec 6).
+- STANDBY PHASE — les effets « durant votre Standby Phase » se produisent maintenant. Les tributs et l'entretien se paient ici.
+- MAIN PHASE — le cœur du tour. Invoquez ou Posez un monstre, jouez des sorts et des Artefacts, activez des effets d'ignition, changez les positions de combat, Invoquez une Relique. Dans n'importe quel ordre, aussi souvent que votre mana et vos règles le permettent.
+- BATTLE PHASE — attaquez avec vos monstres face visible en Position d'Attaque. Celui qui commence n'a pas de Battle Phase à son tout premier tour.
+- END PHASE — effets « durant votre End Phase », limite de main, et le tour passe.
+
+Vous pouvez terminer la Main Phase ou la Battle Phase quand vous voulez avec les boutons de phase ; le jeu ne vous force jamais à attaquer.
+
+[img:hand|Votre main. Les cartes jouables maintenant sont surlignées ; glissez-les sur la table ou cliquez pour les options.]
+
+# LES CARTES
+Chaque carte appartient à l'un des quatre types — plus le héros.
+
+Les MONSTRES portent un Niveau (de 1 à 3), un Attribut (Feu, Eau, Vent, Terre, Lumière, Ténèbres), un Type (Dragon, Humain, Bête, Mécha, Ange, Démon, Mythe, Animal…) et une ATK / DEF. Ils se battent, ils défendent, et la plupart ont des effets.
+
+Les SORTS se jouent depuis votre main contre du mana et vont ensuite au Cimetière. Les Sorts normaux se jouent durant votre Main Phase ; les Sorts RAPIDES peuvent aussi se jouer en réponse — durant le tour de votre adversaire, au milieu d'une chaîne, quand une attaque est déclarée. Tout Sort peut aussi être Posé face cachée et utilisé plus tard.
+
+Les ARTEFACTS restent sur la table. Certains s'équipent à un monstre (bonus ATK/DEF et effets pour le porteur), certains sont des Artefacts de Terrain, certains siègent sur votre emplacement Joueur. Les Zones Artefact en contiennent deux ; les sorts Posés attendent dans les trois Zones Sort.
+
+[img:artifacts|Deux Artefacts de Joueur dans les Zones Artefact. Ils restent jusqu'à ce que quelque chose les retire.]
+
+Les RELIQUES vivent dans votre Extra Deck. Chacune indique ses propres conditions d'Invocation sur la carte — un Cimetière bien garni, trois monstres, un héros aux abois — plus un prix en mana et parfois des sacrifices. Remplissez les conditions et vous pourrez l'appeler durant votre Main Phase.
+
+LA CARTE JOUEUR est votre héros. Elle fixe vos Points de Vie de départ et vous donne un effet de héros : 2 mana, une fois par tour, toujours disponible. Les héros ne peuvent être ni attaqués ni détruits.
+
+[img:card|Anatomie d'un monstre : nom et blason de Niveau en haut, Attribut et Type sous l'illustration, ATK et DEF en bas, effets dans la zone de texte.]
+
+[img:effectbox|En duel, cliquez sur n'importe quelle carte et le panneau INSPECTER à gauche liste ses effets — badge de coût d'abord, puis le moment où ils se déclenchent.]
+
+# L'INVOCATION
+INVOCATION NORMALE — une fois par tour, depuis votre main, durant votre Main Phase. Un monstre de Niveau 1 arrive gratuitement. Un Niveau 2 demande 1 Sacrifice, un Niveau 3 en demande 2 : envoyez d'abord autant de monstres que vous contrôlez au Cimetière. Au lieu d'Invoquer face visible, vous pouvez POSER le monstre face cachée en Position de Défense — cela consomme aussi votre Invocation Normale.
+
+INVOCATION SPÉCIALE — toute invocation qui n'est pas une Invocation Normale. Ce sont les cartes qui la font : « Invoquez Spécialement 1 monstre depuis votre Cimetière », « vous pouvez Invoquer Spécialement cette carte depuis votre main si… ». Les Invocations Spéciales ne consomment pas votre Invocation Normale et il n'y a pas de limite par tour — sauf que chaque nom de carte ne peut utiliser sa propre condition « vous pouvez Invoquer Spécialement cette carte » qu'une fois par tour.
+
+INVOCATION DE RELIQUE — depuis l'Extra Deck, durant votre Main Phase, une fois ses conditions imprimées remplies. Payez le mana, offrez les sacrifices exigés (certaines les prennent sur le Terrain adverse), choisissez une zone.
+
+Chaque monstre invoqué reçoit une zone et une position de combat. La Position d'ATTAQUE face visible se bat avec son ATK ; la Position de DÉFENSE tient avec sa DEF et n'inflige aucun dommage. Les monstres face cachée sont toujours en Défense ; personne ne sait ce qu'ils sont avant qu'ils soient retournés.
+
+[img:zones-attack|Deux monstres en Position d'Attaque et un monstre Posé : face cachée, rien que son dos.]
+
+[img:zones-defense|La Position de Défense est couchée sur le côté — sa DEF fait face à l'attaquant.]
+
+# LE COMBAT
+Durant votre Battle Phase, chaque monstre face visible en Position d'Attaque peut attaquer une fois. Cliquez sur lui, puis sur la cible — ou sur le héros adverse pour une attaque directe. Une attaque directe n'est possible que tant que votre adversaire ne contrôle aucun monstre. Le tour de son invocation, un monstre peut attaquer normalement, sauf si sa carte dit le contraire.
+
+- Attaque contre Position d'ATTAQUE : l'ATK la plus élevée gagne, le perdant est détruit, et la différence est infligée en dommages au contrôleur du perdant. ATK égales : les deux sont détruits, personne ne reçoit de dommages.
+- Attaque contre Position de DÉFENSE : votre ATK contre sa DEF. Une ATK supérieure détruit le défenseur — sans dommages. Une ATK inférieure : votre monstre survit, mais VOUS recevez la différence. Égalité : il ne se passe rien.
+- Attaquer un monstre face cachée le retourne d'abord face visible ; s'il a un effet FLIP, il se déclenche.
+- Attaque directe : l'ATK totale en dommages.
+
+La position de combat peut être changée une fois par tour par monstre, durant votre Main Phase — mais pas le tour où le monstre a été invoqué ni après qu'il a attaqué. Retourner un monstre face cachée face visible en Position d'Attaque compte comme son changement de position.
+
+# LES EFFETS
+Le texte de la carte vous dit quand un effet se produit et ce qu'il coûte. Les mots sont toujours les mêmes, apprenez-les une fois :
+
+- À L'INVOCATION — quand cette carte est Invoquée. Se déclenche tout seul ; vous choisissez les cibles.
+- IGNITION — vous l'activez durant votre Main Phase (« Une fois par tour : … »).
+- RAPIDE — vous pouvez l'activer dès qu'une fenêtre de réponse est ouverte, même durant le tour adverse.
+- PASSIF — toujours actif tant que la carte est face visible sur le Terrain. Pas d'activation, pas de coût.
+- STANDBY / END PHASE — se produit durant cette phase de votre tour.
+- FLIP — quand la carte face cachée est retournée face visible, par vous ou par une attaque.
+- MAIN / CIMETIÈRE — certains effets s'utilisent depuis votre main ou depuis votre Cimetière ; la pile s'illumine quand quelque chose en elle peut agir. Cliquez sur la pile.
+- UNE FOIS PAR TOUR — exactement ce que ça dit. Certains effets sont une fois par tour par nom de carte.
+
+Le coût d'abord, l'effet ensuite : « Payez 2 mana : piochez 1 carte » signifie que le mana est parti même si la pioche est annulée. Si un effet ne peut absolument pas se résoudre maintenant — pas de cible légale, pas de zone libre pour une invocation — vous ne pouvez pas l'activer du tout.
+
+[img:activation|Quand un effet s'active, la carte et son texte s'avancent pour que les deux duellistes puissent lire ce qui se passe.]
+
+# LES EFFETS INFUSED
+Beaucoup de cartes portent un effet INFUSED : une version plus forte qui coûte toujours du mana. Deux saveurs :
+
+- COUPLÉ (« À la place, payez 2 mana : … ») améliore l'effet au-dessus de lui. Par tour, vous utilisez soit la version simple, soit la version INFUSED, jamais les deux.
+- INDÉPENDANT est une capacité à part entière. Elle fonctionne à côté de tout le reste sur la carte.
+
+En lisant une carte, regardez le badge de mana : bleu avec un nombre = coûte autant, vert NO MANA = gratuit.
+
+[img:cardtext|Le panneau de texte de carte détaille tout : badge de coût, nom de l'effet, moment d'activation, une fois par tour ou non.]
+
+# CHAÎNES ET RÉPONSES
+Chaque fois qu'une carte est activée, qu'un monstre est Invoqué ou qu'une attaque est déclarée, votre adversaire obtient une fenêtre de réponse — et vous aussi quand c'est lui qui agit. Répondre avec un effet Rapide construit une CHAÎNE : maillon 1, maillon 2, maillon 3… Dès que personne n'ajoute de maillon, la chaîne se résout à rebours, dernier maillon en premier.
+
+Quand un second effet répond au premier, un suivi de chaîne descend du haut de l'écran et liste les maillons dans l'ordre — les vôtres en turquoise, les siens en rouge. Il affiche BUILDING CHAIN pendant que les maillons s'ajoutent et RESOLVING pendant qu'ils se déclenchent, dernier maillon en premier.
+
+Pendant qu'une chaîne se résout, rien de nouveau ne peut être activé — pas même les effets qui se déclencheraient normalement. Ils attendent la fin de la chaîne et se déclenchent ensuite. Une carte annulée porte un badge violet NEG et ses effets ne font rien jusqu'à la fin du tour ; si elle essaie quand même, le jeu le dit et passe à la suite.
+
+[img:log|Le journal du duel à droite garde chaque activation, paiement et résultat dans l'ordre. En cas de doute, relisez.]
+
+L'interrupteur RÉACTIONS en bas à gauche désactive les propositions automatiques : les actions de votre adversaire ne s'arrêtent plus pour vous, seuls vos propres déclencheurs demandent encore. Pratique quand votre main ne contient aucune réponse.
+
+[img:reactions|Réactions activées : le jeu fait une pause pour vous proposer des réponses. Désactivées : seuls vos propres déclencheurs demandent.]
+
+# LES PILES
+CIMETIÈRE — où vont les cartes détruites, utilisées et défaussées. Beaucoup d'effets ramènent des cartes d'ici ou comptent ce qu'il contient. Cliquez sur une pile pour la parcourir.
+
+BANNISSEMENT — le second cimetière. Les cartes bannies sont hors du duel, sauf si une carte les ramène expressément. Certaines Reliques les comptent.
+
+DECK — face cachée, mélangé. Les effets de « recherche » y trouvent une carte ; « meuler » envoie des cartes de son dessus au Cimetière. Le vider n'est pas grave — devoir piocher et ne pas pouvoir, c'est la défaite.
+
+EXTRA DECK — vos Reliques, jusqu'à 20. Elles ne sont jamais piochées ; elles attendent leurs conditions.
+
+[img:piles|Deck, Cimetière, Bannissement et Extra Deck siègent au bord de votre côté. Les nombres indiquent ce qu'ils contiennent.]
+
+# L'ATELIER DE DECKS
+Un deck contient de 40 à 80 cartes, au plus 3 copies d'une carte, plus un héros et jusqu'à 20 Reliques dans l'Extra Deck. La Banlist peut réduire les copies de certaines cartes — la limite est imprimée sur la tuile et appliquée à la sauvegarde.
+
+Vous ne pouvez construire qu'avec des cartes que vous possédez. Chaque carte existe aussi en quatre finitions — Plain, Glossy, Rainbow, Static — et la finition de la copie que vous ajoutez est celle qui arrive sur la table. Les cartes que vous n'arrivez pas à obtenir peuvent être créées à partir de poussière ; désenchanter une copie en trop rend de la poussière.
+
+[img:deckbuilder|Le panneau de deck : nom, héros, le compte sur 40–80, et chaque copie que vous y avez scellée.]
+
+[img:deckbalance|ÉQUILIBRE DU DECK montre combien de monstres de Niveau 1, 2 et 3 vous jouez — et vous dit quand le deck est légal.]
+
+# OÙ JOUER
+- SOLO — des bots de tous tempéraments. Parfait pour apprendre un deck.
+- JOUER — la file en ligne pour les pièces et le rang, les salons privés avec un code, et REGARDER pour observer des duels en direct.
+- DÉFIS — La Tour : quinze étages, quinze gardiens, des boosters à chaque première victoire.
+- DRAFT — construisez à partir d'une réserve fraîche et grimpez avec ce que vous avez drafté.
+- BOUTIQUE — boosters, la Cache des Héros et des cosmétiques ; STATISTIQUES montre ce qui gagne.
+
+Chaque victoire, défaite et match nul en ligne rapporte des pièces. Les Points de Rang vous font traverser dix sceaux de cinq paliers chacun ; une saison dure un mois.
+
+# UNE DERNIÈRE CHOSE
+Le texte de la carte l'emporte sur ce livre. Là où une carte dit quelque chose que les règles ne disent pas, c'est la carte qui a raison — la crypte est pleine d'exceptions, et le GLOSSAIRE voisin explique chaque mot qu'elles emploient.

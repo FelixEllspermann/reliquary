@@ -99,7 +99,7 @@ Only one effect from this group each turn	Только один эффект и�
  · only one from this group per turn	 · только один из этой группы за ход
 # ---------- Passiv-Vorlagen ----------
 face-down 	закрытые
-other 	другие
+other 	другие 
  Level {0}	 уровня {0}
 {0} ATK and {1} DEF	{0} ATK и {1} DEF
 {0} ATK	{0} ATK
