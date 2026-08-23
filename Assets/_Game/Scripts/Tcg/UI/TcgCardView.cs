@@ -131,7 +131,7 @@ namespace Rouge.Tcg.UI
         private static readonly Inks MonsterInks = new Inks
         {
             name = Hex("#F1DFB8"), crest = Hex("#F3DDA4"), badge = Hex("#1E1405"),
-            metaStrong = Hex("#E4D3AE"), metaMuted = Hex("#B5A484"), keyline = Hex("#C8A45C"),
+            metaStrong = Hex("#E4D3AE"), metaMuted = Hex("#CFC0A0"), keyline = Hex("#C8A45C"),
             statLabelStrong = Hex("#B79A62"), statLabelMuted = Hex("#8D8570"),
             statInkStrong = Hex("#F3DDA4"), statInkMuted = Hex("#DCD3BC"), statInkDisabled = Hex("#4A4360")
         };
@@ -150,11 +150,13 @@ namespace Rouge.Tcg.UI
             statInkStrong = Hex("#D8CAF6"), statInkMuted = Hex("#D8CAF6"), statInkDisabled = Hex("#4A4360")
         };
 
-        /// <summary>Reliquary: dunkle Tinte auf hellem Ivory-Chassis, Gold-Keyline.</summary>
+        /// <summary>Reliquary: dunkle Tinte auf hellem Ivory-Chassis, Gold-Keyline.
+        /// Ausnahme crest: das Wappen-Hexagon bleibt bei allen Typen dunkel,
+        /// also braucht das "R" darauf helle Tinte.</summary>
         private static readonly Inks ReliquaryInks = new Inks
         {
-            name = Hex("#3A2F1B"), crest = Hex("#4A3B20"), badge = Hex("#F7F1E1"),
-            metaStrong = Hex("#5A4A2C"), metaMuted = Hex("#8A7B5C"), keyline = Hex("#C8A45C"),
+            name = Hex("#3A2F1B"), crest = Hex("#FFE9AE"), badge = Hex("#F7F1E1"),
+            metaStrong = Hex("#5A4A2C"), metaMuted = Hex("#6B5A35"), keyline = Hex("#C8A45C"),
             statLabelStrong = Hex("#8A7343"), statLabelMuted = Hex("#9A9078"),
             statInkStrong = Hex("#4A3B20"), statInkMuted = Hex("#5C5138"), statInkDisabled = Hex("#B5AC97")
         };
@@ -601,13 +603,15 @@ namespace Rouge.Tcg.UI
                     cAttr.text = Loc.T(monster.attribute.ToString().ToUpperInvariant());
                     cAttr.color = inks.metaStrong;
                 }
+                // Kompakt hat weder ATK/DEF-Labels noch Platz für Hierarchie-Nuancen:
+                // Typ und DEF-Zahl bekommen die volle Tinte, sonst wirken sie verwaschen.
                 if (cType != null)
                 {
                     cType.text = Loc.T(monster.monsterType.ToString().ToUpperInvariant());
-                    cType.color = inks.metaMuted;
+                    cType.color = inks.metaStrong;
                 }
                 if (cAtk != null) cAtk.text = ColorizeStat(instance.CurrentAtk, monster.atk, inks.statInkStrong);
-                if (cDef != null) cDef.text = ColorizeStat(instance.CurrentDef, monster.def, inks.statInkMuted);
+                if (cDef != null) cDef.text = ColorizeStat(instance.CurrentDef, monster.def, inks.statInkStrong);
                 if (cCrestText != null)
                 {
                     cCrestText.text = isReliquary ? "R" : Mathf.Clamp(monster.level, 1, 3).ToString();
