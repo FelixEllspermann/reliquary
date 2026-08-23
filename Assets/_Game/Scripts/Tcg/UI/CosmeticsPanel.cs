@@ -111,6 +111,8 @@ namespace Rouge.Tcg.UI
             panel = MakeRect("Panel", canvasRect);
             panel.sizeDelta = new Vector2(PanelWidth, PanelHeight);
             var bg = MakeImage("BG", panel, Hex("#0E121B", 0.98f));
+            // Fängt Klicks auf tote Flächen im Fenster ab — nur der Scrim daneben schließt.
+            bg.raycastTarget = true;
             Stretch(bg.rectTransform);
             var frame = MakeImage("Frame", panel, Hex("#C8A45C", 1f));
             frame.sprite = skin.frame; frame.type = Image.Type.Sliced;
@@ -266,6 +268,7 @@ namespace Rouge.Tcg.UI
                 var filter = Filters[i];
                 float width = 22f + filter.Label.Length * 11f;
                 var plate = MakeImage("Filter_" + i, row, Hex("#C8A45C", 0.10f));
+                plate.raycastTarget = true;   // sonst fällt der Klick durch auf den Scrim
                 plate.rectTransform.sizeDelta = new Vector2(width, 26f);
                 plate.rectTransform.anchoredPosition = new Vector2(x + width * 0.5f, 0f);
                 if (skin != null && skin.frame != null) { plate.sprite = skin.frame; plate.type = Image.Type.Sliced; }
