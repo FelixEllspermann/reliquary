@@ -156,9 +156,9 @@ namespace Rouge.Tcg.UI
         private static readonly Inks ReliquaryInks = new Inks
         {
             name = Hex("#3A2F1B"), crest = Hex("#FFE9AE"), badge = Hex("#F7F1E1"),
-            metaStrong = Hex("#5A4A2C"), metaMuted = Hex("#6B5A35"), keyline = Hex("#C8A45C"),
+            metaStrong = Hex("#33291A"), metaMuted = Hex("#4E4126"), keyline = Hex("#C8A45C"),
             statLabelStrong = Hex("#8A7343"), statLabelMuted = Hex("#9A9078"),
-            statInkStrong = Hex("#4A3B20"), statInkMuted = Hex("#5C5138"), statInkDisabled = Hex("#B5AC97")
+            statInkStrong = Hex("#2E2417"), statInkMuted = Hex("#3A3122"), statInkDisabled = Hex("#B5AC97")
         };
 
         private static readonly Color EffectInk = Hex("#2E2417");
