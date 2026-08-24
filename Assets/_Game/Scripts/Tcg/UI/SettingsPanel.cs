@@ -270,7 +270,7 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Reihenfolge des Sprachwechslers — neue Sprachen hier anhängen.</summary>
-        private static readonly string[] LanguageCycle = { Loc.English, Loc.German, Loc.Spanish, Loc.French, Loc.Russian, Loc.ChineseSimplified };
+        private static readonly string[] LanguageCycle = { Loc.English, Loc.German, Loc.Spanish, Loc.French, Loc.Portuguese, Loc.Russian, Loc.ChineseSimplified };
 
         private static string LanguageDisplayName(string language) => language switch
         {
@@ -278,6 +278,7 @@ namespace Rouge.Tcg.UI
             Loc.German => "DEUTSCH",
             Loc.Spanish => "ESPAÑOL",
             Loc.French => "FRANÇAIS",
+            Loc.Portuguese => "PORTUGUÊS",
             Loc.Russian => "РУССКИЙ",
             _ => "ENGLISH"
         };

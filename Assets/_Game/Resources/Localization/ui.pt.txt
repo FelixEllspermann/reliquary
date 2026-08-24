@@ -1,0 +1,477 @@
+# RELIQUARY — UI-Übersetzung Portugiesisch (PT-BR-Stil, für PT+BR)
+# Format: englischer Text <TAB> Übersetzung. '#' = Kommentar.
+# Werte werden NICHT getrimmt — Leerzeichen in Bausteinen sind Absicht.
+# ---------- Kartenrahmen / Kartentypen ----------
+MONSTER	MONSTRO
+SPELL	MAGIA
+ARTIFACT	ARTEFATO
+RELIQUARY	RELICÁRIO
+PLAYER	JOGADOR
+HERO	HERÓI
+QUICK	RÁPIDA
+NORMAL	NORMAL
+QUICK SPELL	MAGIA RÁPIDA
+Quick Spell	Magia Rápida
+Spell Card	Carta de Magia
+Artifact	Artefato
+Monster	Monstro
+Player	Jogador
+Field	Campo
+FIELD	CAMPO
+LIEN	PENHORA
+SUMMON:	INVOCAÇÃO:
+PASSIVE:	PASSIVO:
+INFUSED	INFUSED
+OR INFUSED	OU INFUSED
+INFUSED UPGRADE	MELHORIA INFUSED
+RELIQUARY SUMMON	INVOCAÇÃO DE RELICÁRIO
+SPECIAL SUMMON	INVOCAÇÃO ESPECIAL
+PASSIVE	PASSIVO
+{0} MANA	{0} MANA
+NO MANA	SEM MANA
+No effect.	Sem efeito.
+— or, instead —	— ou, em vez disso —
+Equipped:	Equipado:
+You cannot see this card.	Você não pode ver esta carta.
+Face-down card	Carta virada para baixo
+{0} • Level {1} • ATK {2} / DEF {3}	{0} • Nível {1} • ATK {2} / DEF {3}
+Player Card • {0} starting LP	Carta de Jogador • {0} LP iniciais
+# ---------- Attribute ----------
+FIRE	FOGO
+WATER	ÁGUA
+LIGHT	LUZ
+DARK	TREVAS
+EARTH	TERRA
+WIND	VENTO
+Fire	Fogo
+Water	Água
+Light	Luz
+Dark	Trevas
+Earth	Terra
+Wind	Vento
+# ---------- Monster-Typen ----------
+DRAGON	DRAGÃO
+HUMAN	HUMANO
+ANIMAL	ANIMAL
+BEAST	FERA
+MECHA	MECHA
+DEMON	DEMÔNIO
+ANGEL	ANJO
+MYTH	MITO
+Dragon	Dragão
+Human	Humano
+Animal	Animal
+Beast	Fera
+Mecha	Mecha
+Demon	Demônio
+Angel	Anjo
+Myth	Mito
+# ---------- Seltenheiten ----------
+COMMON	COMUM
+UNCOMMON	INCOMUM
+RARE	RARA
+LEGENDARY	LENDÁRIA
+Common	Comum
+Uncommon	Incomum
+Rare	Rara
+Legendary	Lendária
+# ---------- Trigger-Zeilen (Inspect) ----------
+Activate during your Main Phase	Ative durante a sua Main Phase
+Response — activate any time	Resposta — ative a qualquer momento
+On play	Ao jogar
+When this card is summoned	Quando esta carta é Invocada
+When this card is destroyed	Quando esta carta é destruída
+When your opponent summons	Quando seu oponente Invoca
+During your Standby Phase	Durante a sua Standby Phase
+During your End Phase	Durante a sua End Phase
+When this card is Normal Summoned	Quando esta carta é Invocada por Invocação Normal
+Activate from your hand during your Main Phase	Ative da sua mão durante a sua Main Phase
+Activate from your Graveyard during your Main Phase	Ative do seu Cemitério durante a sua Main Phase
+Response from your hand — activate any time	Resposta da mão — ative a qualquer momento
+FLIP — when this card is turned face-up	VIRAR — quando esta carta é virada para cima
+ · only if Special Summoned	 · só se foi Invocada de Modo Especial
+ · once per turn	 · uma vez por turno
+Standalone effect	Efeito independente
+ · standalone	 · independente
+Only one effect from this group each turn	Só um efeito deste grupo por turno
+ · only one from this group per turn	 · só um deste grupo por turno
+# ---------- Passiv-Vorlagen ----------
+face-down 	 virados para baixo
+other 	outros 
+ Level {0}	 de Nível {0}
+{0} ATK and {1} DEF	{0} de ATK e {1} de DEF
+{0} ATK	{0} de ATK
+{0} DEF	{0} de DEF
+Your {0}{1}{2}{3}{4} monsters gain {5}.	Seus {0}monstros{3}{2}{4}{1} ganham {5}.
+This card gains {0} ATK for each of {1}.	Esta carta ganha {0} de ATK para cada um de {1}.
+This card gains {0} DEF for each of {1}.	Esta carta ganha {0} de DEF para cada um de {1}.
+This card cannot attack.	Esta carta não pode atacar.
+This card cannot attack during the turn it is Summoned.	Esta carta não pode atacar durante o turno em que é Invocada.
+This card cannot attack directly during the turn it is Summoned.	Esta carta não pode atacar diretamente durante o turno em que é Invocada.
+Your opponent's attacks must target this card.	Os ataques do seu oponente devem escolher esta carta como alvo.
+While you control {0}+ Artifacts, this card cannot be destroyed by battle.	Enquanto você controlar {0}+ Artefatos, esta carta não pode ser destruída em batalha.
+Counts as {0} tributes for a Reliquary Summon.	Conta como {0} sacrifícios para uma Invocação de Relicário.
+Your other \"{0}\" cards cannot be targeted by your opponent's effects.	Suas outras cartas «{0}» não podem ser escolhidas como alvo pelos efeitos do seu oponente.
+Can attack twice each Battle Phase while you control another face-up {0} monster.	Pode atacar duas vezes por Battle Phase enquanto você controlar outro monstro {0} virado para cima.
+You cannot Summon or Set this card while you control {0} \"{1}\" monsters.	Você não pode Invocar nem Baixar esta carta enquanto controlar {0} monstros «{1}».
+Every time you mill 1 or more cards: deal {0} damage to your opponent.	Toda vez que você moer 1 ou mais cartas: cause {0} de dano ao seu oponente.
+While this card is on the field, neither player can Special Summon Reliquaries.	Enquanto esta carta estiver no Campo, nenhum jogador pode Invocar Relicários de Modo Especial.
+This card cannot be destroyed by battle.	Esta carta não pode ser destruída em batalha.
+This card cannot be targeted by your opponent's effects.	Esta carta não pode ser escolhida como alvo pelos efeitos do seu oponente.
+Neither player takes battle damage from battles involving this card.	Nenhum jogador sofre dano de batalha em batalhas que envolvam esta carta.
+Your opponent takes all battle damage you would take instead.	Seu oponente sofre em seu lugar todo o dano de batalha que você sofreria.
+During each End Phase: put a Death Counter on this card. With {0} Death Counters, it is sent to the Graveyard.	Durante cada End Phase: coloque um Contador da Morte nesta carta. Com {0} Contadores da Morte, ela é enviada ao Cemitério.
+Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {0} more.	Toda vez que seu oponente enviar cartas do Deck dele ao Cemitério (exceto por este efeito): ele envia {0} a mais.
+While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.	Enquanto esta carta estiver no Campo, suas cartas não podem ser escolhidas como alvo por efeitos ou ataques do seu oponente.
+During each End Phase: pay {0} LP or destroy this card.	Durante cada End Phase: pague {0} LP ou destrua esta carta.
+While this card is face-up on the field, your opponent must Set Spells before activating them.	Enquanto esta carta estiver virada para cima no Campo, seu oponente deve Baixar as Magias antes de ativá-las.
+(The aura above applies only to monsters adjacent to this card.)	(A aura acima só se aplica a monstros adjacentes a esta carta.)
+(The aura above applies only to your monsters with no adjacent monster.)	(A aura acima só se aplica aos seus monstros sem monstro adjacente.)
+Your monsters with an adjacent monster lose {0} ATK.	Seus monstros com um monstro adjacente perdem {0} de ATK.
+The monster facing this card loses {0} ATK.	O monstro de frente para esta carta perde {0} de ATK.
+Monsters adjacent to this card cannot be destroyed by card effects.	Monstros adjacentes a esta carta não podem ser destruídos por efeitos de cartas.
+Monsters adjacent to this card cannot be destroyed by battle.	Monstros adjacentes a esta carta não podem ser destruídos em batalha.
+When this card is destroyed: the monsters adjacent to it permanently lose {0} ATK and DEF.	Quando esta carta é destruída: os monstros adjacentes a ela perdem permanentemente {0} de ATK e DEF.
+This card cannot be destroyed by card effects.	Esta carta não pode ser destruída por efeitos de cartas.
+This card cannot be Tributed.	Esta carta não pode ser Sacrificada.
+This card cannot change its battle position.	Esta carta não pode mudar sua posição de batalha.
+If this card changed its battle position this turn, it cannot attack.	Se esta carta mudou sua posição de batalha neste turno, ela não pode atacar.
+Cannot be Normal Summoned or Set.	Não pode ser Invocada por Invocação Normal nem Baixada.
+During each of its controller's Standby Phases: its controller loses {0} LP.	Durante cada Standby Phase de quem a controla: quem a controla perde {0} LP.
+While this card is on the field, you cannot Special Summon other monsters.	Enquanto esta carta estiver no Campo, você não pode Invocar outros monstros de Modo Especial.
+While you control no other monsters, this card cannot be destroyed by battle or by card effects.	Enquanto você não controlar outros monstros, esta carta não pode ser destruída em batalha nem por efeitos de cartas.
+While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.	Enquanto você tiver 1 ou menos cartas na mão, esta carta não pode ser escolhida como alvo nem destruída por efeitos de cartas.
+Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.	Perfurante: quando esta carta ataca um monstro em Posição de Defesa com DEF menor, a diferença é causada como dano de batalha.
+The equipped monster inflicts piercing battle damage.	O monstro equipado causa dano de batalha perfurante.
+If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.	Se o monstro equipado atacar um monstro em Posição de Defesa e não o destruir, destrua esta carta.
+This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.	Esta carta pode atacar diretamente mesmo se o seu oponente controlar monstros; o dano de batalha dos seus ataques diretos é reduzido à metade.
+This card cannot attack directly.	Esta carta não pode atacar diretamente.
+Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.	As Magias custam 1 de mana a mais para ambos os jogadores. Durante a sua End Phase, se você ativou uma Magia neste turno, destrua esta carta.
+Each player may declare only one attack per Battle Phase. Attacking monsters gain {0} ATK during the battle.	Cada jogador só pode declarar um ataque por Battle Phase. Monstros atacantes ganham {0} de ATK durante a batalha.
+During your Standby Phase: gain {0} additional Mana this turn.	Durante a sua Standby Phase: ganhe {0} de mana adicional neste turno.
+During your End Phase, if you hold more than {0} cards, destroy this card.	Durante a sua End Phase, se você tiver mais de {0} cartas na mão, destrua esta carta.
+When your LP are {0} or less, this card is destroyed.	Quando seus LP forem {0} ou menos, esta carta é destruída.
+LP costs you pay are reduced to 0.	Os custos de LP que você paga são reduzidos a 0.
+Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.	Uma vez por turno, quando você jogar uma moeda, jogue-a duas vezes e escolha qual resultado vale. Se ambas derem Coroa, destrua esta carta.
+While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.	Enquanto seus LP forem menores que os do seu oponente, suas jogadas de moeda que derem Coroa contam como Cara.
+Monsters with a Lien lose {0} ATK.	Monstros com uma Penhora perdem {0} de ATK.
+Monsters you control but do not own gain {0} ATK.	Monstros que você controla mas não possui ganham {0} de ATK.
+# ---------- Zähl-Namen ----------
+your Artifacts on the field	seus Artefatos no Campo
+the Artifacts in your Graveyard	os Artefatos no seu Cemitério
+your face-down monsters	seus monstros virados para baixo
+your banished monsters	seus monstros banidos
+the cards in your Graveyard	as cartas no seu Cemitério
+its equipped Artifacts	seus Artefatos equipados
+your opponent's face-down monsters	os monstros virados para baixo do seu oponente
+the Illusion Tokens your opponent controls	as Fichas de Ilusão que o seu oponente controla
+the cards in your hand	as cartas na sua mão
+the Spells in your Graveyard	as Magias no seu Cemitério
+your monsters on the field	seus monstros no Campo
+# ---------- Selbst-Spezialbeschwörung ----------
+you control	você controla
+your opponent controls	seu oponente controla
+{0} {1}+ \"{2}\" monsters	{0} {1}+ monstros «{2}»
+{0} a \"{1}\" monster	{0} um monstro «{1}»
+{0} a {1} monster	{0} um monstro {1}
+there is a face-down monster on the field	há um monstro virado para baixo no Campo
+you control an Artifact	você controla um Artefato
+your opponent controls {0}+ monsters	seu oponente controla {0}+ monstros
+you milled this or last turn	você moeu neste turno ou no anterior
+you have {0}+ cards in your Graveyard	você tem {0}+ cartas no seu Cemitério
+you have {0}+ \"{1}\" cards in your Graveyard	você tem {0}+ cartas «{1}» no seu Cemitério
+you control no monsters	você não controla monstros
+you control {0}+ monsters	você controla {0}+ monstros
+your LP are lower than your opponent's	seus LP são menores que os do seu oponente
+you have {0} or fewer other cards in your hand	você tem {0} outras cartas ou menos na mão
+you have {0}+ other cards in your hand	você tem {0}+ outras cartas na mão
+your opponent controls a Defense Position monster	seu oponente controla um monstro em Posição de Defesa
+a monster with a Lien is on the field	há um monstro com uma Penhora no Campo
+ in Defense Position	 em Posição de Defesa
+ by paying {0} LP	 pagando {0} LP
+You can Special Summon this card from your hand{0}{1} (once per turn).	Você pode Invocar esta carta de Modo Especial da sua mão{0}{1} (uma vez por turno).
+While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).	Enquanto {0}: você pode Invocar esta carta de Modo Especial da sua mão{1}{2} (uma vez por turno).
+ and 	 e
+# ---------- Hauptmenü & Fenster ----------
+NEWS	NOTÍCIAS
+BANLIST	BANLIST
+FEEDBACK	FEEDBACK
+SETTINGS	OPÇÕES
+DISCORD	DISCORD
+HOW TO PLAY	COMO JOGAR
+GLOSSARY	GLOSSÁRIO
+CLOSE	FECHAR
+NEW CARDS	CARTAS NOVAS
+BACK	VOLTAR
+DONE	PRONTO
+CANCEL	CANCELAR
+Cancel	Cancelar
+SEND	ENVIAR
+PLAY	JOGAR
+SOLO	SOLO
+DECKS	DECKS
+SHOP	LOJA
+STATISTICS	ESTATÍSTICAS
+MAIN MENU	MENU PRINCIPAL
+PATCH NOTES · WHAT CHANGED	PATCH NOTES · O QUE MUDOU
+CARD LIMITS · ENFORCED WHEN A DECK IS SAVED	LIMITES DE CARTAS · APLICADOS AO SALVAR UM DECK
+THE RULES OF THE VAULT	AS REGRAS DO COFRE
+THE RULES OF THE VAULT · SCROLL TO READ	AS REGRAS DO COFRE · ROLE PARA LER
+EVERY TERM OF THE GAME · A TO Z	CADA TERMO DO JOGO · DE A A Z
+MUSIC	MÚSICA
+SOUND	SOM
+SCREEN SHAKE	TREMOR DE TELA
+LANGUAGE	IDIOMA
+OFF	NÃO
+More options will be added here over time.	Mais opções serão adicionadas aqui com o tempo.
+DAILY SEAL	SELO DIÁRIO
+CLAIM	RESGATAR
+CLAIMED	RESGATADO
+CHALLENGES	DESAFIOS
+WORKSHOP	OFICINA
+Cosmetics	Cosméticos
+CUSTOMIZE APPEARANCE & TITLE	PERSONALIZAR APARÊNCIA E TÍTULO
+Player Profile	Perfil do jogador
+LIFETIME RECORD	HISTÓRICO GERAL
+Recent Matches	Últimas partidas
+LOADING MATCH HISTORY...	CARREGANDO HISTÓRICO DE PARTIDAS...
+LOADING STATISTICS...	CARREGANDO ESTATÍSTICAS...
+Card Performance	Desempenho das cartas
+Card Details	Detalhes da carta
+DUELIST OF THE VAULT	DUELISTA DO COFRE
+# ---------- Play / Lobby ----------
+ONLINE DUEL	DUELO ONLINE
+Online Duel	Duelo online
+QUICK MATCH	PARTIDA RÁPIDA
+PRIVATE LOBBY	SALA PRIVADA
+CREATE LOBBY	CRIAR SALA
+JOIN DUEL	ENTRAR NO DUELO
+JOIN WITH A CODE	ENTRAR COM CÓDIGO
+LOBBY CODE	CÓDIGO DA SALA
+WATCH	ASSISTIR
+RANKED DUELS	DUELOS RANQUEADOS
+RANKED QUEUE	FILA RANQUEADA
+Searching for a duelist	Procurando um duelista
+Waiting for your opponent to join…	Esperando seu oponente entrar…
+Choose your deck	Escolha seu deck
+You cannot swap decks mid-duel — choose well.	Você não pode trocar de deck no meio do duelo — escolha bem.
+SOLO TRIAL	PROVA SOLO
+TRIAL OF THE WARDEN	PROVA DO GUARDIÃO
+TRIAL BRIEFING	INSTRUÇÕES DA PROVA
+TRIAL REWARD	RECOMPENSA DA PROVA
+DIFFICULTY	DIFICULDADE
+FULL DECK · REAL AI	DECK COMPLETO · IA DE VERDADE
+PLAYS OPENLY · NO TRAPS	JOGA ABERTAMENTE · SEM ARMADILHAS
+START DUEL!	COMEÇAR DUELO!
+THE TOWER	A TORRE
+The Tower rises — its keepers await	A Torre se ergue — seus guardiões esperam
+Every trial pays out — win or learn.	Toda prova recompensa — vencer ou aprender.
+# ---------- Duell-HUD ----------
+END TURN	ENCERRAR TURNO
+BATTLE	BATALHA
+END BATTLE	ENCERRAR BATALHA
+SURRENDER	DESISTIR
+DUEL LOG	REGISTRO DO DUELO
+INSPECT	INSPEÇÃO
+SELECT A CARD	ESCOLHA UMA CARTA
+OPPONENT	OPONENTE
+YOU	VOCÊ
+PLAYER CARD	CARTA DE JOGADOR
+LIFE	VIDA
+DECK	DECK
+HAND	MÃO
+GRAVE	CEMITÉRIO
+BANISH	BANIDO
+GRAVEYARD	CEMITÉRIO
+BANISHED	BANIDO
+EXTRA DECK	EXTRA DECK
+DRAW	COMPRA
+STDBY	STDBY
+MAIN	MAIN
+END	FIM
+MAIN PHASE	MAIN PHASE
+YOUR MAIN PHASE	SUA MAIN PHASE
+Your Main Phase — click a card or drag it onto a zone.	Sua Main Phase — clique numa carta ou arraste-a para uma zona.
+Battle Phase — click a monster that can attack.	Battle Phase — clique num monstro que possa atacar.
+REACTIONS · ON	REAÇÕES · SIM
+REACTIONS · OFF	REAÇÕES · NÃO
+VICTORY	VITÓRIA
+DUEL AGAIN	OUTRO DUELO
+QUIT	SAIR
+ACTIVATION	ATIVAÇÃO
+THE DUEL IS SEALED	O DUELO ESTÁ SELADO
+# ---------- Deck Builder ----------
+DECK BUILDER	OFICINA DE DECKS
+DECK NAME	NOME DO DECK
+Deck name	Nome do deck
+SAVE DECK	SALVAR DECK
+SAVED ✓	SALVO ✓
+DELETE	EXCLUIR
+COPY	COPIAR
+DECK BALANCE	BALANÇO DO DECK
+CARD TEXT	TEXTO DA CARTA
+Hover over a card to read its text.	Passe o cursor sobre uma carta para ler o texto dela.
+Search name, attribute, type…	Buscar nome, atributo, tipo…
+ALL	TODAS
+OWNED	NA COLEÇÃO
+MISSING	FALTANDO
+NEW	NOVAS
+TYPE	TIPO
+NAME	NOME
+LEVEL	NÍVEL
+ATK	ATK
+DEF	DEF
+RARITY	RARIDADE
+ASC	ASC
+DESC	DESC
+ALL ARCHETYPES	TODOS OS ARQUÉTIPOS
+NO ARCHETYPE	SEM ARQUÉTIPO
+CHOOSE YOUR HERO	ESCOLHA SEU HERÓI
+HERO CACHE · SHOP	ESCONDERIJO DE HERÓIS · LOJA
+Your Deck:	Seu deck:
+LV 1	NV 1
+LV 2	NV 2
+LV 3	NV 3
+STAT	VALOR
+RARE	RARA
+OR	OU
++ NEW	+ NOVA
+No deck	Sem deck
+Create a deck in the workshop	Crie um deck na oficina
+{0} cards · {1} monsters · {2} spells · {3} artifacts	{0} cartas · {1} monstros · {2} magias · {3} artefatos
+# ---------- Shop ----------
+CARD PACKS	PACOTES DE CARTAS
+Hero Cache	Esconderijo de Heróis
+Relic Pack	Pacote de Relíquias
+OPEN	ABRIR
+BROWSE	EXAMINAR
+Card Pool	Pool de cartas
+Sleeves, frames, mats, coins and titles	Capas, molduras, tapetes, moedas e títulos
+Paid for with coins — the same purse that buys packs.	Pagos com moedas — a mesma bolsa que compra pacotes.
+One Player Card you do not own yet	Uma Carta de Jogador que você ainda não tem
+Every card in the vault — five per seal	Cada carta do cofre — cinco por selo
+# ---------- NEW-CARDS-Szene ----------
+{0} CARDS ADDED IN {1} AND ITS PATCHES · POINT AT A CARD TO READ IT	{0} CARTAS ADICIONADAS EM {1} E SEUS PATCHES · APONTE PARA UMA CARTA PARA LÊ-LA
+NOTHING NEW IN {0} YET	AINDA NADA DE NOVO EM {0}
+Point at a card to read it.	Aponte para uma carta para lê-la.
+BACK TO MENU	VOLTAR AO MENU
+— {0} CARDS	— {0} CARTAS
+{0} NEW CARDS	{0} CARTAS NOVAS
+{0} OF {1} NEW CARDS SHOWN	{0} DE {1} CARTAS NOVAS EXIBIDAS
+# ---------- Hauptmenü dynamisch ----------
+Requires an account — log in first	Requer uma conta — faça login primeiro
+The Warden awaits — +50 coins per trial	O Guardião espera — +50 moedas por prova
+Browse the starter decks	Examine os decks iniciais
+LOG IN TO CLAIM	FAÇA LOGIN PARA RESGATAR
++150 COINS PER DAY	+150 MOEDAS POR DIA
++50 COINS	+50 MOEDAS
+OFFLINE MODE	MODO OFFLINE
+OFFLINE — NO ACCOUNT	OFFLINE — SEM CONTA
+{0} duelists in the vault — +100 coins per duel	{0} duelistas no cofre — +100 moedas por duelo
+The Tower — {0} floors sealed	A Torre — {0} andares selados
+{0} unopened packs waiting in your vault	{0} pacotes fechados esperam no seu cofre
+Relic Pack — five cards per seal	Pacote de Relíquias — cinco cartas por selo
+{0} decks · {1} unique cards collected	{0} decks · {1} cartas diferentes colecionadas
+{0} DUELISTS ONLINE	{0} DUELISTAS ONLINE
+DAY {0} · +{1} COINS	DIA {0} · +{1} MOEDAS
++{0} COINS PER DAY	+{0} MOEDAS POR DIA
+DAY {0} SEALED	DIA {0} SELADO
+SEAL READY	SELO PRONTO
+Seal your deck, wake the Warden, and duel for the lost relics of the vault.	Sele seu deck, desperte o Guardião e duele pelas relíquias perdidas do cofre.
+This vault is empty	Este cofre está vazio
+0 GAMES	0 PARTIDAS
+0 PACKS WAITING	0 PACOTES ESPERANDO
+SOLO — GEGEN DEN BOT	SOLO — CONTRA O BOT
+BUY PACK · 100	COMPRAR PACOTE · 100
+DUELIST	DUELISTA
+Novice	Novato
+Warden	Guardião
+Sealed	Selado
+Wanderer	Errante
+< MENU	< MENU
+Turn 1	Turno 1
+SHOWCASE — CLICK A SLOT TO DISPLAY A CARD	VITRINE — CLIQUE NUM ESPAÇO PARA EXIBIR UMA CARTA
+ENTER THE VAULT	ENTRE NO COFRE
+THE VAULT'S ONE SEAL	O ÚNICO SELO DO COFRE
+{0} terms. Card texts use exactly these words.	{0} termos. Os textos das cartas usam exatamente estas palavras.
+# ---------- Login ----------
+SIGN IN	ENTRAR
+REGISTER	REGISTRAR
+LOG IN	FAZER LOGIN
+CREATE ACCOUNT	CRIAR CONTA
+UNSEALING…	ABRINDO O SELO…
+DUELIST NAME	NOME DE DUELISTA
+PASSWORD	SENHA
+SHOW	MOSTRAR
+HIDE	OCULTAR
+Keep me sealed in	Manter-me dentro do selo
+Lost your seal?	Perdeu seu selo?
+Your name, duelist	Seu nome, duelista
+Your seal phrase	Sua frase de selo
+CONTINUE WITH STEAM	CONTINUAR COM A STEAM
+CONTINUE AS {0}	CONTINUAR COMO {0}
+Reaching for the vault…	Conectando ao cofre…
+Vault unreachable — retrying may help	Cofre inacessível — tentar de novo pode ajudar
+Vault unreachable — retrying…	Cofre inacessível — tentando de novo…
+Connected to the vault	Conectado ao cofre
+Not connected to the vault.	Sem conexão com o cofre.
+Name too short (min. 3 characters).	Nome curto demais (mín. 3 caracteres).
+Password too short (min. 4 characters).	Senha curta demais (mín. 4 caracteres).
+Your vault holds {0} cards and {1} deck.	Seu cofre contém {0} cartas e {1} deck.
+Your vault holds {0} cards and {1} decks.	Seu cofre contém {0} cartas e {1} decks.
+APPLY	APLICAR
+
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	AMIGOS
+YOUR FRIEND CODE	SEU CÓDIGO DE AMIGO
+Code copied.	Código copiado.
+ADD A FRIEND BY CODE	ADICIONAR AMIGO POR CÓDIGO
+FRIEND CODE…	CÓDIGO DE AMIGO…
+ADD	ADICIONAR
+REQUESTS	PEDIDOS
+YOUR FRIENDS	SEUS AMIGOS
+NO FRIENDS YET — SHARE YOUR CODE!	AINDA SEM AMIGOS — COMPARTILHE SEU CÓDIGO!
+IN A DUEL	EM DUELO
+DUEL	DUELO
+PROFILE	PERFIL
+ACCEPT	ACEITAR
+DECLINE	RECUSAR
+WAITING FOR {0}…	ESPERANDO {0}…
+Request sent to {0}.	Pedido enviado a {0}.
+You are now friends with {0}!	Agora você é amigo de {0}!
+{0} sent you a friend request.	{0} enviou um pedido de amizade para você.
+{0} declined the duel.	{0} recusou o duelo.
+{0} CHALLENGES YOU TO A DUEL	{0} DESAFIA VOCÊ PARA UM DUELO
+Not connected.	Sem conexão.
+ADD FRIEND	ADICIONAR AMIGO
+SAVE REPLAY	SALVAR REPLAY
+REPLAY SAVED	REPLAY SALVO
+REQUEST SENT	PEDIDO ENVIADO
+FRIENDS NOW	AGORA SÃO AMIGOS
+SLOTS FULL — SEE PROFILE	ESPAÇOS CHEIOS — VER PERFIL
+ALREADY FRIENDS	JÁ SÃO AMIGOS
+REPLAY	REPLAY
+WINNER	VENCEDOR
+ONLINE	ONLINE
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	SEM CONEXÃO — O HISTÓRICO PRECISA DE UMA SESSÃO COM O SERVIDOR.
+NO MATCHES PLAYED YET.	AINDA NÃO HÁ PARTIDAS JOGADAS.
+No duelist with that code.	Não há duelista com esse código.
+That is your own code.	Esse é o seu próprio código.
+You are already friends.	Vocês já são amigos.
+Request already sent.	Pedido já enviado.
+Friend codes have 8 characters.	Códigos de amigo têm 8 caracteres.
+That duelist does not exist.	Esse duelista não existe.
+You can only challenge friends.	Você só pode desafiar amigos.
+That duelist is offline.	Esse duelista está offline.
+That duelist is in a duel right now.	Esse duelista está num duelo agora mesmo.
+That challenge is no longer open.	Esse desafio não está mais aberto.
+That request is no longer open.	Esse pedido não está mais aberto.
+That duelist is no longer online.	Esse duelista não está mais online.
+That duelist has too many open requests.	Esse duelista tem pedidos abertos demais.
+Replay slots full — delete one in your profile.	Espaços de replay cheios — exclua um no seu perfil.
+No recent duel to save.	Nenhum duelo recente para salvar.
+This duel is too long to save.	Este duelo é longo demais para ser salvo.
+Replay not found.	Replay não encontrado.
+Replay is damaged.	O replay está danificado.
+SHOWCASE	VITRINE
+DUEL OVER	DUELO ENCERRADO

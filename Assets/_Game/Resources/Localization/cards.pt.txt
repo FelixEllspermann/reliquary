@@ -1,0 +1,4218 @@
+# RELIQUARY — Kartentexte Portugiesisch (PT-BR-Stil, für PT+BR)
+# Blöcke: "## Englischer Name" als Schlüssel, dann n/s/lN/tN.
+# Você-Anrede; Magia/Magia Rápida, Artefato, Relicário, Cemitério, Banimento, Deck, Extra Deck;
+# Phasennamen englisch (Standby Phase, End Phase …); ATK/DEF/LP bleiben; mana; comprar=ziehen, moer=millen, Baixar=setzen.
+# Archetypen (verbindlich): Apocrypha=Apócrifo Archfiend=Arquidemônio Barrierstruck=Barreira
+# Deathpoem=Necropoema Deckay=Deckadência Dragon Shrine=Santuário do Dragão Failsafe=Salvaguarda
+# Fethaerbreese=Fethaerbreese Forgeheart=Coração da Forja Gaslight=Gaslight Genostitched=Genocosturado
+# Gravemaw=Goelatumba Heavenly=Celestial Hexweaver=Tecemaléficos Kindlekin=Brasinha
+# Lightless=Semluz Lyria=Lyria Manacle=Managrilhão Mechination=Mechinação
+# Mimicrypt=Mimicripta Paperbound=Papelada Powderkeg=Paiol Redactor=Redator
+# Sacrilegion=Sacrilegião Sleightwind=Prestivento Slowburn=Brasalenta Snugglet=Aconcheguinho
+# Tidebound=Mareal Trapline=Armadilheiro Wyldpack=Alcateia Selvagem
+## Abyss Titan
+n Titã do Abismo
+l0 Presente de despedida
+t0 Quando esta carta é destruída: você pode comprar 1 carta.
+## Aegis Fragment
+n Fragmento de Égide
+l0 Quebrar no lugar deles
+t0 Quando esta carta é destruída: você pode colocar 1 Artefato «Barreira» do seu Deck no Campo.
+## Ancient Dragon
+n Dragão Ancião
+l0 Sopro de dragão
+t0 Uma vez por turno: você pode pagar 3 de mana; cause 800 de dano ao seu oponente.
+## Ancient History
+n História Antiga
+l0 História antiga
+t0 Pague 1 de mana: bana até 2 cartas do Cemitério do seu oponente.
+l1 Perdido no tempo
+t1 Em vez disso, pague 2 de mana: até 4.
+## Apocrypha Basilisk
+n Basilisco Apócrifo
+l0 Nota de rodapé petrificante
+t0 Pague 2 de mana: negue os efeitos de 1 carta no Campo até o fim deste turno.
+## Apocrypha Bestiary
+n Bestiário Apócrifo
+l0 Catálogo de feras
+t0 Uma vez por turno: bana 1 carta do seu Cemitério; adicione 1 carta «Apócrifo» do seu Cemitério à sua mão.
+l1 Citação hostil
+t1 Pague 2 de mana: bana 1 carta do Cemitério do seu oponente; 1 monstro que você controla ganha 300 de ATK até o fim deste turno.
+## Apocrypha Cartographer
+n Cartógrafo Apócrifo
+l0 Mapear o perdido
+t0 Pague 2 de mana e bana 1 carta do seu Cemitério: compre 1 carta.
+## Apocrypha Chimera
+n Quimera Apócrifa
+l0 Forma emprestada
+t0 Uma vez por turno, durante o turno de qualquer jogador: copie o ATK e a DEF de 1 monstro no Campo até o fim deste turno.
+l1 Segunda cabeça
+t1 Em vez disso, pague 2 de mana: copie, e esta carta pode atacar mais uma vez nesta Battle Phase.
+## Apocrypha Errata
+n Errata Apócrifa
+l0 Corrigir o registro
+t0 Embaralhe até 3 cartas do seu Cemitério no seu Deck; compre 1 carta.
+l1 Riscar o registro
+t1 Em vez disso, pague 2 de mana: bana-as em vez disso; compre 2.
+## Apocrypha Fable
+n Fábula Apócrifa
+l0 Recontar o conto
+t0 Adicione 1 carta «Apócrifo» do seu Deck à sua mão.
+## Apocrypha Hydra
+n Hidra Apócrifa
+l0 Crescer de novo
+t0 Quando esta carta é destruída: você pode Invocar de Modo Especial 1 monstro «Apócrifo» do seu Cemitério.
+l1 Duas cabeças
+t1 Pague 2 de mana: Invoque de Modo Especial até 2 em vez disso.
+## Apocrypha Manticore
+n Mantícora Apócrifa
+l0 Arrancado do índice
+t0 Quando esta carta é Invocada: bana 1 carta do seu Cemitério; compre 1 carta.
+l1 Arrancado de todos os índices
+t1 Em vez disso, pague 2 de mana: bana até 2; compre 2 e depois revele a carta do topo do seu Deck — você pode colocá-la embaixo.
+## Apocrypha Missing Page
+n Página Perdida Apócrifa
+l0 Fragmento recuperado
+t0 Devolva 1 das suas cartas banidas ao seu Cemitério; 1 monstro que você controla troca seu ATK e sua DEF até o fim deste turno.
+l1 Capítulo recuperado
+t1 Em vez disso, pague 3 de mana: devolva até 2; o monstro também não pode ser destruído neste turno.
+## Apocrypha Roc
+n Roca Apócrifa
+l0 Levado pelos ares
+t0 Uma vez por turno: devolva 1 monstro do Campo à mão do dono.
+l1 Tempestade de asas
+t1 Pague 3 de mana em vez disso: devolva até 2 monstros.
+## Apocrypha Sphinx
+n Esfinge Apócrifa
+l0 Primeiro enigma
+t0 Quando esta carta é Invocada: olhe a mão do seu oponente e escolha 1 carta; ele a descarta.
+l1 Segundo enigma
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: olhe a mão do seu oponente e escolha 1 carta; ele a descarta.
+## Apocrypha, Torn Colophon
+n Apócrifo, Colofão Rasgado
+s Seu oponente controla 2+ monstros — pague 2 de mana.
+l0 Página perdida
+t0 Se esta carta for Invocada: devolva 1 carta que o seu oponente controla à mão do dono.
+## Apocrypha, the Lost Chapter
+n Apócrifo, o Capítulo Perdido
+s 3+ das suas cartas estão banidas — pague 2 de mana.
+l0 Reencadernação
+t0 Quando esta carta é Invocada: devolva até 2 das suas cartas banidas ao seu Cemitério; compre 1 carta.
+l1 Riscado por completo
+t1 Pague 3 de mana: bana 1 monstro que o seu oponente controla.
+l2 Nas entrelinhas
+t2 Pague 2 de mana: esta carta não pode ser escolhida como alvo neste turno.
+## Apocrypha, the Unwritten
+n Apócrifo, o Não Escrito
+s 3+ monstros no seu Cemitério e 4+ de mana disponível — pague 2 de mana.
+l0 A última palavra
+t0 Pague 2 de mana: negue todos os elos anteriores da corrente atual.
+## Archfiend Cinderling
+n Cinzento Arquidemônio
+l0 Arrastar você junto
+t0 Quando esta carta é destruída: você pode destruir 1 monstro que o seu oponente controla com 1000 ou menos de ATK.
+## Archfiend Court Jester
+n Bobo da Corte Arquidemônio
+l0 Piada mortal
+t0 Quando esta carta é destruída: compre 1 carta.
+l1 Punchline cortante
+t1 Pague 1 de mana e envie esta carta da sua mão ao Cemitério: 1 monstro que o seu oponente controla perde permanentemente 400 de ATK.
+## Archfiend Crown
+n Coroa Arquidemônio
+l0 O peso da coroa
+t0 Durante a sua Standby Phase: 1 monstro que o seu oponente controla perde permanentemente 300 de ATK.
+l1 Execução real
+t1 Você pode pagar 2 de mana: destrua 1 monstro que o seu oponente controla com 800 ou menos de ATK.
+## Archfiend Death Warrant
+n Sentença de Morte Arquidemônio
+l0 Assinado e selado
+t0 Destrua 1 monstro que o seu oponente controla com 2000 ou menos de ATK.
+l1 Decreto real
+t1 Em vez disso, pague 4 de mana: sem limite de ATK; depois Invoque de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério virado para baixo.
+## Archfiend Devil's Advocate
+n Advogado do Diabo Arquidemônio
+l0 Advogado do diabo
+t0 Pague 1 de mana e descarte 1 carta; devolva 1 monstro «Arquidemônio» do seu Cemitério à sua mão.
+l1 Caso ganho
+t1 Em vez disso, pague 3 de mana e descarte 1 carta: Invoque de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério virado para baixo.
+## Archfiend Devil's Bargain
+n Pacto Diabólico Arquidemônio
+l0 O pacto
+t0 Pague 1 de mana: destrua 1 monstro que você controla; compre 2 cartas e ganhe 1 de mana.
+l1 As letras miúdas
+t1 Em vez disso, pague 1 de mana: Invoque também de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério virado para baixo.
+## Archfiend Dominus
+n Dominus Arquidemônio
+s Seu oponente controla 2+ monstros. Custo: 2 de mana. Destrua 1 outro monstro que você controla.
+l0 Trono de ruína
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla.
+## Archfiend Executioner
+n Carrasco Arquidemônio
+l0 Executar a sentença
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla com 1200 ou menos de ATK.
+l1 Ampliar o mandado
+t1 Em vez disso, pague 2 de mana: com 1800 ou menos.
+## Archfiend Gallows
+n Forca Arquidemônio
+l0 Marcha ao cadafalso
+t0 Uma vez por turno — pague 2 de mana: destrua 1 monstro que você controla; Invoque de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério virado para baixo.
+## Archfiend Hatchet Man
+n Capanga Arquidemônio
+l0 Serviço de machado
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+l1 Trabalho por contrato
+t1 Em vez disso, pague 3 de mana: destrua 1 monstro que o seu oponente controla com 2500 ou menos de ATK.
+l2 Enterrar o machado
+t2 Uma vez por turno: pague 2 de mana; bana 1 monstro do seu Cemitério; ganhe 300 LP.
+## Archfiend Heavy Is the Crown
+n Pesada É a Coroa Arquidemônio
+l0 Pesada é a coroa
+t0 Durante a sua Standby Phase: devolva «Coroa Arquidemônio» do seu Cemitério à sua mão.
+## Archfiend Kingmaker
+n Fazedor de Reis Arquidemônio
+s 3+ monstros no seu Cemitério. Custo: 3 de mana; Sacrifique 1 monstro que você controla.
+l0 Coroação em sangue
+t0 Quando esta carta é Invocada: destrua até 2 monstros que o seu oponente controla com 1500 ou menos de ATK; esta carta ganha permanentemente 200 de ATK para cada um.
+l1 Erguer a corte
+t1 Pague 3 de mana: Invoque de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério.
+## Archfiend Last Laugh
+n Última Gargalhada Arquidemônio
+l0 Última gargalhada
+t0 Destrua 1 monstro que você controla; compre 2 cartas.
+l1 A piada é com você
+t1 Em vez disso, pague 2 de mana: Invoque também de Modo Especial 1 monstro «Arquidemônio» do seu Cemitério virado para baixo.
+## Archfiend Matchmaker
+n Casamenteiro Arquidemônio
+l0 Acender o fósforo
+t0 Quando esta carta é Invocada: envie 1 carta «Arquidemônio» do seu Deck ao Cemitério.
+l1 Par perfeito
+t1 Em vez disso, pague 1 de mana: envie 1 carta «Arquidemônio» do seu Deck ao Cemitério e depois adicione 1 outra carta «Arquidemônio» do seu Deck à sua mão.
+## Archfiend Overlord
+n Suserano Arquidemônio
+l0 O julgamento desce
+t0 Quando esta carta é Invocada: você pode destruir 1 monstro que o seu oponente controla.
+l1 Alimentar o trono
+t1 Você pode pagar 3 de mana: destrua 1 monstro que o seu oponente controla e depois esta carta ganha permanentemente 400 de ATK.
+## Archfiend Torturer
+n Torturador Arquidemônio
+l0 Quebrá-los
+t0 Quando esta carta é Invocada: 1 monstro que o seu oponente controla perde permanentemente 600 de ATK.
+l1 Acabar com eles
+t1 Você pode pagar 2 de mana: destrua 1 monstro que o seu oponente controla com 1000 ou menos de ATK.
+## Archfiend Warden
+n Vigia Arquidemônio
+l0 Ninguém passará
+t0 Quando seu oponente Invoca um monstro: você pode pagar 2 de mana; destrua 1 monstro que o seu oponente controla com 1700 ou menos de ATK.
+## Ash Warrior
+n Guerreiro de Cinzas
+## Attention Hound
+n Cão Carente
+l0 Bom garoto
+t0 Uma vez por turno: esta carta ganha 300 de DEF até o fim deste turno.
+## Aurel, Who Collects at Midnight
+n Aurel, que Cobra à Meia-Noite
+s Seus LP são 4000 ou menos e há 3+ Magias no seu Cemitério — pague 3 de mana.
+l0 Cobra à meia-noite
+t0 Quando esta carta é Invocada: ganhe 500 LP para cada Magia no seu Cemitério (máx. 2500).
+## Awkward Silence
+n Silêncio Constrangedor
+l0 Silêncio constrangedor
+t0 Quando esta carta é Invocada: você descarta 1 carta e seu oponente descarta 1 carta aleatória.
+l1 Silêncio doloroso
+t1 Em vez disso, pague 2 de mana: seu oponente descarta 2 cartas aleatórias.
+## Baby Dragon of the Dragon Shrine
+n Dragão Bebê do Santuário do Dragão
+l0 Crescimento do dragão
+t0 Se esta carta foi Invocada de Modo Especial, durante a sua End Phase: você pode enviar esta carta ao Cemitério; Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 2 da sua mão ou do seu Cemitério.
+## Back in Style
+n De Volta à Moda
+l0 De volta à moda
+t0 Pague 1 de mana: embaralhe até 3 cartas do seu Cemitério no seu Deck; compre 1 carta.
+l1 Retorno triunfal
+t1 Em vez disso, pague 2 de mana: até 5 cartas; compre 1.
+## Bad Penny
+n Moeda Falsa
+l0 Sempre volta
+t0 Quando esta carta é destruída: devolva-a à sua mão.
+## Bael, Who Wears the Dead
+n Bael, que Veste os Mortos
+l0 Vestir os caídos
+t0 Quando esta carta é Invocada: você pode equipar 1 Artefato do seu Cemitério a esta carta.
+## Banishing Sigil
+n Sigilo de Banimento
+l0 Sigilo de banimento
+t0 Escolha 1 monstro no Campo; bana-o.
+## Barrierstruck Aegis Colossus
+n Colosso de Égide Barreira
+l0 Muralha de vontades
+t0 Quando esta carta é Invocada: você pode colocar 1 Artefato «Barreira» do seu Deck no Campo.
+l1 Égide absoluta
+t1 Você pode pagar 3 de mana e destruir 1 Artefato que você controla; esta carta não pode ser destruída neste turno.
+## Barrierstruck Bricklayer
+n Pedreiro Barreira
+l0 Lançar a fundação
+t0 Quando esta carta é Invocada: envie 1 Artefato do seu Deck ao Cemitério.
+l1 Medir duas vezes
+t1 Em vez disso, pague 1 de mana: adicione-o à sua mão em vez disso.
+## Barrierstruck Cold Shoulder
+n Desdém Barreira
+l0 Desdém
+t0 Pague 1 de mana: mude 1 monstro que você controla para a Posição de Defesa; 1 monstro que você controla ganha 800 de DEF até o fim deste turno.
+l1 Frieza de pedra
+t1 Em vez disso, pague 2 de mana: mude TODOS os seus monstros para a Posição de Defesa; até 5 deles ganham 800 de DEF até o fim deste turno.
+## Barrierstruck Demolition Refund
+n Reembolso de Demolição Barreira
+l0 Reembolso de demolição
+t0 Destrua 1 Artefato que você controla; compre 2 cartas.
+l1 Pagamento do seguro
+t1 Em vez disso, pague 2 de mana: coloque também 1 Artefato «Barreira» do seu Deck no Campo.
+## Barrierstruck Gatekeeper
+n Porteiro Barreira
+l0 O portão responde
+t0 Pague 2 de mana: esta carta não pode ser destruída neste turno; ela troca ATK e DEF até o fim deste turno.
+## Barrierstruck Hold the Line
+n Segurar a Linha Barreira
+l0 Segurar a linha
+t0 Até 3 dos seus monstros ganham 600 de DEF até o fim deste turno.
+l1 Nem um passo atrás
+t1 Em vez disso, pague 3 de mana: eles também não podem ser destruídos neste turno, e 1 deles atrai todos os ataques.
+## Barrierstruck Keystone
+n Pedra Angular Barreira
+l0 O arco resiste
+t0 Quando esta carta é destruída: coloque até 2 Artefatos «Barreira» do seu Cemitério no Campo.
+## Barrierstruck Load-Bearing Wall
+n Parede Mestra Barreira
+l0 Aguentar o peso
+t0 Uma vez por turno: pague 1 de mana; 1 monstro que você controla ganha permanentemente 400 de DEF.
+## Barrierstruck Mason
+n Canteiro Barreira
+l0 Reconstruir a muralha
+t0 Quando esta carta é Invocada: adicione 1 Artefato «Barreira» do seu Cemitério à sua mão.
+l1 Erguê-la mais alto
+t1 Em vez disso, pague 2 de mana: coloque-o diretamente no Campo; 1 monstro que você controla ganha 300 de DEF até o fim deste turno.
+## Barrierstruck Peacekeeper
+n Pacificador Barreira
+l0 Último aviso
+t0 Uma vez por turno: mude 1 monstro que o seu oponente controla para a Posição de Defesa.
+## Barrierstruck Sanctum Colossus
+n Colosso do Santuário Barreira
+s 2+ Artefatos no seu Cemitério. Custo: 3 de mana.
+l0 Reconstruir o santuário
+t0 Quando esta carta é Invocada: coloque até 2 Artefatos «Barreira» do seu Deck no Campo.
+## Barrierstruck Shieldbearer
+n Escudeiro Barreira
+l0 Erguer a muralha
+t0 Quando esta carta é Invocada: você pode colocar 1 Artefato «Barreira» do seu Deck no Campo.
+## Barrierstruck Warden
+n Vigia Barreira
+l0 Intendente
+t0 Você pode pagar 1 de mana: adicione 1 carta «Barreira» do seu Deck à sua mão.
+## Barrierstruck, Set in Stone
+n Barreira, Gravado na Pedra
+l0 Gravado na pedra
+t0 Quando esta carta é Invocada: ela ganha 200 de DEF para cada Artefato no seu Cemitério.
+l1 Escrito na pedra
+t1 Em vez disso, pague 2 de mana: ela também ganha a mesma quantidade de ATK.
+## Barrierstruck, the Unbreached
+n Barreira, a Intransponível
+s Você controla 3+ Artefatos. Custo: 3 de mana.
+l0 Fortificar os vivos
+t0 Quando esta carta é Invocada: até 2 dos seus monstros ganham permanentemente 500 de DEF.
+l1 A muralha caminha
+t1 Pague 3 de mana: esta carta troca ATK e DEF até o fim deste turno; ela pode atacar duas vezes nesta Battle Phase.
+## Bench Warmer
+n Reserva Eterno
+## Blade Knight
+n Cavaleiro da Lâmina
+## Blessing of Light
+n Bênção da Luz
+l0 Bênção
+t0 Pague 2 de mana; ganhe 1500 LP.
+l1 Grande bênção
+t1 Pague 4 de mana; ganhe 3500 LP.
+## Blood Oath
+n Juramento de Sangue
+l0 Dívida paga
+t0 Quando esta carta é destruída: ganhe 1000 LP.
+l1 Jurado com sangue
+t1 Pague 2 de mana e 500 LP: esta carta ganha permanentemente 500 de ATK.
+## Blood for Ink
+n Sangue por Tinta
+l0 Sangue por tinta
+t0 Pague 1 de mana e 1000 LP: compre 2 cartas.
+l1 Corte mais fundo
+t1 Em vez disso, pague 1 de mana e 2000 LP: compre 3 cartas e ganhe 1 de mana neste turno.
+## Bone Colossus
+n Colosso de Ossos
+## Borrowed Time
+n Tempo Emprestado
+l0 Tempo emprestado
+t0 Pague 4 de mana: tome o controle de 1 monstro que o seu oponente controla até a End Phase.
+l1 Os juros se acumulam
+t1 Em vez disso, pague 5 de mana: compre também 1 carta.
+## Brack, Who Stands in Front
+n Brack, que Fica na Frente
+l0 Ficar na frente
+t0 Uma vez por turno: você pode pagar 1 de mana; até a End Phase, os monstros do seu oponente devem atacar esta carta se puderem.
+## Bristleback Aurochs
+n Auroque de Dorso Eriçado
+l0 Abaixar os chifres
+t0 Pague 2 de mana: mude 1 monstro que o seu oponente controla para a Posição de Defesa.
+## Bronn the Relicwright
+n Bronn o Forja-Relíquias
+l0 Obra de forja
+t0 Uma vez por turno: você pode pagar 2 de mana; Baixe 1 Artefato do seu Deck.
+## Bulwark Idol
+n Ídolo Baluarte
+l0 Bênção silenciosa
+t0 Durante a sua Standby Phase: você pode ganhar 200 LP.
+l1 Guarda de pedra
+t1 Você pode pagar 2 de mana: 1 monstro que você controla ganha permanentemente 400 de DEF.
+## Bulwark Prism
+n Prisma Baluarte
+l0 Guardião refratado
+t0 Quando esta carta é destruída: você pode Invocar de Modo Especial 1 monstro «Barreira» de Nível 1 do seu Deck.
+## Call of the Wyld
+n O Chamado Selvagem
+l0 Chamado distante
+t0 Adicione 1 monstro «Alcateia Selvagem» do seu Deck à sua mão.
+l1 A alcateia responde
+t1 Adicione 1 monstro «Alcateia Selvagem» do seu Deck à sua mão e depois Invoque de Modo Especial 1 monstro «Alcateia Selvagem» de Nível 1 da sua mão.
+## Call to Arms
+n Chamado às Armas
+l0 Chamado às armas
+t0 Adicione 1 monstro de Nível 2 do seu Deck à sua mão.
+## Callis the Exhumer
+n Callis o Exumador
+l0 Desenterrar
+t0 Uma vez por turno: você pode pagar 2 de mana; adicione 1 monstro com 1000 de ATK ou menos do seu Cemitério à sua mão.
+## Cards on the Table
+n Cartas na Mesa
+l0 Cartas na mesa
+t0 Pague 1 de mana: vire para cima 1 monstro virado para baixo que o seu oponente controla.
+l1 Mostre sua mão
+t1 Em vez disso, pague 2 de mana: vire para cima até 5 deles.
+## Careful Hands
+n Mãos Cuidadosas
+l0 Mãos cuidadosas
+t0 Pague 1 de mana: Invoque de Modo Especial 1 monstro da sua mão virado para baixo em Posição de Defesa.
+## Castellan of the Long Wall
+n Castelão da Grande Muralha
+s Você controla 3+ monstros — pague 2 de mana.
+l0 Guarnecer a muralha
+t0 Quando esta carta é Invocada: mova 1 outro monstro que você controla para uma zona de monstros vazia; depois você pode mover um segundo.
+## Cease and Desist
+n Cessar e Desistir
+l0 Cessar
+t0 Pague 2 de mana: negue os efeitos de 1 carta que o seu oponente controla até o fim deste turno.
+l1 e desistir
+t1 Em vez disso, pague 4 de mana: além disso, 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Chain Lightning
+n Relâmpago em Cadeia
+l0 Relâmpago em cadeia
+t0 Escolha 1 monstro que o seu oponente controla; ele perde permanentemente 800 de ATK, depois cause 300 de dano ao seu oponente.
+## Chaosfire Behemoth
+n Beemote do Fogo Caótico
+l0 Labareda imprudente
+t0 Quando esta carta é Invocada: cause 500 de dano a ambos os jogadores.
+l1 Fúria desenfreada
+t1 Você pode pagar 3 de mana: esta carta pode atacar uma segunda vez durante a Battle Phase deste turno.
+## Chimney Sweep
+n Limpador de Chaminés
+## Chrono Adept
+n Adepto do Crono
+l0 Retroceder
+t0 Você pode pagar 3 de mana: devolva 1 carta do seu Cemitério à sua mão.
+## Cinderwake, Who Counts the Dead
+n Cinderwake, que Conta os Mortos
+s 8 ou mais cartas no seu Cemitério. Custo: 2 de mana.
+l0 A contagem
+t0 Quando esta carta é Invocada: devolva 1 monstro que o seu oponente controla à mão.
+## Cliffhanger
+n Gancho Final
+l0 Continua…
+t0 Durante a sua Standby Phase: revele a carta do topo do seu Deck; você pode colocá-la embaixo.
+l1 Pular para a parte boa
+t1 Uma vez por turno: pague 1 de mana; envie a carta do topo do seu Deck ao Cemitério; compre 1 carta.
+## Clockwork Sentinel
+n Sentinela de Relojoaria
+l0 Autorreparo
+t0 Durante a sua End Phase: você pode ganhar 300 LP.
+l1 Blindagem de emergência
+t1 Você pode pagar 2 de mana: esta carta ganha 500 de DEF até o fim do turno.
+## Coax, Who Whispers Terms
+n Coax, que Sussurra Condições
+l0 Termos de serviço
+t0 Uma vez por turno: você pode pagar 3 de mana; tome o controle de 1 monstro que o seu oponente controla com 1500 ou menos de ATK até a End Phase.
+## Cold Feet
+n Pés Frios
+l0 Pés frios
+t0 Pague 2 de mana: devolva 1 monstro do Campo à mão do dono.
+l1 Dúvida de última hora
+t1 Em vez disso, pague 4 de mana: devolva 2 monstros do Campo às mãos dos donos.
+## Cooler Heads Prevail
+n A Calma Prevalece
+l0 A calma prevalece
+t0 Pague 2 de mana: mude todos os monstros virados para cima do Campo para a Posição de Defesa.
+l1 Apaziguados
+t1 Em vez disso, pague 3 de mana: só os monstros do seu oponente.
+## Cull the Weak
+n Expurgo dos Fracos
+l0 Expurgo dos fracos
+t0 Ambos os jogadores escolhem um monstro do próprio Deck e os revelam ao mesmo tempo. Destrua o de menor ATK e Invoque de Modo Especial o outro (se não puder ser Invocado, coloque-o no topo do Deck). Depois o dono dele sofre a diferença de ATK como dano. Se os ATK forem iguais, embaralhe ambos de volta nos Decks.
+## Deathpoem Calligrapher
+n Calígrafo Necropoema
+l0 Tinta para os caídos
+t0 Se esta carta for enviada ao Cemitério: adicione 1 carta «Necropoema» do seu Deck à sua mão.
+## Deathpoem Duelist
+n Duelista Necropoema
+l0 Segundo verso
+t0 Sacrifique esta carta: destrua 1 monstro com 2000 ou menos de ATK.
+l1 Eco da lâmina
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: Invoque de Modo Especial 1 monstro «Necropoema» de Nível 1 do seu Cemitério.
+## Deathpoem Elegist
+n Elegista Necropoema
+l0 Elegia ao aço
+t0 Sacrifique esta carta: destrua 1 Magia ou Artefato que o seu oponente controla.
+l1 Verso lembrado
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: adicione 1 carta «Necropoema» do seu Deck à sua mão.
+## Deathpoem Final Draft
+n Rascunho Final Necropoema
+l0 Rascunho final
+t0 Envie 1 monstro «Necropoema» do seu Deck ao Cemitério; compre 1 carta.
+l1 Obras completas
+t1 Em vez disso, pague 2 de mana: envie 2.
+## Deathpoem Housebane
+n Ruína de Casas Necropoema
+l0 Verso de ruína
+t0 Sacrifique esta carta: destrua 1 monstro.
+l1 Verso de silêncio
+t1 Pague 5 de mana em vez disso: destrua até 2 monstros E devolva até 1 Magia ou Artefato do Campo à mão do dono.
+## Deathpoem Initiate
+n Iniciado Necropoema
+l0 Verso de abertura
+t0 Sacrifique esta carta: destrua 1 monstro com 1200 ou menos de ATK.
+l1 Corte perfeito
+t1 Pague 3 de mana em vez disso: destrua 1 monstro (sem limite de ATK).
+## Deathpoem Inkstone
+n Pedra de Tinta Necropoema
+l0 Tinta das cinzas
+t0 Uma vez por turno, quando um monstro que você controla é Sacrificado: compre 1 carta.
+l1 Afiar o verso
+t1 Pague 2 de mana: devolva 1 monstro «Necropoema» do seu Cemitério à sua mão; ele ganha permanentemente 300 de ATK.
+## Deathpoem Recital
+n Recital Necropoema
+l0 Recital da meia-noite
+t0 Invoque de Modo Especial 1 monstro «Necropoema» do seu Cemitério.
+l1 Recital para dois
+t1 Em vez disso, pague 4 de mana: Invoque de Modo Especial 2; eles não podem ser destruídos neste turno.
+## Deathpoem Vow
+n Voto Necropoema
+l0 Recitar o verso
+t0 Invoque de Modo Especial 1 monstro «Necropoema» do seu Cemitério.
+l1 Recitar a antologia
+t1 Pague 3 de mana em vez disso: Invoque de Modo Especial até 2.
+## Deathpoem Warpoet
+n Poeta de Guerra Necropoema
+l0 Estrofe de matança
+t0 Sacrifique esta carta: destrua até 2 monstros com 1500 ou menos de ATK.
+## Deathpoem, Death of the Author
+n Necropoema, a Morte do Autor
+s Seu Cemitério contém 7+ cartas — pague 3 de mana.
+l0 O autor cai
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla; depois você pode Invocar de Modo Especial 1 monstro «Necropoema» de Nível 1 do seu Cemitério.
+l1 O livro queima
+t1 Pague 4 de mana e Sacrifique esta carta: destrua TODOS os monstros que o seu oponente controla com 2000 ou menos de ATK.
+## Deathpoem, Unsigned Verse
+n Necropoema, Verso sem Assinatura
+s Seu Cemitério contém 6+ cartas — pague 2 de mana.
+l0 Final não escrito
+t0 Pague 2 de mana: esta carta não pode ser destruída neste turno.
+## Deathpoem, the Final Verse
+n Necropoema, o Verso Final
+l0 Linha de encerramento
+t0 Sacrifique esta carta: destrua 1 monstro com 2000 ou menos de ATK e devolva até 1 Magia ou Artefato à mão do dono.
+## Deathpoem, the Hundredth Stanza
+n Necropoema, a Centésima Estrofe
+s 5+ monstros no seu Cemitério — pague 3 de mana.
+l0 Cem lâminas caindo
+t0 Se esta carta for Invocada: você pode destruir até 2 monstros que o seu oponente controla.
+l1 O livro se fecha
+t1 Pague 3 de mana e Sacrifique esta carta: destrua até 3 monstros.
+## Deckay Broodmother
+n Mãe da Ninhada Deckadência
+l0 Cuidar da ninhada
+t0 Durante a sua End Phase: moa 2 cartas.
+l1 Renovar o ninho
+t1 Se esta carta for enviada do Deck ao Cemitério: embaralhe até 3 cartas do seu Cemitério no seu Deck.
+## Deckay Burrower
+n Escavador Deckadência
+l0 Cavar caminho
+t0 Durante a End Phase de qualquer jogador: moa 2 cartas.
+l1 Nunca vai embora de verdade
+t1 Se esta carta for enviada do Deck ao Cemitério: Invoque-a de Modo Especial.
+## Deckay Carrion Prince
+n Príncipe da Carniça Deckadência
+l0 Corte da podridão
+t0 Quando esta carta é Invocada: moa 3 cartas.
+l1 Dízimo da decomposição
+t1 Pague 2 de mana: embaralhe até 3 cartas do seu Cemitério no seu Deck; 1 monstro que o seu oponente controla perde permanentemente 500 de ATK.
+## Deckay Compost Heap
+n Monte de Compostagem Deckadência
+l0 Compostagem
+t0 Durante a sua Standby Phase: moa 2 cartas.
+l1 Solo fértil
+t1 Uma vez por turno — pague 1 de mana, se você moeu neste turno ou no anterior: você tem 2 de mana a mais durante o seu próximo turno.
+## Deckay Decomposition
+n Decomposição Deckadência
+l0 Decomposição
+t0 Moa 4 cartas; depois você pode adicionar 1 carta «Deckadência» do seu Cemitério à sua mão.
+l1 Colapso total
+t1 Em vez disso, pague 2 de mana: moa 6; adicione até 2.
+## Deckay Fiend
+n Demônio Deckadência
+l0 Banquete de finais
+t0 Durante a End Phase do seu oponente: envie esta carta do Campo ao Cemitério e depois moa 3 cartas.
+l1 Rancor de despedida
+t1 Se esta carta for enviada ao Cemitério de qualquer lugar: queime 1 de mana do seu oponente.
+l2 Rancor mais doce
+t2 Pague 2 de mana em vez disso: ganhe 1000 LP.
+l3 Sufocar o cofre
+t3 Quando seu oponente Invoca um Relicário de Modo Especial — descarte esta carta: negue os efeitos desse Relicário durante o resto deste turno.
+## Deckay Glutton
+n Glutão Deckadência
+l0 Fome sem fim
+t0 Durante a sua End Phase: moa 2 cartas.
+## Deckay Leech
+n Sanguessuga Deckadência
+l0 Dízimo do banquete
+t0 Durante a sua End Phase: moa 4 cartas.
+l1 Butim enterrado
+t1 Se esta carta for enviada do Deck ao Cemitério: adicione 1 Artefato «Deckadência» do seu Deck à sua mão.
+l2 Desenterrar e armar
+t2 Pague 2 de mana em vez disso: coloque-o diretamente no Campo.
+## Deckay Maggot
+n Larva Deckadência
+l0 Dízimo da tumba
+t0 Durante a End Phase de qualquer jogador: moa 2 cartas.
+l1 Cheiro de podre
+t1 Se esta carta for enviada do Deck ao Cemitério: você pode adicionar 1 Magia «Deckadência» do seu Deck à sua mão.
+## Deckay Moth
+n Mariposa Deckadência
+l0 Dízimo de poeira
+t0 Durante a End Phase de qualquer jogador: moa 1 carta.
+l1 Eclodir da ruína
+t1 Se esta carta for enviada do Deck ao Cemitério — pague 1 de mana: você pode Invocar de Modo Especial 1 monstro «Deckadência» de Nível 1 com um nome diferente do seu Deck.
+l2 Maldição do casulo
+t2 Bana esta carta do seu Cemitério: Baixe 1 monstro que o seu oponente controla virado para baixo em Posição de Defesa.
+## Deckay Rot
+n Podridão Deckadência
+l0 Espalhar a podridão
+t0 Moa 5 cartas. Se depois houver um monstro «Deckadência» no seu Cemitério, você pode destruir 1 monstro que o seu oponente controla.
+l1 Florescer de baixo
+t1 Bana esta carta do seu Cemitério: Invoque de Modo Especial 1 monstro «Deckadência» de Nível 2 ou menor da sua mão ou do seu Cemitério.
+## Deckay Spoilage
+n Deterioração Deckadência
+l0 Deterioração
+t0 Moa 2 cartas; 1 monstro que o seu oponente controla perde permanentemente 300 de ATK.
+l1 Podridão profunda
+t1 Em vez disso, pague 3 de mana: moa 4; ele perde permanentemente 500 de ATK.
+## Deckay Swarm
+n Enxame Deckadência
+l0 Cobrir o céu
+t0 Moa 3 cartas. Depois você pode fazer 1 monstro que o seu oponente controla perder 800 de ATK.
+## Deckay Vulture
+n Abutre Deckadência
+l0 Dízimo de asas
+t0 Durante a End Phase de qualquer jogador: moa 3 cartas.
+l1 Amparo emplumado
+t1 Se esta carta for enviada do Deck ou da sua mão ao Cemitério: 1 monstro que você controla não pode ser escolhido como alvo e não é afetado pelos efeitos do seu oponente neste turno.
+l2 Responder à altura
+t2 Quando seu oponente Invoca um Relicário — descarte esta carta: Invoque de Modo Especial 1 Relicário do seu Extra Deck (ignorando as condições de Invocação dele, pagando o custo de mana). Ele não pode usar seus efeitos de Invocação e é enviado ao Cemitério durante a sua próxima End Phase.
+## Deckay Worm
+n Minhoca Deckadência
+l0 Rastejar de volta
+t0 Pague 1 de mana e bana 1 outra carta «Deckadência» do seu Cemitério: Invoque esta carta de Modo Especial do seu Cemitério.
+## Deckay, the Ravenous Under
+n Deckadência, o Subsolo Voraz
+s Seu Cemitério contém 10+ cartas — pague 2 de mana.
+l0 O subsolo se alimenta
+t0 Quando esta carta é Invocada: moa 5 cartas; depois Invoque de Modo Especial até 2 monstros «Deckadência» do seu Cemitério.
+l1 Saciado e paciente
+t1 Pague 2 de mana, se você moeu neste turno ou no anterior: esta carta não pode ser destruída neste turno.
+## Diactor of the Dragon Shrine
+n Diáctor do Santuário do Dragão
+l0 Chamado do santuário
+t0 Se esta carta for Invocada por Invocação Normal: você pode adicionar 1 monstro do Tipo Dragão do seu Deck à sua mão.
+l1 Bênção do santuário
+t1 Uma vez por turno: você pode pagar 2 de mana; Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 1 da sua mão.
+## Doorwyrm of the Dragon Shrine
+n Serpe Porteira do Santuário do Dragão
+## Dragon Claw
+n Garra de Dragão
+## Dragon Rider
+n Cavaleiro de Dragão
+l0 Pedágio de almas
+t0 Se esta carta for Invocada: bana 2 cartas de qualquer Cemitério.
+l1 Cavalgar os perdidos
+t1 Uma vez por turno: você pode pagar 3 de mana; Invoque de Modo Especial 1 monstro do Tipo Dragão que esteja banido no momento (de qualquer Banimento).
+## Dragon Sceptre
+n Cetro de Dragão
+l0 O chamado do cetro
+t0 Pague 1 de mana: adicione 1 monstro do Tipo Dragão do seu Deck à sua mão; ganhe 1 de mana.
+l1 A bênção do cetro
+t1 Pague 2 de mana; adicione 1 monstro do Tipo Dragão E 1 monstro «Santuário do Dragão» do seu Deck à sua mão.
+## Dragon Shrine Guardian's Breath
+n Sopro do Guardião do Santuário do Dragão
+l0 Sopro do guardião
+t0 1 monstro do Tipo Dragão que você controla não pode ser destruído neste turno.
+l1 Sopro gêmeo
+t1 Em vez disso, pague 2 de mana: até 2; eles também ganham 400 de DEF até o fim deste turno.
+## Dragon Shrine Morning Rites
+n Ritos Matinais do Santuário do Dragão
+l0 Ritos matinais
+t0 Adicione 1 monstro do Tipo Dragão de Nível 2 do seu Deck à sua mão; revele a carta do topo do seu Deck — você pode colocá-la embaixo.
+l1 Procissão completa
+t1 Em vez disso, pague 3 de mana: adicione 1 de Nível 2 E 1 monstro do Tipo Dragão de Nível 1.
+## Dragon Shrine Offering
+n Oferenda do Santuário do Dragão
+l0 Oferenda
+t0 Destrua 1 monstro do Tipo Dragão que você controla e, se fizer isso, compre 2 cartas.
+l1 Grande oferenda
+t1 Destrua 1 monstro do Tipo Dragão que você controla e, se fizer isso, compre 2 cartas e depois Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 2 do seu Cemitério.
+## Dragon Shrine Prayer Wheel
+n Roda de Orações do Santuário do Dragão
+l0 Preces que giram
+t0 Durante a sua Standby Phase: você pode Invocar de Modo Especial 1 monstro do Tipo Dragão de Nível 1 da sua mão.
+l1 Prece atendida
+t1 Pague 3 de mana: adicione 1 carta «Santuário do Dragão» do seu Deck à sua mão.
+## Dragon Shrine Scale Advantage
+n Vantagem de Escamas do Santuário do Dragão
+l0 Vantagem de escamas
+t0 Pague 1 de mana: 1 Dragão que você controla ganha 500 de ATK e 500 de DEF até o fim deste turno.
+l1 Economia de escamas
+t1 Em vez disso, pague 3 de mana: até 5 dos seus monstros Dragão ganham 500 de ATK e 500 de DEF até o fim deste turno.
+## Dragon Shrine Stand-In
+n Substituto do Santuário do Dragão
+l0 Sair do papel
+t0 Você pode enviar esta carta ao Cemitério: adicione 1 carta «Santuário do Dragão» do seu Deck à sua mão.
+## Dragon Shrine Wakeup Call
+n Toque de Despertar do Santuário do Dragão
+l0 Toque de despertar
+t0 Pague 2 de mana: Invoque de Modo Especial 1 monstro Dragão do seu Cemitério.
+l1 De pé, dorminhoco
+t1 Em vez disso, pague 4 de mana: Invoque de Modo Especial até 2 monstros Dragão do seu Cemitério.
+## Dragon Shrine, First Flame of Worship
+n Santuário do Dragão, Primeira Chama de Culto
+s Você controla 3+ monstros «Dragão». Custo: 3 de mana.
+l0 O santuário se acende
+t0 Quando esta carta é Invocada: todos os monstros do Tipo Dragão que você controla ganham permanentemente 400 de ATK.
+l1 Os peregrinos retornam
+t1 Pague 3 de mana: Invoque de Modo Especial até 2 monstros do Tipo Dragão de Nível 1 do seu Cemitério.
+## Dragon Tail
+n Cauda de Dragão
+l0 Varredura de cauda
+t0 Escolha 1 monstro do Tipo Dragão que você controla; ele pode atacar uma segunda vez nesta Battle Phase.
+## Duskblade Mercenary
+n Mercenário da Lâmina Crepuscular
+l0 Pago em sangue
+t0 Quando esta carta é Invocada por Invocação Normal: ela ganha permanentemente 300 de ATK.
+## Early Bird
+n Pássaro Madrugador
+l0 Deus ajuda
+t0 Quando esta carta é Invocada: ganhe 1 de mana.
+l1 Quem cedo madruga
+t1 Em vez disso, pague 1 de mana: ganhe 2 de mana.
+## Earthquake
+n Terremoto
+l0 Abalo
+t0 Pague 2 de mana; ambos os jogadores sofrem 700 de dano.
+## Echo of the Fallen
+n Eco dos Caídos
+l0 Eco fraco
+t0 Invoque de Modo Especial 1 monstro de Nível 1 do seu Cemitério.
+l1 Eco retumbante
+t1 Invoque de Modo Especial 1 monstro de Nível 2 do seu Cemitério.
+## Elder Wyrm of the Dragon Shrine
+n Serpe Anciã do Santuário do Dragão
+l0 Tesouro das eras
+t0 Quando esta carta é Invocada: você pode adicionar 1 Magia que mencione «Dragão» do seu Deck à sua mão.
+l1 Fúria ancestral
+t1 Você pode pagar 3 de mana: esta carta pode atacar uma segunda vez durante a Battle Phase deste turno.
+## Elephant in the Room
+n O Elefante na Sala
+l0 Falar do elefante
+t0 Uma vez por turno, QUALQUER jogador pode pagar 2 de mana: esse jogador compra 1 carta.
+## Ember Imp
+n Diabrete de Brasas
+l0 Faísca de malícia
+t0 Quando esta carta é Invocada: cause 200 de dano ao seu oponente.
+## Ember Spirit
+n Espírito de Brasas
+l0 Brasa
+t0 Durante a sua Standby Phase: você pode pagar 1 de mana; cause 200 de dano ao seu oponente.
+## Emergency Barrier
+n Barreira de Emergência
+l0 Implantação de emergência
+t0 Durante o turno do seu oponente: você pode jogar esta carta da sua mão.
+## Emergency Call
+n Chamada de Emergência
+l0 Chamada
+t0 Pague 1 de mana; compre 1 carta.
+l1 Chamada urgente
+t1 Pague 2 de mana; compre 2 cartas.
+## Encore
+n Bis
+l0 Chamada ao palco
+t0 Vire para cima 1 monstro virado para baixo que você controla.
+l1 Grande bis
+t1 Vire para cima até 2 monstros virados para baixo que você controla.
+## Even Exchange
+n Troca Justa
+l0 Troca justa
+t0 Pague 2 de mana: ambos os jogadores embaralham as mãos nos próprios Decks e depois cada um compra tantas cartas quantas embaralhou.
+l1 Troca desigual
+t1 Em vez disso, pague 3 de mana: o mesmo — mas você compra 1 a mais.
+## Exponential Deterioration
+n Deterioração Exponencial
+## Failsafe Bulkhead
+n Antepara Salvaguarda
+l0 Selar a brecha
+t0 Você não sofre dano de batalha neste turno. Depois envie esta carta ao Cemitério e baixe 1 outro Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Carrier
+n Transportador Salvaguarda
+l0 Recuperar peças
+t0 Quando esta carta é Invocada: você pode devolver 1 carta «Salvaguarda» do seu Cemitério à sua mão.
+## Failsafe Chief Engineer
+n Engenheira-Chefe Salvaguarda
+l0 Manutenção de rotina
+t0 Uma vez por turno — pague 1 de mana: baixe 1 Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Circuit Breaker
+n Disjuntor Salvaguarda
+l0 Desarmar o disjuntor
+t0 1 monstro que o seu oponente controla não pode atacar neste turno. Depois envie esta carta ao Cemitério e baixe 1 outro Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Damper
+n Amortecedor Salvaguarda
+l0 Aliviar a pressão
+t0 1 monstro que o seu oponente controla perde 500 de ATK. Depois envie esta carta ao Cemitério e baixe 1 outro Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Foreman
+n Contramestre Salvaguarda
+l0 De volta à rede
+t0 Quando esta carta é Invocada: baixe 1 Artefato «Salvaguarda» do seu Cemitério no Campo.
+l1 Instalação nova
+t1 Em vez disso, pague 2 de mana: do seu Deck em vez disso, depois compre 1 carta.
+## Failsafe Manual Override
+n Anulação Manual Salvaguarda
+l0 Anulação manual
+t0 Negue os efeitos de 1 monstro que o seu oponente controla até o fim deste turno.
+l1 Anular e rearmar
+t1 Em vez disso, pague 3 de mana: baixe também 1 Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Protocol
+n Protocolo Salvaguarda
+l0 Protocolo de recuperação
+t0 Adicione até 2 Artefatos «Salvaguarda» do seu Cemitério à sua mão.
+l1 Troca a quente
+t1 Em vez disso, pague 2 de mana: baixe também 1 Artefato «Salvaguarda» do seu Cemitério diretamente no Campo.
+## Failsafe Redundancy Officer
+n Oficial de Redundância Salvaguarda
+l0 Protocolo de backup
+t0 Pague 2 de mana: 1 dos seus Artefatos não pode ser destruído neste turno; compre 1 carta.
+## Failsafe Seal
+n Selo Salvaguarda
+l0 Desligamento de emergência
+t0 Negue 1 monstro que o seu oponente controla até o fim do turno. Depois envie esta carta ao Cemitério e baixe 1 outro Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe Tinker
+n Remendão Salvaguarda
+l0 Instalar
+t0 Quando esta carta é Invocada: você pode baixar 1 Artefato «Salvaguarda» do seu Deck no Campo.
+## Failsafe, the Dead Man's Switch
+n Salvaguarda, o Interruptor do Homem Morto
+s 3+ Artefatos no seu Cemitério. Custo: 3 de mana.
+l0 Tudo reinicia
+t0 Quando esta carta é Invocada: baixe até 2 Artefatos «Salvaguarda» do seu Cemitério no Campo.
+l1 Dividendo do morto
+t1 Uma vez por turno, quando um Artefato que você controla é destruído: compre 1 carta.
+## Fair Trade
+n Comércio Justo
+l0 Comércio justo
+t0 Pague 2 de mana: escolha 1 monstro que você controla e 1 monstro que o seu oponente controla: troquem o controle deles permanentemente. O monstro que você recebe não pode atacar neste turno.
+l1 Comércio injusto
+t1 Em vez disso, pague 4 de mana: troquem-nos, compre 1 carta, e o monstro que você entregou tem seus efeitos negados até a End Phase.
+## Fall Guy
+n Bode Expiatório
+l0 Cachê do dublê
+t0 Quando esta carta é destruída: compre 1 carta.
+## Feast of Deckay
+n Banquete da Deckadência
+l0 Primeiro prato
+t0 Moa 2 cartas. Compre 1 carta.
+## Fethaerbreese Featherweight
+n Peso-Pena Fethaerbreese
+l0 Peso-pena
+t0 Quando esta carta é Invocada: você pode descartar 1 carta; compre 1 carta.
+l1 Golpear para cima
+t1 Em vez disso, pague 1 de mana: descarte 1 carta; compre 2 cartas.
+## Fethaerbreese Fledgling
+n Filhote Fethaerbreese
+l0 Chamado do ninho
+t0 Quando esta carta é Invocada: você pode adicionar 1 carta «Fethaerbreese» do seu Deck à sua mão.
+## Fethaerbreese Flight Risk
+n Risco de Fuga Fethaerbreese
+l0 Risco de fuga
+t0 Pague 1 de mana: devolva 1 dos seus monstros «Fethaerbreese» à sua mão; compre 1 carta.
+l1 Sumiu de manhã
+t1 Em vez disso, pague 2 de mana: devolva 2 dos seus monstros «Fethaerbreese» à sua mão; compre 2 cartas.
+## Fethaerbreese Gust Shield
+n Escudo de Rajada Fethaerbreese
+l0 Escudo de rajada
+t0 Devolva 1 dos seus monstros à sua mão.
+l1 Abrigo do ciclone
+t1 Em vez disso, pague 2 de mana: compre também 1 carta e ganhe 1 de mana.
+## Fethaerbreese High Roost
+n Poleiro Alto Fethaerbreese
+l0 Vigiar do alto
+t0 Uma vez por turno, quando um monstro volta do seu Campo à sua mão: 1 monstro que você controla ganha 300 de ATK até o fim deste turno.
+l1 Mergulho do poleiro
+t1 Pague 2 de mana: Invoque de Modo Especial 1 monstro «Fethaerbreese» da sua mão.
+## Fethaerbreese Hollowbone
+n Osso-Oco Fethaerbreese
+l0 Ossos cheios de ar
+t0 Quando esta carta é Invocada: você pode adicionar 1 carta «Fethaerbreese» do seu Cemitério à sua mão.
+## Fethaerbreese Homing Instinct
+n Instinto de Retorno Fethaerbreese
+l0 Instinto de retorno
+t0 Pague 1 de mana: devolva até 3 monstros «Fethaerbreese» do seu Cemitério à sua mão.
+l1 Vento de cauda para casa
+t1 Em vez disso, pague 1 de mana: devolva 2 monstros «Fethaerbreese» do seu Cemitério à sua mão; ganhe 2 de mana.
+## Fethaerbreese Nest Egg
+n Pé-de-Meia Fethaerbreese
+l0 Pé-de-meia
+t0 Uma vez por turno, quando um monstro volta do seu Campo à sua mão: compre 1 carta.
+l1 Quebrar o cofrinho
+t1 Você pode enviar esta carta ao Cemitério: ganhe 2 de mana.
+## Fethaerbreese Nightjar
+n Curiango Fethaerbreese
+l0 Cobrir o ninho
+t0 Uma vez por turno: você pode pagar 1 de mana; escolha 1 monstro que o seu oponente controla; vire-o para baixo em Posição de Defesa.
+## Fethaerbreese Nightmother
+n Mãe Noturna Fethaerbreese
+l0 O ar para
+t0 RÁPIDO · Uma vez por turno: você pode pagar 2 de mana; escolha 1 carta que o seu oponente controla; negue os efeitos dela até o fim do turno.
+## Fethaerbreese Stormfront
+n Frente de Tempestade Fethaerbreese
+l0 Borda de ataque
+t0 Quando esta carta é Invocada: devolva 1 monstro que o seu oponente controla com 1500 ou menos de ATK à mão do dono.
+l1 Vendaval pleno
+t1 Em vez disso, pague 3 de mana: sem limite de ATK.
+## Fethaerbreese Tailwind
+n Vento de Cauda Fethaerbreese
+l0 Vento de cauda
+t0 Invoque de Modo Especial até 2 monstros «Fethaerbreese» da sua mão.
+l1 Ressaca da tempestade
+t1 Em vez disso, pague 2 de mana: eles ganham 300 de ATK até o fim deste turno.
+## Fethaerbreese Two-in-the-Bush
+n Dois Voando Fethaerbreese
+l0 Mais vale um pássaro na mão
+t0 Uma vez por turno: pague 1 de mana; devolva 1 outro monstro «Fethaerbreese» que você controla à sua mão; compre 1 carta.
+## Fethaerbreese Updraft
+n Corrente Ascendente Fethaerbreese
+l0 Corrente ascendente
+t0 Pague 2 de mana: Invoque de Modo Especial 1 monstro «Fethaerbreese» do seu Deck.
+## Fethaerbreese Windless Hour
+n Hora sem Vento Fethaerbreese
+l0 Hora sem vento
+t0 RÁPIDO · Pague 2 de mana: escolha até 2 monstros no Campo; eles perdem 700 de ATK até o fim do turno.
+## Fethaerbreese Windreader
+n Leitor de Ventos Fethaerbreese
+l0 Ler as correntes
+t0 Quando esta carta é Invocada: você pode devolver 1 outro monstro «Fethaerbreese» que você controla à sua mão; se fizer isso, compre 1 carta.
+l1 Ventos favoráveis
+t1 Em vez disso, pague 1 de mana: ganhe também 1 de mana.
+## Fethaerbreese, the Held Breath
+n Fethaerbreese, o Fôlego Contido
+s Você controla 2 ou mais monstros «Fethaerbreese» e há 5+ cartas no seu Cemitério. Custo: 3 de mana; Sacrifique 1 outro monstro.
+l0 O fôlego contido
+t0 Quando esta carta é Invocada: escolha 1 carta que o seu oponente controla; negue os efeitos dela até o fim do turno.
+l1 Nada é dito
+t1 RÁPIDO · Uma vez por turno: você pode pagar 2 de mana; escolha 1 carta que o seu oponente controla; negue os efeitos dela até o fim do turno.
+## Fethaerbreese, the Homing Sky
+n Fethaerbreese, o Céu que Chama
+s 4+ monstros no seu Cemitério. Custo: 3 de mana.
+l0 O céu chama para casa
+t0 Quando esta carta é Invocada: devolva 1 monstro que o seu oponente controla à mão do dono; depois você pode devolver 1 dos SEUS monstros à sua mão.
+l1 Levado para casa
+t1 Pague 2 de mana: devolva 1 dos seus monstros à sua mão; compre 1 carta.
+## Fiendish Decree
+n Decreto Diabólico
+l0 Decreto
+t0 Destrua 1 monstro que o seu oponente controla.
+l1 Decreto infernal
+t1 Destrua até 2 monstros que o seu oponente controla.
+## Fire Escape
+n Escada de Incêndio
+l0 Escada de incêndio
+t0 Uma vez por turno: devolva 1 monstro que você controla à sua mão.
+l1 Evacuação ordenada
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Fireball
+n Bola de Fogo
+l0 Bola de fogo
+t0 Pague 1 de mana: cause 800 de dano ao seu oponente.
+l1 Grande bola de fogo
+t1 Pague 2 de mana; cause 1400 de dano ao seu oponente.
+## First and Last Word
+n Primeira e Última Palavra
+l0 Primeira e última palavra
+t0 Uma vez por Duelo. Pague 2 de mana: negue a ativação da Magia que o seu oponente ativou por último nesta corrente.
+## Five-Finger Discount
+n Desconto de Cinco Dedos
+l0 Dedos grudentos
+t0 Pague 4 de mana: seu oponente descarta 1 carta aleatória.
+l1 Desconto de cinco dedos
+t1 Em vez disso, pague 6 de mana: revele 1 carta aleatória da mão dele — se for um monstro, Invoque-o de Modo Especial no SEU Campo; caso contrário, ele a descarta.
+## Flame Whelp
+n Filhote de Chamas
+## Forgeheart Anvilborn
+n Nascido da Bigorna Coração da Forja
+l0 Martelar
+t0 Você pode pagar 1 de mana: escolha 1 monstro que você controla; ele ganha permanentemente 300 de DEF.
+## Forgeheart Apprentice-Piece
+n Peça de Aprendiz Coração da Forja
+l0 Encomenda do oficial
+t0 Quando esta carta é Invocada: adicione 1 Artefato «Coração da Forja» do seu Deck à sua mão.
+l1 Entrega magistral
+t1 Em vez disso, pague 2 de mana: coloque 1 Artefato «Coração da Forja» do seu Deck diretamente na sua Zona de Artefatos.
+## Forgeheart Bellows
+n Fole Coração da Forja
+l0 Tiragem constante
+t0 Durante a sua Standby Phase: você pode adicionar 1 carta «Coração da Forja» do seu Deck à sua mão.
+l1 Sopro rugidor
+t1 Você pode pagar 2 de mana e enviar esta carta ao Cemitério; Invoque de Modo Especial 1 monstro «Coração da Forja» de Nível 2 da sua mão.
+## Forgeheart Colossus
+n Colosso Coração da Forja
+l0 Linha de forja
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro «Coração da Forja» de Nível 1 da sua mão ou do seu Cemitério.
+l1 Placa de brasas
+t1 Você pode pagar 2 de mana: esta carta ganha 700 de DEF até o fim do turno.
+## Forgeheart Crucible
+n Cadinho Coração da Forja
+l0 Liga sacrificial
+t0 Uma vez por turno — pague 2 de mana: destrua 1 outro Artefato que você controla; 1 monstro que você controla ganha permanentemente 400 de ATK.
+## Forgeheart Hammer
+n Martelo Coração da Forja
+l0 Arremessar o martelo
+t0 Envie esta carta ao Cemitério: 1 monstro que o seu oponente controla perde permanentemente 500 de ATK.
+## Forgeheart Ironclad Argument
+n Argumento de Ferro Coração da Forja
+## Forgeheart Masterwork
+n Obra-Prima Coração da Forja
+l0 Peça assinada
+t0 Quando esta carta é Invocada: 1 monstro que você controla ganha permanentemente 300 de ATK.
+l1 Série do mestre
+t1 Em vez disso, pague 3 de mana: até 2 monstros; 400 cada.
+## Forgeheart Quench
+n Têmpera Coração da Forja
+l0 Temperar
+t0 Pague 1 de mana: 1 monstro que você controla ganha 800 de DEF até o fim deste turno.
+l1 Temperado
+t1 Em vez disso, pague 2 de mana: 1 monstro que você controla ganha permanentemente 800 de DEF.
+## Forgeheart Recast Order
+n Ordem de Refundição Coração da Forja
+l0 Ordem de refundição
+t0 Coloque 1 Artefato do seu Cemitério diretamente na sua Zona de Artefatos.
+l1 Ordem prioritária
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Forgeheart Scrap Deal
+n Negócio de Sucata Coração da Forja
+l0 Sucata
+t0 Pague 1 de mana: destrua 1 Artefato que você controla; compre 2 cartas e ganhe 1 de mana.
+l1 Pechincha
+t1 Em vez disso, pague 1 de mana: destrua 1 Artefato que você controla; compre 2 cartas e ganhe 2 de mana.
+## Forgeheart Smelter
+n Fundidor Coração da Forja
+l0 Alimentar a fornalha
+t0 Quando esta carta é Invocada: envie 1 Artefato «Coração da Forja» do seu Deck ao Cemitério; compre 1 carta.
+l1 Recuperar a escória
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: adicione 1 Artefato do seu Cemitério à sua mão.
+## Forgeheart Spare Parts
+n Peças Sobressalentes Coração da Forja
+l0 Peças sobressalentes
+t0 Uma vez por turno: devolva 1 Artefato do seu Cemitério à sua mão.
+l1 Reequipado
+t1 Em vez disso, pague 3 de mana: coloque 1 Artefato do seu Cemitério diretamente na sua Zona de Artefatos.
+## Forgeheart Stoker
+n Foguista Coração da Forja
+l0 Atiçar as brasas
+t0 Quando esta carta é Invocada: você pode adicionar 1 carta «Coração da Forja» do seu Deck à sua mão.
+## Forgeheart Temper
+n Revenimento Coração da Forja
+l0 Revenir
+t0 1 monstro que você controla ganha 500 de ATK até o fim deste turno.
+l1 Revenimento perfeito
+t1 Em vez disso, pague 3 de mana: o bônus é permanente, e o monstro ganha permanentemente 300 de DEF.
+## Forgeheart Worldanvil
+n Bigorna do Mundo Coração da Forja
+s Você controla 2+ Artefatos. Custo: 3 de mana.
+l0 Golpear a bigorna do mundo
+t0 Quando esta carta é Invocada: coloque 1 Artefato do seu Deck no Campo.
+## Forgeheart, the Molten Crown
+n Coração da Forja, a Coroa Fundida
+s Você controla 2+ Artefatos e seu Cemitério contém 5+ cartas. Custo: 4 de mana.
+l0 Coroado em escória
+t0 Quando esta carta é Invocada: coloque até 2 Artefatos do seu Cemitério no Campo.
+l1 Forja real
+t1 Pague 3 de mana: 1 monstro que você controla ganha permanentemente 500 de ATK.
+## Frost Blade
+n Lâmina de Geada
+## Frost Nova
+n Nova de Geada
+l0 Congelar
+t0 Pague 1 de mana; 1 monstro do oponente perde permanentemente 500 de ATK e 500 de DEF.
+## Frost Wolf
+n Lobo de Geada
+## Gale Harpy
+n Harpia do Vendaval
+l0 Mergulho de garras
+t0 Quando esta carta é Invocada: você pode fazer 1 monstro que o seu oponente controla perder permanentemente 300 de ATK.
+## Gaslight Charlatan
+n Charlatão Gaslight
+l0 Nada na manga
+t0 Pague 2 de mana: esta carta não pode ser escolhida como alvo pelos efeitos do seu oponente neste turno.
+## Gaslight Curtain Call
+n Queda do Pano Gaslight
+l0 A revelação
+t0 Destrua todas as Fichas de Ilusão que o seu oponente controla; compre 1 carta para cada uma (máx. 3).
+## Gaslight House Lights
+n Luzes da Plateia Gaslight
+l0 Luzes da plateia acesas
+t0 Invoque 1 Ficha de Ilusão (0/0) no Campo do seu oponente; compre 1 carta.
+l1 Holofotes ofuscantes
+t1 Em vez disso, pague 3 de mana: Invoque 2 Fichas; compre 2.
+## Gaslight Lanternist
+n Lanterneiro Gaslight
+l0 Lembra disto?
+t0 Quando esta carta é Invocada: Invoque 1 Ficha de Ilusão (0/0) no Campo do seu oponente.
+l1 Lembra das duas?
+t1 Pague 2 de mana em vez disso: Invoque 2.
+## Gaslight Mesmer
+n Mesmerista Gaslight
+l0 Quebrar a dúvida
+t0 Uma vez por turno: destrua 1 Ficha de Ilusão que o seu oponente controla; compre 1 carta.
+l1 Quebrar tudo
+t1 Pague 2 de mana em vez disso: destrua até 2; compre 1 para cada.
+## Gaslight Mirrorwalk
+n Caminho de Espelhos Gaslight
+l0 E mais uma
+t0 Quando seu oponente Invoca um monstro: Invoque 1 Ficha de Ilusão (0/0) no Campo dele.
+## Gaslight Now You See Me
+n Agora Você Me Vê Gaslight
+l0 Agora você me vê
+t0 1 monstro «Gaslight» que você controla não pode ser escolhido como alvo neste turno.
+l1 Agora não vê mais
+t1 Em vez disso, pague 2 de mana: Invoque também 1 Ficha de Ilusão (0/0) no Campo do seu oponente.
+## Gaslight Smoke Machine
+n Máquina de Fumaça Gaslight
+l0 Esfumaçar a entrada
+t0 Uma vez por turno, quando seu oponente Invoca um monstro: Invoque 1 Ficha de Ilusão (0/0) no Campo dele.
+l1 Dissipar a fumaça
+t1 Pague 2 de mana: destrua 1 Ficha de Ilusão; compre 1 carta.
+## Gaslight Stage Hypnotist
+n Hipnotizador de Palco Gaslight
+l0 Você está ficando com sono
+t0 Uma vez por turno: destrua 1 Ficha de Ilusão que o seu oponente controla; 1 monstro que ele controla perde permanentemente 300 de ATK.
+## Gaslight Understudy
+n Substituto Gaslight
+l0 Decorar o papel
+t0 Quando esta carta é Invocada: Invoque 1 Ficha de Ilusão (0/0) no Campo do seu oponente.
+l1 Apresentação póstuma
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: Invoque 1 Ficha de Ilusão no Campo do seu oponente.
+## Gaslight Usher
+n Lanterninha Gaslight
+l0 Por aqui, por favor
+t0 Invoque 2 Fichas de Ilusão (0/0) no Campo do seu oponente.
+## Gaslight, Standing Ovation
+n Gaslight, Ovação de Pé
+s Seu oponente controla uma Ficha de Ilusão — pague 2 de mana.
+l0 Bis
+t0 Se esta carta for Invocada: Invoque 1 Ficha de Ilusão (0/0) no Campo do seu oponente.
+## Gaslight, the Grand Premiere
+n Gaslight, a Grande Estreia
+s Seu oponente controla 3+ monstros — pague 3 de mana.
+l0 Casa cheia
+t0 Se esta carta for Invocada: preencha as Zonas de Monstros vazias do seu oponente com Fichas de Ilusão (0/0).
+l1 Luzes apagadas
+t1 Pague 3 de mana: destrua todas as Fichas de Ilusão; 1 monstro que o seu oponente controla perde 400 de ATK para cada uma.
+## Gaslight, the Vanishing Act
+n Gaslight, o Número do Desaparecimento
+s Seu oponente controla 2+ monstros, um deles uma Ficha de Ilusão. Custo: 3 de mana.
+l0 O grande sumiço
+t0 Quando esta carta é Invocada: destrua todas as Fichas de Ilusão que o seu oponente controla; compre 1 carta para cada uma (máx. 3).
+l1 Bis do nada
+t1 Pague 2 de mana: Invoque 1 Ficha de Ilusão (0/0) no Campo do seu oponente; 1 monstro que ele controla perde 400 de ATK até o fim deste turno.
+## Genostitched Apex Chimera
+n Quimera Ápice Genocosturado
+s Você controla um monstro com um Artefato equipado. Custo: 2 de mana.
+l0 Enxertar os caídos
+t0 Quando esta carta é Invocada: equipe 1 Artefato do seu Cemitério a esta carta.
+l1 Evolução ápice
+t1 Enquanto estiver equipada com um Artefato, você pode pagar 2 de mana: esta carta ganha permanentemente 400 de ATK.
+## Genostitched Donor List
+n Lista de Doadores Genocosturado
+l0 Lista de doadores
+t0 Adicione 1 Artefato do seu Deck à sua mão.
+l1 Doador prioritário
+t1 Em vez disso, pague 3 de mana: compre também 1 carta.
+## Genostitched Dressed to Kill
+n Vestido para Matar Genocosturado
+l0 Traje assassino
+t0 Uma vez por turno, se esta carta tiver um Artefato equipado: pague 2 de mana; esta carta pode atacar uma vez adicional nesta Battle Phase.
+## Genostitched Field Surgery
+n Cirurgia de Campanha Genocosturado
+l0 Cirurgia de campanha
+t0 Equipe 1 Artefato da sua mão a 1 monstro que você controla; ele ganha 300 de DEF até o fim deste turno.
+l1 Enxerto profundo
+t1 Em vez disso, pague 2 de mana: o bônus é permanente.
+## Genostitched Fourth Arm
+n Quarto Braço Genocosturado
+l0 Alcance extra
+t0 Uma vez por turno, quando o monstro equipado destrói um monstro em batalha: 1 monstro que o seu oponente controla perde permanentemente 300 de ATK.
+## Genostitched Grafter
+n Enxertador Genocosturado
+l0 Autoenxerto
+t0 Quando esta carta é Invocada: você pode equipar 1 Artefato da sua mão a esta carta.
+l1 Supercrescimento
+t1 Enquanto estiver equipada com um Artefato, você pode pagar 2 de mana: esta carta ganha permanentemente 500 de ATK.
+## Genostitched Hand-Me-Down
+n Roupa Herdada Genocosturado
+l0 Roupa herdada
+t0 Quando esta carta é Invocada: você pode equipar 1 Artefato do seu Cemitério a esta carta.
+l1 Feito sob medida
+t1 Em vez disso, pague 2 de mana: equipe 1 Artefato do seu Deck a esta carta.
+## Genostitched Loose Ends
+n Pontas Soltas Genocosturado
+l0 Cortar o fio
+t0 Pague 1 de mana: destrua 1 Artefato que você controla; compre 2 cartas e ganhe 1 de mana.
+l1 Arrematar
+t1 Em vez disso, pague 2 de mana: devolva também 1 monstro «Genocosturado» do seu Cemitério à sua mão.
+## Genostitched Magnum Opus
+n Magnum Opus Genocosturado
+l0 Automontagem
+t0 Quando esta carta é Invocada: equipe 1 Artefato do seu Cemitério a esta carta.
+l1 Design intocável
+t1 Enquanto estiver equipada com um Artefato, pague 2 de mana: esta carta não pode ser escolhida como alvo neste turno.
+## Genostitched Prime Specimen
+n Espécime Primoroso Genocosturado
+l0 Enxerto aperfeiçoado
+t0 Quando esta carta é Invocada: você pode equipar 1 Artefato do seu Deck a esta carta.
+l1 Rejeição total
+t1 Enquanto estiver equipada com um Artefato, você pode pagar 3 de mana: destrua 1 monstro que o seu oponente controla e depois esta carta ganha permanentemente 500 de ATK.
+## Genostitched Quick Change
+n Troca Rápida Genocosturado
+l0 Troca rápida
+t0 Pague 1 de mana: mova 1 Artefato que você controla para o seu monstro mais forte.
+l1 Hora do show
+t1 Em vez disso, pague 2 de mana: o novo portador também ganha 400 de ATK até o fim deste turno.
+## Genostitched Scrapling
+n Sucatinha Genocosturado
+l0 Instinto de sucata
+t0 Quando esta carta é Invocada: você pode adicionar 1 Artefato do seu Deck à sua mão.
+l1 Ciclo de retorno
+t1 Enquanto estiver equipada com um Artefato, você pode pagar 1 de mana: compre 1 carta.
+## Genostitched Seamstress
+n Costureira Genocosturado
+l0 Enfiar a agulha
+t0 Quando esta carta é Invocada: adicione 1 Artefato do seu Cemitério à sua mão.
+l1 Costurar por cima
+t1 Em vez disso, pague 2 de mana: equipe 1 Artefato do seu Cemitério a esta carta.
+## Genostitched Sutureling
+n Suturinha Genocosturado
+l0 A costura estoura
+t0 Quando esta carta é destruída: você pode adicionar 1 Artefato do seu Cemitério à sua mão.
+## Genostitched Third Arm
+n Terceiro Braço Genocosturado
+l0 Alcance extra
+t0 Uma vez por turno, quando o monstro equipado destrói um monstro em batalha: compre 1 carta.
+## Genostitched Vivisector
+n Vivissector Genocosturado
+l0 Corte de precisão
+t0 Enquanto estiver equipada com um Artefato, você pode pagar 2 de mana: destrua 1 monstro que o seu oponente controla com 1600 ou menos de ATK.
+## Genostitched, the Composite God
+n Genocosturado, o Deus Compósito
+s Você controla um monstro com um Artefato equipado e tem 2+ Artefatos no seu Cemitério. Custo: 3 de mana.
+l0 Divindade montada
+t0 Quando esta carta é Invocada: equipe até 2 Artefatos do seu Cemitério a esta carta.
+l1 Dissecação divina
+t1 Enquanto estiver equipada com um Artefato, pague 3 de mana: destrua 1 monstro que o seu oponente controla com 2000 ou menos de ATK; esta carta ganha permanentemente 300 de ATK.
+## Gift Horse
+n Cavalo Dado
+l0 Não se olham os dentes
+t0 Uma vez por turno, se esta carta for sua: dê o controle dela ao seu oponente; compre 2 cartas.
+## Glass Cannon
+n Canhão de Vidro
+## Glasswarden, the Unblinking
+n Vidro Vigia, o que Não Pisca
+s Você controla um monstro virado para baixo. Custo: 2 de mana.
+l0 Nada fica escondido
+t0 Quando esta carta é Invocada: vire para cima 1 monstro virado para baixo que você controla.
+## Grale, Who Collects on Sundays
+n Grale, que Cobra aos Domingos
+l0 Cobra aos domingos
+t0 Quando esta carta é Invocada: coloque uma Penhora de 1 em 1 monstro que o seu oponente controla (durante cada Standby Phase de quem o controla, ele paga essa quantidade de mana ou o monstro é destruído).
+l1 Juros
+t1 Pague 2 de mana: aumente em 1 a Penhora de 1 monstro que o seu oponente controla.
+## Grave Call
+n Chamado da Tumba
+l0 Chamado das profundezas
+t0 Pague 1 de mana; adicione 1 carta do seu Cemitério à sua mão.
+## Gravekeeper's Servant
+n Servo do Coveiro
+l0 Dever além da morte
+t0 Se esta carta estiver no seu Cemitério: você pode bani-la; compre 1 carta.
+## Gravemaw Bonepicker
+n Cata-Ossos Goelatumba
+l0 Catar os ossos
+t0 Quando esta carta é Invocada: bana até 2 monstros do seu Cemitério; esta carta ganha 300 de ATK para cada um dos seus monstros banidos.
+l1 Deixá-los limpos
+t1 Em vez disso, pague 2 de mana: bana até 4 monstros do seu Cemitério; esta carta ganha 300 de ATK para cada um dos seus monstros banidos.
+l2 Contas a acertar
+t2 Uma vez por turno: pague 2 de mana; devolva 1 dos seus monstros banidos ao seu Cemitério.
+## Gravemaw Butcher
+n Açougueiro Goelatumba
+l0 Alimentar a goela
+t0 Quando esta carta é Invocada: você pode destruir 1 outro monstro que você controla; compre 1 carta.
+l1 Engordar
+t1 Você pode pagar 2 de mana: esta carta ganha permanentemente 300 de ATK.
+## Gravemaw Cold Storage
+n Câmara Fria Goelatumba
+l0 Descongelar
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro «Goelatumba» de Nível 1 do seu Cemitério virado para baixo.
+l1 Descongelamento rápido
+t1 Em vez disso, pague 4 de mana: Invoque de Modo Especial 1 monstro «Goelatumba» do seu Cemitério virado para cima.
+## Gravemaw Feast
+n Banquete Goelatumba
+l0 Banquete
+t0 Destrua 1 monstro que você controla; cause 500 de dano ao seu oponente, e você ganha 500 LP.
+l1 Grande banquete
+t1 Destrua 1 monstro que você controla; cause 900 de dano ao seu oponente, e você ganha 900 LP.
+## Gravemaw Feeding Trough
+n Cocho Goelatumba
+l0 Mantê-lo cheio
+t0 Durante a sua Standby Phase: moa 2 cartas.
+l1 As sobras voltam
+t1 Uma vez por turno — pague 2 de mana: devolva 1 das suas cartas banidas ao seu Cemitério; ganhe 1 de mana.
+## Gravemaw Gnawer
+n Roedor Goelatumba
+l0 Primeira mordida
+t0 Quando esta carta é Invocada: moa 2 cartas.
+l1 Roer de volta
+t1 Pague 1 de mana e bana 1 outra carta do seu Cemitério: Invoque esta carta de Modo Especial do seu Cemitério.
+## Gravemaw Gulp
+n Gole Goelatumba
+l0 Gole
+t0 Bana 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+l1 Engolir inteiro
+t1 Em vez disso, pague 4 de mana: sem limite de ATK.
+## Gravemaw Leftovers
+n Sobras Goelatumba
+l0 Raspar o prato
+t0 Pague 1 de mana: devolva até 3 das suas cartas «Goelatumba» banidas ao seu Cemitério.
+l1 Lanche da meia-noite
+t1 Em vez disso, pague 1 de mana: devolva até 2 das suas cartas «Goelatumba» banidas ao seu Cemitério; compre 1 carta.
+## Gravemaw Nibbler
+n Beliscador Goelatumba
+l0 Pastando
+t0 Quando esta carta é Invocada: envie as 2 cartas do topo do seu Deck ao Cemitério.
+l1 Empanturrando-se
+t1 Em vez disso, pague 1 de mana: envie as 4 cartas do topo do seu Deck ao Cemitério; ganhe 1 de mana.
+## Gravemaw Ossuary
+n Ossuário Goelatumba
+l0 Colheita de ossos
+t0 Durante a sua Standby Phase: você pode Invocar de Modo Especial 1 monstro «Goelatumba» de Nível 1 do seu Cemitério.
+l1 Moer os ossos
+t1 Você pode pagar 2 de mana e destruir 1 monstro «Goelatumba» que você controla; compre 1 carta.
+## Gravemaw Second Helping
+n Segunda Porção Goelatumba
+l0 Segunda porção
+t0 Devolva até 2 das suas cartas banidas ao seu Cemitério; moa 2 cartas.
+l1 Terceira porção
+t1 Em vez disso, pague 2 de mana: Invoque também de Modo Especial 1 monstro «Goelatumba» de Nível 1 do seu Cemitério.
+## Gravemaw Sepulcher Beast
+n Fera do Sepulcro Goelatumba
+l0 Banquete do sepulcro
+t0 Quando esta carta é Invocada: bana até 2 cartas do seu Cemitério; compre 1 carta.
+l1 Banquete glutão
+t1 Em vez disso, pague 2 de mana: bana até 3; compre 1.
+## Gravemaw Stolen Supper
+n Jantar Roubado Goelatumba
+l0 Jantar roubado
+t0 Pague 1 de mana: bana 1 carta do Cemitério do seu oponente.
+l1 Mesa limpa
+t1 Em vez disso, pague 2 de mana: bana até 3 cartas do Cemitério do seu oponente; ganhe 300 LP.
+## Gravemaw Tyrant
+n Tirano Goelatumba
+l0 Devorar os fracos
+t0 Quando esta carta é Invocada: você pode destruir 1 outro monstro que você controla; cause 800 de dano ao seu oponente.
+l1 Apetite sem fim
+t1 Você pode pagar 3 de mana e destruir 1 outro monstro que você controla; esta carta ganha permanentemente 500 de ATK, e cause 300 de dano ao seu oponente.
+## Gravemaw Whelp
+n Cria Goelatumba
+l0 Rancor moribundo
+t0 Quando esta carta é destruída: cause 300 de dano ao seu oponente.
+l1 Fome que rói
+t1 Você pode pagar 1 de mana e enviar esta carta da sua mão ao Cemitério; 1 monstro que o seu oponente controla perde permanentemente 300 de ATK.
+## Gravemaw, Maw of the World
+n Goelatumba, a Goela do Mundo
+s 5+ das suas cartas estão banidas. Custo: 3 de mana.
+l0 O mundo retorna
+t0 Quando esta carta é Invocada: devolva até 3 das suas cartas banidas ao seu Cemitério; esta carta ganha permanentemente 200 de ATK para cada carta devolvida.
+l1 Morder o mundo
+t1 Uma vez por turno — pague 3 de mana: bana 1 carta que o seu oponente controla.
+## Gravemaw, the Bottomless
+n Goelatumba, o Sem Fundo
+s Custo: 1 de mana. Bana 4 monstros do seu Cemitério.
+l0 Fome sem fim
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro do seu Cemitério.
+## Grief Counselor
+n Conselheira do Luto
+l0 Processar a perda
+t0 Uma vez por turno, quando um monstro que você controla é destruído: compre 1 carta.
+l1 Sessão de terapia
+t1 Uma vez por turno: pague 1 de mana; ganhe 400 LP.
+## Grieve, Who Comes After
+n Grieve, que Vem Depois
+l0 Vem depois
+t0 MÃO · Envie esta carta da sua mão ao Cemitério e depois Invoque de Modo Especial 1 monstro com 1800 ou menos de ATK do seu Cemitério.
+## Grinner, Who Plays the Table
+n Grinner, que Joga a Mesa
+l0 Joga a mesa
+t0 Quando esta carta é Invocada: jogue uma moeda. Cara — seu oponente descarta 1 carta aleatória. Coroa — você descarta 1 carta aleatória.
+l1 Aumentar as apostas
+t1 Pague 2 de mana: jogue uma moeda. Cara — esta carta ganha 900 de ATK até o fim do turno. Coroa — ela perde 900 de ATK até o fim do turno.
+## Grunn, Who Eats His Own
+n Grunn, que Devora os Seus
+s Custo: 1 de mana. Destrua 1 outro monstro que você controla.
+l0 Ainda com fome
+t0 Quando esta carta é Invocada: até 2 monstros que o seu oponente controla perdem permanentemente 500 de ATK.
+## Guardian Amulet
+n Amuleto Guardião
+l0 Bênção protetora
+t0 Durante a sua Standby Phase: você pode ganhar 300 LP.
+## Guild Tariff
+n Tarifa da Guilda
+## Halo Executor
+n Executor do Halo
+l0 Veredicto final
+t0 Quando esta carta é Invocada: você pode banir 1 carta de qualquer Cemitério.
+## Head Over Heels
+n De Pernas para o Ar
+l0 De pernas para o ar
+t0 Pague 1 de mana: 1 monstro no Campo troca seu ATK e sua DEF até o fim deste turno.
+l1 De cabeça para baixo
+t1 Em vez disso, pague 2 de mana: até 2 monstros.
+## Heads You Lose
+n Cara, Você Perde
+l0 Cara, você perde
+t0 Pague 1 de mana: jogue uma moeda. Cara — destrua 1 monstro no Campo. Coroa — destrua 1 monstro que você controla em vez disso (se não controlar nenhum, nada acontece).
+l1 Dobro ou nada
+t1 Em vez disso, pague 3 de mana: jogue duas moedas. Se pelo menos uma der Cara, destrua 1 monstro no Campo. Se ambas derem Coroa, destrua 1 monstro que você controla e seu oponente compra 1 carta.
+## Healing Spring
+n Fonte Curativa
+l0 Água da fonte
+t0 Pague 1 de mana: ganhe 1000 LP.
+l1 Fonte sagrada
+t1 Pague 2 de mana; ganhe 2200 LP.
+## Heart of the Forge
+n Coração da Fornalha
+l0 Atiçar
+t0 Adicione 1 carta «Coração da Forja» do seu Deck à sua mão.
+l1 Forja em brasa viva
+t1 Adicione 1 carta «Coração da Forja» do seu Deck à sua mão e depois 1 monstro que você controla ganha permanentemente 400 de ATK.
+## Heart of the Shrine
+n Coração do Santuário
+l0 O chamado do santuário
+t0 Durante a sua Standby Phase: você pode adicionar 1 monstro do Tipo Dragão de Nível 1 do seu Deck à sua mão.
+l1 Invocação do fogo interior
+t1 Você pode pagar 3 de mana: Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 1 da sua mão.
+## Heavenly Acolyte
+n Acólito Celestial
+l0 Devoção
+t0 Quando esta carta é Invocada: você pode adicionar 1 carta «Celestial» do seu Deck à sua mão.
+## Heavenly Altarpiece
+n Retábulo Celestial
+l0 Oferenda matinal
+t0 Pague 1 de mana: ganhe 300 LP.
+## Heavenly Archon
+n Arconte Celestial
+l0 A hoste desce
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro «Celestial» de Nível 1 do seu Cemitério.
+l1 Luz silenciadora
+t1 Pague 3 de mana: negue os efeitos de 1 monstro que o seu oponente controla até o fim deste turno.
+## Heavenly Ascension
+n Ascensão Celestial
+l0 Ascensão
+t0 Invoque de Modo Especial até 2 monstros «Celestial» da sua mão.
+## Heavenly Benediction
+n Bênção Celestial
+l0 Bênção
+t0 1 monstro que você controla não pode ser destruído neste turno; ganhe 300 LP.
+l1 Bênção gêmea
+t1 Em vez disso, pague 2 de mana: até 2 monstros; ganhe 500 LP.
+## Heavenly Bodyguard
+n Guarda-Costas Celestial
+## Heavenly Choirmaid
+n Donzela do Coro Celestial
+l0 Prece atendida
+t0 Você pode enviar esta carta da sua mão ao Cemitério; Invoque de Modo Especial 1 monstro «Celestial» de Nível 1 do seu Deck.
+## Heavenly Collection Plate
+n Prato de Coleta Celestial
+l0 Passar o prato
+t0 Uma vez por turno: ganhe 300 LP.
+l1 Domingo generoso
+t1 Em vez disso, pague 2 de mana, se você controlar 2+ monstros: ganhe 300 LP e compre 1 carta.
+## Heavenly Empyrean, the First Light
+n Empíreo Celestial, a Primeira Luz
+s Você controla «Soberano Serafim Celestial». Custo: 4 de mana.
+l0 Primeira luz
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro «Celestial» do seu Cemitério. Esta carta não pode ser destruída neste turno.
+## Heavenly Errand Angel
+n Anjo de Recados Celestial
+l0 Pequenos milagres
+t0 Quando esta carta é Invocada: adicione 1 Magia «Celestial» do seu Deck à sua mão.
+l1 Entrega especial
+t1 Em vez disso, pague 2 de mana: ganhe também 300 LP.
+## Heavenly Herald
+n Arauto Celestial
+l0 Toque de trombeta
+t0 Quando esta carta é Invocada: você pode adicionar 1 monstro «Celestial» do seu Cemitério à sua mão.
+## Heavenly Highest Choir
+n Coro Altíssimo Celestial
+s Você controla 2+ monstros «Celestial» e tem 5+ de mana disponível. Custo: 4 de mana.
+l0 O coro se reúne
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros «Celestial» do seu Cemitério; eles não podem ser destruídos neste turno.
+l1 Véu de canto
+t1 Pague 2 de mana: 1 monstro «Celestial» que você controla não pode ser escolhido como alvo neste turno.
+## Heavenly Intervention
+n Intervenção Celestial
+l0 Intervenção
+t0 Pague 2 de mana: devolva 1 monstro que o seu oponente controla à mão do dono.
+l1 Veto divino
+t1 Em vez disso, pague 4 de mana: bana-o em vez disso.
+## Heavenly Reliquary
+n Relicário Celestial
+l0 Abrir o relicário
+t0 Adicione 1 carta «Celestial» do seu Deck à sua mão.
+l1 Abertura sagrada
+t1 Adicione 1 carta «Celestial» do seu Deck à sua mão e depois Invoque de Modo Especial 1 monstro «Celestial» de Nível 1 da sua mão.
+## Heavenly Second Coming
+n Segunda Vinda Celestial
+l0 Segunda vinda
+t0 Pague 3 de mana: Invoque de Modo Especial 1 monstro «Celestial» do seu Cemitério.
+l1 Em glória
+t1 Em vez disso, pague 5 de mana: ele também ganha permanentemente 500 de ATK e 500 de DEF.
+## Heavenly Seraph Sovereign
+n Soberano Serafim Celestial
+l0 Bênção do soberano
+t0 Quando esta carta é Invocada: você pode adicionar 1 carta «Celestial» do seu Deck à sua mão.
+l1 Palavra de silêncio
+t1 Você pode pagar 3 de mana: escolha 1 carta que o seu oponente controla; os efeitos dela ficam negados até o fim do turno.
+## Heavenly Summons
+n Invocação Celestial
+l0 Invocação celestial
+t0 Invoque de Modo Especial 1 monstro «Celestial» do seu Deck com 1400 ou menos de ATK.
+l1 Invocação altíssima
+t1 Em vez disso, pague 4 de mana: sem limite de ATK; ele não pode ser destruído neste turno.
+## Heavenly Vindicator
+n Vindicador Celestial
+l0 Sob minha asa
+t0 Quando esta carta é Invocada: 1 monstro «Celestial» que você controla não pode ser destruído neste turno.
+l1 Guarda duradoura
+t1 Em vez disso, pague 2 de mana: ele também ganha permanentemente 400 de DEF.
+## Herald of the Lightless
+n Arauto dos Semluz
+l0 Proclamação sombria
+t0 Quando esta carta é Invocada: você pode Baixar 1 Magia «Semluz» do seu Deck virada para baixo.
+l1 Sermão final
+t1 Se esta carta estiver no seu Cemitério: você pode pagar 2 de mana e bani-la; adicione 1 monstro «Semluz» do seu Deck à sua mão.
+## Hessel of the Crossroads
+n Hessel da Encruzilhada
+l0 Negócio de encruzilhada
+t0 Quando esta carta é Invocada: seu oponente compra 1 carta; você compra 2 cartas.
+l1 Pacto com o diabo
+t1 Em vez disso, pague 2 de mana: seu oponente compra 1 carta; você compra 3 cartas, mas pula a sua próxima Draw Phase.
+## Hest, Who Looks Twice
+n Hest, que Olha Duas Vezes
+l0 A segunda olhada
+t0 Uma vez por turno: você pode pagar 1 de mana; vire para cima 1 monstro virado para baixo no Campo.
+## Hexweaver Apprentice
+n Aprendiz Tecemaléficos
+l0 Primeiro fio
+t0 Você pode enviar esta carta da sua mão ao Cemitério; Baixe 1 Magia «Tecemaléficos» do seu Deck.
+## Hexweaver Bargain Bobbin
+n Bobina de Pechincha Tecemaléficos
+## Hexweaver Curse Broker
+n Corretor de Maldições Tecemaléficos
+l0 Comissão do corretor
+t0 Quando esta carta é Invocada, se você tiver 5+ de mana: compre 1 carta e ganhe 1 de mana.
+l1 Vendido a descoberto
+t1 Pague 2 de mana: 1 monstro que o seu oponente controla perde permanentemente 400 de ATK.
+## Hexweaver Grand Magus
+n Grande Magus Tecemaléficos
+l0 Grande desígnio
+t0 Quando esta carta é Invocada: você pode Baixar 1 Magia «Tecemaléficos» do seu Deck e depois comprar 1 carta.
+l1 Desfazer e restaurar
+t1 Você pode pagar 3 de mana: devolva 1 Magia do seu Cemitério à sua mão.
+## Hexweaver Loomguard
+n Guarda do Tear Tecemaléficos
+l0 Proteger o tear
+t0 Quando seu oponente Invoca um monstro: você pode pagar 1 de mana; Baixe 1 Magia «Tecemaléficos» do seu Deck.
+## Hexweaver Loose Thread
+n Fio Solto Tecemaléficos
+l0 Puxar o fio
+t0 Quando esta carta é Invocada: ganhe 1 de mana.
+l1 Continuar puxando
+t1 Em vez disso, pague 1 de mana: ganhe 1 de mana agora e mais 1 durante o seu próximo turno.
+## Hexweaver Rethread
+n Refiar Tecemaléficos
+l0 Refiar
+t0 Pague 1 de mana: devolva 1 Magia do seu Cemitério à sua mão; ganhe 1 de mana.
+l1 Ponto duplo
+t1 Em vez disso, pague 1 de mana: devolva até 2 Magias do seu Cemitério à sua mão.
+## Hexweaver Scribe
+n Escriba Tecemaléficos
+l0 Reescrever a trama
+t0 Quando esta carta é Invocada: você pode devolver 1 Magia do seu Cemitério à sua mão.
+## Hexweaver Second Stitch
+n Segundo Ponto Tecemaléficos
+l0 Segundo ponto
+t0 Devolva 1 Magia Rápida do seu Cemitério à sua mão; ganhe 1 de mana.
+l1 Ponto duplo
+t1 Em vez disso, pague 2 de mana: devolva 2.
+## Hexweaver Snip
+n Tesourada Tecemaléficos
+l0 Tesourada
+t0 Devolva 1 Magia ou Artefato que o seu oponente controla à mão; compre 1 carta.
+l1 Cortado da trama
+t1 Em vez disso, pague 4 de mana: bana-o; compre 1 carta.
+## Hexweaver Spindlewitch
+n Bruxa do Fuso Tecemaléficos
+l0 Fiar o primeiro fio
+t0 Quando esta carta é Invocada: Baixe 1 Magia «Tecemaléficos» do seu Deck.
+l1 Rebobinar o carretel
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: devolva 1 Magia do seu Cemitério à sua mão.
+## Hexweaver Tapestry of Debts
+n Tapeçaria de Dívidas Tecemaléficos
+l0 Tecê-la de volta
+t0 Uma vez por turno — pague 2 de mana: Baixe 1 Magia «Tecemaléficos» do seu Cemitério.
+## Hexweaver Unravel
+n Desfiar Tecemaléficos
+l0 Desfiar
+t0 Pague 2 de mana: devolva 1 Magia ou Artefato que o seu oponente controla à mão.
+l1 Desfeito
+t1 Em vez disso, pague 4 de mana: bana 1 Magia ou Artefato que o seu oponente controla.
+## Hexweaver's Loom
+n O Tear do Tecemaléficos
+l0 Fiar o fio
+t0 Adicione 1 carta «Tecemaléficos» do seu Deck à sua mão.
+l1 Tecer o padrão
+t1 Adicione 1 carta «Tecemaléficos» do seu Deck à sua mão, depois compre 1 carta.
+## Hexweaver, Loom of Fate
+n Tecemaléficos, Tear do Destino
+s Você tem 5 ou mais de mana. Custo: 2 de mana.
+l0 Refiar o destino
+t0 Quando esta carta é Invocada: adicione até 2 Magias do seu Cemitério à sua mão.
+## Hexweaver, Looming Large
+n Tecemaléficos, Sombra que Cresce
+l0 Sabedoria tecida
+t0 Quando esta carta é Invocada, se você tiver 6 ou mais de mana: compre 2 cartas.
+l1 Forçar a trama
+t1 Em vez disso, pague 2 de mana: compre 2 cartas independentemente do seu mana.
+l2 Destino refiado
+t2 Uma vez por turno: pague 3 de mana; devolva 1 monstro que o seu oponente controla à mão do dono.
+## Hexweaver, the Pattern Beneath
+n Tecemaléficos, o Padrão Oculto
+s 4+ Magias no seu Cemitério. Custo: 3 de mana.
+l0 Ler o padrão
+t0 Quando esta carta é Invocada: adicione até 2 Magias do seu Cemitério à sua mão; ganhe 1 de mana.
+l1 Desfiar a obra deles
+t1 Pague 2 de mana: negue os efeitos de 1 Magia ou Artefato que o seu oponente controla até o fim deste turno.
+## High Stakes
+n Apostas Altas
+l0 Apostas altas
+t0 Pague 2 de mana: só durante a Main Phase do seu oponente: até o fim do seu próximo turno, todo dano de batalha a qualquer jogador é dobrado.
+## Hold the Line
+n Segurar a Linha
+l0 Segurar a linha
+t0 RÁPIDO · Pague 1 de mana: escolha 1 monstro que o seu oponente controla; ele não pode atacar neste turno.
+## Hunter's Horn
+n Corno do Caçador
+l0 Tocar a caçada
+t0 Você pode pagar 3 de mana: escolha 1 monstro que você controla; ele pode atacar uma vez adicional neste turno.
+## Ice Warden
+n Vigia de Gelo
+l0 Sopro de geada
+t0 Quando seu oponente Invoca um monstro: você pode pagar 1 de mana; ele perde 300 de ATK.
+## Ignis the Pyromancer
+n Ignis o Piromante
+l0 Tempestade de fogo
+t0 Uma vez por turno: você pode pagar 2 de mana; cause 500 de dano ao seu oponente.
+## Ilsa of the Long Line
+n Ilsa da Longa Fila
+s Você controla 3 ou mais monstros. Custo: 2 de mana.
+l0 Segurar a linha
+t0 Quando esta carta é Invocada: todos os monstros que você controla ganham 300 de ATK até o fim do turno.
+## Immortal Demon
+n Demônio Imortal
+s Enquanto não houver Relicários no Campo nem em nenhum Banimento e você tiver 2+ Relicários no seu Cemitério: pague 2 de mana.
+l0 Maldição de despedida
+t0 Se esta carta for enviada ao Cemitério do Campo ou do Extra Deck: compre 2 cartas, depois você pode negar os efeitos de 1 carta no Campo.
+## Immovable Object
+n Objeto Imovível
+## Implosion
+n Implosão
+l0 Implosão
+t0 Pague 2 de mana: bana todos os monstros que o seu oponente controla, mas você não pode atacar diretamente neste turno.
+## Iron Resolve
+n Determinação de Ferro
+l0 Manter-se firme
+t0 Escolha 1 monstro que você controla; ele ganha 500 de DEF até o fim do turno.
+l1 Inquebrável
+t1 Escolha 1 monstro que você controla; ele ganha 1200 de DEF até o fim do turno.
+## Kindlekin Ashling
+n Cinzinha Brasinha
+## Kindlekin Bonfire Chief
+n Chefe da Fogueira Brasinha
+l0 Todos de volta ao fogo
+t0 Uma vez por turno — pague 2 de mana: Invoque de Modo Especial até 2 monstros de FOGO de Nível 1 do seu Cemitério.
+## Kindlekin Cindertail
+n Rabo-de-Brasa Brasinha
+l0 Ir de carona
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro de FOGO de Nível 1 da sua mão.
+l1 Rastro quente
+t1 Quando esta carta é destruída: adicione 1 monstro de FOGO de Nível 1 do seu Cemitério à sua mão.
+## Kindlekin Emberthrone
+n Trono de Brasas Brasinha
+s Você controla 3+ monstros. Custo: 2 de mana.
+l0 Chamado às brasas
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 com 1000 ou menos de ATK do seu Cemitério.
+l1 Chamar todos
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial até 2 monstros de FOGO de Nível 1 do seu Cemitério.
+l2 Aquecer a matilha
+t2 Você pode pagar 2 de mana: até 3 monstros FERA que você controla ganham 300 de ATK até o fim deste turno.
+## Kindlekin Emberwing
+n Asa de Brasa Brasinha
+l0 Soprar as cinzas
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 do seu Cemitério.
+l1 Soprar todas
+t1 Em vez disso, pague 2 de mana: Invoque de Modo Especial até 2 monstros de FOGO de Nível 1 do seu Cemitério.
+## Kindlekin Fire Marshal
+n Chefe dos Bombeiros Brasinha
+l0 Fazer a chamada
+t0 Uma vez por turno: pague 2 de mana; devolva 1 monstro de Nível 1 do seu Cemitério à sua mão.
+## Kindlekin Flickerpaw
+n Pata Tremeluzente Brasinha
+l0 Farejar a ninhada
+t0 Quando esta carta é Invocada por Invocação Normal: adicione 1 monstro de FOGO de Nível 1 do seu Deck à sua mão.
+l1 Chamar a ninhada
+t1 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 da sua mão.
+## Kindlekin Hearthnurse
+n Ama da Lareira Brasinha
+l0 Da toca
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 com 1000 ou menos de ATK da sua mão.
+l1 Do fundo da toca
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 do seu Deck.
+## Kindlekin Hearthstone
+n Pedra da Lareira Brasinha
+l0 Mantido aquecido
+t0 Uma vez por turno, quando um monstro que você controla é destruído: adicione 1 monstro de FOGO de Nível 1 do seu Cemitério à sua mão.
+l1 Atiçar a pedra
+t1 Pague 2 de mana: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 da sua mão.
+## Kindlekin Pile On
+n Montinho Brasinha
+l0 Montinho
+t0 Invoque de Modo Especial até 3 monstros de FOGO de Nível 1 com 1000 ou menos de ATK da sua mão.
+l1 Todo mundo no montinho
+t1 Em vez disso, pague 3 de mana: da sua mão ou do seu Cemitério.
+## Kindlekin Plus-One
+n Acompanhante Brasinha
+l0 Acompanhante
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro «Brasinha» da sua mão.
+l1 Grupo de três
+t1 Em vez disso, pague 1 de mana: Invoque de Modo Especial até 2 monstros «Brasinha» da sua mão.
+## Kindlekin Pyre Warden
+n Vigia da Pira Brasinha
+s Você controla 2+ monstros. Custo: 1 de mana.
+l0 Guardar o fogo
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 do seu Cemitério.
+l1 Achar a lenha
+t1 Você pode pagar 2 de mana: adicione 1 monstro de FOGO de Nível 1 do seu Deck à sua mão.
+## Kindlekin Pyrewhelp
+n Filhote de Pira Brasinha
+l0 Explosão de fagulhas
+t0 Quando esta carta é destruída: Invoque de Modo Especial 1 monstro de FOGO de Nível 1 do seu Cemitério.
+l1 Atiçar
+t1 Você pode pagar 2 de mana: 1 monstro de FOGO que você controla ganha 500 de ATK até o fim deste turno.
+## Kindlekin Rekindle
+n Reacender Brasinha
+l0 Reacender
+t0 Pague 1 de mana: devolva 1 monstro de Nível 1 do seu Cemitério à sua mão.
+l1 Das brasas
+t1 Em vez disso, pague 2 de mana: Invoque-o de Modo Especial em vez disso.
+## Kindlekin Sift the Ashes
+n Peneirar as Cinzas Brasinha
+l0 Peneirar as cinzas
+t0 Pague 1 de mana: envie as 4 cartas do topo do seu Deck ao Cemitério; adicione 1 carta «Brasinha» dentre elas à sua mão.
+l1 Até a última fagulha
+t1 Em vez disso, pague 1 de mana: adicione TODAS as cartas «Brasinha» dentre elas à sua mão.
+## Kindlekin Spark
+n Fagulha Brasinha
+l0 Pegar fogo
+t0 Quando esta carta é Invocada: ganhe 1 de mana.
+## Kindlekin Tinderfall
+n Chuva de Gravetos Brasinha
+l0 Chuva de gravetos
+t0 Pague 1 de mana: adicione 1 monstro de FOGO de Nível 1 do seu Deck à sua mão; ganhe 2 de mana.
+## Kindlekin Warm Glow
+n Brilho Aconchegante Brasinha
+l0 Brilho aconchegante
+t0 Até 3 dos seus monstros de Nível 1 ganham 300 de ATK até o fim deste turno.
+l1 Halo da lareira
+t1 Em vez disso, pague 2 de mana: até 5; eles também não podem ser destruídos neste turno.
+## Kindlekin Warm Memories
+n Lembranças Quentinhas Brasinha
+l0 Lembranças quentinhas
+t0 Uma vez por turno, quando um monstro que você controla é destruído: ganhe 300 LP.
+l1 Dividir o calor
+t1 Uma vez por turno: pague 1 de mana; 1 monstro de Nível 1 que você controla ganha 300 de ATK até o fim deste turno.
+## Kindlekin, the Last Ember
+n Brasinha, a Última Brasa
+s Você controla 4+ monstros e há 6+ cartas no seu Cemitério. Custo: 4 de mana. Bana 2 monstros do seu Cemitério.
+l0 Tudo queima
+t0 Quando esta carta é Invocada: destrua todos os monstros do Campo exceto os monstros FERA.
+l1 Das cinzas
+t1 Você pode pagar 3 de mana: Invoque de Modo Especial até 2 monstros de FOGO de Nível 1 do seu Cemitério.
+## Kindlekin, the Thousandth Flame
+n Brasinha, a Milésima Chama
+s Você controla 3+ monstros «Brasinha». Custo: 3 de mana.
+l0 Mil fagulhas
+t0 Quando esta carta é Invocada: todos os monstros de Nível 1 que você controla ganham 500 de ATK até o fim deste turno; esta carta pode atacar duas vezes neste turno.
+l1 Legião reacesa
+t1 Pague 3 de mana: Invoque de Modo Especial até 2 monstros de FOGO de Nível 1 do seu Cemitério.
+## King of Deckay
+n Rei da Deckadência
+s 8+ monstros no seu Cemitério e 5+ de mana disponível — a Invocação em si não custa nada.
+l0 Coroação da podridão
+t0 Se esta carta for Invocada: moa 10 cartas.
+l1 A podridão consome tudo
+t1 Destrua todas as outras cartas do Campo. Sofra 200 de dano para cada carta destruída.
+l2 Coroado na imundície
+t2 Se você moeu neste turno ou no anterior: esta carta não pode ser escolhida como alvo e não é afetada pelos efeitos do seu oponente neste turno.
+## King's Crown
+n Coroa do Rei
+l0 Poderio do rei
+t0 Durante a sua Standby Phase: você pode ganhar 1 de mana adicional neste turno e curar 200 LP.
+## Lantern Sprite
+n Fada do Lampião
+l0 Última luz
+t0 Quando esta carta é destruída: você ganha 500 LP.
+## Late Bloomer
+n Flor Tardia
+l0 …Tardia
+t0 Quando esta carta é Invocada: compre 1 carta.
+l1 Plena floração
+t1 Em vez disso, pague 2 de mana: compre 2 cartas.
+## Ledger of Small Debts
+n Livro das Dívidas Miúdas
+l0 Dívidas miúdas
+t0 Uma vez por turno: pague 800 LP; ganhe 1 de mana neste turno.
+l1 Dívidas maiores
+t1 Pague 1 de mana e 1500 LP: compre 2 cartas.
+## Left Hand of the Hangman
+n Mão Esquerda do Carrasco
+l0 A queda
+t0 Quando esta carta é Invocada: destrua o monstro virado para cima de frente para ela se o ATK dele for menor que o desta carta.
+l1 A queda
+t1 Quando esta carta se move para outra zona: destrua o monstro virado para cima de frente para ela se o ATK dele for menor que o desta carta.
+l2 Percorrer a forca
+t2 Pague 2 de mana: mova esta carta para uma zona vazia adjacente; ela não pode atacar neste turno.
+## Light Dragon
+n Dragão de Luz
+l0 Tempestade de luz
+t0 Uma vez por turno: você pode pagar 3 de mana; ganhe 600 LP e cause 600 de dano ao seu oponente.
+## Lightless Acolyte
+n Acólito Semluz
+l0 Oferenda sussurrada
+t0 Você pode enviar esta carta da sua mão ao Cemitério; adicione 1 carta «Semluz» do seu Deck à sua mão e, se fizer isso, compre 1 carta.
+l1 Garra de baixo
+t1 Se esta carta estiver no seu Cemitério: você pode pagar 2 de mana e bani-la; vire 1 monstro que o seu oponente controla para baixo em Posição de Defesa.
+## Lightless Blackout Curtain
+n Cortina de Blecaute Semluz
+l0 Fechar a cortina
+t0 Uma vez por turno: pague 2 de mana; Baixe 1 monstro «Semluz» da sua mão virado para baixo.
+## Lightless Candle Snuffer
+n Apagador de Velas Semluz
+l0 Apagá-la
+t0 Uma vez por turno — pague 2 de mana: destrua 1 monstro virado para baixo que o seu oponente controla.
+## Lightless Closed Casket
+n Caixão Fechado Semluz
+l0 Caixão fechado
+t0 Pague 1 de mana: Baixe até 3 monstros «Semluz» da sua mão virados para baixo.
+l1 Acordar os enlutados
+t1 Em vez disso, pague 2 de mana: Baixe 2 monstros «Semluz» da sua mão virados para baixo; compre 2 cartas.
+## Lightless Gravewatcher
+n Vigia-Túmulos Semluz
+l0 Turno de vigília
+t0 Quando esta carta é virada para cima: vire 1 monstro que o seu oponente controla para baixo em Posição de Defesa.
+## Lightless Light-Fingered
+n Mãos Leves Semluz
+l0 Dedos ágeis
+t0 Quando esta carta é virada para cima: devolva 1 Magia ou Artefato que o seu oponente controla à mão.
+l1 Escamoteado
+t1 Uma vez por turno: pague 1 de mana; vire esta carta para baixo em Posição de Defesa.
+## Lightless Lights-Out
+n Apagar das Luzes Semluz
+l0 Luzes apagadas
+t0 Quando esta carta é virada para cima: Baixe 1 monstro que o seu oponente controla virado para baixo.
+## Lightless Matriarch
+n Matriarca Semluz
+l0 Ordem do véu
+t0 Quando esta carta é Invocada: você pode virar até 2 monstros do Campo para baixo em Posição de Defesa.
+l1 Extinguir
+t1 Você pode pagar 3 de mana: destrua 1 monstro virado para baixo que o seu oponente controla e depois cause 400 de dano ao seu oponente.
+## Lightless Pallbearer
+n Carregador de Caixão Semluz
+l0 Levá-los de volta
+t0 Quando esta carta é Invocada: Baixe 1 monstro «Semluz» do seu Cemitério virado para baixo no seu Campo.
+l1 Procissão silenciosa
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Lightless Prophet
+n Profeta Semluz
+l0 Sufocar a luz
+t0 Pague 1 de mana; escolha 1 monstro de Luz no Campo: vire-o para baixo em Posição de Defesa.
+## Lightless Ritual
+n Ritual Semluz
+l0 Rito das sombras
+t0 Pague 2 de mana; Invoque de Modo Especial 1 monstro «Semluz» do seu Cemitério ou do seu Banimento e, se fizer isso, seu oponente descarta 1 carta aleatória.
+l1 Rito da usurpação
+t1 Pague 4 de mana; Invoque de Modo Especial 1 monstro «Semluz» do seu Cemitério ou do seu Banimento. Depois, em vez do descarte, 1 carta aleatória da mão do seu oponente: se for um monstro, Invoque-o de Modo Especial no SEU Campo (ele ainda volta para o dono quando sai); caso contrário, ele a descarta.
+## Lightless Shade
+n Sombra Semluz
+l0 Evocação das sombras
+t0 Quando esta carta é Invocada: você pode adicionar 1 monstro «Semluz» do seu Cemitério à sua mão.
+l1 Devorar o oculto
+t1 Você pode pagar 2 de mana: escolha 1 monstro virado para baixo no Campo; destrua-o.
+## Lightless Snuff
+n Sufoco Semluz
+l0 Sufocar
+t0 Pague 1 de mana: vire 1 monstro virado para cima que você controla para baixo.
+l1 Cada vela
+t1 Em vez disso, pague 2 de mana: vire até 2 dos seus monstros para baixo.
+## Lightless Sudden Dark
+n Escuridão Súbita Semluz
+l0 Escuridão súbita
+t0 Vire 1 monstro que o seu oponente controla para baixo em Posição de Defesa.
+l1 Escuridão total
+t1 Em vez disso, pague 3 de mana: até 2.
+## Lightless Veil
+n Véu Semluz
+l0 Véu da noite
+t0 Escolha 1 monstro que você controla; vire-o para baixo em Posição de Defesa.
+l1 Véu da escuridão profunda
+t1 Vire 1 monstro que você controla para baixo em Posição de Defesa, depois compre 1 carta, e seu oponente perde 1 de mana.
+## Lightless Vigil
+n Vigília Semluz
+l0 Manter a vigília
+t0 Baixe 1 monstro «Semluz» do seu Deck virado para baixo no seu Campo.
+l1 Guarda dupla
+t1 Em vez disso, pague 3 de mana: Baixe 2.
+## Lightless, Hour of None
+n Semluz, a Hora Nona
+s Você controla 2+ monstros virados para baixo. Custo: 3 de mana.
+l0 A hora soa
+t0 Quando esta carta é Invocada: vire até 2 monstros que o seu oponente controla para baixo em Posição de Defesa.
+l1 Nada fica aceso
+t1 Pague 3 de mana: destrua 1 monstro virado para baixo no Campo; compre 1 carta.
+## Lightless, the Last Umbra
+n Semluz, a Última Umbra
+s Seus LP são menores que os do seu oponente. Custo: 2 de mana.
+l0 Devorar a luz
+t0 Quando esta carta é Invocada: bana 1 monstro que o seu oponente controla.
+## Lightning Storm
+n Tempestade de Raios
+l0 Golpe da tempestade
+t0 Pague 4 de mana; destrua 1 monstro do oponente e cause 300 de dano ao seu oponente.
+## Lightning Strike
+n Golpe de Raio
+l0 Raio
+t0 Pague 1 de mana; 1 monstro do oponente perde permanentemente 800 de ATK.
+l1 Raio aniquilador
+t1 Pague 3 de mana; destrua 1 monstro do oponente.
+## Load-Bearing Wall
+n Parede Mestra
+## Loaded Dice
+n Dados Viciados
+l0 Jogar de novo
+t0 Pague 2 de mana: jogue uma moeda. Cara — compre 1 carta. Coroa — descarte 1 carta.
+## Lock Shields
+n Travar Escudos
+l0 Travar escudos
+t0 Pague 1 de mana: escolha 1 monstro que você controla: ele e os monstros adjacentes a ele ganham 500 de DEF até o fim do turno.
+l1 Muralha de escudos
+t1 Em vez disso, pague 2 de mana: eles ganham 700 de DEF e não podem ser destruídos neste turno.
+## Long Way Home
+n O Longo Caminho para Casa
+l0 O longo caminho para casa
+t0 Pague 1 de mana: devolva até 3 das suas cartas banidas ao seu Cemitério.
+l1 Atalho
+t1 Em vez disso, pague 2 de mana: devolva também 1 carta do seu Cemitério à sua mão.
+## Lost in the Shuffle
+n Perdido no Embaralhamento
+l0 Perdido no embaralhamento
+t0 Pague 2 de mana: embaralhe 1 monstro com 1500 ou menos de ATK no Deck do dono.
+l1 Nunca mais visto
+t1 Em vez disso, pague 4 de mana: qualquer ATK.
+## Lyra the Warden
+n Lyra a Vigia
+l0 Bênção
+t0 Uma vez por turno: você pode pagar 2 de mana; ganhe 800 LP.
+## Lyria Chimewisp
+n Fiapo de Sino Lyria
+l0 Primeiro toque
+t0 VIRAR: você pode adicionar 1 carta «Lyria» do seu Deck à sua mão.
+## Lyria Curtain Call
+n Queda do Pano Lyria
+l0 Chamada ao palco
+t0 Quando esta carta é Invocada: vire para cima até 2 dos seus monstros virados para baixo.
+l1 Ovação de pé
+t1 Em vez disso, pague 2 de mana: os monstros virados também ganham 400 de ATK até o fim deste turno.
+l2 Fazer uma reverência
+t2 Uma vez por turno: pague 1 de mana; vire esta carta para baixo em Posição de Defesa.
+## Lyria Drummer
+n Percussionista Lyria
+l0 Batida de trovão
+t0 VIRAR: 1 monstro que o seu oponente controla perde permanentemente 400 de ATK.
+## Lyria Flautist
+n Flautista Lyria
+l0 Canção de ninar
+t0 VIRAR: você pode virar 1 monstro que o seu oponente controla para baixo em Posição de Defesa.
+## Lyria Green Room
+n Camarim Lyria
+l0 Todos aos seus lugares
+t0 Uma vez por turno: pague 2 de mana; Invoque de Modo Especial 1 monstro «Lyria» do seu Cemitério virado para baixo.
+## Lyria Harpist
+n Harpista Lyria
+l0 Segundo movimento
+t0 VIRAR: você pode Invocar de Modo Especial 1 monstro «Lyria» de Nível 1 da sua mão, virado para baixo em Posição de Defesa.
+## Lyria Hushabye
+n Acalanto Lyria
+l0 Acalanto
+t0 Quando esta carta é Invocada: você pode Baixar 1 monstro «Lyria» da sua mão virado para baixo.
+l1 Bons sonhos
+t1 Em vez disso, pague 2 de mana: Baixe 1 monstro de qualquer nome da sua mão virado para baixo e compre 1 carta.
+## Lyria Intermission
+n Intervalo Lyria
+l0 Intervalo
+t0 Vire 1 monstro que você controla para baixo em Posição de Defesa; ele ganha 500 de DEF até o fim deste turno.
+l1 Pausa prolongada
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Lyria Orchestra Pit
+n Fosso da Orquestra Lyria
+l0 Que toque a banda
+t0 Uma vez por turno, quando um dos seus monstros é virado para cima: compre 1 carta.
+l1 Deixa do maestro
+t1 Pague 2 de mana: vire para cima 1 dos seus monstros virados para baixo.
+## Lyria Prima Voce
+n Prima Voce Lyria
+l0 Nota que estilhaça
+t0 VIRAR: 1 monstro que o seu oponente controla perde permanentemente 500 de ATK.
+l1 Deixa do solista
+t1 Pague 2 de mana: vire para cima 1 dos seus monstros virados para baixo.
+## Lyria Quiet Crescendo
+n Crescendo Silencioso Lyria
+l0 Crescendo silencioso
+t0 Pague 1 de mana: 1 monstro que você controla ganha 300 de ATK para cada um dos seus monstros virados para baixo, até o fim deste turno.
+l1 Fortissimo
+t1 Em vez disso, pague 3 de mana: o bônus é permanente.
+## Lyria Second Movement
+n Segundo Movimento Lyria
+l0 Segundo movimento
+t0 Pague 1 de mana: Baixe 1 monstro do seu Cemitério virado para baixo no seu Campo; ganhe 1 de mana.
+l1 Reprise
+t1 Em vez disso, pague 3 de mana: Baixe 2 monstros «Lyria» do seu Cemitério virados para baixo; compre 1 carta.
+## Lyria Standing Room Only
+n Só em Pé Lyria
+l0 Só restam lugares em pé
+t0 Baixe até 2 monstros «Lyria» da sua mão virados para baixo.
+l1 Sessão esgotada
+t1 Em vez disso, pague 3 de mana: da sua mão ou do seu Cemitério.
+## Lyria Understage
+n Subpalco Lyria
+l0 Entrada pelo alçapão
+t0 VIRAR: Invoque de Modo Especial 1 monstro «Lyria» de Nível 1 do seu Deck virado para baixo.
+l1 De volta para baixo
+t1 Pague 1 de mana: vire esta carta para baixo em Posição de Defesa.
+## Lyria, the Encore Eternal
+n Lyria, o Bis Eterno
+s Você controla 3+ monstros virados para baixo. Custo: 3 de mana.
+l0 Sobe o pano
+t0 Quando esta carta é Invocada: vire para cima todos os seus monstros virados para baixo; eles ganham 300 de ATK até o fim deste turno.
+l1 Rearmar o palco
+t1 Pague 2 de mana: vire até 2 dos seus monstros para baixo.
+## Lyria, the Final Overture
+n Lyria, a Abertura Final
+s Você controla 2+ monstros virados para baixo. Custo: 2 de mana.
+l0 Ergue-se o pano
+t0 Quando esta carta é Invocada: vire para cima todos os monstros virados para baixo que você controla.
+## Lyria, the Grand Conductor
+n Lyria, a Grande Maestrina
+l0 Ocupem seus lugares
+t0 Quando esta carta é Invocada: você pode virar até 2 monstros que você controla para baixo em Posição de Defesa.
+l1 Erguer a batuta
+t1 Você pode pagar 3 de mana: vire para cima até 2 monstros virados para baixo que você controla.
+## Maeva the Pale
+n Maeva a Pálida
+l0 Virada crepuscular
+t0 Uma vez por turno: você pode pagar 2 de mana; vire o monstro inimigo escolhido para baixo em Posição de Defesa.
+## Magma Golem
+n Golem de Magma
+l0 Erupção
+t0 Quando esta carta é Invocada: você pode pagar 2 de mana; ambos os jogadores sofrem 500 de dano.
+## Maiden of the Dragon Shrine
+n Donzela do Santuário do Dragão
+l0 Ritual do santuário
+t0 Se esta carta for Invocada de Modo Especial: você pode baixar 1 Magia que mencione «Dragão» do seu Deck. Ela pode ser ativada neste turno.
+l1 Julgamento do santuário
+t1 Pague 4 de mana; envie esta carta ao Cemitério, depois destrua todos os monstros que não sejam do Tipo Dragão em ambos os Campos.
+## Mana Burn
+n Queima de Mana
+l0 Drenar
+t0 Pague 1 de mana; seu oponente perde 2 de mana.
+l1 Fogo da alma
+t1 Pague 2 de mana; seu oponente perde 2 de mana e sofre 400 de dano.
+## Mana Crystal
+n Cristal de Mana
+l0 Fluxo cristalino
+t0 Durante a sua Standby Phase: você pode ganhar 1 de mana adicional neste turno.
+## Mana Font
+n Fonte de Mana
+l0 Gole
+t0 Pague 1 de mana: ganhe 2 de mana neste turno.
+l1 Gole profundo
+t1 Ganhe 4 de mana neste turno.
+## Mana Gatherer
+n Coletor de Mana
+l0 Colheita de mana
+t0 Durante a sua Standby Phase: você pode ganhar 1 de mana adicional neste turno.
+## Manacle Assessor
+n Avaliador Managrilhão
+l0 Avaliar
+t0 Quando esta carta é Invocada: seu oponente perde 2 de mana; você ganha 1 de mana.
+l1 Reavaliar
+t1 Você pode pagar 3 de mana: seu oponente perde 2 de mana, e você tem 2 de mana a mais durante o seu próximo turno.
+## Manacle Bailiff
+n Oficial de Justiça Managrilhão
+l0 Selar o cofre
+t0 Quando esta carta é Invocada: seu oponente tem 2 de mana a menos durante o próximo turno dele.
+l1 Selar de vez
+t1 Em vez disso, pague 3 de mana: seu oponente tem 3 de mana a menos durante o próximo turno dele, e você tem 1 a mais durante o seu.
+## Manacle Buyout
+n Aquisição Managrilhão
+l0 Aquisição
+t0 Pague 4 de mana: devolva 1 monstro que o seu oponente controla à mão do dono; compre 1 carta.
+l1 Aquisição hostil
+t1 Em vez disso, pague 6 de mana: bana-o em vez disso; compre 1 carta.
+## Manacle Chancellor of Coin
+n Chanceler da Moeda Managrilhão
+l0 Auditar os livros
+t0 Quando esta carta é Invocada, se você tiver 6+ de mana: compre 1 carta.
+l1 Confiscar bens
+t1 Pague 3 de mana: seu oponente perde 2 de mana; você ganha 1 de mana.
+## Manacle Coinbiter
+n Morde-Moedas Managrilhão
+l0 Morder a moeda
+t0 Uma vez por turno, durante o turno de qualquer jogador: seu oponente perde 1 de mana.
+l1 Morder mais fundo
+t1 Em vez disso, pague 2 de mana: seu oponente tem 2 de mana a menos durante o próximo turno dele.
+## Manacle Compound Interest
+n Juros Compostos Managrilhão
+l0 Juros compostos
+t0 Uma vez por turno: pague 2 de mana; você tem 3 de mana a mais durante o seu próximo turno.
+## Manacle Countinghouse
+n Casa de Contagem Managrilhão
+l0 A casa sempre conta
+t0 Durante a sua Standby Phase: ganhe 1 de mana.
+l1 Cobrar
+t1 Você pode pagar 2 de mana: seu oponente perde 1 de mana.
+## Manacle Debt Collector
+n Cobrador de Dívidas Managrilhão
+s Você tem 5+ de mana disponível. Custo: 2 de mana.
+l0 Vir cobrar
+t0 Quando esta carta é Invocada: seu oponente tem 2 de mana a menos durante o próximo turno dele.
+l1 Levar agora
+t1 Você pode pagar 2 de mana: seu oponente perde 2 de mana.
+## Manacle Debtwarden
+n Vigia de Dívidas Managrilhão
+l0 Entrar na dívida
+t0 Quando esta carta é Invocada: seu oponente tem 1 de mana a menos durante o próximo turno dele, e você tem 1 a mais durante o seu.
+## Manacle Foreclosure
+n Execução Hipotecária Managrilhão
+l0 Execução hipotecária
+t0 Destrua 1 monstro que o seu oponente controla com 2000 ou menos de ATK; seu oponente perde 1 de mana.
+l1 Retomada total
+t1 Em vez disso, pague 5 de mana: sem limite de ATK.
+## Manacle Gleaner
+n Respigador Managrilhão
+l0 Respigar
+t0 Uma vez por turno: ganhe 1 de mana.
+## Manacle Hidden Fees
+n Taxas Ocultas Managrilhão
+l0 Taxas ocultas
+t0 Pague 2 de mana: seu oponente tem 2 de mana a menos durante o próximo turno dele.
+l1 Termos e condições
+t1 Em vez disso, pague 4 de mana: ele tem 3 de mana a menos e você tem 1 a mais durante o seu próximo turno.
+## Manacle Ledgerkeeper
+n Guarda-Livros Managrilhão
+l0 Consultar o livro
+t0 Uma vez por turno: você pode pagar 1 de mana; adicione 1 monstro de TREVAS de Nível 1 do seu Deck à sua mão.
+l1 Tirar a nata
+t1 Você pode pagar 2 de mana: seu oponente perde 1 de mana e você ganha 1 de mana.
+## Manacle Levy
+n Tributo Forçado Managrilhão
+l0 Tributo forçado
+t0 Pague 1 de mana: seu oponente perde 2 de mana.
+## Manacle Loan Shark
+n Agiota Managrilhão
+l0 Condições abusivas
+t0 Quando esta carta é Invocada: seu oponente tem 1 de mana a menos durante o próximo turno dele.
+l1 Crueldade composta
+t1 Em vez disso, pague 2 de mana: seu oponente tem 2 de mana a menos durante o próximo turno dele.
+l2 Ronda de cobrança
+t2 Uma vez por turno: pague 2 de mana; seu oponente tem 1 de mana a menos durante o próximo turno dele.
+## Manacle Pawnbroker
+n Penhorista Managrilhão
+l0 Oferta inicial
+t0 Quando esta carta é Invocada: seu oponente perde 1 de mana.
+l1 Termos compostos
+t1 Em vez disso, pague 2 de mana: ele também tem 1 de mana a menos durante o próximo turno dele.
+## Manacle Reckoning
+n Ajuste de Contas Managrilhão
+l0 Ajuste de contas
+t0 Pague 2 de mana: seu oponente tem 3 de mana a menos durante o próximo turno dele.
+## Manacle Silver Spoon
+n Colher de Prata Managrilhão
+l0 Nascido com sorte
+t0 Quando esta carta é Invocada, se você tiver 5 ou mais de mana: compre 1 carta.
+l1 Dinheiro velho
+t1 Em vez disso, pague 2 de mana, se você tiver 8 ou mais de mana: compre 2 cartas.
+## Manacle Tollkeeper
+n Pedagista Managrilhão
+l0 O pedágio
+t0 Quando esta carta é Invocada por Invocação Normal: seu oponente tem 1 de mana a menos durante o próximo turno dele.
+## Manacle Usurer
+n Usurário Managrilhão
+l0 Cobrar o empréstimo
+t0 Uma vez por turno, durante o turno de qualquer jogador: seu oponente perde 1 de mana.
+l1 Compor os juros
+t1 Em vez disso, pague 3 de mana: seu oponente tem 3 de mana a menos durante o próximo turno dele.
+l2 Achar o devedor
+t2 Você pode pagar 2 de mana: adicione 1 monstro de TREVAS de Nível 1 do seu Deck à sua mão.
+## Manacle Vault Door
+n Porta do Cofre Managrilhão
+l0 Os juros se acumulam
+t0 Durante a sua Standby Phase: ganhe 1 de mana.
+l1 Bater o cofre
+t1 Uma vez por turno — pague 2 de mana: seu oponente perde 1 de mana.
+## Manacle Wage Garnish
+n Penhora de Salário Managrilhão
+l0 Penhora de salário
+t0 Seu oponente tem 1 de mana a menos durante o próximo turno dele; você tem 1 a mais durante o seu.
+l1 Penhora completa
+t1 Em vez disso, pague 3 de mana: 2 a menos / 2 a mais.
+## Manacle, the Crown Debt
+n Managrilhão, a Dívida da Coroa
+s Você tem 8+ de mana disponível. Custo: 5 de mana.
+l0 A coroa cobra
+t0 Quando esta carta é Invocada: seu oponente perde 3 de mana.
+l1 Dividendo real
+t1 Pague 4 de mana: compre 2 cartas; você tem 2 de mana a mais durante o seu próximo turno.
+## Manacle, the Final Ledger
+n Managrilhão, o Livro Final
+s Você tem 7+ de mana disponível e 6+ cartas no seu Cemitério. Custo: 4 de mana.
+l0 Fechar o livro
+t0 Quando esta carta é Invocada: seu oponente tem 3 de mana a menos durante o próximo turno dele, e você tem 2 a mais durante o seu.
+l1 Executar a hipoteca
+t1 Em vez disso, pague 5 de mana: seu oponente tem 5 de mana a menos durante o próximo turno dele.
+l2 Ler os nomes
+t2 Você pode pagar 2 de mana: adicione 1 monstro de TREVAS de Nível 1 do seu Deck à sua mão.
+## Marrow, Who Holds Every Card
+n Marrow, que Segura Todas as Cartas
+l0 Me dê cartas
+t0 Pague 2 de mana: compre 1 carta, depois seu oponente compra 1 carta.
+## Maw of the Underworld
+n Goela do Submundo
+l0 Goela faminta
+t0 Destrua 1 monstro que você controla; 1 monstro que você controla ganha 800 de ATK até o fim do turno.
+## Mechination Assemblage
+n Montagem Mechinação
+s Você controla 2+ monstros. Custo: 2 de mana.
+l0 Encaixar
+t0 Quando esta carta é Invocada: adicione 1 monstro de TERRA de Nível 2 do seu Deck à sua mão.
+l1 Resgatar sucata
+t1 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de TERRA de Nível 1 do seu Cemitério.
+## Mechination Assembly Line
+n Linha de Montagem Mechinação
+l0 Turno da noite
+t0 Durante a sua Standby Phase: adicione 1 monstro de TERRA de Nível 1 do seu Cemitério à sua mão.
+l1 Pedido urgente
+t1 Você pode pagar 2 de mana: adicione 1 monstro de TERRA de Nível 1 do seu Deck à sua mão.
+## Mechination Blueprint
+n Planta Mechinação
+l0 Planta
+t0 Pague 1 de mana: adicione 1 monstro de TERRA de Nível 1 do seu Deck à sua mão; ganhe 1 de mana.
+## Mechination Boltling
+n Parafusinho Mechinação
+l0 Içá-lo
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de Nível 1 com 1000 ou menos de ATK da sua mão.
+l1 Içá-lo de volta
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial 1 monstro de Nível 1 do seu Cemitério.
+## Mechination Cogwright
+n Engrenheiro Mechinação
+l0 Ler o plano
+t0 Quando esta carta é Invocada por Invocação Normal: adicione 1 monstro de TERRA de Nível 1 do seu Deck à sua mão.
+l1 Encaixar a peça
+t1 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de TERRA de Nível 1 da sua mão.
+## Mechination Crumple Zone
+n Zona de Deformação Mechinação
+l0 Chassi reforçado
+t0 Uma vez por turno: pague 2 de mana; 1 monstro MECHA que você controla ganha permanentemente 400 de DEF.
+## Mechination Emergency Shift
+n Turno de Emergência Mechinação
+l0 Turno de emergência
+t0 Invoque de Modo Especial até 2 monstros MECHA da sua mão.
+l1 Todos a postos
+t1 Em vez disso, pague 3 de mana: eles ganham 300 de DEF até o fim deste turno.
+## Mechination Gear Vault
+n Cofre de Engrenagens Mechinação
+l0 Requisitar peças
+t0 Uma vez por turno — pague 2 de mana: adicione 1 monstro de TERRA de Nível 2 do seu Deck à sua mão.
+## Mechination Gearmaw
+n Goela de Engrenagens Mechinação
+l0 Emperrar a máquina
+t0 Você pode pagar 2 de mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Mechination Hammerhand
+n Mão-de-Martelo Mechinação
+l0 Chamar o pesado
+t0 Quando esta carta é Invocada: adicione 1 monstro de TERRA de Nível 2 do seu Deck à sua mão.
+l1 Chamar o pequeno
+t1 Você pode pagar 2 de mana: adicione 1 monstro de TERRA de Nível 1 do seu Deck à sua mão.
+## Mechination Jumpstart
+n Chupeta Mechinação
+l0 Chupeta
+t0 Quando esta carta é Invocada: 1 outro monstro MECHA que você controla ganha 300 de ATK até o fim deste turno.
+l1 Carga completa
+t1 Em vez disso, pague 1 de mana: o bônus é permanente.
+## Mechination Kilnwarden
+n Vigia do Forno Mechinação
+l0 Reforjar
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de TERRA de Nível 1 do seu Cemitério.
+l1 Reforjar duas vezes
+t1 Em vez disso, pague 2 de mana: Invoque de Modo Especial até 2 monstros de TERRA de Nível 1 do seu Cemitério.
+## Mechination Night Shift
+n Turno da Noite Mechinação
+l0 Turno da noite
+t0 Quando esta carta é Invocada: devolva 1 monstro MECHA do seu Cemitério à sua mão.
+l1 Turno dobrado
+t1 Em vez disso, pague 2 de mana: devolva 2 monstros MECHA do seu Cemitério à sua mão.
+l2 Hora extra
+t2 Uma vez por turno: pague 2 de mana; esta carta ganha permanentemente 300 de ATK.
+## Mechination Overdrive
+n Sobremarcha Mechinação
+l0 Sobremarcha
+t0 Pague 2 de mana: Invoque de Modo Especial 1 monstro MECHA da sua mão.
+## Mechination Overseer
+n Supervisor Mechinação
+l0 Segundo turno
+t0 Uma vez por turno: 1 monstro MECHA que você controla com 1500 ou menos de ATK pode atacar duas vezes neste turno.
+l1 Turno dobrado
+t1 Em vez disso, pague 4 de mana: até 2 monstros MECHA que você controla podem atacar duas vezes cada um neste turno.
+l2 Overclock
+t2 Você pode pagar 2 de mana: 1 monstro MECHA que você controla ganha 600 de ATK até o fim deste turno.
+## Mechination Pistonlord
+n Senhor dos Pistões Mechinação
+l0 Atravessar
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+l1 Pisar mais fundo
+t1 Você pode pagar 3 de mana: destrua 1 monstro que o seu oponente controla com 2500 ou menos de ATK.
+## Mechination Production Quota
+n Cota de Produção Mechinação
+l0 Cumprir a cota
+t0 Adicione até 2 monstros de TERRA de Nível 1 do seu Cemitério à sua mão.
+l1 Superar a cota
+t1 Em vez disso, pague 2 de mana: Invoque de Modo Especial 1 deles.
+## Mechination Ratchet
+n Catraca Mechinação
+l0 Mais um dente
+t0 Quando esta carta é Invocada: ganhe 1 de mana.
+## Mechination Recall Notice
+n Aviso de Recall Mechinação
+l0 Aviso de recall
+t0 Pague 1 de mana: devolva 1 monstro MECHA que você controla à sua mão; ganhe 1 de mana.
+l1 Reembolso total
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Mechination Recast
+n Refundição Mechinação
+l0 Refundir
+t0 Pague 1 de mana: Invoque de Modo Especial 1 monstro de Nível 1 do seu Cemitério.
+## Mechination Rivetrunner
+n Corredor de Rebites Mechinação
+l0 Correr a linha
+t0 Quando esta carta é Invocada por Invocação Normal: Invoque de Modo Especial 1 monstro de TERRA de Nível 1 do seu Cemitério.
+l1 Fresquinho da linha
+t1 Em vez disso, pague 2 de mana: do seu Deck em vez disso (com 1000 ou menos de ATK).
+## Mechination Shift Supervisor
+n Supervisor de Turno Mechinação
+l0 Turno dobrado
+t0 Uma vez por turno — pague 2 de mana: 1 monstro MECHA que você controla pode atacar duas vezes neste turno.
+## Mechination Spindle
+n Fuso Mechinação
+l0 Desenrolar
+t0 Uma vez por turno: envie esta carta da sua mão ao Cemitério; Invoque de Modo Especial 1 monstro MECHA de Nível 1 do seu Cemitério.
+## Mechination Trade-In
+n Troca com Volta Mechinação
+l0 Troca com volta
+t0 Pague 1 de mana: destrua 1 Artefato que você controla; adicione 1 Artefato do seu Deck à sua mão e ganhe 1 de mana.
+l1 Bônus de fidelidade
+t1 Em vez disso, pague 1 de mana: ganhe também 2 de mana.
+## Mechination Worldgear
+n Engrenagem do Mundo Mechinação
+s Você controla 3+ monstros e há 5+ cartas no seu Cemitério. Custo: 3 de mana. Destrua 1 outro monstro que você controla.
+l0 O grande giro
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros de TERRA de Nível 1 do seu Cemitério.
+l1 O giro maior
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial até 2 monstros de TERRA de Nível 2 do seu Cemitério.
+l2 Desmontar as engrenagens
+t2 Você pode pagar 3 de mana: destrua 1 carta que o seu oponente controla.
+## Mechination, Prime Motor
+n Mechinação, Motor Primaz
+s Você controla 3+ monstros «Mechinação». Custo: 3 de mana.
+l0 Torque das eras
+t0 Quando esta carta é Invocada: até 2 monstros MECHA que você controla ganham permanentemente 400 de ATK.
+l1 Mobilização do turno da noite
+t1 Pague 3 de mana: Invoque de Modo Especial até 2 monstros de TERRA de Nível 1 do seu Cemitério.
+## Method Actor
+n Ator de Método
+l0 Atuação de método
+t0 Quando esta carta é Invocada: seu ATK e sua DEF se tornam os de 1 monstro no Campo até o fim deste turno.
+l1 Rouba-Cena
+t1 Em vez disso, pague 1 de mana: ela também ganha 300 de ATK por cima.
+## Middle Management
+n Gerência Intermediária
+l0 Delegar
+t0 Uma vez por turno: pague 1 de mana; Invoque de Modo Especial 1 monstro de Nível 1 da sua mão.
+## Mimicrypt Archivist
+n Arquivista Mimicripta
+l0 Pegar o original emprestado
+t0 Pague 3 de mana: tome o controle de 1 monstro que o seu oponente controla até a End Phase.
+## Mimicrypt Borrowed Words
+n Palavras Emprestadas Mimicripta
+l0 Palavras emprestadas
+t0 Escolha 1 Magia no Cemitério do seu oponente; resolva o efeito dela como se fosse sua.
+l1 Palavras tornadas minhas
+t1 Em vez disso, pague 3 de mana: depois bana-a.
+## Mimicrypt Cold Read
+n Leitura Fria Mimicripta
+l0 Leitura fria
+t0 Olhe a mão do seu oponente e escolha 1 carta; ele a descarta.
+l1 Leitura profunda
+t1 Em vez disso, pague 4 de mana: compre também 1 carta.
+## Mimicrypt Encore
+n Bis Mimicripta
+l0 Bis!
+t0 Invoque de Modo Especial uma cópia de 1 monstro que o seu oponente controla no seu Campo. Ela some durante a End Phase.
+## Mimicrypt Forgery
+n Falsificação Mimicripta
+l0 Falsificação perfeita
+t0 1 monstro que você controla copia o ATK e a DEF de 1 monstro que o seu oponente controla até o fim do turno.
+## Mimicrypt Ghoul
+n Carniçal Mimicripta
+l0 Roubo de túmulos
+t0 Quando esta carta é Invocada: bana 1 carta do Cemitério do seu oponente.
+l1 Butim dobrado
+t1 Pague 1 de mana em vez disso: bana até 2.
+## Mimicrypt Mirrorborn
+n Nascido do Espelho Mimicripta
+l0 Postura de espelho
+t0 Uma vez por turno: esta carta copia o ATK e a DEF de 1 monstro no Campo até o fim deste turno.
+l1 Reflexo perfeito
+t1 Em vez disso, pague 2 de mana: ela também não pode ser destruída em batalha neste turno.
+## Mimicrypt Siphon
+n Sifão Mimicripta
+l0 Drenar o original
+t0 1 monstro que o seu oponente controla perde 400 de ATK; 1 monstro que você controla ganha 400 de ATK.
+## Mimicrypt Understudy
+n Substituto Mimicripta
+l0 Roubar a cena
+t0 Pague 2 de mana: escolha 1 Magia no Cemitério do seu oponente — resolva o efeito dela como se fosse sua.
+## Mimicrypt Wax Museum
+n Museu de Cera Mimicripta
+l0 Nova exposição
+t0 Uma vez por turno — pague 3 de mana: Invoque de Modo Especial 1 monstro do Cemitério do seu OPONENTE no seu Campo.
+## Mimicrypt Waxchild
+n Criança de Cera Mimicripta
+l0 Rosto emprestado
+t0 Quando esta carta é Invocada: esta carta copia o ATK e a DEF de 1 monstro no Campo até o fim deste turno.
+l1 Derreter na memória
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: bana 1 carta do Cemitério do seu oponente.
+## Mimicrypt, Palimpsest
+n Mimicripta, Palimpsesto
+s O Cemitério do seu oponente contém 6+ cartas — pague 2 de mana.
+l0 Raspar a página
+t0 Se esta carta for Invocada: você pode banir até 2 cartas do Cemitério do seu oponente.
+l1 Texto oculto
+t1 Pague 2 de mana: copie o ATK e a DEF de 1 monstro no Campo até o fim do turno.
+## Mimicrypt, the Borrowed King
+n Mimicripta, o Rei Emprestado
+s O Cemitério do seu oponente contém 8+ cartas — pague 3 de mana.
+l0 Coroa de espelhos
+t0 Se esta carta for Invocada: você pode copiar o ATK e a DEF de 1 monstro no Campo até o fim do turno.
+l1 Comandar os mortos
+t1 Pague 3 de mana: Invoque de Modo Especial 1 monstro do Cemitério do seu OPONENTE no seu Campo.
+## Mimicrypt, the Faceless Court
+n Mimicripta, a Corte sem Rosto
+s O Cemitério do seu oponente contém 10+ cartas. Custo: 3 de mana.
+l0 A corte em sessão
+t0 Quando esta carta é Invocada: esta carta copia o ATK e a DEF de 1 monstro no Campo até o fim deste turno.
+l1 Governar à revelia
+t1 Pague 3 de mana: tome o controle de 1 monstro que o seu oponente controla até a End Phase.
+## Mireback Toad
+n Sapo Lombo-de-Lama
+l0 Presente de despedida
+t0 Quando esta carta é destruída: compre 1 carta.
+## Mist Sorceress
+n Feiticeira da Névoa
+l0 Dádiva de névoa
+t0 Quando esta carta é Invocada: você pode comprar 1 carta.
+l1 Garra de névoa
+t1 Quando esta carta é Invocada: você pode pagar 2 de mana; destrua 1 monstro do oponente.
+## Moral Support
+n Apoio Moral
+l0 Palavra de incentivo
+t0 Uma vez por turno: 1 monstro que você controla ganha 200 de ATK até o fim deste turno.
+## Mythic Colossus
+n Colosso Mítico
+## Needle in a Haystack
+n Agulha no Palheiro
+l0 Agulha no palheiro
+t0 Pague 1 de mana: envie as 4 cartas do topo do seu Deck ao Cemitério; adicione 1 monstro de Nível 1 dentre elas à sua mão.
+l1 Ímã
+t1 Em vez disso, pague 1 de mana: as 5 do topo; adicione até 2 monstros de Nível 1 dentre elas.
+## Nell, Who Bets the Rent
+n Nell, que Aposta o Aluguel
+l0 Aposta o aluguel
+t0 Pague 1 de mana: jogue uma moeda. Cara — devolva 1 monstro que o seu oponente controla com 1800 ou menos de ATK à mão. Coroa — devolva esta carta à sua mão.
+## Night Owl
+n Coruja Noturna
+l0 Turno da noite
+t0 Quando esta carta é virada para cima: devolva 1 monstro que o seu oponente controla com 1500 ou menos de ATK à mão.
+## Nimble Goblin
+n Goblin Ágil
+l0 Torcer
+t0 Uma vez por turno: você pode pagar 1 de mana; 1 dos seus monstros ganha 400 de ATK até o fim do turno.
+## Nix the Tidecaller
+n Nix a Chama-Marés
+l0 Ressaca
+t0 Rápido, uma vez por turno: você pode pagar 2 de mana; devolva o monstro escolhido com 1500 de ATK ou menos à mão do dono.
+## Nothing Kept
+n Nada se Guarda
+l0 Nada se guarda
+t0 RÁPIDO · Pague 2 de mana: bana 1 monstro no Campo.
+## Nothing Personal
+n Nada Pessoal
+l0 Nada pessoal
+t0 RÁPIDO · Pague 2 de mana: escolha 1 monstro no Campo; remova todas as modificações de ATK e DEF dele.
+## Nothing Was Written
+n Nada Foi Escrito
+l0 Nada foi escrito
+t0 RÁPIDO · Pague 2 de mana: embaralhe 1 carta que o seu oponente controla no Deck dele.
+## Nothing to Aim At
+n Nada para Mirar
+l0 Nada para mirar
+t0 RÁPIDO · Pague 1 de mana: escolha 1 monstro que você controla; ele não pode ser escolhido como alvo por efeitos de cartas do seu oponente neste turno.
+## Novice of the Dragon Shrine
+n Noviço do Santuário do Dragão
+l0 Primeira oferenda
+t0 Quando esta carta é Invocada por Invocação Normal: Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 1 da sua mão.
+l1 Grande oferenda
+t1 Em vez disso, pague 2 de mana: do seu Deck em vez disso.
+## Obsidian Juggernaut
+n Juggernaut de Obsidiana
+l0 Chegada esmagadora
+t0 Quando esta carta é Invocada por Invocação Normal: você pode destruir 1 monstro que o seu oponente controla.
+## Old Tricks
+n Truques Antigos
+l0 Truques antigos
+t0 Uma vez por turno: pague 1 de mana; devolva 1 Magia do seu Cemitério à sua mão.
+## One More Hour
+n Mais Uma Hora
+l0 Mais uma hora
+t0 Pague 2 de mana: você pode fazer uma Invocação Normal adicional neste turno.
+## Open Book Test
+n Prova com Consulta
+l0 Livro aberto
+t0 Pague 2 de mana: olhe a mão do seu oponente e escolha 1 carta; ele a descarta.
+l1 Prova surpresa
+t1 Em vez disso, pague 4 de mana: escolha 2 cartas.
+## Ossian the Tithekeeper
+n Ossian o Guardião do Dízimo
+l0 Dízimo
+t0 Uma vez por turno: você pode pagar 2 de mana; seu oponente tem 2 de mana a menos no próximo turno.
+## Ossic, the Second Grave
+n Ossic, a Segunda Cova
+l0 O segundo enterro
+t0 CEMITÉRIO · Bana esta carta do seu Cemitério, depois adicione 1 carta do seu Cemitério à sua mão.
+## Otho the Vaultkeep
+n Otho o Guarda-Cofre
+l0 Arcas profundas
+t0 Uma vez por turno: você pode pagar 2 de mana; você tem 3 de mana adicionais no próximo turno.
+## Paid in Advance
+n Pago Adiantado
+l0 Pago adiantado
+t0 RÁPIDO · Pague 1 de mana e descarte 1 carta da sua mão: ganhe 4 de mana neste turno.
+## Paperbound Auditor
+n Auditor Papelada
+l0 Auditoria surpresa
+t0 Uma vez por turno: negue os efeitos de 1 carta que o seu oponente controla até o fim deste turno.
+l1 Discrepância encontrada
+t1 Em vez disso, pague 4 de mana: ela também perde 500 de ATK até o fim deste turno.
+## Paperbound Cease and Desist
+n Cessar e Desistir Papelada
+l0 Cessar e desistir
+t0 Negue os efeitos de 1 carta que o seu oponente controla até o fim deste turno.
+l1 Interdito geral
+t1 Em vez disso, pague 4 de mana: até 2 cartas.
+## Paperbound Commissioner
+n Comissário Papelada
+l0 Fechado para o almoço
+t0 Quando esta carta é Invocada: mude TODOS os monstros do seu oponente para a Posição de Defesa.
+l1 Fechado por tempo indeterminado
+t1 Em vez disso, pague 3 de mana: vire também 1 deles para baixo.
+l2 Não é meu departamento
+t2 Uma vez por turno, durante o turno de qualquer jogador: pague 2 de mana; 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Paperbound File Clerk
+n Arquivista Papelada
+l0 Pegue uma senha
+t0 Quando esta carta é Invocada: 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Aguarde aqui, por favor
+t1 Em vez disso, pague 2 de mana: ele também não pode mudar sua posição de batalha neste turno.
+## Paperbound Filing Deadline
+n Prazo de Protocolo Papelada
+l0 Prazo perdido
+t0 Quando seu oponente Invoca um monstro: ele não pode atacar neste turno.
+l1 Indeferido de plano
+t1 Em vez disso, pague 3 de mana: mude-o também para a Posição de Defesa; ele não pode mudar de posição neste turno.
+## Paperbound Head of Department
+n Chefe de Departamento Papelada
+l0 Pedido indeferido
+t0 Quando esta carta é Invocada: seu oponente não pode Invocar de Modo Especial durante o resto deste turno.
+l1 Sente-se e aguarde
+t1 Pague 2 de mana: mude 1 monstro que o seu oponente controla para a Posição de Defesa; ele não pode mudar de posição neste turno.
+## Paperbound In Triplicate
+n Em Três Vias Papelada
+l0 Em três vias
+t0 Pague 2 de mana: mude até 3 monstros do seu oponente para a Posição de Defesa.
+l1 Reconhecido em cartório
+t1 Em vez disso, pague 4 de mana: eles também não podem mudar de posição neste turno.
+## Paperbound Lost Form 27-B
+n Formulário 27-B Extraviado Papelada
+l0 Perdido no arquivo
+t0 Pague 2 de mana: vire 1 monstro virado para cima que o seu oponente controla para baixo.
+l1 Nunca existiu
+t1 Em vez disso, pague 4 de mana: até 2.
+## Paperbound Notary
+n Tabelião Papelada
+l0 Atraso registrado
+t0 Quando esta carta é Invocada: 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Selado em três vias
+t1 Em vez disso, pague 1 de mana: ele também não pode mudar sua posição de batalha neste turno.
+## Paperbound Office Hours
+n Horário de Expediente Papelada
+l0 Horário de expediente
+t0 Pague 1 de mana: seu oponente não pode Invocar de Modo Especial durante o resto deste turno.
+l1 Somente com hora marcada
+t1 Em vez disso, pague 2 de mana: além disso, 1 monstro que ele controla não pode atacar neste turno.
+## Paperbound Records Office
+n Cartório de Registros Papelada
+l0 Arquivar na letra D
+t0 Uma vez por turno: mude 1 monstro que o seu oponente controla para a Posição de Defesa.
+l1 Perdido no arquivo
+t1 Pague 3 de mana: 1 monstro que o seu oponente controla não pode atacar neste turno; compre 1 carta.
+## Paperbound Red Tape
+n Burocracia Papelada
+l0 Burocracia sem fim
+t0 Pague 1 de mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Quilômetros dela
+t1 Em vez disso, pague 2 de mana: até 2 monstros.
+## Paperbound Rubber Stamp
+n Carimbo Papelada
+l0 Carimbado e arquivado
+t0 Quando esta carta é Invocada: mude 1 monstro que o seu oponente controla para a Posição de Defesa.
+l1 Arquivado para sempre
+t1 Em vez disso, pague 1 de mana: ele também não pode mudar de posição neste turno.
+## Paperbound Waiting Room
+n Sala de Espera Papelada
+l0 Aguarde, por favor
+t0 Uma vez por turno: 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Espera estimada: eterna
+t1 Em vez disso, pague 3 de mana: além disso, seu oponente não pode Invocar de Modo Especial neste turno.
+## Paperbound, Supreme Bureau
+n Papelada, a Repartição Suprema
+s Seu oponente controla 3+ monstros. Custo: 3 de mana.
+l0 Parecer da repartição
+t0 Quando esta carta é Invocada: nenhum monstro do seu oponente pode atacar neste turno.
+l1 Alvará revogado
+t1 Pague 2 de mana: seu oponente não pode Invocar de Modo Especial neste turno.
+## Paperbound, the Final Rejection
+n Papelada, o Indeferimento Final
+s Você controla 2+ monstros e tem 4+ cartas no seu Cemitério. Custo: 3 de mana.
+l0 Pedido indeferido
+t0 Quando esta carta é Invocada: mude todos os monstros do seu oponente para a Posição de Defesa.
+l1 Indeferido com prejuízo
+t1 Em vez disso, pague 2 de mana: além disso, até 2 deles não podem atacar neste turno.
+l2 Rejeitado
+t2 Uma vez por turno, durante o turno de qualquer jogador: pague 2 de mana; negue os efeitos de 1 carta no Campo até o fim deste turno.
+## Parley
+n Parlamentação
+l0 Parlamentar
+t0 Pague 1 de mana: só durante uma Battle Phase: encerre a Battle Phase. Seu oponente compra 1 carta.
+## Participation Trophy
+n Troféu de Participação
+l0 Comemorar mesmo assim
+t0 Uma vez por turno, quando o monstro equipado destrói um monstro em batalha: ganhe 300 LP.
+## Past Your Bedtime
+n Já Passou da Hora de Dormir
+l0 Já passou da hora de dormir
+t0 Pague 3 de mana: devolva até 5 monstros com 1200 ou menos de ATK às mãos dos donos.
+l1 Luzes apagadas às nove
+t1 Em vez disso, pague 5 de mana: com 1800 ou menos.
+## Pennywhistle, Who Calls It in the Air
+n Pennywhistle, que Grita no Ar
+l0 Grita no ar
+t0 Quando esta carta é Invocada: jogue uma moeda. Cara — adicione 1 Magia do seu Deck à sua mão. Coroa — envie as 2 cartas do topo do seu Deck ao Cemitério.
+l1 Dobrar a aposta
+t1 Pague 1 de mana: jogue uma moeda. Cara — ganhe 2 de mana neste turno. Coroa — você tem 1 de mana a menos durante o seu próximo turno.
+## Petitioner of the Dragon Shrine
+n Peticionário do Santuário do Dragão
+l0 Humilde petição
+t0 Quando esta carta é Invocada: adicione 1 carta «Santuário do Dragão» do seu Deck à sua mão.
+l1 Prece atendida
+t1 Em vez disso, pague 2 de mana: adicione 1 carta «Santuário do Dragão» E 1 monstro Dragão do seu Deck à sua mão.
+## Pillow Fort
+n Forte de Travesseiros
+l0 Forte de travesseiros
+t0 Pague 1 de mana: você não sofre dano de batalha durante o resto deste turno.
+l1 Almofadas reforçadas
+t1 Em vez disso, pague 2 de mana: além disso, 1 monstro que você controla ganha 500 de DEF até o fim deste turno.
+## Planned Obsolescence
+n Obsolescência Programada
+l0 Obsolescência programada
+t0 Pague 1 de mana: destrua 1 Magia ou Artefato que o seu oponente controla.
+l1 Fim do suporte
+t1 Em vez disso, pague 2 de mana: destrua até 2.
+## Plot Armor
+n Armadura de Roteiro
+l0 Armadura de roteiro
+t0 Pague 1 de mana: 1 monstro que você controla não pode ser destruído neste turno.
+l1 Protagonista
+t1 Em vez disso, pague 3 de mana: ele também ganha 500 de ATK até o fim deste turno.
+## Poacher's Lantern
+n Lampião do Caçador Furtivo
+l0 Lampião do caçador furtivo
+t0 Pague 2 de mana (qualquer jogador pode ativá-la): Invoque de Modo Especial 1 monstro com 2000 ou menos de ATK do Cemitério do outro jogador no seu Campo. Ele não pode atacar neste turno e é banido se sair do Campo.
+## Pound of Flesh
+n Libra de Carne
+l0 Libra de carne
+t0 Pague 1 de mana e 1500 LP: destrua 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+l1 Duas libras de carne
+t1 Em vez disso, pague 2 de mana e 3000 LP: destrua 1 monstro que o seu oponente controla com 3000 ou menos de ATK.
+## Powderkeg Blastplate
+n Placa de Detonação Paiol
+l0 Estilhaços
+t0 Quando esta carta é destruída: 1 monstro que você controla ganha 400 de ATK até o fim deste turno.
+## Powderkeg Brass Sweep
+n Varredura de Latão Paiol
+l0 Varredura de latão
+t0 Pague 1 de mana: devolva até 2 Artefatos «Paiol» do seu Cemitério à sua mão.
+l1 Varredura limpa
+t1 Em vez disso, pague 2 de mana: até 3 Artefatos de QUALQUER nome.
+## Powderkeg Cannoneer
+n Artilheiro Paiol
+l0 Fogo de resposta
+t0 Durante o turno de qualquer jogador: destrua 1 Artefato que você controla; destrua 1 monstro que o seu oponente controla com 1000 ou menos de ATK. (Sem limite de uma vez por turno — a munição é o limite.)
+l1 Tiro pesado
+t1 Em vez disso, pague 3 de mana: com 2000 ou menos.
+## Powderkeg Chain Reaction
+n Reação em Cadeia Paiol
+l0 Reação em cadeia
+t0 Destrua até 2 Artefatos que você controla; destrua até 2 monstros que o seu oponente controla com 1000 ou menos de ATK.
+l1 Detonação simpática
+t1 Em vez disso, pague 3 de mana: com 1600 ou menos.
+## Powderkeg Demolitionist
+n Demolidor Paiol
+l0 Demolição controlada
+t0 Pague 2 de mana: destrua 1 Artefato que você controla; destrua 1 Magia ou Artefato que o seu oponente controla.
+## Powderkeg Duck and Cover
+n Abaixar e Proteger Paiol
+l0 Abaixar e proteger
+t0 Destrua 1 Artefato que você controla; 1 monstro que você controla não pode ser destruído neste turno.
+l1 Atrás dos sacos de areia
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Powderkeg Fusewright
+n Paveiro Paiol
+l0 Religar a carga
+t0 Quando esta carta é Invocada: coloque 1 Artefato «Paiol» do seu Cemitério na sua Zona de Artefatos.
+l1 Pavio novo
+t1 Em vez disso, pague 2 de mana: do seu Deck; compre 1 carta.
+## Powderkeg Loader
+n Carregador Paiol
+l0 Carregar o suporte
+t0 Quando esta carta é Invocada: coloque 1 Artefato «Paiol» do seu Deck na sua Zona de Artefatos.
+l1 Carga dupla
+t1 Em vez disso, pague 2 de mana: adicione também mais 1 à sua mão.
+## Powderkeg Magazine
+n Santa-Bárbara Paiol
+l0 Estocar
+t0 Uma vez por turno: pague 1 de mana; coloque 1 outro Artefato «Paiol» do seu Deck na sua Zona de Artefatos.
+l1 Detonação por calor
+t1 Quando esta carta é destruída: compre 1 carta.
+## Powderkeg Misfire
+n Tiro Falho Paiol
+l0 Tiro falho
+t0 Pague 1 de mana: destrua 1 Artefato que você controla; compre 2 cartas e ganhe 1 de mana.
+l1 Salvar o cano
+t1 Em vez disso, pague 1 de mana: ganhe também 1 de mana.
+## Powderkeg Munitions Dump
+n Depósito de Munições Paiol
+l0 Bem abastecido
+t0 Quando esta carta é destruída: coloque 1 Artefato «Paiol» do seu Deck na sua Zona de Artefatos.
+l1 Abrir um caixote
+t1 Uma vez por turno — pague 1 de mana: destrua 1 outro Artefato que você controla; compre 1 carta.
+## Powderkeg Point-Blank
+n À Queima-Roupa Paiol
+l0 À queima-roupa
+t0 Pague 1 de mana: destrua 1 Artefato que você controla; destrua 1 carta que o seu oponente controla. (Sem limite de uma vez por turno.)
+l1 Salva completa
+t1 Em vez disso, pague 3 de mana: destrua 2 dos seus Artefatos; destrua até 2 cartas do seu oponente.
+## Powderkeg Quartermaster
+n Intendente Paiol
+l0 Requisição
+t0 Quando esta carta é Invocada: coloque até 2 Artefatos «Paiol» do seu Deck na sua Zona de Artefatos.
+l1 Manifesto completo
+t1 Em vez disso, pague 3 de mana: compre também 1 carta.
+## Powderkeg Shellcrate
+n Caixote de Projéteis Paiol
+l0 Propelente
+t0 Quando esta carta é destruída: ganhe 1 de mana.
+## Powderkeg Sparkplug
+n Vela de Ignição Paiol
+l0 Pavio curto
+t0 Uma vez por turno: destrua 1 Artefato que você controla; compre 1 carta.
+l1 Reação em cadeia
+t1 Em vez disso, pague 2 de mana: compre 2 cartas.
+## Powderkeg, First Spark
+n Paiol, a Primeira Fagulha
+s Você controla 1+ Artefato e tem 2+ cartas no seu Cemitério. Custo: 2 de mana.
+l0 Tiro de abertura
+t0 Quando esta carta é Invocada: coloque 1 Artefato «Paiol» do seu Deck na sua Zona de Artefatos.
+l1 Tiro de aviso
+t1 Uma vez por turno, durante o turno de qualquer jogador: destrua 1 Artefato que você controla; negue os efeitos de 1 carta no Campo até o fim deste turno.
+## Powderkeg, Zero Hour
+n Paiol, a Hora Zero
+s 4+ Artefatos no seu Cemitério. Custo: 3 de mana.
+l0 Carregar tudo
+t0 Quando esta carta é Invocada: coloque até 2 Artefatos «Paiol» do seu Cemitério na sua Zona de Artefatos.
+l1 Fogo à vontade
+t1 Destrua 1 Artefato que você controla; destrua 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+## Powderkeg, the Last Salvo
+n Paiol, a Última Salva
+s Você controla 2 Artefatos e tem 3+ Artefatos no seu Cemitério. Custo: 3 de mana.
+l0 Fogo à vontade
+t0 Durante o turno de qualquer jogador: destrua 1 Artefato que você controla; destrua 1 carta que o seu oponente controla. (Sem limite de uma vez por turno — a munição é o limite.)
+l1 Recarregar
+t1 Uma vez por turno: pague 2 de mana; coloque 1 Artefato «Paiol» do seu Cemitério de volta na sua Zona de Artefatos.
+## Purge
+n Purga
+l0 Purga
+t0 Escolha 1 monstro no Campo; seu ATK e sua DEF voltam aos valores originais (todas as modificações temporárias e permanentes são removidas).
+## Put a Pin in It
+n Deixar Anotado
+l0 Deixar anotado
+t0 Pague 2 de mana: vire 1 monstro virado para cima que o seu oponente controla para baixo.
+l1 Adiado indefinidamente
+t1 Em vez disso, pague 4 de mana: até 2.
+## Rainy-Day Fund
+n Poupança para Dias Difíceis
+l0 Poupança para dias difíceis
+t0 Durante a sua Standby Phase: ganhe 200 LP.
+l1 Quebrar o vidro
+t1 Você pode enviar esta carta ao Cemitério: ganhe 800 LP.
+## Raise the Failsafes
+n Erguer as Salvaguardas
+l0 Colocar os sistemas online
+t0 Baixe até 2 Artefatos «Salvaguarda» do seu Deck no Campo.
+## Rally the Weak
+n Reunir os Fracos
+l0 Reunir os fracos
+t0 Pague 1 de mana: Invoque de Modo Especial até 3 monstros sem efeitos do seu Deck em Posição de Defesa.
+## Ram's Head
+n Cabeça de Carneiro
+## Reactive Plating
+n Blindagem Reativa
+l0 Preparar-se
+t0 Escolha 1 monstro que você controla; ele ganha 800 de DEF até o fim do turno.
+l1 Implantação completa
+t1 Escolha 1 monstro que você controla; ele ganha 800 de DEF até o fim do turno, depois coloque 1 Artefato «Barreira» do seu Deck no Campo.
+## Rebirth
+n Renascimento
+l0 Renascimento
+t0 Pague 2 de mana; Invoque de Modo Especial 1 monstro do seu Cemitério.
+## Redactor Archivist
+n Arquivista Redator
+l0 Ler por cima do ombro
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: pague 1 de mana; compre 1 carta.
+## Redactor Black Vault
+n Cofre Negro Redator
+l0 Para o cofre
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: ele descarta 1 carta aleatória.
+l1 Cofre transbordando
+t1 Pague 2 de mana: envie as 2 cartas do topo do Deck do seu oponente ao Cemitério.
+## Redactor Blackbar
+n Tarja Preta Redator
+l0 Pesadamente censurado
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: 1 monstro que ele controla perde permanentemente 300 de ATK.
+l1 Nada resta para ler
+t1 Em vez disso, pague 2 de mana: 500.
+l2 Expurgar
+t2 Uma vez por turno: pague 2 de mana; bana 1 carta do Cemitério do seu oponente.
+## Redactor Burn Before Reading
+n Queimar Antes de Ler Redator
+l0 Queimar antes de ler
+t0 Pague 2 de mana: envie as 3 cartas do topo do Deck do seu oponente ao Cemitério.
+l1 De cinzas a arquivos
+t1 Em vez disso, pague 3 de mana: bana também 1 carta do Cemitério dele.
+## Redactor Censor
+n Censor Redator
+l0 Riscar isto
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: envie a carta do topo do Deck dele ao Cemitério.
+l1 Riscar tudo
+t1 Em vez disso, pague 2 de mana: as 2 do topo.
+## Redactor Chief Censor
+n Censor-Chefe Redator
+l0 Trechos riscados
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: envie as 2 cartas do topo do Deck dele ao Cemitério.
+l1 Exemplar de cortesia
+t1 Pague 2 de mana: seu oponente compra 1 carta.
+## Redactor Classified
+n Confidencial Redator
+l0 Confidencial
+t0 Pague 2 de mana: 1 monstro virado para cima que o seu oponente controla não pode mudar de posição neste turno; depois vire-o para baixo.
+l1 Acima da sua alçada
+t1 Em vez disso, pague 4 de mana: até 2.
+## Redactor Errata Slip
+n Folha de Erratas Redator
+l0 Folha de erratas
+t0 Seu oponente compra 1 carta; você compra 1 carta.
+l1 Correção ampliada
+t1 Em vez disso, pague 2 de mana: você compra 2 em vez disso.
+## Redactor Freedom of Information
+n Liberdade de Informação Redator
+l0 Liberdade de informação
+t0 Pague 1 de mana: descarte 1 carta; compre 2 cartas.
+l1 Divulgação total
+t1 Em vez disso, pague 2 de mana: compre 3 cartas.
+## Redactor Inkling
+n Tintinha Redator
+l0 Cada palavra custa
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: esta carta ganha permanentemente 200 de ATK.
+l1 Cada letra também
+t1 Em vez disso, pague 1 de mana: 200 de ATK e 200 de DEF.
+## Redactor Mandatory Reading
+n Leitura Obrigatória Redator
+l0 Leitura obrigatória
+t0 Pague 1 de mana: seu oponente compra 1 carta.
+l1 Dever de casa
+t1 Em vez disso, pague 2 de mana: você também compra 1 carta.
+## Redactor Minister of Records
+n Ministro dos Registros Redator
+l0 Segredo de Estado
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: ele descarta 1 carta aleatória.
+l1 Selado pelo Estado
+t1 Em vez disso, pague 2 de mana: ele também tem 1 de mana a menos durante o próximo turno dele.
+## Redactor Ministry Seal
+n Selo do Ministério Redator
+l0 Segredos oficiais
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: ele tem 1 de mana a menos durante o próximo turno dele.
+l1 Ultrassecreto
+t1 Em vez disso, pague 2 de mana: envie também a carta do topo do Deck dele ao Cemitério.
+## Redactor Proofreader
+n Revisor Redator
+l0 Cada palavra custa
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: ganhe 1 de mana.
+l1 Tarifa por linha
+t1 Em vez disso, pague 1 de mana: compre também 1 carta.
+## Redactor Struck from Record
+n Riscado do Registro Redator
+l0 Riscado do registro
+t0 Bana até 2 cartas do Cemitério do seu oponente; compre 1 carta.
+l1 Edição expurgada
+t1 Em vez disso, pague 3 de mana: até 4.
+## Redactor, Final Edition
+n Redator, a Edição Final
+s 5+ cartas no seu Cemitério. Sacrifique 1 monstro que você controla. Custo: 3 de mana.
+l0 Fechamento da edição
+t0 Uma vez por turno, quando seu oponente compra fora da Draw Phase dele: ele descarta 1 carta aleatória.
+l1 Parem as rotativas
+t1 Em vez disso, pague 2 de mana: envie também as 2 cartas do topo do Deck dele ao Cemitério.
+l2 Triturar os arquivos
+t2 Uma vez por turno: pague 2 de mana; bana até 3 cartas do Cemitério do seu oponente.
+## Redactor, the Unprinted Truth
+n Redator, a Verdade Não Impressa
+s O Cemitério do seu oponente contém 6+ cartas. Custo: 3 de mana.
+l0 Leitura forçada
+t0 Quando esta carta é Invocada: seu oponente compra 2 cartas, depois descarta 2 cartas aleatórias.
+l1 A tinta seca
+t1 Pague 2 de mana, quando seu oponente compra fora da Draw Phase dele: 1 monstro que ele controla perde permanentemente 400 de ATK.
+## Retail Therapy
+n Terapia de Compras
+l0 Terapia de compras
+t0 Pague 3 de mana: adicione 1 Artefato do seu Deck à sua mão; ganhe 300 LP.
+l1 Mime-se
+t1 Em vez disso, pague 4 de mana: ganhe 600 LP e compre 1 carta.
+## Rising Tide
+n Maré Montante
+l0 Maré montante
+t0 Adicione 1 monstro «Mareal» do seu Deck à sua mão.
+l1 Onda de cheia
+t1 Adicione 1 monstro «Mareal» do seu Deck à sua mão e depois Invoque de Modo Especial 1 monstro «Mareal» de Nível 1 da sua mão.
+## Rook's Gambit
+n Gambito de Torre
+l0 Roque
+t0 Uma vez por turno: mova esta carta para qualquer zona de monstros vazia que você controle.
+## Rune Blade
+n Lâmina Rúnica
+## Ryka the Warhorn
+n Ryka o Corno de Guerra
+l0 Tocar a carga
+t0 Uma vez por turno: você pode pagar 2 de mana; o monstro aliado escolhido com 2000 de ATK ou menos pode atacar mais uma vez nesta Battle Phase.
+## Sabine, Who Wagers the Crown
+n Sabine, que Aposta a Coroa
+s Seus LP são menores que os do seu oponente e há 4+ Magias no seu Cemitério — pague 3 de mana.
+l0 Aposta a coroa
+t0 Quando esta carta é Invocada: jogue uma moeda. Cara — destrua todos os monstros que o seu oponente controla. Coroa — destrua todos os outros monstros que você controla.
+l1 Tudo ou nada
+t1 Pague 2 de mana: jogue uma moeda. Cara — esta carta pode atacar duas vezes nesta Battle Phase. Coroa — ela não pode atacar neste turno.
+## Sable the Veilkeeper
+n Sable a Guardiã do Véu
+l0 Mortalha noturna
+t0 Uma vez por turno: você pode pagar 2 de mana; Invoque de Modo Especial 1 monstro da sua mão virado para baixo em Posição de Defesa.
+## Sacrificial Ham
+n Presunto do Sacrifício
+l0 Morre lindamente
+t0 Quando esta carta é Sacrificada: ganhe 300 LP.
+## Sacrilegion Acolyte
+n Acólito Sacrilegião
+l0 Ler o rito
+t0 Quando esta carta é Invocada por Invocação Normal: adicione 1 monstro de LUZ de Nível 1 do seu Deck à sua mão.
+l1 Erguer os caídos
+t1 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Altar Boy
+n Coroinha Sacrilegião
+l0 Serviço voluntário
+t0 Quando esta carta é Sacrificada: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+l1 Recado de fé
+t1 Pague 1 de mana e envie esta carta da sua mão ao Cemitério: adicione 1 carta «Sacrilegião» do seu Deck à sua mão.
+## Sacrilegion Binding Chain
+n Corrente de Amarração Sacrilegião
+l0 Amarrar
+t0 Quando esta carta é equipada: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Sacrilegion Blood Dividend
+n Dividendo de Sangue Sacrilegião
+l0 Dividendo de sangue
+t0 Uma vez por turno, quando um monstro que você controla é Sacrificado: ganhe 300 LP.
+l1 Dividendo especial
+t1 Em vez disso, pague 1 de mana: compre também 1 carta.
+## Sacrilegion Broken Vow
+n Voto Quebrado Sacrilegião
+s Você não controla monstros e há 5+ cartas no seu Cemitério. Custo: 3 de mana.
+l0 Começar de novo
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+l1 Desfazer o juramento
+t1 Você pode pagar 3 de mana: bana 1 carta de qualquer Cemitério.
+## Sacrilegion Cold Congregation
+n Congregação Fria Sacrilegião
+l0 Congregação fria
+t0 Pague 2 de mana: Invoque de Modo Especial até 2 monstros «Sacrilegião» do seu Cemitério virados para baixo.
+l1 Bancos cheios
+t1 Em vez disso, pague 4 de mana: até 3.
+## Sacrilegion Covenant Stone
+n Pedra do Pacto Sacrilegião
+l0 A pedra lembra
+t0 Durante a sua Standby Phase: adicione 1 monstro de LUZ de Nível 1 do seu Cemitério à sua mão.
+l1 A pedra responde
+t1 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Divine Exchange
+n Troca Divina Sacrilegião
+l0 Troca divina
+t0 Destrua 1 monstro que você controla; Invoque de Modo Especial 1 monstro de LUZ de Nível 2 do seu Cemitério.
+l1 Condições favoráveis
+t1 Em vez disso, pague 3 de mana: ganhe também 2 de mana.
+## Sacrilegion First Sacrament
+n Primeiro Sacramento Sacrilegião
+s Sacrifique 1 monstro que você controla e 1 monstro que o seu oponente controla. Custo: 2 de mana.
+## Sacrilegion Grand Sacrist
+n Grande Sacristão Sacrilegião
+l0 Relíquias reunidas
+t0 Quando esta carta é Invocada: adicione 1 carta «Sacrilegião» do seu Cemitério à sua mão.
+## Sacrilegion Herald
+n Arauto Sacrilegião
+l0 Proclamar o juramento
+t0 Quando esta carta é Invocada: adicione 1 monstro de LUZ de Nível 2 do seu Deck à sua mão.
+l1 Proclamá-lo mais baixo
+t1 Você pode pagar 2 de mana: adicione 1 monstro de LUZ de Nível 1 do seu Deck à sua mão.
+## Sacrilegion Mass Offering
+n Oferenda de Missa Sacrilegião
+l0 Oferenda de missa
+t0 Invoque de Modo Especial até 2 monstros de LUZ de Nível 1 do seu Cemitério.
+l1 Missa solene
+t1 Em vez disso, pague 3 de mana: até 3.
+## Sacrilegion Oathling
+n Juramentinho Sacrilegião
+## Sacrilegion Ossuary Altar
+n Altar do Ossuário Sacrilegião
+l0 Cada osso contado
+t0 Uma vez por turno, quando um monstro que você controla é Sacrificado: compre 1 carta.
+l1 Erguer os fiéis
+t1 Pague 2 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Pledgebearer
+n Portador do Voto Sacrilegião
+l0 Prestar o voto
+t0 Uma vez por turno: envie esta carta da sua mão ao Cemitério; Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Rite of Return
+n Rito do Retorno Sacrilegião
+l0 Rito do retorno
+t0 Pague 1 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério; ganhe 2 de mana.
+## Sacrilegion Sanctifier
+n Santificador Sacrilegião
+l0 Pregar no lugar
+t0 Quando esta carta é Invocada: 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Mandá-lo embora
+t1 Em vez disso, pague 3 de mana: devolva esse monstro à mão do dono.
+l2 Erguer os caídos
+t2 Você pode pagar 2 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Second Sacrament
+n Segundo Sacramento Sacrilegião
+s Sacrifique 2 monstros que você controla e 1 monstro que o seu oponente controla. Custo: 3 de mana.
+l0 Devolver o menor
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Cemitério.
+l1 Devolver dois
+t1 Em vez disso, pague 2 de mana: Invoque de Modo Especial até 2 monstros de LUZ de Nível 1 do seu Cemitério.
+## Sacrilegion Severance
+n Rescisão Sacrilegião
+l0 Rescisão
+t0 Pague 1 de mana: destrua 1 monstro que você controla; ganhe 2 de mana.
+l1 Paraquedas dourado
+t1 Em vez disso, pague 2 de mana: ganhe 3 de mana e compre 1 carta.
+## Sacrilegion Sworn Oath
+n Juramento Prestado Sacrilegião
+l0 Juramento prestado
+t0 Pague 1 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 da sua mão.
+## Sacrilegion Third Sacrament
+n Terceiro Sacramento Sacrilegião
+s Sacrifique 1 monstro que você controla e 2 monstros que o seu oponente controla. Custo: 4 de mana.
+## Sacrilegion Twice-Blessed
+n Duas Vezes Abençoado Sacrilegião
+## Sacrilegion Vowkeeper
+n Guardião dos Votos Sacrilegião
+l0 Cumprir o voto
+t0 Uma vez por turno: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 com 1000 ou menos de ATK do seu Cemitério.
+l1 Quebrar o voto
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial 1 monstro de LUZ de Nível 1 do seu Deck.
+## Sacrilegion Willing Lamb
+n Cordeiro Voluntário Sacrilegião
+l0 De bom grado
+t0 Quando esta carta é Sacrificada: compre 1 carta.
+l1 Oferecer-se de novo
+t1 Uma vez por turno, enquanto esta carta estiver no seu Cemitério: pague 2 de mana; Baixe-a virada para baixo no seu Campo.
+## Sacrilegion, Communion of Bone
+n Sacrilegião, Comunhão de Osso
+s Sacrifique 1 monstro que você controla e 1 que o seu oponente controla. 6+ cartas no seu Cemitério. Custo: 4 de mana.
+l0 Comunhão
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros de LUZ de Nível 1 do seu Cemitério.
+l1 Rito final
+t1 Pague 3 de mana e Sacrifique 1 outro monstro que você controla: destrua 1 monstro que o seu oponente controla.
+## Sacrilegion, the Last Oath
+n Sacrilegião, o Último Juramento
+s Sacrifique 2 monstros que você controla e 1 monstro que o seu oponente controla. 8+ cartas no seu Cemitério. Custo: 5 de mana.
+l0 O juramento é cumprido
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros de LUZ de Nível 1 do seu Cemitério.
+l1 O juramento se eleva
+t1 Em vez disso, pague 4 de mana: Invoque de Modo Especial até 2 monstros de LUZ de Nível 2 do seu Cemitério.
+l2 Mantê-los no chão
+t2 Você pode pagar 3 de mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Second Opinion
+n Segunda Opinião
+l0 Segunda opinião
+t0 Pague 2 de mana: descarte 1 carta; compre 2 cartas.
+l1 Terceira opinião
+t1 Em vez disso, pague 3 de mana: descarte 1 carta; compre 3 cartas.
+## Second Sight
+n Segunda Visão
+l0 Vislumbre
+t0 Compre 1 carta.
+l1 Visão clara
+t1 Compre 2 cartas.
+## Second Thoughts
+n Pensando Melhor
+l0 Dúvidas de última hora
+t0 Quando esta carta é Invocada: devolva 1 Magia ou Artefato que você controla à sua mão.
+l1 Pensando bem
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Second Wind
+n Segundo Fôlego
+l0 Segundo fôlego
+t0 Pague 2 de mana: você pode Invocar por Invocação Normal 1 monstro adicional neste turno.
+l1 Terceiro fôlego
+t1 Em vez disso, pague 4 de mana: 2 adicionais.
+## Security Blanket
+n Cobertor de Segurança
+l0 Bem coberto
+t0 Ao jogar: 1 monstro que você controla não pode ser destruído neste turno.
+## Sentry Totem
+n Totem Sentinela
+l0 Tiro de aviso
+t0 Quando seu oponente Invoca um monstro: você pode pagar 1 de mana; 1 monstro que o seu oponente controla perde permanentemente 300 de ATK.
+## Seraph of Dawn
+n Serafim da Alvorada
+l0 Primeira luz
+t0 Quando esta carta é Invocada: você ganha 1000 LP.
+l1 Misericórdia da alvorada
+t1 Você pode pagar 3 de mana: Invoque de Modo Especial 1 monstro de Nível 1 do seu Cemitério.
+## Serjeant Halloway
+n Sargento Halloway
+l0 Em forma
+t0 Pague 1 de mana: mova esta carta para uma zona de monstros vazia que você controle.
+## Set in Stone
+n Gravado na Pedra
+l0 Gravado na pedra
+t0 RÁPIDO · Pague 1 de mana: escolha 1 monstro no Campo; ele não pode mudar sua posição de batalha neste turno.
+## Shadow Grasp
+n Garra de Sombra
+l0 Garra da escuridão
+t0 Pague 1 de mana; devolva 1 monstro do oponente à mão.
+## Shadow Panther
+n Pantera de Sombra
+l0 Salto de sombra
+t0 Uma vez por turno: você pode pagar 2 de mana; devolva 1 monstro do oponente à mão.
+## Sharpening Stone
+n Pedra de Amolar
+## Shield Warden
+n Vigia do Escudo
+## Show Me Your Hands
+n Mostre as Mãos
+l0 Mostre as mãos
+t0 Pague 1 de mana: olhe a mão do seu oponente e escolha 1 carta dela; ele descarta essa carta.
+## Shrinekeeper Dragon
+n Dragão Guarda-Santuário
+l0 Rito matinal
+t0 Durante a sua Standby Phase: você pode Invocar de Modo Especial 1 monstro do Tipo Dragão de Nível 1 do seu Cemitério.
+l1 Sopro do guardião
+t1 Você pode pagar 2 de mana: escolha 1 monstro do Tipo Dragão que você controla; ele ganha 500 de DEF até o fim deste turno.
+## Sift, Who Reads the Bones
+n Sift, que Lê os Ossos
+l0 Lançar os ossos
+t0 Quando esta carta é Invocada: envie as 2 cartas do topo do seu Deck ao Cemitério.
+l1 Lê-los de novo
+t1 CEMITÉRIO · Você pode pagar 1 de mana; bana esta carta do seu Cemitério, depois adicione 1 monstro do seu Cemitério à sua mão.
+## Sign in Blood
+n Assinar com Sangue
+l0 Assinar com sangue
+t0 Pague 2 de mana e 2000 LP: Invoque de Modo Especial 1 monstro de Nível 2 do seu Deck. Os efeitos dele ficam negados até a End Phase, e ele não pode atacar neste turno.
+## Signs of Deckay
+n Sinais de Deckadência
+l0 Recuperar o perdido
+t0 Durante a sua Standby Phase: você pode embaralhar até 2 cartas do seu Cemitério no seu Deck.
+## Silt the Dredger
+n Silt o Dragador
+l0 Dragar
+t0 Uma vez por turno: você pode pagar 2 de mana; envie as 3 cartas do topo do seu Deck ao Cemitério.
+## Silver Lining
+n O Lado Bom
+l0 O lado bom
+t0 Pague 1 de mana: se o seu oponente controlar mais monstros que você: compre 2 cartas e ganhe 1 de mana.
+l1 Sol entre as nuvens
+t1 Em vez disso, pague 2 de mana: ganhe também 2 de mana.
+## Skarn, the Second Hunger
+n Skarn, a Segunda Fome
+s Seu oponente controla 2 ou mais monstros. Custo: 3 de mana.
+l0 Ambas as mandíbulas
+t0 Quando esta carta é Invocada: ela pode fazer 1 ataque adicional neste turno.
+## Skimmed Off the Top
+n Desviado por Cima
+l0 Desviado por cima
+t0 Pague 1 de mana: ative quando o seu oponente ativar uma carta ou efeito que lhe daria mana: ele não ganha nada — você ganha esse mana em vez dele (mana desviado durante o turno do seu oponente é somado ao seu próximo turno).
+## Sleep On It
+n Dormir Sobre o Assunto
+l0 Dormir sobre o assunto
+t0 Pague 1 de mana: você tem 3 de mana a mais durante o seu próximo turno.
+l1 Dormir como uma pedra
+t1 Em vez disso, pague 1 de mana: 3 a mais.
+## Sleightwind Bait-and-Switch
+n Isca e Troca Prestivento
+l0 Isca e troca
+t0 Pague 1 de mana: devolva 1 dos seus monstros à sua mão; Baixe 1 monstro da sua mão virado para baixo.
+l1 Duplo cego
+t1 Em vez disso, pague 2 de mana: compre também 1 carta.
+## Sleightwind Card Counter
+n Contador de Cartas Prestivento
+l0 Contando cartas
+t0 Quando esta carta é Invocada, se o seu oponente tiver mais cartas na mão que você: compre 1 carta.
+l1 A casa sempre perde
+t1 Em vez disso, pague 2 de mana: compre até igualar o tamanho da mão dele (máx. 3).
+## Sleightwind Choir of Two
+n Coro de Dois Prestivento
+s 3+ cartas no seu Cemitério. Custo: 2 de mana.
+l0 Cantar de volta
+t0 Uma vez por turno: adicione 1 monstro do seu Cemitério à sua mão.
+l1 Cantar tudo de volta
+t1 Em vez disso, pague 3 de mana: adicione até 2 cartas do seu Cemitério à sua mão.
+l2 Aquietar o ar
+t2 Você pode pagar 2 de mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Sleightwind Curtainjumper
+n Pula-Cortina Prestivento
+l0 Susto repentino
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; 1 monstro que o seu oponente controla perde 500 de ATK até o fim deste turno.
+l1 Melhor sumir com eles
+t1 Pague 2 de mana: devolva 1 monstro que o seu oponente controla com 1500 ou menos de ATK à mão do dono.
+## Sleightwind Doubtbringer
+n Semeador de Dúvidas Prestivento
+l0 Dúvidas de última hora
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; negue os efeitos de 1 carta no Campo até o fim deste turno.
+l1 Dúvida duradoura
+t1 Em vez disso, pague 3 de mana: faça também essa carta perder permanentemente 500 de ATK.
+l2 Lembrar um sussurro
+t2 Você pode pagar 2 de mana: adicione 1 monstro de VENTO de Nível 1 do seu Cemitério à sua mão.
+## Sleightwind False Bottom
+n Fundo Falso Prestivento
+l0 Forro duplo
+t0 Uma vez por turno — pague 1 de mana: descarte 1 carta; compre 1 carta.
+## Sleightwind Hush
+n Silêncio Prestivento
+l0 Silêncio
+t0 Pague 1 de mana: adicione 1 monstro de VENTO de Nível 1 do seu Cemitério à sua mão.
+## Sleightwind Marked Deck
+n Baralho Marcado Prestivento
+l0 Baralho marcado
+t0 Uma vez por turno: descarte 1 carta; compre 1 carta.
+l1 Baralho preparado
+t1 Em vez disso, pague 2 de mana: descarte 1 carta; compre 2 cartas.
+## Sleightwind Maskbearer
+n Porta-Máscaras Prestivento
+l0 Tomar o rosto
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; devolva 1 monstro do Campo à mão do dono.
+l1 Tomar a lembrança
+t1 Você pode pagar 3 de mana: bana 1 carta do Cemitério do seu oponente.
+## Sleightwind Misdirection
+n Desorientação Prestivento
+l0 Desorientação
+t0 Negue os efeitos de 1 carta no Campo até o fim deste turno.
+l1 Olha ali!
+t1 Em vez disso, pague 3 de mana: compre também 1 carta.
+## Sleightwind Nothing to See
+n Nada para Ver Prestivento
+l0 Nada para ver
+t0 Pague 1 de mana: devolva 1 dos seus monstros virados para baixo à sua mão; compre 2 cartas e ganhe 1 de mana.
+l1 Circulando
+t1 Em vez disso, pague 2 de mana: compre 3 cartas em vez disso.
+## Sleightwind Palmist
+n Escamoteador Prestivento
+l0 Escamotear e trocar
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; compre 1 carta.
+l1 Ler a palma
+t1 Quando esta carta é Invocada: adicione 1 monstro de VENTO de Nível 1 do seu Cemitério à sua mão.
+## Sleightwind Rigged Deck
+n Baralho Viciado Prestivento
+l0 Baralho viciado
+t0 Descarte 2 cartas; compre 3.
+l1 Viciado mais fundo
+t1 Em vez disso, pague 2 de mana: ganhe também 1 de mana.
+## Sleightwind Second Face
+n Segundo Rosto Prestivento
+l0 Segundo rosto
+t0 Pague 1 de mana: adicione 1 monstro de VENTO de Nível 1 do seu Deck à sua mão; ganhe 2 de mana.
+## Sleightwind Thornmother
+n Mãe dos Espinhos Prestivento
+l0 Sarça rastejante
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; 1 monstro que o seu oponente controla perde permanentemente 600 de ATK.
+## Sleightwind Whisperer
+n Sussurrador Prestivento
+l0 Silêncio
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; 1 monstro que o seu oponente controla não pode atacar neste turno.
+l1 Silêncio absoluto
+t1 Em vez disso, pague 2 de mana: esse monstro também não pode mudar sua posição de batalha neste turno.
+## Sleightwind the Unwitnessed
+n Prestivento o Não Testemunhado
+s 6+ cartas no seu Cemitério e você não controla monstros. Custo: 3 de mana.
+l0 Desfazer
+t0 Uma vez por turno: negue os efeitos de 1 carta que o seu oponente controla com 2000 ou menos de ATK até o fim deste turno.
+l1 Desfazer por completo
+t1 Em vez disso, pague 4 de mana: devolva também essa carta à mão do dono.
+l2 Nada se perdeu
+t2 Você pode pagar 2 de mana: adicione 1 monstro de VENTO de Nível 1 do seu Cemitério à sua mão.
+## Sleightwind, Ace Up the Sleeve
+n Prestivento, Ás na Manga
+l0 Ás na manga
+t0 Uma vez por turno, durante o turno de qualquer jogador: descarte esta carta da sua mão; devolva 1 monstro que o seu oponente controla à mão do dono.
+l1 Segundo ás
+t1 Uma vez por turno: pague 1 de mana; descarte 1 carta; compre 1 carta.
+## Sleightwind, the Perfect Trick
+n Prestivento, o Truque Perfeito
+s 5+ cartas no seu Cemitério e seu oponente controla mais monstros que você. Custo: 3 de mana.
+l0 O prestígio
+t0 Quando esta carta é Invocada: devolva até 2 monstros que o seu oponente controla com 2000 ou menos de ATK à mão do dono.
+l1 Bis da manga
+t1 Pague 2 de mana: adicione 1 monstro do seu Cemitério à sua mão.
+## Slow to Anger
+n Lento para a Ira
+l0 …para a ira
+t0 Uma vez por turno: pague 2 de mana; esta carta ganha permanentemente 400 de ATK.
+## Slowburn Candlewick
+n Pavio de Vela Brasalenta
+l0 Estender o pavio
+t0 Quando esta carta é Invocada: você pode baixar 1 Magia «Brasalenta» do seu Deck.
+l1 Estender ambos os pavios
+t1 Pague 2 de mana em vez disso: baixe até 2 com nomes diferentes.
+## Slowburn Chandler
+n Cerieiro Brasalenta
+l0 Trocar o pavio
+t0 Pague 1 de mana: devolva 1 carta «Brasalenta» do seu Cemitério à sua mão.
+l1 Abafar a chama
+t1 Pague 2 de mana: seu oponente não pode Invocar de Modo Especial neste turno.
+## Slowburn Emberlord
+n Senhor das Brasas Brasalenta
+l0 Acender mais cedo
+t0 Uma vez por turno — pague 3 de mana: dispare o efeito CARREGADO de 1 das suas Magias «Brasalenta» baixadas antes deste turno.
+## Slowburn Fire Watch
+n Guarda do Fogo Brasalenta
+l0 Vigília noturna
+t0 Durante a sua Standby Phase: você pode Baixar 1 Magia «Brasalenta» da sua mão.
+l1 Remexer as brasas
+t1 Pague 2 de mana: devolva 1 carta «Brasalenta» do seu Cemitério à sua mão.
+## Slowburn Matchseller
+n Vendedora de Fósforos Brasalenta
+l0 Um fósforo para cada um
+t0 Quando esta carta é Invocada: Baixe 1 Magia «Brasalenta» do seu Deck.
+l1 O último fósforo
+t1 Pague 2 de mana e bana esta carta do seu Cemitério: devolva 1 Magia «Brasalenta» do seu Cemitério à sua mão.
+## Slowburn Pyrekeeper
+n Guardião da Pira Brasalenta
+l0 Detonar
+t0 Pague 3 de mana: dispare o efeito CARREGADO de 1 das suas Magias «Brasalenta» baixadas antes deste turno.
+## Slowburn, Backdraft
+n Brasalenta, Retrochama
+s Seu oponente controla mais monstros que você — pague 2 de mana.
+l0 Golpe de ar
+t0 Se esta carta for Invocada: ganhe 2 de mana neste turno.
+l1 Labareda na soleira
+t1 Pague 2 de mana: 1 monstro que o seu oponente controla perde 600 de ATK.
+## Slowburn, the Inevitable Spark
+n Brasalenta, a Fagulha Inevitável
+s 3+ Magias no seu Cemitério. Custo: 3 de mana.
+l0 Estender as linhas
+t0 Quando esta carta é Invocada: Baixe até 2 Magias «Brasalenta» do seu Deck.
+l1 Sempre esteve acesa
+t1 Uma vez por turno — pague 2 de mana: dispare o efeito CARREGADO de 1 das suas Magias «Brasalenta» baixadas antes deste turno.
+## Slowburn, the Patient Flame
+n Brasalenta, a Chama Paciente
+s 2+ Magias no seu Cemitério — pague 3 de mana.
+l0 Jogo longo
+t0 Se esta carta for Invocada: você pode baixar até 2 Magias «Brasalenta» do seu Deck.
+l1 Detonar
+t1 Pague 2 de mana: dispare o efeito CARREGADO de 1 das suas Magias «Brasalenta» baixadas antes deste turno.
+## Slowburn: Banked Flame
+n Brasalenta: Chama Abafada
+l0 Pavio aceso
+t0 Compre 1 carta.
+l1 Carregado: Combustão súbita
+t1 Carregado (automático na sua Standby Phase): compre 2 cartas e ganhe 2 de mana neste turno.
+## Slowburn: Deep Coals
+n Brasalenta: Brasas Profundas
+l0 Pavio aceso
+t0 1 monstro que o seu oponente controla perde 400 de ATK.
+l1 Carregado: Erupção
+t1 Carregado (automático na sua Standby Phase): destrua até 2 monstros que o seu oponente controla.
+## Slowburn: Long Fuse
+n Brasalenta: Pavio Longo
+l0 A ponta curta
+t0 Compre 1 carta.
+l1 A ponta longa (Carregado)
+t1 CARREGADO (automático na sua Standby Phase): adicione 1 carta «Brasalenta» do seu Deck à sua mão; ganhe 2 de mana.
+## Slowburn: Powder Trail
+n Brasalenta: Rastro de Pólvora
+l0 Rastro fino
+t0 1 monstro que o seu oponente controla perde 300 de ATK até o fim deste turno.
+l1 Fim do rastro (Carregado)
+t1 CARREGADO (automático na sua Standby Phase): destrua 1 monstro que o seu oponente controla; 1 outro monstro que ele controla perde permanentemente 500 de ATK.
+## Slowburn: Tripwire
+n Brasalenta: Fio de Tropeço
+l0 Pavio aceso
+t0 Mude 1 monstro que o seu oponente controla para a Posição de Defesa.
+l1 Carregado: Linha de fogo
+t1 Carregado (automático na sua Standby Phase): mude TODOS os monstros do seu oponente para a Posição de Defesa.
+## Small Favors
+n Pequenos Favores
+l0 Pequenos favores
+t0 Pague 1 de mana: devolva 1 monstro de Nível 1 do seu Cemitério à sua mão; compre 1 carta.
+l1 Pequenos milagres
+t1 Em vez disso, pague 2 de mana: Invoque-o de Modo Especial em vez disso; compre 1 carta.
+## Snooze Button
+n Botão de Soneca
+l0 Mais cinco minutos
+t0 Uma vez por turno: 1 monstro que o seu oponente controla com 1800 ou menos de ATK não pode atacar neste turno.
+l1 Não perturbe
+t1 Em vez disso, pague 3 de mana: ele também não pode mudar sua posição de batalha neste turno.
+## Snugglet Acorn
+n Bolota Aconcheguinho
+l0 Esconder
+t0 Uma vez por turno: pague 1 de mana; devolva 1 monstro «Aconcheguinho» do seu Cemitério à sua mão.
+## Snugglet Beanbag Throne
+n Trono de Pufe Aconcheguinho
+l0 Convocação real
+t0 Uma vez por turno — pague 2 de mana: adicione 1 carta «Aconcheguinho» do seu Deck à sua mão.
+## Snugglet Blanket Fortress
+n Fortaleza de Cobertores Aconcheguinho
+s Você controla 3 monstros «Aconcheguinho» e tem 3+ cartas no seu Cemitério. Sacrifique 1 monstro que você controla. Custo: 3 de mana.
+l0 Esticar bem o cobertor
+t0 Uma vez por turno, durante o turno de qualquer jogador: pague 2 de mana; 1 monstro «Aconcheguinho» que você controla não pode ser destruído neste turno.
+## Snugglet Bumble
+n Mamangava Aconcheguinho
+l0 Zumbir por aí
+t0 Quando esta carta é Invocada: adicione 1 monstro «Aconcheguinho» do seu Deck à sua mão.
+l1 Abelha ocupada
+t1 Em vez disso, pague 2 de mana: adicione também 1 Magia «Aconcheguinho».
+## Snugglet Cuddlepile, Three Deep
+n Montinho de Chamego Aconcheguinho, Três de Altura
+s Você controla 3 monstros «Aconcheguinho». Sacrifique 1 monstro que você controla. Custo: 2 de mana.
+l0 Espaço para mais um
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro «Aconcheguinho» do seu Cemitério.
+## Snugglet Group Hug
+n Abraço Coletivo Aconcheguinho
+l0 Abraço coletivo
+t0 Até 3 monstros «Aconcheguinho» que você controla não podem ser destruídos neste turno.
+l1 Apertar mais forte
+t1 Em vez disso, pague 2 de mana: eles também ganham 400 de ATK até o fim deste turno.
+## Snugglet Mopsy
+n Mopsi Aconcheguinho
+l0 Pata da sorte
+t0 Quando esta carta é Invocada: ganhe 1 de mana.
+l1 Maré de sorte
+t1 Em vez disso, pague 1 de mana: mais 1 também durante o seu próximo turno.
+## Snugglet Nap Time
+n Hora da Soneca Aconcheguinho
+l0 Hora da soneca
+t0 Pague 1 de mana: até 3 dos seus monstros «Aconcheguinho» não podem ser destruídos neste turno.
+l1 Sono profundo
+t1 Em vez disso, pague 2 de mana: eles também ganham 300 de DEF até o fim deste turno.
+## Snugglet Nightcap
+n Touca de Dormir Aconcheguinho
+l0 Espaço para mais um
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro «Aconcheguinho» da sua mão.
+## Snugglet Nightlight
+n Luzinha Noturna Aconcheguinho
+l0 Brilhar para os amigos
+t0 Quando esta carta é Invocada: adicione 1 monstro «Aconcheguinho» do seu Deck à sua mão.
+## Snugglet Pebble
+n Pedrinha Aconcheguinho
+## Snugglet Pile-Up
+n Montinho Aconcheguinho
+l0 Montinho
+t0 Pague 1 de mana: Invoque de Modo Especial até 2 monstros «Aconcheguinho» da sua mão.
+l1 Todo mundo dentro
+t1 Em vez disso, pague 3 de mana: da sua mão ou do seu Cemitério.
+## Snugglet Puddle
+n Pocinha Aconcheguinho
+l0 Splash feliz
+t0 Quando esta carta é Invocada, se você controlar 3 monstros: compre 1 carta.
+l1 Bomba!
+t1 Em vez disso, pague 1 de mana: compre 2 cartas.
+## Snugglet Sofa
+n Sofá Aconcheguinho
+l0 Chega para lá
+t0 Uma vez por turno: pague 2 de mana; Invoque de Modo Especial 1 monstro «Aconcheguinho» do seu Cemitério.
+## Snugglet Story Time
+n Hora da História Aconcheguinho
+l0 Hora da história
+t0 Invoque de Modo Especial até 2 monstros «Aconcheguinho» do seu Cemitério.
+l1 Mais um capítulo
+t1 Em vez disso, pague 2 de mana: eles ganham permanentemente 300 de DEF.
+## Snugglet Whiskers
+n Bigodinhos Aconcheguinho
+l0 Bote
+t0 Uma vez por turno: 1 monstro que o seu oponente controla perde 300 de ATK até o fim deste turno.
+## Snugglet, Big Spoon
+n Aconcheguinho, Colher Grande
+s Você controla 3 monstros «Aconcheguinho». Custo: 3 de mana; Sacrifique 1 monstro que você controla.
+l0 Todo mundo dentro
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro «Aconcheguinho» do seu Cemitério.
+l1 Segurá-los pertinho
+t1 Pague 2 de mana: 1 monstro «Aconcheguinho» que você controla não pode ser destruído neste turno.
+## Snugglet, the Whole Squish
+n Aconcheguinho, o Apertão Completo
+s Você controla 3 monstros «Aconcheguinho» e tem 5+ cartas no seu Cemitério. Sacrifique 2 monstros que você controla. Custo: 4 de mana.
+l0 A família inteira
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros «Aconcheguinho» do seu Cemitério.
+l1 Abraço coletivo
+t1 Uma vez por turno: pague 2 de mana; até 3 monstros «Aconcheguinho» que você controla ganham 400 de ATK até o fim deste turno.
+## Soul Devourer
+n Devorador de Almas
+l0 Fome final
+t0 Quando esta carta é destruída: seu oponente descarta 1 carta aleatória e você compra 1 carta.
+## Soul Grasp
+n Garra da Alma
+l0 Garra
+t0 Pague 1 de mana; seu oponente descarta 1 carta aleatória.
+l1 Garra dupla
+t1 Pague 3 de mana; seu oponente descarta 2 cartas aleatórias.
+## Spark Wolf
+n Lobo de Faíscas
+l0 Mordida faiscante
+t0 Quando esta carta é Invocada: você pode pagar 1 de mana; cause 400 de dano ao seu oponente.
+## Spoiler Alert
+n Alerta de Spoiler
+l0 Alerta de spoiler
+t0 Pague 2 de mana: Baixe 1 Magia do seu Deck virada para baixo (utilizável neste turno).
+l1 Ler o final
+t1 Em vez disso, pague 3 de mana: revele também a carta do topo do seu Deck; você pode colocá-la embaixo.
+## Spring Cleaning
+n Faxina de Primavera
+l0 Faxina de primavera
+t0 Pague 1 de mana: descarte 1 carta; compre 2 cartas e ganhe 1 de mana.
+l1 Faxina pesada
+t1 Em vez disso, pague 1 de mana: compre 3 cartas em vez disso.
+## Stare Down
+n Duelo de Olhares
+l0 Duelo de olhares
+t0 Pague 1 de mana: escolha 1 monstro que você controla: até o fim do turno ele ganha ATK igual à metade do ATK do monstro de frente para ele.
+l1 Olhar mortal
+t1 Em vez disso, pague 2 de mana: ele ganha ATK igual ao ATK inteiro do monstro de frente para ele.
+## Stone That Would Not Break
+n A Pedra que Não Quis Quebrar
+## Stone Wall
+n Muro de Pedra
+l0 Pele de pedra
+t0 Pague 1 de mana: 1 dos seus monstros ganha permanentemente 700 de DEF.
+l1 Rocha viva
+t1 Pague 2 de mana; 1 dos seus monstros ganha permanentemente 500 de DEF e 500 de ATK.
+## Storm Hawk
+n Falcão da Tempestade
+## Storm Siren
+n Sereia da Tempestade
+l0 Pedágio uivante
+t0 Quando seu oponente Invoca um monstro: você pode pagar 1 de mana; seu oponente perde 1 de mana.
+## Strip the Fittings
+n Desmontar as Ferragens
+l0 Desmontar as ferragens
+t0 RÁPIDO · Pague 1 de mana: devolva 1 Artefato que você controla à sua mão, depois compre 1 carta.
+## Sudden Squall
+n Rajada Repentina
+l0 Rajada
+t0 Escolha 1 monstro no Campo; ele perde 600 de ATK até o fim do turno.
+l1 Rajada furiosa
+t1 Escolha 1 monstro no Campo; ele perde 1200 de ATK até o fim do turno.
+## Sunscale Basilisk
+n Basilisco Escama-de-Sol
+l0 Olhar penetrante
+t0 Você pode pagar 2 de mana: escolha 1 monstro virado para baixo no Campo; destrua-o.
+## Suture Rig
+n Aparelho de Sutura
+## Sworn Statement
+n Declaração Juramentada
+l0 Declaração juramentada
+t0 Pague 1 de mana: declare Monstro, Magia ou Artefato, depois revele a carta do topo do seu Deck: se for do tipo declarado, adicione-a à sua mão; caso contrário, envie-a ao Cemitério.
+l1 Jurado duas vezes
+t1 Em vez disso, pague 2 de mana: revele as 2 do topo em vez disso — as que coincidirem vão para a sua mão, o resto para o Cemitério.
+## Sworn to the Gate
+n Juramentado ao Portão
+## The Armorer's Debt
+n A Dívida do Armeiro
+l0 A dívida do armeiro
+t0 Pague 1 de mana: adicione 1 Artefato do seu Cemitério à sua mão.
+## The Ascetic of the Ninth Stair
+n O Asceta do Nono Degrau
+s Você não tem cartas na mão — pague 3 de mana.
+l0 O nono degrau
+t0 Quando esta carta é Invocada: compre 2 cartas.
+## The Bailiff at the Door
+n O Oficial de Justiça à Porta
+l0 Toc, toc
+t0 Quando esta carta é Invocada: destrua 1 monstro com uma Penhora; compre 1 carta.
+## The Better Offer
+n A Oferta Melhor
+l0 A oferta melhor
+t0 Pague 4 de mana: tome o controle de 1 monstro que o seu oponente controla até a End Phase.
+## The Broker of Both Sides
+n O Corretor de Ambos os Lados
+s Um monstro no Campo é controlado por alguém que não é o dono — pague 2 de mana.
+l0 Os dois lados do negócio
+t0 Quando esta carta é Invocada: troque o controle de 1 outro monstro que você controla e 1 monstro que o seu oponente controla.
+## The Changeling Cradle
+n O Berço do Trocado
+l0 Ovo de cuco
+t0 Quando esta carta é Invocada: troque o controle desta carta e de 1 monstro de Nível 1 que o seu oponente controla; o monstro que você recebe não pode atacar neste turno.
+## The Closed Gate
+n O Portão Fechado
+l0 O portão fechado
+t0 Pague 3 de mana: seu oponente não pode Invocar de Modo Especial durante o resto deste turno.
+## The Culling Season
+n A Temporada do Abate
+l0 A temporada do abate
+t0 Pague 4 de mana: destrua todos os monstros do Campo, exceto as Feras.
+## The Debt Made Flesh
+n A Dívida Feita Carne
+s Seus LP são 4000 ou menos. Custo: 3 de mana. Bana 2 monstros do seu Cemitério.
+l0 Dia da cobrança
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla.
+## The Door That Held
+n A Porta que Resistiu
+s Você não controla monstros. Custo: 1 de mana.
+l0 Nada passa
+t0 Quando esta carta é Invocada: ela não pode ser destruída neste turno.
+## The Duelist's Code
+n O Código do Duelista
+## The Empty Chair
+n A Cadeira Vazia
+## The Empty Shrine
+n O Santuário Vazio
+l0 O que o santuário chama de volta
+t0 Uma vez por turno: você pode pagar 2 de mana; Invoque de Modo Especial 1 monstro de qualquer Banimento no seu Campo.
+## The Fallen One
+n O Caído
+l0 Lançá-los abaixo
+t0 Bana 1 Relicário do seu Extra Deck: você pode devolver 1 Relicário que o seu oponente controla ao Extra Deck.
+l1 Silenciar os erguidos
+t1 Pague 2 de mana, durante o turno de qualquer jogador: durante o resto deste turno, seu oponente não pode ativar os efeitos de monstros Invocados de Modo Especial no Campo.
+## The Forbidden Name
+n O Nome Proibido
+l0 O nome proibido
+t0 Pague 2 de mana: declare um nome de carta; nenhum jogador pode ativar os efeitos de cartas com esse nome neste turno e no próximo.
+l1 Nome não pronunciado
+t1 Pague 3 de mana em vez disso: você também pode ativar esta carta da sua mão durante o turno do seu oponente, mas pula a sua próxima Battle Phase.
+## The Held Wall
+n A Muralha Sustentada
+l0 A muralha sustentada
+t0 RÁPIDO · Pague 2 de mana: você não sofre dano de batalha durante o resto deste turno.
+## The Hour Merchant
+n O Mercador de Horas
+s Você tem 6 ou mais de mana. Custo: 4 de mana.
+l0 Horas por páginas
+t0 Quando esta carta é Invocada: compre 2 cartas.
+## The House Always Wins
+n A Casa Sempre Ganha
+s 3+ Magias no seu Cemitério — pague 2 de mana.
+l0 A casa sempre ganha
+t0 Quando esta carta é Invocada: jogue 3 moedas. Para cada Cara, destrua 1 monstro que o seu oponente controla; para cada Coroa, você sofre 500 de dano.
+## The Last Asemir
+n O Último Asemir
+s Enquanto seu oponente controlar um monstro com 2500+ de ATK e você tiver 5+ de mana disponível: pague 2 de mana.
+l0 Decisão de juízo
+t0 Quando esta carta é Invocada: todos os monstros do Campo mudam para a Posição de Ataque.
+l1 O longo caminho de volta
+t1 Se esta carta for enviada do Extra Deck ao Cemitério: todas as cartas banidas voltam ao Deck ou ao Extra Deck dos donos.
+## The Liberator
+n O Libertador
+## The Long Reading
+n A Longa Leitura
+l0 A longa leitura
+t0 Pague 1 de mana: envie as 3 cartas do topo do seu Deck ao Cemitério, depois compre 1 carta.
+## The Long Way Back
+n O Longo Caminho de Volta
+l0 O longo caminho de volta
+t0 Pague 3 de mana: Invoque de Modo Especial 1 monstro de qualquer Banimento no seu Campo.
+## The Mirror Hour
+n A Hora do Espelho
+l0 A hora do espelho
+t0 Pague 3 de mana: escolha 1 monstro que o seu oponente controla; Invoque de Modo Especial uma cópia dele no seu Campo. A cópia some durante a End Phase.
+## The Nameless One
+n O Sem Nome
+l0 Comando tácito
+t0 Quando esta carta é Invocada: você pode virar 1 monstro do Campo para baixo em Posição de Defesa.
+## The Rust Crown
+n A Coroa de Ferrugem
+l0 Corrosão rastejante
+t0 Uma vez por turno: você pode pagar 1 de mana; escolha 1 monstro que o seu oponente controla; ele perde permanentemente 600 de DEF.
+## The Second Copy
+n A Segunda Cópia
+l0 A segunda cópia
+t0 Pague 1 de mana: embaralhe 3 cartas do seu Cemitério no seu Deck, depois compre 1 carta.
+## The Sleeper in the Wall
+n O Dorminhoco na Parede
+l0 Golpe ao despertar
+t0 VIRAR: destrua 1 monstro que o seu oponente controla.
+## The Slow Drowning
+n O Afogamento Lento
+l0 O afogamento lento
+t0 Pague 3 de mana: envie as 4 cartas do topo do Deck do seu oponente ao Cemitério dele.
+## The Toll Gate
+n A Cancela de Pedágio
+l0 A cancela de pedágio
+t0 Pague 2 de mana: bana 1 carta de qualquer Cemitério, depois compre 1 carta.
+## The Turned Shield
+n O Escudo Virado
+l0 O escudo virado
+t0 RÁPIDO · Pague 2 de mana: escolha 1 monstro no Campo; ele troca seu ATK e sua DEF até a End Phase.
+## The Unbroken Oath
+n O Juramento Intacto
+l0 O juramento intacto
+t0 Uma vez por Duelo. Pague 2 de mana: negue os efeitos de todas as cartas que o seu oponente controla até o fim deste turno. Você não pode ativar outras Magias durante o resto deste turno.
+## The Understudy
+n O Substituto
+l0 Entrar no papel
+t0 Você pode pagar 1 de mana: Sacrifique esta carta; Invoque de Modo Especial 1 monstro de Nível 2 da sua mão.
+## The Unturned Card
+n A Carta Não Virada
+l0 A carta não virada
+t0 Pague 2 de mana: bana 1 monstro virado para baixo no Campo, sem virá-lo para cima.
+## The Usurer's Terms
+n As Condições do Usurário
+l0 As condições do usurário
+t0 Pague 1 de mana: ganhe 4 de mana neste turno. Durante o seu próximo turno, você tem 3 de mana a menos. Se não puder cobrir o total, você perde 1500 LP para cada mana que não pôde pagar.
+l1 As letras miúdas do usurário
+t1 Em vez disso, pague 1 de mana: ganhe 6 de mana neste turno; durante o seu próximo turno, você tem 5 de mana a menos — mesmas condições.
+## The Watchman's Bell
+n O Sino do Vigia
+l0 Tocado em alerta
+t0 Quando seu oponente Invoca um monstro: esse monstro perde 600 de ATK até o fim do turno.
+## The White Elephant
+n O Elefante Branco
+## Thelenn, Called Back
+n Thelenn, Chamada de Volta
+s 2 ou mais cartas no seu Banimento. Custo: 2 de mana.
+l0 Voltar
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro banido no seu Campo.
+## Thunder Roc
+n Roca do Trovão
+l0 Arauto da tempestade
+t0 Quando esta carta é Invocada: cause 500 de dano ao seu oponente.
+l1 Vendaval crepitante
+t1 Você pode pagar 3 de mana: seu oponente descarta 1 carta aleatória.
+## Tidebound Backwash
+n Refluxo Mareal
+l0 Refluxo
+t0 Quando esta carta é Invocada: você pode devolver 1 outro monstro que você controla à sua mão; se fizer isso, compre 1 carta.
+l1 Corrente de fundo
+t1 Em vez disso, pague 2 de mana: devolva 1 outro monstro de qualquer Campo à mão do dono.
+## Tidebound Beachcomber
+n Catador de Praia Mareal
+l0 Vasculhar os baixios
+t0 Quando esta carta é Invocada: você pode pagar 2 de mana; devolva 1 Magia ou Artefato que o seu oponente controla à mão.
+l1 Maré de sizígia
+t1 Em vez disso, pague 4 de mana: devolva 1 Magia ou Artefato E 1 monstro que o seu oponente controla à mão.
+l2 Achado não é roubado
+t2 Uma vez por turno, quando uma carta volta do Campo à mão do seu oponente: ganhe 1 de mana.
+## Tidebound Beachhead
+n Cabeça de Praia Mareal
+l0 Cabeça de praia
+t0 Invoque de Modo Especial 1 monstro «Mareal» da sua mão; compre 1 carta.
+l1 Segundo desembarque
+t1 Em vez disso, pague 2 de mana: do seu Cemitério em vez disso.
+## Tidebound Current-Caller
+n Chama-Correntes Mareal
+l0 Corrente submersa
+t0 Quando esta carta é Invocada: você pode devolver 1 monstro de Nível 1 do Campo à mão do dono.
+l1 Chamar a corrente
+t1 Você pode pagar 3 de mana: seu oponente perde 1 de mana, e você compra 1 carta.
+## Tidebound Deepcaller
+n Chama-Profundezas Mareal
+l0 Chamá-lo para baixo
+t0 Quando esta carta é Invocada: devolva 1 Magia ou Artefato que o seu oponente controla à mão.
+l1 Mais fundo ainda
+t1 Em vez disso, pague 3 de mana: devolva também 1 monstro com 1500 ou menos de ATK.
+## Tidebound Ebb and Flow
+n Fluxo e Refluxo Mareal
+l0 Refluxo
+t0 Pague 1 de mana: devolva até 3 monstros que você controla à sua mão.
+l1 Fluxo
+t1 Em vez disso, pague 2 de mana: devolva 2 monstros que você controla à sua mão; compre 2 cartas.
+## Tidebound Leviathan
+n Leviatã Mareal
+l0 Maré avassaladora
+t0 Quando esta carta é Invocada: você pode devolver 1 monstro que o seu oponente controla à mão.
+l1 Impacto das profundezas
+t1 Você pode pagar 3 de mana: devolva 1 monstro do Campo à mão do dono.
+## Tidebound Message in a Bottle
+n Mensagem na Garrafa Mareal
+l0 Desarrolhada
+t0 Uma vez por turno: devolva 1 monstro «Mareal» do seu Cemitério à sua mão.
+l1 Mensagem respondida
+t1 Em vez disso, pague 3 de mana: Invoque de Modo Especial 1 monstro «Mareal» do seu Cemitério virado para baixo.
+## Tidebound Mirrorshell
+n Concha-Espelho Mareal
+l0 Amortecer
+t0 Quando seu oponente Invoca um monstro: você pode pagar 1 de mana; 1 monstro que o seu oponente controla perde permanentemente 400 de ATK.
+l1 Águas paradas
+t1 Durante a sua Standby Phase: você pode pagar 2 de mana; você ganha 400 LP.
+## Tidebound Moon Pull
+n Puxão da Lua Mareal
+l0 O puxão da lua
+t0 Uma vez por turno, quando uma carta volta do Campo à mão do seu oponente: compre 1 carta.
+l1 A maré subindo
+t1 Pague 2 de mana: devolva 1 monstro «Mareal» do seu Cemitério à sua mão.
+## Tidebound Riptide
+n Corrente de Retorno Mareal
+l0 Corrente de retorno
+t0 Devolva até 2 monstros com 1200 ou menos de ATK às mãos dos donos.
+l1 Ressaca crescente
+t1 Em vez disso, pague 4 de mana: qualquer ATK.
+## Tidebound Skimmer
+n Rasante Mareal
+l0 Puxão vazante
+t0 Quando esta carta é Invocada: seu oponente perde 1 de mana.
+l1 Deslizar para baixo
+t1 Você pode pagar 2 de mana: devolva esta carta à sua mão.
+## Tidebound Tidepooler
+n Cata-Poças Mareal
+l0 Juntar a pesca
+t0 Quando esta carta é Invocada: você pode devolver 1 outro monstro que você controla à sua mão; compre 1 carta.
+l1 Escapulir
+t1 Pague 2 de mana: devolva esta carta à sua mão; 1 monstro que o seu oponente controla perde 400 de ATK até o fim deste turno.
+## Tidebound Undertow
+n Corrente de Fundo Mareal
+l0 Corrente de fundo
+t0 Devolva 1 monstro do Campo à mão do dono.
+l1 Corrente devoradora
+t1 Devolva 1 monstro do Campo à mão do dono, depois compre 1 carta.
+## Tidebound Wave Goodbye
+n Adeus com a Onda Mareal
+l0 Adeus com a onda
+t0 Pague 1 de mana: devolva 1 monstro com 1500 ou menos de ATK à mão do dono.
+l1 O longo adeus
+t1 Em vez disso, pague 3 de mana: devolva 1 monstro de qualquer ATK à mão do dono, depois compre 1 carta.
+## Tidebound, the King Tide
+n Mareal, a Maré Real
+s 5+ cartas no seu Cemitério. Custo: 3 de mana.
+l0 A maré real
+t0 Quando esta carta é Invocada: devolva 1 carta que o seu oponente controla à mão do dono.
+l1 Varrer a orla
+t1 Pague 3 de mana: devolva 1 monstro do Campo à mão do dono.
+## Tidebound, the Returning Sea
+n Mareal, o Mar que Retorna
+s Seu oponente controla mais monstros que você. Custo: 2 de mana.
+l0 O mar reclama
+t0 Quando esta carta é Invocada: você pode pagar 2 de mana; devolva 1 monstro que o seu oponente controla à mão.
+## Toll of the Late Hour
+n Toque da Hora Tardia
+l0 A hora tardia
+t0 Durante a sua End Phase: você pode pagar 1 de mana; adicione 1 monstro do seu Cemitério à sua mão.
+## Tomb Mouse
+n Rato de Tumba
+l0 Pequeno necrófago
+t0 Quando esta carta é destruída: você pode adicionar 1 monstro de Nível 1 do seu Deck à sua mão.
+## Total Eclipse
+n Eclipse Total
+l0 Eclipse total
+t0 Vire até 5 monstros do Campo para baixo em Posição de Defesa.
+## Trample the Line
+n Atropelar a Linha
+l0 Atropelar a linha
+t0 Pague 1 de mana: escolha 1 monstro que você controla: ele causa dano de batalha perfurante neste turno e ganha 300 de ATK até o fim do turno.
+l1 Atropelar a linha inteira
+t1 Em vez disso, pague 3 de mana: todos os monstros que você controla causam dano de batalha perfurante neste turno (sem bônus de ATK).
+## Trapline Basecamp
+n Acampamento-Base Armadilheiro
+l0 Reabastecer a linha
+t0 Durante a sua Standby Phase: Baixe 1 Magia «Armadilheiro» do seu Deck virada para baixo.
+l1 Ronda de resgate
+t1 Uma vez por turno: pague 2 de mana; devolva 1 Magia «Armadilheiro» do seu Cemitério à sua mão.
+## Trapline Bear Hug
+n Abraço de Urso Armadilheiro
+l0 Abraço de urso
+t0 Quando um ataque é declarado: pague 2 de mana; vire o monstro atacante para baixo (o ataque é cancelado); depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Abraço esmagador
+t1 Em vez disso, pague 3 de mana: ele também não pode mudar de posição neste turno.
+## Trapline Decoy
+n Chamariz Armadilheiro
+l0 Chamariz
+t0 Quando um ataque é declarado: pague 1 de mana; 1 monstro que você controla não pode ser destruído neste turno; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Chamariz convincente
+t1 Em vez disso, pague 2 de mana: você também não sofre dano de batalha neste turno.
+## Trapline Double Back
+n Voltar Atrás Armadilheiro
+l0 Voltar atrás
+t0 Pague 1 de mana: devolva 1 Magia Rápida «Armadilheiro» do seu Cemitério à sua mão; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Refazer a linha
+t1 Em vez disso, pague 2 de mana: devolva 2.
+## Trapline Jawsmith
+n Ferreiro de Mandíbulas Armadilheiro
+l0 Dentes novos
+t0 Uma vez por turno — pague 1 de mana: Baixe 1 Magia Rápida «Armadilheiro» da sua mão virada para baixo; compre 1 carta.
+## Trapline Pitfall
+n Fosso Armadilheiro
+l0 Fosso
+t0 Quando seu oponente Invoca um monstro: pague 2 de mana; devolva 1 monstro que ele controla à mão; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Sem fundo
+t1 Em vez disso, pague 4 de mana: embaralhe-o no Deck em vez disso.
+## Trapline Row of Teeth
+n Fileira de Dentes Armadilheiro
+l0 Fileira de dentes
+t0 Quando um ataque é declarado: pague 4 de mana; destrua TODOS os monstros em Posição de Ataque que o seu oponente controla; depois você pode Baixar 1 «Armadilheiro» com um nome diferente da sua mão.
+l1 A fileira inteira
+t1 Em vez disso, pague 5 de mana: Baixe depois até 2 cartas «Armadilheiro» da sua mão.
+## Trapline Scout
+n Batedor Armadilheiro
+l0 Percorrer a linha
+t0 Quando esta carta é Invocada: adicione 1 Magia «Armadilheiro» do seu Cemitério à sua mão.
+l1 Rearmá-la
+t1 Em vez disso, pague 2 de mana: Baixe-a diretamente em vez disso (utilizável neste turno).
+## Trapline Smoke Signal
+n Sinal de Fumaça Armadilheiro
+l0 Sinal de fumaça
+t0 RÁPIDO · Pague 1 de mana: compre 1 carta; depois você pode Baixar 1 Magia Rápida «Armadilheiro» com um nome diferente da sua mão; ganhe 1 de mana.
+l1 Fogueira de sinalização
+t1 Em vez disso, pague 1 de mana: ganhe também 1 de mana.
+## Trapline Snare Wire
+n Arame de Laço Armadilheiro
+l0 Arame de laço
+t0 Quando um ataque é declarado: o monstro atacante perde 600 de ATK até o fim deste turno; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Içado no alto
+t1 Em vez disso, pague 3 de mana: vire o atacante para baixo (o ataque é cancelado); depois você pode Baixar 1 «Armadilheiro» da sua mão.
+## Trapline Springloaded
+n Mola Armada Armadilheiro
+l0 Mola armada
+t0 Quando seu oponente Invoca um monstro: ele perde permanentemente 800 de ATK; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Fechada de estalo
+t1 Em vez disso, pague 4 de mana: destrua-o (com 2000 ou menos de ATK); depois você pode Baixar 1 «Armadilheiro» da sua mão.
+## Trapline Toolshed
+n Galpão de Ferramentas Armadilheiro
+l0 Lubrificar as molas
+t0 Durante a sua Standby Phase: Baixe 1 Magia Rápida «Armadilheiro» do seu Cemitério virada para baixo.
+l1 Conferir as linhas
+t1 Pague 2 de mana: compre 1 carta.
+## Trapline Tripwire
+n Fio de Tropeço Armadilheiro
+l0 Fio de tropeço
+t0 Quando um ataque é declarado: pague 1 de mana; o monstro atacante perde 800 de ATK até o fim deste turno; depois você pode Baixar 1 «Armadilheiro» com um nome diferente da sua mão.
+l1 Enredado
+t1 Em vez disso, pague 2 de mana: ele também não pode atacar de novo neste turno.
+## Trapline Warden
+n Vigia Armadilheiro
+l0 Estender a linha
+t0 Quando esta carta é Invocada: Baixe 1 Magia «Armadilheiro» do seu Deck virada para baixo (utilizável neste turno).
+l1 Cobrir o vale
+t1 Em vez disso, pague 2 de mana: Baixe 2.
+## Trapline Warm Welcome
+n Boas-Vindas Calorosas Armadilheiro
+l0 Boas-vindas calorosas
+t0 Quando seu oponente Invoca um monstro: pague 3 de mana; destrua 1 monstro que ele controla, depois destrua todos os monstros em Posição de Defesa do Campo com o mesmo Nível; depois você pode Baixar 1 «Armadilheiro» da sua mão.
+l1 Visita que se estendeu
+t1 Em vez disso, pague 4 de mana: além disso, seu oponente não pode Invocar de Modo Especial durante o resto deste turno.
+## Trapline Weaver
+n Tecelão Armadilheiro
+l0 Fiar a linha
+t0 Uma vez por turno: pague 1 de mana; Baixe 1 Magia Rápida «Armadilheiro» da sua mão virada para baixo; compre 1 carta.
+## Trapline, Season of Snares
+n Armadilheiro, a Temporada dos Laços
+s 3+ cartas no seu Cemitério. Custo: 2 de mana.
+l0 Colher a linha
+t0 Quando esta carta é Invocada: devolva até 2 Magias «Armadilheiro» do seu Cemitério à sua mão.
+l1 Laço rápido
+t1 Uma vez por turno, durante o turno de qualquer jogador: pague 2 de mana; 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Trapline, the Patient Jaw
+n Armadilheiro, a Mandíbula Paciente
+s 4+ cartas no seu Cemitério. Custo: 3 de mana.
+l0 Aço disparado
+t0 Quando esta carta é Invocada: destrua 1 monstro que o seu oponente controla com 2000 ou menos de ATK.
+l1 Rearmar a armadilha
+t1 Uma vez por turno, durante o turno de qualquer jogador: pague 1 de mana; Baixe 1 Magia Rápida «Armadilheiro» da sua mão virada para baixo.
+## Trapline, the Silent Season
+n Armadilheiro, a Temporada Silenciosa
+s 3+ Magias no seu Cemitério. Custo: 3 de mana.
+l0 Rearmar cada laço
+t0 Quando esta carta é Invocada: Baixe até 2 Magias «Armadilheiro» do seu Cemitério viradas para baixo.
+l1 Temporada de silêncio
+t1 Pague 2 de mana: 1 monstro que o seu oponente controla perde 500 de ATK até o fim deste turno.
+## Trophy Hunter
+n Caçador de Troféus
+l0 Caça limpa
+t0 Uma vez por turno, quando esta carta destrói um monstro em batalha: compre 1 carta.
+## Twin Wyrms of the Dragon Shrine
+n Serpes Gêmeas do Santuário do Dragão
+l0 Dois no portão
+t0 Quando esta carta é Invocada, se você controlar outro monstro: compre 1 carta.
+l1 Acordar o segundo
+t1 Uma vez por turno — pague 2 de mana: Invoque de Modo Especial 1 monstro do Tipo Dragão de Nível 1 do seu Cemitério; ele ganha permanentemente 200 de DEF.
+## Two Birds, One Stone
+n Dois Coelhos, Uma Cajadada
+## Vampiric Chalice
+n Cálice Vampírico
+l0 Pedágio carmesim
+t0 Durante a sua Standby Phase: você pode causar 200 de dano ao seu oponente, e você ganha 200 LP.
+## Velvet Rope
+n Cordão de Veludo
+l0 Você não está na lista
+t0 Pague 2 de mana: seu oponente não pode Invocar de Modo Especial durante o resto deste turno.
+l1 Traje exigido
+t1 Em vez disso, pague 3 de mana: além disso, 1 monstro que ele controla não pode atacar neste turno.
+## Vess the Scrivener
+n Vess a Escrivã
+l0 Palimpsesto
+t0 Uma vez por turno: você pode pagar 2 de mana e descartar 1 carta; compre 2 cartas.
+## Vetch, Who Never Forgets a Face
+n Vetch, que Nunca Esquece um Rosto
+l0 Nunca esquece um rosto
+t0 Quando esta carta é Invocada: coloque uma Penhora de 1 em 1 monstro que o seu oponente controla com 1500 ou menos de ATK.
+l1 Um rosto na multidão
+t1 Pague 1 de mana e descarte esta carta: coloque uma Penhora de 1 em 1 monstro que o seu oponente controla.
+## Void Exchange
+n Troca com o Vazio
+l0 Troca com o vazio
+t0 Bana 1 carta do seu Cemitério; compre 2 cartas.
+## Volte-Face
+n Volte-Face
+l0 Meia-volta
+t0 Quando esta carta muda sua posição de batalha: compre 1 carta.
+l1 Volta dupla
+t1 Pague 1 de mana: esta carta pode mudar sua posição de batalha uma vez adicional neste turno.
+## Vow of Poverty
+n Voto de Pobreza
+## War Banner
+n Estandarte de Guerra
+l0 Grito de guerra
+t0 Uma vez por turno: você pode pagar 1 de mana; 1 dos seus monstros ganha 300 de ATK até o fim do turno.
+## Warden of the Reliquary
+n Vigia do Relicário
+## Warhorn of the Ancients
+n Corno de Guerra dos Antigos
+l0 Tocar o chamado antigo
+t0 Você pode pagar 4 de mana: Invoque de Modo Especial 1 monstro de Nível 2 da sua mão.
+## Weather Eye
+n Olho do Tempo
+l0 Olho do tempo
+t0 Quando esta carta é Invocada: revele a carta do topo do seu Deck; você pode colocá-la embaixo.
+l1 Aviso de tempestade
+t1 Em vez disso, pague 1 de mana: compre também 1 carta depois.
+## Wenna, Who Waits Outside
+n Wenna, que Espera do Lado de Fora
+l0 Esperando à porta
+t0 MÃO · Bana esta carta da sua mão, depois Invoque de Modo Especial 1 monstro com 2000 ou menos de ATK de qualquer Banimento no seu Campo.
+## What Falls From Their Hand
+n O que Cai da Mão Deles
+l0 O que cai
+t0 Pague 3 de mana: revele 1 carta aleatória da mão do seu oponente. Se for um monstro, Invoque-o de Modo Especial no seu Campo; caso contrário, envie-a ao Cemitério.
+## Woven Fate
+n Destino Tecido
+l0 Destino emaranhado
+t0 Escolha 1 monstro que o seu oponente controla; ele perde 600 de ATK até o fim do turno.
+l1 Destino retecido
+t1 Escolha 1 monstro que o seu oponente controla; ele perde 600 de ATK até o fim do turno, depois Baixe 1 Magia «Tecemaléficos» do seu Deck.
+## Wren, Who Learns by Watching
+n Wren, que Aprende Observando
+l0 Aprende observando
+t0 Uma vez por turno: você pode pagar 2 de mana; escolha 1 monstro no Campo; o ATK e a DEF desta carta se tornam iguais aos desse monstro até a End Phase.
+## Wyldpack Alpha
+n Alfa Alcateia Selvagem
+l0 A alcateia inteira
+t0 Se esta carta foi Invocada de Modo Especial: você pode Invocar de Modo Especial até 2 monstros «Alcateia Selvagem» da sua mão.
+l1 Ordem do alfa
+t1 Você pode pagar 3 de mana: escolha 1 monstro «Alcateia Selvagem» que você controla; ele pode atacar uma vez adicional neste turno.
+## Wyldpack Bare Fangs
+n Presas à Mostra Alcateia Selvagem
+l0 Presas à mostra
+t0 1 monstro «Alcateia Selvagem» que você controla ganha 500 de ATK até o fim deste turno.
+l1 Todas as presas de fora
+t1 Em vez disso, pague 2 de mana: até 3 ganham 400 de ATK até o fim deste turno.
+## Wyldpack Cub
+n Filhote Alcateia Selvagem
+l0 Latido impaciente
+t0 Quando esta carta é Invocada: você pode adicionar 1 monstro «Alcateia Selvagem» do seu Deck à sua mão.
+## Wyldpack Denmother
+n Mãe da Toca Alcateia Selvagem
+l0 Reunir a ninhada
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro «Alcateia Selvagem» de Nível 1 do seu Cemitério.
+l1 A ninhada inteira
+t1 Em vez disso, pague 2 de mana: até 2.
+## Wyldpack Fetch
+n Busca Alcateia Selvagem
+l0 Busca!
+t0 Quando esta carta é Invocada: devolva 1 monstro «Alcateia Selvagem» do seu Cemitério à sua mão.
+l1 Bom garoto
+t1 Em vez disso, pague 2 de mana: devolva qualquer monstro FERA do seu Cemitério à sua mão.
+## Wyldpack Full Moon
+n Lua Cheia Alcateia Selvagem
+l0 Lua cheia
+t0 Invoque de Modo Especial até 2 monstros «Alcateia Selvagem» do seu Cemitério.
+l1 Lua de sangue
+t1 Em vez disso, pague 4 de mana: eles ganham permanentemente 300 de ATK.
+## Wyldpack Hackles
+n Pelo Eriçado Alcateia Selvagem
+l0 Pelo eriçado
+t0 Pague 1 de mana: 1 monstro «Alcateia Selvagem» que você controla ganha 700 de ATK até o fim deste turno.
+l1 A alcateia inteira se eriça
+t1 Em vez disso, pague 2 de mana: até 5 monstros «Alcateia Selvagem» que você controla ganham 400 de ATK até o fim deste turno.
+## Wyldpack Howler
+n Uivador Alcateia Selvagem
+l0 Uivo de reunião
+t0 Quando esta carta é Invocada por Invocação Normal: você pode Invocar de Modo Especial 1 monstro «Alcateia Selvagem» de Nível 1 da sua mão.
+## Wyldpack Hunting Grounds
+n Território de Caça Alcateia Selvagem
+l0 Rastrear os caídos
+t0 Uma vez por turno — pague 2 de mana: adicione 1 monstro «Alcateia Selvagem» do seu Cemitério à sua mão.
+## Wyldpack Loneshadow
+n Sombra Solitária Alcateia Selvagem
+l0 Correr com a alcateia
+t0 Quando esta carta é Invocada, se você controlar 3+ monstros: esta carta ganha 400 de ATK até o fim deste turno.
+## Wyldpack Matriarch
+n Matriarca Alcateia Selvagem
+l0 Liderar a alcateia
+t0 Quando esta carta é Invocada: você pode Invocar de Modo Especial 1 monstro «Alcateia Selvagem» de Nível 1 da sua mão.
+l1 Reunir os jovens
+t1 Você pode pagar 2 de mana: adicione 1 monstro «Alcateia Selvagem» do seu Deck à sua mão.
+## Wyldpack Off the Leash
+n Sem Coleira Alcateia Selvagem
+l0 Escapar da coleira
+t0 Pague 2 de mana: até 5 monstros FERA que você controla ganham 400 de ATK até o fim deste turno.
+l1 Nunca mais voltarão
+t1 Em vez disso, pague 4 de mana: até 5 monstros FERA que você controla ganham permanentemente 400 de ATK.
+## Wyldpack Stalker
+n Espreitador Alcateia Selvagem
+l0 Caçá-los
+t0 Se esta carta foi Invocada de Modo Especial, você pode pagar 1 de mana: 1 monstro que o seu oponente controla perde permanentemente 400 de ATK.
+## Wyldpack Top Dog
+n Chefe da Alcateia Alcateia Selvagem
+l0 A parte do alfa
+t0 Uma vez por turno: pague 1 de mana; 1 monstro «Alcateia Selvagem» que você controla ganha permanentemente 300 de ATK.
+## Wyldpack Underdog
+n Azarão Alcateia Selvagem
+l0 História de azarão
+t0 Quando esta carta é Invocada, se o seu oponente controlar mais monstros que você: compre 1 carta.
+l1 Contra todas as probabilidades
+t1 Em vez disso, pague 1 de mana: compre 2 cartas em vez disso.
+## Wyldpack Ur-Alpha
+n Ur-Alfa Alcateia Selvagem
+s Você controla 3+ monstros «Alcateia Selvagem». Custo: 2 de mana.
+l0 Uivo das eras
+t0 Quando esta carta é Invocada: todos os monstros «Alcateia Selvagem» que você controla ganham 300 de ATK até o fim do turno, e esta carta pode fazer 1 ataque adicional neste turno.
+## Wyldpack, the First Howl
+n Alcateia Selvagem, o Primeiro Uivo
+s Você controla 3+ monstros «Alcateia Selvagem». Custo: 3 de mana.
+l0 O primeiro uivo
+t0 Quando esta carta é Invocada: Invoque de Modo Especial até 2 monstros «Alcateia Selvagem» de Nível 1 do seu Cemitério; todos os monstros «Alcateia Selvagem» que você controla ganham 300 de ATK até o fim deste turno.
+l1 Responder ao chamado
+t1 Pague 3 de mana: 1 monstro «Alcateia Selvagem» que você controla pode atacar duas vezes neste turno.
+## Wyrm Eternal, Shrine Ascendant
+n Serpe Eterna, Ascendente do Santuário
+s Você controla um monstro «Santuário do Dragão». Custo: 3 de mana.
+l0 O santuário se ergue
+t0 Quando esta carta é Invocada: Invoque de Modo Especial 1 monstro do Tipo Dragão do seu Cemitério, e todos os monstros do Tipo Dragão que você controla ganham 300 de ATK até o fim do turno.
+## Yard Sentence
+n Pena de Pátio
+l0 Pena de pátio
+t0 Pague 1 de mana: envie 1 monstro com menos de 2000 de ATK do seu Deck ao Cemitério, depois ganhe 1 de mana.
+l1 Pena em regime fechado
+t1 Pague 3 de mana em vez disso: envie 2 monstros com quaisquer valores ao Cemitério, mas não ganhe mana.

@@ -91,6 +91,8 @@ namespace Rouge.Tcg.UI
                 case "french": return Loc.French;
                 case "spanish":                 // Spanien …
                 case "latam": return Loc.Spanish;   // … und Lateinamerika: eine Fassung
+                case "portuguese":              // Portugal …
+                case "brazilian": return Loc.Portuguese;   // … und Brasilien: eine Fassung
                 case "": break;                 // kein Steam — das OS fragen
                 default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
             }
@@ -102,6 +104,7 @@ namespace Rouge.Tcg.UI
                 case SystemLanguage.Russian: return Loc.Russian;
                 case SystemLanguage.French: return Loc.French;
                 case SystemLanguage.Spanish: return Loc.Spanish;
+                case SystemLanguage.Portuguese: return Loc.Portuguese;
                 default: return Loc.English;
             }
         }
