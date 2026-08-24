@@ -151,6 +151,10 @@ namespace Rouge.Tcg.UI
                 Refresh();
             }
             else if (message.t == "error") awaitingDailyClaim = false;
+            else if (message.t == "friends" && friendsBadge != null)
+                friendsBadge.SetActive(message.requests != null && message.requests.Length > 0);
+            else if (message.t == "friend_event" && message.kind == "request" && friendsBadge != null)
+                friendsBadge.SetActive(true);
         }
 
         private void Update()
@@ -210,6 +214,84 @@ namespace Rouge.Tcg.UI
                 plateButton.onClick.AddListener(() => SceneManager.LoadScene("Profile"));
             }
             plateButton.interactable = online;
+        }
+
+        private Button friendsButton;
+        private GameObject friendsBadge;
+
+        /// <summary>
+        /// FREUNDE sitzt als Laufzeit-Knopf unten rechts, über der Build- und
+        /// Online-Zeile — die Szene bleibt unangetastet. Ein Punkt am Knopf zeigt
+        /// offene Anfragen; den Stand holt Start() einmal per friends_get,
+        /// Ereignisse halten ihn frisch.
+        /// </summary>
+        private void EnsureFriendsButton(bool online)
+        {
+            if (friendsButton == null)
+            {
+                var canvas = onlineText != null ? onlineText.canvas
+                    : playerName != null ? playerName.canvas : null;
+                if (canvas == null) return;
+
+                var go = new GameObject("FriendsButton", typeof(RectTransform), typeof(Image), typeof(Button));
+                var rect = (RectTransform)go.transform;
+                rect.SetParent(canvas.transform, false);
+                rect.anchorMin = rect.anchorMax = new Vector2(1f, 0f);
+                rect.pivot = new Vector2(1f, 0f);
+                rect.anchoredPosition = new Vector2(-52f, 118f);
+                rect.sizeDelta = new Vector2(150f, 38f);
+                var bg = go.GetComponent<Image>();
+                bg.color = new Color32(0x14, 0x10, 0x0A, 0xD9);
+
+                // Goldrahmen im Stil der Knopfreihe unten (DISCORD, SPIELREGELN …)
+                var skin = TransitionSkin.Load();
+                if (skin != null && skin.frame != null)
+                {
+                    var frame = new GameObject("Frame", typeof(RectTransform), typeof(Image));
+                    var frameRect = (RectTransform)frame.transform;
+                    frameRect.SetParent(rect, false);
+                    frameRect.anchorMin = Vector2.zero; frameRect.anchorMax = Vector2.one;
+                    frameRect.offsetMin = Vector2.zero; frameRect.offsetMax = Vector2.zero;
+                    var frameImg = frame.GetComponent<Image>();
+                    frameImg.sprite = skin.frame;
+                    frameImg.type = Image.Type.Sliced;
+                    frameImg.color = new Color32(0xC8, 0xA4, 0x5C, 0xB4);
+                    frameImg.raycastTarget = false;
+                }
+
+                var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+                var labelRect = (RectTransform)label.transform;
+                labelRect.SetParent(rect, false);
+                labelRect.anchorMin = Vector2.zero; labelRect.anchorMax = Vector2.one;
+                labelRect.offsetMin = Vector2.zero; labelRect.offsetMax = Vector2.zero;
+                var text = label.GetComponent<TextMeshProUGUI>();
+                text.text = Loc.T("FRIENDS");
+                if (playerRank != null) text.font = playerRank.font;
+                text.fontSize = 14f;
+                text.characterSpacing = 16f;
+                text.alignment = TextAlignmentOptions.Center;
+                text.color = new Color32(0xEB, 0xCE, 0x8A, 0xFF);
+                text.raycastTarget = false;
+
+                friendsBadge = new GameObject("Badge", typeof(RectTransform), typeof(Image));
+                var badgeRect = (RectTransform)friendsBadge.transform;
+                badgeRect.SetParent(rect, false);
+                badgeRect.anchorMin = badgeRect.anchorMax = new Vector2(1f, 1f);
+                badgeRect.pivot = new Vector2(0.5f, 0.5f);
+                badgeRect.anchoredPosition = new Vector2(-4f, -4f);
+                badgeRect.sizeDelta = new Vector2(10f, 10f);
+                friendsBadge.GetComponent<Image>().color = new Color32(0xE8, 0x69, 0x5E, 0xFF);
+                friendsBadge.SetActive(false);
+
+                friendsButton = go.GetComponent<Button>();
+                friendsButton.transition = Selectable.Transition.None;
+                friendsButton.onClick.AddListener(() => { SfxManager.Click(); FriendsPanel.Open(); });
+
+                // Einmal den Anfragen-Stand holen, damit der Punkt stimmt
+                if (NetworkManager.Instance != null && NetworkManager.Instance.IsConnected)
+                    NetworkManager.Instance.RequestFriends();
+            }
+            friendsButton.interactable = online;
         }
 
         private static string FormatDuration(long ms)
@@ -321,6 +403,7 @@ namespace Rouge.Tcg.UI
                     ? PlayerProfile.Rank.Seal.Label.ToUpperInvariant()
                     : Loc.T("OFFLINE — NO ACCOUNT");
             EnsurePlateButton(online);
+            EnsureFriendsButton(online);
             if (coinsText != null)
             {
                 if (displayedCoins < 0f) { displayedCoins = PlayerProfile.Coins; coinsText.text = FormatCoins(PlayerProfile.Coins); }

@@ -73,6 +73,29 @@ namespace Rouge.Tcg.Net
         public LiveGame[] liveGames;    // gerade laufende Server-Duelle (zum Zuschauen)
         public ShowcaseCard[] showcase; // profile_stats/set_showcase: die 3 Schaufenster-Karten
 
+        // Freunde & Herausforderungen
+        public string friendCode;    // friends: der eigene Code zum Weitergeben
+        public FriendEntry[] friends;// friends: die Liste
+        public string[] requests;    // friends: offene eingehende Anfragen (Namen)
+        public string kind;          // friend_event: request | sent | accepted
+
+        // Fremdes Profil (profile_view)
+        public bool online;          // ist der Spieler gerade verbunden?
+        public bool isFriend;
+        public int rankWins;
+        public int rankLosses;
+        public int rankBestStreak;
+        public string avatarId;      // ausgerüstete Kosmetik, Ids reichen dem Client
+        public string frameId;
+        public string titleId;
+
+        // Replays
+        public ReplayEntry[] replays; // replay_list / profile_view
+        public long replayId;         // replay_delete/replay_watch: welches
+        public string owner;          // replay_list: wessen Liste das ist
+        public string a;              // replay_start: Spieler A
+        public string b;              // replay_start: Spieler B
+
         // Server-autoritatives Duell
         public bool sduel;          // hello: Client beherrscht Server-Duelle
         public string op;           // sduel: state | request | events | log | waiting | end
@@ -173,6 +196,26 @@ namespace Rouge.Tcg.Net
     {
         public string n;
         public int f;
+    }
+
+    /// <summary>Ein Freund in der Liste (friends).</summary>
+    [Serializable]
+    public class FriendEntry
+    {
+        public string name;
+        public bool online;
+        public bool inDuel;
+    }
+
+    /// <summary>Ein gespeichertes Replay (replay_list / profile_view).</summary>
+    [Serializable]
+    public class ReplayEntry
+    {
+        public long replayId;
+        public string a;
+        public string b;
+        public string winner;   // "A" | "B"
+        public long endedAt;
     }
 
     // ================== SERVER-DUELL (Wire-Formate des DuelHost) ==================

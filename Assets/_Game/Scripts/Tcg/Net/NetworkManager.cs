@@ -331,6 +331,46 @@ namespace Rouge.Tcg.Net
         public void SendSetShowcase(ShowcaseCard[] cards) =>
             SendJson(new NetMessage { t = "set_showcase", showcase = cards ?? new ShowcaseCard[0] });
 
+        // ---- Freunde & Herausforderungen ----
+
+        /// <summary>Eigener Code, Freundesliste, offene Anfragen; Antwort: t == "friends".</summary>
+        public void RequestFriends() => SendJson(new NetMessage { t = "friends_get" });
+
+        /// <summary>Anfrage per Freundescode (Groß/klein und Bindestriche sind egal).</summary>
+        public void SendFriendAdd(string code) => SendJson(new NetMessage { t = "friend_add", code = code });
+
+        /// <summary>Anfrage per Name — für den Gegner nach einem Online-Match.</summary>
+        public void SendFriendRequest(string name) => SendJson(new NetMessage { t = "friend_request", name = name });
+
+        public void SendFriendAccept(string name) => SendJson(new NetMessage { t = "friend_accept", name = name });
+        public void SendFriendDecline(string name) => SendJson(new NetMessage { t = "friend_decline", name = name });
+        public void SendFriendRemove(string name) => SendJson(new NetMessage { t = "friend_remove", name = name });
+
+        /// <summary>Fordert einen Online-Freund heraus; er bekommt t == "challenge_incoming".</summary>
+        public void SendFriendChallenge(string name, int deckIndex) =>
+            SendJson(new NetMessage { t = "friend_challenge", name = name, deckIndex = deckIndex });
+
+        /// <summary>Nimmt eine Herausforderung an — danach kommt sduel_start wie beim Matchmaking.</summary>
+        public void SendChallengeAccept(string name, int deckIndex) =>
+            SendJson(new NetMessage { t = "challenge_accept", name = name, deckIndex = deckIndex });
+
+        public void SendChallengeDecline(string name) => SendJson(new NetMessage { t = "challenge_decline", name = name });
+        public void SendChallengeCancel() => SendJson(new NetMessage { t = "challenge_cancel" });
+
+        /// <summary>Öffentliches Profil eines anderen Spielers; Antwort: t == "profile_view".</summary>
+        public void RequestProfileView(string name) => SendJson(new NetMessage { t = "profile_view", name = name });
+
+        // ---- Replays ----
+
+        /// <summary>Speichert das letzte Online-Match in einen der 3 Slots; Antwort: replay_saved oder error.</summary>
+        public void SendReplaySave() => SendJson(new NetMessage { t = "replay_save" });
+
+        public void SendReplayDelete(long replayId) => SendJson(new NetMessage { t = "replay_delete", replayId = replayId });
+
+        /// <summary>Startet die Wiedergabe; Antwort: replay_start, danach sduel-Nachrichten wie beim Zuschauen.</summary>
+        public void SendReplayWatch(string ownerName, long replayId) =>
+            SendJson(new NetMessage { t = "replay_watch", name = ownerName, replayId = replayId });
+
         /// <summary>Meldet den ersten Sieg auf einer Turm-Ebene (Server prüft die Reihenfolge).</summary>
         public void SendTowerProgress(int floor) => SendJson(new NetMessage { t = "tower_progress", floor = floor });
 

@@ -422,3 +422,58 @@ Password too short (min. 4 characters).	密码太短（至少4个字符）。
 Your vault holds {0} cards and {1} deck.	你的秘库中有{0}张卡和{1}副卡组。
 Your vault holds {0} cards and {1} decks.	你的秘库中有{0}张卡和{1}副卡组。
 APPLY	应用
+
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	好友
+YOUR FRIEND CODE	你的好友码
+Code copied.	已复制好友码。
+ADD A FRIEND BY CODE	通过好友码添加好友
+FRIEND CODE…	好友码…
+ADD	添加
+REQUESTS	好友请求
+YOUR FRIENDS	你的好友
+NO FRIENDS YET — SHARE YOUR CODE!	还没有好友——分享你的好友码吧！
+IN A DUEL	决斗中
+DUEL	决斗
+PROFILE	资料
+ACCEPT	接受
+DECLINE	拒绝
+WAITING FOR {0}…	等待{0}…
+Request sent to {0}.	已向{0}发送好友请求。
+You are now friends with {0}!	你和{0}成为了好友！
+{0} sent you a friend request.	{0}向你发送了好友请求。
+{0} declined the duel.	{0}拒绝了决斗。
+{0} CHALLENGES YOU TO A DUEL	{0}向你发起决斗挑战
+Not connected.	未连接。
+ADD FRIEND	添加好友
+SAVE REPLAY	保存回放
+REPLAY SAVED	回放已保存
+REQUEST SENT	请求已发送
+FRIENDS NOW	已成为好友
+SLOTS FULL — SEE PROFILE	栏位已满——见个人资料
+ALREADY FRIENDS	已是好友
+REPLAY	回放
+WINNER	胜者
+ONLINE	在线
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	未连接——比赛记录需要服务器会话。
+NO MATCHES PLAYED YET.	还没有进行过比赛。
+No duelist with that code.	没有使用该好友码的决斗者。
+That is your own code.	这是你自己的好友码。
+You are already friends.	你们已经是好友了。
+Request already sent.	请求已发送过。
+Friend codes have 8 characters.	好友码为8个字符。
+That duelist does not exist.	该决斗者不存在。
+You can only challenge friends.	只能挑战好友。
+That duelist is offline.	该决斗者已离线。
+That duelist is in a duel right now.	该决斗者正在决斗中。
+That challenge is no longer open.	该挑战已失效。
+That request is no longer open.	该请求已失效。
+That duelist is no longer online.	该决斗者已不在线。
+That duelist has too many open requests.	该决斗者的待处理请求过多。
+Replay slots full — delete one in your profile.	回放栏位已满——请在个人资料中删除一个。
+No recent duel to save.	没有可保存的近期决斗。
+This duel is too long to save.	这场决斗太长，无法保存。
+Replay not found.	未找到回放。
+Replay is damaged.	回放已损坏。
+SHOWCASE	展示柜
+DUEL OVER	决斗结束

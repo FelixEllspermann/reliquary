@@ -11,13 +11,20 @@ namespace Rouge.Tcg.UI
 {
     /// <summary>
     /// Eigenständige Profil-Seite: Avatar samt Rahmen, Rang und Saison-Bilanz,
-    /// Gesamt-Statistiken (PvP/Solo), ein Karten-Schaufenster (bis zu 3 langsam
-    /// rotierende Karten mit Finish und dem eigenen Sleeve als Rückseite), die
-    /// letzten Spiele und laufende Duelle zum Zuschauen. Kosmetik/Titel bleiben
-    /// im bestehenden ProfilePanel — der CUSTOMIZE-Knopf öffnet es als Overlay.
+    /// Gesamt-Statistiken (PvP/Solo), ein Karten-Schaufenster (bis zu 3 Karten
+    /// mit Finish), gespeicherte Replays, die letzten Spiele und laufende
+    /// Duelle zum Zuschauen. Kosmetik/Titel bleiben im bestehenden
+    /// ProfilePanel — der CUSTOMIZE-Knopf öffnet es als Overlay.
+    ///
+    /// Dieselbe Szene zeigt auch FREMDE Profile: wer sie öffnet, setzt vorher
+    /// <see cref="ViewTarget"/> — die Seite lädt dann die öffentliche Fassung
+    /// (profile_view) und schaltet alles Bearbeitbare ab.
     /// </summary>
     public class ProfileController : MonoBehaviour
     {
+        /// <summary>Vor dem Szenenwechsel gesetzt: wessen Profil statt des eigenen. Wird beim Laden konsumiert.</summary>
+        public static string ViewTarget;
+
         [Header("Navigation")]
         [SerializeField] private Button menuButton;
         [SerializeField] private Button customizeButton;
@@ -55,6 +62,10 @@ namespace Rouge.Tcg.UI
         private readonly ShowcaseCard[] showcase = new ShowcaseCard[3];
         private RectTransform pickerOverlay;
 
+        // Fremdprofil: gesetzt, solange die Seite jemand anderen zeigt.
+        private string viewName;
+        private bool Viewing => !string.IsNullOrEmpty(viewName);
+
         private void Awake()
         {
             if (menuButton != null) menuButton.onClick.AddListener(() => SceneManager.LoadScene(mainMenuSceneName));
@@ -65,18 +76,27 @@ namespace Rouge.Tcg.UI
 
         private void OnEnable()
         {
+            // Ein gesetztes Ziel gilt genau für diese eine Szenenladung
+            viewName = ViewTarget;
+            ViewTarget = null;
+            if (Viewing && string.Equals(viewName, PlayerProfile.AccountName, StringComparison.OrdinalIgnoreCase))
+                viewName = null;   // das eigene Profil ist immer die volle Fassung
+            if (customizeButton != null) customizeButton.gameObject.SetActive(!Viewing);
+            if (Viewing) NeutraliseShowcaseCaption();
+
             FillPlayerPanel();
             ApplyCosmetics();
             BuildShowcase();
             var net = NetworkManager.Instance;
             if (net == null || !net.IsConnected)
             {
-                ShowEmpty("NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.");
+                ShowEmpty(Loc.T("NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION."));
                 return;
             }
             net.OnMessage += HandleMessage;
-            ShowEmpty("LOADING MATCH HISTORY...");
-            net.RequestProfileStats();
+            ShowEmpty(Loc.T("LOADING MATCH HISTORY..."));
+            if (Viewing) net.RequestProfileView(viewName);
+            else net.RequestProfileStats();
         }
 
         private void OnDisable()
@@ -87,6 +107,17 @@ namespace Rouge.Tcg.UI
 
         private void FillPlayerPanel()
         {
+            if (Viewing)
+            {
+                // Fremdes Profil: alles kommt mit der profile_view-Antwort;
+                // bis dahin nur der Name. Die Sammlung bleibt Privatsache.
+                if (playerName != null) playerName.text = viewName.ToUpperInvariant();
+                if (rankText != null) rankText.text = "";
+                if (seasonText != null) seasonText.text = "";
+                if (collectionText != null) collectionText.text = "";
+                if (totalsText != null) totalsText.text = "";
+                return;
+            }
             if (playerName != null)
                 playerName.text = string.IsNullOrEmpty(PlayerProfile.AccountName) ? "DUELIST" : PlayerProfile.AccountName.ToUpperInvariant();
             var rank = PlayerProfile.Rank;
@@ -108,10 +139,13 @@ namespace Rouge.Tcg.UI
             if (totalsText != null) totalsText.text = "";
         }
 
-        /// <summary>Avatar + Rahmen wie im Hauptmenü-Miniprofil, nur größer.</summary>
-        private void ApplyCosmetics()
+        /// <summary>Avatar + Rahmen wie im Hauptmenü-Miniprofil, nur größer.
+        /// Ohne Argumente die eigene Ausrüstung; für Fremdprofile kommen die Ids vom Server.</summary>
+        private void ApplyCosmetics(string avatarId = null, string frameId = null)
         {
             if (avatarCrest == null) return;
+            if (avatarId == null) avatarId = Viewing ? "" : Cosmetics.EquippedIn("avatar");
+            if (frameId == null) frameId = Viewing ? "" : Cosmetics.EquippedIn("avatarFrame");
             for (int i = avatarCrest.childCount - 1; i >= 0; i--)
             {
                 var child = avatarCrest.GetChild(i);
@@ -121,7 +155,7 @@ namespace Rouge.Tcg.UI
             if (crestImage != null) crestImage.enabled = true;
             float window = avatarCrest.rect.height > 0f ? avatarCrest.rect.height : 96f;
 
-            var avatarSprite = CosmeticArt.EquippedAvatar();
+            var avatarSprite = CosmeticArt.Avatar(avatarId);
             if (avatarSprite != null)
             {
                 var avatar = new GameObject("Avatar", typeof(RectTransform), typeof(Image));
@@ -134,7 +168,7 @@ namespace Rouge.Tcg.UI
                 img.raycastTarget = false;
             }
 
-            var frameSprite = CosmeticArt.EquippedFrame();
+            var frameSprite = CosmeticArt.Frame(frameId);
             if (frameSprite != null)
             {
                 var frame = new GameObject("AvatarFrame", typeof(RectTransform), typeof(Image));
@@ -145,7 +179,6 @@ namespace Rouge.Tcg.UI
                 img.sprite = frameSprite;
                 img.raycastTarget = false;
 
-                string frameId = Cosmetics.EquippedIn("avatarFrame");
                 if (CosmeticArt.IsPlaque(frameId))
                 {
                     // Bilderrahmen skalieren aufs Fenster; die eckige Platte
@@ -164,14 +197,13 @@ namespace Rouge.Tcg.UI
 
         // ================== SCHAUFENSTER ==================
 
-        /// <summary>Baut die 3 Slots neu: rotierende Karten oder leere Plätze.</summary>
+        /// <summary>Baut die 3 Slots neu: ruhig stehende Karten oder leere Plätze.</summary>
         private void BuildShowcase()
         {
             if (showcaseContainer == null) return;
             foreach (var slot in showcaseSlots) if (slot != null) Destroy(slot);
             showcaseSlots.Clear();
 
-            var backSprite = CosmeticArt.EquippedCardBack();
             const float slotWidth = 170f, slotHeight = 238f;
             float[] xs = { -186f, 0f, 186f };
 
@@ -190,37 +222,20 @@ namespace Rouge.Tcg.UI
                 var def = entry != null && catalog != null ? catalog.FindByName(entry.n) : null;
                 if (def != null)
                 {
-                    // Drehteller: Vorderseite = Karte mit Finish, Rückseite = eigenes Sleeve
-                    var spinner = new GameObject("Spinner", typeof(RectTransform));
-                    var spinnerRect = (RectTransform)spinner.transform;
-                    spinnerRect.SetParent(slotRect, false);
-                    spinnerRect.anchorMin = spinnerRect.anchorMax = new Vector2(0.5f, 0.5f);
-                    spinnerRect.sizeDelta = new Vector2(slotWidth, slotHeight);
-
-                    GameObject frontGo = null;
                     if (cardPrefab != null)
                     {
-                        var view = Instantiate(cardPrefab, spinnerRect);
+                        var view = Instantiate(cardPrefab, slotRect);
                         var viewRect = (RectTransform)view.transform;
                         viewRect.anchorMin = viewRect.anchorMax = new Vector2(0.5f, 0.5f);
                         viewRect.sizeDelta = new Vector2(slotWidth, slotHeight);
                         var instance = new CardInstance(def, null) { Finish = (CardFinish)Mathf.Clamp(entry.f, 0, 3) };
                         view.Show(instance, hideFace: false, upright: true);
-                        frontGo = view.gameObject;
                     }
-
-                    var back = new GameObject("Back", typeof(RectTransform), typeof(Image));
-                    var backRect = (RectTransform)back.transform;
-                    backRect.SetParent(spinnerRect, false);
-                    backRect.anchorMin = backRect.anchorMax = new Vector2(0.5f, 0.5f);
-                    backRect.sizeDelta = new Vector2(slotWidth, slotHeight);
-                    var backImg = back.GetComponent<Image>();
-                    if (backSprite != null) backImg.sprite = backSprite;
-                    else backImg.color = new Color32(0x2A, 0x1A, 0x0E, 0xFF);
-                    backImg.raycastTarget = false;
-
-                    var spin = spinner.AddComponent<ShowcaseSpin>();
-                    spin.Bind(frontGo, back, slotIndex * 120f);   // versetzt gestartet
+                }
+                else if (Viewing)
+                {
+                    // Fremde Leerplätze bleiben einfach leer — nichts zu wählen.
+                    continue;
                 }
                 else
                 {
@@ -244,7 +259,9 @@ namespace Rouge.Tcg.UI
                     plusText.raycastTarget = false;
                 }
 
-                // Der ganze Slot ist klickbar: Karte wählen oder austauschen
+                // Der ganze Slot ist klickbar: Karte wählen oder austauschen —
+                // aber nur im eigenen Profil, fremde Schaufenster sind Ansichtssache.
+                if (Viewing) continue;
                 var clickCatcher = slot.AddComponent<Image>();
                 clickCatcher.color = new Color(0f, 0f, 0f, 0.001f);
                 var button = slot.AddComponent<Button>();
@@ -370,7 +387,58 @@ namespace Rouge.Tcg.UI
 
         private void HandleMessage(NetMessage m)
         {
-            if (m == null || m.t != "profile_stats") return;
+            if (m == null) return;
+
+            // Wiedergabe-Start: der Server streamt gleich die Konserve —
+            // ab in die Duel-Szene, im Zuschauer-Modus wie beim Live-Watch.
+            if (m.t == "replay_start")
+            {
+                MatchContext.Clear();
+                MatchContext.IsServerMatch = true;
+                MatchContext.SpectateMode = true;
+                MatchContext.LocalName = m.a;
+                MatchContext.RemoteName = m.b;
+                MatchContext.LocalIsPlayerA = true;
+                SceneManager.LoadScene(duelSceneName);
+                return;
+            }
+
+            // Nach replay_delete schickt der Server die frische Liste
+            if (m.t == "replay_list" && !Viewing)
+            {
+                lastReplays = m.replays ?? Array.Empty<ReplayEntry>();
+                BuildList(lastLive, lastMatches, lastReplays);
+                return;
+            }
+
+            if (Viewing && m.t == "profile_view")
+            {
+                if (!string.Equals(m.name, viewName, StringComparison.OrdinalIgnoreCase)) return;
+                if (playerName != null) playerName.text = m.name.ToUpperInvariant();
+                if (rankText != null)
+                    rankText.text = $"{m.rankName.ToUpperInvariant()}  ·  TIER {m.rankTier}  ·  {m.rankRp} RP";
+                if (seasonText != null)
+                    seasonText.text = $"{m.rankWins} WINS · {m.rankLosses} LOSSES · BEST STREAK {m.rankBestStreak}"
+                        + (m.online ? $"\n<color=#7DDB6E>{Loc.T("ONLINE")}</color>" : "");
+                ApplyCosmetics(m.avatarId ?? "", m.frameId ?? "");
+                for (int i = 0; i < 3; i++)
+                    showcase[i] = m.showcase != null && i < m.showcase.Length ? m.showcase[i] : null;
+                BuildShowcase();
+                if (totalsText != null)
+                {
+                    int pvpRate = Winrate(m.pvpWins, m.pvpGames);
+                    int soloRate = Winrate(m.soloWins, m.soloGames);
+                    totalsText.text =
+                        $"PVP: {m.pvpWins}/{m.pvpGames} ({pvpRate}%)\nSOLO: {m.soloWins}/{m.soloGames} ({soloRate}%)";
+                }
+                lastLive = Array.Empty<LiveGame>();
+                lastMatches = m.matches ?? Array.Empty<ProfileMatch>();
+                lastReplays = m.replays ?? Array.Empty<ReplayEntry>();
+                BuildList(lastLive, lastMatches, lastReplays);
+                return;
+            }
+
+            if (Viewing || m.t != "profile_stats") return;
 
             for (int i = 0; i < 3; i++)
                 showcase[i] = m.showcase != null && i < m.showcase.Length ? m.showcase[i] : null;
@@ -383,20 +451,75 @@ namespace Rouge.Tcg.UI
                 totalsText.text =
                     $"PVP: {m.pvpWins}/{m.pvpGames} ({pvpRate}%)\nSOLO: {m.soloWins}/{m.soloGames} ({soloRate}%)";
             }
-            BuildList(m.liveGames ?? Array.Empty<LiveGame>(), m.matches ?? Array.Empty<ProfileMatch>());
+            lastLive = m.liveGames ?? Array.Empty<LiveGame>();
+            lastMatches = m.matches ?? Array.Empty<ProfileMatch>();
+            lastReplays = m.replays ?? Array.Empty<ReplayEntry>();
+            BuildList(lastLive, lastMatches, lastReplays);
         }
 
-        private void BuildList(LiveGame[] live, ProfileMatch[] matches)
+        // Für den Neuaufbau nach replay_delete gemerkt
+        private LiveGame[] lastLive = Array.Empty<LiveGame>();
+        private ProfileMatch[] lastMatches = Array.Empty<ProfileMatch>();
+        private ReplayEntry[] lastReplays = Array.Empty<ReplayEntry>();
+
+        private void BuildList(LiveGame[] live, ProfileMatch[] matches, ReplayEntry[] replays)
         {
             foreach (var row in rows) Destroy(row);
             rows.Clear();
 
-            if (live.Length == 0 && matches.Length == 0)
+            if (live.Length == 0 && matches.Length == 0 && replays.Length == 0)
             {
-                ShowEmpty("NO MATCHES PLAYED YET.");
+                ShowEmpty(Loc.T("NO MATCHES PLAYED YET."));
                 return;
             }
             if (emptyHint != null) emptyHint.gameObject.SetActive(false);
+
+            // Replays zuoberst: dafür ist man auf einem Profil meist hier.
+            foreach (var replay in replays)
+            {
+                if (liveRowTemplate == null || listContent == null) break;
+                var row = Instantiate(liveRowTemplate, listContent);
+                row.SetActive(true);
+                SetRowText(row, "ResultText", Loc.T("REPLAY"), liveColor);
+                var result = row.transform.Find("ResultText");
+                if (result != null)
+                {
+                    // Die Spalte ist für WIN/LOSS bemessen — REPLAY darf weder
+                    // umbrechen noch zu "REPL…" verkümmern.
+                    var text = result.GetComponent<TMP_Text>();
+                    if (text != null)
+                    {
+                        text.textWrappingMode = TextWrappingModes.NoWrap;
+                        text.overflowMode = TextOverflowModes.Overflow;
+                    }
+                }
+                // Sieger in die Info-Zeile: rechts sitzen zwei Knöpfe, dort ist kein
+                // Platz mehr für den Meta-Text der Vorlage.
+                SetRowText(row, "InfoText",
+                    $"{replay.a}  VS  {replay.b}   ·  {Loc.T("WINNER")}: {(replay.winner == "A" ? replay.a : replay.b).ToUpperInvariant()}", default);
+                SetRowText(row, "MetaText", "", default);
+                var watch = row.transform.Find("WatchButton");
+                if (watch != null)
+                {
+                    long id = replay.replayId;
+                    watch.GetComponent<Button>().onClick.AddListener(() => WatchReplay(id));
+                    // Im eigenen Profil gibt es daneben einen Löschen-Knopf
+                    if (!Viewing) AddDeleteButton(row, (RectTransform)watch, id);
+                    // Einzeilig mit Ellipsis in der Vorlagen-Breite — die endet
+                    // ohnehin vor den Knöpfen; ein Umbruch sähe zerrissen aus.
+                    var info = row.transform.Find("InfoText");
+                    if (info != null)
+                    {
+                        var infoText = info.GetComponent<TMP_Text>();
+                        if (infoText != null)
+                        {
+                            infoText.textWrappingMode = TextWrappingModes.NoWrap;
+                            infoText.overflowMode = TextOverflowModes.Ellipsis;
+                        }
+                    }
+                }
+                rows.Add(row);
+            }
 
             foreach (var game in live)
             {
@@ -441,6 +564,47 @@ namespace Rouge.Tcg.UI
             MatchContext.LocalIsPlayerA = true;
             net.SendSpectate(duelId);
             SceneManager.LoadScene(duelSceneName);
+        }
+
+        /// <summary>Fordert die Wiedergabe an; der Szenenwechsel folgt mit replay_start.</summary>
+        private void WatchReplay(long replayId)
+        {
+            var net = NetworkManager.Instance;
+            if (net == null || !net.IsConnected) return;
+            net.SendReplayWatch(Viewing ? viewName : PlayerProfile.AccountName, replayId);
+        }
+
+        /// <summary>Klont den WATCH-Knopf einer Replay-Zeile zu einem ✕ daneben.</summary>
+        private void AddDeleteButton(GameObject row, RectTransform watchRect, long replayId)
+        {
+            var del = Instantiate(watchRect.gameObject, watchRect.parent);
+            del.name = "DeleteButton";
+            var delRect = (RectTransform)del.transform;
+            delRect.anchoredPosition = watchRect.anchoredPosition + new Vector2(-(watchRect.sizeDelta.x + 8f), 0f);
+            // ASCII statt ✕: Sonderzeichen landen gern auf leeren Atlas-Glyphen
+            var label = del.GetComponentInChildren<TMP_Text>();
+            if (label != null) label.text = "X";
+            var button = del.GetComponent<Button>();
+            button.onClick = new Button.ButtonClickedEvent();   // Klon-Events gehören dem Original
+            button.onClick.AddListener(() =>
+            {
+                var net = NetworkManager.Instance;
+                if (net != null && net.IsConnected) net.SendReplayDelete(replayId);
+            });
+        }
+
+        /// <summary>
+        /// Die Vitrinen-Überschrift der Szene lädt zum Klicken ein — im fremden
+        /// Profil gibt es aber nichts zu wählen. Gefunden wird sie über ihren
+        /// (ggf. per Sweep übersetzten) Text, verdrahtet ist sie nirgends.
+        /// </summary>
+        private void NeutraliseShowcaseCaption()
+        {
+            const string caption = "SHOWCASE — CLICK A SLOT TO DISPLAY A CARD";
+            string translated = Loc.T(caption);
+            foreach (var text in FindObjectsByType<TMP_Text>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (text.text == caption || text.text == translated)
+                    text.text = Loc.T("SHOWCASE");
         }
 
         private void ShowEmpty(string message)

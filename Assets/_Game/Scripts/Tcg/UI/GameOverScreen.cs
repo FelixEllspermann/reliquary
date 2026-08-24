@@ -142,7 +142,10 @@ namespace Rouge.Tcg.UI
             Color bright = victory ? new Color32(0xF3, 0xDD, 0xA4, 0xFF) : new Color32(0xE0, 0x60, 0x3A, 0xFF);
             if (titleText != null)
             {
-                titleText.text = victory ? "VICTORY" : "DEFEAT";
+                // Zuschauer und Replays haben keine Seite — VICTORY/DEFEAT wäre
+                // die Perspektive von Spieler A und damit irreführend.
+                titleText.text = Rouge.Tcg.Net.MatchContext.SpectateMode
+                    ? "DUEL OVER" : victory ? "VICTORY" : "DEFEAT";
                 titleText.color = bright;
             }
             if (titleShimmer != null) titleShimmer.enabled = victory;
@@ -155,8 +158,14 @@ namespace Rouge.Tcg.UI
 
             bool online = Rouge.Tcg.Net.PlayerProfile.LoggedIn
                 && Rouge.Tcg.Net.NetworkManager.Instance != null && Rouge.Tcg.Net.NetworkManager.Instance.IsConnected;
+            bool spectating = Rouge.Tcg.Net.MatchContext.SpectateMode;
             string reward = null;
-            if (Rouge.Tcg.Net.MatchContext.IsServerMatch)
+            if (spectating)
+            {
+                // Zuschauer und Replays: kein "you", keine Coins — es war nicht ihr Duell.
+                reward = null;
+            }
+            else if (Rouge.Tcg.Net.MatchContext.IsServerMatch)
             {
                 // Server-Duell: die Belohnung hat der Server bereits autoritativ gutgeschrieben
                 reward = victory ? "+200 COINS SEALED INTO YOUR VAULT" : "+100 COINS FOR THE DUEL";
@@ -199,7 +208,9 @@ namespace Rouge.Tcg.UI
             if (rewardText != null && reward != null) rewardText.text = reward;
 
             if (subtitleText != null)
-                subtitleText.text = victory ? $"You defeated {opponent}." : $"{opponent} defeated you.";
+                subtitleText.text = spectating
+                    ? $"{(victory ? Rouge.Tcg.Net.MatchContext.LocalName : Rouge.Tcg.Net.MatchContext.RemoteName)} wins the duel."
+                    : victory ? $"You defeated {opponent}." : $"{opponent} defeated you.";
 
             // ---- 5: Der Continue-Knopf. Online gibt es genau einen Weg (weiter,
             // ggf. durch den Rank-Up, dann Menü); Solo behält "nochmal".
@@ -215,6 +226,11 @@ namespace Rouge.Tcg.UI
                     : draftReturn ? "BACK TO THE DRAFT"
                     : towerReturn ? "RETURN TO THE TOWER" : "DUEL AGAIN";
             if (deckEditorButton != null) deckEditorButton.gameObject.SetActive(!network);
+
+            // Online-Nachspiel: Gegner anfragen und das Match als Replay sichern —
+            // nur für Mitspieler, Zuschauer haben hier nichts zu speichern.
+            if (network && !Rouge.Tcg.Net.MatchContext.SpectateMode)
+                BuildOnlineExtras(opponent);
 
             if (panelGroup == null) yield break;
             panelGroup.gameObject.SetActive(true);
@@ -285,6 +301,83 @@ namespace Rouge.Tcg.UI
             Rouge.Tcg.Net.MatchContext.Clear();
             if (Rouge.Tcg.Net.NetworkManager.Instance != null)
                 Rouge.Tcg.Net.NetworkManager.Instance.SendLeave();
+        }
+
+        // ================== ONLINE-NACHSPIEL (Freund + Replay) ==================
+
+        private TMP_Text friendExtraLabel, replayExtraLabel;
+        private Button friendExtraButton, replayExtraButton;
+        private bool listeningNet;
+
+        /// <summary>Zwei Klone des Deck-Editor-Knopfs: ADD FRIEND und SAVE REPLAY.</summary>
+        private void BuildOnlineExtras(string opponent)
+        {
+            if (deckEditorButton == null || friendExtraButton != null) return;
+            var net = Rouge.Tcg.Net.NetworkManager.Instance;
+            if (net == null || !net.IsConnected) return;
+
+            Button Clone(string label, Vector2 shift, out TMP_Text labelOut)
+            {
+                var go = Instantiate(deckEditorButton.gameObject, deckEditorButton.transform.parent);
+                go.SetActive(true);
+                var rect = (RectTransform)go.transform;
+                rect.anchoredPosition = ((RectTransform)deckEditorButton.transform).anchoredPosition + shift;
+                var text = go.GetComponentInChildren<TMP_Text>();
+                labelOut = text;
+                if (text != null) text.text = label;
+                var button = go.GetComponent<Button>();
+                button.onClick = new Button.ButtonClickedEvent();   // Klon-Events gehören dem Original
+                return button;
+            }
+
+            // Symmetrisch um die Position des Deck-Editor-Knopfs, statt rechts hinauszuragen
+            float width = ((RectTransform)deckEditorButton.transform).sizeDelta.x;
+            friendExtraButton = Clone(Loc.T("ADD FRIEND"), new Vector2(-(width * 0.5f + 7f), 0f), out friendExtraLabel);
+            replayExtraButton = Clone(Loc.T("SAVE REPLAY"), new Vector2(width * 0.5f + 7f, 0f), out replayExtraLabel);
+
+            friendExtraButton.onClick.AddListener(() =>
+            {
+                net.SendFriendRequest(opponent);
+                friendExtraButton.interactable = false;
+            });
+            replayExtraButton.onClick.AddListener(() =>
+            {
+                net.SendReplaySave();
+                replayExtraButton.interactable = false;
+            });
+
+            net.OnMessage += HandleNet;
+            listeningNet = true;
+        }
+
+        /// <summary>Rückmeldungen des Servers in die Knopf-Beschriftungen spiegeln.</summary>
+        private void HandleNet(Rouge.Tcg.Net.NetMessage m)
+        {
+            if (m == null) return;
+            if (m.t == "replay_saved" && replayExtraLabel != null)
+                replayExtraLabel.text = Loc.T("REPLAY SAVED");
+            else if (m.t == "friend_event" && friendExtraLabel != null)
+            {
+                if (m.kind == "sent") friendExtraLabel.text = Loc.T("REQUEST SENT");
+                else if (m.kind == "accepted") friendExtraLabel.text = Loc.T("FRIENDS NOW");
+            }
+            else if (m.t == "error" && !string.IsNullOrEmpty(m.msg))
+            {
+                // Nur die beiden eigenen Fehlerbilder abfangen — fremde Fehler
+                // gehören nicht auf diese Knöpfe.
+                if (m.msg.Contains("Replay slots full") && replayExtraLabel != null)
+                    replayExtraLabel.text = Loc.T("SLOTS FULL — SEE PROFILE");
+                else if (m.msg.Contains("already friends") && friendExtraLabel != null)
+                    friendExtraLabel.text = Loc.T("ALREADY FRIENDS");
+                else if (m.msg.Contains("Request already sent") && friendExtraLabel != null)
+                    friendExtraLabel.text = Loc.T("REQUEST SENT");
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (listeningNet && Rouge.Tcg.Net.NetworkManager.Instance != null)
+                Rouge.Tcg.Net.NetworkManager.Instance.OnMessage -= HandleNet;
         }
     }
 }

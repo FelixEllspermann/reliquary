@@ -421,3 +421,58 @@ Password too short (min. 4 characters).	Mot de passe trop court (min. 4 caractè
 Your vault holds {0} cards and {1} deck.	Votre Crypte contient {0} cartes et {1} deck.
 Your vault holds {0} cards and {1} decks.	Votre Crypte contient {0} cartes et {1} decks.
 APPLY	APPLIQUER
+
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	AMIS
+YOUR FRIEND CODE	TON CODE AMI
+Code copied.	Code copié.
+ADD A FRIEND BY CODE	AJOUTER UN AMI PAR CODE
+FRIEND CODE…	CODE AMI…
+ADD	AJOUTER
+REQUESTS	DEMANDES
+YOUR FRIENDS	TES AMIS
+NO FRIENDS YET — SHARE YOUR CODE!	PAS ENCORE D'AMIS — PARTAGE TON CODE !
+IN A DUEL	EN DUEL
+DUEL	DUEL
+PROFILE	PROFIL
+ACCEPT	ACCEPTER
+DECLINE	REFUSER
+WAITING FOR {0}…	EN ATTENTE DE {0}…
+Request sent to {0}.	Demande envoyée à {0}.
+You are now friends with {0}!	Tu es maintenant ami avec {0} !
+{0} sent you a friend request.	{0} t'a envoyé une demande d'ami.
+{0} declined the duel.	{0} a refusé le duel.
+{0} CHALLENGES YOU TO A DUEL	{0} TE DÉFIE EN DUEL
+Not connected.	Pas de connexion.
+ADD FRIEND	AJOUTER EN AMI
+SAVE REPLAY	SAUVEGARDER LE REPLAY
+REPLAY SAVED	REPLAY SAUVEGARDÉ
+REQUEST SENT	DEMANDE ENVOYÉE
+FRIENDS NOW	MAINTENANT AMIS
+SLOTS FULL — SEE PROFILE	EMPLACEMENTS PLEINS — VOIR PROFIL
+ALREADY FRIENDS	DÉJÀ AMIS
+REPLAY	REPLAY
+WINNER	VAINQUEUR
+ONLINE	EN LIGNE
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	NON CONNECTÉ — L'HISTORIQUE NÉCESSITE UNE SESSION SERVEUR.
+NO MATCHES PLAYED YET.	AUCUN MATCH JOUÉ POUR L'INSTANT.
+No duelist with that code.	Aucun duelliste avec ce code.
+That is your own code.	C'est ton propre code.
+You are already friends.	Vous êtes déjà amis.
+Request already sent.	Demande déjà envoyée.
+Friend codes have 8 characters.	Les codes amis ont 8 caractères.
+That duelist does not exist.	Ce duelliste n'existe pas.
+You can only challenge friends.	Tu ne peux défier que des amis.
+That duelist is offline.	Ce duelliste est hors ligne.
+That duelist is in a duel right now.	Ce duelliste est en plein duel.
+That challenge is no longer open.	Ce défi n'est plus ouvert.
+That request is no longer open.	Cette demande n'est plus ouverte.
+That duelist is no longer online.	Ce duelliste n'est plus en ligne.
+That duelist has too many open requests.	Ce duelliste a trop de demandes ouvertes.
+Replay slots full — delete one in your profile.	Emplacements de replay pleins — supprime-en un dans ton profil.
+No recent duel to save.	Aucun duel récent à sauvegarder.
+This duel is too long to save.	Ce duel est trop long pour être sauvegardé.
+Replay not found.	Replay introuvable.
+Replay is damaged.	Le replay est endommagé.
+SHOWCASE	VITRINE
+DUEL OVER	DUEL TERMINÉ

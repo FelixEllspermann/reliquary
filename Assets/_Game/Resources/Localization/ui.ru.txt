@@ -421,3 +421,58 @@ Your vault holds {0} cards and {1} deck.	В вашем Хранилище {0} к
 Your vault holds {0} cards and {1} decks.	В вашем Хранилище {0} карт и {1} колод.
 APPLY	ПРИМЕНИТЬ
 SOLO — GEGEN DEN BOT	СОЛО — ПРОТИВ БОТА
+
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	ДРУЗЬЯ
+YOUR FRIEND CODE	ТВОЙ КОД ДРУГА
+Code copied.	Код скопирован.
+ADD A FRIEND BY CODE	ДОБАВИТЬ ДРУГА ПО КОДУ
+FRIEND CODE…	КОД ДРУГА…
+ADD	ДОБАВИТЬ
+REQUESTS	ЗАПРОСЫ
+YOUR FRIENDS	ТВОИ ДРУЗЬЯ
+NO FRIENDS YET — SHARE YOUR CODE!	ПОКА НЕТ ДРУЗЕЙ — ПОДЕЛИСЬ СВОИМ КОДОМ!
+IN A DUEL	В ДУЭЛИ
+DUEL	ДУЭЛЬ
+PROFILE	ПРОФИЛЬ
+ACCEPT	ПРИНЯТЬ
+DECLINE	ОТКЛОНИТЬ
+WAITING FOR {0}…	ОЖИДАНИЕ {0}…
+Request sent to {0}.	Запрос отправлен игроку {0}.
+You are now friends with {0}!	Теперь вы друзья с {0}!
+{0} sent you a friend request.	{0} отправил(а) тебе запрос в друзья.
+{0} declined the duel.	{0} отклонил(а) дуэль.
+{0} CHALLENGES YOU TO A DUEL	{0} ВЫЗЫВАЕТ ТЕБЯ НА ДУЭЛЬ
+Not connected.	Нет соединения.
+ADD FRIEND	ДОБАВИТЬ В ДРУЗЬЯ
+SAVE REPLAY	СОХРАНИТЬ ПОВТОР
+REPLAY SAVED	ПОВТОР СОХРАНЁН
+REQUEST SENT	ЗАПРОС ОТПРАВЛЕН
+FRIENDS NOW	ТЕПЕРЬ ДРУЗЬЯ
+SLOTS FULL — SEE PROFILE	СЛОТЫ ЗАПОЛНЕНЫ — СМ. ПРОФИЛЬ
+ALREADY FRIENDS	УЖЕ ДРУЗЬЯ
+REPLAY	ПОВТОР
+WINNER	ПОБЕДИТЕЛЬ
+ONLINE	В СЕТИ
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	НЕТ СОЕДИНЕНИЯ — ИСТОРИЯ МАТЧЕЙ ТРЕБУЕТ СЕАНСА С СЕРВЕРОМ.
+NO MATCHES PLAYED YET.	ПОКА НЕТ СЫГРАННЫХ МАТЧЕЙ.
+No duelist with that code.	Нет дуэлянта с таким кодом.
+That is your own code.	Это твой собственный код.
+You are already friends.	Вы уже друзья.
+Request already sent.	Запрос уже отправлен.
+Friend codes have 8 characters.	Код друга состоит из 8 символов.
+That duelist does not exist.	Такого дуэлянта не существует.
+You can only challenge friends.	Вызывать можно только друзей.
+That duelist is offline.	Этот дуэлянт не в сети.
+That duelist is in a duel right now.	Этот дуэлянт сейчас в дуэли.
+That challenge is no longer open.	Этот вызов уже не действителен.
+That request is no longer open.	Этот запрос уже не действителен.
+That duelist is no longer online.	Этот дуэлянт уже не в сети.
+That duelist has too many open requests.	У этого дуэлянта слишком много открытых запросов.
+Replay slots full — delete one in your profile.	Слоты повторов заполнены — удали один в профиле.
+No recent duel to save.	Нет недавней дуэли для сохранения.
+This duel is too long to save.	Эта дуэль слишком длинная для сохранения.
+Replay not found.	Повтор не найден.
+Replay is damaged.	Повтор повреждён.
+SHOWCASE	ВИТРИНА
+DUEL OVER	ДУЭЛЬ ОКОНЧЕНА
