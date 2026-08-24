@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Rouge.Tcg.Net;
@@ -97,6 +98,7 @@ namespace Rouge.Tcg.UI
                 NetworkManager.Instance.OnMessage += HandleMessage;
                 NetworkManager.Instance.OnDisconnected += HandleDisconnected;
             }
+            CompactTopBar();
             // Die Build-Nummer setzt jetzt VersionLabel am Textfeld selbst —
             // eine Stelle für alle Screens statt eine pro Controller.
             Refresh();
@@ -214,6 +216,112 @@ namespace Rouge.Tcg.UI
                 plateButton.onClick.AddListener(() => SceneManager.LoadScene("Profile"));
             }
             plateButton.interactable = online;
+        }
+
+        /// <summary>
+        /// Die Text-Knöpfe der Top-Bar (BANLIST, NEWS, FEEDBACK, LOG OUT, BEENDEN)
+        /// werden zu 44er-Icon-Quadraten wie der Settings-Knopf — die Szene bleibt
+        /// unangetastet, der Umbau passiert beim Start. Der bisherige (bereits
+        /// übersetzte) Beschriftungstext wandert in einen Hover-Hinweis.
+        /// </summary>
+        private void CompactTopBar()
+        {
+            var jobs = new (string name, string icon)[]
+            {
+                ("BanlistButton", "UI/IconBanlist"),
+                ("NewsButton", "UI/IconNews"),
+                ("FeedbackButton", "UI/IconFeedback"),
+                ("LogoutButton", "UI/IconLogout"),
+                ("QuitButton", "UI/IconQuit")
+            };
+            var all = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            RectTransform Find(string name)
+            {
+                foreach (var b in all)
+                    if (b.gameObject.name == name && b.transform.parent != null && b.transform.parent.name == "TopBar")
+                        return (RectTransform)b.transform;
+                return null;
+            }
+
+            var iconInk = new Color32(0xC9, 0x7A, 0x5C, 0xFF);   // wie das Zahnrad
+            foreach (var (name, iconPath) in jobs)
+            {
+                var rect = Find(name);
+                if (rect == null || rect.Find("Icon") != null) continue;
+                var label = rect.GetComponentInChildren<TMP_Text>(true);
+                string hint = label != null ? label.text : name;
+                if (label != null) label.gameObject.SetActive(false);
+
+                var sprite = Resources.Load<Sprite>(iconPath);
+                if (sprite != null)
+                {
+                    var iconGo = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+                    var iconRect = (RectTransform)iconGo.transform;
+                    iconRect.SetParent(rect, false);
+                    iconRect.anchorMin = iconRect.anchorMax = new Vector2(0.5f, 0.5f);
+                    iconRect.sizeDelta = new Vector2(24f, 24f);
+                    var img = iconGo.GetComponent<Image>();
+                    img.sprite = sprite;
+                    img.color = iconInk;
+                    img.preserveAspect = true;
+                    img.raycastTarget = false;
+                }
+                rect.sizeDelta = new Vector2(44f, 44f);
+                rect.gameObject.AddComponent<TopBarHint>().Setup(hint, playerRank != null ? playerRank.font : null);
+            }
+
+            // Reihe rechtsbündig neu auslegen — dieselbe Reihenfolge wie bisher,
+            // nur eben schmal. Der Settings-Knopf reiht sich unverändert ein.
+            string[] order = { "QuitButton", "LogoutButton", "SettingsButton", "FeedbackButton", "NewsButton", "BanlistButton" };
+            float x = -64f;
+            foreach (var name in order)
+            {
+                var rect = Find(name);
+                if (rect == null) continue;
+                rect.anchoredPosition = new Vector2(x, rect.anchoredPosition.y);
+                x -= rect.sizeDelta.x + 10f;
+            }
+        }
+
+        /// <summary>Hover-Hinweis unter einem Icon-Knopf: der alte Beschriftungstext.</summary>
+        private class TopBarHint : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+        {
+            private string text;
+            private TMP_FontAsset font;
+            private GameObject hint;
+
+            public void Setup(string hintText, TMP_FontAsset hintFont)
+            {
+                text = hintText;
+                font = hintFont;
+            }
+
+            public void OnPointerEnter(PointerEventData _)
+            {
+                if (hint == null)
+                {
+                    hint = new GameObject("~Hint", typeof(RectTransform), typeof(TextMeshProUGUI));
+                    var rect = (RectTransform)hint.transform;
+                    rect.SetParent(transform, false);
+                    rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0f);
+                    rect.pivot = new Vector2(0.5f, 1f);
+                    rect.anchoredPosition = new Vector2(0f, -6f);
+                    rect.sizeDelta = new Vector2(220f, 20f);
+                    var label = hint.GetComponent<TextMeshProUGUI>();
+                    label.text = text;
+                    if (font != null) label.font = font;
+                    label.fontSize = 11f;
+                    label.characterSpacing = 12f;
+                    label.alignment = TextAlignmentOptions.Center;
+                    label.color = new Color32(0xC9, 0x7A, 0x5C, 0xFF);
+                    label.raycastTarget = false;
+                    label.textWrappingMode = TextWrappingModes.NoWrap;
+                }
+                hint.SetActive(true);
+            }
+
+            public void OnPointerExit(PointerEventData _) { if (hint != null) hint.SetActive(false); }
+            private void OnDisable() { if (hint != null) hint.SetActive(false); }
         }
 
         private Button friendsButton;
