@@ -28,6 +28,7 @@ namespace Rouge.Tcg.UI
         public const string PrefKey = "rouge.language";
 
         private static TMP_FontAsset cjkFont;
+        private static TMP_FontAsset koreanFont;
         private static bool hooked;
 
         public static TMP_FontAsset CjkFont => cjkFont;
@@ -93,6 +94,7 @@ namespace Rouge.Tcg.UI
                 case "latam": return Loc.Spanish;   // … und Lateinamerika: eine Fassung
                 case "portuguese":              // Portugal …
                 case "brazilian": return Loc.Portuguese;   // … und Brasilien: eine Fassung
+                case "koreana": return Loc.Korean;   // so heißt Koreanisch bei Steam wirklich
                 case "": break;                 // kein Steam — das OS fragen
                 default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
             }
@@ -105,6 +107,7 @@ namespace Rouge.Tcg.UI
                 case SystemLanguage.French: return Loc.French;
                 case SystemLanguage.Spanish: return Loc.Spanish;
                 case SystemLanguage.Portuguese: return Loc.Portuguese;
+                case SystemLanguage.Korean: return Loc.Korean;
                 default: return Loc.English;
             }
         }
@@ -122,12 +125,14 @@ namespace Rouge.Tcg.UI
             }
 
             Loc.SetTables(LoadUiTable(language), LoadCardTable(language));
-            // Chinesisch und Russisch brauchen die Laufzeit-Schrift: CJK fehlt allen
-            // Projekt-Fonts, Kyrillisch fehlt Cinzel (Überschriften/Kartennamen).
-            // Deutsch und Französisch kommen ohne aus — lateinische Glyphen (Umlaute,
-            // Akzente, œ, « ») tragen die Dynamic-Fonts selbst.
+            // Chinesisch/Russisch und Koreanisch brauchen je ihre Laufzeit-Schrift:
+            // CJK fehlt allen Projekt-Fonts, Kyrillisch fehlt Cinzel, und Hangul
+            // trägt nicht einmal YaHei — dafür springt Malgun Gothic ein. Die
+            // lateinischen Sprachen kommen ohne aus (Umlaute, Akzente, œ, « »
+            // tragen die Dynamic-Fonts selbst).
+            RemoveFallback();
             if (language == Loc.ChineseSimplified || language == Loc.Russian) EnsureRuntimeFallback();
-            else RemoveFallback();
+            else if (language == Loc.Korean) EnsureKoreanFallback();
         }
 
         /// <summary>Sprache wechseln und die aktive Szene neu laden (Menüs bauen sich neu auf).</summary>
@@ -210,53 +215,95 @@ namespace Rouge.Tcg.UI
         {
             if (cjkFont == null)
             {
-                cjkFont = CreateCjkFontAsset();
+                cjkFont = CreateRuntimeFontAsset(CjkFontFiles, CjkFontFamilies, "CJK Dynamic (runtime)");
                 if (cjkFont == null) { Debug.LogWarning("Loc: keine CJK-Systemschrift gefunden — chinesischer Text zeigt Ersatzzeichen."); return; }
-                // Projekt-Erfahrung: Glyphen auf Atlas-Textur 2 werden leer gezeichnet —
-                // ein einzelner 4096er-Atlas reicht für tausende Zeichen pro Sitzung.
-                cjkFont.isMultiAtlasTexturesEnabled = false;
-                cjkFont.name = "CJK Dynamic (runtime)";
             }
+            AddFallback(cjkFont);
+        }
+
+        /// <summary>
+        /// Hangul trägt weder eine Projekt-Schrift noch YaHei — Koreanisch bekommt
+        /// seinen eigenen Laufzeit-Fallback aus Malgun Gothic. Public aus demselben
+        /// Grund wie EnsureRuntimeFallback: die Sprachzeile zeigt „한국어“ auch,
+        /// wenn gerade eine andere Sprache aktiv ist.
+        /// </summary>
+        public static void EnsureKoreanFallback()
+        {
+            if (koreanFont == null)
+            {
+                koreanFont = CreateRuntimeFontAsset(KoreanFontFiles, KoreanFontFamilies, "Hangul Dynamic (runtime)");
+                if (koreanFont == null) { Debug.LogWarning("Loc: keine Hangul-Systemschrift gefunden — koreanischer Text zeigt Ersatzzeichen."); return; }
+            }
+            AddFallback(koreanFont);
+        }
+
+        private static void AddFallback(TMP_FontAsset font)
+        {
             var fallbacks = TMP_Settings.fallbackFontAssets;
-            if (fallbacks != null && !fallbacks.Contains(cjkFont)) fallbacks.Add(cjkFont);
+            if (fallbacks != null && !fallbacks.Contains(font)) fallbacks.Add(font);
         }
 
         private static void RemoveFallback()
         {
             var fallbacks = TMP_Settings.fallbackFontAssets;
-            if (cjkFont != null && fallbacks != null) fallbacks.Remove(cjkFont);
+            if (fallbacks == null) return;
+            if (cjkFont != null) fallbacks.Remove(cjkFont);
+            if (koreanFont != null) fallbacks.Remove(koreanFont);
         }
 
+        // Dateinamen ohne Pfad werden unter %WINDIR%\Fonts gesucht; absolute Pfade
+        // (macOS/Linux) bleiben wie sie sind. NotoSansCJK deckt beide Fälle ab.
+        private static readonly string[] CjkFontFiles =
+        {
+            "msyh.ttc",     // Microsoft YaHei (Win 10/11)
+            "msyh.ttf",     // ältere Windows-Versionen
+            "simhei.ttf",
+            "simsun.ttc",
+            "Deng.ttf",     // DengXian
+            "/System/Library/Fonts/PingFang.ttc",                       // macOS
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   // Linux
+        };
+        private static readonly string[] CjkFontFamilies = { "Microsoft YaHei", "Microsoft YaHei UI", "SimSun" };
+
+        private static readonly string[] KoreanFontFiles =
+        {
+            "malgun.ttf",   // Malgun Gothic (Windows-Standard für Koreanisch)
+            "gulim.ttc",
+            "batang.ttc",
+            "/System/Library/Fonts/AppleSDGothicNeo.ttc",               // macOS
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   // Linux
+        };
+        private static readonly string[] KoreanFontFamilies = { "Malgun Gothic", "Gulim", "Batang" };
+
         /// <summary>
-        /// CJK-Schrift direkt aus der Font-DATEI des Systems bauen (die Font-Objekt-
-        /// Überladung kann die Face-Daten von OS-Fonts nicht laden). YaHei liegt auf
-        /// jedem Windows seit Vista; danach ein paar Ausweichkandidaten.
+        /// Laufzeit-Schrift direkt aus der Font-DATEI des Systems bauen (die
+        /// Font-Objekt-Überladung kann die Face-Daten von OS-Fonts nicht laden).
+        /// Projekt-Erfahrung: Glyphen auf Atlas-Textur 2 werden leer gezeichnet —
+        /// deshalb EIN dynamischer 4096er-Atlas, Multi-Atlas AUS; der reicht für
+        /// tausende Zeichen pro Sitzung.
         /// </summary>
-        private static TMP_FontAsset CreateCjkFontAsset()
+        private static TMP_FontAsset CreateRuntimeFontAsset(string[] files, string[] families, string assetName)
         {
             string windir = System.Environment.GetEnvironmentVariable("WINDIR") ?? @"C:\Windows";
-            string[] candidates =
+            foreach (var file in files)
             {
-                windir + @"\Fonts\msyh.ttc",     // Microsoft YaHei (Win 10/11)
-                windir + @"\Fonts\msyh.ttf",     // ältere Windows-Versionen
-                windir + @"\Fonts\simhei.ttf",
-                windir + @"\Fonts\simsun.ttc",
-                windir + @"\Fonts\Deng.ttf",     // DengXian
-                "/System/Library/Fonts/PingFang.ttc",                       // macOS
-                "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   // Linux
-            };
-            foreach (var path in candidates)
-            {
+                string path = file.IndexOf('/') >= 0 ? file : windir + @"\Fonts\" + file;
                 if (!System.IO.File.Exists(path)) continue;
                 var asset = TMP_FontAsset.CreateFontAsset(path, 0, 48, 6,
                     UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA, 4096, 4096);
-                if (asset != null) return asset;
+                if (asset == null) continue;
+                asset.isMultiAtlasTexturesEnabled = false;
+                asset.name = assetName;
+                return asset;
             }
             // Letzter Versuch über den Familiennamen (kleinerer Standard-Atlas)
-            foreach (var family in new[] { "Microsoft YaHei", "Microsoft YaHei UI", "SimSun" })
+            foreach (var family in families)
             {
                 var asset = TMP_FontAsset.CreateFontAsset(family, "Regular", 48);
-                if (asset != null) return asset;
+                if (asset == null) continue;
+                asset.isMultiAtlasTexturesEnabled = false;
+                asset.name = assetName;
+                return asset;
             }
             return null;
         }

@@ -1,0 +1,479 @@
+# RELIQUARY — UI-Übersetzung Koreanisch
+# Format: englischer Text <TAB> Übersetzung. '#' = Kommentar.
+# Werte werden NICHT getrimmt — Leerzeichen in Bausteinen sind Absicht.
+# Stil: Kartentexte im YGO-KR-Ton (자신/상대, ~한다), UI-Meldungen höflich (~합니다).
+# Phasennamen bleiben englisch (Standby Phase, Main Phase, End Phase, Battle Phase).
+# ---------- Kartenrahmen / Kartentypen ----------
+MONSTER	몬스터
+SPELL	마법
+ARTIFACT	아티팩트
+RELIQUARY	성유물
+PLAYER	플레이어
+HERO	영웅
+QUICK	속공
+NORMAL	일반
+QUICK SPELL	속공 마법
+Quick Spell	속공 마법
+Spell Card	마법 카드
+Artifact	아티팩트
+Monster	몬스터
+Player	플레이어
+Field	필드
+FIELD	필드
+LIEN	담보
+SUMMON:	소환:
+PASSIVE:	지속:
+INFUSED	INFUSED
+OR INFUSED	또는 INFUSED
+INFUSED UPGRADE	INFUSED 강화
+RELIQUARY SUMMON	성유물 소환
+SPECIAL SUMMON	특수 소환
+PASSIVE	지속
+{0} MANA	마나 {0}
+NO MANA	마나 없음
+No effect.	효과 없음.
+— or, instead —	— 또는, 그 대신 —
+Equipped:	장착 시:
+You cannot see this card.	이 카드는 볼 수 없다.
+Face-down card	뒷면 표시 카드
+{0} • Level {1} • ATK {2} / DEF {3}	{0} • 레벨 {1} • ATK {2} / DEF {3}
+Player Card • {0} starting LP	플레이어 카드 • 시작 LP {0}
+# ---------- Attribute ----------
+FIRE	화염
+WATER	물
+LIGHT	빛
+DARK	어둠
+EARTH	땅
+WIND	바람
+Fire	화염
+Water	물
+Light	빛
+Dark	어둠
+Earth	땅
+Wind	바람
+# ---------- Monster-Typen ----------
+DRAGON	드래곤
+HUMAN	인간
+ANIMAL	동물
+BEAST	야수
+MECHA	기계
+DEMON	악마
+ANGEL	천사
+MYTH	신화
+Dragon	드래곤
+Human	인간
+Animal	동물
+Beast	야수
+Mecha	기계
+Demon	악마
+Angel	천사
+Myth	신화
+# ---------- Seltenheiten ----------
+COMMON	커먼
+UNCOMMON	언커먼
+RARE	레어
+LEGENDARY	레전더리
+Common	커먼
+Uncommon	언커먼
+Rare	레어
+Legendary	레전더리
+# ---------- Trigger-Zeilen (Inspect) ----------
+Activate during your Main Phase	자신의 Main Phase에 발동
+Response — activate any time	리스폰스 — 언제든지 발동 가능
+On play	플레이 시
+When this card is summoned	이 카드가 소환되었을 때
+When this card is destroyed	이 카드가 파괴되었을 때
+When your opponent summons	상대가 소환했을 때
+During your Standby Phase	자신의 Standby Phase 동안
+During your End Phase	자신의 End Phase 동안
+When this card is Normal Summoned	이 카드가 일반 소환되었을 때
+Activate from your hand during your Main Phase	자신의 Main Phase에 패에서 발동
+Activate from your Graveyard during your Main Phase	자신의 Main Phase에 묘지에서 발동
+Response from your hand — activate any time	패에서의 리스폰스 — 언제든지 발동 가능
+FLIP — when this card is turned face-up	리버스 — 이 카드가 앞면이 되었을 때
+ · only if Special Summoned	 · 특수 소환된 경우에만
+ · once per turn	 · 1턴에 1번
+Standalone effect	독립 효과
+ · standalone	 · 독립
+Only one effect from this group each turn	이 그룹의 효과는 1턴에 1개만
+ · only one from this group per turn	 · 이 그룹에서 1턴에 1개만
+# ---------- Passiv-Vorlagen ----------
+face-down 	뒷면 표시 
+other 	다른 
+ Level {0}	 레벨 {0}
+{0} ATK and {1} DEF	ATK {0} / DEF {1}
+{0} ATK	ATK {0}
+{0} DEF	DEF {0}
+Your {0}{1}{2}{3}{4} monsters gain {5}.	자신의 {0}{1}{2}{4}{3} 몬스터는 {5} 얻는다.
+This card gains {0} ATK for each of {1}.	이 카드는 {1} 1장당 ATK {0} 얻는다.
+This card gains {0} DEF for each of {1}.	이 카드는 {1} 1장당 DEF {0} 얻는다.
+This card cannot attack.	이 카드는 공격할 수 없다.
+This card cannot attack during the turn it is Summoned.	이 카드는 소환된 턴에는 공격할 수 없다.
+This card cannot attack directly during the turn it is Summoned.	이 카드는 소환된 턴에는 직접 공격할 수 없다.
+Your opponent's attacks must target this card.	상대의 공격은 이 카드를 대상으로 해야 한다.
+While you control {0}+ Artifacts, this card cannot be destroyed by battle.	자신이 아티팩트를 {0}장 이상 컨트롤하는 동안, 이 카드는 전투로는 파괴되지 않는다.
+Counts as {0} tributes for a Reliquary Summon.	성유물 소환 시 제물 {0}개로 취급한다.
+Your other \"{0}\" cards cannot be targeted by your opponent's effects.	자신의 다른 «{0}» 카드는 상대 효과의 대상이 되지 않는다.
+Can attack twice each Battle Phase while you control another face-up {0} monster.	자신이 다른 앞면 표시 {0} 몬스터를 컨트롤하는 동안, Battle Phase마다 2번 공격할 수 있다.
+You cannot Summon or Set this card while you control {0} \"{1}\" monsters.	자신이 «{1}» 몬스터를 {0}장 컨트롤하는 동안, 이 카드는 소환도 세트도 할 수 없다.
+Every time you mill 1 or more cards: deal {0} damage to your opponent.	자신이 카드를 1장 이상 갈 때마다: 상대에게 {0} 데미지를 준다.
+While this card is on the field, neither player can Special Summon Reliquaries.	이 카드가 필드에 있는 동안, 양쪽 플레이어는 성유물을 특수 소환할 수 없다.
+This card cannot be destroyed by battle.	이 카드는 전투로는 파괴되지 않는다.
+This card cannot be targeted by your opponent's effects.	이 카드는 상대 효과의 대상이 되지 않는다.
+Neither player takes battle damage from battles involving this card.	이 카드가 관련된 전투로는 어느 플레이어도 전투 데미지를 받지 않는다.
+Your opponent takes all battle damage you would take instead.	자신이 받을 전투 데미지는 대신 상대가 받는다.
+During each End Phase: put a Death Counter on this card. With {0} Death Counters, it is sent to the Graveyard.	각 End Phase마다: 이 카드에 죽음 카운터를 1개 놓는다. 죽음 카운터가 {0}개가 되면 이 카드는 묘지로 보내진다.
+Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {0} more.	상대가 덱에서 묘지로 카드를 보낼 때마다 (이 효과 제외): 상대는 {0}장 더 보낸다.
+While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.	이 카드가 필드에 있는 동안, 자신의 카드는 상대의 효과나 공격의 대상이 되지 않는다.
+During each End Phase: pay {0} LP or destroy this card.	각 End Phase마다: LP를 {0} 지불하거나 이 카드를 파괴한다.
+While this card is face-up on the field, your opponent must Set Spells before activating them.	이 카드가 필드에 앞면 표시로 있는 동안, 상대는 마법을 발동하기 전에 먼저 세트해야 한다.
+(The aura above applies only to monsters adjacent to this card.)	(위의 오라는 이 카드에 인접한 몬스터에게만 적용된다.)
+(The aura above applies only to your monsters with no adjacent monster.)	(위의 오라는 인접 몬스터가 없는 자신의 몬스터에게만 적용된다.)
+Your monsters with an adjacent monster lose {0} ATK.	인접 몬스터가 있는 자신의 몬스터는 ATK가 {0} 내려간다.
+The monster facing this card loses {0} ATK.	이 카드와 마주 보는 몬스터는 ATK가 {0} 내려간다.
+Monsters adjacent to this card cannot be destroyed by card effects.	이 카드에 인접한 몬스터는 카드 효과로는 파괴되지 않는다.
+Monsters adjacent to this card cannot be destroyed by battle.	이 카드에 인접한 몬스터는 전투로는 파괴되지 않는다.
+When this card is destroyed: the monsters adjacent to it permanently lose {0} ATK and DEF.	이 카드가 파괴되었을 때: 인접해 있던 몬스터는 ATK와 DEF가 영구히 {0} 내려간다.
+This card cannot be destroyed by card effects.	이 카드는 카드 효과로는 파괴되지 않는다.
+This card cannot be Tributed.	이 카드는 제물로 할 수 없다.
+This card cannot change its battle position.	이 카드는 표시 형식을 변경할 수 없다.
+If this card changed its battle position this turn, it cannot attack.	이 카드가 이번 턴에 표시 형식을 변경했다면 공격할 수 없다.
+Cannot be Normal Summoned or Set.	일반 소환/세트할 수 없다.
+During each of its controller's Standby Phases: its controller loses {0} LP.	컨트롤러의 각 Standby Phase마다: 컨트롤러는 LP를 {0} 잃는다.
+While this card is on the field, you cannot Special Summon other monsters.	이 카드가 필드에 있는 동안, 자신은 다른 몬스터를 특수 소환할 수 없다.
+While you control no other monsters, this card cannot be destroyed by battle or by card effects.	자신이 다른 몬스터를 컨트롤하지 않는 동안, 이 카드는 전투로도 카드 효과로도 파괴되지 않는다.
+While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.	패가 1장 이하인 동안, 이 카드는 대상이 되지 않고 카드 효과로도 파괴되지 않는다.
+Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.	관통: 이 카드가 DEF가 더 낮은 수비 표시 몬스터를 공격할 때, 그 차이만큼 전투 데미지를 준다.
+The equipped monster inflicts piercing battle damage.	장착 몬스터는 관통 전투 데미지를 준다.
+If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.	장착 몬스터가 수비 표시 몬스터를 공격하고 파괴하지 못했다면, 이 카드를 파괴한다.
+This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.	이 카드는 상대가 몬스터를 컨트롤하고 있어도 직접 공격할 수 있다. 그 직접 공격의 전투 데미지는 절반이 된다.
+This card cannot attack directly.	이 카드는 직접 공격할 수 없다.
+Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.	양쪽 플레이어의 마법 코스트가 마나 1 증가한다. 자신의 End Phase에, 이번 턴에 마법을 발동했다면 이 카드를 파괴한다.
+Each player may declare only one attack per Battle Phase. Attacking monsters gain {0} ATK during the battle.	각 플레이어는 Battle Phase마다 공격을 1번만 선언할 수 있다. 공격하는 몬스터는 그 전투 동안 ATK {0} 얻는다.
+During your Standby Phase: gain {0} additional Mana this turn.	자신의 Standby Phase 동안: 이번 턴에 추가로 마나 {0} 얻는다.
+During your End Phase, if you hold more than {0} cards, destroy this card.	자신의 End Phase에 패가 {0}장을 넘으면 이 카드를 파괴한다.
+When your LP are {0} or less, this card is destroyed.	자신의 LP가 {0} 이하가 되면 이 카드는 파괴된다.
+LP costs you pay are reduced to 0.	자신이 지불하는 LP 코스트는 0이 된다.
+Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.	1턴에 1번, 코인을 던질 때 2번 던져서 어느 결과를 적용할지 고른다. 둘 다 뒷면이면 이 카드를 파괴한다.
+While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.	자신의 LP가 상대보다 낮은 동안, 자신의 코인 토스에서 나온 뒷면은 앞면으로 취급한다.
+Monsters with a Lien lose {0} ATK.	담보가 붙은 몬스터는 ATK가 {0} 내려간다.
+Monsters you control but do not own gain {0} ATK.	자신이 컨트롤하지만 소유하지 않은 몬스터는 ATK {0} 얻는다.
+# ---------- Zähl-Namen ----------
+your Artifacts on the field	필드의 자신 아티팩트
+the Artifacts in your Graveyard	자신 묘지의 아티팩트
+your face-down monsters	자신의 뒷면 표시 몬스터
+your banished monsters	제외된 자신 몬스터
+the cards in your Graveyard	자신 묘지의 카드
+its equipped Artifacts	이 카드에 장착된 아티팩트
+your opponent's face-down monsters	상대의 뒷면 표시 몬스터
+the Illusion Tokens your opponent controls	상대가 컨트롤하는 환영 토큰
+the cards in your hand	자신 패의 카드
+the Spells in your Graveyard	자신 묘지의 마법
+your monsters on the field	필드의 자신 몬스터
+# ---------- Selbst-Spezialbeschwörung ----------
+you control	자신이
+your opponent controls	상대가
+{0} {1}+ \"{2}\" monsters	{0} «{2}» 몬스터를 {1}장 이상 컨트롤하는 동안
+{0} a \"{1}\" monster	{0} «{1}» 몬스터를 컨트롤하는 동안
+{0} a {1} monster	{0} {1} 몬스터를 컨트롤하는 동안
+there is a face-down monster on the field	필드에 뒷면 표시 몬스터가 있는 동안
+you control an Artifact	자신이 아티팩트를 컨트롤하는 동안
+your opponent controls {0}+ monsters	상대가 몬스터를 {0}장 이상 컨트롤하는 동안
+you milled this or last turn	이번 턴이나 지난 턴에 카드를 간 경우
+you have {0}+ cards in your Graveyard	자신 묘지에 카드가 {0}장 이상 있는 동안
+you have {0}+ \"{1}\" cards in your Graveyard	자신 묘지에 «{1}» 카드가 {0}장 이상 있는 동안
+you control no monsters	자신이 몬스터를 컨트롤하지 않는 동안
+you control {0}+ monsters	자신이 몬스터를 {0}장 이상 컨트롤하는 동안
+your LP are lower than your opponent's	자신의 LP가 상대보다 낮은 동안
+you have {0} or fewer other cards in your hand	패의 다른 카드가 {0}장 이하인 동안
+you have {0}+ other cards in your hand	패에 다른 카드가 {0}장 이상 있는 동안
+your opponent controls a Defense Position monster	상대가 수비 표시 몬스터를 컨트롤하는 동안
+a monster with a Lien is on the field	담보가 붙은 몬스터가 필드에 있는 동안
+ in Defense Position	 수비 표시로
+ by paying {0} LP	 LP를 {0} 지불하고
+You can Special Summon this card from your hand{0}{1} (once per turn).	이 카드를 패에서{0}{1} 특수 소환할 수 있다 (1턴에 1번).
+While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).	{0}: 이 카드를 패에서{1}{2} 특수 소환할 수 있다 (1턴에 1번).
+ and 	 그리고 
+# ---------- Hauptmenü & Fenster ----------
+NEWS	뉴스
+BANLIST	밴리스트
+FEEDBACK	피드백
+SETTINGS	설정
+DISCORD	디스코드
+HOW TO PLAY	게임 방법
+GLOSSARY	용어집
+CLOSE	닫기
+NEW CARDS	신규 카드
+BACK	뒤로
+DONE	완료
+CANCEL	취소
+Cancel	취소
+SEND	보내기
+PLAY	플레이
+SOLO	솔로
+DECKS	덱
+SHOP	상점
+STATISTICS	통계
+MAIN MENU	메인 메뉴
+PATCH NOTES · WHAT CHANGED	패치 노트 · 변경 사항
+CARD LIMITS · ENFORCED WHEN A DECK IS SAVED	카드 제한 · 덱 저장 시 적용
+THE RULES OF THE VAULT	금고의 규칙
+THE RULES OF THE VAULT · SCROLL TO READ	금고의 규칙 · 스크롤해서 읽기
+EVERY TERM OF THE GAME · A TO Z	게임의 모든 용어 · 가나다순
+MUSIC	음악
+SOUND	효과음
+SCREEN SHAKE	화면 흔들림
+LANGUAGE	언어
+OFF	끔
+More options will be added here over time.	옵션은 시간을 두고 계속 추가됩니다.
+DAILY SEAL	일일 봉인
+CLAIM	받기
+CLAIMED	받음
+CHALLENGES	도전
+WORKSHOP	공방
+Cosmetics	꾸미기
+CUSTOMIZE APPEARANCE & TITLE	외형과 칭호 꾸미기
+Player Profile	플레이어 프로필
+LIFETIME RECORD	통산 전적
+Recent Matches	최근 대전
+LOADING MATCH HISTORY...	대전 기록 불러오는 중...
+LOADING STATISTICS...	통계 불러오는 중...
+Card Performance	카드 성적
+Card Details	카드 상세
+DUELIST OF THE VAULT	금고의 듀얼리스트
+# ---------- Play / Lobby ----------
+ONLINE DUEL	온라인 듀얼
+Online Duel	온라인 듀얼
+QUICK MATCH	빠른 대전
+PRIVATE LOBBY	비공개 방
+CREATE LOBBY	방 만들기
+JOIN DUEL	듀얼 참가
+JOIN WITH A CODE	코드로 참가
+LOBBY CODE	방 코드
+WATCH	관전
+RANKED DUELS	랭크 듀얼
+RANKED QUEUE	랭크 대기열
+Searching for a duelist	듀얼리스트를 찾는 중
+Waiting for your opponent to join…	상대의 입장을 기다리는 중…
+Choose your deck	덱을 선택하세요
+You cannot swap decks mid-duel — choose well.	듀얼 중에는 덱을 바꿀 수 없습니다 — 신중하게 고르세요.
+SOLO TRIAL	솔로 시험
+TRIAL OF THE WARDEN	감시자의 시험
+TRIAL BRIEFING	시험 안내
+TRIAL REWARD	시험 보상
+DIFFICULTY	난이도
+FULL DECK · REAL AI	풀 덱 · 진짜 AI
+PLAYS OPENLY · NO TRAPS	공개 플레이 · 함정 없음
+START DUEL!	듀얼 시작!
+THE TOWER	탑
+The Tower rises — its keepers await	탑이 솟아 있다 — 수호자들이 기다린다
+Every trial pays out — win or learn.	모든 시험에는 보상이 있다 — 이기거나 배우거나.
+# ---------- Duell-HUD ----------
+END TURN	턴 종료
+BATTLE	배틀
+END BATTLE	배틀 종료
+SURRENDER	항복
+DUEL LOG	듀얼 로그
+INSPECT	상세 보기
+SELECT A CARD	카드를 선택
+OPPONENT	상대
+YOU	나
+PLAYER CARD	플레이어 카드
+LIFE	라이프
+DECK	덱
+HAND	패
+GRAVE	묘지
+BANISH	제외
+GRAVEYARD	묘지
+BANISHED	제외
+EXTRA DECK	엑스트라 덱
+DRAW	드로우
+STDBY	스탠바이
+MAIN	메인
+END	엔드
+MAIN PHASE	MAIN PHASE
+YOUR MAIN PHASE	내 MAIN PHASE
+Your Main Phase — click a card or drag it onto a zone.	내 Main Phase — 카드를 클릭하거나 존으로 드래그하세요.
+Battle Phase — click a monster that can attack.	Battle Phase — 공격할 수 있는 몬스터를 클릭하세요.
+REACTIONS · ON	리액션 · 켬
+REACTIONS · OFF	리액션 · 끔
+VICTORY	승리
+DUEL AGAIN	다시 듀얼
+QUIT	나가기
+ACTIVATION	발동
+THE DUEL IS SEALED	듀얼이 봉인되었다
+# ---------- Deck Builder ----------
+DECK BUILDER	덱 공방
+DECK NAME	덱 이름
+Deck name	덱 이름
+SAVE DECK	덱 저장
+SAVED ✓	저장됨 ✓
+DELETE	삭제
+COPY	복사
+DECK BALANCE	덱 밸런스
+CARD TEXT	카드 텍스트
+Hover over a card to read its text.	카드에 커서를 올리면 텍스트를 읽을 수 있습니다.
+Search name, attribute, type…	이름, 속성, 타입 검색…
+ALL	전체
+OWNED	보유
+MISSING	미보유
+NEW	신규
+TYPE	타입
+NAME	이름
+LEVEL	레벨
+ATK	ATK
+DEF	DEF
+RARITY	레어도
+ASC	오름
+DESC	내림
+ALL ARCHETYPES	모든 카드군
+NO ARCHETYPE	카드군 없음
+CHOOSE YOUR HERO	영웅을 선택하세요
+HERO CACHE · SHOP	영웅의 은닉처 · 상점
+Your Deck:	내 덱:
+LV 1	LV 1
+LV 2	LV 2
+LV 3	LV 3
+STAT	능력치
+RARE	레어
+OR	또는
++ NEW	+ 새 덱
+No deck	덱 없음
+Create a deck in the workshop	공방에서 덱을 만드세요
+{0} cards · {1} monsters · {2} spells · {3} artifacts	카드 {0}장 · 몬스터 {1}장 · 마법 {2}장 · 아티팩트 {3}장
+# ---------- Shop ----------
+CARD PACKS	카드 팩
+Hero Cache	영웅의 은닉처
+Relic Pack	유물 팩
+OPEN	열기
+BROWSE	둘러보기
+Card Pool	카드 풀
+Sleeves, frames, mats, coins and titles	슬리브, 프레임, 매트, 코인, 칭호
+Paid for with coins — the same purse that buys packs.	팩을 사는 그 코인으로 구매합니다.
+One Player Card you do not own yet	아직 없는 플레이어 카드 1장
+Every card in the vault — five per seal	금고의 모든 카드 — 봉인 하나에 5장
+# ---------- NEW-CARDS-Szene ----------
+{0} CARDS ADDED IN {1} AND ITS PATCHES · POINT AT A CARD TO READ IT	{1} 및 패치로 추가된 카드 {0}장 · 카드를 가리키면 읽을 수 있습니다
+NOTHING NEW IN {0} YET	{0}에는 아직 새로운 것이 없습니다
+Point at a card to read it.	카드를 가리키면 읽을 수 있습니다.
+BACK TO MENU	메뉴로 돌아가기
+— {0} CARDS	— 카드 {0}장
+{0} NEW CARDS	신규 카드 {0}장
+{0} OF {1} NEW CARDS SHOWN	신규 카드 {1}장 중 {0}장 표시
+# ---------- Hauptmenü dynamisch ----------
+Requires an account — log in first	계정이 필요합니다 — 먼저 로그인하세요
+The Warden awaits — +50 coins per trial	감시자가 기다립니다 — 시험당 +50 코인
+Browse the starter decks	스타터 덱 둘러보기
+LOG IN TO CLAIM	로그인하고 받기
++150 COINS PER DAY	매일 +150 코인
++50 COINS	+50 코인
+OFFLINE MODE	오프라인 모드
+OFFLINE — NO ACCOUNT	오프라인 — 계정 없음
+{0} duelists in the vault — +100 coins per duel	금고에 듀얼리스트 {0}명 — 듀얼당 +100 코인
+The Tower — {0} floors sealed	탑 — {0}층 봉인됨
+{0} unopened packs waiting in your vault	금고에 미개봉 팩 {0}개 대기 중
+Relic Pack — five cards per seal	유물 팩 — 봉인 하나에 5장
+{0} decks · {1} unique cards collected	덱 {0}개 · 수집한 카드 {1}종
+{0} DUELISTS ONLINE	듀얼리스트 {0}명 온라인
+DAY {0} · +{1} COINS	{0}일차 · +{1} 코인
++{0} COINS PER DAY	매일 +{0} 코인
+DAY {0} SEALED	{0}일차 봉인됨
+SEAL READY	봉인 준비 완료
+Seal your deck, wake the Warden, and duel for the lost relics of the vault.	덱을 봉인하고, 감시자를 깨우고, 금고의 잃어버린 유물을 걸고 듀얼하세요.
+This vault is empty	이 금고는 비어 있습니다
+0 GAMES	0 대전
+0 PACKS WAITING	대기 중인 팩 0개
+SOLO — GEGEN DEN BOT	솔로 — 봇과 듀얼
+BUY PACK · 100	팩 구매 · 100
+DUELIST	듀얼리스트
+Novice	초심자
+Warden	감시자
+Sealed	봉인됨
+Wanderer	방랑자
+< MENU	< 메뉴
+Turn 1	턴 1
+SHOWCASE — CLICK A SLOT TO DISPLAY A CARD	쇼케이스 — 칸을 클릭해 카드를 전시하세요
+ENTER THE VAULT	금고에 입장
+THE VAULT'S ONE SEAL	금고의 단 하나의 봉인
+{0} terms. Card texts use exactly these words.	{0}개의 용어. 카드 텍스트는 정확히 이 단어들을 사용합니다.
+# ---------- Login ----------
+SIGN IN	로그인
+REGISTER	회원가입
+LOG IN	로그인
+CREATE ACCOUNT	계정 만들기
+UNSEALING…	봉인 해제 중…
+DUELIST NAME	듀얼리스트 이름
+PASSWORD	비밀번호
+SHOW	표시
+HIDE	숨김
+Keep me sealed in	로그인 상태 유지
+Lost your seal?	봉인을 잃어버렸나요?
+Your name, duelist	듀얼리스트, 이름을 입력하세요
+Your seal phrase	봉인 문구를 입력하세요
+CONTINUE WITH STEAM	STEAM으로 계속
+CONTINUE AS {0}	{0}(으)로 계속
+Reaching for the vault…	금고에 연결하는 중…
+Vault unreachable — retrying may help	금고에 연결할 수 없습니다 — 다시 시도해 보세요
+Vault unreachable — retrying…	금고에 연결할 수 없습니다 — 재시도 중…
+Connected to the vault	금고에 연결됨
+Not connected to the vault.	금고에 연결되어 있지 않습니다.
+Name too short (min. 3 characters).	이름이 너무 짧습니다 (최소 3자).
+Password too short (min. 4 characters).	비밀번호가 너무 짧습니다 (최소 4자).
+Your vault holds {0} cards and {1} deck.	금고에 카드 {0}장과 덱 {1}개가 있습니다.
+Your vault holds {0} cards and {1} decks.	금고에 카드 {0}장과 덱 {1}개가 있습니다.
+APPLY	적용
+
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	친구
+YOUR FRIEND CODE	내 친구 코드
+Code copied.	코드가 복사되었습니다.
+ADD A FRIEND BY CODE	코드로 친구 추가
+FRIEND CODE…	친구 코드…
+ADD	추가
+REQUESTS	요청
+YOUR FRIENDS	내 친구
+NO FRIENDS YET — SHARE YOUR CODE!	아직 친구가 없습니다 — 코드를 공유하세요!
+IN A DUEL	듀얼 중
+DUEL	듀얼
+PROFILE	프로필
+ACCEPT	수락
+DECLINE	거절
+WAITING FOR {0}…	{0} 대기 중…
+Request sent to {0}.	{0}에게 요청을 보냈습니다.
+You are now friends with {0}!	이제 {0}와(과) 친구입니다!
+{0} sent you a friend request.	{0}이(가) 친구 요청을 보냈습니다.
+{0} declined the duel.	{0}이(가) 듀얼을 거절했습니다.
+{0} CHALLENGES YOU TO A DUEL	{0}의 듀얼 신청!
+Not connected.	연결되어 있지 않습니다.
+ADD FRIEND	친구 추가
+SAVE REPLAY	리플레이 저장
+REPLAY SAVED	리플레이 저장됨
+REQUEST SENT	요청 보냄
+FRIENDS NOW	친구가 되었습니다
+SLOTS FULL — SEE PROFILE	슬롯 가득 참 — 프로필 확인
+ALREADY FRIENDS	이미 친구입니다
+REPLAY	리플레이
+WINNER	승자
+ONLINE	온라인
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	연결 없음 — 대전 기록은 서버 세션이 필요합니다.
+NO MATCHES PLAYED YET.	아직 플레이한 대전이 없습니다.
+No duelist with that code.	그 코드의 듀얼리스트가 없습니다.
+That is your own code.	자기 자신의 코드입니다.
+You are already friends.	이미 친구입니다.
+Request already sent.	이미 요청을 보냈습니다.
+Friend codes have 8 characters.	친구 코드는 8자입니다.
+That duelist does not exist.	그 듀얼리스트는 존재하지 않습니다.
+You can only challenge friends.	친구에게만 듀얼을 신청할 수 있습니다.
+That duelist is offline.	그 듀얼리스트는 오프라인입니다.
+That duelist is in a duel right now.	그 듀얼리스트는 지금 듀얼 중입니다.
+That challenge is no longer open.	그 신청은 더 이상 유효하지 않습니다.
+That request is no longer open.	그 요청은 더 이상 유효하지 않습니다.
+That duelist is no longer online.	그 듀얼리스트는 더 이상 온라인이 아닙니다.
+That duelist has too many open requests.	그 듀얼리스트에게 열린 요청이 너무 많습니다.
+Replay slots full — delete one in your profile.	리플레이 슬롯이 가득 찼습니다 — 프로필에서 하나 삭제하세요.
+No recent duel to save.	저장할 최근 듀얼이 없습니다.
+This duel is too long to save.	이 듀얼은 너무 길어서 저장할 수 없습니다.
+Replay not found.	리플레이를 찾을 수 없습니다.
+Replay is damaged.	리플레이가 손상되었습니다.
+SHOWCASE	쇼케이스
+DUEL OVER	듀얼 종료
