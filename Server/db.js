@@ -98,6 +98,12 @@ export function openDatabase(dataDir, log = console.log) {
     db.exec("ALTER TABLE accounts ADD COLUMN progress TEXT NOT NULL DEFAULT '{}'");
     log('DB-Migration: Spalte progress ergaenzt (Turm & Draft ueberleben Neustarts).');
   }
+  if (!columns.includes('social')) {
+    // Freundes-System: Freundescode, Freundesliste, eingehende Anfragen —
+    // wieder als JSON-Block, damit spaetere Felder keine Migration brauchen.
+    db.exec("ALTER TABLE accounts ADD COLUMN social TEXT NOT NULL DEFAULT '{}'");
+    log('DB-Migration: Spalte social ergaenzt (Freunde & Freundescode).');
+  }
 
   // Karten-Finishes: ein Finish gehört dem Exemplar, also gehört es in den
   // Primärschlüssel. SQLite kann keinen Schlüssel ändern — die Tabelle wird
@@ -198,6 +204,20 @@ export function openDatabase(dataDir, log = console.log) {
     CREATE INDEX IF NOT EXISTS match_log_account ON match_log(account, ts);
   `);
 
+  // Replays: der aufgezeichnete Zuschauer-Strom eines Duells, gzip-gepackt.
+  // Höchstens drei je Konto — das Limit setzt der Server beim Speichern, nicht
+  // das Schema, damit die Zahl ohne Migration änderbar bleibt.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS replays (
+      account TEXT NOT NULL REFERENCES accounts(key) ON DELETE CASCADE,
+      id      INTEGER NOT NULL,
+      created INTEGER NOT NULL,
+      meta    TEXT NOT NULL DEFAULT '{}',
+      data    BLOB NOT NULL,
+      PRIMARY KEY (account, id)
+    );
+  `);
+
   db.prepare('INSERT OR REPLACE INTO meta(key, value) VALUES(?, ?)')
     .run('schema_version', String(SCHEMA_VERSION));
 
@@ -205,14 +225,15 @@ export function openDatabase(dataDir, log = console.log) {
     selectAccounts: db.prepare('SELECT * FROM accounts'),
     selectCollection: db.prepare('SELECT account, card, finish, count FROM collection'),
     upsertAccount: db.prepare(`
-      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, starter_pick, progress, created, updated)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO accounts (key, name, salt, hash, coins, tokens, daily, decks, pack_inv, steam_id, rank, cosmetics, starter_pick, progress, social, created, updated)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(key) DO UPDATE SET
         name = excluded.name, salt = excluded.salt, hash = excluded.hash,
         coins = excluded.coins, tokens = excluded.tokens, daily = excluded.daily,
         decks = excluded.decks, pack_inv = excluded.pack_inv, steam_id = excluded.steam_id,
         rank = excluded.rank, cosmetics = excluded.cosmetics,
-        starter_pick = excluded.starter_pick, progress = excluded.progress, updated = excluded.updated
+        starter_pick = excluded.starter_pick, progress = excluded.progress,
+        social = excluded.social, updated = excluded.updated
     `),
     clearCollection: db.prepare('DELETE FROM collection WHERE account = ?'),
     insertCard: db.prepare('INSERT INTO collection (account, card, finish, count) VALUES (?, ?, ?, ?)'),
@@ -270,7 +291,12 @@ export function openDatabase(dataDir, log = console.log) {
       WHERE account = ? GROUP BY mode
     `),
     countAccounts: db.prepare('SELECT COUNT(*) AS n FROM accounts'),
-    countCards: db.prepare('SELECT COUNT(*) AS n FROM collection')
+    countCards: db.prepare('SELECT COUNT(*) AS n FROM collection'),
+    insertReplay: db.prepare('INSERT INTO replays (account, id, created, meta, data) VALUES (?, ?, ?, ?, ?)'),
+    deleteReplay: db.prepare('DELETE FROM replays WHERE account = ? AND id = ?'),
+    selectReplayMeta: db.prepare('SELECT id, created, meta FROM replays WHERE account = ? ORDER BY created DESC'),
+    selectReplay: db.prepare('SELECT meta, data FROM replays WHERE account = ? AND id = ?'),
+    countReplays: db.prepare('SELECT COUNT(*) AS n FROM replays WHERE account = ?')
   };
 
   const parse = (text, fallback) => {
@@ -297,7 +323,8 @@ export function openDatabase(dataDir, log = console.log) {
         starterPick: row.starter_pick || null,
         ...parse(row.rank, {}),      // rp, peakRank, season, wins, losses, streak, bestStreak, careerRp
         ...parse(row.cosmetics, {}), // cosmetics, equipped (ein altes shards-Feld wird ignoriert)
-        ...parse(row.progress, {})   // towerFloor, draft, draftClears
+        ...parse(row.progress, {}),  // towerFloor, draft, draftClears
+        ...parse(row.social, {})     // friendCode, friends, requestsIn
       };
     }
     for (const row of statements.selectCollection.all()) {
@@ -353,6 +380,11 @@ export function openDatabase(dataDir, log = console.log) {
           // Turm — was hier fehlt, existiert nach dem nächsten Neustart nicht.
           showcase: Array.isArray(account.showcase) ? account.showcase : [],
           newCards: Array.isArray(account.newCards) ? account.newCards : []
+        }),
+        JSON.stringify({
+          friendCode: account.friendCode || '',
+          friends: Array.isArray(account.friends) ? account.friends : [],
+          requestsIn: Array.isArray(account.requestsIn) ? account.requestsIn : []
         }),
         now,
         now
@@ -496,6 +528,32 @@ export function openDatabase(dataDir, log = console.log) {
       opponent || '', deckName || '', won ? 1 : 0);
   }
 
+  // ---- Replays ----
+
+  /** Metadaten aller Replays eines Kontos, neueste zuerst. */
+  function replayList(account) {
+    return statements.selectReplayMeta.all(account).map(row => ({
+      id: row.id, created: row.created, ...parse(row.meta, {})
+    }));
+  }
+
+  /** Speichert ein Replay; liefert false, wenn die Slots voll sind. */
+  function replaySave(account, id, meta, dataBuffer, maxSlots) {
+    if (statements.countReplays.get(account).n >= maxSlots) return false;
+    statements.insertReplay.run(account, id, Date.now(), JSON.stringify(meta || {}), dataBuffer);
+    return true;
+  }
+
+  function replayDelete(account, id) {
+    statements.deleteReplay.run(account, id);
+  }
+
+  /** Ein Replay samt gzip-Daten, oder null. */
+  function replayGet(account, id) {
+    const row = statements.selectReplay.get(account, id);
+    return row ? { meta: parse(row.meta, {}), data: row.data } : null;
+  }
+
   /** Die letzten Spiele + Modus-Bilanzen eines Kontos. */
   function profileStats(account, limit = 20) {
     const matches = statements.selectRecentMatches.all(account, limit).map(row => ({
@@ -558,5 +616,6 @@ export function openDatabase(dataDir, log = console.log) {
 
   return { loadAll, save, remove, flush, close, stats, importLegacyJson, file,
     recordDeckResult, topDecks, topCards, cardPartners, recordMatch, profileStats,
-    topArchetypes, topArchetypePairs };
+    topArchetypes, topArchetypePairs,
+    replayList, replaySave, replayDelete, replayGet };
 }

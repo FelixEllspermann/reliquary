@@ -5,6 +5,7 @@ import net from 'net';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { gzipSync, gunzipSync } from 'zlib';
 import { fileURLToPath } from 'url';
 import { WebSocketServer } from 'ws';
 import { openDatabase } from './db.js';
@@ -818,6 +819,164 @@ function leaveEverything(c, notifyPeer = true) {
     c.serverDuelId = null;
     c.serverSide = null;
   }
+  stopReplayPlayback(c);
+  cancelOutgoingChallenge(c, notifyPeer);
+}
+
+// ---- Freunde ----
+// Der Freundescode ist die einzige öffentliche Adresse eines Kontos: wer ihn
+// kennt, kann eine Anfrage schicken — Namen lassen sich raten, Codes nicht.
+const friendCodes = new Map();   // code -> accountKey
+for (const [key, acc] of Object.entries(accounts))
+  if (acc.friendCode) friendCodes.set(acc.friendCode, key);
+
+function makeFriendCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // wie makeCode: laut vorlesbar
+  let code = '';
+  for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return friendCodes.has(code) ? makeFriendCode() : code;
+}
+
+/** Rüstet die Social-Felder nach — Bestandskonten bekommen ihren Code lazy. */
+function ensureSocial(acc) {
+  if (!Array.isArray(acc.friends)) acc.friends = [];
+  if (!Array.isArray(acc.requestsIn)) acc.requestsIn = [];
+  if (!acc.friendCode) {
+    acc.friendCode = makeFriendCode();
+    friendCodes.set(acc.friendCode, acc.name.toLowerCase());
+    saveAccount(acc);
+  }
+  return acc;
+}
+
+/** Der verbundene Client eines Kontos, oder null. */
+function clientOf(accountKey) {
+  for (const c of clients)
+    if (c.account === accountKey && c.ws.readyState === 1) return c;
+  return null;
+}
+
+/** Die Freundesliste, wie der Client sie anzeigt. */
+function friendsPayload(acc) {
+  ensureSocial(acc);
+  // Verwaiste Einträge (gelöschte Konten) still aussortieren
+  acc.friends = acc.friends.filter(k => accounts[k]);
+  acc.requestsIn = acc.requestsIn.filter(k => accounts[k]);
+  return {
+    t: 'friends',
+    friendCode: acc.friendCode,
+    friends: acc.friends.map(k => {
+      const online = clientOf(k);
+      return { name: accounts[k].name, online: !!online, inDuel: !!(online && online.serverDuelId) };
+    }),
+    requests: acc.requestsIn.map(k => accounts[k].name)
+  };
+}
+
+/** Schiebt einem Konto die frische Freundesliste zu, falls es online ist. */
+function pushFriends(accountKey) {
+  const online = clientOf(accountKey);
+  if (online) send(online, friendsPayload(accounts[accountKey]));
+}
+
+/**
+ * Eine Anfrage von `acc` an das Konto `targetKey`. Hat die Gegenseite selbst
+ * schon angefragt, sind beide offensichtlich einverstanden — dann direkt
+ * befreunden statt Anfragen-Pingpong.
+ */
+function sendFriendRequest(c, acc, targetKey) {
+  const myKey = acc.name.toLowerCase();
+  const target = accounts[targetKey];
+  if (!target) { sendError(c, 'No duelist with that code.'); return; }
+  if (targetKey === myKey) { sendError(c, 'That is your own code.'); return; }
+  ensureSocial(target);
+  ensureSocial(acc);
+  if (acc.friends.includes(targetKey)) { sendError(c, 'You are already friends.'); return; }
+  if (acc.requestsIn.includes(targetKey)) { befriend(myKey, targetKey); return; }
+  if (target.requestsIn.includes(myKey)) { sendError(c, 'Request already sent.'); return; }
+  if (target.requestsIn.length >= 50) { sendError(c, 'That duelist has too many open requests.'); return; }
+  target.requestsIn.push(myKey);
+  saveAccount(target);
+  const online = clientOf(targetKey);
+  if (online) {
+    send(online, { t: 'friend_event', kind: 'request', name: acc.name });
+    send(online, friendsPayload(target));
+  }
+  send(c, { t: 'friend_event', kind: 'sent', name: target.name });
+  log(`Freundschaftsanfrage: ${acc.name} → ${target.name}`);
+}
+
+/** Trägt beide Konten gegenseitig ein und räumt offene Anfragen in beide Richtungen ab. */
+function befriend(keyA, keyB) {
+  const a = accounts[keyA], b = accounts[keyB];
+  ensureSocial(a); ensureSocial(b);
+  if (!a.friends.includes(keyB)) a.friends.push(keyB);
+  if (!b.friends.includes(keyA)) b.friends.push(keyA);
+  a.requestsIn = a.requestsIn.filter(k => k !== keyB);
+  b.requestsIn = b.requestsIn.filter(k => k !== keyA);
+  saveAccount(a); saveAccount(b);
+  const ca = clientOf(keyA), cb = clientOf(keyB);
+  if (ca) { send(ca, { t: 'friend_event', kind: 'accepted', name: b.name }); send(ca, friendsPayload(a)); }
+  if (cb) { send(cb, { t: 'friend_event', kind: 'accepted', name: a.name }); send(cb, friendsPayload(b)); }
+  log(`Freunde: ${a.name} ↔ ${b.name}`);
+}
+
+// ---- Herausforderungen ----
+// Nur zwischen Freunden, nur solange beide online und frei sind. Lebt rein im
+// RAM: eine Challenge, die einen Neustart überleben müsste, wäre längst kalt.
+const challenges = new Map();   // challengerKey -> { targetKey, deckIndex, at }
+
+function cancelOutgoingChallenge(c, notify = true) {
+  if (!c.account || !challenges.has(c.account)) return;
+  const ch = challenges.get(c.account);
+  challenges.delete(c.account);
+  if (notify) {
+    const target = clientOf(ch.targetKey);
+    if (target) send(target, { t: 'challenge_cancelled', name: c.name });
+  }
+}
+
+// ---- Replays ----
+// Aufgezeichnet wird der Zuschauer-Strom (to=="S" plus log/end an alle): der
+// ist bereits maskiert, und der Abspielpfad im Client existiert — ein Replay
+// ist einfach ein Duell, das man "live" zuschaut, nur aus der Konserve.
+const REPLAY = {
+  maxSlots: 3,
+  maxMessages: 6000,           // ~sehr langes Duell; darüber: Aufzeichnung verworfen
+  maxBlobBytes: 2 * 1024 * 1024,
+  freshMs: 15 * 60 * 1000,     // wie lange nach Duell-Ende noch speicherbar
+  minStepMs: 60,               // Wiedergabe: kürzeste Pause zwischen Nachrichten
+  maxStepMs: 2500              // längste Pause — niemand will Bedenkzeit nachsitzen
+};
+const lastReplays = new Map();  // accountKey -> { endedAt, meta, msgs }
+
+function replayListPayload(ownerKey) {
+  return {
+    t: 'replay_list',
+    owner: accounts[ownerKey] ? accounts[ownerKey].name : ownerKey,
+    replays: db.replayList(ownerKey).map(r => ({
+      replayId: r.id, a: r.a || '', b: r.b || '', winner: r.winner || '', endedAt: r.endedAt || r.created
+    }))
+  };
+}
+
+function stopReplayPlayback(c) {
+  if (c.replayTimer) { clearTimeout(c.replayTimer); c.replayTimer = null; }
+  c.replayQueue = null;
+}
+
+/** Spielt die nächste aufgezeichnete Nachricht aus und plant die übernächste. */
+function pumpReplay(c) {
+  c.replayTimer = null;
+  const queue = c.replayQueue;
+  if (!queue || c.ws.readyState !== 1) { stopReplayPlayback(c); return; }
+  const entry = queue.msgs[queue.index++];
+  if (!entry) { stopReplayPlayback(c); return; }
+  try { c.ws.send(entry.j); } catch { stopReplayPlayback(c); return; }
+  const next = queue.msgs[queue.index];
+  if (!next) { stopReplayPlayback(c); return; }
+  const wait = Math.min(REPLAY.maxStepMs, Math.max(REPLAY.minStepMs, next.dt - entry.dt));
+  c.replayTimer = setTimeout(() => pumpReplay(c), wait);
 }
 
 // ---- DuelHost-Brücke: server-autoritative Duelle ----
@@ -866,6 +1025,17 @@ function handleHostMessage(m) {
   const to = m.to;
   const payload = { t: 'sduel', ...m };
   delete payload.to;
+
+  // Replay-Mitschnitt: nur die maskierte Zuschauer-Fassung (to=="S") und was an
+  // alle geht (log/end) — private Sichten (A/B) haben in der Konserve nichts
+  // verloren. Läuft die Aufzeichnung über, wird sie verworfen, nicht gekürzt.
+  if (duel.rec && (to === 'S' || !to)) {
+    const line = JSON.stringify(payload);
+    duel.rec.bytes += line.length;
+    duel.rec.msgs.push({ dt: Date.now() - duel.rec.t0, j: line });
+    if (duel.rec.msgs.length > REPLAY.maxMessages || duel.rec.bytes > 24 * 1024 * 1024)
+      duel.rec = null;
+  }
 
   // Zuschauer: to=="S" ist ihre gefilterte Fassung, to==null (log/end) geht an alle.
   // Tote Sockets fliegen hier gleich mit raus.
@@ -930,6 +1100,17 @@ function handleHostMessage(m) {
       send(s, payload);
       s.spectateDuelId = null;
     }
+    // Der Mitschnitt liegt beiden Spielern eine Weile bereit — gespeichert
+    // wird er erst, wenn jemand am Ende-Bildschirm ausdrücklich REPLAY drückt.
+    if (duel.rec && duel.rec.msgs.length > 0) {
+      const snapshot = {
+        endedAt: Date.now(),
+        meta: { a: duel.rec.aName, b: duel.rec.bName, winner: m.winner, endedAt: Date.now() },
+        msgs: duel.rec.msgs
+      };
+      for (const side of ['a', 'b'])
+        if (duel[side] && duel[side].account) lastReplays.set(duel[side].account, snapshot);
+    }
     serverDuels.delete(m.duelId);
     log(`Server-Duell ${m.duelId} beendet — Sieger ${m.winner}.`);
     return;
@@ -956,7 +1137,9 @@ function startServerDuel(a, b) {
     stats: {
       a: { name: deckA.name || 'Deck', hero: deckA.hero || '', cards: [...deckA.cards], extra: [...(deckA.extra || [])] },
       b: { name: deckB.name || 'Deck', hero: deckB.hero || '', cards: [...deckB.cards], extra: [...(deckB.extra || [])] }
-    } });
+    },
+    // Replay-Mitschnitt: der Zuschauer-Strom, mit Zeitabstand zum Duellstart.
+    rec: { t0: Date.now(), aName: a.name, bName: b.name, msgs: [], bytes: 0 } });
   a.serverDuelId = duelId; a.serverSide = 'A';
   b.serverDuelId = duelId; b.serverSide = 'B';
 
@@ -1543,6 +1726,7 @@ wss.on('connection', (ws, req) => {
       }
 
       case 'spectate_leave': {
+        stopReplayPlayback(c);   // Replay-Wiedergabe läuft über denselben Ausgang
         if (!c.spectateDuelId) break;
         const watched = serverDuels.get(c.spectateDuelId);
         if (watched && watched.spectators)
@@ -1564,6 +1748,9 @@ wss.on('connection', (ws, req) => {
           showcase: Array.isArray(acc.showcase) ? acc.showcase : [],
           liveGames: [...serverDuels.entries()].map(([id, d]) => ({
             duelId: id, a: d.a ? d.a.name : '?', b: d.b ? d.b.name : '?'
+          })),
+          replays: db.replayList(c.account).map(r => ({
+            replayId: r.id, a: r.a || '', b: r.b || '', winner: r.winner || '', endedAt: r.endedAt || r.created
           }))
         });
         break;
@@ -1582,6 +1769,219 @@ wss.on('connection', (ws, req) => {
         acc.showcase = clean;
         saveAccount(acc);
         log(`${acc.name}: Showcase → ${clean.map(x => x.n).join(', ') || 'leer'}`);
+        break;
+      }
+
+      // ---- Freunde ----
+      case 'friends_get': {
+        if (!acc) break;
+        send(c, friendsPayload(acc));
+        break;
+      }
+
+      case 'friend_add': {
+        if (!acc) break;
+        // Eingabe großzügig normalisieren: Groß/klein, Bindestriche, Leerraum
+        const code = String(m.code || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        if (code.length !== 8) { sendError(c, 'Friend codes have 8 characters.'); break; }
+        const targetKey = friendCodes.get(code);
+        if (!targetKey) { sendError(c, 'No duelist with that code.'); break; }
+        sendFriendRequest(c, acc, targetKey);
+        break;
+      }
+
+      // Nach einem Online-Match: der Client kennt nur den Namen des Gegners.
+      // Ein Name ist hier keine ratbare Adresse — man hat gerade gegeneinander
+      // gespielt, das ist Einverständnis genug für eine Anfrage.
+      case 'friend_request': {
+        if (!acc) break;
+        const targetKey = String(m.name || '').trim().toLowerCase();
+        if (!accounts[targetKey]) { sendError(c, 'That duelist does not exist.'); break; }
+        sendFriendRequest(c, acc, targetKey);
+        break;
+      }
+
+      case 'friend_accept': {
+        if (!acc) break;
+        ensureSocial(acc);
+        const fromKey = String(m.name || '').trim().toLowerCase();
+        if (!acc.requestsIn.includes(fromKey) || !accounts[fromKey]) { sendError(c, 'That request is no longer open.'); break; }
+        befriend(c.account, fromKey);
+        break;
+      }
+
+      case 'friend_decline': {
+        if (!acc) break;
+        ensureSocial(acc);
+        const fromKey = String(m.name || '').trim().toLowerCase();
+        acc.requestsIn = acc.requestsIn.filter(k => k !== fromKey);
+        saveAccount(acc);
+        send(c, friendsPayload(acc));
+        break;
+      }
+
+      case 'friend_remove': {
+        if (!acc) break;
+        ensureSocial(acc);
+        const otherKey = String(m.name || '').trim().toLowerCase();
+        acc.friends = acc.friends.filter(k => k !== otherKey);
+        saveAccount(acc);
+        const other = accounts[otherKey];
+        if (other) {
+          ensureSocial(other);
+          other.friends = other.friends.filter(k => k !== c.account);
+          saveAccount(other);
+          pushFriends(otherKey);
+        }
+        send(c, friendsPayload(acc));
+        log(`Entfreundet: ${acc.name} × ${other ? other.name : otherKey}`);
+        break;
+      }
+
+      // ---- Herausforderungen ----
+      case 'friend_challenge': {
+        if (!acc) break;
+        ensureSocial(acc);
+        const targetKey = String(m.name || '').trim().toLowerCase();
+        if (!acc.friends.includes(targetKey)) { sendError(c, 'You can only challenge friends.'); break; }
+        const target = clientOf(targetKey);
+        if (!target) { sendError(c, 'That duelist is offline.'); break; }
+        if (target.serverDuelId) { sendError(c, 'That duelist is in a duel right now.'); break; }
+        if (c.serverDuelId) break;
+        cancelOutgoingChallenge(c);
+        challenges.set(c.account, {
+          targetKey, at: Date.now(),
+          deckIndex: Number.isInteger(m.deckIndex) ? m.deckIndex : 0
+        });
+        send(target, { t: 'challenge_incoming', name: acc.name });
+        send(c, { t: 'challenge_sent', name: accounts[targetKey].name });
+        log(`Herausforderung: ${acc.name} → ${accounts[targetKey].name}`);
+        break;
+      }
+
+      case 'challenge_accept': {
+        if (!acc) break;
+        const fromKey = String(m.name || '').trim().toLowerCase();
+        const ch = challenges.get(fromKey);
+        if (!ch || ch.targetKey !== c.account || Date.now() - ch.at > 120000) {
+          challenges.delete(fromKey);
+          sendError(c, 'That challenge is no longer open.');
+          break;
+        }
+        const challenger = clientOf(fromKey);
+        challenges.delete(fromKey);
+        if (!challenger) { sendError(c, 'That duelist is no longer online.'); break; }
+        if (challenger.serverDuelId) { sendError(c, 'That duelist is in a duel right now.'); break; }
+        challenger.deckIndex = ch.deckIndex;
+        c.deckIndex = Number.isInteger(m.deckIndex) ? m.deckIndex : 0;
+        leaveEverything(challenger, false);
+        leaveEverything(c, false);
+        startMatch(challenger, c);
+        break;
+      }
+
+      case 'challenge_decline': {
+        if (!acc) break;
+        const fromKey = String(m.name || '').trim().toLowerCase();
+        const ch = challenges.get(fromKey);
+        if (!ch || ch.targetKey !== c.account) break;
+        challenges.delete(fromKey);
+        const challenger = clientOf(fromKey);
+        if (challenger) send(challenger, { t: 'challenge_declined', name: acc.name });
+        break;
+      }
+
+      case 'challenge_cancel':
+        cancelOutgoingChallenge(c);
+        break;
+
+      // ---- Fremdes Profil ----
+      // Nur Öffentliches: Rang, Bilanz, Schaufenster, Historie, Replays.
+      // Coins, Sammlung und Decks bleiben Privatsache des Besitzers.
+      case 'profile_view': {
+        if (!acc) break;
+        const targetKey = String(m.name || '').trim().toLowerCase();
+        const target = accounts[targetKey];
+        if (!target) { sendError(c, 'That duelist does not exist.'); break; }
+        ranks.rolloverIfNeeded(target);
+        const seal = ranks.rankInfo(target);
+        const ps = db.profileStats(targetKey, 10);
+        const eq = target.equipped && typeof target.equipped === 'object' ? target.equipped : {};
+        ensureSocial(acc);
+        send(c, {
+          t: 'profile_view',
+          name: target.name,
+          online: !!clientOf(targetKey),
+          isFriend: acc.friends.includes(targetKey),
+          rankValue: seal.rank, rankTier: seal.tier, rankName: seal.name, rankRp: seal.rp,
+          rankWins: seal.wins, rankLosses: seal.losses, rankBestStreak: seal.bestStreak,
+          pvpGames: ps.pvpGames, pvpWins: ps.pvpWins,
+          soloGames: ps.soloGames, soloWins: ps.soloWins,
+          matches: ps.matches.map(x => ({
+            ts: x.ts, mode: x.mode, opponent: x.opponent, deckName: x.deckName, won: x.won
+          })),
+          showcase: Array.isArray(target.showcase) ? target.showcase : [],
+          avatarId: eq.avatar || '', frameId: eq.avatarFrame || '', titleId: eq.title || '',
+          replays: db.replayList(targetKey).map(r => ({
+            replayId: r.id, a: r.a || '', b: r.b || '', winner: r.winner || '', endedAt: r.endedAt || r.created
+          }))
+        });
+        break;
+      }
+
+      // ---- Replays ----
+      case 'replay_save': {
+        if (!acc) break;
+        const rec = lastReplays.get(c.account);
+        if (!rec || Date.now() - rec.endedAt > REPLAY.freshMs) {
+          lastReplays.delete(c.account);
+          sendError(c, 'No recent duel to save.');
+          break;
+        }
+        if (db.replayList(c.account).length >= REPLAY.maxSlots) {
+          sendError(c, 'Replay slots full — delete one in your profile.');
+          break;
+        }
+        const blob = gzipSync(JSON.stringify(rec.msgs));
+        if (blob.length > REPLAY.maxBlobBytes) { sendError(c, 'This duel is too long to save.'); break; }
+        db.replaySave(c.account, Date.now(), rec.meta, blob, REPLAY.maxSlots);
+        // Weg damit: derselbe Mitschnitt soll nicht zwei Slots füllen können
+        lastReplays.delete(c.account);
+        send(c, { t: 'replay_saved' });
+        send(c, replayListPayload(c.account));
+        log(`${acc.name}: Replay gespeichert (${Math.round(blob.length / 1024)} KB gzip)`);
+        break;
+      }
+
+      case 'replay_list': {
+        if (!acc) break;
+        const ownerKey = String(m.name || '').trim().toLowerCase() || c.account;
+        if (!accounts[ownerKey]) { sendError(c, 'That duelist does not exist.'); break; }
+        send(c, replayListPayload(ownerKey));
+        break;
+      }
+
+      case 'replay_delete': {
+        if (!acc) break;
+        db.replayDelete(c.account, Number(m.replayId) || 0);
+        send(c, replayListPayload(c.account));
+        break;
+      }
+
+      case 'replay_watch': {
+        if (!acc) break;
+        const ownerKey = String(m.name || '').trim().toLowerCase() || c.account;
+        const stored = accounts[ownerKey] ? db.replayGet(ownerKey, Number(m.replayId) || 0) : null;
+        if (!stored) { sendError(c, 'Replay not found.'); break; }
+        let msgs;
+        try { msgs = JSON.parse(gunzipSync(stored.data).toString('utf8')); }
+        catch { sendError(c, 'Replay is damaged.'); break; }
+        if (!Array.isArray(msgs) || msgs.length === 0) { sendError(c, 'Replay is damaged.'); break; }
+        leaveEverything(c);
+        send(c, { t: 'replay_start', a: stored.meta.a || '', b: stored.meta.b || '', winner: stored.meta.winner || '' });
+        c.replayQueue = { msgs, index: 0 };
+        pumpReplay(c);
+        log(`${acc.name} schaut Replay ${m.replayId} von ${accounts[ownerKey].name}`);
         break;
       }
 

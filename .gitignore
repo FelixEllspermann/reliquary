@@ -59,6 +59,8 @@ Server/duelhost/obj/
 .env*
 Server/data/accounts.db
 Server/data/*.db
+Server/data/*.db-shm
+Server/data/*.db-wal
 Server/data/*.sqlite*
 Server/data/feedback/
 
