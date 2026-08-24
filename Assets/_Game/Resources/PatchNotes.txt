@@ -1,4 +1,41 @@
 ────────────────────────────────
+0.1.6c · THE VAULT OPENS ITS DOORS
+────────────────────────────────
+
+FRIENDS, CHALLENGES & RIVALS
+  · Every duelist now carries a FRIEND CODE — eight characters,
+    printed at the top of the new FRIENDS panel (bottom right of
+    the menu). Share it, type one in, and the request is on its way
+  · After any online duel the result screen offers ADD FRIEND —
+    beat someone worth keeping, keep them
+  · Challenge a friend straight from the list: they get a popup,
+    you get a duel — no queue, no codes
+  · Visit a friend's PROFILE: rank, record, showcase and their
+    saved replays, live from the vault
+
+REPLAYS — THREE SLOTS PER VAULT
+  · SAVE REPLAY on the result screen keeps the duel you just
+    fought — up to three per account, shown on your profile
+  · Anyone viewing your profile can WATCH them, played back
+    through the spectator view at duel pace
+  · Slots full? Delete one on your profile and save the better war
+
+FOUR MORE LANGUAGES
+  · RELIQUARY now speaks Spanish, Portuguese, Korean and Japanese
+    — nine languages in all, covering every card, the rulebook,
+    the glossary and the whole interface
+  · Pick yours under SETTINGS · LANGUAGE; Steam's language is the
+    default on first launch
+
+A TIDIER TABLE
+  · The top bar trades its text buttons for icons — hover for the
+    label, enjoy the room
+  · Reliquary cards print their attribute, type, ATK and DEF in
+    richer ink — readable at a glance, even in the small print
+  · The cosmetics filter row is clickable again instead of
+    closing the window
+
+────────────────────────────────
 0.1.6b · THE SMALL PRINT
 ────────────────────────────────
 
