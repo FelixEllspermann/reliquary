@@ -29,6 +29,7 @@ namespace Rouge.Tcg.UI
 
         private static TMP_FontAsset cjkFont;
         private static TMP_FontAsset koreanFont;
+        private static TMP_FontAsset japaneseFont;
         private static bool hooked;
 
         public static TMP_FontAsset CjkFont => cjkFont;
@@ -95,6 +96,7 @@ namespace Rouge.Tcg.UI
                 case "portuguese":              // Portugal …
                 case "brazilian": return Loc.Portuguese;   // … und Brasilien: eine Fassung
                 case "koreana": return Loc.Korean;   // so heißt Koreanisch bei Steam wirklich
+                case "japanese": return Loc.Japanese;
                 case "": break;                 // kein Steam — das OS fragen
                 default: return Loc.English;    // Steam-Sprache, die wir (noch) nicht haben
             }
@@ -108,6 +110,7 @@ namespace Rouge.Tcg.UI
                 case SystemLanguage.Spanish: return Loc.Spanish;
                 case SystemLanguage.Portuguese: return Loc.Portuguese;
                 case SystemLanguage.Korean: return Loc.Korean;
+                case SystemLanguage.Japanese: return Loc.Japanese;
                 default: return Loc.English;
             }
         }
@@ -125,14 +128,16 @@ namespace Rouge.Tcg.UI
             }
 
             Loc.SetTables(LoadUiTable(language), LoadCardTable(language));
-            // Chinesisch/Russisch und Koreanisch brauchen je ihre Laufzeit-Schrift:
-            // CJK fehlt allen Projekt-Fonts, Kyrillisch fehlt Cinzel, und Hangul
-            // trägt nicht einmal YaHei — dafür springt Malgun Gothic ein. Die
-            // lateinischen Sprachen kommen ohne aus (Umlaute, Akzente, œ, « »
-            // tragen die Dynamic-Fonts selbst).
+            // Chinesisch/Russisch, Koreanisch und Japanisch brauchen je ihre
+            // Laufzeit-Schrift: CJK fehlt allen Projekt-Fonts, Kyrillisch fehlt
+            // Cinzel, Hangul trägt nicht einmal YaHei (Malgun Gothic springt ein),
+            // und Japanisch bekommt Meiryo/Yu Gothic — YaHei würde Kanji nur in
+            // chinesischen Glyphenformen zeichnen. Die lateinischen Sprachen
+            // kommen ohne aus (Umlaute, Akzente, œ, « » tragen die Dynamic-Fonts).
             RemoveFallback();
             if (language == Loc.ChineseSimplified || language == Loc.Russian) EnsureRuntimeFallback();
             else if (language == Loc.Korean) EnsureKoreanFallback();
+            else if (language == Loc.Japanese) EnsureJapaneseFallback();
         }
 
         /// <summary>Sprache wechseln und die aktive Szene neu laden (Menüs bauen sich neu auf).</summary>
@@ -237,6 +242,22 @@ namespace Rouge.Tcg.UI
             AddFallback(koreanFont);
         }
 
+        /// <summary>
+        /// Japanisch bekommt seine eigene Laufzeit-Schrift aus Meiryo/Yu Gothic —
+        /// YaHei hätte zwar alle Kanji, aber in chinesischen Glyphenformen.
+        /// Public aus demselben Grund wie die anderen: die Sprachzeile zeigt
+        /// „日本語“ auch, wenn gerade eine andere Sprache aktiv ist.
+        /// </summary>
+        public static void EnsureJapaneseFallback()
+        {
+            if (japaneseFont == null)
+            {
+                japaneseFont = CreateRuntimeFontAsset(JapaneseFontFiles, JapaneseFontFamilies, "Japanese Dynamic (runtime)");
+                if (japaneseFont == null) { Debug.LogWarning("Loc: keine japanische Systemschrift gefunden — japanischer Text zeigt Ersatzzeichen."); return; }
+            }
+            AddFallback(japaneseFont);
+        }
+
         private static void AddFallback(TMP_FontAsset font)
         {
             var fallbacks = TMP_Settings.fallbackFontAssets;
@@ -249,6 +270,7 @@ namespace Rouge.Tcg.UI
             if (fallbacks == null) return;
             if (cjkFont != null) fallbacks.Remove(cjkFont);
             if (koreanFont != null) fallbacks.Remove(koreanFont);
+            if (japaneseFont != null) fallbacks.Remove(japaneseFont);
         }
 
         // Dateinamen ohne Pfad werden unter %WINDIR%\Fonts gesucht; absolute Pfade
@@ -274,6 +296,16 @@ namespace Rouge.Tcg.UI
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   // Linux
         };
         private static readonly string[] KoreanFontFamilies = { "Malgun Gothic", "Gulim", "Batang" };
+
+        private static readonly string[] JapaneseFontFiles =
+        {
+            "YuGothM.ttc",  // Yu Gothic Medium (Win 10/11)
+            "meiryo.ttc",   // Meiryo (Vista+)
+            "msgothic.ttc",
+            "/System/Library/Fonts/Hiragino Sans GB.ttc",               // macOS
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   // Linux
+        };
+        private static readonly string[] JapaneseFontFamilies = { "Yu Gothic UI", "Yu Gothic", "Meiryo", "MS Gothic" };
 
         /// <summary>
         /// Laufzeit-Schrift direkt aus der Font-DATEI des Systems bauen (die

@@ -270,7 +270,7 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Reihenfolge des Sprachwechslers — neue Sprachen hier anhängen.</summary>
-        private static readonly string[] LanguageCycle = { Loc.English, Loc.German, Loc.Spanish, Loc.French, Loc.Portuguese, Loc.Russian, Loc.ChineseSimplified, Loc.Korean };
+        private static readonly string[] LanguageCycle = { Loc.English, Loc.German, Loc.Spanish, Loc.French, Loc.Portuguese, Loc.Russian, Loc.ChineseSimplified, Loc.Korean, Loc.Japanese };
 
         private static string LanguageDisplayName(string language) => language switch
         {
@@ -281,6 +281,7 @@ namespace Rouge.Tcg.UI
             Loc.Portuguese => "PORTUGUÊS",
             Loc.Russian => "РУССКИЙ",
             Loc.Korean => "한국어",
+            Loc.Japanese => "日本語",
             _ => "ENGLISH"
         };
 
@@ -288,10 +289,11 @@ namespace Rouge.Tcg.UI
         {
             if (languageValue == null) return;
             string language = pendingLanguage ?? Loc.Language;
-            // „简体中文“/„한국어“ brauchen ihre Laufzeit-Schrift auch dann, wenn
-            // gerade eine andere Sprache aktiv ist — sonst zeigt die Zeile Vierecke.
+            // „简体中文“/„한국어“/„日本語“ brauchen ihre Laufzeit-Schrift auch dann,
+            // wenn gerade eine andere Sprache aktiv ist — sonst zeigt die Zeile Vierecke.
             if (language == Loc.ChineseSimplified) LocBoot.EnsureRuntimeFallback();
             else if (language == Loc.Korean) LocBoot.EnsureKoreanFallback();
+            else if (language == Loc.Japanese) LocBoot.EnsureJapaneseFallback();
             languageValue.text = LanguageDisplayName(language);
         }
 

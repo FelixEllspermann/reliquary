@@ -1,0 +1,478 @@
+# RELIQUARY — UI-Übersetzung Japanisch
+# Format: englischer Text <TAB> Übersetzung. '#' = Kommentar.
+# Werte werden NICHT getrimmt — Leerzeichen in Bausteinen sind Absicht.
+# Stil: Kartentexte im YGO-JP-Ton (自分/相手, ～する), UI-Meldungen höflich (～します).
+# Phasennamen bleiben englisch (Standby Phase, Main Phase, End Phase, Battle Phase).
+# ---------- Kartenrahmen / Kartentypen ----------
+MONSTER	モンスター
+SPELL	魔法
+ARTIFACT	アーティファクト
+RELIQUARY	聖遺物
+PLAYER	プレイヤー
+HERO	英雄
+QUICK	速攻
+NORMAL	通常
+QUICK SPELL	速攻魔法
+Quick Spell	速攻魔法
+Spell Card	魔法カード
+Artifact	アーティファクト
+Monster	モンスター
+Player	プレイヤー
+Field	フィールド
+FIELD	フィールド
+LIEN	抵当
+SUMMON:	召喚：
+PASSIVE:	永続：
+INFUSED	INFUSED
+OR INFUSED	またはINFUSED
+INFUSED UPGRADE	INFUSED強化
+RELIQUARY SUMMON	聖遺物召喚
+SPECIAL SUMMON	特殊召喚
+PASSIVE	永続
+{0} MANA	マナ{0}
+NO MANA	マナ不要
+No effect.	効果なし。
+— or, instead —	— または、その代わりに —
+Equipped:	装着時：
+You cannot see this card.	このカードは見ることができない。
+Face-down card	裏側表示のカード
+{0} • Level {1} • ATK {2} / DEF {3}	{0} • レベル{1} • ATK {2} / DEF {3}
+Player Card • {0} starting LP	プレイヤーカード • 初期LP {0}
+# ---------- Attribute ----------
+FIRE	炎
+WATER	水
+LIGHT	光
+DARK	闇
+EARTH	地
+WIND	風
+Fire	炎
+Water	水
+Light	光
+Dark	闇
+Earth	地
+Wind	風
+# ---------- Monster-Typen ----------
+DRAGON	ドラゴン
+HUMAN	人間
+ANIMAL	動物
+BEAST	獣
+MECHA	機械
+DEMON	悪魔
+ANGEL	天使
+MYTH	神話
+Dragon	ドラゴン
+Human	人間
+Animal	動物
+Beast	獣
+Mecha	機械
+Demon	悪魔
+Angel	天使
+Myth	神話
+# ---------- Seltenheiten ----------
+COMMON	コモン
+UNCOMMON	アンコモン
+RARE	レア
+LEGENDARY	レジェンダリー
+Common	コモン
+Uncommon	アンコモン
+Rare	レア
+Legendary	レジェンダリー
+# ---------- Trigger-Zeilen (Inspect) ----------
+Activate during your Main Phase	自分のMain Phaseに発動
+Response — activate any time	レスポンス — いつでも発動可能
+On play	プレイ時
+When this card is summoned	このカードが召喚された時
+When this card is destroyed	このカードが破壊された時
+When your opponent summons	相手が召喚した時
+During your Standby Phase	自分のStandby Phaseの間
+During your End Phase	自分のEnd Phaseの間
+When this card is Normal Summoned	このカードが通常召喚された時
+Activate from your hand during your Main Phase	自分のMain Phaseに手札から発動
+Activate from your Graveyard during your Main Phase	自分のMain Phaseに墓地から発動
+Response from your hand — activate any time	手札からのレスポンス — いつでも発動可能
+FLIP — when this card is turned face-up	リバース — このカードが表側になった時
+ · only if Special Summoned	 · 特殊召喚されている場合のみ
+ · once per turn	 · 1ターンに1度
+Standalone effect	独立効果
+ · standalone	 · 独立
+Only one effect from this group each turn	このグループの効果は1ターンに1つまで
+ · only one from this group per turn	 · このグループから1ターンに1つまで
+# ---------- Passiv-Vorlagen ----------
+face-down 	裏側表示の
+other 	他の
+ Level {0}	 レベル{0}の
+{0} ATK and {1} DEF	ATK{0}／DEF{1}
+{0} ATK	ATK{0}
+{0} DEF	DEF{0}
+Your {0}{1}{2}{3}{4} monsters gain {5}.	自分の{0}{1}{2}{4}{3}モンスターは{5}を得る。
+This card gains {0} ATK for each of {1}.	このカードは{1}1枚につきATK{0}を得る。
+This card gains {0} DEF for each of {1}.	このカードは{1}1枚につきDEF{0}を得る。
+This card cannot attack.	このカードは攻撃できない。
+This card cannot attack during the turn it is Summoned.	このカードは召喚されたターンには攻撃できない。
+This card cannot attack directly during the turn it is Summoned.	このカードは召喚されたターンには直接攻撃できない。
+Your opponent's attacks must target this card.	相手の攻撃はこのカードを対象にしなければならない。
+While you control {0}+ Artifacts, this card cannot be destroyed by battle.	自分がアーティファクトを{0}枚以上コントロールしている間、このカードは戦闘では破壊されない。
+Counts as {0} tributes for a Reliquary Summon.	聖遺物召喚の際、生贄{0}体分として扱う。
+Your other \"{0}\" cards cannot be targeted by your opponent's effects.	自分の他の«{0}»カードは相手の効果の対象にならない。
+Can attack twice each Battle Phase while you control another face-up {0} monster.	自分が他の表側表示の{0}モンスターをコントロールしている間、Battle Phaseごとに2回攻撃できる。
+You cannot Summon or Set this card while you control {0} \"{1}\" monsters.	自分が«{1}»モンスターを{0}体コントロールしている間、このカードは召喚もセットもできない。
+Every time you mill 1 or more cards: deal {0} damage to your opponent.	自分がカードを1枚以上削るたび：相手に{0}ダメージを与える。
+While this card is on the field, neither player can Special Summon Reliquaries.	このカードがフィールドにある間、両プレイヤーは聖遺物を特殊召喚できない。
+This card cannot be destroyed by battle.	このカードは戦闘では破壊されない。
+This card cannot be targeted by your opponent's effects.	このカードは相手の効果の対象にならない。
+Neither player takes battle damage from battles involving this card.	このカードが関わる戦闘では、どちらのプレイヤーも戦闘ダメージを受けない。
+Your opponent takes all battle damage you would take instead.	自分が受ける戦闘ダメージは、代わりに相手が受ける。
+During each End Phase: put a Death Counter on this card. With {0} Death Counters, it is sent to the Graveyard.	各End Phaseごと：このカードに死のカウンターを1つ置く。死のカウンターが{0}つになったら、このカードは墓地へ送られる。
+Every time your opponent sends cards from their Deck to the Graveyard (except by this effect): they send {0} more.	相手がデッキから墓地へカードを送るたび（この効果を除く）：相手はさらに{0}枚送る。
+While this card is on the field, your cards cannot be targeted by your opponent's effects or attacks.	このカードがフィールドにある間、自分のカードは相手の効果や攻撃の対象にならない。
+During each End Phase: pay {0} LP or destroy this card.	各End Phaseごと：LPを{0}払うか、このカードを破壊する。
+While this card is face-up on the field, your opponent must Set Spells before activating them.	このカードがフィールドに表側表示である間、相手は魔法を発動する前にセットしなければならない。
+(The aura above applies only to monsters adjacent to this card.)	（上記のオーラはこのカードに隣接するモンスターにのみ適用される。）
+(The aura above applies only to your monsters with no adjacent monster.)	（上記のオーラは隣接モンスターのいない自分のモンスターにのみ適用される。）
+Your monsters with an adjacent monster lose {0} ATK.	隣接モンスターのいる自分のモンスターはATKが{0}下がる。
+The monster facing this card loses {0} ATK.	このカードと向かい合うモンスターはATKが{0}下がる。
+Monsters adjacent to this card cannot be destroyed by card effects.	このカードに隣接するモンスターはカードの効果では破壊されない。
+Monsters adjacent to this card cannot be destroyed by battle.	このカードに隣接するモンスターは戦闘では破壊されない。
+When this card is destroyed: the monsters adjacent to it permanently lose {0} ATK and DEF.	このカードが破壊された時：隣接していたモンスターはATKとDEFが永続的に{0}下がる。
+This card cannot be destroyed by card effects.	このカードはカードの効果では破壊されない。
+This card cannot be Tributed.	このカードは生贄に捧げられない。
+This card cannot change its battle position.	このカードは表示形式を変更できない。
+If this card changed its battle position this turn, it cannot attack.	このカードがこのターンに表示形式を変更していた場合、攻撃できない。
+Cannot be Normal Summoned or Set.	通常召喚・セットできない。
+During each of its controller's Standby Phases: its controller loses {0} LP.	コントローラーの各Standby Phaseごと：コントローラーはLPを{0}失う。
+While this card is on the field, you cannot Special Summon other monsters.	このカードがフィールドにある間、自分は他のモンスターを特殊召喚できない。
+While you control no other monsters, this card cannot be destroyed by battle or by card effects.	自分が他のモンスターをコントロールしていない間、このカードは戦闘でもカードの効果でも破壊されない。
+While you have 1 or fewer cards in hand, this card cannot be targeted and cannot be destroyed by card effects.	手札が1枚以下の間、このカードは対象にならず、カードの効果でも破壊されない。
+Piercing: when this card attacks a Defense Position monster with lower DEF, the difference is dealt as battle damage.	貫通：このカードがDEFの低い守備表示モンスターを攻撃した時、その差分を戦闘ダメージとして与える。
+The equipped monster inflicts piercing battle damage.	装着モンスターは貫通戦闘ダメージを与える。
+If the equipped monster attacks a Defense Position monster and does not destroy it, destroy this card.	装着モンスターが守備表示モンスターを攻撃して破壊できなかった場合、このカードを破壊する。
+This card can attack directly even if your opponent controls monsters; battle damage from its direct attacks is halved.	このカードは相手がモンスターをコントロールしていても直接攻撃できる。その直接攻撃の戦闘ダメージは半分になる。
+This card cannot attack directly.	このカードは直接攻撃できない。
+Spells cost 1 more Mana for both players. During your End Phase, if you activated a Spell this turn, destroy this card.	両プレイヤーの魔法のコストがマナ1増える。自分のEnd Phaseに、このターン魔法を発動していた場合、このカードを破壊する。
+Each player may declare only one attack per Battle Phase. Attacking monsters gain {0} ATK during the battle.	各プレイヤーはBattle Phaseごとに攻撃を1回しか宣言できない。攻撃するモンスターはその戦闘の間ATK{0}を得る。
+During your Standby Phase: gain {0} additional Mana this turn.	自分のStandby Phaseの間：このターン、追加でマナ{0}を得る。
+During your End Phase, if you hold more than {0} cards, destroy this card.	自分のEnd Phaseに手札が{0}枚を超えている場合、このカードを破壊する。
+When your LP are {0} or less, this card is destroyed.	自分のLPが{0}以下になった時、このカードは破壊される。
+LP costs you pay are reduced to 0.	自分が払うLPコストは0になる。
+Once per turn, when you flip a coin, flip it twice and choose which result counts. If both land Tails, destroy this card.	1ターンに1度、コインを投げる時、2回投げてどちらの結果を適用するか選ぶ。両方とも裏だった場合、このカードを破壊する。
+While your LP are lower than your opponent's, your coin flips that land Tails count as Heads.	自分のLPが相手より少ない間、自分のコイントスで出た裏は表として扱う。
+Monsters with a Lien lose {0} ATK.	抵当の付いたモンスターはATKが{0}下がる。
+Monsters you control but do not own gain {0} ATK.	自分がコントロールする、自分の所有ではないモンスターはATK{0}を得る。
+# ---------- Zähl-Namen ----------
+your Artifacts on the field	フィールドの自分のアーティファクト
+the Artifacts in your Graveyard	自分の墓地のアーティファクト
+your face-down monsters	自分の裏側表示モンスター
+your banished monsters	除外されている自分のモンスター
+the cards in your Graveyard	自分の墓地のカード
+its equipped Artifacts	装着しているアーティファクト
+your opponent's face-down monsters	相手の裏側表示モンスター
+the Illusion Tokens your opponent controls	相手がコントロールする幻影トークン
+the cards in your hand	自分の手札のカード
+the Spells in your Graveyard	自分の墓地の魔法
+your monsters on the field	フィールドの自分のモンスター
+# ---------- Selbst-Spezialbeschwörung ----------
+you control	自分が
+your opponent controls	相手が
+{0} {1}+ \"{2}\" monsters	{0}«{2}»モンスターを{1}体以上コントロールしている間
+{0} a \"{1}\" monster	{0}«{1}»モンスターをコントロールしている間
+{0} a {1} monster	{0}{1}モンスターをコントロールしている間
+there is a face-down monster on the field	フィールドに裏側表示モンスターがいる間
+you control an Artifact	自分がアーティファクトをコントロールしている間
+your opponent controls {0}+ monsters	相手がモンスターを{0}体以上コントロールしている間
+you milled this or last turn	このターンか前のターンにカードを削っていた場合
+you have {0}+ cards in your Graveyard	自分の墓地にカードが{0}枚以上ある間
+you have {0}+ \"{1}\" cards in your Graveyard	自分の墓地に«{1}»カードが{0}枚以上ある間
+you control no monsters	自分がモンスターをコントロールしていない間
+you control {0}+ monsters	自分がモンスターを{0}体以上コントロールしている間
+your LP are lower than your opponent's	自分のLPが相手より少ない間
+you have {0} or fewer other cards in your hand	手札の他のカードが{0}枚以下の間
+you have {0}+ other cards in your hand	手札に他のカードが{0}枚以上ある間
+your opponent controls a Defense Position monster	相手が守備表示モンスターをコントロールしている間
+a monster with a Lien is on the field	抵当の付いたモンスターがフィールドにいる間
+ in Defense Position	 守備表示で
+ by paying {0} LP	 LPを{0}払って
+You can Special Summon this card from your hand{0}{1} (once per turn).	このカードを手札から{0}{1}特殊召喚できる（1ターンに1度）。
+While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).	{0}：このカードを手札から{1}{2}特殊召喚できる（1ターンに1度）。
+ and 	、そして
+# ---------- Hauptmenü & Fenster ----------
+NEWS	ニュース
+BANLIST	バンリスト
+FEEDBACK	フィードバック
+SETTINGS	設定
+DISCORD	DISCORD
+HOW TO PLAY	遊び方
+GLOSSARY	用語集
+CLOSE	閉じる
+NEW CARDS	新カード
+BACK	戻る
+DONE	完了
+CANCEL	キャンセル
+Cancel	キャンセル
+SEND	送信
+PLAY	プレイ
+SOLO	ソロ
+DECKS	デッキ
+SHOP	ショップ
+STATISTICS	統計
+MAIN MENU	メインメニュー
+PATCH NOTES · WHAT CHANGED	パッチノート · 変更点
+CARD LIMITS · ENFORCED WHEN A DECK IS SAVED	カード制限 · デッキ保存時に適用
+THE RULES OF THE VAULT	金庫の掟
+THE RULES OF THE VAULT · SCROLL TO READ	金庫の掟 · スクロールして読む
+EVERY TERM OF THE GAME · A TO Z	ゲームの全用語 · 五十音順
+MUSIC	音楽
+SOUND	効果音
+SCREEN SHAKE	画面の揺れ
+LANGUAGE	言語
+OFF	オフ
+More options will be added here over time.	オプションは今後も追加されていきます。
+DAILY SEAL	デイリー封印
+CLAIM	受け取る
+CLAIMED	受取済み
+CHALLENGES	チャレンジ
+WORKSHOP	工房
+Cosmetics	着せ替え
+CUSTOMIZE APPEARANCE & TITLE	外見と称号をカスタマイズ
+Player Profile	プレイヤープロフィール
+LIFETIME RECORD	通算戦績
+Recent Matches	最近の対戦
+LOADING MATCH HISTORY...	対戦履歴を読み込み中...
+LOADING STATISTICS...	統計を読み込み中...
+Card Performance	カード成績
+Card Details	カード詳細
+DUELIST OF THE VAULT	金庫のデュエリスト
+# ---------- Play / Lobby ----------
+ONLINE DUEL	オンラインデュエル
+Online Duel	オンラインデュエル
+QUICK MATCH	クイックマッチ
+PRIVATE LOBBY	プライベートロビー
+CREATE LOBBY	ロビーを作成
+JOIN DUEL	デュエルに参加
+JOIN WITH A CODE	コードで参加
+LOBBY CODE	ロビーコード
+WATCH	観戦
+RANKED DUELS	ランクデュエル
+RANKED QUEUE	ランク待機列
+Searching for a duelist	デュエリストを探しています
+Waiting for your opponent to join…	相手の入室を待っています…
+Choose your deck	デッキを選んでください
+You cannot swap decks mid-duel — choose well.	デュエル中はデッキを替えられません — 慎重に選びましょう。
+SOLO TRIAL	ソロ試練
+TRIAL OF THE WARDEN	番人の試練
+TRIAL BRIEFING	試練の説明
+TRIAL REWARD	試練の報酬
+DIFFICULTY	難易度
+FULL DECK · REAL AI	フルデッキ · 本物のAI
+PLAYS OPENLY · NO TRAPS	オープンプレイ · 罠なし
+START DUEL!	デュエル開始！
+THE TOWER	塔
+The Tower rises — its keepers await	塔がそびえ立つ — 守護者たちが待っている
+Every trial pays out — win or learn.	試練は必ず報われる — 勝つか、学ぶか。
+# ---------- Duell-HUD ----------
+END TURN	ターン終了
+BATTLE	バトル
+END BATTLE	バトル終了
+SURRENDER	降参
+DUEL LOG	デュエルログ
+INSPECT	詳細
+SELECT A CARD	カードを選択
+OPPONENT	相手
+YOU	自分
+PLAYER CARD	プレイヤーカード
+LIFE	ライフ
+DECK	デッキ
+HAND	手札
+GRAVE	墓地
+BANISH	除外
+GRAVEYARD	墓地
+BANISHED	除外
+EXTRA DECK	エクストラデッキ
+DRAW	ドロー
+STDBY	スタンバイ
+MAIN	メイン
+END	エンド
+MAIN PHASE	MAIN PHASE
+YOUR MAIN PHASE	自分のMAIN PHASE
+Your Main Phase — click a card or drag it onto a zone.	自分のMain Phase — カードをクリックするか、ゾーンへドラッグしましょう。
+Battle Phase — click a monster that can attack.	Battle Phase — 攻撃できるモンスターをクリックしましょう。
+REACTIONS · ON	リアクション · オン
+REACTIONS · OFF	リアクション · オフ
+VICTORY	勝利
+DUEL AGAIN	もう一度デュエル
+QUIT	退出
+ACTIVATION	発動
+THE DUEL IS SEALED	デュエルは封印された
+# ---------- Deck Builder ----------
+DECK BUILDER	デッキ工房
+DECK NAME	デッキ名
+Deck name	デッキ名
+SAVE DECK	デッキを保存
+SAVED ✓	保存済み ✓
+DELETE	削除
+COPY	コピー
+DECK BALANCE	デッキバランス
+CARD TEXT	カードテキスト
+Hover over a card to read its text.	カードにカーソルを合わせるとテキストを読めます。
+Search name, attribute, type…	名前・属性・タイプで検索…
+ALL	すべて
+OWNED	所持
+MISSING	未所持
+NEW	新規
+TYPE	タイプ
+NAME	名前
+LEVEL	レベル
+ATK	ATK
+DEF	DEF
+RARITY	レアリティ
+ASC	昇順
+DESC	降順
+ALL ARCHETYPES	すべてのカード群
+NO ARCHETYPE	カード群なし
+CHOOSE YOUR HERO	英雄を選択
+HERO CACHE · SHOP	英雄の隠し場 · ショップ
+Your Deck:	自分のデッキ：
+LV 1	LV 1
+LV 2	LV 2
+LV 3	LV 3
+STAT	数値
+RARE	レア
+OR	または
++ NEW	+ 新規
+No deck	デッキなし
+Create a deck in the workshop	工房でデッキを作りましょう
+{0} cards · {1} monsters · {2} spells · {3} artifacts	カード{0}枚 · モンスター{1}体 · 魔法{2}枚 · アーティファクト{3}枚
+# ---------- Shop ----------
+CARD PACKS	カードパック
+Hero Cache	英雄の隠し場
+Relic Pack	遺物パック
+OPEN	開封
+BROWSE	閲覧
+Card Pool	カードプール
+Sleeves, frames, mats, coins and titles	スリーブ・フレーム・マット・コイン・称号
+Paid for with coins — the same purse that buys packs.	パックを買うのと同じコインで購入できます。
+One Player Card you do not own yet	まだ持っていないプレイヤーカード1枚
+Every card in the vault — five per seal	金庫のすべてのカード — 封印1つにつき5枚
+# ---------- NEW-CARDS-Szene ----------
+{0} CARDS ADDED IN {1} AND ITS PATCHES · POINT AT A CARD TO READ IT	{1}とそのパッチで追加されたカード{0}枚 · カードを指すと読めます
+NOTHING NEW IN {0} YET	{0}にはまだ新しいものがありません
+Point at a card to read it.	カードを指すと読めます。
+BACK TO MENU	メニューに戻る
+— {0} CARDS	— カード{0}枚
+{0} NEW CARDS	新カード{0}枚
+{0} OF {1} NEW CARDS SHOWN	新カード{1}枚中{0}枚を表示
+# ---------- Hauptmenü dynamisch ----------
+Requires an account — log in first	アカウントが必要です — まずログインしてください
+The Warden awaits — +50 coins per trial	番人が待っています — 試練ごとに+50コイン
+Browse the starter decks	スターターデッキを見る
+LOG IN TO CLAIM	ログインして受け取る
++150 COINS PER DAY	毎日+150コイン
++50 COINS	+50コイン
+OFFLINE MODE	オフラインモード
+OFFLINE — NO ACCOUNT	オフライン — アカウントなし
+{0} duelists in the vault — +100 coins per duel	金庫にデュエリスト{0}人 — デュエルごとに+100コイン
+The Tower — {0} floors sealed	塔 — {0}階を封印済み
+{0} unopened packs waiting in your vault	金庫で未開封パック{0}個が待っています
+Relic Pack — five cards per seal	遺物パック — 封印1つにつき5枚
+{0} decks · {1} unique cards collected	デッキ{0}個 · 収集カード{1}種
+{0} DUELISTS ONLINE	デュエリスト{0}人がオンライン
+DAY {0} · +{1} COINS	{0}日目 · +{1}コイン
++{0} COINS PER DAY	毎日+{0}コイン
+DAY {0} SEALED	{0}日目 封印済み
+SEAL READY	封印の準備完了
+Seal your deck, wake the Warden, and duel for the lost relics of the vault.	デッキを封印し、番人を目覚めさせ、金庫の失われた遺物を懸けてデュエルしましょう。
+This vault is empty	この金庫は空です
+0 GAMES	0 対戦
+0 PACKS WAITING	待機中のパック0個
+SOLO — GEGEN DEN BOT	ソロ — ボットとデュエル
+BUY PACK · 100	パック購入 · 100
+DUELIST	デュエリスト
+Novice	初心者
+Warden	番人
+Sealed	封印済み
+Wanderer	放浪者
+< MENU	< メニュー
+Turn 1	ターン1
+SHOWCASE — CLICK A SLOT TO DISPLAY A CARD	ショーケース — 枠をクリックしてカードを展示
+ENTER THE VAULT	金庫に入る
+THE VAULT'S ONE SEAL	金庫のただ一つの封印
+{0} terms. Card texts use exactly these words.	{0}個の用語。カードテキストは正確にこの言葉を使います。
+# ---------- Login ----------
+SIGN IN	ログイン
+REGISTER	新規登録
+LOG IN	ログイン
+CREATE ACCOUNT	アカウント作成
+UNSEALING…	封印解除中…
+DUELIST NAME	デュエリスト名
+PASSWORD	パスワード
+SHOW	表示
+HIDE	隠す
+Keep me sealed in	ログイン状態を保持
+Lost your seal?	封印を忘れましたか？
+Your name, duelist	デュエリストの名前を入力
+Your seal phrase	封印の合言葉を入力
+CONTINUE WITH STEAM	STEAMで続行
+CONTINUE AS {0}	「{0}」で続行
+Reaching for the vault…	金庫に接続中…
+Vault unreachable — retrying may help	金庫に接続できません — 再試行してみてください
+Vault unreachable — retrying…	金庫に接続できません — 再試行中…
+Connected to the vault	金庫に接続しました
+Not connected to the vault.	金庫に接続していません。
+Name too short (min. 3 characters).	名前が短すぎます（最低3文字）。
+Password too short (min. 4 characters).	パスワードが短すぎます（最低4文字）。
+Your vault holds {0} cards and {1} deck.	金庫にはカード{0}枚とデッキ{1}個があります。
+Your vault holds {0} cards and {1} decks.	金庫にはカード{0}枚とデッキ{1}個があります。
+APPLY	適用
+# ---------- Freunde, Herausforderungen & Replays ----------
+FRIENDS	フレンド
+YOUR FRIEND CODE	自分のフレンドコード
+Code copied.	コードをコピーしました。
+ADD A FRIEND BY CODE	コードでフレンド追加
+FRIEND CODE…	フレンドコード…
+ADD	追加
+REQUESTS	リクエスト
+YOUR FRIENDS	フレンド一覧
+NO FRIENDS YET — SHARE YOUR CODE!	まだフレンドがいません — コードを共有しましょう！
+IN A DUEL	デュエル中
+DUEL	デュエル
+PROFILE	プロフィール
+ACCEPT	承認
+DECLINE	拒否
+WAITING FOR {0}…	{0}を待っています…
+Request sent to {0}.	{0}にリクエストを送りました。
+You are now friends with {0}!	{0}とフレンドになりました！
+{0} sent you a friend request.	{0}からフレンドリクエストが届きました。
+{0} declined the duel.	{0}はデュエルを断りました。
+{0} CHALLENGES YOU TO A DUEL	{0}からのデュエル申し込み！
+Not connected.	接続していません。
+ADD FRIEND	フレンド追加
+SAVE REPLAY	リプレイ保存
+REPLAY SAVED	リプレイを保存しました
+REQUEST SENT	リクエスト送信済み
+FRIENDS NOW	フレンドになりました
+SLOTS FULL — SEE PROFILE	枠がいっぱいです — プロフィールを確認
+ALREADY FRIENDS	すでにフレンドです
+REPLAY	リプレイ
+WINNER	勝者
+ONLINE	オンライン
+NOT CONNECTED — MATCH HISTORY NEEDS A SERVER SESSION.	未接続 — 対戦履歴にはサーバーセッションが必要です。
+NO MATCHES PLAYED YET.	まだ対戦がありません。
+No duelist with that code.	そのコードのデュエリストはいません。
+That is your own code.	それは自分のコードです。
+You are already friends.	すでにフレンドです。
+Request already sent.	リクエストは送信済みです。
+Friend codes have 8 characters.	フレンドコードは8文字です。
+That duelist does not exist.	そのデュエリストは存在しません。
+You can only challenge friends.	デュエルを申し込めるのはフレンドだけです。
+That duelist is offline.	そのデュエリストはオフラインです。
+That duelist is in a duel right now.	そのデュエリストは今デュエル中です。
+That challenge is no longer open.	その申し込みはもう有効ではありません。
+That request is no longer open.	そのリクエストはもう有効ではありません。
+That duelist is no longer online.	そのデュエリストはもうオンラインではありません。
+That duelist has too many open requests.	そのデュエリストへのリクエストが多すぎます。
+Replay slots full — delete one in your profile.	リプレイ枠がいっぱいです — プロフィールで1つ削除してください。
+No recent duel to save.	保存できる最近のデュエルがありません。
+This duel is too long to save.	このデュエルは長すぎて保存できません。
+Replay not found.	リプレイが見つかりません。
+Replay is damaged.	リプレイが破損しています。
+SHOWCASE	ショーケース
+DUEL OVER	デュエル終了
