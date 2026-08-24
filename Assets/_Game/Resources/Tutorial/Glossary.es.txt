@@ -1,0 +1,114 @@
+Activar (Activate) :: Usar una Magia, un Artefacto o un efecto. Los costes se pagan al activar; el efecto se resuelve después — o como eslabón de cadena si alguien responde.
+Arquetipo (Archetype) :: Una familia de cartas con nombre que funcionan juntas, normalmente con un prefijo común («Mareal», «Archidemonio»). Las cartas de apoyo que nombran un arquetipo también pertenecen a él. El Taller de Decks puede filtrar por arquetipo.
+Artefacto (Artifact) :: Una carta que se queda en la mesa. Los Artefactos de Monstruo se equipan a un monstruo (ATK/DEF extra y efectos para el portador), los Artefactos de Campo afectan a toda la mesa, los Artefactos de Jugador van sobre tu héroe. Dos Zonas de Artefactos por duelista.
+ATK :: Fuerza de ataque. Se usa cuando un monstruo ataca o es atacado en Posición de Ataque. Los efectos la modifican, temporalmente («hasta el final del turno») o permanentemente.
+Posición de Ataque (Attack Position) :: Un monstruo boca arriba en vertical. Puede atacar y combate con su ATK; si pierde una batalla, su controlador recibe la diferencia como daño.
+Atributo (Attribute) :: El elemento de un monstruo: Fuego, Agua, Viento, Tierra, Luz u Oscuridad. Algunos efectos y condiciones de Invocación lo piden.
+Desterrar (Banish) :: Mover una carta a la pila de Destierro — el segundo cementerio. Las cartas desterradas quedan fuera del duelo a menos que una carta las traiga de vuelta expresamente.
+Destierro (Banishment) :: La pila de cartas desterradas. Algunos efectos las devuelven, algunos Relicarios las cuentan.
+Banlist :: La lista de cartas limitadas a 2, 1 o 0 copias por deck. Se aplica al guardar un deck; el límite aparece impreso en la casilla del Taller de Decks.
+Daño de batalla (Battle damage) :: Daño de una batalla: la diferencia de ATK, o el ATK completo de un ataque directo. Distinto del daño de efecto — algunas cartas evitan uno y no el otro.
+Battle Phase :: La cuarta fase de un turno. Cada monstruo boca arriba en Posición de Ataque puede atacar una vez. El duelista que empieza no tiene Battle Phase en su primerísimo turno.
+Posición de batalla (Battle position) :: Ataque o Defensa. Se cambia una vez por turno y por monstruo en la Main Phase — no en el turno en que fue Invocado, no después de atacar.
+Rebotar (Bounce) :: Jerga para «devolver a la mano». Un monstruo rebotado pierde todo lo que ganó en el Campo.
+Tipo de carta (Card type) :: Monstruo, Magia, Artefacto, Relicario o Carta de Jugador. Algunos efectos te piden nombrar uno.
+Cadena (Chain) :: Una pila de activaciones. Cuando un efecto responde a otro, forman los eslabones 1, 2, 3…; cuando nadie añade más, la cadena se resuelve hacia atrás, el último eslabón primero. No se puede activar nada nuevo mientras una cadena se resuelve.
+Cargado (Charged) :: Una mecánica de Brasalenta: una Magia Colocada antes de este turno puede disparar una versión más fuerte, cargada, durante tu Standby Phase.
+Monedas (Coins) :: La moneda que se gana duelando. Compra sobres y cosméticos.
+Efecto continuo (Continuous effect) :: Ver Pasivo.
+Control :: En el Campo de quién está una carta. Algunos efectos toman el control de un monstruo; el dueño no cambia, así que vuelve a la mano o al Cementerio de su dueño cuando se va.
+Coste (Cost) :: Lo que pagas para activar: maná, un descarte, un sacrificio, desterrar una carta. Los costes se pagan aunque el efecto sea negado después.
+Contador (Counter) :: Un marcador que un efecto pone sobre una carta. Los Contadores de Muerte se muestran como una calavera con un número; la carta explica qué pasa cuando se acumulan.
+Acoplado (Coupled) :: Un efecto Infused que mejora el efecto de encima («En su lugar, paga 2 de maná: …»). Cada turno usas o la versión simple o la Acoplada, nunca ambas.
+Fabricar (Craft) :: Convertir polvo en una carta que te falta. Despolvar una copia sobrante devuelve polvo.
+Contador de Muerte (Death counter) :: Un contador que sube durante las End Phases; cuando una carta alcanza su límite impreso, es destruida. Se muestra como una calavera con un número.
+Deck :: Tu pila principal, de 40 a 80 cartas, como máximo 3 copias de una carta. Barajado, boca abajo; robas de arriba.
+Posición de Defensa (Defense Position) :: Un monstruo tumbado de lado. No puede atacar, resiste con su DEF y no inflige daño de batalla. Los monstruos boca abajo siempre están en Defensa.
+DEF :: Fuerza defensiva, usada cuando un monstruo es atacado en Posición de Defensa. Si el ATK del atacante es menor, el controlador del atacante recibe la diferencia.
+Destruir (Destroy) :: Mandar una carta del Campo al Cementerio por batalla o por efecto. «No puede ser destruida» protege exactamente de esto — no de desterrar, rebotar o sacrificar.
+Ataque directo (Direct attack) :: Un ataque al héroe del adversario en vez de a un monstruo. Solo es posible mientras no controle monstruos. Inflige el ATK completo del atacante como daño.
+Descartar (Discard) :: Mandar una carta de tu mano al Cementerio. Los descartes «al azar» los elige la suerte; los demás, el jugador que descarta.
+Draft :: Un modo en el que construyes un deck a partir de un pool nuevo de cartas y escalas con lo que draftaste.
+Draw Phase :: La primera fase de un turno: roba 1 carta. El duelista que empieza se la salta en su primerísimo turno.
+Polvo (Dust) :: En lo que se convierte una carta despolvada. Gástalo para fabricar cartas.
+Daño de efecto (Effect damage) :: Daño infligido por un efecto de carta y no por batalla («inflige 800 de daño»). Algunas cartas evitan uno y no el otro.
+End Phase :: La última fase de un turno: efectos «durante tu End Phase», límite de mano, y el turno pasa.
+Equipar (Equip) :: Colocar un Artefacto de Monstruo sobre un monstruo — el portador. Si el portador deja el Campo, el Artefacto va al Cementerio.
+Extra Deck :: Tus Relicarios, hasta 20. Nunca se roban; cada uno espera a que se cumplan sus requisitos de Invocación impresos.
+Boca abajo (Face-down) :: Una carta jugada oculta. Los monstruos boca abajo siempre están en Posición de Defensa; las Magias boca abajo están Colocadas y pueden activarse más tarde.
+Campo (Field) :: La mesa: cada zona de ambos duelistas. «En el Campo» significa boca arriba o boca abajo en una Zona de Monstruos o de Artefactos.
+Artefacto de Campo (Field Artifact) :: Un Artefacto que ocupa una Zona de Artefactos y afecta a toda la mesa, no a un monstruo.
+Acabado (Finish) :: El aspecto de una copia de una carta: Sencillo, Brillante, Arcoíris o Estática. Puramente cosmético; el acabado de la copia que montas en el deck es el que llega a la mesa.
+Disiparse (Fizzle) :: Cuando un efecto se resuelve pero ya no queda nada legal que hacer — su objetivo se fue, su zona se llenó. El efecto no hace nada; los costes quedan pagados.
+Volteo (Flip) :: Poner boca arriba un monstruo boca abajo — por elección (a Posición de Ataque), por un ataque o por un efecto. Los efectos de Volteo se disparan cuando esto ocurre.
+Cementerio (Graveyard) :: Adonde van las cartas destruidas, usadas y descartadas. Muchos efectos recuperan cartas de aquí o cuentan lo que contiene. Haz clic en la pila para revisarla.
+Mano (Hand) :: Las cartas que tienes. Límite de 8 al final de tu turno.
+Límite de mano (Hand limit) :: 8. Si tienes más durante tu End Phase, descartas hasta quedarte con 8.
+Héroe (Hero) :: Ver Carta de Jugador.
+Efecto de ignición (Ignition effect) :: Un efecto que activas tú mismo en tu Main Phase («Una vez por turno: …»).
+Ficha de Ilusión (Illusion Token) :: Una Ficha 0/0 que el arquetipo Gaslight pone en el Campo del adversario. Ocupa una zona y puede destruirse para sacar ventaja.
+Infused :: Un efecto más fuerte de una carta que siempre cuesta maná. O bien Acoplado (mejora del efecto de encima) o Independiente (una capacidad propia).
+Nivel (Level) :: 1, 2 o 3, mostrado en el escudo. Un Nivel 2 necesita 1 sacrificio para la Invocación Normal, un Nivel 3 necesita 2. Los Relicarios son de Nivel 3.
+Puntos de Vida (Life Points) :: Tu salud. 8000 al empezar (algunos héroes varían). A 0, el duelo está perdido.
+LP :: Abreviatura de Puntos de Vida (Life Points).
+Main Phase :: La tercera fase de un turno: Invocar, jugar Magias y Artefactos, activar efectos de ignición, cambiar posiciones, llamar Relicarios.
+Maná (Mana) :: El recurso para Magias, efectos Infused, efectos de héroe e Invocaciones de Relicario. Se recarga en cada uno de tus turnos: 3 al principio, uno más cada turno hasta 10. El maná sin gastar se pierde salvo que una carta diga lo contrario.
+Moler (Mill) :: Mandar cartas de la parte superior de un Deck al Cementerio. Del tuyo o del de tu adversario.
+Monstruo (Monster) :: Una carta que combate. Nivel, Atributo, Tipo, ATK, DEF — y normalmente efectos.
+Artefacto de Monstruo (Monster Artifact) :: Un Artefacto que se equipa a un monstruo.
+Tipo de Monstruo (Monster Type) :: Dragón, Humano, Bestia, Mecha, Ángel, Demonio, Mito, Animal… A algunos efectos les importa.
+Negar (Negate) :: Apagar los efectos de una carta. Una carta negada lleva una insignia violeta NEG hasta el final del turno; si intenta actuar, no pasa nada.
+Invocación Normal (Normal Summon) :: Jugar un monstruo de tu mano en tu Main Phase, una vez por turno. Gratis para Nivel 1; 1 sacrificio para Nivel 2, 2 para Nivel 3. Colocar un monstruo boca abajo también la consume.
+Una vez por turno (Once per turn) :: El efecto puede usarse una vez cada turno. Algunos son una vez por turno y por nombre de carta — tres copias comparten un solo uso.
+Dueño (Owner) :: Del deck de quién salió una carta. Las cartas vuelven a la mano, el Deck o el Cementerio de su dueño incluso tras un cambio de control.
+Pasivo (Passive) :: Un efecto que simplemente está activo mientras la carta esté boca arriba en el Campo. Sin activación, sin coste, sin eslabón de cadena.
+Fase (Phase) :: Uno de los cinco pasos de un turno: Draw, Standby, Main, Battle, End.
+Carta de Jugador (Player Card) :: Tu héroe. Fija tus Puntos de Vida iniciales y te da un efecto de héroe por 2 de maná, una vez por turno. No puede ser atacado ni destruido.
+Cambio de posición (Position change) :: Cambiar un monstruo entre Ataque y Defensa. Una vez por turno y por monstruo, en tu Main Phase.
+Magia Rápida (Quick Spell) :: Una Magia que puedes activar como respuesta — en el turno de tu adversario, dentro de una cadena, cuando se declara un ataque. También utilizable en tu propia Main Phase.
+Rango (Rank) :: Diez sellos de cinco niveles cada uno. Los duelos clasificatorios te suben o bajan por Puntos de Rango; una temporada dura un mes.
+Rareza (Rarity) :: Común, Infrecuente, Rara o Legendaria — la frecuencia con que una carta sale de los sobres. No dice nada de su fuerza.
+Interruptor de reacciones (Reactions toggle) :: El interruptor abajo a la izquierda del duelo. Apagado, el juego deja de ofrecerte respuestas a las acciones de tu adversario; tus propios disparadores siguen preguntando.
+Relicario (Reliquary) :: Un monstruo jefe del Extra Deck. Sus requisitos de Invocación, su precio de maná y sus sacrificios están impresos en la carta. Ocupa una Zona de Monstruos como cualquier monstruo.
+Invocación de Relicario (Reliquary Summon) :: Llamar a un Relicario desde el Extra Deck cuando se cumplen sus requisitos, en tu Main Phase.
+Ventana de respuesta (Response window) :: El momento tras una activación, una Invocación o una declaración de ataque en que el otro duelista puede responder con un efecto Rápido. Responder inicia una cadena.
+Devolver a la mano (Return to hand) :: Mover una carta del Campo de vuelta a la mano de su dueño. Ver Rebotar.
+Revelar (Reveal) :: Mostrar una carta a ambos jugadores — una carta buscada, una carta al azar de la mano, la parte superior de un Deck.
+Buscar (Search) :: Tomar una carta concreta de tu Deck y llevarla a tu mano. El Deck se baraja después.
+Temporada (Season) :: Un mes de juego clasificatorio. Cada mes empieza una temporada nueva.
+Colocar (Set) :: Jugar una carta boca abajo: un monstruo en Posición de Defensa (consume tu Invocación Normal), o una Magia para activarla más tarde.
+Barajar en el Deck (Shuffle into the Deck) :: Devolver una carta al Deck de su dueño y barajar. Distinto de devolver a la mano — la carta queda fuera de alcance un buen rato.
+Invocación Especial (Special Summon) :: Cualquier Invocación que no sea Normal — por un efecto, o por la condición propia de un monstruo («puedes Invocar esta carta de Modo Especial desde tu mano si…»). Las condiciones propias funcionan una vez por turno y por nombre de carta.
+Magia (Spell) :: Una carta que se juega desde la mano por maná y va después al Cementerio. Las Magias Normales en tu Main Phase; las Magias Rápidas siempre que haya una ventana de respuesta abierta.
+Independiente (Standalone) :: Un efecto Infused que es una capacidad propia, independiente de los demás efectos de la carta.
+Standby Phase :: La segunda fase de un turno: efectos «durante tu Standby Phase», peajes y mantenimiento.
+Requisito de Invocación (Summon requirement) :: Lo que exige un Relicario antes de poder ser llamado: un estado del Campo, del Cementerio, de tus Puntos de Vida — más maná y a veces sacrificios.
+Objetivo (Target) :: La carta a la que apunta un efecto, elegida al activarlo. «No puede ser elegida como objetivo» hace a una carta inmune exactamente a eso.
+Ficha (Token) :: Un monstruo creado por un efecto en vez de robado de un deck. Se desvanece en lugar de ir al Cementerio.
+Sacrificio (Tribute) :: Mandar un monstruo que controlas al Cementerio como precio — para una Invocación Normal de Nivel 2 o 3, o para un Relicario. Algunos Relicarios toman sacrificios del Campo de tu adversario.
+Jugador del turno (Turn player) :: El duelista al que le toca.
+Tipo (Type) :: Ver Tipo de Monstruo.
+Hasta el final del turno (Until the end of the turn) :: Un cambio temporal que se deshace en la End Phase. Los cambios permanentes se quedan hasta que la carta deja el Campo.
+Vainilla (Vanilla) :: Un monstruo sin efectos. Algunas cartas apoyan justamente a esos.
+Zona (Zone) :: Una casilla de la mesa. Cinco Zonas de Monstruos, tres Zonas de Magia y dos Zonas de Artefactos por duelista. Dónde colocas una carta es cosa tuya.
+Zona de Magia (Spell Zone) :: Una de las tres casillas donde una Magia Colocada espera boca abajo hasta que la actives. Tres por duelista.
+Adyacente (Adjacent) :: Los monstruos en las dos zonas justo a izquierda y derecha de una carta, en el mismo lado de la mesa. Las auras y protecciones «para monstruos adyacentes» se refieren exactamente a esos — deja un hueco y dejan de aplicarse.
+Enfrente (Facing) :: El monstruo del adversario en la zona directamente opuesta a una carta (la zona 1 mira a la zona 1, y así sucesivamente). Los efectos que golpean «al monstruo frente a esta carta» no golpean nada si esa zona está vacía.
+Mover (Move) :: Un efecto que desplaza un monstruo a otra Zona de Monstruos vacía de su lado. Moverse cambia quién es adyacente y quién está enfrente — algunas cartas se disparan al moverse.
+Lanzamiento de moneda (Coin flip) :: Un efecto lanza una moneda: Cara o Cruz, con la misma probabilidad. La carta dice qué hace cada resultado — Cruz nunca es «no pasa nada», es el otro lado de la apuesta. Los objetivos de un resultado se eligen después del lanzamiento.
+Cara (Heads) :: El lado bueno de un lanzamiento de moneda — normalmente.
+Cruz (Tails) :: El otro lado de un lanzamiento de moneda. Algunas cartas te dejan relanzar o contar las Cruces como Caras.
+Coste de LP (LP cost) :: Puntos de Vida pagados como precio («Paga 1 de maná y 1000 LP: …»). Debes conservar al menos 1 LP para pagar. Distinto del daño: algunas cartas hacen gratis los costes de LP, ninguna hace gratis el daño.
+Deuda de maná (Mana debt) :: «Durante tu próximo turno tienes N de maná menos.» La deuda se cobra al principio de ese turno; cada maná que no puedas cubrir cuesta 1500 LP en su lugar.
+Gravamen (Lien) :: Un marcador con una cantidad sobre un monstruo, mostrado como insignia GRAVAMEN. Durante cada Standby Phase de su controlador, este paga esa cantidad de maná o el monstruo es destruido. Los Gravámenes pueden subir y se mantienen cuando cambia el control.
+Intercambiar el control (Swap control) :: Dos monstruos cambian de bando permanentemente — sin regreso en la End Phase, a diferencia de «toma el control hasta el final del turno». El que recibes no puede atacar ese turno.
+Furtivear (Poach) :: Invocar de Modo Especial un monstruo del Cementerio del OTRO jugador en tu propio Campo. Un monstruo furtiveado es desterrado si deja el Campo.
+Perforante (Piercing) :: Cuando un atacante perforante ataca a un monstruo en Posición de Defensa con menor DEF, la diferencia se inflige igualmente como daño de batalla.
+Una vez por Duelo (Once per Duel) :: Un límite duro: el efecto puede usarse una vez en todo el duelo por jugador y nombre de carta — una segunda copia no lo reinicia.
+No puede ser Invocado de Modo Normal (Cannot be Normal Summoned) :: El monstruo solo llega al Campo por su propia condición de Invocación Especial u otro efecto — nunca por una Invocación Normal ni Colocándolo.
+No puede ser Sacrificado (Cannot be Tributed) :: El monstruo no puede pagarse como sacrificio para una Invocación Normal ni para un Relicario. Útil cuando es un regalo que quieres que el adversario se quede.
+Impuesto de Magias (Spell tax) :: Mientras una «Tarifa del Gremio» esté boca arriba, cada Magia cuesta 1 de maná más para ambos duelistas — incluso las que serían gratis.
+Límite de ataques (Attack limit) :: Mientras «El Código del Duelista» esté boca arriba, cada duelista solo puede declarar un ataque por Battle Phase.
+Daño de batalla doble (Double battle damage) :: Mientras «Apuestas Altas» esté en marcha, todo el daño de batalla a cualquier duelista se duplica — la Battle Phase del adversario y la tuya propia.
+Declarar un tipo (Declare a type) :: Nombras Monstruo, Magia o Artefacto antes de revelar cartas; las coincidencias se conservan, el resto va al Cementerio.
+Ataque directo (a la mitad) (Direct attack (halved)) :: Un monstruo que puede atacar directamente pasando junto a los monstruos del adversario, pero de ese modo solo inflige la mitad de su ATK.

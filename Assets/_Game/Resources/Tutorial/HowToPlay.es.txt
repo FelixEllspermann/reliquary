@@ -1,0 +1,145 @@
+# EL OBJETIVO
+Dos duelistas, dos bóvedas, una mesa. Ganas en el momento en que los Puntos de Vida de tu adversario llegan a 0 — o cuando debe robar de un Deck vacío y no puede. Todo lo demás en este libro trata de cómo llegar ahí: maná que gastar, monstruos que Invocar, Magias con las que responder y Relicarios para sellar la partida.
+
+Si nunca has jugado a un juego de cartas como este, lee primero LA MESA, TU TURNO y BATALLA. El resto puede esperar hasta que haga falta.
+
+[img:board|Tu lado de la mesa está abajo, el de tu adversario arriba.]
+
+# LA MESA
+Cada duelista tiene cinco Zonas de Monstruos en fila, tres Zonas de Magia para Magias Colocadas, dos Zonas de Artefactos, un Deck, un Cementerio, una pila de Destierro y un Extra Deck. Tu mano descansa en la parte baja de la pantalla; el dorso de la mano de tu adversario se ve arriba. Tu Carta de Jugador — tu héroe — está a la izquierda de tu fila; tus Puntos de Vida y tu maná están en la placa a la derecha.
+
+[img:plate|Puntos de Vida arriba, maná debajo. Ambos se mueven cuando cambian.]
+
+Puntos de Vida: empiezas con 8000 (algunos héroes traen algo más o algo menos). El daño — de batalla o de efectos — los baja; la curación los sube. No hay límite superior.
+
+Maná: se recarga al principio de cada uno de tus turnos. 3 en tu primer turno, uno más cada turno siguiente, hasta 10. El maná sin gastar desaparece al final de tu turno salvo que una carta diga lo contrario. El maná paga Magias, efectos Infused, efectos de héroe e Invocaciones de Relicario — los efectos normales de monstruo no cuestan nada.
+
+Límite de mano: 8. Si tienes más al final de tu turno, descartas hasta quedarte con 8.
+
+[img:phases|La barra de fases. El paso iluminado es donde está el duelo ahora mismo.]
+
+# TU TURNO
+Un turno recorre cinco fases, siempre en este orden:
+
+- DRAW PHASE — roba 1 carta. Quien empieza se la salta en su primerísimo turno (empieza con 5 cartas, el otro jugador con 6).
+- STANDBY PHASE — los efectos que dicen «durante tu Standby Phase» ocurren ahora. Aquí se pagan peajes y mantenimientos.
+- MAIN PHASE — el corazón del turno. Invoca o Coloca un monstruo, juega Magias y Artefactos, activa efectos de ignición, cambia posiciones de batalla, Invoca un Relicario. En cualquier orden, tantas veces como tu maná y tus reglas permitan.
+- BATTLE PHASE — ataca con tus monstruos boca arriba en Posición de Ataque. Quien empieza no tiene Battle Phase en su primerísimo turno.
+- END PHASE — efectos «durante tu End Phase», límite de mano, y el turno pasa.
+
+Puedes terminar la Main Phase o la Battle Phase cuando quieras con los botones de fase; el juego nunca te obliga a atacar.
+
+[img:hand|Tu mano. Las cartas que puedes jugar ahora mismo están resaltadas; arrástralas a la mesa o haz clic para ver opciones.]
+
+# LAS CARTAS
+Cada carta pertenece a uno de cuatro tipos — más el héroe.
+
+Los MONSTRUOS llevan un Nivel (1 a 3), un Atributo (Fuego, Agua, Viento, Tierra, Luz, Oscuridad), un Tipo (Dragón, Humano, Bestia, Mecha, Ángel, Demonio, Mito, Animal…) y ATK / DEF. Combaten, defienden, y la mayoría tiene efectos.
+
+Las MAGIAS se juegan desde tu mano por maná y van después al Cementerio. Las Magias Normales se juegan en tu Main Phase; las Magias RÁPIDAS también pueden jugarse como respuesta — durante el turno de tu adversario, en medio de una cadena, cuando se declara un ataque. Cualquier Magia puede además Colocarse boca abajo y usarse más tarde.
+
+Los ARTEFACTOS se quedan en la mesa. Algunos se equipan a un monstruo (ATK/DEF extra y efectos para el portador), otros son Artefactos de Campo, otros van sobre tu casilla de Jugador. Las Zonas de Artefactos albergan dos; las Magias Colocadas esperan en las tres Zonas de Magia.
+
+[img:artifacts|Dos Artefactos de Jugador en las Zonas de Artefactos. Se quedan hasta que algo los quite.]
+
+Los RELICARIOS viven en tu Extra Deck. Cada uno nombra en la carta sus propios requisitos de Invocación — un Cementerio bien surtido, tres monstruos, un héroe contra las cuerdas — más un precio de maná y a veces sacrificios. Cumple las condiciones y podrás llamarlo en tu Main Phase.
+
+LA CARTA DE JUGADOR es tu héroe. Fija tus Puntos de Vida iniciales y te da un efecto de héroe: 2 de maná, una vez por turno, siempre disponible. Los héroes no pueden ser atacados ni destruidos.
+
+[img:card|Anatomía de un monstruo: nombre y escudo de Nivel arriba, Atributo y Tipo bajo el arte, ATK y DEF abajo, efectos en el cuadro de texto.]
+
+[img:effectbox|En un duelo, haz clic en cualquier carta y el panel INSPECCIÓN de la izquierda lista sus efectos — primero la insignia de coste, luego cuándo se dispara.]
+
+# INVOCAR
+INVOCACIÓN NORMAL — una vez por turno, desde tu mano, en tu Main Phase. Un monstruo de Nivel 1 llega gratis. Un Nivel 2 necesita 1 sacrificio, un Nivel 3 necesita 2: manda antes esa cantidad de monstruos que controles al Cementerio. En vez de Invocar boca arriba, puedes COLOCAR el monstruo boca abajo en Posición de Defensa — esto también consume tu Invocación Normal.
+
+INVOCACIÓN ESPECIAL — toda Invocación que no sea Normal. Las cartas la hacen: «Invoca de Modo Especial 1 monstruo desde tu Cementerio», «puedes Invocar esta carta de Modo Especial desde tu mano si…». Las Invocaciones Especiales no gastan tu Invocación Normal y no tienen límite por turno — salvo que cada nombre de carta solo puede usar su propia condición de «puedes Invocar esta carta de Modo Especial» una vez por turno.
+
+INVOCACIÓN DE RELICARIO — desde el Extra Deck, en tu Main Phase, cuando se cumplen sus requisitos impresos. Paga el maná, ofrece los sacrificios que exige (algunos los toman del Campo de tu adversario), elige una zona.
+
+Cada monstruo Invocado recibe una zona y una posición de batalla. La Posición de ATAQUE boca arriba combate con su ATK; la Posición de DEFENSA resiste con su DEF y no inflige daño. Los monstruos boca abajo siempre están en Defensa; nadie sabe qué son hasta que se voltean.
+
+[img:zones-attack|Dos monstruos en Posición de Ataque y un monstruo Colocado: boca abajo, nada más que su dorso.]
+
+[img:zones-defense|La Posición de Defensa está tumbada de lado — su DEF mira al atacante.]
+
+# BATALLA
+En tu Battle Phase, cada monstruo boca arriba en Posición de Ataque puede atacar una vez. Haz clic en él y luego en el objetivo — o en el héroe de tu adversario para un ataque directo. Un ataque directo solo es posible mientras tu adversario no controle monstruos. El turno en que un monstruo es Invocado puede atacar con normalidad, salvo que su carta diga lo contrario.
+
+- Ataque contra Posición de ATAQUE: gana el ATK más alto, el perdedor es destruido, y la diferencia se inflige como daño al controlador del perdedor. ATK iguales: ambos son destruidos, nadie recibe daño.
+- Ataque contra Posición de DEFENSA: tu ATK contra su DEF. Un ATK mayor destruye al defensor — sin daño. Un ATK menor: tu monstruo sobrevive, pero TÚ recibes la diferencia. Iguales: no pasa nada.
+- Atacar a un monstruo boca abajo lo voltea primero boca arriba; si tiene un efecto de Volteo, se dispara.
+- Ataque directo: el ATK completo como daño.
+
+La posición de batalla puede cambiarse una vez por turno y por monstruo, en tu Main Phase — pero no en el turno en que el monstruo fue Invocado ni después de que atacara. Voltear un monstruo boca abajo a Posición de Ataque cuenta como su cambio de posición.
+
+# EFECTOS
+El texto de la carta te dice cuándo ocurre un efecto y qué cuesta. Las palabras son siempre las mismas, así que apréndelas una vez:
+
+- AL INVOCAR — cuando esta carta es Invocada. Se dispara por sí solo; tú eliges los objetivos.
+- IGNICIÓN — lo activas tú en tu Main Phase («Una vez por turno: …»).
+- RÁPIDO — puedes activarlo siempre que haya una ventana de respuesta abierta, incluso en el turno de tu adversario.
+- PASIVO — siempre activo mientras la carta esté boca arriba en el Campo. Sin activación, sin coste.
+- STANDBY / END PHASE — ocurre en esa fase de tu turno.
+- VOLTEO — cuando la carta boca abajo se pone boca arriba, por ti o por un ataque.
+- MANO / CEMENTERIO — algunos efectos se usan desde tu mano o desde tu Cementerio; la pila brilla cuando algo en ella puede actuar. Haz clic en la pila.
+- UNA VEZ POR TURNO — exactamente lo que dice. Algunos efectos son una vez por turno y por nombre de carta.
+
+Los costes van primero, los efectos después: «Paga 2 de maná: roba 1 carta» significa que el maná se va aunque el robo sea negado. Si un efecto no puede resolverse de ninguna manera ahora mismo — sin objetivo legal, sin zona libre para una Invocación — no puedes activarlo en absoluto.
+
+[img:activation|Cuando un efecto se activa, la carta y su texto dan un paso al frente para que ambos duelistas lean lo que está pasando.]
+
+# EFECTOS INFUSED
+Muchas cartas llevan un efecto INFUSED: una versión más fuerte que siempre cuesta maná. Dos variantes:
+
+- ACOPLADO («En su lugar, paga 2 de maná: …») mejora el efecto de encima. Cada turno usas o la versión simple o la Infused, nunca ambas.
+- INDEPENDIENTE es una capacidad separada, propia. Funciona junto a todo lo demás de la carta.
+
+Al leer una carta, mira la insignia de maná: azul con un número = cuesta eso, verde SIN MANÁ = gratis.
+
+[img:cardtext|El panel de texto de la carta lo detalla: insignia de coste, nombre del efecto, cuándo se activa, si es una vez por turno o no.]
+
+# CADENAS Y RESPUESTAS
+Siempre que se activa una carta, se Invoca un monstruo o se declara un ataque, tu adversario recibe una ventana de respuesta — y tú también cuando actúa él. Responder con un efecto Rápido construye una CADENA: eslabón 1, eslabón 2, eslabón 3… Cuando nadie añade otro eslabón, la cadena se resuelve hacia atrás, el último eslabón primero.
+
+Cuando un segundo efecto responde al primero, un marcador de cadena baja desde lo alto de la pantalla y lista los eslabones en orden — los tuyos en turquesa, los suyos en rojo. Muestra CONSTRUYENDO CADENA mientras se añaden eslabones y RESOLVIENDO mientras se disparan, el último primero.
+
+Mientras una cadena se resuelve, no puede activarse nada nuevo — ni siquiera los efectos que normalmente se dispararían. Esperan a que la cadena termine y se disparan después. Una carta negada lleva una insignia violeta NEG y sus efectos no hacen nada hasta el final del turno; si lo intenta igualmente, el juego lo dice y sigue adelante.
+
+[img:log|El registro del duelo a la derecha guarda cada activación, pago y resultado en orden. Ante la duda, relee.]
+
+El interruptor de REACCIONES abajo a la izquierda apaga los ofrecimientos automáticos: las acciones de tu adversario ya no se detienen por ti, solo tus propios disparadores siguen preguntando. Útil cuando tu mano no tiene respuestas.
+
+[img:reactions|Reacciones activadas: el juego se pausa para ofrecerte respuestas. Desactivadas: solo preguntan tus propios disparadores.]
+
+# LAS PILAS
+CEMENTERIO — adonde van las cartas destruidas, usadas y descartadas. Muchos efectos recuperan cartas de aquí o cuentan lo que contiene. Haz clic en una pila para revisarla.
+
+DESTIERRO — el segundo cementerio. Las cartas desterradas quedan fuera del duelo salvo que una carta las devuelva expresamente. Algunos Relicarios las cuentan.
+
+DECK — boca abajo, barajado. Los efectos de «búsqueda» encuentran una carta en él; «moler» manda cartas de su parte superior al Cementerio. Quedarse sin cartas no pasa nada — la derrota es necesitar robar y no poder.
+
+EXTRA DECK — tus Relicarios, hasta 20. Nunca se roban; esperan a que se cumplan sus condiciones.
+
+[img:piles|Deck, Cementerio, Destierro y Extra Deck se sitúan al borde de tu lado. Los números muestran su contenido.]
+
+# EL TALLER DE DECKS
+Un deck contiene de 40 a 80 cartas, como máximo 3 copias de una carta, más un héroe y hasta 20 Relicarios en el Extra Deck. La Banlist puede reducir las copias de cartas concretas — el límite está impreso en la casilla y se aplica al guardar.
+
+Solo puedes construir con cartas que posees. Cada carta existe además en cuatro acabados — Sencillo, Brillante, Arcoíris, Estática — y el acabado de la copia que añades es el que llega a la mesa. Las cartas que no consigues sacar pueden fabricarse con polvo; despolvar una copia sobrante devuelve polvo.
+
+[img:deckbuilder|El panel del deck: nombre, héroe, el recuento sobre 40–80 y cada copia que has sellado dentro.]
+
+[img:deckbalance|BALANCE DEL DECK muestra cuántos monstruos de Nivel 1, 2 y 3 llevas — y te dice cuándo el deck es legal.]
+
+# DÓNDE JUGAR
+- SOLO — bots de todos los temperamentos. Bueno para aprender un deck.
+- JUGAR — la cola online por monedas y rango, salas privadas con código, y VER para presenciar duelos en vivo.
+- DESAFÍOS — La Torre: quince pisos, quince Guardianes, sobres en cada primera victoria.
+- DRAFT — construye a partir de un pool nuevo y escala con lo que draftaste.
+- TIENDA — sobres, el Alijo de Héroes y cosméticos; ESTADÍSTICAS muestra qué gana.
+
+Cada victoria, derrota o empate online da monedas. Los Puntos de Rango te mueven por diez sellos de cinco niveles cada uno; una temporada dura un mes.
+
+# UNA ÚLTIMA COSA
+El texto de la carta manda sobre este libro. Cuando una carta dice algo que las reglas no dicen, la carta tiene razón — la bóveda está llena de excepciones, y el GLOSARIO de al lado explica cada palabra que usan.
