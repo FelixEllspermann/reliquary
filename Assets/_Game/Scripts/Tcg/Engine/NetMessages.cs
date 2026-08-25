@@ -233,6 +233,8 @@ namespace Rouge.Tcg.Net
         public bool negated;
         public int deathCounters;
         public int lienAmount;     // The Small Print: Pfandrecht-Betrag (0 = keins)
+        public int status;         // CardStatusFlags-Bitmaske für die Badge-Spalte
+        public int bonusAttacks;   // zusätzliche Angriffe (MultiAttack-Badge: ×N)
 
         // Ausführung des Exemplars (CardFinish). Nur bei sichtbaren Karten
         // gefüllt — eine verdeckte Karte am Funkeln zu erkennen wäre verraten,

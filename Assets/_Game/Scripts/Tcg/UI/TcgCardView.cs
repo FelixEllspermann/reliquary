@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -410,145 +411,227 @@ namespace Rouge.Tcg.UI
         }
 
         /// <summary>Kompakte Feld-/Hand-Rendition (Handoff "Reduced card renditions").</summary>
-        // ---- Status-Badges: Negated-Chip + Death-Counter (Totenkopf + Zahl) ----
-        // Komplett zur Laufzeit gebaut (kein Prefab-/Szenen-Edit): ein kleiner
-        // Streifen oben links auf der Karte. ASCII-Texte, damit kein Font-Atlas
-        // leere Glyphen liefert; der Totenkopf ist ein prozedurales Mini-Sprite.
+        // ---- Status-Badges: Badge-Spalte (Design-Handoff "Card Status Icons") ----
+        // 16 runde Status-Badges in einer vertikalen Spalte an der linken
+        // Kartenkante, die Disc hängt ~70% über den Rand. Sprites liegen unter
+        // Resources/UI/Status; die Disc füllt 60% des quadratischen Sprites,
+        // der Rest ist eingebackener Glow. Feste Roster-Reihenfolge statt
+        // Anwendungszeit — der Server-Spiegel kennt keine Historie, und eine
+        // stabile Ordnung flackert nicht. Ab 6 Status fasst ein "+N"-Chip den
+        // Rest zusammen. Zahlen (×N Angriffe, Todeszähler, Pfandrecht-Betrag)
+        // sitzen als Pille rechts unten am Badge; die Lien-Zahl ist eine
+        // bewusste Ergänzung zum Handoff, weil der Betrag spielrelevant ist.
         private RectTransform statusBadgeRoot;
-        private Image negChip;
-        private Image dcChip;
-        private TMP_Text dcText;
-        private Image lienChip;     // The Small Print: Pfandrecht mit Betrag
-        private TMP_Text lienText;
-        private static Sprite cachedSkullSprite;
+        private readonly List<RectTransform> badgePool = new List<RectTransform>();
+        private static readonly Dictionary<string, Sprite> badgeSpriteCache = new Dictionary<string, Sprite>();
+        private const float BadgeDiscRatio = 0.6f;   // Disc-Anteil im Sprite
+        private const int BadgeMaxVisible = 5;
+        private static readonly Color PillOffenseText = new Color32(0xFF, 0xF0, 0xEA, 0xFF);
+        private static readonly Color PillCountersText = new Color32(0xFC, 0xF0, 0xD6, 0xFF);
+        private static readonly Color MoreChipText = new Color32(0xEE, 0xF5, 0xFA, 0xFF);
+
+        private struct BadgeEntry
+        {
+            public string Sprite;
+            public string PillText;      // null = keine Pille
+            public string PillSprite;
+            public Color PillColor;
+            public string CenterText;    // nur der "+N"-Chip
+        }
+
+        private static Sprite BadgeSprite(string name)
+        {
+            if (!badgeSpriteCache.TryGetValue(name, out var sprite) || sprite == null)
+            {
+                sprite = Resources.Load<Sprite>("UI/Status/" + name);
+                badgeSpriteCache[name] = sprite;
+            }
+            return sprite;
+        }
 
         private void UpdateStatusBadges(RectTransform host, CardInstance instance, bool showBack)
         {
-            bool negated = !showBack && instance != null && instance.EffectsNegated;
+            int mask = showBack || instance == null ? 0 : CardStatus.DisplayMask(instance);
             int counters = showBack || instance == null ? 0 : instance.DeathCounters;
             int lien = showBack || instance == null ? 0 : instance.LienAmount;
-            if (!negated && counters <= 0 && lien <= 0)
+            if (mask == 0 && counters <= 0 && lien <= 0)
             {
                 if (statusBadgeRoot != null) statusBadgeRoot.gameObject.SetActive(false);
                 return;
             }
 
-            EnsureStatusBadges();
+            // Einträge in Roster-Reihenfolge des Handoffs (1–16) einsammeln
+            var entries = new List<BadgeEntry>();
+            void Flag(CardStatusFlags flag, string sprite)
+            {
+                if ((mask & (int)flag) != 0) entries.Add(new BadgeEntry { Sprite = sprite });
+            }
+            Flag(CardStatusFlags.Indestructible, "BadgeIndestructible");
+            Flag(CardStatusFlags.Immune, "BadgeImmune");
+            Flag(CardStatusFlags.Untargetable, "BadgeUntargetable");
+            Flag(CardStatusFlags.Negated, "BadgeNegated");
+            Flag(CardStatusFlags.CannotAttack, "BadgeCannotAttack");
+            Flag(CardStatusFlags.PositionLocked, "BadgePositionLocked");
+            Flag(CardStatusFlags.Taunt, "BadgeTaunt");
+            Flag(CardStatusFlags.Piercing, "BadgePiercing");
+            if ((mask & (int)CardStatusFlags.MultiAttack) != 0)
+                entries.Add(new BadgeEntry
+                {
+                    Sprite = "BadgeMultiAttack",
+                    PillText = "×" + (instance.BonusAttacks + 1),
+                    PillSprite = "BadgePillOffense",
+                    PillColor = PillOffenseText
+                });
+            Flag(CardStatusFlags.BanishOnLeave, "BadgeBanishOnLeave");
+            Flag(CardStatusFlags.TempCopy, "BadgeTempCopy");
+            Flag(CardStatusFlags.Stolen, "BadgeStolen");
+            Flag(CardStatusFlags.EndphaseDoom, "BadgeEndphase");
+            Flag(CardStatusFlags.SpecialSummoned, "BadgeSpecialSummoned");
+            if (counters > 0)
+                entries.Add(new BadgeEntry
+                {
+                    Sprite = "BadgeDeathCounter",
+                    PillText = counters.ToString(),
+                    PillSprite = "BadgePillCounters",
+                    PillColor = PillCountersText
+                });
+            if (lien > 0)
+                entries.Add(new BadgeEntry
+                {
+                    Sprite = "BadgeLien",
+                    PillText = lien.ToString(),
+                    PillSprite = "BadgePillCounters",
+                    PillColor = PillCountersText
+                });
+
+            // Overflow: ab 6 Einträgen zeigt der letzte Platz "+N"
+            if (entries.Count > BadgeMaxVisible)
+            {
+                int hidden = entries.Count - (BadgeMaxVisible - 1);
+                entries.RemoveRange(BadgeMaxVisible - 1, hidden);
+                entries.Add(new BadgeEntry { Sprite = "BadgeMore", CenterText = "+" + hidden });
+            }
+
+            if (statusBadgeRoot == null)
+            {
+                var rootGo = new GameObject("StatusBadges", typeof(RectTransform));
+                statusBadgeRoot = (RectTransform)rootGo.transform;
+            }
             if (host != null && statusBadgeRoot.parent != host)
                 statusBadgeRoot.SetParent(host, false);
+            statusBadgeRoot.anchorMin = statusBadgeRoot.anchorMax = new Vector2(0f, 1f);
+            statusBadgeRoot.pivot = new Vector2(0f, 1f);
+            statusBadgeRoot.anchoredPosition = Vector2.zero;
+            statusBadgeRoot.sizeDelta = Vector2.zero;
             statusBadgeRoot.SetAsLastSibling();
             statusBadgeRoot.gameObject.SetActive(true);
 
-            negChip.gameObject.SetActive(negated);
-            dcChip.gameObject.SetActive(counters > 0);
-            if (counters > 0) dcText.text = counters.ToString();
-            if (lienChip != null)
+            // Geometrie relativ zur Kartenbreite (42/214 ≈ 0.20 im Handoff-Frame)
+            float cardW = host != null ? host.rect.width : 112f;
+            float cardH = host != null ? host.rect.height : 157f;
+            float disc = Mathf.Clamp(cardW * 0.20f, 22f, 64f);
+            float spriteSize = disc / BadgeDiscRatio;
+            float gap = disc * (9f / 42f);
+            float topOffset = cardH * (14f / 308f);
+
+            while (badgePool.Count < entries.Count)
+                badgePool.Add(BuildBadgeElement(statusBadgeRoot));
+            for (int i = 0; i < badgePool.Count; i++)
             {
-                lienChip.gameObject.SetActive(lien > 0);
-                if (lien > 0 && lienText != null) lienText.text = Loc.T("LIEN") + " " + lien;
+                var badge = badgePool[i];
+                bool active = i < entries.Count;
+                badge.gameObject.SetActive(active);
+                if (!active) continue;
+                var entry = entries[i];
+
+                badge.anchorMin = badge.anchorMax = new Vector2(0f, 1f);
+                badge.pivot = new Vector2(0.5f, 0.5f);
+                // Disc-Zentrum: 70% Überhang => Zentrum bei -0.2 * Disc
+                badge.anchoredPosition = new Vector2(-disc * 0.2f,
+                    -(topOffset + disc * 0.5f + i * (disc + gap)));
+                badge.sizeDelta = new Vector2(spriteSize, spriteSize);
+
+                var image = badge.GetComponent<Image>();
+                image.sprite = BadgeSprite(entry.Sprite);
+                image.enabled = image.sprite != null;
+
+                var pill = (RectTransform)badge.Find("Pill");
+                var center = (RectTransform)badge.Find("Center");
+                bool hasPill = !string.IsNullOrEmpty(entry.PillText);
+                pill.gameObject.SetActive(hasPill);
+                if (hasPill)
+                {
+                    var pillImage = pill.GetComponent<Image>();
+                    pillImage.sprite = BadgeSprite(entry.PillSprite);
+                    float pillH = disc * (20f / 42f);
+                    float pillW = Mathf.Max(pillH, pillH * (0.35f + 0.4f * entry.PillText.Length));
+                    pill.sizeDelta = new Vector2(pillW, pillH);
+                    // rechts unten an der DISC-Kante (Sprite trägt Glow-Rand)
+                    float inset = (spriteSize - disc) * 0.5f;
+                    pill.anchoredPosition = new Vector2(-inset + disc * (5f / 42f), inset - disc * (5f / 42f));
+                    var pillLabel = pill.Find("Num").GetComponent<TMP_Text>();
+                    pillLabel.text = entry.PillText;
+                    pillLabel.fontSize = disc * (11f / 42f);
+                    pillLabel.color = entry.PillColor;
+                }
+                bool hasCenter = !string.IsNullOrEmpty(entry.CenterText);
+                center.gameObject.SetActive(hasCenter);
+                if (hasCenter)
+                {
+                    var centerLabel = center.GetComponent<TMP_Text>();
+                    centerLabel.text = entry.CenterText;
+                    centerLabel.fontSize = disc * 0.38f;
+                    centerLabel.color = MoreChipText;
+                }
             }
-
-            float x = 0f;
-            if (negated) { ((RectTransform)negChip.transform).anchoredPosition = new Vector2(x, 0f); x += 42f; }
-            if (counters > 0) { ((RectTransform)dcChip.transform).anchoredPosition = new Vector2(x, 0f); x += 38f; }
-            if (lien > 0 && lienChip != null) ((RectTransform)lienChip.transform).anchoredPosition = new Vector2(x, 0f);
         }
 
-        private void EnsureStatusBadges()
+        /// <summary>Ein Badge-Element: Disc-Sprite + Zahlen-Pille + Zentral-Label.</summary>
+        private RectTransform BuildBadgeElement(RectTransform parent)
         {
-            if (statusBadgeRoot != null) return;
-
-            var rootGo = new GameObject("StatusBadges", typeof(RectTransform));
-            statusBadgeRoot = (RectTransform)rootGo.transform;
-            statusBadgeRoot.anchorMin = statusBadgeRoot.anchorMax = new Vector2(0f, 1f);
-            statusBadgeRoot.pivot = new Vector2(0f, 1f);
-            statusBadgeRoot.anchoredPosition = new Vector2(4f, -4f);
-            statusBadgeRoot.sizeDelta = new Vector2(10f, 18f);
-
-            negChip = BuildChip(statusBadgeRoot, "NegChip", new Color(0.42f, 0.26f, 0.58f, 0.95f), 40f, out var negLabel);
-            negLabel.text = "NEG";
-
-            dcChip = BuildChip(statusBadgeRoot, "DeathChip", new Color(0.55f, 0.12f, 0.12f, 0.95f), 36f, out dcText);
-            dcText.text = "0";
-            ((RectTransform)dcText.transform).offsetMin = new Vector2(16f, 0f);
-
-            var skullGo = new GameObject("Skull", typeof(RectTransform), typeof(Image));
-            var skullRect = (RectTransform)skullGo.transform;
-            skullRect.SetParent(dcChip.transform, false);
-            skullRect.anchorMin = skullRect.anchorMax = new Vector2(0f, 0.5f);
-            skullRect.pivot = new Vector2(0f, 0.5f);
-            skullRect.anchoredPosition = new Vector2(2f, 0f);
-            skullRect.sizeDelta = new Vector2(13f, 13f);
-            var skullImage = skullGo.GetComponent<Image>();
-            skullImage.sprite = SkullSprite();
-            skullImage.raycastTarget = false;
-
-            // The Small Print: Pfandrecht — Betrag in Gold auf dunklem Grund
-            lienChip = BuildChip(statusBadgeRoot, "LienChip", new Color(0.55f, 0.42f, 0.14f, 0.95f), 52f, out lienText);
-            lienText.text = "LIEN 1";
-        }
-
-        private Image BuildChip(RectTransform parent, string name, Color color, float width, out TMP_Text label)
-        {
-            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            var go = new GameObject("Badge", typeof(RectTransform), typeof(Image));
             var rect = (RectTransform)go.transform;
             rect.SetParent(parent, false);
-            rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
-            rect.pivot = new Vector2(0f, 1f);
-            rect.sizeDelta = new Vector2(width, 16f);
-            var image = go.GetComponent<Image>();
-            image.color = color;
-            image.raycastTarget = false;
+            go.GetComponent<Image>().raycastTarget = false;
 
-            var textGo = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
-            var textRect = (RectTransform)textGo.transform;
-            textRect.SetParent(rect, false);
-            textRect.anchorMin = Vector2.zero;
-            textRect.anchorMax = Vector2.one;
-            textRect.offsetMin = Vector2.zero;
-            textRect.offsetMax = Vector2.zero;
-            label = textGo.GetComponent<TextMeshProUGUI>();
-            if (nameText != null) label.font = nameText.font;
-            label.fontSize = 10f;
-            label.fontStyle = FontStyles.Bold;
-            label.alignment = TextAlignmentOptions.Center;
-            label.color = Color.white;
-            label.raycastTarget = false;
-            label.enableWordWrapping = false;
-            return image;
-        }
+            var pillGo = new GameObject("Pill", typeof(RectTransform), typeof(Image));
+            var pillRect = (RectTransform)pillGo.transform;
+            pillRect.SetParent(rect, false);
+            pillRect.anchorMin = pillRect.anchorMax = new Vector2(1f, 0f);
+            pillRect.pivot = new Vector2(1f, 0f);
+            var pillImage = pillGo.GetComponent<Image>();
+            pillImage.type = Image.Type.Sliced;
+            pillImage.raycastTarget = false;
 
-        /// <summary>12×12-Totenkopf, einmal pro Prozess gezeichnet (Zeile 0 = unten).</summary>
-        private static Sprite SkullSprite()
-        {
-            if (cachedSkullSprite != null) return cachedSkullSprite;
-            string[] rows =
-            {
-                "............",
-                "............",
-                "..X.XX.XX.X.",
-                "..XXXXXXXX..",
-                "..XXXXXXXX..",
-                ".XXXXooXXXX.",
-                ".XooXXXXooX.",
-                ".XooXXXXooX.",
-                ".XXXXXXXXXX.",
-                ".XXXXXXXXXX.",
-                "..XXXXXXXX..",
-                "....XXXX....",
-            };
-            var tex = new Texture2D(12, 12, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
-            for (int y = 0; y < 12; y++)
-                for (int x = 0; x < 12; x++)
-                {
-                    char c = rows[y][x];
-                    tex.SetPixel(x, y, c == 'X' ? Color.white
-                        : c == 'o' ? new Color(0f, 0f, 0f, 0.85f)
-                        : Color.clear);
-                }
-            tex.Apply();
-            cachedSkullSprite = Sprite.Create(tex, new Rect(0, 0, 12, 12), new Vector2(0.5f, 0.5f), 12f);
-            return cachedSkullSprite;
+            var numGo = new GameObject("Num", typeof(RectTransform), typeof(TextMeshProUGUI));
+            var numRect = (RectTransform)numGo.transform;
+            numRect.SetParent(pillRect, false);
+            numRect.anchorMin = Vector2.zero;
+            numRect.anchorMax = Vector2.one;
+            numRect.offsetMin = Vector2.zero;
+            numRect.offsetMax = Vector2.zero;
+            var num = numGo.GetComponent<TextMeshProUGUI>();
+            if (nameText != null) num.font = nameText.font;
+            num.fontStyle = FontStyles.Bold;
+            num.alignment = TextAlignmentOptions.Center;
+            num.raycastTarget = false;
+
+            var centerGo = new GameObject("Center", typeof(RectTransform), typeof(TextMeshProUGUI));
+            var centerRect = (RectTransform)centerGo.transform;
+            centerRect.SetParent(rect, false);
+            centerRect.anchorMin = Vector2.zero;
+            centerRect.anchorMax = Vector2.one;
+            centerRect.offsetMin = Vector2.zero;
+            centerRect.offsetMax = Vector2.zero;
+            var center = centerGo.GetComponent<TextMeshProUGUI>();
+            if (nameText != null) center.font = nameText.font;
+            center.fontStyle = FontStyles.Bold;
+            center.alignment = TextAlignmentOptions.Center;
+            center.raycastTarget = false;
+
+            pillGo.SetActive(false);
+            centerGo.SetActive(false);
+            return rect;
         }
 
         private void ShowCompact(CardInstance instance, bool showBack)

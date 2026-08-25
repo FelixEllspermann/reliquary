@@ -129,6 +129,7 @@ namespace Rouge.Tcg
             card.EffectsNegated = wire.negated;
             card.DeathCounters = wire.deathCounters;
             card.LienAmount = wire.lienAmount;
+            CardStatus.Apply(card, wire.status, wire.bonusAttacks);
             card.Finish = Net.CardFinishWire.From(wire.finish);
 
             if (!string.IsNullOrEmpty(wire.name))

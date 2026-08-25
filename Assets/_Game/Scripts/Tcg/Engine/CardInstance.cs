@@ -63,6 +63,13 @@ namespace Rouge.Tcg
         /// <summary>Laufzeit-Kopie (The Mirror Hour): verschwindet in der End Phase.</summary>
         public bool IsTemporaryCopy;
 
+        /// <summary>
+        /// Im Server-Duell: die zuletzt vom DuelHost übertragene Status-Maske.
+        /// Deckt Zustände ab, die der Spiegel lokal nicht ableiten kann (Stolen —
+        /// der Mirror kennt keine Besitzwechsel-Historie). 0 in lokalen Duellen.
+        /// </summary>
+        public int MirroredStatusMask;
+
         public CardInstance EquipTarget;            // Artefakt: das ausgerüstete Monster
         public readonly List<CardInstance> EquippedArtifacts = new List<CardInstance>();
         public readonly HashSet<int> OncePerTurnUsed = new HashSet<int>();
