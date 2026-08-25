@@ -299,7 +299,12 @@ namespace Rouge.Tcg.UI
                     crestImage.sprite = skin.crestMonster;
                     if (crestText != null)
                     {
-                        crestText.text = isReliquary ? "R" : Mathf.Clamp(monster.level, 1, 3).ToString();
+                        // Road to 1000: auf dem Feld zählt das EFFEKTIVE Level
+                        // (Promotion Board, Demoted for Cause)
+                        int shownLevel = instance != null && instance.Zone == ZoneType.MonsterZone
+                            ? instance.EffectiveLevel
+                            : Mathf.Clamp(monster.level, 1, 3);
+                        crestText.text = isReliquary ? "R" : shownLevel.ToString();
                         crestText.color = inks.crest;
                     }
                 }
@@ -454,7 +459,8 @@ namespace Rouge.Tcg.UI
             int mask = showBack || instance == null ? 0 : CardStatus.DisplayMask(instance);
             int counters = showBack || instance == null ? 0 : instance.DeathCounters;
             int lien = showBack || instance == null ? 0 : instance.LienAmount;
-            if (mask == 0 && counters <= 0 && lien <= 0)
+            int countdown = showBack || instance == null ? 0 : instance.CountdownMarkers;
+            if (mask == 0 && counters <= 0 && lien <= 0 && countdown <= 0)
             {
                 if (statusBadgeRoot != null) statusBadgeRoot.gameObject.SetActive(false);
                 return;
@@ -485,7 +491,17 @@ namespace Rouge.Tcg.UI
             Flag(CardStatusFlags.BanishOnLeave, "BadgeBanishOnLeave");
             Flag(CardStatusFlags.TempCopy, "BadgeTempCopy");
             Flag(CardStatusFlags.Stolen, "BadgeStolen");
-            Flag(CardStatusFlags.EndphaseDoom, "BadgeEndphase");
+            // Road to 1000: die Sanduhr trägt auch den Countdown (The Appointed
+            // Hour) — dann mit der Marker-Zahl als Pille.
+            if (countdown > 0)
+                entries.Add(new BadgeEntry
+                {
+                    Sprite = "BadgeEndphase",
+                    PillText = countdown.ToString(),
+                    PillSprite = "BadgePillCounters",
+                    PillColor = PillCountersText
+                });
+            else Flag(CardStatusFlags.EndphaseDoom, "BadgeEndphase");
             Flag(CardStatusFlags.SpecialSummoned, "BadgeSpecialSummoned");
             if (counters > 0)
                 entries.Add(new BadgeEntry
@@ -697,7 +713,10 @@ namespace Rouge.Tcg.UI
                 if (cDef != null) cDef.text = ColorizeStat(instance.CurrentDef, monster.def, inks.statInkStrong);
                 if (cCrestText != null)
                 {
-                    cCrestText.text = isReliquary ? "R" : Mathf.Clamp(monster.level, 1, 3).ToString();
+                    int shownLevel = instance != null && instance.Zone == ZoneType.MonsterZone
+                        ? instance.EffectiveLevel
+                        : Mathf.Clamp(monster.level, 1, 3);
+                    cCrestText.text = isReliquary ? "R" : shownLevel.ToString();
                     cCrestText.color = inks.crest;
                 }
             }

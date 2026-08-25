@@ -593,8 +593,34 @@ namespace Rouge.Tcg
             }
             else
             {
-                if (!TryDraw(player, 1)) yield break;
-                yield return PresentDraws(player);
+                // The Standing Order: der Besitzer DARF statt zu ziehen die oberste
+                // Karte seines Friedhofs nehmen — bei leerem Deck rettet ihn genau das.
+                bool tookFromGrave = false;
+                if (player.Graveyard.Count > 0 && HasDrawReplacement(player))
+                {
+                    var top = player.Graveyard[player.Graveyard.Count - 1];
+                    var ask = new YesNoRequest
+                    {
+                        Title = "The Standing Order",
+                        Card = top,
+                        Question = $"Take {top.Name} from the top of your Graveyard instead of drawing?"
+                    };
+                    yield return DecideRouted(player, ask);
+                    if (ask.Result)
+                    {
+                        player.Graveyard.Remove(top);
+                        top.Zone = ZoneType.Hand;
+                        top.FaceDown = false;
+                        player.Hand.Add(top);
+                        tookFromGrave = true;
+                        Log($"{player.Name} takes {top.Name} from the Graveyard instead of drawing ({player.Hand.Count} in hand).");
+                    }
+                }
+                if (!tookFromGrave)
+                {
+                    if (!TryDraw(player, 1)) yield break;
+                    yield return PresentDraws(player);
+                }
             }
             BoardChanged();
             if (CheckWin()) yield break;
@@ -780,6 +806,24 @@ namespace Rouge.Tcg
                 if (CheckWin()) yield break;
             }
 
+            // The Appointed Hour: die Uhr tickt in jeder eigenen Standby Phase.
+            // Beim letzten Marker feuert der CountdownZero-Effekt der Karte —
+            // ihren Abgang trägt sie selbst als letzte Aktion im Effekt.
+            foreach (var clock in new List<CardInstance>(player.FieldCards()))
+            {
+                if (clock.CountdownMarkers <= 0 || clock.FaceDown || !IsOnField(clock)) continue;
+                clock.CountdownMarkers--;
+                Log(clock.CountdownMarkers > 0
+                    ? $"{clock.Name}: an Hour Counter is removed ({clock.CountdownMarkers} left)."
+                    : $"{clock.Name}: the last Hour Counter is removed — the appointed hour has come!");
+                BoardChanged();
+                if (clock.CountdownMarkers <= 0)
+                {
+                    yield return OfferTriggeredEffects(player, clock, EffectTrigger.CountdownZero);
+                    if (CheckWin()) yield break;
+                }
+            }
+
             // Pfandrechte: der Kontrolleur zahlt oder verliert das Monster
             foreach (var pledged in new List<CardInstance>(player.Monsters()))
             {
@@ -861,6 +905,16 @@ namespace Rouge.Tcg
                 player.NoDirectAttacksThisTurn = false;
                 player.SpecialSummonedEffectsLockedThisTurn = false;
                 player.SpellsLockedThisTurn = false;   // The Unbroken Oath
+                // --- Road to 1000 ---
+                player.RevealedCardThisTurn = false;
+                player.OwnMonstersDestroyedThisTurn = 0;
+                player.NextNormalSummonTributeDiscount = 0;
+                player.NextSpellSurcharge = 0;         // Countersign gilt nur "in diesem Zug"
+                // Siegel räumen: befristete nach Ablauf, quellgebundene mit toter Quelle
+                player.ZoneSeals.RemoveAll(seal =>
+                    (seal.UntilTurn >= 0 && TurnNumber > seal.UntilTurn)
+                    || (seal.UntilTurn < 0 && (seal.Source == null || seal.Source.FaceDown
+                        || seal.Source.Zone != ZoneType.MonsterZone)));
                 foreach (var card in player.FieldCards())
                 {
                     card.PiercingThisTurn = false;      // Trample the Line
@@ -910,6 +964,8 @@ namespace Rouge.Tcg
                     card.MustBeAttackedThisTurn = false;
                     card.StatsSwappedThisTurn = false;
                     card.StatsOverriddenThisTurn = false;
+                    card.TempLevelThisTurn = 0;          // Demoted for Cause
+                    card.AttacksWithDefThisTurn = false; // Lead With the Shield
                 }
             }
             ReturnBorrowedCards();
@@ -1077,6 +1133,15 @@ namespace Rouge.Tcg
             if (Result != DuelResult.None) return true;
             if (Player1.LifePoints <= 0) { Result = DuelResult.Player2Wins; return true; }
             if (Player2.LifePoints <= 0) { Result = DuelResult.Player1Wins; return true; }
+            return false;
+        }
+
+        /// <summary>The Standing Order: liegt beim Spieler ein offenes Draw-Ersatz-Artefakt?</summary>
+        private static bool HasDrawReplacement(PlayerState player)
+        {
+            foreach (var card in player.FieldCards())
+                if (card != null && !card.FaceDown && card.Definition != null
+                    && card.Definition.passiveDrawReplacementGraveTop) return true;
             return false;
         }
 

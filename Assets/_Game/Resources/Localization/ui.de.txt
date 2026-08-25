@@ -476,3 +476,24 @@ Replay not found.	Replay nicht gefunden.
 Replay is damaged.	Replay ist beschädigt.
 SHOWCASE	VITRINE
 DUEL OVER	DUELL VORBEI
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	dein Gegner mehr Monster kontrolliert als du
+your LP are {0} or less	deine LP {0} oder weniger betragen
+the top card of your Graveyard is a monster	die oberste Karte deines Friedhofs ein Monster ist
+a card was revealed this turn	in diesem Zug eine Karte aufgedeckt wurde
+you control a Level 1 and a Level 3 monster	du ein Monster der Stufe 1 UND eines der Stufe 3 kontrollierst
+your opponent controls a Level 3 monster and you control none	dein Gegner ein Monster der Stufe 3 kontrolliert und du keines
+it is your turn {0} or later	es dein {0}. Zug oder später ist
+your Deck holds {0}+ cards	dein Deck {0}+ Karten enthält
+both players' LP are within {0} of each other	die LP beider Spieler höchstens {0} auseinanderliegen
+you control {0}+ Artifacts	du {0}+ Artefakte kontrollierst
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	Du kannst diese Karte aus deiner Hand in eine VERSIEGELTE Monster-Zone deiner Seite spezialbeschwören — das Siegel bricht dabei{0}{1} (einmal pro Zug).
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	ATK und DEF dieser Karte entsprechen denen der obersten Monsterkarte deines Friedhofs.
+This card attacks using its DEF.	Diese Karte greift mit ihrer DEF an.
+After this card attacks, it permanently loses {0} DEF.	Nach jedem Angriff verliert diese Karte dauerhaft {0} DEF.
+The zones adjacent to the equipped monster count as Sealed while they are empty.	Die an das ausgerüstete Monster angrenzenden Zonen gelten als versiegelt, solange sie leer sind.
+The equipped monster cannot move to another zone.	Das ausgerüstete Monster kann nicht in eine andere Zone ziehen.
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	Solange die LP beider Spieler höchstens {0} auseinanderliegen, kann diese Karte nicht von den Effekten deines Gegners als Ziel gewählt werden.
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	In deiner Draw Phase darfst du statt zu ziehen die oberste Karte deines Friedhofs auf deine Hand nehmen.
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Kommt mit {0} Stunden-Markern ins Spiel. In jeder deiner Standby Phases: Entferne 1. Wird der letzte entfernt, zündet der Countdown-Effekt und diese Karte wird zerstört.
+the different Levels among your monsters	der verschiedenen Stufen unter deinen Monstern

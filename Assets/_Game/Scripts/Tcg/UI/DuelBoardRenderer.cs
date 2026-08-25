@@ -208,6 +208,9 @@ namespace Rouge.Tcg.UI
             foreach (var view in viewMap.Values)
                 if (view != null) Destroy(view.gameObject);
             viewMap.Clear();
+            foreach (var overlay in sealOverlays)
+                if (overlay != null) Destroy(overlay);
+            sealOverlays.Clear();
 
             if (duel == null || duel.Player1 == null) return;
 
@@ -220,11 +223,35 @@ namespace Rouge.Tcg.UI
             AfterRebuild?.Invoke();
         }
 
+        // Road to 1000: Backstein-Overlays auf versiegelten Monster-Zonen
+        private readonly List<GameObject> sealOverlays = new List<GameObject>();
+        private static Sprite sealSprite;
+
+        private void SpawnSealOverlay(Transform slot)
+        {
+            if (slot == null) return;
+            if (sealSprite == null) sealSprite = Resources.Load<Sprite>("UI/Status/ZoneSealed");
+            var go = new GameObject("ZoneSeal", typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(slot, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = fieldCardSize;
+            var image = go.GetComponent<Image>();
+            image.raycastTarget = false;
+            if (sealSprite != null) { image.sprite = sealSprite; image.color = Color.white; }
+            else image.color = new Color(0.45f, 0.28f, 0.20f, 0.55f); // Fallback: Ziegel-Ton
+            sealOverlays.Add(go);
+        }
+
         private void RenderSide(PlayerState player, Transform[] monsterSlots, Transform[] spellSlots,
             Transform[] artifactSlots, Transform playerSlot, Transform handContainer, bool isOpponent)
         {
             for (int i = 0; i < monsterSlots.Length && i < player.MonsterZones.Length; i++)
+            {
                 if (player.MonsterZones[i] != null) SpawnView(player.MonsterZones[i], monsterSlots[i], false, fieldCardSize);
+                else if (duel != null && duel.IsZoneSealed(player, i)) SpawnSealOverlay(monsterSlots[i]);
+            }
 
             for (int i = 0; i < spellSlots.Length && i < player.SpellZones.Length; i++)
             {

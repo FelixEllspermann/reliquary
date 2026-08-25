@@ -441,6 +441,11 @@ namespace Rouge.DuelHost
                 lienAmount = visible ? card.LienAmount : 0,
                 status = visible ? CardStatus.MaskOf(card) : 0,
                 bonusAttacks = visible ? card.BonusAttacks : 0,
+                countdown = visible ? card.CountdownMarkers : 0,
+                // Effektives Level nur senden, wenn es vom gedruckten abweicht —
+                // 0 heißt im Wire "das gedruckte gilt".
+                effLevel = visible && card.MonsterData != null && card.Zone == ZoneType.MonsterZone
+                           && card.EffectiveLevel != card.MonsterData.level ? card.EffectiveLevel : 0,
                 // Auch das Aussehen ist verdeckte Information: eine funkelnde
                 // Rückseite verriete, welche Karte dort liegt.
                 finish = visible ? (int)card.Finish : 0
@@ -471,8 +476,18 @@ namespace Rouge.DuelHost
                 artifacts = player.ArtifactZones.Select(c => CardWire(c, viewer)).ToArray(),
                 player = CardWire(player.PlayerCard, viewer),
                 grave = player.Graveyard.Select(c => CardWire(c, viewer)).ToArray(),
-                banished = player.Banished.Select(c => CardWire(c, viewer)).ToArray()
+                banished = player.Banished.Select(c => CardWire(c, viewer)).ToArray(),
+                sealedZones = SealedZoneMask(player)
             };
+        }
+
+        /// <summary>Road to 1000: Bitmaske der versiegelten Monster-Zonen einer Seite (Bit i = Zone i).</summary>
+        private int SealedZoneMask(PlayerState side)
+        {
+            int mask = 0;
+            for (int i = 0; i < side.MonsterZones.Length; i++)
+                if (duel.IsZoneSealed(side, i)) mask |= 1 << i;
+            return mask;
         }
 
         private object BuildView(PlayerState viewer, PlayerState foe) => new

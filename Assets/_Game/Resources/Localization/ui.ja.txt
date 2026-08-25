@@ -476,3 +476,24 @@ Replay not found.	リプレイが見つかりません。
 Replay is damaged.	リプレイが破損しています。
 SHOWCASE	ショーケース
 DUEL OVER	デュエル終了
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	相手が自分より多くのモンスターをコントロールしている
+your LP are {0} or less	自分のLPが{0}以下である
+the top card of your Graveyard is a monster	自分の墓地の一番上のカードがモンスターである
+a card was revealed this turn	このターンにカードが公開されている
+you control a Level 1 and a Level 3 monster	自分がレベル1とレベル3のモンスターをコントロールしている
+your opponent controls a Level 3 monster and you control none	相手がレベル3モンスターをコントロールしていて自分はコントロールしていない
+it is your turn {0} or later	自分の{0}ターン目以降である
+your Deck holds {0}+ cards	自分のデッキが{0}枚以上である
+both players' LP are within {0} of each other	両プレイヤーのLPの差が{0}以内である
+you control {0}+ Artifacts	自分が{0}体以上のアーティファクトをコントロールしている
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	自分の側の封印されたモンスターゾーンに、このカードを手札から特殊召喚できる。その際封印は破られる{0}{1}（1ターンに1度）。
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	このカードの攻撃力と守備力は、自分の墓地の一番上のモンスターカードと同じになる。
+This card attacks using its DEF.	このカードは守備力で攻撃する。
+After this card attacks, it permanently loses {0} DEF.	このカードが攻撃した後、守備力が永続的に{0}下がる。
+The zones adjacent to the equipped monster count as Sealed while they are empty.	装備モンスターの隣接ゾーンは、空いている限り封印されたものとして扱う。
+The equipped monster cannot move to another zone.	装備モンスターは別のゾーンに移動できない。
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	両プレイヤーのLPの差が{0}以内である限り、このカードは相手の効果の対象にならない。
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	自分のドローフェイズに、ドローする代わりに自分の墓地の一番上のカードを手札に加えることができる。
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	{0}個の時のカウンターと共にフィールドに出る。自分のスタンバイフェイズごとに1個取り除く。最後の1個が取り除かれた時、カウントダウン効果が発動し、このカードは破壊される。
+the different Levels among your monsters	自分のモンスターの中の異なるレベルの数

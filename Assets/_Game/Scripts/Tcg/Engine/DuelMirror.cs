@@ -89,6 +89,13 @@ namespace Rouge.Tcg
             for (int i = 0; i < player.ArtifactZones.Length; i++)
                 player.ArtifactZones[i] = MirrorResolve(At(side.artifacts, i), player, ZoneType.ArtifactZone);
             player.PlayerCard = MirrorResolve(side.player, player, ZoneType.PlayerZone);
+
+            // Road to 1000: Zonen-Siegel spiegeln — als offene Dauer-Siegel, das
+            // Board-Overlay liest nur "versiegelt ja/nein"; der Server räumt selbst.
+            player.ZoneSeals.Clear();
+            for (int i = 0; i < player.MonsterZones.Length; i++)
+                if ((side.sealedZones & (1 << i)) != 0)
+                    player.ZoneSeals.Add(new ZoneSeal { Index = i, UntilTurn = int.MaxValue });
         }
 
         private static Net.SduelCard At(Net.SduelCard[] array, int index) =>
@@ -130,6 +137,11 @@ namespace Rouge.Tcg
             card.DeathCounters = wire.deathCounters;
             card.LienAmount = wire.lienAmount;
             CardStatus.Apply(card, wire.status, wire.bonusAttacks);
+            // Road to 1000: Countdown-Marker und effektives Level spiegeln.
+            // effLevel kommt nur, wenn es vom gedruckten abweicht — als Temp-Setzung
+            // gespiegelt, damit die Anzeige es liest, ohne lokale Regeln anzustoßen.
+            card.CountdownMarkers = wire.countdown;
+            card.TempLevelThisTurn = wire.effLevel;
             card.Finish = Net.CardFinishWire.From(wire.finish);
 
             if (!string.IsNullOrEmpty(wire.name))

@@ -4214,3 +4214,288 @@ l0 Hofstrafe
 t0 Zahle 1 Mana: Lege 1 Monster mit weniger als 2000 ATK aus deinem Deck auf den Friedhof, erhalte dann 1 Mana.
 l1 Harte Strafe
 t1 Zahle stattdessen 3 Mana: Lege 2 Monster mit beliebigen Werten auf den Friedhof, aber erhalte kein Mana.
+# ---------- Road to 1000 (0.1.7) ----------
+## The Crown of the Absent King
+n Die Krone des abwesenden Königs
+l0 Krönung
+t0 Zu Beginn deiner Standby Phase, falls du „Die Krone des abwesenden Königs“, „Das Zepter des abwesenden Königs“ und „Der Reichsapfel des abwesenden Königs“ kontrollierst: Du gewinnst das Duell.
+l1 Die Krone halten
+t1 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht zerstört werden.
+## The Sceptre of the Absent King
+n Das Zepter des abwesenden Königs
+l0 Krönung
+t0 Zu Beginn deiner Standby Phase, falls du „Die Krone des abwesenden Königs“, „Das Zepter des abwesenden Königs“ und „Der Reichsapfel des abwesenden Königs“ kontrollierst: Du gewinnst das Duell.
+l1 Niemand erhebt sich
+t1 Einmal pro Zug: 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 300 ATK.
+l2 Niemand, gar niemand
+t2 Zahle 2 Mana: Stattdessen verlieren bis zu 2 Monster, die dein Gegner kontrolliert, bis zum Ende dieses Zuges je 300 ATK.
+## The Orb of the Absent King
+n Der Reichsapfel des abwesenden Königs
+l0 Krönung
+t0 Zu Beginn deiner Standby Phase, falls du „Die Krone des abwesenden Königs“, „Das Zepter des abwesenden Königs“ und „Der Reichsapfel des abwesenden Königs“ kontrollierst: Du gewinnst das Duell.
+l1 Das Reich besteht fort
+t1 Während deiner Standby Phase: Erhalte 300 LP.
+l2 Treuhänderisch verwahrt
+t2 Zahle 2 Mana: Mische 1 Karte aus deinem Friedhof in dein Deck.
+## The Regent Who Keeps the Throne Warm
+n Der Regent, der den Thron warmhält
+l0 Den Platz freihalten
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 Monster mit 0 ATK aus deinem Deck hinzu.
+l1 Den Platz vorwärmen
+t1 Zahle 2 Mana: Beschwöre es stattdessen als Spezialbeschwörung — seine Effekte sind bis zur End Phase annulliert, und es kann in diesem Zug nicht angreifen.
+## Long Live the King
+n Lang lebe der König
+l0 Lang lebe der König
+t0 Zahle 2 Mana: Beschwöre 1 Monster mit 0 ATK aus deinem Friedhof in Verteidigungsposition als Spezialbeschwörung.
+l1 Lang möge er herrschen
+t1 Zahle stattdessen 4 Mana: Es kann in diesem Zug zusätzlich nicht zerstört werden.
+## Bricklayer of the Eleventh Hour
+n Maurer der elften Stunde
+l0 Noch eine Steinreihe
+t0 Wenn diese Karte beschworen wird: Versiegle 1 leere Monster-Zone deines Gegners, solange diese Karte offen liegt.
+l1 Mauert sie ein
+t1 Zahle 2 Mana: Versiegle stattdessen bis zu 2.
+## The Squatter, Uninvited
+n Der Hausbesetzer, ungebeten
+l0 Der Einzug
+t0 Falls diese Karte spezialbeschworen wurde: Ziehe 1 Karte.
+## No Room at the Inn
+n Kein Zimmer in der Herberge
+l0 Kein Zimmer in der Herberge
+t0 Zahle 2 Mana: Versiegle bis zu 2 leere Monster-Zonen deines Gegners bis zum Ende deines nächsten Zuges.
+l1 Nicht einmal der Stall
+t1 Zahle stattdessen 4 Mana: Versiegle bis zu 3, und ziehe 1 Karte.
+## Condemned Premises
+n Gesperrtes Gelände
+l0 Gesperrtes Gelände
+t0 Zahle 2 Mana: Versiegle 1 leere Monster-Zone auf einer beliebigen Spielfeldseite bis zum Ende deines nächsten Zuges.
+l1 Gesperrtes Viertel
+t1 Zahle stattdessen 3 Mana: Versiegle 2 Zonen.
+## The Bricked-Up Door
+n Die zugemauerte Tür
+l0 Stein auf Stein
+t0 Einmal pro Zug — zahle 1 Mana: Versiegle 1 leere Monster-Zone auf einer beliebigen Seite bis zum Ende deines nächsten Zuges.
+l1 Den ganzen Flügel vermauern
+t1 Zahle 2 Mana: Versiegle stattdessen 2 Zonen.
+## The Landlord's Own Padlock
+n Des Hausherrn eigenes Vorhängeschloss
+l0 Noch ein Schloss
+t0 Zahle 2 Mana: Versiegle 1 leere Monster-Zone auf einer beliebigen Seite bis zum Ende deines nächsten Zuges.
+## Gravedigger's First Shift
+n Des Totengräbers erste Schicht
+l0 Den ersten Spatenstich
+t0 Wenn diese Karte beschworen wird: Schicke die oberste Karte deines Decks in den Friedhof.
+l1 Graben, wo befohlen
+t1 Zahle 1 Mana: Wähle die Karte selbst — schicke 1 Karte aus deinem Deck in den Friedhof.
+## Echo of the Latest Loss
+n Echo des jüngsten Verlusts
+l0 Das andere Grab verstummt
+t0 Zahle 2 Mana: Verbanne die oberste Karte des gegnerischen Friedhofs.
+## He Sleeps Lightly
+n Er schläft leicht
+l0 Ein leichter Schläfer
+t0 Solange diese Karte die oberste Karte deines Friedhofs ist — zahle 2 Mana: Beschwöre sie als Spezialbeschwörung. Sie kann in diesem Zug nicht angreifen.
+## Last In, First Out
+n Zuletzt hinein, zuerst hinaus
+l0 Zuletzt hinein, zuerst hinaus
+t0 Zahle 1 Mana: Füge deiner Hand die oberste Karte deines Friedhofs hinzu.
+l1 Doppelte Buchführung
+t1 Zahle stattdessen 3 Mana: Die obersten 2.
+## The Fresh Grave
+n Das frische Grab
+l0 Das frische Grab
+t0 Zahle 2 Mana: Beschwöre die oberste Karte deines Friedhofs als Spezialbeschwörung, falls sie ein Monster der Stufe 2 oder niedriger ist.
+l1 Das frischeste Grab
+t1 Zahle stattdessen 4 Mana: Beliebige Stufe — es kann in diesem Zug nicht angreifen.
+## Buried With His Boots On
+n Begraben in seinen Stiefeln
+l0 Begraben in seinen Stiefeln
+t0 Zahle 2 Mana. Falls in diesem Zug ein Monster von dir zerstört wurde: Beschwöre die oberste Monsterkarte deines Friedhofs verdeckt als Spezialbeschwörung.
+l1 Und den Hut dazu
+t1 Zahle stattdessen 3 Mana: Ziehe zusätzlich 1 Karte.
+## The Unquiet Topsoil
+n Der unruhige Mutterboden
+l0 Die Erde wenden
+t0 Einmal pro Zug: Lege die oberste Karte deines Friedhofs unter deinen Friedhof.
+l1 Frische Erde
+t1 Zahle 2 Mana: Schicke die oberste Karte deines Decks in den Friedhof.
+## A Foot in the Door
+n Ein Fuß in der Tür
+l0 Ein Fuß in der Tür
+t0 Zahle 1 Mana: Deine nächste Normalbeschwörung in diesem Zug kostet 1 Tribut weniger.
+l1 Beide Füße
+t1 Zahle stattdessen 3 Mana: Sie kostet keine Tribute.
+## The Promotion Board
+n Die Beförderungskommission
+l0 Befördert
+t0 Einmal pro Zug — zahle 2 Mana: 1 Monster, das du kontrollierst, wird dauerhaft 1 Stufe höher (max. Stufe 3).
+l1 Mit Auszeichnung befördert
+t1 Zahle 3 Mana: Befördere 1 Monster, ziehe dann 1 Karte.
+## Demoted for Cause
+n Degradiert aus gutem Grund
+l0 Degradiert aus gutem Grund
+t0 Zahle 2 Mana: 1 Monster auf dem Spielfeld wird bis zur End Phase Stufe 1.
+l1 Massenhafte Degradierung
+t1 Zahle stattdessen 3 Mana: Bis zu 2 Monster.
+## Cut Down to Size
+n Zurechtgestutzt
+l0 Zurechtgestutzt
+t0 Zahle 2 Mana: Zerstöre 1 Monster, dessen Stufe NIEDRIGER ist als die Anzahl der Monster, die sein Besitzer kontrolliert.
+l1 Stutzt sie alle zurecht
+t1 Zahle stattdessen 4 Mana: Zerstöre bis zu 2 solche Monster.
+## Stuck on the Middle Rung
+n Gefangen auf der mittleren Sprosse
+l0 Jede Sprosse ist recht
+t0 Zahle 2 Mana: Diese Karte wird bis zur End Phase eine Stufe deiner Wahl (1–3).
+## The Overqualified Doorman
+n Der überqualifizierte Türsteher
+l0 Nicht auf der Liste
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, wird bis zur End Phase Stufe 1.
+l1 Schon schlimmere Türen gesehen
+t1 Einmal pro Zug — zahle 2 Mana: Diese Karte kann in diesem Zug nicht zerstört werden.
+## The Ink Still Wet
+n Die Tinte noch feucht
+l0 Die Tinte noch feucht
+t0 Zahle 1 Mana: Sieh dir die obersten 3 Karten deines Decks an und lege sie in beliebiger Reihenfolge zurück.
+l1 Zweimal Korrektur lesen
+t1 Zahle stattdessen 2 Mana: Ordne sie neu, ziehe dann 1 Karte.
+## The Day After Tomorrow's News
+n Die Nachrichten von übermorgen
+l0 Die Nachrichten von morgen
+t0 Zahle 2 Mana: Sieh dir die obersten 2 Karten des GEGNERISCHEN Decks an und lege sie in beliebiger Reihenfolge zurück.
+l1 Die komplette Ausgabe
+t1 Zahle stattdessen 4 Mana: Die obersten 3.
+## The Self-Fulfilling Prophecy
+n Die selbsterfüllende Prophezeiung
+l0 Die Prophezeiung
+t0 Zahle 2 Mana: Decke die oberste Karte deines Decks auf. Ist sie ein Monster der Stufe 2 oder niedriger, beschwöre es als Spezialbeschwörung; sonst schicke sie in den Friedhof.
+l1 Die größere Prophezeiung
+t1 Zahle stattdessen 4 Mana: Beliebige Stufe — ein beschworenes Monster kann in diesem Zug nicht angreifen.
+## She Reads the Weather in Entrails
+n Sie liest das Wetter in Eingeweiden
+l0 Die Zeichen lesen
+t0 Wenn diese Karte beschworen wird: Decke die oberste Karte deines Decks auf; du darfst sie unter das Deck legen.
+l1 Ihre Zeichen lesen
+t1 Zahle 2 Mana: Dasselbe für das Deck deines Gegners.
+## The Calendar's Last Page
+n Des Kalenders letztes Blatt
+l0 Das letzte Blatt wendet sich
+t0 Wenn diese Karte beschworen wird: Ziehe 2 Karten, lege dann 1 Handkarte unter dein Deck.
+l1 Das Morgen herausreißen
+t1 Zahle 3 Mana: Decke die obersten 2 Karten deines Decks auf; füge deiner Hand alle Monster darunter hinzu.
+## The Appointed Hour
+n Die festgesetzte Stunde
+l0 Die Stunde schlägt
+t0 Wenn der letzte Stunden-Marker entfernt wird: Ziehe 2 Karten, erhalte in diesem Zug 2 Mana und gib bis zu 1 Karte, die dein Gegner kontrolliert, auf seine Hand zurück. Zerstöre dann diese Karte.
+l1 Die Uhr vorstellen
+t1 Einmal pro Zug — zahle 2 Mana: Entferne 1 zusätzlichen Stunden-Marker.
+## Ink for the Third Edition
+n Tinte für die dritte Ausgabe
+l0 Tinte für die dritte Ausgabe
+t0 Zahle 1 Mana: Lege 1 Handkarte oben auf dein Deck; ziehe 1 Karte.
+l1 Korrekturfahne
+t1 Zahle stattdessen 2 Mana: Decke danach die oberste Karte deines Decks auf; du darfst sie unter das Deck legen.
+## He Who Leads With His Shoulder
+n Er, der mit der Schulter vorangeht
+l0 Das Gewicht dahinter
+t0 Zahle 2 Mana: Diese Karte erhält bis zum Ende dieses Zuges 300 DEF.
+## The Vault's Own Doorframe
+n Des Gewölbes eigener Türrahmen
+l0 Den Flügel abstützen
+t0 Zahle 3 Mana: Deine Monster in den an diese Karte angrenzenden Zonen erhalten bis zum Ende dieses Zuges 400 DEF.
+## Doorstop Made of Dragon Bone
+n Türstopper aus Drachenknochen
+l0 Den Riss schienen
+t0 Einmal pro Zug — zahle 1 Mana: Diese Karte erhält dauerhaft 300 DEF.
+## Lead With the Shield
+n Mit dem Schild voran
+l0 Mit dem Schild voran
+t0 Zahle 1 Mana: 1 Monster, das du kontrollierst, greift bis zum Ende dieses Zuges mit seiner DEF an.
+l1 Schildwall, vorwärts
+t1 Zahle stattdessen 3 Mana: Bis zu 3 Monster — sie erhalten zusätzlich je 200 DEF bis zum Ende dieses Zuges.
+## An Honest Man's Bluff
+n Der Bluff eines ehrlichen Mannes
+l0 Der Bluff eines ehrlichen Mannes
+t0 Zahle 1 Mana: Zeige deine Hand vor. Enthält sie keinen Zauber, ziehe 2 Karten; sonst ziehe 1.
+l1 Nichts im Ärmel
+t1 Zahle stattdessen 2 Mana: Danach darfst du 1 Handkarte unter dein Deck legen.
+## The Beggar Who Shows His Purse
+n Der Bettler, der seinen Beutel zeigt
+l0 Ein leerer Beutel
+t0 Wenn diese Karte beschworen wird: Zeige deine Hand vor. Ist sie leer, ziehe 2 Karten.
+l1 Zeig mir deinen
+t1 Zahle 1 Mana: Dein Gegner zeigt 1 zufällige Handkarte vor.
+## The Transparent Man
+n Der durchsichtige Mann
+l0 Nichts zu verbergen
+t0 Wenn diese Karte beschworen wird: Zeige deine Hand vor; diese Karte erhält dauerhaft 200 ATK für jedes vorgezeigte Monster.
+l1 Schau ruhig hindurch
+t1 Zahle 2 Mana: Diese Karte kann in diesem Zug nicht von den Effekten deines Gegners als Ziel gewählt werden.
+## Everything Above Board
+n Alles offen auf dem Tisch
+l0 Alles offen auf dem Tisch
+t0 Zahle 2 Mana: Beide Spieler zeigen ihre Hände vor. Ziehe 1 Karte, falls dein Gegner mehr Handkarten hat als du.
+l1 Deine Seite des Tisches
+t1 Zahle stattdessen 3 Mana: Nur dein GEGNER zeigt vor — gleiche Ziehung.
+## The Thousandth Card
+n Die tausendste Karte
+l0 Eine unter tausend
+t0 Wenn diese Karte beschworen wird: Ziehe 1 Karte.
+l1 Zurück unter die tausend
+t1 Einmal pro Duell — zahle 1 Mana: Mische diese Karte in dein Deck; ziehe 2 Karten.
+## Countersign
+n Gegenzeichnung
+l0 Gegenzeichnung
+t0 Zahle 2 Mana: Der nächste Zauber, den dein Gegner in diesem Zug aktiviert, kostet 2 Mana mehr.
+l1 Notariell beglaubigt
+t1 Zahle stattdessen 3 Mana: Er kostet 3 mehr, und du ziehst 1 Karte.
+## Eviction Notice
+n Räumungsbescheid
+l0 Räumungsbescheid
+t0 Zahle 1 Mana: Gib 1 Monster, das nicht angreifen kann, auf die Hand seines Besitzers zurück.
+l1 Das ganze Gebäude räumen
+t1 Zahle stattdessen 3 Mana: Bis zu 2 solche Monster.
+## Wrong Queue, Sir
+n Falsche Schlange, mein Herr
+l0 Falsche Schlange, mein Herr
+t0 Zahle 2 Mana: Bewege 1 Monster, das dein Gegner kontrolliert, in eine andere leere Monster-Zone seiner Seite (deiner Wahl).
+l1 Alle aus der Reihe
+t1 Zahle stattdessen 3 Mana: Bewege bis zu 2.
+## The Turntable
+n Die Drehscheibe
+l0 Die Drehscheibe
+t0 Zahle 2 Mana: Verschiebe ALLE deine Monster um eine Zone nach links oder rechts (Monster ohne Platz bleiben stehen).
+l1 Noch eine Umdrehung
+t1 Zahle stattdessen 3 Mana: Ziehe 1 Karte, falls 3 oder mehr Monster bewegt wurden.
+## Settle the Difference
+n Die Differenz begleichen
+l0 Die Differenz begleichen
+t0 Einmal pro Duell. Zahle 3 Mana: Die LP beider Spieler werden auf den NIEDRIGEREN der beiden Werte gesetzt.
+l1 Der Rest ist Trinkgeld
+t1 Zahle stattdessen 5 Mana: Danach erhältst du 1000 LP.
+## The Even Scales
+n Die ausgeglichene Waage
+l0 Neig dich zu mir
+t0 Zahle 2 Mana: Erhalte LP in Höhe der halben Differenz beider LP-Stände (max. 1000).
+## First Mover's Advantage
+n Der Vorteil des ersten Zuges
+l0 Der Vorteil des ersten Zuges
+t0 Nur während deines ERSTEN Zuges des Duells — zahle 1 Mana: Erhalte in diesem Zug 2 Mana.
+l1 Tempodieb
+t1 Zahle stattdessen 2 Mana: Ziehe zusätzlich 1 Karte.
+## The Standing Order
+n Der Dauerauftrag
+l0 Kontoüberziehung
+t0 Einmal pro Zug — zahle 2 Mana: Schicke die oberste Karte deines Decks in den Friedhof.
+## Two Truths and a Lie
+n Zwei Wahrheiten und eine Lüge
+l0 Zwei Wahrheiten und eine Lüge
+t0 Zahle 2 Mana: Lege bis zu 3 Monster aus deiner Hand verdeckt in Verteidigungsposition.
+l1 Und ein Augenzwinkern
+t1 Zahle stattdessen 3 Mana: Ziehe 1 Karte für jedes so gelegte Monster über das erste hinaus.
+## Making Ends Meet
+n Über die Runden kommen
+l0 Über die Runden kommen
+t0 Zahle 1 Mana. Falls du 1 oder weniger Monster kontrollierst: Erhalte in diesem Zug 2 Mana.
+l1 Noch weiter strecken
+t1 Zahle stattdessen 2 Mana: Ziehe zusätzlich 1 Karte, falls deine Hand danach 3 oder weniger Karten enthält.

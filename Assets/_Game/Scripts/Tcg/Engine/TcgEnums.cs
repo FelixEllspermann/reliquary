@@ -68,7 +68,10 @@ namespace Rouge.Tcg
 
         // --- The Small Print (August 2026) ---
         OnPositionChangedSelf,  // DIESE Karte wechselt offen die Kampfposition (Volte-Face)
-        OnMovedSelf             // DIESE Karte ist in eine andere Zone gezogen (Left Hand of the Hangman)
+        OnMovedSelf,            // DIESE Karte ist in eine andere Zone gezogen (Left Hand of the Hangman)
+
+        // --- Road to 1000 (September 2026) ---
+        CountdownZero           // der letzte Countdown-Marker dieser Karte wurde entfernt (The Appointed Hour)
     }
 
     public enum EffectActionType
@@ -228,7 +231,45 @@ namespace Rouge.Tcg
         NegateAllOpponentCards,         // alle offenen gegnerischen Feldkarten sind bis Zugende annulliert (The Unbroken Oath)
         GainAtkOfFacingMonsterEot,      // Ziel erhält bis Zugende amount % des ATK des Monsters GEGENÜBER (Stare Down)
         DiscardSelfRandom,              // der Aktivierende wirft amount zufällige Handkarten ab (Grinner: Tails)
-        HealSelfPerCount                // amount LP je gezählter Karte (countKind), höchstens targetCount Zählungen (Aurel)
+        HealSelfPerCount,               // amount LP je gezählter Karte (countKind), höchstens targetCount Zählungen (Aurel)
+
+        // --- Road to 1000 (September 2026) — NUR ANHÄNGEN ---
+        WinTheDuel,                     // der Aktivierende gewinnt das Duell sofort (Krönung des abwesenden Königs)
+        SealEnemyZones,                 // amount leere GEGNER-Monsterzonen versiegeln — bis zum Ende des nächsten eigenen Zuges
+        SealEnemyZonesWhileSourceFaceUp,// amount leere Gegner-Zonen versiegeln, solange die QUELLKARTE offen liegt (Bricklayer)
+        SealAnyZones,                   // amount leere Monsterzonen BELIEBIGER Seite versiegeln — bis Ende des nächsten eigenen Zuges
+        SpecialSummonGraveTop,          // oberste Friedhofskarte beschwören, wenn Monster mit Level <= levelFilter (0 = egal)
+        SpecialSummonGraveTopMonsterFaceDown, // oberste MONSTERkarte des Friedhofs verdeckt beschwören (Buried With His Boots On)
+        ReturnGraveTopToHand,           // die obersten amount Karten des eigenen Friedhofs auf die Hand (Last In, First Out)
+        BanishOpponentGraveTop,         // die obersten amount Karten des GEGNER-Friedhofs verbannen (Echo Infused)
+        MoveGraveTopToBottom,           // die oberste Karte des eigenen Friedhofs UNTER den Stapel legen (Unquiet Topsoil)
+        SpecialSummonSelfFromGrave,     // die Quellkarte aus dem eigenen Friedhof beschwören (He Sleeps Lightly)
+        ChangeTargetLevelPermanent,     // Ziel-Level dauerhaft um amount ändern (geklemmt auf 1..3; Promotion Board)
+        SetTargetLevelThisTurn,         // Ziel-Level bis Zugende auf amount setzen (Demoted for Cause)
+        ChooseSelfLevelThisTurn,        // Quellkarte: Spieler wählt ihr Level (1-3) bis Zugende (Stuck on the Middle Rung)
+        DiscountNextNormalSummon,       // nächste Normalbeschwörung diesen Zug kostet amount Tribute weniger (99 = keine)
+        TickCountdownSelf,              // amount Countdown-Marker der Quellkarte entfernen (Appointed Hour Infused)
+        LookReorderTopDeck,             // oberste amount Karten des EIGENEN Decks ansehen und in Wunschreihenfolge zurücklegen
+        LookReorderOpponentTopDeck,     // dasselbe für das GEGNER-Deck (The Day After Tomorrow's News)
+        RevealTopDeckSummonIfLowLevel,  // oberste Deckkarte aufdecken: Monster mit Level <= levelFilter (0 = egal) wird beschworen, sonst Friedhof
+        RevealOpponentTopDeckMayBottom, // oberste GEGNER-Deckkarte aufdecken; der Aktivierende darf sie nach unten legen
+        RevealTopDeckTakeMonsters,      // oberste amount Karten aufdecken: Monster auf die Hand, Rest bleibt in Reihenfolge oben
+        PutTargetHandCardToDeckBottom,  // Ziel-Handkarte(n) UNTER das eigene Deck legen
+        PutTargetHandCardOnTopOfDeck,   // Ziel-Handkarte oben AUF das eigene Deck legen (Ink for the Third Edition)
+        RevealOwnHandDrawByContent,     // eigene Hand vorzeigen: ohne Zauber amount+1 ziehen, sonst amount (Honest Man's Bluff)
+        RevealOwnHandDrawIfEmpty,       // eigene Hand vorzeigen: ist sie leer, amount Karten ziehen (The Beggar)
+        RevealOwnHandBuffPerMonster,    // eigene Hand vorzeigen: Quellkarte +amount ATK dauerhaft je vorgezeigtem Monster
+        OpponentRevealsRandomHandCard,  // der Gegner zeigt amount zufällige Handkarten vor
+        BothRevealHandsDrawIfOpponentMore, // beide zeigen die Hand; amount ziehen, wenn der Gegner mehr Handkarten hat
+        OpponentRevealsHandDrawIfMore,  // nur der GEGNER zeigt seine Hand; amount ziehen, wenn er mehr Handkarten hat
+        GrantAttacksWithDefThisTurn,    // Ziel(e) greifen diesen Zug mit DEF an; zusätzlich +amount DEF bis Zugende
+        TaxOpponentNextSpellThisTurn,   // der nächste gegnerische Zauber diesen Zug kostet amount Mana mehr (Countersign)
+        MoveEnemyTargetToZone,          // gegnerisches Ziel-Monster in eine leere Zone SEINER Seite schieben (Wrong Queue, Sir)
+        RotateOwnMonsters,              // alle eigenen Monster eine Zone nach links/rechts (Wahl); amount 1 = +1 Karte ziehen bei 3+ bewegten
+        SetBothLifeToLower,             // die LP beider Spieler werden auf den niedrigeren Wert gesetzt (Settle the Difference)
+        HealHalfLpDifference,           // halbe LP-Differenz als Heilung, höchstens amount (The Even Scales)
+        SetTargetMonstersFromHandFaceDown, // Ziel-Monster aus der Hand verdeckt in Verteidigung legen; amount 1 = je Karte über der ersten 1 ziehen
+        DrawIfHandAtMost                // 1 Karte ziehen, wenn die Hand danach höchstens amount Karten hält (Making Ends Meet)
     }
 
     /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>
@@ -247,7 +288,10 @@ namespace Rouge.Tcg
         OpponentFaceDownMonsters, // verdeckte Monster des Gegners (Night Terror)
         OpponentIllusionTokens, // Illusion-Tokens auf dem gegnerischen Feld (Gaslight Charlatan)
         OwnHandCards,           // eigene Handkarten (Marrow, Who Holds Every Card)
-        OwnGraveyardSpells      // Zauber im eigenen Friedhof (The House Always Wins)
+        OwnGraveyardSpells,     // Zauber im eigenen Friedhof (The House Always Wins)
+
+        // --- Road to 1000 ---
+        OwnDistinctLevels       // Anzahl VERSCHIEDENER Level unter den eigenen offenen Monstern (Stuck on the Middle Rung)
     }
 
     public enum TargetKind

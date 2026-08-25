@@ -475,3 +475,24 @@ Replay not found.	Repetición no encontrada.
 Replay is damaged.	La repetición está dañada.
 SHOWCASE	VITRINA
 DUEL OVER	DUELO TERMINADO
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	tu adversario controla más monstruos que tú
+your LP are {0} or less	tus LP son {0} o menos
+the top card of your Graveyard is a monster	la carta superior de tu Cementerio es un monstruo
+a card was revealed this turn	se reveló una carta este turno
+you control a Level 1 and a Level 3 monster	controlas un monstruo de Nivel 1 Y uno de Nivel 3
+your opponent controls a Level 3 monster and you control none	tu adversario controla un monstruo de Nivel 3 y tú ninguno
+it is your turn {0} or later	es tu turno {0} o posterior
+your Deck holds {0}+ cards	tu Mazo contiene {0}+ cartas
+both players' LP are within {0} of each other	los LP de ambos jugadores difieren en {0} como máximo
+you control {0}+ Artifacts	controlas {0}+ Artefactos
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	Puedes Invocar esta carta de modo Especial desde tu mano a una Zona de Monstruos SELLADA de tu lado — el sello se rompe{0}{1} (una vez por turno).
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	El ATK y la DEF de esta carta son iguales a los de la carta de monstruo superior de tu Cementerio.
+This card attacks using its DEF.	Esta carta ataca usando su DEF.
+After this card attacks, it permanently loses {0} DEF.	Después de que esta carta ataque, pierde permanentemente {0} DEF.
+The zones adjacent to the equipped monster count as Sealed while they are empty.	Las zonas adyacentes al monstruo equipado cuentan como selladas mientras estén vacías.
+The equipped monster cannot move to another zone.	El monstruo equipado no puede moverse a otra zona.
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	Mientras los LP de ambos jugadores difieran en {0} como máximo, esta carta no puede ser objetivo de los efectos de tu adversario.
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	Durante tu Draw Phase, puedes añadir a tu mano la carta superior de tu Cementerio en lugar de robar.
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Entra al campo con {0} Contadores de Hora. Durante cada una de tus Standby Phases: retira 1. Cuando se retire el último, se activa su efecto de cuenta atrás y esta carta se destruye.
+the different Levels among your monsters	los Niveles distintos entre tus monstruos

@@ -476,3 +476,24 @@ Replay not found.	Повтор не найден.
 Replay is damaged.	Повтор повреждён.
 SHOWCASE	ВИТРИНА
 DUEL OVER	ДУЭЛЬ ОКОНЧЕНА
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	ваш противник контролирует больше монстров, чем вы
+your LP are {0} or less	ваши LP равны {0} или меньше
+the top card of your Graveyard is a monster	верхняя карта вашего Кладбища — монстр
+a card was revealed this turn	в этом ходу была раскрыта карта
+you control a Level 1 and a Level 3 monster	вы контролируете монстра 1-го И монстра 3-го Уровня
+your opponent controls a Level 3 monster and you control none	ваш противник контролирует монстра 3-го Уровня, а вы — нет
+it is your turn {0} or later	идёт ваш {0}-й ход или позже
+your Deck holds {0}+ cards	в вашей Колоде {0}+ карт
+both players' LP are within {0} of each other	LP обоих игроков различаются не более чем на {0}
+you control {0}+ Artifacts	вы контролируете {0}+ Артефактов
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	Вы можете Особо Призвать эту карту из руки в ЗАПЕЧАТАННУЮ Зону Монстров на вашей стороне — печать при этом рушится{0}{1} (раз в ход).
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	ATK и DEF этой карты равны показателям верхней карты монстра вашего Кладбища.
+This card attacks using its DEF.	Эта карта атакует своей DEF.
+After this card attacks, it permanently loses {0} DEF.	После атаки эта карта навсегда теряет {0} DEF.
+The zones adjacent to the equipped monster count as Sealed while they are empty.	Зоны рядом с экипированным монстром считаются запечатанными, пока они пусты.
+The equipped monster cannot move to another zone.	Экипированный монстр не может перемещаться в другую зону.
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	Пока LP обоих игроков различаются не более чем на {0}, эта карта не может быть целью эффектов противника.
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	Во время вашей Draw Phase вы можете добавить в руку верхнюю карту вашего Кладбища вместо взятия карты.
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Выходит на поле с {0} Счётчиками Часа. В каждую вашу Standby Phase: уберите 1. Когда убран последний, срабатывает эффект отсчёта, и эта карта уничтожается.
+the different Levels among your monsters	различных Уровней среди ваших монстров

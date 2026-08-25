@@ -4216,3 +4216,288 @@ l0 Condena de patio
 t0 Paga 1 de maná: manda 1 monstruo con menos de 2000 ATK de tu Deck al Cementerio y luego gana 1 de maná.
 l1 Condena firme
 t1 Paga 3 de maná en su lugar: manda 2 monstruos con cualquier valor al Cementerio, pero no ganas maná.
+# ---------- Road to 1000 (0.1.7) ----------
+## The Crown of the Absent King
+n La Corona del Rey Ausente
+l0 Coronación
+t0 Al comienzo de tu Standby Phase, si controlas «La Corona del Rey Ausente», «El Cetro del Rey Ausente» y «El Orbe del Rey Ausente»: ganas el Duelo.
+l1 Sostener la Corona
+t1 Paga 2 de Maná: esta carta no puede ser destruida este turno.
+## The Sceptre of the Absent King
+n El Cetro del Rey Ausente
+l0 Coronación
+t0 Al comienzo de tu Standby Phase, si controlas «La Corona del Rey Ausente», «El Cetro del Rey Ausente» y «El Orbe del Rey Ausente»: ganas el Duelo.
+l1 Nadie se alza
+t1 Una vez por turno: 1 monstruo que controle tu adversario pierde 300 ATK hasta el final de este turno.
+l2 Nadie en absoluto
+t2 Paga 2 de Maná: en su lugar, hasta 2 monstruos que controle tu adversario pierden 300 ATK cada uno hasta el final de este turno.
+## The Orb of the Absent King
+n El Orbe del Rey Ausente
+l0 Coronación
+t0 Al comienzo de tu Standby Phase, si controlas «La Corona del Rey Ausente», «El Cetro del Rey Ausente» y «El Orbe del Rey Ausente»: ganas el Duelo.
+l1 El reino perdura
+t1 Durante tu Standby Phase: gana 300 LP.
+l2 Custodiado en fideicomiso
+t2 Paga 2 de Maná: baraja 1 carta de tu Cementerio en tu Mazo.
+## The Regent Who Keeps the Throne Warm
+n El Regente que Mantiene el Trono Caliente
+l0 Guardar el asiento
+t0 Cuando esta carta es Invocada: añade a tu mano 1 monstruo con 0 ATK desde tu Mazo.
+l1 Calentar el asiento
+t1 Paga 2 de Maná: en su lugar, Invócalo de modo Especial — sus efectos quedan negados hasta la End Phase y no puede atacar este turno.
+## Long Live the King
+n Larga Vida al Rey
+l0 Larga vida al rey
+t0 Paga 2 de Maná: Invoca de modo Especial 1 monstruo con 0 ATK desde tu Cementerio en Posición de Defensa.
+l1 Que reine por siempre
+t1 En su lugar, paga 4 de Maná: además, no puede ser destruido este turno.
+## Bricklayer of the Eleventh Hour
+n Albañil de la Hora Undécima
+l0 Una hilada más
+t0 Cuando esta carta es Invocada: sella 1 Zona de Monstruos vacía de tu adversario mientras esta carta siga boca arriba.
+l1 Emparedadlos
+t1 Paga 2 de Maná: sella hasta 2 en su lugar.
+## The Squatter, Uninvited
+n El Okupa, Sin Invitación
+l0 La mudanza
+t0 Si esta carta fue Invocada de modo Especial: roba 1 carta.
+## No Room at the Inn
+n No Hay Sitio en la Posada
+l0 No hay sitio en la posada
+t0 Paga 2 de Maná: sella hasta 2 Zonas de Monstruos vacías de tu adversario hasta el final de tu próximo turno.
+l1 Ni siquiera el establo
+t1 En su lugar, paga 4 de Maná: sella hasta 3 y roba 1 carta.
+## Condemned Premises
+n Inmueble Clausurado
+l0 Inmueble clausurado
+t0 Paga 2 de Maná: sella 1 Zona de Monstruos vacía en cualquier lado del campo hasta el final de tu próximo turno.
+l1 Manzana clausurada
+t1 En su lugar, paga 3 de Maná: sella 2 zonas.
+## The Bricked-Up Door
+n La Puerta Tapiada
+l0 Ladrillo a ladrillo
+t0 Una vez por turno — paga 1 de Maná: sella 1 Zona de Monstruos vacía en cualquier lado hasta el final de tu próximo turno.
+l1 Tapiar el ala entera
+t1 Paga 2 de Maná: sella 2 zonas en su lugar.
+## The Landlord's Own Padlock
+n El Candado del Propio Casero
+l0 Un candado más
+t0 Paga 2 de Maná: sella 1 Zona de Monstruos vacía en cualquier lado hasta el final de tu próximo turno.
+## Gravedigger's First Shift
+n El Primer Turno del Sepulturero
+l0 Romper el suelo
+t0 Cuando esta carta es Invocada: manda la carta superior de tu Mazo al Cementerio.
+l1 Cavar donde manden
+t1 Paga 1 de Maná: elige tú la carta — manda 1 carta de tu Mazo al Cementerio.
+## Echo of the Latest Loss
+n Eco de la Última Pérdida
+l0 Silenciar la otra tumba
+t0 Paga 2 de Maná: destierra la carta superior del Cementerio de tu adversario.
+## He Sleeps Lightly
+n Él Tiene el Sueño Ligero
+l0 Un durmiente ligero
+t0 Mientras esta carta sea la carta superior de tu Cementerio — paga 2 de Maná: Invócala de modo Especial. No puede atacar este turno.
+## Last In, First Out
+n Último en Entrar, Primero en Salir
+l0 Último en entrar, primero en salir
+t0 Paga 1 de Maná: añade a tu mano la carta superior de tu Cementerio.
+l1 Partida doble
+t1 En su lugar, paga 3 de Maná: las 2 superiores.
+## The Fresh Grave
+n La Tumba Fresca
+l0 La tumba fresca
+t0 Paga 2 de Maná: Invoca de modo Especial la carta superior de tu Cementerio si es un monstruo de Nivel 2 o menor.
+l1 La tumba más fresca
+t1 En su lugar, paga 4 de Maná: cualquier Nivel — no puede atacar este turno.
+## Buried With His Boots On
+n Enterrado con las Botas Puestas
+l0 Enterrado con las botas puestas
+t0 Paga 2 de Maná. Si un monstruo tuyo fue destruido este turno: Invoca de modo Especial boca abajo la carta de monstruo superior de tu Cementerio.
+l1 Y con el sombrero además
+t1 En su lugar, paga 3 de Maná: roba además 1 carta.
+## The Unquiet Topsoil
+n La Tierra Removida
+l0 Voltear la tierra
+t0 Una vez por turno: pon la carta superior de tu Cementerio en el fondo de tu Cementerio.
+l1 Tierra fresca
+t1 Paga 2 de Maná: manda la carta superior de tu Mazo al Cementerio.
+## A Foot in the Door
+n Un Pie en la Puerta
+l0 Un pie en la puerta
+t0 Paga 1 de Maná: tu próxima Invocación Normal de este turno requiere 1 sacrificio menos.
+l1 Los dos pies
+t1 En su lugar, paga 3 de Maná: no requiere sacrificios.
+## The Promotion Board
+n La Junta de Ascensos
+l0 Ascendido
+t0 Una vez por turno — paga 2 de Maná: 1 monstruo que controles sube permanentemente 1 Nivel (máx. Nivel 3).
+l1 Ascendido con honores
+t1 Paga 3 de Maná: asciende 1 monstruo y después roba 1 carta.
+## Demoted for Cause
+n Degradado con Causa
+l0 Degradado con causa
+t0 Paga 2 de Maná: 1 monstruo en el campo pasa a ser de Nivel 1 hasta la End Phase.
+l1 Degradación masiva
+t1 En su lugar, paga 3 de Maná: hasta 2 monstruos.
+## Cut Down to Size
+n Bajado de los Humos
+l0 Bajado de los humos
+t0 Paga 2 de Maná: destruye 1 monstruo cuyo Nivel sea MENOR que la cantidad de monstruos que controla su controlador.
+l1 Bajadlos a todos
+t1 En su lugar, paga 4 de Maná: destruye hasta 2 de esos monstruos.
+## Stuck on the Middle Rung
+n Atascado en el Peldaño Medio
+l0 Cualquier peldaño sirve
+t0 Paga 2 de Maná: esta carta pasa a ser del Nivel que elijas (1–3) hasta la End Phase.
+## The Overqualified Doorman
+n El Portero Sobrecualificado
+l0 No está en la lista
+t0 Cuando esta carta es Invocada: 1 monstruo que controle tu adversario pasa a ser de Nivel 1 hasta la End Phase.
+l1 He visto puertas peores
+t1 Una vez por turno — paga 2 de Maná: esta carta no puede ser destruida este turno.
+## The Ink Still Wet
+n La Tinta Aún Fresca
+l0 La tinta aún fresca
+t0 Paga 1 de Maná: mira las 3 cartas superiores de tu Mazo y devuélvelas en cualquier orden.
+l1 Leerlo dos veces
+t1 En su lugar, paga 2 de Maná: reordénalas y después roba 1 carta.
+## The Day After Tomorrow's News
+n Las Noticias de Pasado Mañana
+l0 Las noticias de mañana
+t0 Paga 2 de Maná: mira las 2 cartas superiores del Mazo de tu ADVERSARIO y devuélvelas en cualquier orden.
+l1 La edición completa
+t1 En su lugar, paga 4 de Maná: las 3 superiores.
+## The Self-Fulfilling Prophecy
+n La Profecía Autocumplida
+l0 La profecía
+t0 Paga 2 de Maná: revela la carta superior de tu Mazo. Si es un monstruo de Nivel 2 o menor, Invócalo de modo Especial; si no, mándala al Cementerio.
+l1 La gran profecía
+t1 En su lugar, paga 4 de Maná: cualquier Nivel — un monstruo Invocado no puede atacar este turno.
+## She Reads the Weather in Entrails
+n Ella Lee el Tiempo en las Entrañas
+l0 Leer las señales
+t0 Cuando esta carta es Invocada: revela la carta superior de tu Mazo; puedes ponerla en el fondo.
+l1 Leer sus señales
+t1 Paga 2 de Maná: lo mismo con el Mazo de tu adversario.
+## The Calendar's Last Page
+n La Última Hoja del Calendario
+l0 La última hoja se vuelve
+t0 Cuando esta carta es Invocada: roba 2 cartas y después pon 1 carta de tu mano en el fondo de tu Mazo.
+l1 Arrancar el mañana
+t1 Paga 3 de Maná: revela las 2 cartas superiores de tu Mazo; añade a tu mano todos los monstruos entre ellas.
+## The Appointed Hour
+n La Hora Señalada
+l0 La hora suena
+t0 Cuando se retira el último Contador de Hora: roba 2 cartas, gana 2 de Maná este turno y devuelve a la mano hasta 1 carta que controle tu adversario. Después destruye esta carta.
+l1 Adelantar el reloj
+t1 Una vez por turno — paga 2 de Maná: retira 1 Contador de Hora adicional.
+## Ink for the Third Edition
+n Tinta para la Tercera Edición
+l0 Tinta para la tercera edición
+t0 Paga 1 de Maná: pon 1 carta de tu mano sobre tu Mazo; roba 1 carta.
+l1 Corrección de pruebas
+t1 En su lugar, paga 2 de Maná: después revela la carta superior de tu Mazo; puedes ponerla en el fondo.
+## He Who Leads With His Shoulder
+n El que Embiste con el Hombro
+l0 Todo el peso detrás
+t0 Paga 2 de Maná: esta carta gana 300 DEF hasta el final de este turno.
+## The Vault's Own Doorframe
+n El Marco de la Propia Cámara
+l0 Apuntalar el ala
+t0 Paga 3 de Maná: tus monstruos adyacentes a esta carta ganan 400 DEF hasta el final de este turno.
+## Doorstop Made of Dragon Bone
+n Tope de Puerta de Hueso de Dragón
+l0 Entablillar la grieta
+t0 Una vez por turno — paga 1 de Maná: esta carta gana permanentemente 300 DEF.
+## Lead With the Shield
+n Con el Escudo por Delante
+l0 Con el escudo por delante
+t0 Paga 1 de Maná: 1 monstruo que controles ataca usando su DEF hasta el final de este turno.
+l1 Muro de escudos, avanzad
+t1 En su lugar, paga 3 de Maná: hasta 3 monstruos — además ganan 200 DEF cada uno hasta el final de este turno.
+## An Honest Man's Bluff
+n El Farol de un Hombre Honrado
+l0 El farol de un hombre honrado
+t0 Paga 1 de Maná: revela tu mano. Si no contiene ningún Hechizo, roba 2 cartas; si no, roba 1.
+l1 Nada en la manga
+t1 En su lugar, paga 2 de Maná: después puedes poner 1 carta de tu mano en el fondo de tu Mazo.
+## The Beggar Who Shows His Purse
+n El Mendigo que Enseña su Bolsa
+l0 Una bolsa vacía
+t0 Cuando esta carta es Invocada: revela tu mano. Si está vacía, roba 2 cartas.
+l1 Enséñame la tuya
+t1 Paga 1 de Maná: tu adversario revela 1 carta aleatoria de su mano.
+## The Transparent Man
+n El Hombre Transparente
+l0 Nada que ocultar
+t0 Cuando esta carta es Invocada: revela tu mano; esta carta gana permanentemente 200 ATK por cada monstruo revelado.
+l1 Mira a través de mí
+t1 Paga 2 de Maná: esta carta no puede ser objetivo de los efectos de tu adversario este turno.
+## Everything Above Board
+n Todo Sobre la Mesa
+l0 Todo sobre la mesa
+t0 Paga 2 de Maná: ambos jugadores revelan sus manos. Roba 1 carta si tu adversario tiene más cartas en la mano que tú.
+l1 Tu lado de la mesa
+t1 En su lugar, paga 3 de Maná: solo tu ADVERSARIO revela — mismo robo.
+## The Thousandth Card
+n La Milésima Carta
+l0 Una entre mil
+t0 Cuando esta carta es Invocada: roba 1 carta.
+l1 De vuelta entre las mil
+t1 Una vez por Duelo — paga 1 de Maná: baraja esta carta en tu Mazo; roba 2 cartas.
+## Countersign
+n Contrafirma
+l0 Contrafirma
+t0 Paga 2 de Maná: el próximo Hechizo que active tu adversario este turno cuesta 2 de Maná más.
+l1 Ante notario
+t1 En su lugar, paga 3 de Maná: cuesta 3 más y tú robas 1 carta.
+## Eviction Notice
+n Orden de Desahucio
+l0 Orden de desahucio
+t0 Paga 1 de Maná: devuelve a la mano de su dueño 1 monstruo que no pueda atacar.
+l1 Desalojar el edificio
+t1 En su lugar, paga 3 de Maná: hasta 2 de esos monstruos.
+## Wrong Queue, Sir
+n Fila Equivocada, Señor
+l0 Fila equivocada, señor
+t0 Paga 2 de Maná: mueve 1 monstruo que controle tu adversario a otra Zona de Monstruos vacía de su lado (tú eliges).
+l1 Todos fuera de la fila
+t1 En su lugar, paga 3 de Maná: mueve hasta 2.
+## The Turntable
+n La Plataforma Giratoria
+l0 La plataforma giratoria
+t0 Paga 2 de Maná: desplaza TODOS tus monstruos una zona a la izquierda o a la derecha (los que no tengan sitio se quedan).
+l1 Otra vuelta más
+t1 En su lugar, paga 3 de Maná: roba 1 carta si se movieron 3 o más monstruos.
+## Settle the Difference
+n Saldar la Diferencia
+l0 Saldar la diferencia
+t0 Una vez por Duelo. Paga 3 de Maná: los LP de ambos jugadores pasan a ser el MENOR de los dos totales.
+l1 Quédate el cambio
+t1 En su lugar, paga 5 de Maná: después ganas 1000 LP.
+## The Even Scales
+n La Balanza en Equilibrio
+l0 Inclínate hacia mí
+t0 Paga 2 de Maná: gana LP iguales a la mitad de la diferencia entre los LP de ambos jugadores (máx. 1000).
+## First Mover's Advantage
+n La Ventaja del Primer Movimiento
+l0 La ventaja del primer movimiento
+t0 Solo durante tu PRIMER turno del Duelo — paga 1 de Maná: gana 2 de Maná este turno.
+l1 Ladrón de tempo
+t1 En su lugar, paga 2 de Maná: roba además 1 carta.
+## The Standing Order
+n La Orden Permanente
+l0 Descubierto bancario
+t0 Una vez por turno — paga 2 de Maná: manda la carta superior de tu Mazo al Cementerio.
+## Two Truths and a Lie
+n Dos Verdades y una Mentira
+l0 Dos verdades y una mentira
+t0 Paga 2 de Maná: Coloca hasta 3 monstruos de tu mano boca abajo en Posición de Defensa.
+l1 Y un guiño
+t1 En su lugar, paga 3 de Maná: roba 1 carta por cada monstruo Colocado más allá del primero.
+## Making Ends Meet
+n Llegar a Fin de Mes
+l0 Llegar a fin de mes
+t0 Paga 1 de Maná. Si controlas 1 monstruo o menos: gana 2 de Maná este turno.
+l1 Estirarlo aún más
+t1 En su lugar, paga 2 de Maná: roba además 1 carta si tu mano queda con 3 cartas o menos.

@@ -235,6 +235,8 @@ namespace Rouge.Tcg.Net
         public int lienAmount;     // The Small Print: Pfandrecht-Betrag (0 = keins)
         public int status;         // CardStatusFlags-Bitmaske für die Badge-Spalte
         public int bonusAttacks;   // zusätzliche Angriffe (MultiAttack-Badge: ×N)
+        public int countdown;      // Road to 1000: verbleibende Countdown-Marker (0 = keine)
+        public int effLevel;       // Road to 1000: effektives Level (0 = gedrucktes gilt)
 
         // Ausführung des Exemplars (CardFinish). Nur bei sichtbaren Karten
         // gefüllt — eine verdeckte Karte am Funkeln zu erkennen wäre verraten,
@@ -266,6 +268,7 @@ namespace Rouge.Tcg.Net
         public SduelCard player;
         public SduelCard[] grave;
         public SduelCard[] banished;
+        public int sealedZones;    // Road to 1000: Bitmaske versiegelter Monster-Zonen (Bit i = Zone i)
     }
 
     [Serializable]

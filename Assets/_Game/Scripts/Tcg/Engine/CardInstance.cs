@@ -63,6 +63,33 @@ namespace Rouge.Tcg
         /// <summary>Laufzeit-Kopie (The Mirror Hour): verschwindet in der End Phase.</summary>
         public bool IsTemporaryCopy;
 
+        // --- Road to 1000 ---
+        /// <summary>Dauerhafte Level-Änderung (The Promotion Board). Wirkt geklemmt auf 1..3.</summary>
+        public int PermanentLevelBonus;
+        /// <summary>Bis Zugende gilt DIESES Level (0 = aus; Demoted for Cause).</summary>
+        public int TempLevelThisTurn;
+        /// <summary>Greift diesen Zug mit DEF an (Lead With the Shield) — dauerhaft über passiveAttacksWithDef.</summary>
+        public bool AttacksWithDefThisTurn;
+        /// <summary>Countdown-Marker (The Appointed Hour): tickt in der Standby Phase des Kontrolleurs.</summary>
+        public int CountdownMarkers;
+
+        /// <summary>
+        /// Das Level, mit dem diese Karte gerade spielt: temporäre Setzung schlägt
+        /// den permanenten Bonus, beides klemmt auf 1..3. Alle Level-Prüfungen der
+        /// Engine (Filter, Bedingungen, Anzeige) lesen HIER — nur die Beschwörungs-
+        /// kosten aus der Hand lesen weiterhin das gedruckte Level.
+        /// </summary>
+        public int EffectiveLevel
+        {
+            get
+            {
+                if (MonsterData == null) return 0;
+                if (TempLevelThisTurn > 0) return System.Math.Min(3, System.Math.Max(1, TempLevelThisTurn));
+                int level = MonsterData.level + PermanentLevelBonus;
+                return System.Math.Min(3, System.Math.Max(1, level));
+            }
+        }
+
         /// <summary>
         /// Im Server-Duell: die zuletzt vom DuelHost übertragene Status-Maske.
         /// Deckt Zustände ab, die der Spiegel lokal nicht ableiten kann (Stolen —
@@ -79,14 +106,29 @@ namespace Rouge.Tcg
         public ArtifactCardData ArtifactData => Definition as ArtifactCardData;
         public string Name => Definition != null ? Definition.cardName : "?";
 
+        /// <summary>
+        /// Echo of the Latest Loss: die gedruckten Werte kommen live von der obersten
+        /// MONSTERkarte des eigenen Friedhofs. Liegt dort keine, gelten die eigenen.
+        /// </summary>
+        private MonsterCardData StatSource
+        {
+            get
+            {
+                if (Definition == null || !Definition.passiveStatsFromGraveTop || Owner == null) return MonsterData;
+                for (int i = Owner.Graveyard.Count - 1; i >= 0; i--)
+                    if (Owner.Graveyard[i].MonsterData != null) return Owner.Graveyard[i].MonsterData;
+                return MonsterData;
+            }
+        }
+
         /// <summary>Grundwert vor Boni — bei kopierten oder vertauschten Werten die Ersatzzahl.</summary>
         private int BaseAtk => StatsOverriddenThisTurn ? OverriddenAtk
-            : StatsSwappedThisTurn ? (MonsterData != null ? MonsterData.def : 0)
-            : (MonsterData != null ? MonsterData.atk : 0);
+            : StatsSwappedThisTurn ? (StatSource != null ? StatSource.def : 0)
+            : (StatSource != null ? StatSource.atk : 0);
 
         private int BaseDef => StatsOverriddenThisTurn ? OverriddenDef
-            : StatsSwappedThisTurn ? (MonsterData != null ? MonsterData.atk : 0)
-            : (MonsterData != null ? MonsterData.def : 0);
+            : StatsSwappedThisTurn ? (StatSource != null ? StatSource.atk : 0)
+            : (StatSource != null ? StatSource.def : 0);
 
         public int CurrentAtk
         {
@@ -177,6 +219,14 @@ namespace Rouge.Tcg
                     foreach (var c in player.Graveyard) if (c.SpellData != null) spells++;
                     return spells;
                 }
+                case EffectCountKind.OwnDistinctLevels:
+                {
+                    // Stuck on the Middle Rung: verschiedene Level unter den eigenen OFFENEN Monstern
+                    var seen = new HashSet<int>();
+                    foreach (var m in player.MonsterZones)
+                        if (m != null && !m.FaceDown && m.MonsterData != null) seen.Add(m.EffectiveLevel);
+                    return seen.Count;
+                }
                 default: return 0;
             }
         }
@@ -211,7 +261,7 @@ namespace Rouge.Tcg
                     if (!string.IsNullOrEmpty(def.auraNameFilter)
                         && (Definition == null || !Definition.cardName.Contains(def.auraNameFilter))) continue;
                     if (def.auraUseTypeFilter && MonsterData.monsterType != def.auraTypeFilter) continue;
-                    if (def.auraLevelFilter > 0 && MonsterData.level != def.auraLevelFilter) continue;
+                    if (def.auraLevelFilter > 0 && EffectiveLevel != def.auraLevelFilter) continue;
                     if (def.auraOnlyFaceDown && !FaceDown) continue;
                     if (def.auraAdjacentOnly && !IsAdjacentTo(source)) continue;
                     if (def.auraAloneOnly && HasAdjacentMonster()) continue;

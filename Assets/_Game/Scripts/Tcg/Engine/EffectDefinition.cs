@@ -73,6 +73,21 @@ namespace Rouge.Tcg
         [Tooltip("The Small Print: diese Aktion läuft nur, wenn der letzte Münzwurf des Effekts " +
                  "(FlipCoin) so fiel — Heads oder Tails. None = immer.")]
         public CoinGate coinGate = CoinGate.None;
+
+        [Header("Road to 1000 (September 2026)")]
+        [Tooltip("Von dieser Aktion beschworene Monster können diesen Zug nicht angreifen")]
+        public bool summonCannotAttack;
+
+        [Tooltip("Nur Monster als Ziel, deren Level NIEDRIGER ist als die Monsterzahl " +
+                 "ihres Besitzers (Cut Down to Size)")]
+        public bool requireLevelBelowControllerCount;
+
+        [Tooltip("Nur Monster als Ziel, die nicht angreifen können — per Passiv oder " +
+                 "diesen Zug (Eviction Notice)")]
+        public bool onlyCannotAttack;
+
+        [Tooltip("Nur Monster mit 0 Basis-ATK als Ziel (Regent, Long Live the King)")]
+        public bool zeroAtkOnly;
     }
 
     [Serializable]
@@ -176,6 +191,26 @@ namespace Rouge.Tcg
 
         [Tooltip("Namensfilter für die Bedingung darüber")]
         public string graveyardNamedFilter = "";
+
+        [Header("Road to 1000: weitere Bedingungen")]
+        [Tooltip("Nur aktivierbar/auslösbar, wenn du ALLE hier gelisteten Karten offen " +
+                 "kontrollierst — Namen mit ';' getrennt (Krönung des abwesenden Königs)")]
+        public string requiresControlNamed = "";
+
+        [Tooltip("Friedhofs-Effekt nur anwählbar, solange die Karte die OBERSTE Karte " +
+                 "des Friedhofs ist (He Sleeps Lightly)")]
+        public bool onlyWhileGraveTop;
+
+        [Tooltip("Nur aktivierbar, wenn diesen Zug ein eigenes Monster zerstört wurde " +
+                 "(Buried With His Boots On)")]
+        public bool requireOwnMonsterDestroyedThisTurn;
+
+        [Tooltip("Nur im ERSTEN eigenen Zug des Duells aktivierbar (First Mover's Advantage)")]
+        public bool onlyOnFirstOwnTurn;
+
+        [Tooltip("Nur aktivierbar mit HÖCHSTENS so vielen eigenen Monstern (0 = keine " +
+                 "Bedingung; Making Ends Meet: 1). Alte Assets ohne dieses Feld laden als 0 = aus.")]
+        public int maxOwnMonsters;
 
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();

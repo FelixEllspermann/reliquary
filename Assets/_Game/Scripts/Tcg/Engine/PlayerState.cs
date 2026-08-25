@@ -2,6 +2,18 @@ using System.Collections.Generic;
 
 namespace Rouge.Tcg
 {
+    /// <summary>
+    /// Zonen-Siegel (Road to 1000): eine leere Monster-Zone, in die nichts beschworen,
+    /// gelegt oder gezogen werden kann. Entweder befristet (UntilTurn = letzte Zugnummer,
+    /// in der das Siegel noch hält) oder an eine offene Quellkarte gebunden (UntilTurn -1).
+    /// </summary>
+    public class ZoneSeal
+    {
+        public int Index;
+        public int UntilTurn = -1;
+        public CardInstance Source;
+    }
+
     /// <summary>Kompletter Zustand eines Spielers im Duell (Zonen, LP, Mana).</summary>
     public class PlayerState
     {
@@ -82,6 +94,18 @@ namespace Rouge.Tcg
         /// <summary>Once per Duel: "Kartenname#Effektindex" — verbraucht für den Rest des Duells.</summary>
         public readonly System.Collections.Generic.HashSet<string> OncePerDuelUsed
             = new System.Collections.Generic.HashSet<string>();
+
+        // --- Road to 1000 ---
+        /// <summary>Versiegelte eigene Monster-Zonen (Zugemauerte Zonen).</summary>
+        public readonly List<ZoneSeal> ZoneSeals = new List<ZoneSeal>();
+        /// <summary>Wurde diesen Zug eine Karte aufgedeckt? (She Reads the Weather in Entrails)</summary>
+        public bool RevealedCardThisTurn;
+        /// <summary>Eigene diesen Zug zerstörte Monster (Buried With His Boots On).</summary>
+        public int OwnMonstersDestroyedThisTurn;
+        /// <summary>A Foot in the Door: die nächste Normalbeschwörung diesen Zug kostet so viele Tribute weniger.</summary>
+        public int NextNormalSummonTributeDiscount;
+        /// <summary>Countersign: der nächste EIGENE Zauber diesen Zug kostet so viel Mana mehr.</summary>
+        public int NextSpellSurcharge;
 
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();

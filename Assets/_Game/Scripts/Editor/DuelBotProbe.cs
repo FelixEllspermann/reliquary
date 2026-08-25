@@ -47,6 +47,17 @@ namespace Rouge.Tcg.EditorTools
             Start(doubled, extra);
         }
 
+        [MenuItem("Rouge TCG/Bot Probe/Road to 1000 (Duel-Szene, Bot vs Bot)")]
+        public static void ProbeRoadTo1000()
+        {
+            var catalog = AssetDatabase.LoadAssetAtPath<CardCatalog>("Assets/_Game/Data/Tcg/CardCatalog.asset");
+            var main = catalog.cards.Where(c => c != null && c.releaseVersion == "0.1.7" && !(c is ReliquaryCardData) && !(c is PlayerCardData)).Select(c => c.cardName).ToList();
+            var extra = catalog.cards.Where(c => c != null && c.releaseVersion == "0.1.7" && c is ReliquaryCardData).Select(c => c.cardName).ToList();
+            var doubled = new List<string>(main);
+            doubled.AddRange(main.Where(n => catalog.FindByName(n) is MonsterCardData));
+            Start(doubled, extra);
+        }
+
         [MenuItem("Rouge TCG/Bot Probe/Abbrechen (Flag löschen)")]
         public static void Cancel() { EditorPrefs.DeleteKey(FlagKey); EditorPrefs.DeleteKey(SnapshotKey); }
 

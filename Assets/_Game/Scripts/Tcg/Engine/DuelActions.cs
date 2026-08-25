@@ -42,10 +42,13 @@ namespace Rouge.Tcg
             {
                 if (card.MonsterData != null)
                 {
-                    int tributes = rules.TributesForLevel(card.MonsterData.level);
+                    // A Foot in the Door: der Rabatt drückt die Tributkosten dieses Zuges
+                    int tributes = Math.Max(0, rules.TributesForLevel(card.MonsterData.level) - player.NextNormalSummonTributeDiscount);
+                    // Tribute räumen ihre eigene (unversiegelte) Zone — ohne Tribut braucht
+                    // es eine freie Zone, die NICHT zugemauert ist (Road to 1000: Siegel)
                     bool canSummon = player.NormalSummonsUsed < rules.normalSummonsPerTurn + player.ExtraNormalSummons
                                      && TributableCount(player) >= tributes
-                                     && (tributes > 0 || player.FreeMonsterZones() > 0)
+                                     && (tributes > 0 || UnsealedFreeMonsterZones(player) > 0)
                                      && !FieldLimitReached(player, card.Definition)
                                      && !card.Definition.passiveNoNormalSummon;   // The Small Print: nur per eigener SS
                     if (canSummon)
@@ -60,8 +63,13 @@ namespace Rouge.Tcg
                     }
 
                     // Selbst-Spezialbeschwörung (z.B. "wenn du/der Gegner ein bestimmtes Monster kontrolliert)
+                    // The Squatter zieht in eine VERSIEGELTE eigene Zone — alle anderen
+                    // brauchen eine freie, unversiegelte.
                     var monsterData = card.MonsterData;
-                    if (monsterData.canSelfSpecialSummon && player.FreeMonsterZones() > 0
+                    bool zoneForSelfSummon = monsterData != null && monsterData.selfSummonIntoSealedZone
+                        ? AnyOwnSealedEmptyZone(player)
+                        : UnsealedFreeMonsterZones(player) > 0;
+                    if (monsterData.canSelfSpecialSummon && zoneForSelfSummon
                         && !FieldLimitReached(player, card.Definition))
                     {
                         var checkedSide = monsterData.selfSummonChecksOpponentField ? player.Opponent : player;
@@ -102,7 +110,29 @@ namespace Rouge.Tcg
                             && (!monsterData.selfSummonRequiresLienOnField || AnyLienOnField())
                             && CanPayLife(player, monsterData.selfSummonLifeCost)
                             && !SpecialSummonsLockedFor(player);
-                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk && oncePerTurnOk && smallPrintOk)
+                        // Road to 1000: die neuen Bedingungsfamilien
+                        bool roadOk = (!monsterData.selfSummonRequiresOpponentMoreMonsters
+                                || player.Opponent.MonsterCount() > player.MonsterCount())
+                            && (monsterData.selfSummonRequiresLifeAtMost <= 0
+                                || player.LifePoints <= monsterData.selfSummonRequiresLifeAtMost)
+                            && (!monsterData.selfSummonRequiresGraveTopMonster
+                                || (player.Graveyard.Count > 0 && player.Graveyard[player.Graveyard.Count - 1].MonsterData != null))
+                            && (!monsterData.selfSummonRequiresRevealedThisTurn || player.RevealedCardThisTurn || player.Opponent.RevealedCardThisTurn)
+                            && (!monsterData.selfSummonRequiresLevels1And3
+                                || (player.Monsters().Any(m => !m.FaceDown && m.EffectiveLevel == 1)
+                                    && player.Monsters().Any(m => !m.FaceDown && m.EffectiveLevel == 3)))
+                            && (!monsterData.selfSummonRequiresOpponentLevel3AndNoneSelf
+                                || (player.Opponent.Monsters().Any(m => !m.FaceDown && m.EffectiveLevel == 3)
+                                    && !player.Monsters().Any(m => !m.FaceDown && m.EffectiveLevel == 3)))
+                            && (monsterData.selfSummonRequiresTurnAtLeast <= 0
+                                || player.TurnsTaken >= monsterData.selfSummonRequiresTurnAtLeast)
+                            && (monsterData.selfSummonRequiresDeckAtLeast <= 0
+                                || player.DeckPile.Count >= monsterData.selfSummonRequiresDeckAtLeast)
+                            && (monsterData.selfSummonRequiresLpWithin <= 0
+                                || Math.Abs(player.LifePoints - player.Opponent.LifePoints) <= monsterData.selfSummonRequiresLpWithin)
+                            && (monsterData.selfSummonRequiresArtifacts <= 0
+                                || player.ArtifactZones.Count(a => a != null) >= monsterData.selfSummonRequiresArtifacts);
+                        if (nameOk && attributeOk && faceDownOk && artifactOk && foeCountOk && milledOk && graveNamedOk && oncePerTurnOk && smallPrintOk && roadOk)
                             request.Options.Add(new MainActionOption
                             {
                                 Kind = MainActionKind.SpecialSummonSelf,
@@ -185,7 +215,9 @@ namespace Rouge.Tcg
             }
 
             // Reliquary-Beschwörungen aus dem Extra Deck (eine Option pro Karten-Definition)
-            if (player.FreeMonsterZones() > 0 && !SpecialSummonsLockedFor(player))
+            // Siegel drücken hier doppelt: das Reliquary braucht eine unversiegelte Zone —
+            // oder Tribute, die ihre eigene räumen (die Tributrechnung prüft der Summon selbst)
+            if ((UnsealedFreeMonsterZones(player) > 0 || player.MonsterCount() > 0) && !SpecialSummonsLockedFor(player))
             {
                 var offered = new HashSet<CardDefinition>();
                 foreach (var reliquary in player.ExtraDeckPile)
@@ -634,13 +666,49 @@ namespace Rouge.Tcg
         }
 
         /// <summary>Spezialbeschwörung eines Handmonsters über seine eigene Bedingung (kostet keinen Normal Summon).</summary>
+        /// <summary>Hat der Spieler eine LEERE, versiegelte Monster-Zone? (The Squatter)</summary>
+        private bool AnyOwnSealedEmptyZone(PlayerState player)
+        {
+            for (int i = 0; i < player.MonsterZones.Length; i++)
+                if (player.MonsterZones[i] == null && IsZoneSealed(player, i)) return true;
+            return false;
+        }
+
         private IEnumerator ExecuteSelfSpecialSummon(PlayerState player, CardInstance monster, int preferredZone = -1)
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
 
             int zoneIndex = -1;
-            yield return ChooseZone(player, player.MonsterZones, ZoneType.MonsterZone,
-                $"Choose a zone for {monster.Name}", preferredZone, index => zoneIndex = index);
+            if (monster.MonsterData.selfSummonIntoSealedZone)
+            {
+                // The Squatter, Uninvited: zieht ausgerechnet in eine VERSIEGELTE eigene
+                // Zone ein — und bricht das Siegel dabei (auch Padlock-Nachbarschaften
+                // sind dann schlicht besetzt).
+                var sealed_ = new List<int>();
+                for (int i = 0; i < player.MonsterZones.Length; i++)
+                    if (player.MonsterZones[i] == null && IsZoneSealed(player, i)) sealed_.Add(i);
+                if (sealed_.Count == 0) yield break;
+                zoneIndex = sealed_[0];
+                if (sealed_.Count > 1)
+                {
+                    var request = new ZoneSelectRequest
+                    {
+                        Title = $"Choose a sealed zone for {monster.Name}",
+                        ForPlayer = player,
+                        Zone = ZoneType.MonsterZone
+                    };
+                    request.FreeIndices.AddRange(sealed_);
+                    yield return DecideRouted(player, request);
+                    if (sealed_.Contains(request.Result)) zoneIndex = request.Result;
+                }
+                player.ZoneSeals.RemoveAll(seal => seal.Index == zoneIndex);
+                Log($"{monster.Name} moves into the sealed zone — the seal breaks!");
+            }
+            else
+            {
+                yield return ChooseZone(player, player.MonsterZones, ZoneType.MonsterZone,
+                    $"Choose a zone for {monster.Name}", preferredZone, index => zoneIndex = index);
+            }
             if (zoneIndex < 0) yield break;
 
             // Schreibt die Karte eine Position vor, gilt sie — der Kartentext nennt sie
@@ -705,7 +773,11 @@ namespace Rouge.Tcg
         /// </summary>
         private IEnumerator ChooseZone(PlayerState player, CardInstance[] zones, ZoneType zoneType, string title, int preferred, System.Action<int> apply)
         {
-            if (preferred >= 0 && preferred < zones.Length && zones[preferred] == null)
+            // Road to 1000: versiegelte Monster-Zonen sind kein Bauplatz — weder für
+            // Beschwörungen noch fürs Setzen. Der Wunsch-Slot wird genauso geprüft.
+            bool sealable = zoneType == ZoneType.MonsterZone && zones == player.MonsterZones;
+            if (preferred >= 0 && preferred < zones.Length && zones[preferred] == null
+                && !(sealable && IsZoneSealed(player, preferred)))
             {
                 apply(preferred);
                 yield break;
@@ -713,7 +785,7 @@ namespace Rouge.Tcg
 
             var free = new List<int>();
             for (int i = 0; i < zones.Length; i++)
-                if (zones[i] == null) free.Add(i);
+                if (zones[i] == null && !(sealable && IsZoneSealed(player, i))) free.Add(i);
 
             if (free.Count == 0) { apply(-1); yield break; }
             if (free.Count == 1) { apply(free[0]); yield break; }
@@ -729,7 +801,8 @@ namespace Rouge.Tcg
         private IEnumerator ExecuteSummon(PlayerState player, CardInstance monster, int preferredZone = -1)
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
-            int tributes = rules.TributesForLevel(monster.MonsterData.level);
+            // A Foot in the Door: der Rabatt gilt für die NÄCHSTE Normalbeschwörung dieses Zuges
+            int tributes = Math.Max(0, rules.TributesForLevel(monster.MonsterData.level) - player.NextNormalSummonTributeDiscount);
 
             var tributeCards = new List<CardInstance>();
             if (tributes > 0)
@@ -783,6 +856,7 @@ namespace Rouge.Tcg
             monster.FaceDown = setFaceDown;
             monster.SummonedThisTurn = true;
             player.NormalSummonsUsed++;
+            player.NextNormalSummonTributeDiscount = 0; // A Foot in the Door: verbraucht
 
             if (setFaceDown)
             {
@@ -950,6 +1024,12 @@ namespace Rouge.Tcg
                 Log($"{player.Name}'s first spell this turn is discounted — {manaCost} instead of {effect.manaCost} Mana.");
             player.Mana -= manaCost;
             player.SpellsCastThisTurn++;
+            // Countersign: die Steuer trifft genau EINEN Zauber, dann ist sie abgegolten
+            if (player.NextSpellSurcharge > 0)
+            {
+                Log($"{player.Name} pays the Countersign surcharge of {player.NextSpellSurcharge} Mana.");
+                player.NextSpellSurcharge = 0;
+            }
             LockEffectForTurn(spell, effectIndex, effect);
 
             if (fromHand) player.Hand.Remove(spell);
@@ -1032,6 +1112,12 @@ namespace Rouge.Tcg
 
             string suffix = equipTarget != null ? $" onto {equipTarget.Name}" : "";
             Log($"{player.Name} plays artifact {artifact.Name}{suffix}.");
+            // The Appointed Hour: die Uhr wird frisch aufgezogen
+            if (artifact.Definition != null && artifact.Definition.countdownMarkers > 0)
+            {
+                artifact.CountdownMarkers = artifact.Definition.countdownMarkers;
+                Log($"{artifact.Name} enters with {artifact.CountdownMarkers} Hour Counters.");
+            }
             BoardChanged();
             if (presenter != null) yield return presenter.ShowCardMoved(artifact);
 
@@ -1236,6 +1322,11 @@ namespace Rouge.Tcg
                 if (effect.oncePerDuel && player.OncePerDuelUsed.Contains(OncePerDuelKey(card, i))) continue;
                 if (effect.onlyDuringMainPhase && Phase != DuelPhase.Main) continue;
                 if (effect.onlyDuringBattlePhase && Phase != DuelPhase.Battle) continue;
+                // He Sleeps Lightly: nur solange die Karte die OBERSTE Friedhofskarte ist
+                if (effect.onlyWhileGraveTop
+                    && (card.Zone != ZoneType.Graveyard || card.Owner == null
+                        || card.Owner.Graveyard.Count == 0
+                        || card.Owner.Graveyard[card.Owner.Graveyard.Count - 1] != card)) continue;
                 if (card.SpellData != null && effect.trigger == EffectTrigger.OnActivate && player.SpellsLockedThisTurn) continue;
                 if (!CanPayLifeCosts(effect, player)) continue;
                 if (!ChainContextAllows(effect, player)) continue;
@@ -1281,6 +1372,23 @@ namespace Rouge.Tcg
                         && card.Name.Contains(effect.graveyardNamedFilter)) named++;
                 if (named < effect.minOwnGraveyardNamed) return false;
             }
+            // --- Road to 1000 ---
+            // Krönung: ALLE gelisteten Namen müssen offen auf dem eigenen Feld liegen
+            if (!string.IsNullOrEmpty(effect.requiresControlNamed))
+            {
+                foreach (var wanted in effect.requiresControlNamed.Split(';'))
+                {
+                    string name = wanted.Trim();
+                    if (name.Length == 0) continue;
+                    bool found = false;
+                    foreach (var card in player.FieldCards())
+                        if (card != null && !card.FaceDown && card.Name.Contains(name)) { found = true; break; }
+                    if (!found) return false;
+                }
+            }
+            if (effect.requireOwnMonsterDestroyedThisTurn && player.OwnMonstersDestroyedThisTurn <= 0) return false;
+            if (effect.onlyOnFirstOwnTurn && player.TurnsTaken != 1) return false;
+            if (effect.maxOwnMonsters > 0 && player.MonsterCount() > effect.maxOwnMonsters) return false;
             return true;
         }
 
@@ -1350,6 +1458,11 @@ namespace Rouge.Tcg
                 case EffectActionType.SummonReliquaryFromExtraSuppressed:
                 case EffectActionType.SpecialSummonFromOpponentGraveyard:
                 case EffectActionType.SpecialSummonTargetFromDeckSuppressed:
+                case EffectActionType.SpecialSummonGraveTop:
+                case EffectActionType.SpecialSummonGraveTopMonsterFaceDown:
+                case EffectActionType.SpecialSummonSelfFromGrave:
+                case EffectActionType.RevealTopDeckSummonIfLowLevel:
+                case EffectActionType.SetTargetMonstersFromHandFaceDown:
                     return player.FreeMonsterZones();
                 case EffectActionType.SummonIllusionTokensToOpponent:
                     return player.Opponent.FreeMonsterZones();
@@ -1410,7 +1523,10 @@ namespace Rouge.Tcg
             var monster = card.MonsterData;
             if (action.useTypeFilter && (monster == null || monster.monsterType != action.typeFilter)) return false;
             if (action.useAttributeFilter && (monster == null || monster.attribute != action.attributeFilter)) return false;
-            if (action.levelFilter > 0 && (monster == null || monster.level != action.levelFilter)) return false;
+            // Road to 1000: Feldkarten spielen mit ihrem EFFEKTIVEN Level (Demoted for
+            // Cause, Promotion Board) — außerhalb des Feldes ist das das gedruckte.
+            if (action.levelFilter > 0 && (monster == null
+                || (card.Zone == ZoneType.MonsterZone ? card.EffectiveLevel : monster.level) != action.levelFilter)) return false;
             if (action.maxAtkFilter > 0 && (monster == null || card.CurrentAtk > action.maxAtkFilter)) return false;
             if (!string.IsNullOrEmpty(action.nameFilter) && !card.Name.Contains(action.nameFilter)) return false;
             if (!string.IsNullOrEmpty(action.mentionsFilter) && !CardMentions(card, action.mentionsFilter)) return false;
@@ -1418,6 +1534,16 @@ namespace Rouge.Tcg
             if (action.onlyWithoutEffects && card.Definition != null
                 && (card.Definition.effects.Count > 0
                     || (card.MonsterData != null && card.MonsterData.canSelfSpecialSummon))) return false;
+            // --- Road to 1000 ---
+            // Cut Down to Size: Level unter der Monsterzahl des eigenen Kontrolleurs
+            if (action.requireLevelBelowControllerCount && (monster == null || card.Owner == null
+                || card.EffectiveLevel >= card.Owner.MonsterCount())) return false;
+            // Eviction Notice: nur Monster, die (gerade) nicht angreifen können
+            if (action.onlyCannotAttack && (monster == null
+                || !(card.CannotAttackThisTurn
+                     || (card.Definition != null && card.Definition.passiveCannotAttack)))) return false;
+            // Regent / Long Live the King: nur Monster mit 0 gedruckter ATK
+            if (action.zeroAtkOnly && (monster == null || monster.atk != 0)) return false;
             return true;
         }
 
@@ -1438,6 +1564,7 @@ namespace Rouge.Tcg
         private static bool ActionHasFilter(EffectAction action) =>
             action.useTypeFilter || action.useAttributeFilter || action.levelFilter > 0
             || action.maxAtkFilter > 0 || action.onlyWithoutEffects
+            || action.requireLevelBelowControllerCount || action.onlyCannotAttack || action.zeroAtkOnly
             || !string.IsNullOrEmpty(action.nameFilter) || !string.IsNullOrEmpty(action.mentionsFilter);
 
         private List<CardInstance> BuildTargetCandidates(EffectAction action, PlayerState player, CardInstance source = null)
@@ -1574,7 +1701,7 @@ namespace Rouge.Tcg
                     candidates.AddRange(player.Opponent.Monsters().Where(m => m.LienAmount > 0));
                     break;
                 case TargetKind.EnemyLevel1Monster:
-                    candidates.AddRange(player.Opponent.Monsters().Where(m => m.MonsterData != null && m.MonsterData.level == 1));
+                    candidates.AddRange(player.Opponent.Monsters().Where(m => m.MonsterData != null && m.EffectiveLevel == 1));
                     break;
                 case TargetKind.EnemyDefenseMonster:
                     candidates.AddRange(player.Opponent.Monsters().Where(m => m.Position == BattlePosition.Defense));
@@ -1596,6 +1723,10 @@ namespace Rouge.Tcg
                 && c.Definition != null && c.Definition.passiveUntargetable && IsOnField(c));
             // Heavenly Bodyguard: benannte Karten sind für den Gegner kein gültiges Ziel
             candidates.RemoveAll(c => c != null && c.Owner != player && IsGuardedFromTargeting(c));
+            // The Even Scales: solange die LP-Waage im Lot ist, kein gegnerisches Ziel
+            candidates.RemoveAll(c => c != null && c.Owner != player && !c.FaceDown && IsOnField(c)
+                && c.Definition != null && c.Definition.passiveUntargetableWhileLpClose > 0
+                && Math.Abs(c.Owner.LifePoints - c.Owner.Opponent.LifePoints) <= c.Definition.passiveUntargetableWhileLpClose);
             // Emergency Barrier: ein offener Feld-Beschützer macht ALLE Karten seines
             // Besitzers (sich selbst eingeschlossen) für gegnerische Effekte unanvisierbar.
             // Nicht-zielende Effekte (destroy all, Mill) bleiben davon unberührt.
@@ -1994,6 +2125,7 @@ namespace Rouge.Tcg
                         int pick = Math.Clamp(declare.Result, 0, 2);
                         string picked = declare.Options[pick];
                         Log($"{player.Name} declares: {picked}.");
+                        player.RevealedCardThisTurn = true; // Road to 1000: She Reads the Weather
                         int reveal = Math.Max(1, action.amount);
                         for (int r = 0; r < reveal && player.DeckPile.Count > 0; r++)
                         {
@@ -2809,8 +2941,14 @@ namespace Rouge.Tcg
                         if (target != null && (target.Zone == ZoneType.Graveyard || target.Zone == ZoneType.Banished) && target.MonsterData != null)
                         {
                             string origin = target.Zone == ZoneType.Graveyard ? "from the graveyard" : "from the banishment";
-                            yield return SpecialSummonToField(player, target, origin);
+                            yield return SpecialSummonToField(player, target, origin, action.summonInDefense);
                             if (Result != DuelResult.None) yield break;
+                            // Long Live the King: der Rückkehrer bleibt diesen Zug friedlich
+                            if (action.summonCannotAttack && IsOnField(target))
+                            {
+                                target.CannotAttackThisTurn = true;
+                                Log($"{target.Name} cannot attack this turn.");
+                            }
                         }
                         break;
                     case EffectActionType.OpponentRandomToFieldOrDiscard:
@@ -3455,6 +3593,7 @@ namespace Rouge.Tcg
                     {
                         if (player.DeckPile.Count == 0) { Log($"{player.Name}'s Deck is empty."); break; }
                         var topCard = player.DeckPile[0];
+                        player.RevealedCardThisTurn = true; // Road to 1000: She Reads the Weather
                         Log($"{player.Name} reveals the top card of the Deck: {topCard.Name}.");
                         var peek = new YesNoRequest
                         {
@@ -3472,9 +3611,616 @@ namespace Rouge.Tcg
                         else Log("The revealed card stays on top of the Deck.");
                         break;
                     }
+
+                    // ================== ROAD TO 1000 (SEPTEMBER 2026) ==================
+
+                    case EffectActionType.WinTheDuel:
+                        Log($"CORONATION! {player.Name} controls the full regalia of the Absent King — {player.Name} wins the Duel!");
+                        if (presenter != null) yield return presenter.ShowPhaseBanner("CORONATION!", 1.6f);
+                        EndDuelByLoss(player.Opponent);
+                        yield break;
+
+                    case EffectActionType.SealEnemyZones:
+                        yield return SealZones(player, player.Opponent, Math.Max(1, action.amount), null, source.Name);
+                        break;
+
+                    case EffectActionType.SealEnemyZonesWhileSourceFaceUp:
+                        yield return SealZones(player, player.Opponent, Math.Max(1, action.amount),
+                            IsOnField(source) ? source : null, source.Name);
+                        break;
+
+                    case EffectActionType.SealAnyZones:
+                        for (int sealed_ = 0; sealed_ < Math.Max(1, action.amount); sealed_++)
+                        {
+                            bool ownFree = UnsealedFreeMonsterZones(player) > 0;
+                            bool foeFree = UnsealedFreeMonsterZones(player.Opponent) > 0;
+                            if (!ownFree && !foeFree)
+                            {
+                                if (sealed_ == 0) Log($"{source.Name}: no empty zone to seal.");
+                                break;
+                            }
+                            var sideToSeal = player.Opponent;
+                            if (ownFree && foeFree)
+                            {
+                                var sideAsk = new OptionRequest { Title = $"{source.Name}: seal a zone on which side?", Card = source };
+                                sideAsk.Options.Add("Opponent's side");
+                                sideAsk.Options.Add("Your side");
+                                yield return DecideRouted(player, sideAsk);
+                                if (sideAsk.Result == 1) sideToSeal = player;
+                            }
+                            else if (ownFree) sideToSeal = player;
+                            yield return SealZones(player, sideToSeal, 1, null, source.Name);
+                        }
+                        break;
+
+                    case EffectActionType.SpecialSummonGraveTop:
+                    {
+                        var top = player.Graveyard.Count > 0 ? player.Graveyard[player.Graveyard.Count - 1] : null;
+                        if (top == null) { Log($"{player.Name}'s Graveyard is empty."); break; }
+                        if (top.MonsterData == null
+                            || (action.levelFilter > 0 && top.MonsterData.level > action.levelFilter))
+                        {
+                            Log($"The top card of the Graveyard is {top.Name} — it does not fit; nothing happens.");
+                            break;
+                        }
+                        yield return SpecialSummonToField(player, top, "from the top of the graveyard", action.summonInDefense);
+                        if (Result != DuelResult.None) yield break;
+                        if (action.summonCannotAttack && IsOnField(top))
+                        {
+                            top.CannotAttackThisTurn = true;
+                            Log($"{top.Name} cannot attack this turn.");
+                        }
+                        break;
+                    }
+
+                    case EffectActionType.SpecialSummonGraveTopMonsterFaceDown:
+                    {
+                        CardInstance topMonster = null;
+                        for (int g = player.Graveyard.Count - 1; g >= 0; g--)
+                            if (player.Graveyard[g].MonsterData != null) { topMonster = player.Graveyard[g]; break; }
+                        if (topMonster == null) { Log($"{player.Name} has no monster in the Graveyard."); break; }
+                        if (player.CannotSpecialSummonThisTurn) { Log($"{player.Name} cannot Special Summon this turn."); break; }
+                        if (FieldLimitReached(player, topMonster.Definition)) break;
+                        int bootsZone = FirstUnsealedFreeZone(player);
+                        if (bootsZone < 0) { Log("No free monster zone — the summon fizzles."); break; }
+                        topMonster.Owner.Graveyard.Remove(topMonster);
+                        player.MonsterZones[bootsZone] = topMonster;
+                        topMonster.Owner = player;
+                        topMonster.Zone = ZoneType.MonsterZone;
+                        topMonster.Position = BattlePosition.Defense;
+                        topMonster.FaceDown = true;
+                        topMonster.SummonedThisTurn = true;
+                        topMonster.WasSpecialSummoned = true;
+                        Log($"{player.Name} Special Summons the top monster of the Graveyard face-down.");
+                        BoardChanged();
+                        if (presenter != null) yield return presenter.ShowCardMoved(topMonster);
+                        break;
+                    }
+
+                    case EffectActionType.ReturnGraveTopToHand:
+                        for (int taken = 0; taken < Math.Max(1, action.amount) && player.Graveyard.Count > 0; taken++)
+                        {
+                            var top = player.Graveyard[player.Graveyard.Count - 1];
+                            player.Graveyard.Remove(top);
+                            top.Zone = ZoneType.Hand;
+                            top.FaceDown = false;
+                            player.Hand.Add(top);
+                            Log($"{player.Name} takes {top.Name} from the top of the Graveyard ({player.Hand.Count} in hand).");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.BanishOpponentGraveTop:
+                        for (int taken = 0; taken < Math.Max(1, action.amount) && player.Opponent.Graveyard.Count > 0; taken++)
+                        {
+                            var top = player.Opponent.Graveyard[player.Opponent.Graveyard.Count - 1];
+                            Log($"{source.Name} banishes {top.Name} from the top of {player.Opponent.Name}'s Graveyard.");
+                            if (presenter != null) yield return presenter.ShowCardBanished(top);
+                            MoveToBanished(top);
+                        }
+                        break;
+
+                    case EffectActionType.MoveGraveTopToBottom:
+                        if (player.Graveyard.Count <= 1) { Log($"{player.Name}'s Graveyard has nothing to reorder."); break; }
+                        else
+                        {
+                            var top = player.Graveyard[player.Graveyard.Count - 1];
+                            player.Graveyard.RemoveAt(player.Graveyard.Count - 1);
+                            player.Graveyard.Insert(0, top);
+                            Log($"{player.Name} slides {top.Name} to the bottom of the Graveyard.");
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.SpecialSummonSelfFromGrave:
+                        if (source.Zone == ZoneType.Graveyard && source.MonsterData != null)
+                        {
+                            yield return SpecialSummonToField(player, source, "from the top of the graveyard", action.summonInDefense);
+                            if (Result != DuelResult.None) yield break;
+                            if (action.summonCannotAttack && IsOnField(source))
+                            {
+                                source.CannotAttackThisTurn = true;
+                                Log($"{source.Name} cannot attack this turn.");
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.ChangeTargetLevelPermanent:
+                        foreach (var hit in affected)
+                        {
+                            if (!IsOnField(hit) || hit.MonsterData == null) continue;
+                            hit.PermanentLevelBonus += action.amount;
+                            Log($"{hit.Name} is now Level {hit.EffectiveLevel} (permanently).");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.SetTargetLevelThisTurn:
+                        foreach (var hit in affected)
+                        {
+                            if (!IsOnField(hit) || hit.MonsterData == null) continue;
+                            hit.TempLevelThisTurn = Math.Clamp(action.amount, 1, 3);
+                            Log($"{hit.Name} is Level {hit.EffectiveLevel} until the end of the turn.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.ChooseSelfLevelThisTurn:
+                    {
+                        var levelAsk = new OptionRequest { Title = $"{source.Name}: choose its Level until the end of the turn", Card = source };
+                        levelAsk.Options.Add("Level 1");
+                        levelAsk.Options.Add("Level 2");
+                        levelAsk.Options.Add("Level 3");
+                        yield return DecideRouted(player, levelAsk);
+                        int chosenLevel = Math.Clamp(levelAsk.Result + 1, 1, 3);
+                        source.TempLevelThisTurn = chosenLevel;
+                        Log($"{source.Name} is Level {chosenLevel} until the end of the turn.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.DiscountNextNormalSummon:
+                        player.NextNormalSummonTributeDiscount = Math.Max(player.NextNormalSummonTributeDiscount, action.amount);
+                        Log(action.amount >= 99
+                            ? $"{player.Name}'s next Normal Summon this turn requires no tributes."
+                            : $"{player.Name}'s next Normal Summon this turn requires {action.amount} fewer tribute(s).");
+                        break;
+
+                    case EffectActionType.TickCountdownSelf:
+                        if (source.CountdownMarkers > 0)
+                        {
+                            source.CountdownMarkers = Math.Max(0, source.CountdownMarkers - Math.Max(1, action.amount));
+                            Log(source.CountdownMarkers > 0
+                                ? $"{source.Name}: an Hour Counter is removed ({source.CountdownMarkers} left)."
+                                : $"{source.Name}: the last Hour Counter is removed — the appointed hour has come!");
+                            BoardChanged();
+                            if (source.CountdownMarkers <= 0)
+                            {
+                                yield return OfferTriggeredEffects(player, source, EffectTrigger.CountdownZero);
+                                if (Result != DuelResult.None) yield break;
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.LookReorderTopDeck:
+                        yield return ReorderTopOfDeck(player, player, Math.Max(1, action.amount), source.Name);
+                        break;
+
+                    case EffectActionType.LookReorderOpponentTopDeck:
+                        yield return ReorderTopOfDeck(player, player.Opponent, Math.Max(1, action.amount), source.Name);
+                        break;
+
+                    case EffectActionType.RevealTopDeckSummonIfLowLevel:
+                    {
+                        if (player.DeckPile.Count == 0) { Log($"{player.Name}'s Deck is empty."); break; }
+                        var top = player.DeckPile[0];
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals the top card of the Deck: {top.Name}.");
+                        if (presenter != null) yield return presenter.ShowCardRevealed(top, "PROPHECY");
+                        bool fits = top.MonsterData != null
+                            && (action.levelFilter <= 0 || top.MonsterData.level <= action.levelFilter);
+                        player.DeckPile.RemoveAt(0);
+                        if (fits)
+                        {
+                            yield return SpecialSummonToField(player, top, "as foretold", action.summonInDefense);
+                            if (Result != DuelResult.None) yield break;
+                            if (IsOnField(top))
+                            {
+                                if (action.summonCannotAttack)
+                                {
+                                    top.CannotAttackThisTurn = true;
+                                    Log($"{top.Name} cannot attack this turn.");
+                                }
+                            }
+                            else { player.DeckPile.Insert(0, top); Shuffle(player.DeckPile); } // Beschwörung geplatzt: zurück und mischen
+                        }
+                        else
+                        {
+                            MoveToGraveyard(top);
+                            Log($"{top.Name} does not match the prophecy — it is sent to the Graveyard.");
+                            yield return FirePendingGraveTriggers();
+                        }
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.RevealOpponentTopDeckMayBottom:
+                    {
+                        if (player.Opponent.DeckPile.Count == 0) { Log($"{player.Opponent.Name}'s Deck is empty."); break; }
+                        var top = player.Opponent.DeckPile[0];
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Opponent.Name}'s top card is revealed: {top.Name}.");
+                        if (presenter != null) yield return presenter.ShowCardRevealed(top, "REVEALED");
+                        var peek = new YesNoRequest
+                        {
+                            Title = "Opponent's Deck",
+                            Card = top,
+                            Question = $"Top card: {top.Name}. Put it on the bottom of their Deck?"
+                        };
+                        yield return DecideRouted(player, peek);
+                        if (peek.Result)
+                        {
+                            player.Opponent.DeckPile.RemoveAt(0);
+                            player.Opponent.DeckPile.Add(top);
+                            Log($"{player.Name} slides the revealed card to the bottom of {player.Opponent.Name}'s Deck.");
+                        }
+                        else Log("The revealed card stays on top.");
+                        break;
+                    }
+
+                    case EffectActionType.RevealTopDeckTakeMonsters:
+                    {
+                        int shown = Math.Min(Math.Max(1, action.amount), player.DeckPile.Count);
+                        if (shown == 0) { Log($"{player.Name}'s Deck is empty."); break; }
+                        player.RevealedCardThisTurn = true;
+                        var kept = new List<CardInstance>();
+                        for (int r = 0; r < shown; r++)
+                        {
+                            var card = player.DeckPile[0];
+                            player.DeckPile.RemoveAt(0);
+                            Log($"{player.Name} reveals {card.Name}.");
+                            if (card.MonsterData != null)
+                            {
+                                card.Zone = ZoneType.Hand;
+                                player.Hand.Add(card);
+                                Log($"{card.Name} is a monster — it goes to the hand.");
+                            }
+                            else kept.Add(card);
+                        }
+                        // Nicht-Monster kehren in ihrer Reihenfolge nach oben zurück
+                        for (int back = kept.Count - 1; back >= 0; back--)
+                            player.DeckPile.Insert(0, kept[back]);
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.PutTargetHandCardToDeckBottom:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone != ZoneType.Hand || !player.Hand.Contains(hit)) continue;
+                            player.Hand.Remove(hit);
+                            hit.Zone = ZoneType.Deck;
+                            player.DeckPile.Add(hit);
+                            Log($"{player.Name} puts a card on the bottom of the Deck.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.PutTargetHandCardOnTopOfDeck:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone != ZoneType.Hand || !player.Hand.Contains(hit)) continue;
+                            player.Hand.Remove(hit);
+                            hit.Zone = ZoneType.Deck;
+                            player.DeckPile.Insert(0, hit);
+                            Log($"{player.Name} puts a card on top of the Deck.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.RevealOwnHandDrawByContent:
+                    {
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals their hand: {(player.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Hand.Select(c => c.Name)))}.");
+                        bool anySpell = player.Hand.Any(c => c.SpellData != null);
+                        int honest = Math.Max(1, action.amount) + (anySpell ? 0 : 1);
+                        Log(anySpell
+                            ? $"A Spell among them — {player.Name} draws {honest}."
+                            : $"Not a single Spell — {player.Name} draws {honest}.");
+                        if (!TryDraw(player, honest)) yield break;
+                        yield return PresentDraws(player);
+                        break;
+                    }
+
+                    case EffectActionType.RevealOwnHandDrawIfEmpty:
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals their hand: {(player.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Hand.Select(c => c.Name)))}.");
+                        if (player.Hand.Count == 0)
+                        {
+                            Log($"An empty purse — {player.Name} draws {Math.Max(1, action.amount)}.");
+                            if (!TryDraw(player, Math.Max(1, action.amount))) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        else Log("The purse is not empty — no cards are drawn.");
+                        break;
+
+                    case EffectActionType.RevealOwnHandBuffPerMonster:
+                    {
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals their hand: {(player.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Hand.Select(c => c.Name)))}.");
+                        int shownMonsters = player.Hand.Count(c => c.MonsterData != null);
+                        if (shownMonsters > 0 && IsOnField(source) && source.MonsterData != null)
+                        {
+                            source.PermanentAtkBonus += action.amount * shownMonsters;
+                            Log($"{source.Name} permanently gains +{action.amount * shownMonsters} ATK ({shownMonsters} monsters shown) — now {source.CurrentAtk}.");
+                        }
+                        else if (shownMonsters == 0) Log("No monsters to show — no ATK gained.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.OpponentRevealsRandomHandCard:
+                        if (player.Opponent.Hand.Count == 0) Log($"{player.Opponent.Name}'s hand is empty.");
+                        else
+                        {
+                            player.RevealedCardThisTurn = true;
+                            for (int r = 0; r < Math.Max(1, action.amount) && player.Opponent.Hand.Count > 0; r++)
+                            {
+                                var shownCard = player.Opponent.Hand[rng.Next(player.Opponent.Hand.Count)];
+                                Log($"{player.Opponent.Name} reveals {shownCard.Name} at random.");
+                                if (presenter != null) yield return presenter.ShowCardRevealed(shownCard, "REVEALED");
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.BothRevealHandsDrawIfOpponentMore:
+                        player.RevealedCardThisTurn = true;
+                        player.Opponent.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals their hand: {(player.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Hand.Select(c => c.Name)))}.");
+                        Log($"{player.Opponent.Name} reveals their hand: {(player.Opponent.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Opponent.Hand.Select(c => c.Name)))}.");
+                        if (player.Opponent.Hand.Count > player.Hand.Count)
+                        {
+                            Log($"{player.Opponent.Name} holds more — {player.Name} draws {Math.Max(1, action.amount)}.");
+                            if (!TryDraw(player, Math.Max(1, action.amount))) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        break;
+
+                    case EffectActionType.OpponentRevealsHandDrawIfMore:
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Opponent.Name} reveals their hand: {(player.Opponent.Hand.Count == 0 ? "(empty)" : string.Join(", ", player.Opponent.Hand.Select(c => c.Name)))}.");
+                        if (player.Opponent.Hand.Count > player.Hand.Count)
+                        {
+                            Log($"{player.Opponent.Name} holds more — {player.Name} draws {Math.Max(1, action.amount)}.");
+                            if (!TryDraw(player, Math.Max(1, action.amount))) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        break;
+
+                    case EffectActionType.GrantAttacksWithDefThisTurn:
+                        foreach (var hit in affected)
+                        {
+                            if (!IsOnField(hit) || hit.MonsterData == null) continue;
+                            hit.AttacksWithDefThisTurn = true;
+                            if (action.amount > 0) hit.TempDefBonus += action.amount;
+                            Log(action.amount > 0
+                                ? $"{hit.Name} leads with the shield — it attacks with its DEF this turn and gains +{action.amount} DEF ({hit.CurrentDef})."
+                                : $"{hit.Name} leads with the shield — it attacks with its DEF this turn ({hit.CurrentDef}).");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.TaxOpponentNextSpellThisTurn:
+                        player.Opponent.NextSpellSurcharge += Math.Max(1, action.amount);
+                        Log($"The next Spell {player.Opponent.Name} activates this turn costs {player.Opponent.NextSpellSurcharge} more Mana.");
+                        break;
+
+                    case EffectActionType.MoveEnemyTargetToZone:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone != ZoneType.MonsterZone || hit.Owner == player) continue;
+                            if (BearerZoneLocked(hit)) { Log($"{hit.Name} is locked in place and cannot be moved."); continue; }
+                            var hitSide = hit.Owner;
+                            int fromZone = hit.ZoneIndex;
+                            var freeFoe = new List<int>();
+                            for (int z = 0; z < hitSide.MonsterZones.Length; z++)
+                                if (hitSide.MonsterZones[z] == null && !IsZoneSealed(hitSide, z)) freeFoe.Add(z);
+                            if (freeFoe.Count == 0) { Log($"{hit.Name} has nowhere to be moved."); continue; }
+                            int destination = freeFoe[0];
+                            if (freeFoe.Count > 1)
+                            {
+                                var queueRequest = new ZoneSelectRequest
+                                {
+                                    Title = $"{source.Name}: choose the new zone for {hit.Name}",
+                                    ForPlayer = hitSide,
+                                    Zone = ZoneType.MonsterZone
+                                };
+                                queueRequest.FreeIndices.AddRange(freeFoe);
+                                yield return DecideRouted(player, queueRequest);
+                                if (freeFoe.Contains(queueRequest.Result)) destination = queueRequest.Result;
+                            }
+                            presenter?.RememberOrigin(hit);
+                            hitSide.MonsterZones[fromZone] = null;
+                            hitSide.MonsterZones[destination] = hit;
+                            Log($"{hit.Name} is shoved to zone {destination + 1} — wrong queue, sir.");
+                            BoardChanged();
+                            if (presenter != null) yield return presenter.ShowCardMoved(hit);
+                            yield return OfferTriggeredEffects(hitSide, hit, EffectTrigger.OnMovedSelf);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+
+                    case EffectActionType.RotateOwnMonsters:
+                    {
+                        if (player.MonsterCount() == 0) { Log($"{player.Name} controls no monsters to rotate."); break; }
+                        var directionAsk = new OptionRequest { Title = $"{source.Name}: rotate your monsters which way?", Card = source };
+                        directionAsk.Options.Add("Left");
+                        directionAsk.Options.Add("Right");
+                        yield return DecideRouted(player, directionAsk);
+                        bool right = directionAsk.Result == 1;
+                        int moved = 0;
+                        var movedCards = new List<CardInstance>();
+                        if (right)
+                        {
+                            for (int z = player.MonsterZones.Length - 2; z >= 0; z--)
+                            {
+                                var mover = player.MonsterZones[z];
+                                if (mover == null || BearerZoneLocked(mover)) continue;
+                                if (player.MonsterZones[z + 1] != null || IsZoneSealed(player, z + 1)) continue;
+                                player.MonsterZones[z] = null;
+                                player.MonsterZones[z + 1] = mover;
+                                moved++; movedCards.Add(mover);
+                            }
+                        }
+                        else
+                        {
+                            for (int z = 1; z < player.MonsterZones.Length; z++)
+                            {
+                                var mover = player.MonsterZones[z];
+                                if (mover == null || BearerZoneLocked(mover)) continue;
+                                if (player.MonsterZones[z - 1] != null || IsZoneSealed(player, z - 1)) continue;
+                                player.MonsterZones[z] = null;
+                                player.MonsterZones[z - 1] = mover;
+                                moved++; movedCards.Add(mover);
+                            }
+                        }
+                        Log(moved > 0
+                            ? $"{player.Name} turns the table — {moved} monster(s) slide one zone to the {(right ? "right" : "left")}."
+                            : "The table does not budge — no monster could move.");
+                        BoardChanged();
+                        foreach (var mover in movedCards)
+                        {
+                            yield return OfferTriggeredEffects(player, mover, EffectTrigger.OnMovedSelf);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        if (action.amount == 1 && moved >= 3)
+                        {
+                            Log($"Three or more moved — {player.Name} draws 1 card.");
+                            if (!TryDraw(player, 1)) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        break;
+                    }
+
+                    case EffectActionType.SetBothLifeToLower:
+                    {
+                        int lower = Math.Min(player.LifePoints, player.Opponent.LifePoints);
+                        foreach (var duelist in new[] { player, player.Opponent })
+                        {
+                            int delta = lower - duelist.LifePoints;
+                            if (delta == 0) continue;
+                            duelist.LifePoints = lower;
+                            Log($"{duelist.Name}'s LP are set to {lower}.");
+                            OnLifeChanged?.Invoke(duelist, delta);
+                        }
+                        Log($"{source.Name}: the scales are settled at {lower} LP.");
+                        BoardChanged();
+                        if (CheckWin()) yield break;
+                        break;
+                    }
+
+                    case EffectActionType.HealHalfLpDifference:
+                    {
+                        int gap = Math.Abs(player.LifePoints - player.Opponent.LifePoints);
+                        int healGain = Math.Min(gap / 2, Math.Max(1, action.amount));
+                        if (healGain <= 0) { Log("The scales are already even — no LP gained."); break; }
+                        player.LifePoints += healGain;
+                        Log($"{player.Name} gains {healGain} LP ({player.LifePoints} LP).");
+                        OnLifeChanged?.Invoke(player, healGain);
+                        break;
+                    }
+
+                    case EffectActionType.SetTargetMonstersFromHandFaceDown:
+                    {
+                        int placed = 0;
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.MonsterData == null || !player.Hand.Contains(hit)) continue;
+                            if (FieldLimitReached(player, hit.Definition)) continue;
+                            int lieZone = -1;
+                            yield return ChooseZone(player, player.MonsterZones, ZoneType.MonsterZone,
+                                "Choose a zone for the face-down monster", -1, z => lieZone = z);
+                            if (lieZone < 0) { Log("No free monster zone — no further cards can be set."); break; }
+                            presenter?.RememberView(hit);
+                            player.Hand.Remove(hit);
+                            player.MonsterZones[lieZone] = hit;
+                            hit.Zone = ZoneType.MonsterZone;
+                            hit.Position = BattlePosition.Defense;
+                            hit.FaceDown = true;
+                            hit.SummonedThisTurn = true;
+                            placed++;
+                            Log($"{player.Name} sets a monster face-down in Defense Position.");
+                            BoardChanged();
+                            if (presenter != null) yield return presenter.ShowCardMoved(hit);
+                        }
+                        if (action.amount == 1 && placed > 1)
+                        {
+                            Log($"{placed - 1} beyond the first — {player.Name} draws {placed - 1}.");
+                            if (!TryDraw(player, placed - 1)) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        break;
+                    }
+
+                    case EffectActionType.DrawIfHandAtMost:
+                        if (player.Hand.Count <= Math.Max(0, action.amount))
+                        {
+                            Log($"{player.Name}'s hand is light enough — 1 card is drawn.");
+                            if (!TryDraw(player, 1)) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        else Log($"{player.Name} holds more than {action.amount} cards — no draw.");
+                        break;
                 }
             }
             BoardChanged();
+        }
+
+        /// <summary>
+        /// Road to 1000: die obersten Karten eines Decks ansehen und in Wunschreihenfolge
+        /// zurücklegen. Der Wählende bestimmt Karte für Karte, was zuoberst liegt.
+        /// </summary>
+        private IEnumerator ReorderTopOfDeck(PlayerState chooser, PlayerState deckOwner, int count, string sourceName)
+        {
+            int seen = Math.Min(count, deckOwner.DeckPile.Count);
+            if (seen == 0) { Log($"{deckOwner.Name}'s Deck is empty."); yield break; }
+            chooser.RevealedCardThisTurn = true;
+
+            var pool = new List<CardInstance>();
+            for (int i = 0; i < seen; i++) { pool.Add(deckOwner.DeckPile[0]); deckOwner.DeckPile.RemoveAt(0); }
+            Log(chooser == deckOwner
+                ? $"{chooser.Name} looks at the top {seen} card(s) of the Deck."
+                : $"{chooser.Name} looks at the top {seen} card(s) of {deckOwner.Name}'s Deck.");
+
+            var newOrder = new List<CardInstance>();
+            while (pool.Count > 1)
+            {
+                var pick = new TargetRequest
+                {
+                    Title = $"{sourceName}: choose the card that goes ON TOP next",
+                    Kind = TargetKind.None,
+                    Count = 1,
+                    AllowCancel = false
+                };
+                pick.Candidates.AddRange(pool);
+                yield return DecideRouted(chooser, pick);
+                var chosen = pick.Result.Count > 0 && pool.Contains(pick.Result[0]) ? pick.Result[0] : pool[0];
+                newOrder.Add(chosen);
+                pool.Remove(chosen);
+            }
+            newOrder.AddRange(pool);
+
+            for (int back = newOrder.Count - 1; back >= 0; back--)
+                deckOwner.DeckPile.Insert(0, newOrder[back]);
+            Log($"The top {seen} card(s) return in the chosen order.");
+        }
+
+        /// <summary>Erste freie UND unversiegelte Monster-Zone (-1 = keine).</summary>
+        private int FirstUnsealedFreeZone(PlayerState player)
+        {
+            for (int i = 0; i < player.MonsterZones.Length; i++)
+                if (player.MonsterZones[i] == null && !IsZoneSealed(player, i)) return i;
+            return -1;
         }
 
         // ================== HELFER FÜR DIE NEUEN BAUSTEINE ==================
@@ -3624,6 +4370,8 @@ namespace Rouge.Tcg
             bool isSpellCast = card?.SpellData != null && effect.trigger == EffectTrigger.OnActivate;
             // Guild Tariff: Zauber kosten für BEIDE 1 mehr — auch die sonst gratis wären
             if (isSpellCast && SpellTaxActive()) cost += 1;
+            // Countersign: der nächste Zauber dieses Spielers trägt den Aufschlag
+            if (isSpellCast && player.NextSpellSurcharge > 0) cost += player.NextSpellSurcharge;
             if (cost <= 0) return cost;
             if (!isSpellCast) return cost;
             if (player.SpellsCastThisTurn > 0) return cost;
@@ -3694,6 +4442,94 @@ namespace Rouge.Tcg
             foreach (var side in new[] { Player1, Player2 })
                 if (side != null) foreach (var m in side.Monsters()) if (m.LienAmount > 0) return true;
             return false;
+        }
+
+        // ================== HELFER: ROAD TO 1000 (ZONEN-SIEGEL) ==================
+
+        /// <summary>
+        /// Ist diese Monster-Zone versiegelt? Zählt gelistete Siegel (befristet oder
+        /// quellgebunden) UND die virtuellen Padlock-Siegel: die leeren Nachbarzonen
+        /// eines Trägers von The Landlord's Own Padlock.
+        /// </summary>
+        public bool IsZoneSealed(PlayerState side, int index)
+        {
+            if (side == null || index < 0 || index >= side.MonsterZones.Length) return false;
+            foreach (var seal in side.ZoneSeals)
+            {
+                if (seal.Index != index) continue;
+                if (seal.UntilTurn >= 0)
+                {
+                    if (TurnNumber <= seal.UntilTurn) return true;
+                }
+                else if (seal.Source != null && !seal.Source.FaceDown
+                         && seal.Source.Zone == ZoneType.MonsterZone) return true;
+            }
+            // The Landlord's Own Padlock: der Träger mauert seine leeren Nachbarzonen zu
+            if (side.MonsterZones[index] == null)
+                foreach (var bearer in side.Monsters())
+                {
+                    if (bearer.FaceDown || System.Math.Abs(bearer.ZoneIndex - index) != 1) continue;
+                    foreach (var equip in bearer.EquippedArtifacts)
+                        if (equip.Definition != null && equip.Definition.passiveSealsAdjacentZones) return true;
+                }
+            return false;
+        }
+
+        /// <summary>Freie UND unversiegelte Monster-Zonen eines Spielers.</summary>
+        private int UnsealedFreeMonsterZones(PlayerState side)
+        {
+            int count = 0;
+            for (int i = 0; i < side.MonsterZones.Length; i++)
+                if (side.MonsterZones[i] == null && !IsZoneSealed(side, i)) count++;
+            return count;
+        }
+
+        /// <summary>
+        /// Versiegelt bis zu <paramref name="count"/> leere Monster-Zonen. Der
+        /// Aktivierende wählt die Zonen; boundTo bindet das Siegel an eine offene
+        /// Quellkarte, sonst hält es bis zum Ende seines NÄCHSTEN Zuges.
+        /// </summary>
+        private IEnumerator SealZones(PlayerState chooser, PlayerState side, int count, CardInstance boundTo, string sourceName)
+        {
+            // Bis zum Ende des nächsten EIGENEN Zuges des Aktivierenden: im eigenen
+            // Zug versiegelt heißt +2 (dieser + der nächste eigene), im Gegnerzug +1.
+            int until = TurnNumber + (TurnPlayer == chooser ? 2 : 1);
+            for (int placed = 0; placed < count; placed++)
+            {
+                var free = new List<int>();
+                for (int i = 0; i < side.MonsterZones.Length; i++)
+                    if (side.MonsterZones[i] == null && !IsZoneSealed(side, i)) free.Add(i);
+                if (free.Count == 0)
+                {
+                    if (placed == 0) Log($"{sourceName}: no empty zone to seal.");
+                    yield break;
+                }
+
+                int chosen = free[0];
+                if (free.Count > 1)
+                {
+                    var request = new ZoneSelectRequest
+                    {
+                        Title = $"{sourceName}: choose a zone to seal",
+                        ForPlayer = side,
+                        Zone = ZoneType.MonsterZone
+                    };
+                    request.FreeIndices.AddRange(free);
+                    yield return DecideRouted(chooser, request);
+                    if (free.Contains(request.Result)) chosen = request.Result;
+                }
+
+                side.ZoneSeals.Add(new ZoneSeal
+                {
+                    Index = chosen,
+                    UntilTurn = boundTo != null ? -1 : until,
+                    Source = boundTo
+                });
+                Log(boundTo != null
+                    ? $"{sourceName} bricks up {side.Name}'s zone {chosen + 1} — sealed while {boundTo.Name} remains face-up."
+                    : $"{sourceName} bricks up {side.Name}'s zone {chosen + 1} — sealed until the end of {chooser.Name}'s next turn.");
+                BoardChanged();
+            }
         }
 
         /// <summary>Aurel: LP-Kosten des Besitzers sind 0.</summary>
@@ -3832,12 +4668,15 @@ namespace Rouge.Tcg
         private IEnumerator MoveMonsterToZone(PlayerState player, CardInstance monster, bool adjacentOnly, string reason)
         {
             if (monster == null || monster.Zone != ZoneType.MonsterZone || monster.Owner != player) yield break;
+            // The Landlord's Own Padlock: der Träger ist festgeschraubt
+            if (BearerZoneLocked(monster)) { Log($"{monster.Name} is locked in place and cannot move."); yield break; }
             int from = monster.ZoneIndex;
             var free = new List<int>();
             for (int i = 0; i < player.MonsterZones.Length; i++)
             {
                 if (player.MonsterZones[i] != null) continue;
                 if (adjacentOnly && Math.Abs(i - from) != 1) continue;
+                if (IsZoneSealed(player, i)) continue; // Road to 1000: zugemauerte Zonen
                 free.Add(i);
             }
             if (free.Count == 0) { Log($"{monster.Name} has nowhere to move."); yield break; }
@@ -3858,6 +4697,14 @@ namespace Rouge.Tcg
             BoardChanged();
             if (presenter != null) yield return presenter.ShowCardMoved(monster);
             yield return OfferTriggeredEffects(player, monster, EffectTrigger.OnMovedSelf);
+        }
+
+        /// <summary>The Landlord's Own Padlock: trägt dieses Monster ein zonensperrendes Artefakt?</summary>
+        private static bool BearerZoneLocked(CardInstance monster)
+        {
+            foreach (var equip in monster.EquippedArtifacts)
+                if (equip.Definition != null && equip.Definition.passiveBearerZoneLocked) return true;
+            return false;
         }
 
         /// <summary>Dauerhafter Kontrollwechsel — kein Rückfall in der End Phase.</summary>
@@ -4664,6 +5511,16 @@ namespace Rouge.Tcg
             endBattlePhaseRequested = false;
         }
 
+        /// <summary>
+        /// Road to 1000 (Schildkante voran): der Angriffswert eines Monsters — normal
+        /// die ATK, mit passiveAttacksWithDef oder Lead With the Shield die DEF.
+        /// </summary>
+        private static int AttackValueOf(CardInstance attacker) =>
+            attacker.AttacksWithDefThisTurn
+            || (attacker.Definition != null && attacker.Definition.passiveAttacksWithDef)
+                ? attacker.CurrentDef
+                : attacker.CurrentAtk;
+
         private BattleActionRequest BuildBattleActions(PlayerState player)
         {
             var request = new BattleActionRequest { Title = $"Battle Phase — {player.Name}" };
@@ -4698,7 +5555,7 @@ namespace Rouge.Tcg
                     {
                         Attacker = attacker,
                         Direct = true,
-                        Label = $"{attacker.Name} ({attacker.CurrentAtk}) slips past and attacks directly (half damage)"
+                        Label = $"{attacker.Name} ({AttackValueOf(attacker)}) slips past and attacks directly (half damage)"
                     });
 
                 if (player.Opponent.MonsterCount() == 0)
@@ -4715,7 +5572,7 @@ namespace Rouge.Tcg
                     {
                         Attacker = attacker,
                         Direct = true,
-                        Label = $"{attacker.Name} ({attacker.CurrentAtk}) attacks directly"
+                        Label = $"{attacker.Name} ({AttackValueOf(attacker)}) attacks directly"
                     });
                 }
                 else
@@ -4735,7 +5592,7 @@ namespace Rouge.Tcg
                         {
                             Attacker = attacker,
                             Target = target,
-                            Label = $"{attacker.Name} ({attacker.CurrentAtk}) attacks {targetInfo}"
+                            Label = $"{attacker.Name} ({AttackValueOf(attacker)}) attacks {targetInfo}"
                         });
                     }
                 }
@@ -4804,7 +5661,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     yield break;
                 }
                 if (presenter != null) yield return presenter.ShowAttackImpact(attacker, null, true);
-                int direct = attacker.CurrentAtk + codeBonus;
+                int direct = AttackValueOf(attacker) + codeBonus;
                 if (sweep && player.Opponent.MonsterCount() > 0) direct /= 2;
                 if (!noBattleDamage) DealDamage(player.Opponent, direct, attacker.Name, isBattleDamage: true);
             }
@@ -4827,7 +5684,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 }
                 if (presenter != null) yield return presenter.ShowAttackImpact(attacker, target, false);
 
-                int attackValue = attacker.CurrentAtk + codeBonus;
+                int attackValue = AttackValueOf(attacker) + codeBonus;
                 if (target.Position == BattlePosition.Attack)
                 {
                     int defenderAtk = target.CurrentAtk;
@@ -4899,6 +5756,14 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                                 if (Result != DuelResult.None) yield break;
                             }
                 }
+            }
+
+            // Doorstop Made of Dragon Bone: der Türstopper splittert nach jedem Angriff
+            if (attacker.Definition != null && attacker.Definition.passiveDefLossAfterAttack > 0
+                && attacker.Zone == ZoneType.MonsterZone)
+            {
+                attacker.PermanentDefBonus -= attacker.Definition.passiveDefLossAfterAttack;
+                Log($"{attacker.Name} chips from the impact — it permanently loses {attacker.Definition.passiveDefLossAfterAttack} DEF ({attacker.CurrentDef} DEF).");
             }
             BoardChanged();
         }
@@ -5176,6 +6041,9 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             }
 
             bool wasMonster = card.MonsterData != null;
+            // Buried With His Boots On: eigene Monster-Verluste dieses Zuges zählen
+            if (wasMonster && card.Zone == ZoneType.MonsterZone && card.Owner != null)
+                card.Owner.OwnMonstersDestroyedThisTurn++;
             // Load-Bearing Wall: fällt die Wand, fällt der Putz mit — Nachbarn merken
             // sich VOR dem Umzug, danach hat die Karte keine Zone mehr
             int wallDebuff = card.Definition != null ? card.Definition.passiveAdjacentDebuffOnDestroy : 0;

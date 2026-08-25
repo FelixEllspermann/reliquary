@@ -93,6 +93,41 @@ namespace Rouge.Tcg
         [Tooltip("Kosten der Selbst-Spezialbeschwörung in LP (Blood Oath: 1000). 0 = keine.")]
         public int selfSummonLifeCost;
 
+        [Header("Road to 1000: weitere Bedingungen")]
+        [Tooltip("Bedingung: der Gegner kontrolliert MEHR Monster als du (Sceptre of the Absent King)")]
+        public bool selfSummonRequiresOpponentMoreMonsters;
+
+        [Tooltip("Bedingung: deine LP sind höchstens so hoch (0 = aus; Orb of the Absent King: 4000)")]
+        public int selfSummonRequiresLifeAtMost;
+
+        [Tooltip("Die Selbst-SS geht NUR in eine VERSIEGELTE eigene Monster-Zone und bricht " +
+                 "das Siegel (The Squatter, Uninvited)")]
+        public bool selfSummonIntoSealedZone;
+
+        [Tooltip("Bedingung: die oberste Karte deines Friedhofs ist ein Monster (Echo of the Latest Loss)")]
+        public bool selfSummonRequiresGraveTopMonster;
+
+        [Tooltip("Bedingung: diesen Zug wurde eine Karte aufgedeckt (She Reads the Weather in Entrails)")]
+        public bool selfSummonRequiresRevealedThisTurn;
+
+        [Tooltip("Bedingung: du kontrollierst ein Level-1- UND ein Level-3-Monster (Stuck on the Middle Rung)")]
+        public bool selfSummonRequiresLevels1And3;
+
+        [Tooltip("Bedingung: der Gegner kontrolliert ein Level-3-Monster und du keines (Overqualified Doorman)")]
+        public bool selfSummonRequiresOpponentLevel3AndNoneSelf;
+
+        [Tooltip("Bedingung: frühestens ab deinem N-ten Zug (0 = aus; Calendar's Last Page: 7)")]
+        public int selfSummonRequiresTurnAtLeast;
+
+        [Tooltip("Bedingung: dein Deck hält mindestens so viele Karten (0 = aus; The Thousandth Card: 40)")]
+        public int selfSummonRequiresDeckAtLeast;
+
+        [Tooltip("Bedingung: die LP beider Spieler liegen höchstens so weit auseinander (0 = aus; Even Scales: 500)")]
+        public int selfSummonRequiresLpWithin;
+
+        [Tooltip("Bedingung: du kontrollierst mindestens so viele Artefakte (0 = aus; Vault's Own Doorframe: 2)")]
+        public int selfSummonRequiresArtifacts;
+
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -134,11 +169,25 @@ namespace Rouge.Tcg
             if (selfSummonRequiresHandAtLeast > 0) parts.Add(Loc.F("you have {0}+ other cards in your hand", selfSummonRequiresHandAtLeast));
             if (selfSummonRequiresOpponentDefenseMonster) parts.Add(Loc.T("your opponent controls a Defense Position monster"));
             if (selfSummonRequiresLienOnField) parts.Add(Loc.T("a monster with a Lien is on the field"));
+            // --- Road to 1000 ---
+            if (selfSummonRequiresOpponentMoreMonsters) parts.Add(Loc.T("your opponent controls more monsters than you"));
+            if (selfSummonRequiresLifeAtMost > 0) parts.Add(Loc.F("your LP are {0} or less", selfSummonRequiresLifeAtMost));
+            if (selfSummonRequiresGraveTopMonster) parts.Add(Loc.T("the top card of your Graveyard is a monster"));
+            if (selfSummonRequiresRevealedThisTurn) parts.Add(Loc.T("a card was revealed this turn"));
+            if (selfSummonRequiresLevels1And3) parts.Add(Loc.T("you control a Level 1 and a Level 3 monster"));
+            if (selfSummonRequiresOpponentLevel3AndNoneSelf) parts.Add(Loc.T("your opponent controls a Level 3 monster and you control none"));
+            if (selfSummonRequiresTurnAtLeast > 0) parts.Add(Loc.F("it is your turn {0} or later", selfSummonRequiresTurnAtLeast));
+            if (selfSummonRequiresDeckAtLeast > 0) parts.Add(Loc.F("your Deck holds {0}+ cards", selfSummonRequiresDeckAtLeast));
+            if (selfSummonRequiresLpWithin > 0) parts.Add(Loc.F("both players' LP are within {0} of each other", selfSummonRequiresLpWithin));
+            if (selfSummonRequiresArtifacts > 0) parts.Add(Loc.F("you control {0}+ Artifacts", selfSummonRequiresArtifacts));
 
             // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
             // der Kartentext sagt es jedes Mal dazu.
             string position = selfSummonPosition == BattlePosition.Defense ? Loc.T(" in Defense Position") : "";
             string cost = selfSummonLifeCost > 0 ? Loc.F(" by paying {0} LP", selfSummonLifeCost) : "";
+            // The Squatter: die Zone selbst ist die Bedingung — eigener Satzbau
+            if (selfSummonIntoSealedZone)
+                return Loc.F("You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).", position, cost);
             if (parts.Count == 0)
                 return Loc.F("You can Special Summon this card from your hand{0}{1} (once per turn).", position, cost);
             return Loc.F("While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).", string.Join(Loc.T(" and "), parts), position, cost);

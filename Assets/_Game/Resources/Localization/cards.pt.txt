@@ -4216,3 +4216,288 @@ l0 Pena de pátio
 t0 Pague 1 de mana: envie 1 monstro com menos de 2000 de ATK do seu Deck ao Cemitério, depois ganhe 1 de mana.
 l1 Pena em regime fechado
 t1 Pague 3 de mana em vez disso: envie 2 monstros com quaisquer valores ao Cemitério, mas não ganhe mana.
+# ---------- Road to 1000 (0.1.7) ----------
+## The Crown of the Absent King
+n A Coroa do Rei Ausente
+l0 Coroação
+t0 No início da sua Standby Phase, se você controlar "A Coroa do Rei Ausente", "O Cetro do Rei Ausente" e "O Orbe do Rei Ausente": você vence o Duelo.
+l1 Segurar a Coroa
+t1 Pague 2 de Mana: esta carta não pode ser destruída neste turno.
+## The Sceptre of the Absent King
+n O Cetro do Rei Ausente
+l0 Coroação
+t0 No início da sua Standby Phase, se você controlar "A Coroa do Rei Ausente", "O Cetro do Rei Ausente" e "O Orbe do Rei Ausente": você vence o Duelo.
+l1 Ninguém se levanta
+t1 Uma vez por turno: 1 monstro que o seu oponente controla perde 300 de ATK até o final deste turno.
+l2 Ninguém mesmo
+t2 Pague 2 de Mana: em vez disso, até 2 monstros que o seu oponente controla perdem 300 de ATK cada até o final deste turno.
+## The Orb of the Absent King
+n O Orbe do Rei Ausente
+l0 Coroação
+t0 No início da sua Standby Phase, se você controlar "A Coroa do Rei Ausente", "O Cetro do Rei Ausente" e "O Orbe do Rei Ausente": você vence o Duelo.
+l1 O reino perdura
+t1 Durante a sua Standby Phase: ganhe 300 LP.
+l2 Guardado em custódia
+t2 Pague 2 de Mana: embaralhe 1 carta do seu Cemitério no seu Deck.
+## The Regent Who Keeps the Throne Warm
+n O Regente que Mantém o Trono Aquecido
+l0 Guardar o assento
+t0 Quando esta carta for Invocada: adicione à sua mão 1 monstro com 0 de ATK do seu Deck.
+l1 Aquecer o assento
+t1 Pague 2 de Mana: em vez disso, Invoque-o por Invocação-Especial — seus efeitos ficam negados até a End Phase e ele não pode atacar neste turno.
+## Long Live the King
+n Vida Longa ao Rei
+l0 Vida longa ao rei
+t0 Pague 2 de Mana: Invoque por Invocação-Especial 1 monstro com 0 de ATK do seu Cemitério em Posição de Defesa.
+l1 Que reine para sempre
+t1 Em vez disso, pague 4 de Mana: ele também não pode ser destruído neste turno.
+## Bricklayer of the Eleventh Hour
+n Pedreiro da Décima Primeira Hora
+l0 Mais uma fiada
+t0 Quando esta carta for Invocada: sele 1 Zona de Monstros vazia do seu oponente enquanto esta carta permanecer com a face para cima.
+l1 Emparedem todos
+t1 Pague 2 de Mana: sele até 2 em vez disso.
+## The Squatter, Uninvited
+n O Invasor, Sem Convite
+l0 A mudança
+t0 Se esta carta foi Invocada por Invocação-Especial: compre 1 carta.
+## No Room at the Inn
+n Sem Vaga na Estalagem
+l0 Sem vaga na estalagem
+t0 Pague 2 de Mana: sele até 2 Zonas de Monstros vazias do seu oponente até o final do seu próximo turno.
+l1 Nem mesmo o estábulo
+t1 Em vez disso, pague 4 de Mana: sele até 3 e compre 1 carta.
+## Condemned Premises
+n Imóvel Interditado
+l0 Imóvel interditado
+t0 Pague 2 de Mana: sele 1 Zona de Monstros vazia em qualquer lado do campo até o final do seu próximo turno.
+l1 Quarteirão interditado
+t1 Em vez disso, pague 3 de Mana: sele 2 zonas.
+## The Bricked-Up Door
+n A Porta Emparedada
+l0 Tijolo por tijolo
+t0 Uma vez por turno — pague 1 de Mana: sele 1 Zona de Monstros vazia em qualquer lado até o final do seu próximo turno.
+l1 Emparedar a ala inteira
+t1 Pague 2 de Mana: sele 2 zonas em vez disso.
+## The Landlord's Own Padlock
+n O Cadeado do Próprio Senhorio
+l0 Mais um cadeado
+t0 Pague 2 de Mana: sele 1 Zona de Monstros vazia em qualquer lado até o final do seu próximo turno.
+## Gravedigger's First Shift
+n O Primeiro Turno do Coveiro
+l0 Romper o chão
+t0 Quando esta carta for Invocada: envie a carta do topo do seu Deck para o Cemitério.
+l1 Cavar onde mandarem
+t1 Pague 1 de Mana: escolha você a carta — envie 1 carta do seu Deck para o Cemitério.
+## Echo of the Latest Loss
+n Eco da Perda Mais Recente
+l0 Silenciar a outra cova
+t0 Pague 2 de Mana: bana a carta do topo do Cemitério do seu oponente.
+## He Sleeps Lightly
+n Ele Tem o Sono Leve
+l0 Um sono leve
+t0 Enquanto esta carta for a carta do topo do seu Cemitério — pague 2 de Mana: Invoque-a por Invocação-Especial. Ela não pode atacar neste turno.
+## Last In, First Out
+n Último a Entrar, Primeiro a Sair
+l0 Último a entrar, primeiro a sair
+t0 Pague 1 de Mana: adicione à sua mão a carta do topo do seu Cemitério.
+l1 Partida dobrada
+t1 Em vez disso, pague 3 de Mana: as 2 do topo.
+## The Fresh Grave
+n A Cova Fresca
+l0 A cova fresca
+t0 Pague 2 de Mana: Invoque por Invocação-Especial a carta do topo do seu Cemitério se ela for um monstro de Nível 2 ou menor.
+l1 A cova mais fresca
+t1 Em vez disso, pague 4 de Mana: qualquer Nível — ele não pode atacar neste turno.
+## Buried With His Boots On
+n Enterrado de Botas
+l0 Enterrado de botas
+t0 Pague 2 de Mana. Se um monstro seu foi destruído neste turno: Invoque por Invocação-Especial, com a face para baixo, a carta de monstro do topo do seu Cemitério.
+l1 E de chapéu também
+t1 Em vez disso, pague 3 de Mana: compre também 1 carta.
+## The Unquiet Topsoil
+n A Terra Revirada
+l0 Revirar a terra
+t0 Uma vez por turno: coloque a carta do topo do seu Cemitério no fundo do seu Cemitério.
+l1 Terra fresca
+t1 Pague 2 de Mana: envie a carta do topo do seu Deck para o Cemitério.
+## A Foot in the Door
+n Um Pé na Porta
+l0 Um pé na porta
+t0 Pague 1 de Mana: sua próxima Invocação-Normal neste turno exige 1 sacrifício a menos.
+l1 Os dois pés
+t1 Em vez disso, pague 3 de Mana: ela não exige sacrifícios.
+## The Promotion Board
+n O Conselho de Promoções
+l0 Promovido
+t0 Uma vez por turno — pague 2 de Mana: 1 monstro que você controla sobe permanentemente 1 Nível (máx. Nível 3).
+l1 Promovido com honras
+t1 Pague 3 de Mana: promova 1 monstro e depois compre 1 carta.
+## Demoted for Cause
+n Rebaixado com Justa Causa
+l0 Rebaixado com justa causa
+t0 Pague 2 de Mana: 1 monstro no campo passa a ser de Nível 1 até a End Phase.
+l1 Rebaixamento em massa
+t1 Em vez disso, pague 3 de Mana: até 2 monstros.
+## Cut Down to Size
+n Posto no Seu Lugar
+l0 Posto no seu lugar
+t0 Pague 2 de Mana: destrua 1 monstro cujo Nível seja MENOR que a quantidade de monstros que o seu controlador controla.
+l1 Ponham todos no lugar
+t1 Em vez disso, pague 4 de Mana: destrua até 2 desses monstros.
+## Stuck on the Middle Rung
+n Preso no Degrau do Meio
+l0 Qualquer degrau serve
+t0 Pague 2 de Mana: esta carta passa a ser do Nível da sua escolha (1–3) até a End Phase.
+## The Overqualified Doorman
+n O Porteiro Superqualificado
+l0 Não está na lista
+t0 Quando esta carta for Invocada: 1 monstro que o seu oponente controla passa a ser de Nível 1 até a End Phase.
+l1 Já vi portas piores
+t1 Uma vez por turno — pague 2 de Mana: esta carta não pode ser destruída neste turno.
+## The Ink Still Wet
+n A Tinta Ainda Fresca
+l0 A tinta ainda fresca
+t0 Pague 1 de Mana: olhe as 3 cartas do topo do seu Deck e devolva-as em qualquer ordem.
+l1 Ler duas vezes
+t1 Em vez disso, pague 2 de Mana: reordene-as e depois compre 1 carta.
+## The Day After Tomorrow's News
+n As Notícias de Depois de Amanhã
+l0 As notícias de amanhã
+t0 Pague 2 de Mana: olhe as 2 cartas do topo do Deck do seu OPONENTE e devolva-as em qualquer ordem.
+l1 A edição completa
+t1 Em vez disso, pague 4 de Mana: as 3 do topo.
+## The Self-Fulfilling Prophecy
+n A Profecia Autorrealizável
+l0 A profecia
+t0 Pague 2 de Mana: revele a carta do topo do seu Deck. Se for um monstro de Nível 2 ou menor, Invoque-o por Invocação-Especial; caso contrário, envie-a para o Cemitério.
+l1 A grande profecia
+t1 Em vez disso, pague 4 de Mana: qualquer Nível — um monstro Invocado não pode atacar neste turno.
+## She Reads the Weather in Entrails
+n Ela Lê o Tempo nas Entranhas
+l0 Ler os sinais
+t0 Quando esta carta for Invocada: revele a carta do topo do seu Deck; você pode colocá-la no fundo.
+l1 Ler os sinais deles
+t1 Pague 2 de Mana: o mesmo com o Deck do seu oponente.
+## The Calendar's Last Page
+n A Última Folha do Calendário
+l0 A última folha vira
+t0 Quando esta carta for Invocada: compre 2 cartas e depois coloque 1 carta da sua mão no fundo do seu Deck.
+l1 Arrancar o amanhã
+t1 Pague 3 de Mana: revele as 2 cartas do topo do seu Deck; adicione à sua mão todos os monstros entre elas.
+## The Appointed Hour
+n A Hora Marcada
+l0 A hora soa
+t0 Quando o último Marcador de Hora for removido: compre 2 cartas, ganhe 2 de Mana neste turno e devolva para a mão até 1 carta que o seu oponente controla. Depois destrua esta carta.
+l1 Adiantar o relógio
+t1 Uma vez por turno — pague 2 de Mana: remova 1 Marcador de Hora adicional.
+## Ink for the Third Edition
+n Tinta para a Terceira Edição
+l0 Tinta para a terceira edição
+t0 Pague 1 de Mana: coloque 1 carta da sua mão no topo do seu Deck; compre 1 carta.
+l1 Revisão de provas
+t1 Em vez disso, pague 2 de Mana: depois revele a carta do topo do seu Deck; você pode colocá-la no fundo.
+## He Who Leads With His Shoulder
+n Aquele que Avança de Ombro
+l0 Todo o peso atrás
+t0 Pague 2 de Mana: esta carta ganha 300 de DEF até o final deste turno.
+## The Vault's Own Doorframe
+n O Batente do Próprio Cofre
+l0 Escorar a ala
+t0 Pague 3 de Mana: seus monstros adjacentes a esta carta ganham 400 de DEF até o final deste turno.
+## Doorstop Made of Dragon Bone
+n Peso de Porta de Osso de Dragão
+l0 Talar a rachadura
+t0 Uma vez por turno — pague 1 de Mana: esta carta ganha permanentemente 300 de DEF.
+## Lead With the Shield
+n Escudo à Frente
+l0 Escudo à frente
+t0 Pague 1 de Mana: 1 monstro que você controla ataca usando sua DEF até o final deste turno.
+l1 Muralha de escudos, avançar
+t1 Em vez disso, pague 3 de Mana: até 3 monstros — eles também ganham 200 de DEF cada até o final deste turno.
+## An Honest Man's Bluff
+n O Blefe de um Homem Honesto
+l0 O blefe de um homem honesto
+t0 Pague 1 de Mana: revele sua mão. Se ela não contiver nenhuma Magia, compre 2 cartas; caso contrário, compre 1.
+l1 Nada na manga
+t1 Em vez disso, pague 2 de Mana: depois você pode colocar 1 carta da sua mão no fundo do seu Deck.
+## The Beggar Who Shows His Purse
+n O Mendigo que Mostra a Bolsa
+l0 Uma bolsa vazia
+t0 Quando esta carta for Invocada: revele sua mão. Se ela estiver vazia, compre 2 cartas.
+l1 Mostre a sua
+t1 Pague 1 de Mana: seu oponente revela 1 carta aleatória da mão dele.
+## The Transparent Man
+n O Homem Transparente
+l0 Nada a esconder
+t0 Quando esta carta for Invocada: revele sua mão; esta carta ganha permanentemente 200 de ATK para cada monstro revelado.
+l1 Olhe através de mim
+t1 Pague 2 de Mana: esta carta não pode ser alvo dos efeitos do seu oponente neste turno.
+## Everything Above Board
+n Tudo às Claras
+l0 Tudo às claras
+t0 Pague 2 de Mana: ambos os jogadores revelam suas mãos. Compre 1 carta se o seu oponente tiver mais cartas na mão que você.
+l1 Seu lado da mesa
+t1 Em vez disso, pague 3 de Mana: apenas o seu OPONENTE revela — mesma compra.
+## The Thousandth Card
+n A Milésima Carta
+l0 Uma entre mil
+t0 Quando esta carta for Invocada: compre 1 carta.
+l1 De volta às mil
+t1 Uma vez por Duelo — pague 1 de Mana: embaralhe esta carta no seu Deck; compre 2 cartas.
+## Countersign
+n Contra-Assinatura
+l0 Contra-assinatura
+t0 Pague 2 de Mana: a próxima Magia que o seu oponente ativar neste turno custa 2 de Mana a mais.
+l1 Registrado em cartório
+t1 Em vez disso, pague 3 de Mana: ela custa 3 a mais e você compra 1 carta.
+## Eviction Notice
+n Ordem de Despejo
+l0 Ordem de despejo
+t0 Pague 1 de Mana: devolva para a mão do dono 1 monstro que não pode atacar.
+l1 Esvaziar o prédio
+t1 Em vez disso, pague 3 de Mana: até 2 desses monstros.
+## Wrong Queue, Sir
+n Fila Errada, Senhor
+l0 Fila errada, senhor
+t0 Pague 2 de Mana: mova 1 monstro que o seu oponente controla para outra Zona de Monstros vazia do lado dele (à sua escolha).
+l1 Todos fora da fila
+t1 Em vez disso, pague 3 de Mana: mova até 2.
+## The Turntable
+n O Prato Giratório
+l0 O prato giratório
+t0 Pague 2 de Mana: desloque TODOS os seus monstros uma zona para a esquerda ou a direita (os sem espaço ficam).
+l1 Mais uma volta
+t1 Em vez disso, pague 3 de Mana: compre 1 carta se 3 ou mais monstros se moveram.
+## Settle the Difference
+n Acertar a Diferença
+l0 Acertar a diferença
+t0 Uma vez por Duelo. Pague 3 de Mana: os LP de ambos os jogadores passam a ser o MENOR dos dois totais.
+l1 Fique com o troco
+t1 Em vez disso, pague 5 de Mana: depois você ganha 1000 LP.
+## The Even Scales
+n A Balança em Equilíbrio
+l0 Incline para mim
+t0 Pague 2 de Mana: ganhe LP iguais à metade da diferença entre os LP de ambos os jogadores (máx. 1000).
+## First Mover's Advantage
+n A Vantagem do Primeiro Lance
+l0 A vantagem do primeiro lance
+t0 Somente durante o seu PRIMEIRO turno do Duelo — pague 1 de Mana: ganhe 2 de Mana neste turno.
+l1 Ladrão de tempo
+t1 Em vez disso, pague 2 de Mana: compre também 1 carta.
+## The Standing Order
+n A Ordem Permanente
+l0 Cheque especial
+t0 Uma vez por turno — pague 2 de Mana: envie a carta do topo do seu Deck para o Cemitério.
+## Two Truths and a Lie
+n Duas Verdades e uma Mentira
+l0 Duas verdades e uma mentira
+t0 Pague 2 de Mana: Baixe até 3 monstros da sua mão com a face para baixo em Posição de Defesa.
+l1 E uma piscadela
+t1 Em vez disso, pague 3 de Mana: compre 1 carta para cada monstro Baixado além do primeiro.
+## Making Ends Meet
+n Fechar as Contas do Mês
+l0 Fechar as contas do mês
+t0 Pague 1 de Mana. Se você controlar 1 monstro ou menos: ganhe 2 de Mana neste turno.
+l1 Esticar ainda mais
+t1 Em vez disso, pague 2 de Mana: compre também 1 carta se sua mão ficar com 3 cartas ou menos.

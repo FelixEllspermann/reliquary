@@ -4216,3 +4216,288 @@ l0 Peine de cour
 t0 Payez 1 mana : envoyez 1 monstre avec moins de 2000 ATK de votre Deck au Cimetière, puis gagnez 1 mana.
 l1 Peine ferme
 t1 À la place, payez 3 mana : envoyez 2 monstres de n'importe quelles caractéristiques au Cimetière, mais ne gagnez aucun mana.
+# ---------- Road to 1000 (0.1.7) ----------
+## The Crown of the Absent King
+n La Couronne du Roi Absent
+l0 Couronnement
+t0 Au début de votre Standby Phase, si vous contrôlez « La Couronne du Roi Absent », « Le Sceptre du Roi Absent » et « L'Orbe du Roi Absent » : vous gagnez le Duel.
+l1 Tenir la Couronne
+t1 Payez 2 Mana : cette carte ne peut pas être détruite ce tour.
+## The Sceptre of the Absent King
+n Le Sceptre du Roi Absent
+l0 Couronnement
+t0 Au début de votre Standby Phase, si vous contrôlez « La Couronne du Roi Absent », « Le Sceptre du Roi Absent » et « L'Orbe du Roi Absent » : vous gagnez le Duel.
+l1 Nul ne se lève
+t1 Une fois par tour : 1 monstre contrôlé par votre adversaire perd 300 ATK jusqu'à la fin de ce tour.
+l2 Nul, vraiment nul
+t2 Payez 2 Mana : à la place, jusqu'à 2 monstres contrôlés par votre adversaire perdent chacun 300 ATK jusqu'à la fin de ce tour.
+## The Orb of the Absent King
+n L'Orbe du Roi Absent
+l0 Couronnement
+t0 Au début de votre Standby Phase, si vous contrôlez « La Couronne du Roi Absent », « Le Sceptre du Roi Absent » et « L'Orbe du Roi Absent » : vous gagnez le Duel.
+l1 Le royaume perdure
+t1 Durant votre Standby Phase : gagnez 300 LP.
+l2 Gardé en fiducie
+t2 Payez 2 Mana : mélangez 1 carte de votre Cimetière dans votre Deck.
+## The Regent Who Keeps the Throne Warm
+n Le Régent qui Garde le Trône au Chaud
+l0 Garder le siège
+t0 Quand cette carte est Invoquée : ajoutez à votre main 1 monstre avec 0 ATK depuis votre Deck.
+l1 Chauffer le siège
+t1 Payez 2 Mana : Invoquez-le Spécialement à la place — ses effets sont annulés jusqu'à la End Phase et il ne peut pas attaquer ce tour.
+## Long Live the King
+n Vive le Roi
+l0 Vive le roi
+t0 Payez 2 Mana : Invoquez Spécialement 1 monstre avec 0 ATK depuis votre Cimetière en Position de Défense.
+l1 Long soit son règne
+t1 À la place, payez 4 Mana : il ne peut de plus pas être détruit ce tour.
+## Bricklayer of the Eleventh Hour
+n Maçon de la Onzième Heure
+l0 Une rangée de plus
+t0 Quand cette carte est Invoquée : scellez 1 Zone Monstre vide de votre adversaire tant que cette carte reste face recto.
+l1 Emmurez-les
+t1 Payez 2 Mana : scellez-en jusqu'à 2 à la place.
+## The Squatter, Uninvited
+n Le Squatteur, Sans Invitation
+l0 L'emménagement
+t0 Si cette carte a été Invoquée Spécialement : piochez 1 carte.
+## No Room at the Inn
+n Pas de Place à l'Auberge
+l0 Pas de place à l'auberge
+t0 Payez 2 Mana : scellez jusqu'à 2 Zones Monstre vides de votre adversaire jusqu'à la fin de votre prochain tour.
+l1 Pas même l'étable
+t1 À la place, payez 4 Mana : scellez-en jusqu'à 3 et piochez 1 carte.
+## Condemned Premises
+n Locaux Condamnés
+l0 Locaux condamnés
+t0 Payez 2 Mana : scellez 1 Zone Monstre vide d'un côté ou l'autre du terrain jusqu'à la fin de votre prochain tour.
+l1 Pâté de maisons condamné
+t1 À la place, payez 3 Mana : scellez 2 zones.
+## The Bricked-Up Door
+n La Porte Murée
+l0 Brique après brique
+t0 Une fois par tour — payez 1 Mana : scellez 1 Zone Monstre vide d'un côté ou l'autre jusqu'à la fin de votre prochain tour.
+l1 Murer toute l'aile
+t1 Payez 2 Mana : scellez 2 zones à la place.
+## The Landlord's Own Padlock
+n Le Cadenas du Propriétaire
+l0 Un cadenas de plus
+t0 Payez 2 Mana : scellez 1 Zone Monstre vide d'un côté ou l'autre jusqu'à la fin de votre prochain tour.
+## Gravedigger's First Shift
+n La Première Garde du Fossoyeur
+l0 Premier coup de pelle
+t0 Quand cette carte est Invoquée : envoyez la carte du dessus de votre Deck au Cimetière.
+l1 Creuser où l'on dit
+t1 Payez 1 Mana : choisissez la carte vous-même — envoyez 1 carte de votre Deck au Cimetière.
+## Echo of the Latest Loss
+n Écho de la Dernière Perte
+l0 Faire taire l'autre tombe
+t0 Payez 2 Mana : bannissez la carte du dessus du Cimetière de votre adversaire.
+## He Sleeps Lightly
+n Il a le Sommeil Léger
+l0 Un dormeur léger
+t0 Tant que cette carte est la carte du dessus de votre Cimetière — payez 2 Mana : Invoquez-la Spécialement. Elle ne peut pas attaquer ce tour.
+## Last In, First Out
+n Dernier Entré, Premier Sorti
+l0 Dernier entré, premier sorti
+t0 Payez 1 Mana : ajoutez à votre main la carte du dessus de votre Cimetière.
+l1 Écriture double
+t1 À la place, payez 3 Mana : les 2 du dessus.
+## The Fresh Grave
+n La Tombe Fraîche
+l0 La tombe fraîche
+t0 Payez 2 Mana : Invoquez Spécialement la carte du dessus de votre Cimetière si c'est un monstre de Niveau 2 ou moins.
+l1 La tombe la plus fraîche
+t1 À la place, payez 4 Mana : n'importe quel Niveau — il ne peut pas attaquer ce tour.
+## Buried With His Boots On
+n Enterré avec ses Bottes
+l0 Enterré avec ses bottes
+t0 Payez 2 Mana. Si un de vos monstres a été détruit ce tour : Invoquez Spécialement face verso la carte de monstre du dessus de votre Cimetière.
+l1 Et son chapeau avec
+t1 À la place, payez 3 Mana : piochez de plus 1 carte.
+## The Unquiet Topsoil
+n La Terre Remuée
+l0 Retourner la terre
+t0 Une fois par tour : placez la carte du dessus de votre Cimetière en dessous de votre Cimetière.
+l1 Terre fraîche
+t1 Payez 2 Mana : envoyez la carte du dessus de votre Deck au Cimetière.
+## A Foot in the Door
+n Un Pied dans la Porte
+l0 Un pied dans la porte
+t0 Payez 1 Mana : votre prochaine Invocation Normale de ce tour demande 1 sacrifice de moins.
+l1 Les deux pieds
+t1 À la place, payez 3 Mana : elle ne demande aucun sacrifice.
+## The Promotion Board
+n Le Comité de Promotion
+l0 Promu
+t0 Une fois par tour — payez 2 Mana : 1 monstre que vous contrôlez monte définitivement de 1 Niveau (max. Niveau 3).
+l1 Promu avec les honneurs
+t1 Payez 3 Mana : promouvez 1 monstre, puis piochez 1 carte.
+## Demoted for Cause
+n Rétrogradé pour Faute
+l0 Rétrogradé pour faute
+t0 Payez 2 Mana : 1 monstre sur le terrain devient Niveau 1 jusqu'à la End Phase.
+l1 Rétrogradation générale
+t1 À la place, payez 3 Mana : jusqu'à 2 monstres.
+## Cut Down to Size
+n Remis à sa Place
+l0 Remis à sa place
+t0 Payez 2 Mana : détruisez 1 monstre dont le Niveau est INFÉRIEUR au nombre de monstres que contrôle son contrôleur.
+l1 Remettez-les tous à leur place
+t1 À la place, payez 4 Mana : détruisez jusqu'à 2 de ces monstres.
+## Stuck on the Middle Rung
+n Coincé sur le Barreau du Milieu
+l0 N'importe quel barreau
+t0 Payez 2 Mana : cette carte devient du Niveau de votre choix (1–3) jusqu'à la End Phase.
+## The Overqualified Doorman
+n Le Portier Surqualifié
+l0 Pas sur la liste
+t0 Quand cette carte est Invoquée : 1 monstre contrôlé par votre adversaire devient Niveau 1 jusqu'à la End Phase.
+l1 J'ai vu pire comme porte
+t1 Une fois par tour — payez 2 Mana : cette carte ne peut pas être détruite ce tour.
+## The Ink Still Wet
+n L'Encre Encore Fraîche
+l0 L'encre encore fraîche
+t0 Payez 1 Mana : regardez les 3 cartes du dessus de votre Deck et replacez-les dans l'ordre de votre choix.
+l1 Relire deux fois
+t1 À la place, payez 2 Mana : réordonnez-les, puis piochez 1 carte.
+## The Day After Tomorrow's News
+n Les Nouvelles d'Après-Demain
+l0 Les nouvelles de demain
+t0 Payez 2 Mana : regardez les 2 cartes du dessus du Deck de votre ADVERSAIRE et replacez-les dans l'ordre de votre choix.
+l1 L'édition complète
+t1 À la place, payez 4 Mana : les 3 du dessus.
+## The Self-Fulfilling Prophecy
+n La Prophétie Autoréalisatrice
+l0 La prophétie
+t0 Payez 2 Mana : révélez la carte du dessus de votre Deck. Si c'est un monstre de Niveau 2 ou moins, Invoquez-le Spécialement ; sinon envoyez-la au Cimetière.
+l1 La grande prophétie
+t1 À la place, payez 4 Mana : n'importe quel Niveau — un monstre Invoqué ne peut pas attaquer ce tour.
+## She Reads the Weather in Entrails
+n Elle Lit le Temps dans les Entrailles
+l0 Lire les signes
+t0 Quand cette carte est Invoquée : révélez la carte du dessus de votre Deck ; vous pouvez la placer en dessous.
+l1 Lire leurs signes
+t1 Payez 2 Mana : de même pour le Deck de votre adversaire.
+## The Calendar's Last Page
+n La Dernière Page du Calendrier
+l0 La dernière page se tourne
+t0 Quand cette carte est Invoquée : piochez 2 cartes, puis placez 1 carte de votre main en dessous de votre Deck.
+l1 Arracher demain
+t1 Payez 3 Mana : révélez les 2 cartes du dessus de votre Deck ; ajoutez à votre main tous les monstres parmi elles.
+## The Appointed Hour
+n L'Heure Dite
+l0 L'heure sonne
+t0 Quand le dernier Compteur d'Heure est retiré : piochez 2 cartes, gagnez 2 Mana ce tour et renvoyez à la main jusqu'à 1 carte contrôlée par votre adversaire. Détruisez ensuite cette carte.
+l1 Avancer l'horloge
+t1 Une fois par tour — payez 2 Mana : retirez 1 Compteur d'Heure supplémentaire.
+## Ink for the Third Edition
+n De l'Encre pour la Troisième Édition
+l0 De l'encre pour la troisième édition
+t0 Payez 1 Mana : placez 1 carte de votre main sur le dessus de votre Deck ; piochez 1 carte.
+l1 Relecture d'épreuves
+t1 À la place, payez 2 Mana : révélez ensuite la carte du dessus de votre Deck ; vous pouvez la placer en dessous.
+## He Who Leads With His Shoulder
+n Celui qui Charge de l'Épaule
+l0 Tout le poids derrière
+t0 Payez 2 Mana : cette carte gagne 300 DEF jusqu'à la fin de ce tour.
+## The Vault's Own Doorframe
+n Le Chambranle de la Chambre Forte
+l0 Étayer l'aile
+t0 Payez 3 Mana : vos monstres adjacents à cette carte gagnent 400 DEF jusqu'à la fin de ce tour.
+## Doorstop Made of Dragon Bone
+n Cale-Porte en Os de Dragon
+l0 Éclisser la fêlure
+t0 Une fois par tour — payez 1 Mana : cette carte gagne définitivement 300 DEF.
+## Lead With the Shield
+n Bouclier en Avant
+l0 Bouclier en avant
+t0 Payez 1 Mana : 1 monstre que vous contrôlez attaque avec sa DEF jusqu'à la fin de ce tour.
+l1 Mur de boucliers, en avant
+t1 À la place, payez 3 Mana : jusqu'à 3 monstres — ils gagnent de plus chacun 200 DEF jusqu'à la fin de ce tour.
+## An Honest Man's Bluff
+n Le Bluff d'un Honnête Homme
+l0 Le bluff d'un honnête homme
+t0 Payez 1 Mana : révélez votre main. Si elle ne contient aucun Sort, piochez 2 cartes ; sinon piochez-en 1.
+l1 Rien dans la manche
+t1 À la place, payez 2 Mana : vous pouvez ensuite placer 1 carte de votre main en dessous de votre Deck.
+## The Beggar Who Shows His Purse
+n Le Mendiant qui Montre sa Bourse
+l0 Une bourse vide
+t0 Quand cette carte est Invoquée : révélez votre main. Si elle est vide, piochez 2 cartes.
+l1 Montre-moi la tienne
+t1 Payez 1 Mana : votre adversaire révèle 1 carte aléatoire de sa main.
+## The Transparent Man
+n L'Homme Transparent
+l0 Rien à cacher
+t0 Quand cette carte est Invoquée : révélez votre main ; cette carte gagne définitivement 200 ATK pour chaque monstre révélé.
+l1 Regardez à travers
+t1 Payez 2 Mana : cette carte ne peut pas être ciblée par les effets de votre adversaire ce tour.
+## Everything Above Board
+n Cartes sur Table
+l0 Cartes sur table
+t0 Payez 2 Mana : les deux joueurs révèlent leur main. Piochez 1 carte si votre adversaire a plus de cartes en main que vous.
+l1 Votre côté de la table
+t1 À la place, payez 3 Mana : seul votre ADVERSAIRE révèle — même pioche.
+## The Thousandth Card
+n La Millième Carte
+l0 Une parmi mille
+t0 Quand cette carte est Invoquée : piochez 1 carte.
+l1 Retour parmi les mille
+t1 Une fois par Duel — payez 1 Mana : mélangez cette carte dans votre Deck ; piochez 2 cartes.
+## Countersign
+n Contreseing
+l0 Contreseing
+t0 Payez 2 Mana : le prochain Sort que votre adversaire active ce tour coûte 2 Mana de plus.
+l1 Passé devant notaire
+t1 À la place, payez 3 Mana : il coûte 3 de plus et vous piochez 1 carte.
+## Eviction Notice
+n Avis d'Expulsion
+l0 Avis d'expulsion
+t0 Payez 1 Mana : renvoyez à la main de son propriétaire 1 monstre qui ne peut pas attaquer.
+l1 Vider l'immeuble
+t1 À la place, payez 3 Mana : jusqu'à 2 de ces monstres.
+## Wrong Queue, Sir
+n Mauvaise File, Monsieur
+l0 Mauvaise file, monsieur
+t0 Payez 2 Mana : déplacez 1 monstre contrôlé par votre adversaire vers une autre Zone Monstre vide de son côté (votre choix).
+l1 Tous hors de la file
+t1 À la place, payez 3 Mana : déplacez-en jusqu'à 2.
+## The Turntable
+n La Plaque Tournante
+l0 La plaque tournante
+t0 Payez 2 Mana : décalez TOUS vos monstres d'une zone vers la gauche ou la droite (ceux sans place restent).
+l1 Encore un tour
+t1 À la place, payez 3 Mana : piochez 1 carte si 3 monstres ou plus ont bougé.
+## Settle the Difference
+n Régler la Différence
+l0 Régler la différence
+t0 Une fois par Duel. Payez 3 Mana : les LP des deux joueurs deviennent le PLUS BAS des deux totaux.
+l1 Gardez la monnaie
+t1 À la place, payez 5 Mana : vous gagnez ensuite 1000 LP.
+## The Even Scales
+n La Balance à l'Équilibre
+l0 Penche vers moi
+t0 Payez 2 Mana : gagnez des LP égaux à la moitié de la différence entre les LP des deux joueurs (max. 1000).
+## First Mover's Advantage
+n L'Avantage du Premier Coup
+l0 L'avantage du premier coup
+t0 Seulement durant votre PREMIER tour du Duel — payez 1 Mana : gagnez 2 Mana ce tour.
+l1 Voleur de tempo
+t1 À la place, payez 2 Mana : piochez de plus 1 carte.
+## The Standing Order
+n L'Ordre Permanent
+l0 Découvert bancaire
+t0 Une fois par tour — payez 2 Mana : envoyez la carte du dessus de votre Deck au Cimetière.
+## Two Truths and a Lie
+n Deux Vérités et un Mensonge
+l0 Deux vérités et un mensonge
+t0 Payez 2 Mana : Posez jusqu'à 3 monstres de votre main face verso en Position de Défense.
+l1 Et un clin d'œil
+t1 À la place, payez 3 Mana : piochez 1 carte pour chaque monstre Posé au-delà du premier.
+## Making Ends Meet
+n Joindre les Deux Bouts
+l0 Joindre les deux bouts
+t0 Payez 1 Mana. Si vous contrôlez 1 monstre ou moins : gagnez 2 Mana ce tour.
+l1 Tirer encore sur la corde
+t1 À la place, payez 2 Mana : piochez de plus 1 carte si votre main compte alors 3 cartes ou moins.

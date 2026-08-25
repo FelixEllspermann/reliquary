@@ -230,6 +230,36 @@ namespace Rouge.Tcg
         [Tooltip("Monster, die der Besitzer kontrolliert, aber nicht besitzt, erhalten so viel ATK (Broker of Both Sides)")]
         public int passiveStolenAtkBonus;
 
+        [Header("Road to 1000 (September 2026)")]
+        [Tooltip("Dieses Monster hat ATK und DEF der obersten MONSTERkarte des eigenen Friedhofs " +
+                 "(Echo of the Latest Loss). Ohne Monster im Friedhof gelten die eigenen Basiswerte.")]
+        public bool passiveStatsFromGraveTop;
+
+        [Tooltip("Dieses Monster greift mit seiner DEF statt seiner ATK an (He Who Leads With His Shoulder)")]
+        public bool passiveAttacksWithDef;
+
+        [Tooltip(">0: nach jedem Angriff verliert dieses Monster dauerhaft N DEF (Doorstop Made of Dragon Bone)")]
+        public int passiveDefLossAfterAttack;
+
+        [Tooltip("Ausrüstung: die an den TRÄGER angrenzenden Zonen gelten als versiegelt, solange sie " +
+                 "leer sind (The Landlord's Own Padlock)")]
+        public bool passiveSealsAdjacentZones;
+
+        [Tooltip("Ausrüstung: der Träger kann nicht in eine andere Zone ziehen (The Landlord's Own Padlock)")]
+        public bool passiveBearerZoneLocked;
+
+        [Tooltip(">0: solange die LP beider Spieler höchstens N auseinanderliegen, kann diese Karte " +
+                 "nicht von gegnerischen Effekten als Ziel gewählt werden (The Even Scales)")]
+        public int passiveUntargetableWhileLpClose;
+
+        [Tooltip("Player-Artefakt: in der eigenen Draw Phase DARF der Besitzer statt zu ziehen die " +
+                 "oberste Karte seines Friedhofs auf die Hand nehmen (The Standing Order)")]
+        public bool passiveDrawReplacementGraveTop;
+
+        [Tooltip(">0: kommt mit N Countdown-Markern aufs Feld; in jeder Standby Phase des Kontrolleurs " +
+                 "wird einer entfernt — beim letzten feuert der CountdownZero-Effekt (The Appointed Hour)")]
+        public int countdownMarkers;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -388,6 +418,24 @@ namespace Rouge.Tcg
             if (passiveStolenAtkBonus > 0)
                 lines.Add(Loc.F("Monsters you control but do not own gain {0} ATK.", passiveStolenAtkBonus));
 
+            // --- Road to 1000 ---
+            if (passiveStatsFromGraveTop)
+                lines.Add(Loc.T("This card's ATK and DEF equal those of the top monster card of your Graveyard."));
+            if (passiveAttacksWithDef)
+                lines.Add(Loc.T("This card attacks using its DEF."));
+            if (passiveDefLossAfterAttack > 0)
+                lines.Add(Loc.F("After this card attacks, it permanently loses {0} DEF.", passiveDefLossAfterAttack));
+            if (passiveSealsAdjacentZones)
+                lines.Add(Loc.T("The zones adjacent to the equipped monster count as Sealed while they are empty."));
+            if (passiveBearerZoneLocked)
+                lines.Add(Loc.T("The equipped monster cannot move to another zone."));
+            if (passiveUntargetableWhileLpClose > 0)
+                lines.Add(Loc.F("While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.", passiveUntargetableWhileLpClose));
+            if (passiveDrawReplacementGraveTop)
+                lines.Add(Loc.T("During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing."));
+            if (countdownMarkers > 0)
+                lines.Add(Loc.F("Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.", countdownMarkers));
+
             return lines;
         }
 
@@ -408,6 +456,7 @@ namespace Rouge.Tcg
                 case EffectCountKind.OpponentIllusionTokens: return Loc.T("the Illusion Tokens your opponent controls");
                 case EffectCountKind.OwnHandCards: return Loc.T("the cards in your hand");
                 case EffectCountKind.OwnGraveyardSpells: return Loc.T("the Spells in your Graveyard");
+                case EffectCountKind.OwnDistinctLevels: return Loc.T("the different Levels among your monsters");
                 default: return Loc.T("your monsters on the field");
             }
         }

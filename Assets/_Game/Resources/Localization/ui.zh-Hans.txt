@@ -477,3 +477,24 @@ Replay not found.	未找到回放。
 Replay is damaged.	回放已损坏。
 SHOWCASE	展示柜
 DUEL OVER	决斗结束
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	对手控制的怪兽比你多
+your LP are {0} or less	你的LP为{0}或更低
+the top card of your Graveyard is a monster	你墓地最上方的卡是怪兽
+a card was revealed this turn	本回合有卡被翻开
+you control a Level 1 and a Level 3 monster	你同时控制1星和3星怪兽
+your opponent controls a Level 3 monster and you control none	对手控制3星怪兽而你没有
+it is your turn {0} or later	现在是你的第{0}回合或之后
+your Deck holds {0}+ cards	你的卡组有{0}张以上
+both players' LP are within {0} of each other	双方LP之差在{0}以内
+you control {0}+ Artifacts	你控制{0}个以上神器
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	你可以把这张卡从手牌特殊召唤到你场上一个被封印的怪兽区域——封印随之破碎{0}{1}（1回合1次）。
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	这张卡的攻击力与守备力等同于你墓地最上方的怪兽卡。
+This card attacks using its DEF.	这张卡以守备力进行攻击。
+After this card attacks, it permanently loses {0} DEF.	这张卡攻击后，守备力永久降低{0}。
+The zones adjacent to the equipped monster count as Sealed while they are empty.	装备怪兽相邻的区域只要空着就视为被封印。
+The equipped monster cannot move to another zone.	装备怪兽不能移动到其他区域。
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	只要双方LP之差在{0}以内，这张卡就不会成为对手效果的对象。
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	在你的抽卡阶段，你可以把墓地最上方的卡加入手牌来代替抽卡。
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	带着{0}个时刻指示物入场。你的每个准备阶段：移去1个。移去最后1个时，其倒计时效果发动，随后破坏这张卡。
+the different Levels among your monsters	你的怪兽中不同星级的数量

@@ -476,3 +476,24 @@ Replay not found.	Replay introuvable.
 Replay is damaged.	Le replay est endommagé.
 SHOWCASE	VITRINE
 DUEL OVER	DUEL TERMINÉ
+# ---------- Road to 1000 (September 2026) ----------
+your opponent controls more monsters than you	votre adversaire contrôle plus de monstres que vous
+your LP are {0} or less	vos LP sont de {0} ou moins
+the top card of your Graveyard is a monster	la carte du dessus de votre Cimetière est un monstre
+a card was revealed this turn	une carte a été révélée ce tour
+you control a Level 1 and a Level 3 monster	vous contrôlez un monstre de Niveau 1 ET un de Niveau 3
+your opponent controls a Level 3 monster and you control none	votre adversaire contrôle un monstre de Niveau 3 et vous aucun
+it is your turn {0} or later	c'est votre {0}e tour ou plus
+your Deck holds {0}+ cards	votre Deck contient {0} cartes ou plus
+both players' LP are within {0} of each other	les LP des deux joueurs diffèrent d'au plus {0}
+you control {0}+ Artifacts	vous contrôlez {0}+ Artefacts
+You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).	Vous pouvez Invoquer Spécialement cette carte depuis votre main dans une Zone Monstre SCELLÉE de votre côté — le sceau se brise{0}{1} (une fois par tour).
+This card's ATK and DEF equal those of the top monster card of your Graveyard.	L'ATK et la DEF de cette carte sont égales à celles de la carte de monstre du dessus de votre Cimetière.
+This card attacks using its DEF.	Cette carte attaque avec sa DEF.
+After this card attacks, it permanently loses {0} DEF.	Après que cette carte a attaqué, elle perd définitivement {0} DEF.
+The zones adjacent to the equipped monster count as Sealed while they are empty.	Les zones adjacentes au monstre équipé comptent comme scellées tant qu'elles sont vides.
+The equipped monster cannot move to another zone.	Le monstre équipé ne peut pas se déplacer vers une autre zone.
+While both players' LP are within {0} of each other, this card cannot be targeted by your opponent's effects.	Tant que les LP des deux joueurs diffèrent d'au plus {0}, cette carte ne peut pas être ciblée par les effets de votre adversaire.
+During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	Durant votre Draw Phase, vous pouvez ajouter à votre main la carte du dessus de votre Cimetière au lieu de piocher.
+Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Arrive sur le terrain avec {0} Compteurs d'Heure. Durant chacune de vos Standby Phases : retirez-en 1. Quand le dernier est retiré, son effet de compte à rebours se déclenche et cette carte est détruite.
+the different Levels among your monsters	les Niveaux différents parmi vos monstres
