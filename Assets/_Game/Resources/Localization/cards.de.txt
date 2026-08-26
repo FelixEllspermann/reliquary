@@ -4499,3 +4499,242 @@ l0 Über die Runden kommen
 t0 Zahle 1 Mana. Falls du 1 oder weniger Monster kontrollierst: Erhalte in diesem Zug 2 Mana.
 l1 Noch weiter strecken
 t1 Zahle stattdessen 2 Mana: Ziehe zusätzlich 1 Karte, falls deine Hand danach 3 oder weniger Karten enthält.
+# ---------- 5 Archetypes (0.1.7): Giftwurm, Spalthuf, Wegelager, Paragraf, Glockenwacht ----------
+## Giftwyrm Ribboncoil
+n Giftwurm Schleifenringler
+l0 Zurück an den Absender
+t0 Wird diese Karte in den Friedhof geschickt, während dein Gegner sie kontrolliert: Ziehe 1 Karte.
+## Giftwyrm Sweettooth
+n Giftwurm Naschzahn
+l0 Knabbergeräusche
+t0 Während der End Phase des Kontrolleurs dieser Karte, solange dein Gegner sie kontrolliert: Du hast in deinem nächsten Zug 1 Mana zusätzlich.
+## Giftwyrm Prettybow
+n Giftwurm Prachtschleife
+## Giftwyrm Unboxed
+n Giftwurm, ausgepackt
+l0 Es schlüpft
+t0 Wird diese Karte in den Friedhof geschickt, während dein Gegner sie kontrolliert: Du kannst sie auf DEIN Feld spezialbeschwören.
+## Giftwyrm Registry
+n Giftwurm-Geschenkliste
+l0 Steht auf der Liste
+t0 Zahle 2 Mana: Beschwöre 1 „Giftwurm“-Monster aus deinem Deck auf das Feld deines GEGNERS als Spezialbeschwörung.
+l1 Die volle Liste
+t1 Zahle stattdessen 4 Mana: 2 mit verschiedenen Namen.
+## Giftwyrm Thank-You Note
+n Giftwurm-Dankeskärtchen
+l0 Herzlichste Grüße
+t0 Zahle 1 Mana: Ziehe 1 Karte für jedes „Giftwurm“-Monster, das dein Gegner kontrolliert (max. 3).
+l1 Mit tiefstem Dank
+t1 Zahle stattdessen 2 Mana: Füge deiner Hand zusätzlich 1 „Giftwurm“-Karte aus deinem Friedhof hinzu.
+## Giftwyrm Molting
+n Giftwurm-Häutung
+l0 Die Häutung
+t0 Zahle 2 Mana: Nimm bis zu 2 deiner „Giftwurm“-Monster, die dein Gegner kontrolliert, auf DEIN Feld zurück; sie dürfen in diesem Zug angreifen.
+l1 Hungrige Häutung
+t1 Zahle stattdessen 4 Mana: Sie erhalten zusätzlich je 500 ATK bis zum Ende dieses Zuges.
+## Giftwyrm Hollowshell
+n Giftwurm Leerschale
+l0 Was darin war
+t0 Wenn diese Karte beschworen wird: 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 400 ATK für jedes „Giftwurm“, das er kontrolliert.
+## Giftwyrm, Ungrateful Guest
+n Giftwurm, der undankbare Gast
+s Dein Gegner kontrolliert ein „Giftwurm“-Monster — zahle 2 Mana.
+l0 Ein Gastgeschenk
+t0 Wenn diese Karte beschworen wird: Beschwöre 1 „Giftwurm“-Monster aus deinem Friedhof auf das Feld deines GEGNERS als Spezialbeschwörung.
+l1 Bleibt länger
+t1 Zahle 2 Mana: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Giftwyrm, the Whole Hamper
+n Giftwurm, der ganze Geschenkkorb
+s Dein Gegner kontrolliert 2+ „Giftwurm“-Monster — zahle 3 Mana.
+l0 Der Korb platzt auf
+t0 Wenn diese Karte beschworen wird: Nimm ALLE deine „Giftwurm“-Monster vom Feld deines Gegners auf dein Feld zurück; sie erhalten 300 ATK bis zum Ende dieses Zuges und dürfen in diesem Zug angreifen.
+## Splithoof Doorknocker
+n Spalthuf Klinkenputzer
+l0 Es klopft an der Tür
+t0 Wenn diese Karte beschworen wird — DEAL, dein Gegner wählt: Er wirft 1 zufällige Karte ab, ODER du ziehst 1 Karte.
+## Splithoof Pennyweight
+n Spalthuf Bleigewicht
+l0 Der Daumen auf der Waage
+t0 Einmal pro Zug — DEAL, dein Gegner wählt: Du erhältst in diesem Zug 1 Mana, ODER du ziehst 1 Karte.
+## Splithoof Grinning Ledger
+n Spalthufs grinsendes Kassenbuch
+l0 Geöffnet für Kundschaft
+t0 BEIDE Spieler dürfen dies einmal pro Zug aktivieren — zahle 1 Mana: Ziehe 1 Karte. Aktiviert dein GEGNER den Effekt, hast du in deinem nächsten Zug 1 Mana zusätzlich.
+## Splithoof Hagglehorn
+n Spalthuf Feilschhorn
+l0 Stunde des Feilschens
+t0 Wenn diese Karte beschworen wird — DEAL, dein Gegner wählt: 1 Monster nach Wahl des HÄNDLERS, das er kontrolliert, verliert dauerhaft 500 ATK, ODER du beschwörst 1 „Spalthuf“-Monster der Stufe 1 aus deinem Deck als Spezialbeschwörung.
+## Splithoof Sign Here
+n Spalthuf: Hier unterschreiben
+l0 Hier unterschreiben, bitte
+t0 Zahle 2 Mana, wenn ein gegnerisches Monster angreift — DEAL, dein Gegner wählt: Der Angriff wird abgebrochen, ODER der Angriff läuft und er wirft danach 2 zufällige Karten ab.
+## Splithoof Repossession
+n Spalthuf-Pfändung
+l0 Die Pfändung
+t0 Zahle 2 Mana: Platziere ein Pfandrecht von 2 auf 1 Monster, das dein Gegner kontrolliert (in jeder seiner Standby Phases: 2 Mana zahlen oder es wird zerstört); ziehe 1 Karte.
+l1 Zins und Zinseszins
+t1 Zahle stattdessen 3 Mana: Ein Pfandrecht von 3.
+## Splithoof Fiddle Wager
+n Spalthufs Geigen-Wette
+l0 Die Geigen-Wette
+t0 Zahle 1 Mana: Beide Spieler decken die oberste Karte ihres Decks auf. Der Spieler mit dem höheren Level (Nicht-Monster zählen als 0) nimmt seine Karte auf die Hand; die andere geht in den Friedhof ihres Besitzers. Bei Gleichstand bleiben beide liegen.
+l1 Des Teufels eigene Weise
+t1 Zahle stattdessen 2 Mana: Gewinnt DEINE Karte, ziehe zusätzlich 1 Karte.
+## Splithoof Collections Imp
+n Spalthuf Inkasso-Kobold
+l0 Zahlung überfällig
+t0 Wenn diese Karte beschworen wird: Erhöhe das Pfandrecht von 1 Monster, das dein Gegner kontrolliert, um 1.
+## Splithoof, Fair and Square
+n Spalthuf, völlig korrekt und fair
+s Diesen Zug wurde ein Deal geschlossen — zahle 2 Mana.
+l0 Das Kleingedruckte lesen
+t0 Wenn diese Karte beschworen wird — DEAL, dein Gegner wählt: DU ziehst 1 Karte, ODER die stärksten Monster beider Spieler tauschen dauerhaft die Kontrolle.
+## Splithoof, the Better Bargain
+n Spalthuf, das bessere Geschäft
+s In diesem Duell wurden 3+ Deals geschlossen — zahle 3 Mana.
+l0 Das letzte Angebot
+t0 Wenn diese Karte beschworen wird — DEAL, dein Gegner wählt: Du ziehst 3 Karten, ODER er schickt das stärkste Monster, das er kontrolliert, in den Friedhof.
+l1 Den Topf versüßen
+t1 Einmal pro Zug — zahle 2 Mana (Quick) — DEAL, dein Gegner wählt: 1 Monster deiner Wahl erhält 700 ATK bis zum Ende dieses Zuges, ODER du ziehst 1 Karte.
+## Waylay Hedgeknife
+n Wegelager Heckenmesser
+l0 Aus der Hecke
+t0 HINTERHALT — wenn dein Gegner ein Monster beschwört: Du kannst diese Karte aus deiner Hand spezialbeschwören (im Reaktionsfenster). Dann verliert 1 Monster, das dein Gegner kontrolliert, 300 ATK bis zum Ende dieses Zuges.
+## Waylay Roadthorn
+n Wegelager Wegdorn
+l0 Ein Dorn im Weg
+t0 HINTERHALT — wenn ein gegnerisches Monster angreift: Du kannst diese Karte aus deiner Hand spezialbeschwören. Dann verliert der Angreifer 500 ATK bis zum Ende dieses Zuges.
+## Waylay Tollgate
+n Wegelager-Schlagbaum
+l0 Die Kasse zählen
+t0 Zahle 1 Mana (einmal pro Zug): Ziehe 1 Karte, falls dein Gegner in diesem Zug angegriffen hat.
+## Waylay Highwayman
+n Wegelager Straßenräuber
+l0 Die Börse oder der Stolz
+t0 HINTERHALT — wenn ein gegnerisches Monster angreift: Du kannst diese Karte aus deiner Hand spezialbeschwören. Ziehe dann 1 Karte.
+l1 Versperrter Weg
+t1 Zahle 2 Mana: 1 Monster, das dein Gegner kontrolliert, kann in diesem Zug nicht angreifen.
+## Stand and Deliver!
+n Geld oder Leben!
+l0 Geld oder Leben!
+t0 Zahle 2 Mana, wenn ein gegnerisches Monster angreift: Der Angriff wird abgebrochen; ziehe 1 Karte.
+l1 Und den Hut dazu
+t1 Zahle stattdessen 3 Mana: Der Angreifer verliert zusätzlich dauerhaft 300 ATK.
+## Waylay Mislead
+n Wegelager: Falsche Fährte
+l0 Falsche Fährte
+t0 Zahle 1 Mana: Bewege 1 Monster, das dein Gegner kontrolliert, in eine andere leere Monster-Zone seiner Seite (deiner Wahl); es kann in diesem Zug nicht angreifen.
+l1 Tief im Wald
+t1 Zahle stattdessen 2 Mana: Bis zu 2 — sie können in diesem Zug nicht angreifen.
+## Waylay Campfire Fence
+n Wegelager Lagerfeuer-Hehler
+l0 Beute zu verteilen
+t0 Wenn diese Karte beschworen wird: Ziehe 1 Karte.
+## Waylay Nightparcel
+n Wegelager Nachtpaket
+l0 Unangekündigte Zustellung
+t0 HINTERHALT — während des GEGNERZUGES, zahle 2 Mana in einem beliebigen Reaktionsfenster: Spezialbeschwöre diese Karte aus deiner Hand.
+## Waylay, First Out of the Bushes
+n Wegelager, der Erste aus dem Gebüsch
+s Dein Gegner hat in diesem oder im letzten Zug angegriffen — zahle 2 Mana.
+l0 Die Beute teilen
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Wegelager“-Monster aus deinem Friedhof hinzu.
+## Waylay, King of the Crossroads
+n Wegelager, König der Kreuzung
+s 3+ „Wegelager“-Karten liegen in deinem Friedhof — zahle 3 Mana.
+l0 Jede Straße gehört mir
+t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 „Wegelager“-Monster aus deinem Friedhof; sie können in diesem Zug nicht angreifen.
+l1 Hinterhalt an der Wegkreuzung
+t1 Zahle 2 Mana (Quick, nur im Gegnerzug): Alle offenen Monster, die dein Gegner kontrolliert, verlieren 400 ATK bis zum Ende dieses Zuges.
+## Bylaw Filing Clerk
+n Paragraf-Registrator
+l0 Der Dienstweg
+t0 Wenn diese Karte beschworen wird: Füge deiner Hand 1 „Bylaw:“-Artefakt aus deinem Deck hinzu.
+l1 Eilverfahren
+t1 Zahle 2 Mana: Lege es stattdessen direkt aufs Feld.
+## Bylaw: Quiet Hours
+n Paragraf: Ruhezeiten
+## Bylaw: Show of Hands
+n Paragraf: Offenlegungspflicht
+## Bylaw: Standing Room Only
+n Paragraf: Maximalbelegung
+## Bylaw Enforcer
+n Paragraf-Vollzugsbeamter
+## Bylaw Ombudsman
+n Paragraf-Ombudsmann
+l0 Beschwerde einreichen
+t0 Einmal pro Zug — zahle 2 Mana (Quick): Annulliere die Effekte von 1 Artefakt auf einem der beiden Felder bis zum Ende dieses Zuges.
+## Bylaw Loophole
+n Paragraf-Gesetzeslücke
+l0 Die Gesetzeslücke
+t0 Zahle 2 Mana: Wähle 1 „Bylaw:“-Dekret auf dem Feld — seine Regel gilt in diesem Zug nicht für DICH.
+l1 Unterabsatz 12b
+t1 Zahle stattdessen 3 Mana: Bis zu 2 Dekrete.
+## Bylaw Red Tape
+n Paragraf-Amtsweg
+l0 Formular B-27
+t0 Zahle 1 Mana: Der nächste Zauber, den dein Gegner in diesem Zug aktiviert, kostet 2 Mana mehr.
+l1 In dreifacher Ausführung
+t1 Zahle stattdessen 2 Mana: … und du ziehst 1 Karte.
+## Bylaw, Acting Chairwoman
+n Paragraf, die kommissarische Vorsitzende
+s Du kontrollierst ein Artefakt — zahle 2 Mana.
+l0 Die Sitzung ist eröffnet
+t0 Wenn diese Karte beschworen wird: Lege 1 „Bylaw:“-Dekret aus deinem Deck aufs Feld.
+## Bylaw, the Letter of the Law
+n Paragraf, der Buchstabe des Gesetzes
+s Du kontrollierst 2+ Artefakte — zahle 3 Mana.
+l0 Antrag angenommen
+t0 Zahle 2 Mana: Lege 1 „Bylaw:“-Dekret aus deinem Deck aufs Feld.
+## Chimekeep Windup Chorister
+n Glockenwacht Aufzieh-Chorknabe
+l0 Endlich der erste Vers
+t0 Wenn der letzte Stunden-Marker entfernt wird: Ziehe 1 Karte; diese Karte erhält dauerhaft 400 ATK.
+## Chimekeep Bellringer
+n Glockenwacht-Glöckner
+l0 Vorläuten
+t0 Wenn diese Karte beschworen wird: Entferne 1 Stunden-Marker von 1 deiner Karten.
+l1 Alle Glocken läuten
+t1 Zahle 2 Mana: Von bis zu 2 deiner Karten je 1.
+## Chimekeep Pendulum
+n Glockenwacht-Pendel
+l0 Den Takt halten
+t0 Einmal pro Zug — zahle 1 Mana: Entferne 1 Stunden-Marker von 1 deiner Karten.
+## Chimekeep Escapement
+n Glockenwacht-Hemmung
+l0 Wohldosierte Freigabe
+t0 Wenn der letzte Stunden-Marker entfernt wird: Füge deiner Hand 1 „Glockenwacht“-Karte aus deinem Deck hinzu; ziehe dann 1 Karte. Zerstöre danach diese Karte.
+l1 Die Feder halten
+t1 Einmal pro Zug — zahle 1 Mana: Entferne 1 Stunden-Marker von dieser Karte.
+## Chimekeep Curfew Bell
+n Glockenwacht-Abendglocke
+l0 Alle gehen nach Hause
+t0 Wenn der letzte Stunden-Marker entfernt wird: Gib bis zu 2 Karten, die dein Gegner kontrolliert, auf seine Hand zurück. Zerstöre danach diese Karte.
+l1 Früher läuten
+t1 Einmal pro Zug — zahle 2 Mana: Entferne 1 zusätzlichen Stunden-Marker.
+## Chimekeep Overwind
+n Glockenwacht: Überdreht
+l0 Überdrehen
+t0 Zahle 1 Mana: Entferne 1 Stunden-Marker von 1 deiner Karten.
+l1 Das Getriebe ausreizen
+t1 Zahle stattdessen 3 Mana: Von bis zu 2 deiner Karten je 1.
+## Chimekeep Chime In
+n Glockenwacht: Einklinken
+l0 Sich einklinken
+t0 Zahle 2 Mana. Falls eine deiner Karten in diesem Zug ihren Nullschlag hatte: Ziehe 2 Karten.
+l1 Mitläuten
+t1 Zahle stattdessen 3 Mana: … und 1 Monster, das du kontrollierst, erhält 500 ATK bis zum Ende dieses Zuges.
+## Chimekeep Night Round
+n Glockenwacht-Nachtrunde
+l0 Gesellschaft auf der Runde
+t0 Wenn der letzte Stunden-Marker entfernt wird: Spezialbeschwöre 1 „Glockenwacht“-Monster aus deinem Friedhof; es kann in diesem Zug nicht angreifen.
+## Chimekeep, Quarter Past Doom
+n Glockenwacht, Viertel nach zu spät
+s Du kontrollierst eine Karte mit einem Stunden-Marker — zahle 2 Mana.
+l0 Das Viertel schlägt
+t0 Wenn der letzte Stunden-Marker entfernt wird: Diese Karte erhält dauerhaft 800 ATK und darf in dieser Battle Phase zweimal angreifen.
+## Chimekeep, the Midnight Carillon
+n Glockenwacht, das Mitternachts-Carillon
+s Du kontrollierst 2+ Karten mit Stunden-Markern — zahle 3 Mana.
+l0 Mitternacht, alles auf einmal
+t0 Wenn diese Karte beschworen wird: ALLE deine Karten mit Stunden-Markern schlagen sofort (alle Marker auf 0; ihre Effekte feuern in Feld-Reihenfolge).

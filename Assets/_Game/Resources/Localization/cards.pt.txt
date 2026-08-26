@@ -4501,3 +4501,242 @@ l0 Fechar as contas do mês
 t0 Pague 1 de Mana. Se você controlar 1 monstro ou menos: ganhe 2 de Mana neste turno.
 l1 Esticar ainda mais
 t1 Em vez disso, pague 2 de Mana: compre também 1 carta se sua mão ficar com 3 cartas ou menos.
+# ---------- 5 Archetypes (0.1.7) ----------
+## Giftwyrm Ribboncoil
+n Giftwyrm Enrola-Fitas
+l0 Devolver ao remetente
+t0 Se esta carta for enviada para o Cemitério enquanto seu oponente a controla: compre 1 carta.
+## Giftwyrm Sweettooth
+n Giftwyrm Guloso
+l0 Barulhinhos de roer
+t0 Durante a End Phase do controlador desta carta, enquanto seu oponente a controlar: você tem 1 de Mana adicional no seu próximo turno.
+## Giftwyrm Prettybow
+n Giftwyrm Laço-Bonito
+## Giftwyrm Unboxed
+n Giftwyrm Desembrulhado
+l0 Ele eclode
+t0 Se esta carta for enviada para o Cemitério enquanto seu oponente a controla: você pode Invocá-la por Invocação-Especial para o SEU campo.
+## Giftwyrm Registry
+n Lista de Presentes Giftwyrm
+l0 Está na lista
+t0 Pague 2 de Mana: Invoque por Invocação-Especial 1 monstro "Giftwyrm" do seu Deck para o campo do seu OPONENTE.
+l1 A lista completa
+t1 Em vez disso, pague 4 de Mana: 2 com nomes diferentes.
+## Giftwyrm Thank-You Note
+n Cartão de Agradecimento Giftwyrm
+l0 Saudações calorosas
+t0 Pague 1 de Mana: compre 1 carta para cada monstro "Giftwyrm" que o seu oponente controla (máx. 3).
+l1 Com profunda gratidão
+t1 Em vez disso, pague 2 de Mana: adicione também à sua mão 1 carta "Giftwyrm" do seu Cemitério.
+## Giftwyrm Molting
+n Muda do Giftwyrm
+l0 A muda
+t0 Pague 2 de Mana: devolva para o SEU campo até 2 dos seus monstros "Giftwyrm" que o seu oponente controla; eles podem atacar neste turno.
+l1 Muda faminta
+t1 Em vez disso, pague 4 de Mana: eles também ganham 500 de ATK cada até o final deste turno.
+## Giftwyrm Hollowshell
+n Giftwyrm Casca-Oca
+l0 O que havia dentro
+t0 Quando esta carta for Invocada: 1 monstro que o seu oponente controla perde 400 de ATK até o final deste turno para cada "Giftwyrm" que ele controla.
+## Giftwyrm, Ungrateful Guest
+n Giftwyrm, o Hóspede Ingrato
+s Seu oponente controla um monstro "Giftwyrm" — pague 2 de Mana.
+l0 Um presente para o anfitrião
+t0 Quando esta carta for Invocada: Invoque por Invocação-Especial 1 monstro "Giftwyrm" do seu Cemitério para o campo do seu OPONENTE.
+l1 Ficando demais
+t1 Pague 2 de Mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Giftwyrm, the Whole Hamper
+n Giftwyrm, a Cesta Inteira
+s Seu oponente controla 2+ monstros "Giftwyrm" — pague 3 de Mana.
+l0 A cesta arrebenta
+t0 Quando esta carta for Invocada: devolva TODOS os seus monstros "Giftwyrm" do campo do oponente para o seu campo; eles ganham 300 de ATK até o final deste turno e podem atacar neste turno.
+## Splithoof Doorknocker
+n Splithoof Bate-Porta
+l0 Batem à porta
+t0 Quando esta carta for Invocada — ACORDO, seu oponente escolhe: ele descarta 1 carta aleatória, OU você compra 1 carta.
+## Splithoof Pennyweight
+n Splithoof Peso-Miúdo
+l0 O polegar na balança
+t0 Uma vez por turno — ACORDO, seu oponente escolhe: você ganha 1 de Mana neste turno, OU você compra 1 carta.
+## Splithoof Grinning Ledger
+n Livro-Caixa Sorridente de Splithoof
+l0 Aberto ao público
+t0 AMBOS os jogadores podem ativá-lo uma vez por turno — pague 1 de Mana: compre 1 carta. Se o seu OPONENTE o ativar, você tem 1 de Mana adicional no seu próximo turno.
+## Splithoof Hagglehorn
+n Splithoof Chifre-de-Pechincha
+l0 Hora da pechincha
+t0 Quando esta carta for Invocada — ACORDO, seu oponente escolhe: 1 monstro à escolha do NEGOCIANTE que ele controla perde 500 de ATK permanentemente, OU você Invoca por Invocação-Especial 1 monstro "Splithoof" de Nível 1 do seu Deck.
+## Splithoof Sign Here
+n Splithoof: Assine Aqui
+l0 Assine aqui, por favor
+t0 Pague 2 de Mana quando um monstro do oponente atacar — ACORDO, seu oponente escolhe: o ataque é cancelado, OU o ataque prossegue e ele descarta depois 2 cartas aleatórias.
+## Splithoof Repossession
+n Penhora de Splithoof
+l0 A penhora
+t0 Pague 2 de Mana: coloque um Gravame de 2 sobre 1 monstro que o seu oponente controla (em cada Standby Phase dele: pagar 2 de Mana ou ele é destruído); compre 1 carta.
+l1 Juros compostos
+t1 Em vez disso, pague 3 de Mana: um Gravame de 3.
+## Splithoof Fiddle Wager
+n Aposta do Violino de Splithoof
+l0 A aposta do violino
+t0 Pague 1 de Mana: ambos os jogadores revelam a carta do topo do seu Deck. O jogador cuja carta tiver o Nível mais alto (não-monstros contam como 0) a adiciona à mão; a outra vai para o Cemitério do dono. Em caso de empate, ambas ficam no topo.
+l1 A melodia do diabo
+t1 Em vez disso, pague 2 de Mana: se a SUA carta vencer, compre também 1 carta.
+## Splithoof Collections Imp
+n Diabrete de Cobrança de Splithoof
+l0 Pagamento atrasado
+t0 Quando esta carta for Invocada: aumente em 1 o Gravame de 1 monstro que o seu oponente controla.
+## Splithoof, Fair and Square
+n Splithoof, Justo e Correto
+s Um Acordo foi fechado neste turno — pague 2 de Mana.
+l0 Ler as letras miúdas
+t0 Quando esta carta for Invocada — ACORDO, seu oponente escolhe: VOCÊ compra 1 carta, OU os monstros mais fortes de ambos os jogadores trocam de controle permanentemente.
+## Splithoof, the Better Bargain
+n Splithoof, o Melhor Negócio
+s 3+ Acordos foram fechados neste Duelo — pague 3 de Mana.
+l0 A oferta final
+t0 Quando esta carta for Invocada — ACORDO, seu oponente escolhe: você compra 3 cartas, OU ele envia para o Cemitério o monstro mais forte que controla.
+l1 Adoçar o negócio
+t1 Uma vez por turno — pague 2 de Mana (Rápida) — ACORDO, seu oponente escolhe: 1 monstro à sua escolha ganha 700 de ATK até o final deste turno, OU você compra 1 carta.
+## Waylay Hedgeknife
+n Waylay Faca-da-Sebe
+l0 Saindo da sebe
+t0 EMBOSCADA — quando o seu oponente Invocar um monstro: você pode Invocar esta carta por Invocação-Especial da sua mão (na janela de reação). Depois, 1 monstro que o seu oponente controla perde 300 de ATK até o final deste turno.
+## Waylay Roadthorn
+n Waylay Espinho-da-Estrada
+l0 Um espinho no caminho
+t0 EMBOSCADA — quando um monstro do oponente atacar: você pode Invocar esta carta por Invocação-Especial da sua mão. Depois, o atacante perde 500 de ATK até o final deste turno.
+## Waylay Tollgate
+n Pedágio de Waylay
+l0 Contar a féria
+t0 Pague 1 de Mana (uma vez por turno): compre 1 carta, se o seu oponente atacou neste turno.
+## Waylay Highwayman
+n Waylay Salteador de Estrada
+l0 A bolsa ou o orgulho
+t0 EMBOSCADA — quando um monstro do oponente atacar: você pode Invocar esta carta por Invocação-Especial da sua mão. Depois compre 1 carta.
+l1 Estrada bloqueada
+t1 Pague 2 de Mana: 1 monstro que o seu oponente controla não pode atacar neste turno.
+## Stand and Deliver!
+n A Bolsa ou a Vida!
+l0 A bolsa ou a vida!
+t0 Pague 2 de Mana quando um monstro do oponente atacar: o ataque é cancelado; compre 1 carta.
+l1 E o chapéu também
+t1 Em vez disso, pague 3 de Mana: o atacante também perde permanentemente 300 de ATK.
+## Waylay Mislead
+n Waylay: Pista Falsa
+l0 Pista falsa
+t0 Pague 1 de Mana: mova 1 monstro que o seu oponente controla para outra Zona de Monstros vazia do lado dele (à sua escolha); ele não pode atacar neste turno.
+l1 Mata adentro
+t1 Em vez disso, pague 2 de Mana: até 2 — eles não podem atacar neste turno.
+## Waylay Campfire Fence
+n Waylay Receptador da Fogueira
+l0 Espólio a repartir
+t0 Quando esta carta for Invocada: compre 1 carta.
+## Waylay Nightparcel
+n Waylay Encomenda Noturna
+l0 Entrega sem aviso
+t0 EMBOSCADA — durante o turno do seu OPONENTE, pague 2 de Mana em qualquer janela de reação: Invoque esta carta por Invocação-Especial da sua mão.
+## Waylay, First Out of the Bushes
+n Waylay, o Primeiro a Sair do Mato
+s Seu oponente atacou neste turno ou no anterior — pague 2 de Mana.
+l0 Repartir o espólio
+t0 Quando esta carta for Invocada: adicione à sua mão 1 monstro "Waylay" do seu Cemitério.
+## Waylay, King of the Crossroads
+n Waylay, Rei da Encruzilhada
+s Há 3+ cartas "Waylay" no seu Cemitério — pague 3 de Mana.
+l0 Toda estrada é minha
+t0 Quando esta carta for Invocada: Invoque por Invocação-Especial até 2 monstros "Waylay" do seu Cemitério; eles não podem atacar neste turno.
+l1 Emboscada no cruzamento
+t1 Pague 2 de Mana (Rápida, somente no turno do oponente): todos os monstros com a face para cima do seu oponente perdem 400 de ATK até o final deste turno.
+## Bylaw Filing Clerk
+n Bylaw Arquivista
+l0 Pelos canais oficiais
+t0 Quando esta carta for Invocada: adicione à sua mão 1 Artefato "Bylaw:" do seu Deck.
+l1 Trâmite expresso
+t1 Pague 2 de Mana: coloque-o diretamente em campo em vez disso.
+## Bylaw: Quiet Hours
+n Bylaw: Horário de Silêncio
+## Bylaw: Show of Hands
+n Bylaw: Mãos à Mostra
+## Bylaw: Standing Room Only
+n Bylaw: Lotação Esgotada
+## Bylaw Enforcer
+n Bylaw Agente de Execução
+## Bylaw Ombudsman
+n Bylaw Ouvidor
+l0 Registrar uma queixa
+t0 Uma vez por turno — pague 2 de Mana (Rápida): negue os efeitos de 1 Artefato em qualquer um dos campos até o final deste turno.
+## Bylaw Loophole
+n Bylaw Brecha na Lei
+l0 A brecha na lei
+t0 Pague 2 de Mana: escolha 1 Decreto "Bylaw:" em campo — sua regra não se aplica a VOCÊ neste turno.
+l1 Subparágrafo 12b
+t1 Em vez disso, pague 3 de Mana: até 2 Decretos.
+## Bylaw Red Tape
+n Bylaw Burocracia
+l0 Formulário B-27
+t0 Pague 1 de Mana: a próxima Magia que o seu oponente ativar neste turno custa 2 de Mana a mais.
+l1 Em três vias
+t1 Em vez disso, pague 2 de Mana: … e você compra 1 carta.
+## Bylaw, Acting Chairwoman
+n Bylaw, a Presidente Interina
+s Você controla um Artefato — pague 2 de Mana.
+l0 Sessão aberta
+t0 Quando esta carta for Invocada: coloque 1 Decreto "Bylaw:" do seu Deck em campo.
+## Bylaw, the Letter of the Law
+n Bylaw, a Letra da Lei
+s Você controla 2+ Artefatos — pague 3 de Mana.
+l0 Moção aprovada
+t0 Pague 2 de Mana: coloque 1 Decreto "Bylaw:" do seu Deck em campo.
+## Chimekeep Windup Chorister
+n Chimekeep Corista de Corda
+l0 Enfim o primeiro verso
+t0 Quando o último Marcador de Hora for removido: compre 1 carta; esta carta ganha permanentemente 400 de ATK.
+## Chimekeep Bellringer
+n Chimekeep Sineiro
+l0 Repicar adiantado
+t0 Quando esta carta for Invocada: remova 1 Marcador de Hora de 1 das suas cartas.
+l1 Repique geral
+t1 Pague 2 de Mana: de até 2 das suas cartas, 1 de cada.
+## Chimekeep Pendulum
+n Chimekeep Pêndulo
+l0 Manter o compasso
+t0 Uma vez por turno — pague 1 de Mana: remova 1 Marcador de Hora de 1 das suas cartas.
+## Chimekeep Escapement
+n Chimekeep Escape
+l0 Liberação medida
+t0 Quando o último Marcador de Hora for removido: adicione à sua mão 1 carta "Chimekeep" do seu Deck; depois compre 1 carta. Depois destrua esta carta.
+l1 Segurar a mola
+t1 Uma vez por turno — pague 1 de Mana: remova 1 Marcador de Hora desta carta.
+## Chimekeep Curfew Bell
+n Chimekeep Sino do Recolher
+l0 Todo mundo para casa
+t0 Quando o último Marcador de Hora for removido: devolva para a mão até 2 cartas que o seu oponente controla. Depois destrua esta carta.
+l1 Tocar mais cedo
+t1 Uma vez por turno — pague 2 de Mana: remova 1 Marcador de Hora adicional.
+## Chimekeep Overwind
+n Chimekeep: Corda Demais
+l0 Dar corda demais
+t0 Pague 1 de Mana: remova 1 Marcador de Hora de 1 das suas cartas.
+l1 Forçar as engrenagens
+t1 Em vez disso, pague 3 de Mana: de até 2 das suas cartas, 1 de cada.
+## Chimekeep Chime In
+n Chimekeep: Entrar no Repique
+l0 Entrar no repique
+t0 Pague 2 de Mana. Se uma das suas cartas bateu zero neste turno: compre 2 cartas.
+l1 Repicar junto
+t1 Em vez disso, pague 3 de Mana: … e 1 monstro que você controla ganha 500 de ATK até o final deste turno.
+## Chimekeep Night Round
+n Chimekeep Ronda Noturna
+l0 Companhia na ronda
+t0 Quando o último Marcador de Hora for removido: Invoque por Invocação-Especial 1 monstro "Chimekeep" do seu Cemitério; ele não pode atacar neste turno.
+## Chimekeep, Quarter Past Doom
+n Chimekeep, Perdição e Quinze
+s Você controla uma carta com um Marcador de Hora — pague 2 de Mana.
+l0 O quarto de hora soa
+t0 Quando o último Marcador de Hora for removido: esta carta ganha permanentemente 800 de ATK e pode atacar duas vezes nesta Battle Phase.
+## Chimekeep, the Midnight Carillon
+n Chimekeep, o Carrilhão da Meia-Noite
+s Você controla 2+ cartas com Marcadores de Hora — pague 3 de Mana.
+l0 Meia-noite, tudo de uma vez
+t0 Quando esta carta for Invocada: TODAS as suas cartas com Marcadores de Hora soam imediatamente (todos os marcadores vão a 0; seus efeitos disparam na ordem do campo).

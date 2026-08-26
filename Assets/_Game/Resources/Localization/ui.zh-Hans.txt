@@ -498,3 +498,20 @@ While both players' LP are within {0} of each other, this card cannot be targete
 During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	在你的抽卡阶段，你可以把墓地最上方的卡加入手牌来代替抽卡。
 Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	带着{0}个时刻指示物入场。你的每个准备阶段：移去1个。移去最后1个时，其倒计时效果发动，随后破坏这张卡。
 the different Levels among your monsters	你的怪兽中不同星级的数量
+# ---------- 5 Archetypes (September 2026) ----------
+one of your opponent's monsters was destroyed this turn	本回合对手的怪兽被破坏过
+you control a card with an Hour Counter	你控制着带有时刻指示物的卡
+You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).	你可以把这张卡从手牌特殊召唤到对手场上{0}{1}（1回合1次）。
+While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).	只要{0}：你可以把这张卡从手牌特殊召唤到对手场上{1}{2}（1回合1次）。
+This card's effects always belong to its owner — even while the opponent controls it.	这张卡的效果始终属于其持有者——即使对手控制着它。
+Cannot attack while controlled by anyone but its owner.	被持有者以外的人控制时不能攻击。
+Spells cost its controller 1 more Mana.	其控制者的法术费用增加1魔力。
+Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.	对手每个战斗阶段的第一次攻击需花费{0}魔力——付不出则不能攻击。
+DECREE: Each player's first attack per Battle Phase costs {0} Mana.	法令：每位玩家每个战斗阶段的第一次攻击需花费{0}魔力。
+DECREE: Every card either player draws is revealed.	法令：任何玩家抽到的每张卡都要翻开展示。
+DECREE: Each player can control at most {0} monsters.	法令：每位玩家最多只能控制{0}只怪兽。
+Your "{0}" cards cannot be destroyed by card effects.	你的「{0}」卡不会被卡的效果破坏。
+Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	你的「Bylaw:」法令不再对你生效——只对你的对手生效。
+If your opponent activates this card's effect: you have {0} additional Mana next turn.	若对手发动了这张卡的效果：你的下个回合额外获得{0}魔力。
+your monsters on your opponent's field	你在对手场上的怪兽
+the Artifacts on both fields	双方场上的神器

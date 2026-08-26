@@ -498,3 +498,20 @@ While both players' LP are within {0} of each other, this card cannot be targete
 During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	자신의 드로우 페이즈에 드로우하는 대신 자신의 묘지 맨 위 카드를 패에 넣을 수 있다.
 Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	시간 카운터 {0}개와 함께 필드에 나온다. 자신의 스탠바이 페이즈마다 1개 제거한다. 마지막 카운터가 제거되면 카운트다운 효과가 발동하고 이 카드는 파괴된다.
 the different Levels among your monsters	자신의 몬스터들 중 서로 다른 레벨의 수
+# ---------- 5 Archetypes (September 2026) ----------
+one of your opponent's monsters was destroyed this turn	이번 턴에 상대의 몬스터가 파괴되었을 때
+you control a card with an Hour Counter	자신이 시간 카운터가 놓인 카드를 컨트롤하고 있을 때
+You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).	이 카드를 패에서 상대 필드에 특수 소환할 수 있다{0}{1} (1턴에 1번).
+While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).	{0} 동안: 이 카드를 패에서 상대 필드에 특수 소환할 수 있다{1}{2} (1턴에 1번).
+This card's effects always belong to its owner — even while the opponent controls it.	이 카드의 효과는 언제나 주인의 것이다 — 상대가 컨트롤하고 있는 동안에도.
+Cannot attack while controlled by anyone but its owner.	주인이 아닌 자가 컨트롤하는 동안 공격할 수 없다.
+Spells cost its controller 1 more Mana.	이 카드의 컨트롤러의 마법 코스트는 마나 1 늘어난다.
+Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.	상대의 배틀 페이즈마다 첫 공격에는 마나 {0}이(가) 든다 — 지불하지 못하면 공격할 수 없다.
+DECREE: Each player's first attack per Battle Phase costs {0} Mana.	법령: 각 플레이어의 배틀 페이즈당 첫 공격에는 마나 {0}이(가) 든다.
+DECREE: Every card either player draws is revealed.	법령: 어느 플레이어든 드로우한 카드는 공개된다.
+DECREE: Each player can control at most {0} monsters.	법령: 각 플레이어는 몬스터를 최대 {0}장까지 컨트롤할 수 있다.
+Your "{0}" cards cannot be destroyed by card effects.	자신의 "{0}" 카드는 카드의 효과로는 파괴되지 않는다.
+Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	자신의 "Bylaw:" 법령은 더 이상 자신에게 적용되지 않는다 — 상대에게만 적용된다.
+If your opponent activates this card's effect: you have {0} additional Mana next turn.	상대가 이 카드의 효과를 발동했다면: 자신은 다음 턴에 마나를 {0} 추가로 얻는다.
+your monsters on your opponent's field	상대 필드의 자신의 몬스터
+the Artifacts on both fields	양쪽 필드의 아티팩트

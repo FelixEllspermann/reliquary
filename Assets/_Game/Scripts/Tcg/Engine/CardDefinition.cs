@@ -260,6 +260,46 @@ namespace Rouge.Tcg
                  "wird einer entfernt — beim letzten feuert der CountdownZero-Effekt (The Appointed Hour)")]
         public int countdownMarkers;
 
+        [Header("5 Archetypes (September 2026)")]
+        [Tooltip("Giftwyrm: die Effekte dieser Karte werden immer ihrem BESITZER (OriginalOwner) " +
+                 "angeboten und wirken für ihn — auch wenn der Gegner sie kontrolliert")]
+        public bool passiveServesOriginalOwner;
+
+        [Tooltip("Giftwyrm: kann nicht angreifen, solange sie von jemand anderem als ihrem " +
+                 "Besitzer kontrolliert wird")]
+        public bool passiveCannotAttackWhileDisloyal;
+
+        [Tooltip("Giftwyrm Prettybow: solange offen auf dem Feld, kosten die Zauber ihres " +
+                 "KONTROLLEURS 1 Mana mehr")]
+        public bool passiveSpellTaxOnController;
+
+        [Tooltip(">0: der erste Angriff des GEGNERS des Besitzers je Battle Phase kostet so viel " +
+                 "Mana — automatisch abgezogen; ohne Mana kein Angriff (Waylay Tollgate)")]
+        public int passiveAttackToll;
+
+        [Tooltip(">0 DEKRET: der erste Angriff JEDES Spielers je Battle Phase kostet so viel Mana " +
+                 "(Bylaw: Quiet Hours)")]
+        public int passiveAttackTaxBoth;
+
+        [Tooltip("DEKRET: jede gezogene Karte beider Spieler wird offen vorgezeigt (Bylaw: Show of Hands)")]
+        public bool passiveDrawRevealBoth;
+
+        [Tooltip(">0 DEKRET: jeder Spieler kann höchstens so viele Monster kontrollieren " +
+                 "(Bylaw: Standing Room Only)")]
+        public int passiveMonsterCapBoth;
+
+        [Tooltip("Karten des Besitzers, deren Name diesen Text enthält, können nicht durch " +
+                 "Karteneffekte zerstört werden (Bylaw Chairwoman: \"Bylaw:\")")]
+        public string protectsNamedFromEffectDestroy = "";
+
+        [Tooltip("Solange offen auf dem Feld: die \"Bylaw:\"-Dekrete des Besitzers gelten nicht " +
+                 "mehr für ihn — nur noch für den Gegner (Letter of the Law)")]
+        public bool passiveDecreesSpareOwner;
+
+        [Tooltip(">0: aktiviert der NICHT-Besitzer einen Effekt dieser Karte (eitherPlayerMayActivate), " +
+                 "hat der Besitzer im nächsten Zug so viel Mana zusätzlich (Splithoof Grinning Ledger)")]
+        public int passiveOwnerRoyaltyManaNextTurn;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -436,6 +476,28 @@ namespace Rouge.Tcg
             if (countdownMarkers > 0)
                 lines.Add(Loc.F("Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.", countdownMarkers));
 
+            // --- 5 Archetypes ---
+            if (passiveServesOriginalOwner)
+                lines.Add(Loc.T("This card's effects always belong to its owner — even while the opponent controls it."));
+            if (passiveCannotAttackWhileDisloyal)
+                lines.Add(Loc.T("Cannot attack while controlled by anyone but its owner."));
+            if (passiveSpellTaxOnController)
+                lines.Add(Loc.T("Spells cost its controller 1 more Mana."));
+            if (passiveAttackToll > 0)
+                lines.Add(Loc.F("Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.", passiveAttackToll));
+            if (passiveAttackTaxBoth > 0)
+                lines.Add(Loc.F("DECREE: Each player's first attack per Battle Phase costs {0} Mana.", passiveAttackTaxBoth));
+            if (passiveDrawRevealBoth)
+                lines.Add(Loc.T("DECREE: Every card either player draws is revealed."));
+            if (passiveMonsterCapBoth > 0)
+                lines.Add(Loc.F("DECREE: Each player can control at most {0} monsters.", passiveMonsterCapBoth));
+            if (!string.IsNullOrEmpty(protectsNamedFromEffectDestroy))
+                lines.Add(Loc.F("Your \"{0}\" cards cannot be destroyed by card effects.", protectsNamedFromEffectDestroy));
+            if (passiveDecreesSpareOwner)
+                lines.Add(Loc.T("Your \"Bylaw:\" Decrees no longer apply to you — only to your opponent."));
+            if (passiveOwnerRoyaltyManaNextTurn > 0)
+                lines.Add(Loc.F("If your opponent activates this card's effect: you have {0} additional Mana next turn.", passiveOwnerRoyaltyManaNextTurn));
+
             return lines;
         }
 
@@ -457,6 +519,8 @@ namespace Rouge.Tcg
                 case EffectCountKind.OwnHandCards: return Loc.T("the cards in your hand");
                 case EffectCountKind.OwnGraveyardSpells: return Loc.T("the Spells in your Graveyard");
                 case EffectCountKind.OwnDistinctLevels: return Loc.T("the different Levels among your monsters");
+                case EffectCountKind.OwnMonstersOnOpponentField: return Loc.T("your monsters on your opponent's field");
+                case EffectCountKind.AllArtifactsOnField: return Loc.T("the Artifacts on both fields");
                 default: return Loc.T("your monsters on the field");
             }
         }

@@ -87,7 +87,10 @@ namespace Rouge.Tcg
         ToBattlePhase,
         EndTurn,
         SpecialSummonSelf,      // Monster erfüllt seine eigene Spezialbeschwörungs-Bedingung
-        SummonReliquary         // Reliquary aus dem Extra Deck beschwören (Bedingungen + Kosten)
+        SummonReliquary,        // Reliquary aus dem Extra Deck beschwören (Bedingungen + Kosten)
+
+        // Nur anhängen: das Kind geht als Name über die Wire (alte Clients fallen auf EndTurn zurück).
+        SacrificeArtifact       // eigenes Artefakt freiwillig in den Friedhof schicken (Klick aufs Artefakt)
     }
 
     public class MainActionOption

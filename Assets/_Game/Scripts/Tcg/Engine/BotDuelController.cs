@@ -9,6 +9,7 @@ namespace Rouge.Tcg
     {
         private int actionsThisTurn;
         private int lastSeenTurn = -1;
+        private bool dealFlip; // Splithoof: alternierende Deal-Wahl
 
         private IEnumerator ThinkDelay()
         {
@@ -262,6 +263,16 @@ namespace Rouge.Tcg
             }
 
             int chosen = request.Options.Count > 0 ? 0 : -1;
+
+            // Splithoof-Deals: stur Option A wäre ausrechenbar (und ließe Option B
+            // ungetestet) — der Bot alterniert deterministisch zwischen beiden.
+            if (request.Options.Count == 2 && request.Title.Contains("must choose"))
+            {
+                dealFlip = !dealFlip;
+                request.Result = dealFlip ? 0 : 1;
+                request.Answered = true;
+                yield break;
+            }
 
             // Sworn Statement (The Small Print): die Kartenart schwören, die im
             // eigenen Deck am häufigsten übrig ist — Monster/Spell/Artifact.

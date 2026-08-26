@@ -45,10 +45,13 @@ namespace Rouge.Tcg
                     // A Foot in the Door: der Rabatt drückt die Tributkosten dieses Zuges
                     int tributes = Math.Max(0, rules.TributesForLevel(card.MonsterData.level) - player.NextNormalSummonTributeDiscount);
                     // Tribute räumen ihre eigene (unversiegelte) Zone — ohne Tribut braucht
-                    // es eine freie Zone, die NICHT zugemauert ist (Road to 1000: Siegel)
+                    // es eine freie Zone, die NICHT zugemauert ist (Road to 1000: Siegel).
+                    // Bylaw (Standing Room Only): die Monster-Obergrenze zählt NACH Tributen.
+                    int monsterCap = MonsterCapFor(player);
                     bool canSummon = player.NormalSummonsUsed < rules.normalSummonsPerTurn + player.ExtraNormalSummons
                                      && TributableCount(player) >= tributes
                                      && (tributes > 0 || UnsealedFreeMonsterZones(player) > 0)
+                                     && player.MonsterCount() - tributes < monsterCap
                                      && !FieldLimitReached(player, card.Definition)
                                      && !card.Definition.passiveNoNormalSummon;   // The Small Print: nur per eigener SS
                     if (canSummon)
@@ -64,11 +67,17 @@ namespace Rouge.Tcg
 
                     // Selbst-Spezialbeschwörung (z.B. "wenn du/der Gegner ein bestimmtes Monster kontrolliert)
                     // The Squatter zieht in eine VERSIEGELTE eigene Zone — alle anderen
-                    // brauchen eine freie, unversiegelte.
+                    // brauchen eine freie, unversiegelte. Giftwyrms werden dem GEGNER
+                    // zugestellt und brauchen dessen Platz (und dessen Monster-Obergrenze).
                     var monsterData = card.MonsterData;
-                    bool zoneForSelfSummon = monsterData != null && monsterData.selfSummonIntoSealedZone
-                        ? AnyOwnSealedEmptyZone(player)
-                        : UnsealedFreeMonsterZones(player) > 0;
+                    bool zoneForSelfSummon =
+                        monsterData != null && monsterData.selfSummonToOpponentField
+                            ? UnsealedFreeMonsterZones(player.Opponent) > 0
+                              && player.Opponent.MonsterCount() < MonsterCapFor(player.Opponent)
+                        : monsterData != null && monsterData.selfSummonIntoSealedZone
+                            ? AnyOwnSealedEmptyZone(player)
+                            : UnsealedFreeMonsterZones(player) > 0
+                              && player.MonsterCount() < MonsterCapFor(player);
                     if (monsterData.canSelfSpecialSummon && zoneForSelfSummon
                         && !FieldLimitReached(player, card.Definition))
                     {
@@ -217,7 +226,8 @@ namespace Rouge.Tcg
             // Reliquary-Beschwörungen aus dem Extra Deck (eine Option pro Karten-Definition)
             // Siegel drücken hier doppelt: das Reliquary braucht eine unversiegelte Zone —
             // oder Tribute, die ihre eigene räumen (die Tributrechnung prüft der Summon selbst)
-            if ((UnsealedFreeMonsterZones(player) > 0 || player.MonsterCount() > 0) && !SpecialSummonsLockedFor(player))
+            if ((UnsealedFreeMonsterZones(player) > 0 || player.MonsterCount() > 0)
+                && player.MonsterCount() < MonsterCapFor(player) && !SpecialSummonsLockedFor(player))
             {
                 var offered = new HashSet<CardDefinition>();
                 foreach (var reliquary in player.ExtraDeckPile)
@@ -303,6 +313,19 @@ namespace Rouge.Tcg
                 }
             }
 
+            // Eigene Artefakte dürfen freiwillig ins Grab — macht volle Artefakt-Zonen
+            // wieder frei (Klick aufs Artefakt zeigt die Option).
+            foreach (var artifact in player.ArtifactZones)
+            {
+                if (artifact == null) continue;
+                request.Options.Add(new MainActionOption
+                {
+                    Kind = MainActionKind.SacrificeArtifact,
+                    Card = artifact,
+                    Label = $"Send {artifact.Name} to the Graveyard"
+                });
+            }
+
             foreach (var monster in player.Monsters())
             {
                 if (monster.SummonedThisTurn || monster.HasAttackedThisTurn) continue;
@@ -385,6 +408,20 @@ namespace Rouge.Tcg
                 case MainActionKind.SummonReliquary:
                     yield return ExecuteReliquarySummon(player, option.Card, option.PreferredZoneIndex);
                     break;
+                case MainActionKind.SacrificeArtifact:
+                    // Freiwillige Entsorgung: schafft Platz in den Artefakt-Zonen.
+                    // Bewusst SEND, nicht destroy — Zerstörungs-Trigger bleiben stumm,
+                    // Friedhofs-Ankunfts-Trigger feuern normal.
+                    if (option.Card != null && option.Card.Zone == ZoneType.ArtifactZone
+                        && option.Card.Owner == player)
+                    {
+                        Log($"{player.Name} sends {option.Card.Name} to the Graveyard.");
+                        if (presenter != null) yield return presenter.ShowCardSentToGrave(option.Card);
+                        MoveToGraveyard(option.Card);
+                        BoardChanged();
+                        yield return FirePendingGraveTriggers();
+                    }
+                    break;
             }
 
             // Kurzer Beat nach jeder Aktion, damit das Duell lesbar bleibt (nicht headless)
@@ -421,7 +458,18 @@ namespace Rouge.Tcg
             if (data.reqOpponentMoreMonsters && opponent.MonsterCount() <= player.MonsterCount()) return false;
             if (data.reqOpponentMonstersAtLeast > 0 && opponent.MonsterCount() < data.reqOpponentMonstersAtLeast) return false;
             if (!string.IsNullOrEmpty(data.reqOpponentNamedOnField)
-                && !opponent.Monsters().Any(m => !m.FaceDown && m.Name.Contains(data.reqOpponentNamedOnField))) return false;
+                && opponent.Monsters().Count(m => !m.FaceDown && m.Name.Contains(data.reqOpponentNamedOnField))
+                   < Math.Max(1, data.reqOpponentNamedCount)) return false;
+            // --- 5 Archetypes ---
+            if (data.reqDealsThisTurn > 0 && player.DealsThisTurn < data.reqDealsThisTurn) return false;
+            if (data.reqDealsThisDuel > 0 && player.DealsThisDuel < data.reqDealsThisDuel) return false;
+            if (data.reqOpponentAttackedRecently
+                && !opponent.DeclaredAttackThisTurn && !opponent.DeclaredAttackLastTurn) return false;
+            if (data.reqOwnCountdownCards > 0
+                && player.FieldCards().Count(c => c.CountdownMarkers > 0) < data.reqOwnCountdownCards) return false;
+            if (data.reqGraveyardNamedCount > 0
+                && player.Graveyard.Count(c => string.IsNullOrEmpty(data.reqGraveyardNamed)
+                       || c.Name.Contains(data.reqGraveyardNamed)) < data.reqGraveyardNamedCount) return false;
             if (data.reqOwnArtifactsOnField > 0
                 && player.ArtifactZones.Count(a => a != null) < data.reqOwnArtifactsOnField) return false;
             if (data.reqOwnArtifactsInGrave > 0
@@ -678,6 +726,50 @@ namespace Rouge.Tcg
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
 
+            // Giftwyrm: das Geschenk wird dem GEGNER zugestellt — er kontrolliert es,
+            // es bleibt aber die Karte des Zustellers (OriginalOwner). Bewusst KEINE
+            // Summon-Trigger und kein Reaktionsfenster: eine Zustellung ist keine
+            // Beschwörung, auf die man antwortet (Gaslight-Token-Schule).
+            if (monster.MonsterData.selfSummonToOpponentField)
+            {
+                var receiver = player.Opponent;
+                var free = new List<int>();
+                for (int i = 0; i < receiver.MonsterZones.Length; i++)
+                    if (receiver.MonsterZones[i] == null && !IsZoneSealed(receiver, i)) free.Add(i);
+                if (free.Count == 0 || receiver.MonsterCount() >= MonsterCapFor(receiver)) yield break;
+
+                int deliverZone = free[0];
+                if (free.Count > 1)
+                {
+                    var pick = new ZoneSelectRequest
+                    {
+                        Title = $"Choose a zone on {receiver.Name}'s field for {monster.Name}",
+                        ForPlayer = receiver,
+                        Zone = ZoneType.MonsterZone
+                    };
+                    pick.FreeIndices.AddRange(free);
+                    yield return DecideRouted(player, pick);
+                    if (free.Contains(pick.Result)) deliverZone = pick.Result;
+                }
+
+                presenter?.RememberView(monster);
+                player.Hand.Remove(monster);
+                receiver.MonsterZones[deliverZone] = monster;
+                monster.Owner = receiver;
+                monster.Zone = ZoneType.MonsterZone;
+                monster.FaceDown = false;
+                monster.Position = monster.MonsterData.selfSummonPosition;
+                monster.SummonedThisTurn = true;
+                monster.WasSpecialSummoned = true;
+                monster.WasDisloyalWhenLeftField = false;
+                player.SelfSummonedNamesThisTurn.Add(monster.Name);
+                ArmCountdown(monster);
+                Log($"{player.Name} delivers {monster.Name} to {receiver.Name}'s field — what a generous gift.");
+                BoardChanged();
+                if (presenter != null) yield return presenter.ShowCardMoved(monster);
+                yield break;
+            }
+
             int zoneIndex = -1;
             if (monster.MonsterData.selfSummonIntoSealedZone)
             {
@@ -746,6 +838,7 @@ namespace Rouge.Tcg
             monster.Position = summonPosition;
             monster.SummonedThisTurn = true;
             monster.WasSpecialSummoned = true;
+            ArmCountdown(monster); // Chimekeep
             player.SelfSummonedNamesThisTurn.Add(monster.Name); // "einmal pro Zug"-Gedächtnis
             Log($"{player.Name} special summons {monster.Name} ({monster.CurrentAtk}/{monster.CurrentDef}) in {(monster.Position == BattlePosition.Attack ? "Attack" : "Defense")} Position.");
             BoardChanged();
@@ -857,6 +950,7 @@ namespace Rouge.Tcg
             monster.SummonedThisTurn = true;
             player.NormalSummonsUsed++;
             player.NextNormalSummonTributeDiscount = 0; // A Foot in the Door: verbraucht
+            if (!setFaceDown) ArmCountdown(monster);    // Chimekeep (verdeckt: erst beim Flip)
 
             if (setFaceDown)
             {
@@ -907,6 +1001,12 @@ namespace Rouge.Tcg
                 Log($"{player.Name} cannot Special Summon this turn — {monster.Name} stays where it is.");
                 yield break;
             }
+            // Bylaw (Standing Room Only): die Obergrenze gilt auch für Effekt-Beschwörungen
+            if (player.MonsterCount() >= MonsterCapFor(player))
+            {
+                Log($"{player.Name} already controls the decreed maximum of monsters — {monster.Name} stays where it is.");
+                yield break;
+            }
             // Sworn to the Gate: der einsame Torwächter duldet keine weiteren Spezialbeschwörungen
             if (SpecialSummonsLockedFor(player) && monster.Owner == player)
             {
@@ -940,6 +1040,7 @@ namespace Rouge.Tcg
             monster.PermanentDefBonus = 0;
             monster.TempAtkBonus = 0;
             monster.TempDefBonus = 0;
+            ArmCountdown(monster); // Chimekeep: die Uhr zieht sich beim Feld-Betreten auf
             Log($"{player.Name} special summons {monster.Name} {sourceDescription}.");
             BoardChanged();
             if (presenter != null)
@@ -1153,6 +1254,15 @@ namespace Rouge.Tcg
             player.Mana -= effect.manaCost;
             LockEffectForTurn(card, effectIndex, effect);
 
+            // Splithoof Grinning Ledger: das Haus verdient mit — aktiviert der
+            // NICHT-Besitzer, bekommt der Besitzer seine Provision (nächster Zug).
+            if (card.Owner != null && card.Owner != player && card.Definition != null
+                && card.Definition.passiveOwnerRoyaltyManaNextTurn > 0)
+            {
+                card.Owner.ManaCredit += card.Definition.passiveOwnerRoyaltyManaNextTurn;
+                Log($"{card.Owner.Name} collects the house's cut — {card.Definition.passiveOwnerRoyaltyManaNextTurn} Mana next turn.");
+            }
+
             activationSerial++;
             int chainLink = ++chainDepth;
             chainCards.Add(card);
@@ -1197,6 +1307,7 @@ namespace Rouge.Tcg
             if (monster == null || monster.Zone != ZoneType.MonsterZone || !monster.FaceDown) yield break;
             monster.FaceDown = false;
             monster.Position = position;
+            ArmCountdown(monster); // Chimekeep: verdeckte Uhren ziehen sich beim Aufdecken auf
             Log($"{monster.Name} is flipped face-up!");
             BoardChanged();
             if (responseDepth < 2)
@@ -1218,6 +1329,7 @@ namespace Rouge.Tcg
             {
                 monster.FaceDown = false;
                 monster.Position = BattlePosition.Attack;
+                ArmCountdown(monster); // Chimekeep
                 monster.PositionChangesUsed++;
                 Log($"{monster.Name} is flipped face-up into Attack Position!");
                 BoardChanged();
@@ -1327,6 +1439,13 @@ namespace Rouge.Tcg
                     && (card.Zone != ZoneType.Graveyard || card.Owner == null
                         || card.Owner.Graveyard.Count == 0
                         || card.Owner.Graveyard[card.Owner.Graveyard.Count - 1] != card)) continue;
+                // --- 5 Archetypes ---
+                // Giftwyrm: der Trigger verlangt Fremdkontrolle (auf dem Feld: jetzt;
+                // nach dem Abgang: beim Verlassen des Feldes)
+                if (effect.onlyWhileControlledByOpponent
+                    && !(IsOnField(card) ? card.Owner != card.OriginalOwner : card.WasDisloyalWhenLeftField)) continue;
+                if (effect.requireOpponentAttackedThisTurn && !player.Opponent.DeclaredAttackThisTurn) continue;
+                if (effect.requireStruckThisTurn && !player.CountdownStruckThisTurn) continue;
                 if (card.SpellData != null && effect.trigger == EffectTrigger.OnActivate && player.SpellsLockedThisTurn) continue;
                 if (!CanPayLifeCosts(effect, player)) continue;
                 if (!ChainContextAllows(effect, player)) continue;
@@ -1416,13 +1535,14 @@ namespace Rouge.Tcg
                     && source.OriginalOwner != null && source.OriginalOwner != player) return false;
                 bool targeted = action.target != TargetKind.None && action.target != TargetKind.SelfCard
                     && action.target != TargetKind.SameAsPrevious;
-                if (action.coinGate != CoinGate.None && targeted)
+                if ((action.coinGate != CoinGate.None || action.dealGate != DealGate.None) && targeted)
                 {
                     anyGatedTargets = true;
                     if (BuildTargetCandidates(action, player, source).Count > 0) anyGatedCandidates = true;
                     continue;
                 }
-                if (action.type != EffectActionType.FlipCoin) onlyCoinBusiness = false;
+                if (action.type != EffectActionType.FlipCoin
+                    && action.type != EffectActionType.OfferDeal) onlyCoinBusiness = false;
                 if (!targeted) continue;
                 // "Bis zu"-Aktionen sind optional: null Kandidaten blockieren die
                 // Aktivierung nicht (Trapline: "then Set 1 ... from your hand").
@@ -1463,8 +1583,10 @@ namespace Rouge.Tcg
                 case EffectActionType.SpecialSummonSelfFromGrave:
                 case EffectActionType.RevealTopDeckSummonIfLowLevel:
                 case EffectActionType.SetTargetMonstersFromHandFaceDown:
+                case EffectActionType.SpecialSummonSelfFromHand:
                     return player.FreeMonsterZones();
                 case EffectActionType.SummonIllusionTokensToOpponent:
+                case EffectActionType.SpecialSummonTargetToOpponentField:
                     return player.Opponent.FreeMonsterZones();
                 case EffectActionType.SetTargetSpellFromDeck:
                 case EffectActionType.SetTargetSpellFromHand:
@@ -1706,6 +1828,14 @@ namespace Rouge.Tcg
                 case TargetKind.EnemyDefenseMonster:
                     candidates.AddRange(player.Opponent.Monsters().Where(m => m.Position == BattlePosition.Defense));
                     break;
+                // --- 5 Archetypes ---
+                case TargetKind.AllyCountdownCard:
+                    candidates.AddRange(player.FieldCards().Where(c => c.CountdownMarkers > 0));
+                    break;
+                case TargetKind.AnyArtifactOnField:
+                    candidates.AddRange(player.ArtifactZones.Where(a => a != null));
+                    candidates.AddRange(player.Opponent.ArtifactZones.Where(a => a != null));
+                    break;
                 // TargetKind.SelfCard: kein Auswahl-Dialog — wird in ResolveEffectActions direkt zur Quellkarte.
             }
             if (ActionHasFilter(action)) candidates.RemoveAll(c => !MatchesFilter(action, c));
@@ -1750,8 +1880,9 @@ namespace Rouge.Tcg
                     if (mayFreeAfter) earlierMayFree = true;
                     continue;
                 }
-                // Münzwurf-Ziele werden erst nach dem Wurf gewählt (ResolveEffectActions)
-                if (action.coinGate != CoinGate.None) { if (mayFreeAfter) earlierMayFree = true; continue; }
+                // Münzwurf-/Deal-Ziele werden erst nach Wurf bzw. Wahl gewählt (ResolveEffectActions)
+                if (action.coinGate != CoinGate.None || action.dealGate != DealGate.None)
+                { if (mayFreeAfter) earlierMayFree = true; continue; }
                 // "Dieselben Ziele wie eben": die letzte zielende Aktion davor kopieren
                 if (action.target == TargetKind.SameAsPrevious)
                 {
@@ -1855,11 +1986,15 @@ namespace Rouge.Tcg
                 // The Small Print: Münzwurf-Gate — nur bei passendem letzten Wurf
                 if (action.coinGate == CoinGate.Heads && !lastCoinHeads) continue;
                 if (action.coinGate == CoinGate.Tails && lastCoinHeads) continue;
+                // Splithoof: Deal-Gate — nur die Option, die der Gegner gewählt hat
+                if (action.dealGate == DealGate.OptionA && !lastDealChoseA) continue;
+                if (action.dealGate == DealGate.OptionB && lastDealChoseA) continue;
 
-                // Münzwurf-Ziele werden erst NACH dem Wurf gewählt (YuGiOh: "flip a coin —
-                // Heads: destroy 1 monster"): CollectTargets hat sie ausgelassen, hier
-                // holt der Aktivierende sie nach — nur wenn das Gate offen ist.
-                if (action.coinGate != CoinGate.None && action.target != TargetKind.None
+                // Münzwurf-/Deal-Ziele werden erst NACH dem Wurf bzw. der Wahl gewählt
+                // (YuGiOh: "flip a coin — Heads: destroy 1 monster"): CollectTargets hat
+                // sie ausgelassen, hier holt der Aktivierende sie nach — Gate offen.
+                if ((action.coinGate != CoinGate.None || action.dealGate != DealGate.None)
+                    && action.target != TargetKind.None
                     && action.target != TargetKind.SelfCard && action.target != TargetKind.SameAsPrevious
                     && (chosen == null || chosen.Count == 0))
                 {
@@ -4171,6 +4306,273 @@ namespace Rouge.Tcg
                         }
                         else Log($"{player.Name} holds more than {action.amount} cards — no draw.");
                         break;
+
+                    // ================== 5 ARCHETYPES (SEPTEMBER 2026) ==================
+
+                    case EffectActionType.OfferDeal:
+                    {
+                        // Splithoof: der GEGNER wählt — beide Optionen stehen auf der Karte
+                        var contract = new OptionRequest
+                        {
+                            Title = $"{source.Name}: {player.Opponent.Name} must choose",
+                            Card = source,
+                            AllowCancel = false
+                        };
+                        contract.Options.Add(string.IsNullOrEmpty(action.dealOptionA) ? "Option A" : action.dealOptionA);
+                        contract.Options.Add(string.IsNullOrEmpty(action.dealOptionB) ? "Option B" : action.dealOptionB);
+                        yield return DecideRouted(player.Opponent, contract);
+                        lastDealChoseA = contract.Result != 1;
+                        player.DealsThisTurn++;
+                        player.DealsThisDuel++;
+                        Log($"{player.Opponent.Name} signs the deal of {source.Name}: \"{contract.Options[lastDealChoseA ? 0 : 1]}\".");
+                        break;
+                    }
+
+                    case EffectActionType.SwapStrongestMonsters:
+                    {
+                        CardInstance Strongest(PlayerState side) => side.Monsters()
+                            .Where(m => !m.FaceDown).OrderByDescending(m => m.CurrentAtk).FirstOrDefault();
+                        var mine = Strongest(player);
+                        var theirs = Strongest(player.Opponent);
+                        if (mine == null || theirs == null)
+                        {
+                            Log($"{source.Name}: both sides need a face-up monster — the trade falls through.");
+                            break;
+                        }
+                        int myZone = mine.ZoneIndex, theirZone = theirs.ZoneIndex;
+                        player.MonsterZones[myZone] = theirs;
+                        player.Opponent.MonsterZones[theirZone] = mine;
+                        mine.Owner = player.Opponent;
+                        theirs.Owner = player;
+                        mine.ControlReturnsTo = null;
+                        theirs.ControlReturnsTo = null;
+                        mine.SummonedThisTurn = true;   // frisch beim neuen Kontrolleur
+                        theirs.SummonedThisTurn = true;
+                        Log($"{source.Name}: {mine.Name} and {theirs.Name} swap control — fair and square.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.OpponentSendsStrongestToGrave:
+                    {
+                        var doomed = player.Opponent.Monsters()
+                            .Where(m => !m.FaceDown).OrderByDescending(m => m.CurrentAtk).FirstOrDefault();
+                        if (doomed == null) { Log($"{player.Opponent.Name} controls no face-up monster."); break; }
+                        Log($"{player.Opponent.Name} sends {doomed.Name} to the Graveyard — the contract is explicit.");
+                        if (presenter != null) yield return presenter.ShowCardSentToGrave(doomed);
+                        MoveToGraveyardWithEquips(doomed);
+                        BoardChanged();
+                        yield return FirePendingGraveTriggers();
+                        break;
+                    }
+
+                    case EffectActionType.DrawPerCount:
+                    {
+                        int tally = Math.Min(CountFor(action.countKind, player), Math.Max(1, action.targetCount));
+                        if (tally <= 0) { Log($"{source.Name}: nothing to count — no cards drawn."); break; }
+                        Log($"{player.Name} draws {tally} card(s).");
+                        if (!TryDraw(player, tally)) yield break;
+                        yield return PresentDraws(player);
+                        break;
+                    }
+
+                    case EffectActionType.TopDeckWager:
+                    {
+                        if (player.DeckPile.Count == 0 || player.Opponent.DeckPile.Count == 0)
+                        { Log("Both players need a card in the Deck to wager."); break; }
+                        var myBet = player.DeckPile[0];
+                        var theirBet = player.Opponent.DeckPile[0];
+                        player.RevealedCardThisTurn = true;
+                        int myLevel = myBet.MonsterData != null ? myBet.MonsterData.level : 0;
+                        int theirLevel = theirBet.MonsterData != null ? theirBet.MonsterData.level : 0;
+                        Log($"{player.Name} reveals {myBet.Name} (Level {myLevel}), {player.Opponent.Name} reveals {theirBet.Name} (Level {theirLevel}).");
+                        if (myLevel == theirLevel)
+                        {
+                            Log("A draw — both cards stay on top.");
+                            break;
+                        }
+                        var winner = myLevel > theirLevel ? player : player.Opponent;
+                        var winCard = myLevel > theirLevel ? myBet : theirBet;
+                        var loseCard = myLevel > theirLevel ? theirBet : myBet;
+                        winner.DeckPile.Remove(winCard);
+                        winCard.Zone = ZoneType.Hand;
+                        winner.Hand.Add(winCard);
+                        loseCard.Owner.DeckPile.Remove(loseCard);
+                        MoveToGraveyard(loseCard);
+                        Log($"{winner.Name} wins the wager and takes {winCard.Name}; {loseCard.Name} goes to the Graveyard.");
+                        BoardChanged();
+                        yield return FirePendingGraveTriggers();
+                        if (Result != DuelResult.None) yield break;
+                        if (action.amount >= 1 && winner == player)
+                        {
+                            Log($"{player.Name} draws 1 for winning the wager.");
+                            if (!TryDraw(player, 1)) yield break;
+                            yield return PresentDraws(player);
+                        }
+                        break;
+                    }
+
+                    case EffectActionType.SpecialSummonTargetToOpponentField:
+                        // Giftwyrm: Zustellung frei Haus — keine Summon-Trigger (siehe
+                        // ExecuteSelfSpecialSummon), der Empfänger kontrolliert, der
+                        // Zusteller bleibt Besitzer.
+                        foreach (var parcel in affected)
+                        {
+                            if (parcel == null || parcel.MonsterData == null) continue;
+                            var receiver = player.Opponent;
+                            if (player.CannotSpecialSummonThisTurn)
+                            { Log($"{player.Name} cannot Special Summon this turn."); break; }
+                            if (receiver.MonsterCount() >= MonsterCapFor(receiver))
+                            { Log($"{receiver.Name}'s field is at its decreed limit — no delivery."); break; }
+                            int slot = FirstUnsealedFreeZone(receiver);
+                            if (slot < 0) { Log($"{receiver.Name} has no free zone — no delivery."); break; }
+                            bool fromDeck = parcel.Zone == ZoneType.Deck;
+                            RemoveFromCurrentZone(parcel);
+                            receiver.MonsterZones[slot] = parcel;
+                            parcel.Owner = receiver;
+                            parcel.Zone = ZoneType.MonsterZone;
+                            parcel.FaceDown = false;
+                            parcel.Position = action.summonInDefense ? BattlePosition.Defense
+                                : parcel.MonsterData.selfSummonPosition;
+                            parcel.SummonedThisTurn = true;
+                            parcel.WasSpecialSummoned = true;
+                            parcel.WasDisloyalWhenLeftField = false;
+                            ArmCountdown(parcel);
+                            Log($"{player.Name} delivers {parcel.Name} to {receiver.Name}'s field.");
+                            BoardChanged();
+                            if (presenter != null) yield return presenter.ShowCardMoved(parcel);
+                            if (fromDeck) Shuffle(player.DeckPile);
+                        }
+                        break;
+
+                    case EffectActionType.ReclaimOwnFromOpponentField:
+                    {
+                        // Giftwyrm Molting/Hamper: die Geschenke schlüpfen und kommen heim
+                        var delivered = player.Opponent.Monsters()
+                            .Where(m => m.OriginalOwner == player
+                                && (string.IsNullOrEmpty(action.nameFilter) || m.Name.Contains(action.nameFilter)))
+                            .ToList();
+                        if (delivered.Count == 0) { Log($"{source.Name}: nothing of yours lives over there."); break; }
+
+                        List<CardInstance> reclaiming;
+                        int want = Math.Min(Math.Max(1, action.targetCount), delivered.Count);
+                        if (want >= delivered.Count) reclaiming = delivered;
+                        else
+                        {
+                            var pick = new TargetRequest
+                            {
+                                Title = $"\"{effect.label}\" — choose up to {want} to reclaim",
+                                Kind = TargetKind.EnemyMonster,
+                                Count = want,
+                                AllowFewer = true,
+                                AllowCancel = false
+                            };
+                            pick.Candidates.AddRange(delivered);
+                            yield return DecideRouted(player, pick);
+                            reclaiming = new List<CardInstance>(pick.Result);
+                        }
+
+                        int reclaimed = 0;
+                        foreach (var gift in reclaiming)
+                        {
+                            if (gift == null || gift.Zone != ZoneType.MonsterZone) continue;
+                            if (player.MonsterCount() >= MonsterCapFor(player))
+                            { Log($"{player.Name}'s field is at its decreed limit — the rest stays."); break; }
+                            int home = FirstUnsealedFreeZone(player);
+                            if (home < 0) { Log($"{player.Name} has no free zone — the rest stays."); break; }
+                            RemoveFromZoneArray(player.Opponent.MonsterZones, gift);
+                            player.MonsterZones[home] = gift;
+                            gift.Owner = player;
+                            gift.SummonedThisTurn = true;
+                            gift.WasSpecialSummoned = true;
+                            if (action.amount > 0) gift.TempAtkBonus += action.amount;
+                            reclaimed++;
+                            Log(action.amount > 0
+                                ? $"{gift.Name} hatches and returns to {player.Name} (+{action.amount} ATK until end of turn)."
+                                : $"{gift.Name} hatches and returns to {player.Name}.");
+                        }
+                        if (reclaimed > 0)
+                        {
+                            BoardChanged();
+                            if (presenter != null) yield return DuelWait.For(0.2f);
+                        }
+                        break;
+                    }
+
+                    case EffectActionType.SpecialSummonSelfFromHand:
+                        // Waylay-Ambush: die Quellkarte springt aus der Hand aufs Feld
+                        if (source.Zone == ZoneType.Hand && player.Hand.Contains(source))
+                        {
+                            player.Hand.Remove(source);
+                            yield return SpecialSummonToField(player, source, "from the bushes", action.summonInDefense);
+                            if (Result != DuelResult.None) yield break;
+                            if (!IsOnField(source))
+                            {
+                                // Beschwörung geplatzt (kein Platz/Cap) — zurück in die Hand
+                                source.Zone = ZoneType.Hand;
+                                player.Hand.Add(source);
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.CancelAttackTarget:
+                        foreach (var hit in affected)
+                        {
+                            if (!IsOnField(hit)) continue;
+                            hit.CannotAttackThisTurn = true;
+                            Log($"{hit.Name} cannot attack this turn — the attack is called off.");
+                        }
+                        break;
+
+                    case EffectActionType.DebuffAllEnemyAtkEot:
+                        foreach (var foe in player.Opponent.Monsters())
+                        {
+                            if (foe.FaceDown) continue;
+                            foe.TempAtkBonus -= Math.Max(0, action.amount);
+                            Log($"{foe.Name} loses {action.amount} ATK until the end of the turn ({foe.CurrentAtk}).");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.ExemptFromDecree:
+                        foreach (var hit in affected)
+                        {
+                            if (hit == null || hit.Zone != ZoneType.ArtifactZone) continue;
+                            hit.DecreeExemptFor = player;
+                            Log($"{player.Name} slips through a loophole — {hit.Name} does not apply to them this turn.");
+                        }
+                        break;
+
+                    case EffectActionType.TickCountdownTarget:
+                        foreach (var clock in affected)
+                        {
+                            if (clock == null || clock.CountdownMarkers <= 0) continue;
+                            clock.CountdownMarkers = Math.Max(0, clock.CountdownMarkers - Math.Max(1, action.amount));
+                            Log(clock.CountdownMarkers > 0
+                                ? $"{clock.Name}: an Hour Counter is removed ({clock.CountdownMarkers} left)."
+                                : $"{clock.Name}: the last Hour Counter is removed!");
+                            BoardChanged();
+                            if (clock.CountdownMarkers <= 0)
+                            {
+                                yield return StrikeCountdown(clock.Owner, clock);
+                                if (Result != DuelResult.None) yield break;
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.StrikeAllOwnCountdowns:
+                    {
+                        var clocks = player.FieldCards().Where(c => c.CountdownMarkers > 0).ToArray();
+                        if (clocks.Length == 0) { Log($"{source.Name}: no clock is ticking."); break; }
+                        Log($"{source.Name}: MIDNIGHT — every bell rings at once!");
+                        foreach (var clock in clocks)
+                        {
+                            if (!IsOnField(clock) || clock.CountdownMarkers <= 0) continue;
+                            yield return StrikeCountdown(player, clock);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+                    }
                 }
             }
             BoardChanged();
@@ -4221,6 +4623,81 @@ namespace Rouge.Tcg
             for (int i = 0; i < player.MonsterZones.Length; i++)
                 if (player.MonsterZones[i] == null && !IsZoneSealed(player, i)) return i;
             return -1;
+        }
+
+        // ================== HELFER: 5 ARCHETYPES (SEPTEMBER 2026) ==================
+
+        /// <summary>
+        /// Bylaw: Wirkt dieses Dekret auf diesen Spieler? Nein, wenn es verdeckt,
+        /// annulliert, per Loophole ausgesetzt ist — oder sein Besitzer den
+        /// Letter of the Law kontrolliert und selbst der Geprüfte ist.
+        /// </summary>
+        public bool DecreeApplies(CardInstance decree, PlayerState side)
+        {
+            if (decree == null || side == null || decree.FaceDown || decree.EffectsNegated) return false;
+            if (decree.DecreeExemptFor == side) return false;
+            if (decree.Owner == side && decree.Name.StartsWith("Bylaw:"))
+                foreach (var card in side.Monsters())
+                    if (!card.FaceDown && card.Definition != null && card.Definition.passiveDecreesSpareOwner)
+                        return false;
+            return true;
+        }
+
+        /// <summary>Bylaw (Standing Room Only): Monster-Obergrenze für diese Seite (Standard: Zonenzahl).</summary>
+        private int MonsterCapFor(PlayerState side)
+        {
+            int cap = side.MonsterZones.Length;
+            foreach (var half in new[] { Player1, Player2 })
+            {
+                if (half == null) continue;
+                foreach (var decree in half.ArtifactZones)
+                {
+                    int limit = decree?.Definition != null ? decree.Definition.passiveMonsterCapBoth : 0;
+                    if (limit > 0 && limit < cap && DecreeApplies(decree, side)) cap = limit;
+                }
+            }
+            return cap;
+        }
+
+        /// <summary>
+        /// Waylay Tollgate + Bylaw Quiet Hours: Mana-Zoll auf den ERSTEN Angriff
+        /// dieses Spielers in der laufenden Battle Phase (0 = frei).
+        /// </summary>
+        private int AttackTollFor(PlayerState attackerSide)
+        {
+            if (attackerSide.AttacksDeclaredThisBattle > 0) return 0;
+            int toll = 0;
+            // Tollgate: kassiert nur Angriffe des GEGNERS seines Besitzers
+            foreach (var gate in attackerSide.Opponent.ArtifactZones)
+                if (gate != null && !gate.FaceDown && !gate.EffectsNegated && gate.Definition != null)
+                    toll += gate.Definition.passiveAttackToll;
+            // Quiet Hours: kassiert beide Seiten — sofern das Dekret hier greift
+            foreach (var half in new[] { Player1, Player2 })
+            {
+                if (half == null) continue;
+                foreach (var decree in half.ArtifactZones)
+                    if (decree?.Definition != null && decree.Definition.passiveAttackTaxBoth > 0
+                        && DecreeApplies(decree, attackerSide))
+                        toll += decree.Definition.passiveAttackTaxBoth;
+            }
+            return toll;
+        }
+
+        /// <summary>Chimekeep: Countdown-Marker beim Betreten des Feldes aufziehen.</summary>
+        private void ArmCountdown(CardInstance card)
+        {
+            if (card?.Definition != null && card.Definition.countdownMarkers > 0)
+                card.CountdownMarkers = card.Definition.countdownMarkers;
+        }
+
+        /// <summary>Chimekeep: der Nullschlag einer Karte — Marker weg, Effekt feuert.</summary>
+        private IEnumerator StrikeCountdown(PlayerState owner, CardInstance clock)
+        {
+            clock.CountdownMarkers = 0;
+            owner.CountdownStruckThisTurn = true;
+            Log($"{clock.Name}: the last Hour Counter is removed — the appointed hour has come!");
+            BoardChanged();
+            yield return OfferTriggeredEffects(owner, clock, EffectTrigger.CountdownZero);
         }
 
         // ================== HELFER FÜR DIE NEUEN BAUSTEINE ==================
@@ -4372,6 +4849,12 @@ namespace Rouge.Tcg
             if (isSpellCast && SpellTaxActive()) cost += 1;
             // Countersign: der nächste Zauber dieses Spielers trägt den Aufschlag
             if (isSpellCast && player.NextSpellSurcharge > 0) cost += player.NextSpellSurcharge;
+            // Giftwyrm Prettybow: jedes offene Steuer-Monster auf der EIGENEN Seite
+            // verteuert die eigenen Zauber — das Geschenk kassiert seinen Wirt
+            if (isSpellCast)
+                foreach (var leech in player.Monsters())
+                    if (!leech.FaceDown && !leech.EffectsNegated && leech.Definition != null
+                        && leech.Definition.passiveSpellTaxOnController) cost += 1;
             if (cost <= 0) return cost;
             if (!isSpellCast) return cost;
             if (player.SpellsCastThisTurn > 0) return cost;
@@ -4394,7 +4877,8 @@ namespace Rouge.Tcg
             {
                 if (side == null) continue;
                 foreach (var artifact in side.ArtifactZones)
-                    if (artifact != null && !artifact.FaceDown && artifact.Definition != null
+                    if (artifact != null && !artifact.FaceDown && !artifact.EffectsNegated
+                        && artifact.Definition != null
                         && artifact.Definition.passiveSpellTaxBoth) return true;
             }
             return false;
@@ -5129,6 +5613,12 @@ namespace Rouge.Tcg
 
         private IEnumerator OfferTriggeredEffects(PlayerState owner, CardInstance card, EffectTrigger trigger, ZoneType? graveFromZone = null)
         {
+            // Giftwyrm: Karten, die ihrem Besitzer dienen, triggern IMMER für den
+            // OriginalOwner — egal, wer sie gerade kontrolliert (oder kontrollierte).
+            if (card?.Definition != null && card.Definition.passiveServesOriginalOwner
+                && card.OriginalOwner != null)
+                owner = card.OriginalOwner;
+
             // YuGiOh-Regel: WÄHREND eine Kette sich auflöst, startet nichts Neues —
             // auch PFLICHT-Trigger warten und feuern erst an der Naht danach.
             // graveFromZone wandert mit, sonst verlöre Asemirs "nur aus dem Extra
@@ -5345,7 +5835,14 @@ namespace Rouge.Tcg
             {
                 if (spellsLocked && card.SpellData != null) continue;
                 foreach (int index in ActivatableEffects(card, responder, EffectTrigger.HandQuick))
+                {
+                    // Waylay-Ambush: Hand-Reaktionen mit Fenster-Beschränkung zünden
+                    // NUR im passenden Fenster (wie die Trapline-Fallen vom Feld)
+                    var window = card.Definition.effects[index].quickWindow;
+                    if (window == QuickWindow.AttackResponse && context != "attack") continue;
+                    if (window == QuickWindow.SummonResponse && context != "summon") continue;
                     candidates.Add((card, index));
+                }
             }
 
             // Deckay Fiend/Vulture: Antworten, die NUR auf ein Reliquary-Summon
@@ -5501,7 +5998,16 @@ namespace Rouge.Tcg
                 var option = request.Options[request.Chosen];
                 if (option.EndBattle) break;
 
+                // Waylay Tollgate / Bylaw Quiet Hours: der erste Angriff kostet Wegzoll —
+                // automatisch abgezogen (BuildBattleActions bietet ohne Deckung nichts an)
+                int toll = AttackTollFor(player);
+                if (toll > 0)
+                {
+                    player.Mana = Math.Max(0, player.Mana - toll);
+                    Log($"{player.Name} pays a toll of {toll} Mana to attack ({player.Mana} Mana left).");
+                }
                 player.AttacksDeclaredThisBattle++;
+                player.DeclaredAttackThisTurn = true; // Waylay: "hat diesen Zug angegriffen"
                 yield return ResolveAttack(player, option);
                 if (CheckWin()) yield break;
                 yield return EnforceLifeThresholds();
@@ -5534,13 +6040,20 @@ namespace Rouge.Tcg
 
             // The Duelist's Code: ein Angriff je Battle Phase — danach nur noch das Ende
             bool attackCapReached = OneAttackBonus() > 0 && player.AttacksDeclaredThisBattle >= 1;
+            // Waylay Tollgate / Bylaw Quiet Hours: reicht das Mana nicht für den
+            // fälligen Wegzoll, gibt es diesen Zug keinen ersten Angriff.
+            bool tollUnpayable = AttackTollFor(player) > player.Mana;
 
             foreach (var attacker in player.Monsters())
             {
+                if (tollUnpayable) break;
                 if (attackCapReached) break;
                 if (attacker.Position != BattlePosition.Attack) continue;
                 if (attacker.CannotAttackThisTurn) continue;
                 if (attacker.Definition != null && attacker.Definition.passiveCannotAttack) continue;
+                // Giftwyrm: Geschenke kämpfen nicht für ihren Empfänger
+                if (attacker.Definition != null && attacker.Definition.passiveCannotAttackWhileDisloyal
+                    && attacker.Owner != attacker.OriginalOwner) continue;
                 if (attacker.SummonedThisTurn && attacker.Definition != null
                     && attacker.Definition.passiveNoAttackOnSummonTurn) continue;
                 if (attacker.HasAttackedThisTurn && attacker.BonusAttacks <= 0
@@ -5608,6 +6121,8 @@ namespace Rouge.Tcg
             var target = option.Target;
             if (attacker == null || attacker.Zone != ZoneType.MonsterZone) yield break;
             if (attacker.Definition != null && attacker.Definition.passiveCannotAttack) yield break;
+            if (attacker.Definition != null && attacker.Definition.passiveCannotAttackWhileDisloyal
+                && attacker.Owner != attacker.OriginalOwner) yield break;
             if (attacker.SummonedThisTurn && attacker.Definition != null
                 && attacker.Definition.passiveNoAttackOnSummonTurn) yield break;
             if (option.Direct && attacker.SummonedThisTurn && attacker.Definition != null
@@ -5647,6 +6162,13 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 Log("The attacker was turned face-down — attack cancelled.");
                 yield break;
             }
+            // Stand and Deliver / Splithoof Sign Here: wer im Reaktionsfenster das
+            // Angriffsverbot kassiert, bricht auch den LAUFENDEN Angriff ab.
+            if (attacker.CannotAttackThisTurn)
+            {
+                Log("The attack is called off.");
+                yield break;
+            }
 
             // The Duelist's Code: der Angreifer trägt den Bonus nur während des Kampfes
             int codeBonus = OneAttackBonus();
@@ -5675,6 +6197,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 if (target.FaceDown)
                 {
                     target.FaceDown = false;
+                    ArmCountdown(target); // Chimekeep
                     Log($"The face-down monster is flipped face-up: {target.Name}!");
                     BoardChanged();
                     if (responseDepth < 2) // Flip-Effekte feuern auch beim Aufdecken durch einen Angriff
@@ -5874,6 +6397,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             int placed = 0;
             for (int i = 0; i < count; i++)
             {
+                if (receiver.MonsterCount() >= MonsterCapFor(receiver)) break; // Bylaw: Obergrenze
                 int free = receiver.FirstFreeZoneIndex(receiver.MonsterZones);
                 if (free < 0) break;
                 var token = new CardInstance(tokenDef, receiver)
@@ -5922,6 +6446,10 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
 
             // Reliquarys landen wie jede andere Karte im Friedhof — nur Hand-Rückgaben
             // schicken sie zurück ins Extra Deck (siehe ReturnToExtraDeck).
+            // Giftwyrm: die Fremdkontrolle wird VOR dem Besitzer-Reset festgehalten,
+            // damit "während dein Gegner sie kontrolliert"-Trigger sie noch sehen.
+            card.WasDisloyalWhenLeftField = IsOnField(card)
+                && card.OriginalOwner != null && card.Owner != card.OriginalOwner;
             RemoveFromCurrentZone(card);
             if (card.OriginalOwner != null) card.Owner = card.OriginalOwner; // Kontrolle endet — zurück zum Besitzer
             card.FaceDown = false;
@@ -5931,6 +6459,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             card.TempAtkBonus = 0;
             card.TempDefBonus = 0;
             card.WasSpecialSummoned = false;
+            // Road to 1000 / 5 Archetypes: auch Level, Schild-Haltung und Uhrwerk enden am Grab
+            card.PermanentLevelBonus = 0;
+            card.TempLevelThisTurn = 0;
+            card.AttacksWithDefThisTurn = false;
+            card.CountdownMarkers = 0;
+            card.DecreeExemptFor = null;
             card.Owner.Graveyard.Add(card);
         }
 
@@ -5953,6 +6487,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 if (target.Definition.passiveNoEffectDestroy) return true;
                 if (target.Definition.passiveLoneImmunity && target.Owner.MonsterCount() <= 1) return true;
                 if (target.Definition.passiveLowHandImmunity && target.Owner.Hand.Count <= 1) return true;
+                // Bylaw Chairwoman: benannte Karten des Besitzers stehen unter Amtsschutz
+                foreach (var guardian in target.Owner.FieldCards())
+                    if (guardian != null && guardian != target && !guardian.FaceDown && !guardian.EffectsNegated
+                        && guardian.Definition != null
+                        && !string.IsNullOrEmpty(guardian.Definition.protectsNamedFromEffectDestroy)
+                        && target.Name.Contains(guardian.Definition.protectsNamedFromEffectDestroy)) return true;
                 foreach (var neighbour in target.AdjacentMonsters())
                     if (!neighbour.FaceDown && neighbour.Definition != null && neighbour.Definition.passiveAdjacentNoEffectDestroy) return true;
             }
@@ -5974,6 +6514,8 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             card.LienAmount = 0;
             card.BanishWhenLeavingField = false;
             card.PiercingThisTurn = false;
+            card.WasDisloyalWhenLeftField = IsOnField(card)
+                && card.OriginalOwner != null && card.Owner != card.OriginalOwner;
             DetachEquipsToGraveyard(card);
             RemoveFromCurrentZone(card);
             if (card.OriginalOwner != null) card.Owner = card.OriginalOwner; // zurück zum Besitzer
@@ -5984,6 +6526,11 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             card.TempAtkBonus = 0;
             card.TempDefBonus = 0;
             card.WasSpecialSummoned = false;
+            card.PermanentLevelBonus = 0;
+            card.TempLevelThisTurn = 0;
+            card.AttacksWithDefThisTurn = false;
+            card.CountdownMarkers = 0;
+            card.DecreeExemptFor = null;
             card.Owner.Banished.Add(card);
         }
 

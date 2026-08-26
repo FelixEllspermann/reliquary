@@ -148,6 +148,8 @@ namespace Rouge.Tcg
         private int doubleBattleDamageUntilTurn;
         // Letzter Münzwurf innerhalb der laufenden Effektauflösung (coinGate)
         private bool lastCoinHeads;
+        // Splithoof: letzte Deal-Wahl des Gegners innerhalb der laufenden Auflösung (dealGate)
+        private bool lastDealChoseA;
         // Parley: die laufende Battle Phase endet nach dem aktuellen Kampf
         private bool endBattlePhaseRequested;
 
@@ -819,6 +821,7 @@ namespace Rouge.Tcg
                 BoardChanged();
                 if (clock.CountdownMarkers <= 0)
                 {
+                    player.CountdownStruckThisTurn = true; // Chimekeep: Chime In
                     yield return OfferTriggeredEffects(player, clock, EffectTrigger.CountdownZero);
                     if (CheckWin()) yield break;
                 }
@@ -910,6 +913,9 @@ namespace Rouge.Tcg
                 player.OwnMonstersDestroyedThisTurn = 0;
                 player.NextNormalSummonTributeDiscount = 0;
                 player.NextSpellSurcharge = 0;         // Countersign gilt nur "in diesem Zug"
+                // --- 5 Archetypes ---
+                player.DealsThisTurn = 0;
+                player.CountdownStruckThisTurn = false;
                 // Siegel räumen: befristete nach Ablauf, quellgebundene mit toter Quelle
                 player.ZoneSeals.RemoveAll(seal =>
                     (seal.UntilTurn >= 0 && TurnNumber > seal.UntilTurn)
@@ -927,6 +933,9 @@ namespace Rouge.Tcg
                     player.MilledLastTurn = player.MilledThisTurn;
                     player.MilledThisTurn = false;
                     player.SelfSummonedNamesThisTurn.Clear();
+                    // Waylay: "diesen/letzten Zug angegriffen" rutscht genauso
+                    player.DeclaredAttackLastTurn = player.DeclaredAttackThisTurn;
+                    player.DeclaredAttackThisTurn = false;
                 }
                 foreach (var card in player.FieldCards())
                 {
@@ -966,6 +975,7 @@ namespace Rouge.Tcg
                     card.StatsOverriddenThisTurn = false;
                     card.TempLevelThisTurn = 0;          // Demoted for Cause
                     card.AttacksWithDefThisTurn = false; // Lead With the Shield
+                    card.DecreeExemptFor = null;         // Bylaw Loophole
                 }
             }
             ReturnBorrowedCards();
@@ -1033,10 +1043,29 @@ namespace Rouge.Tcg
                 card.Zone = ZoneType.Hand;
                 player.Hand.Add(card);
                 LastDrawn.Add(card);
-                Log($"{player.Name} draws a card ({player.Hand.Count} in hand).");
+                // Bylaw: Show of Hands — jede Ziehung wird offen vorgezeigt
+                if (DrawRevealDecreeApplies(player))
+                {
+                    player.RevealedCardThisTurn = true;
+                    Log($"{player.Name} draws a card and shows it: {card.Name} ({player.Hand.Count} in hand).");
+                }
+                else Log($"{player.Name} draws a card ({player.Hand.Count} in hand).");
             }
             BoardChanged();
             return true;
+        }
+
+        /// <summary>Bylaw: liegt ein offenes Show-of-Hands-Dekret, das auf diesen Spieler wirkt?</summary>
+        private bool DrawRevealDecreeApplies(PlayerState drawer)
+        {
+            foreach (var side in new[] { Player1, Player2 })
+            {
+                if (side == null) continue;
+                foreach (var decree in side.ArtifactZones)
+                    if (decree != null && decree.Definition != null && decree.Definition.passiveDrawRevealBoth
+                        && DecreeApplies(decree, drawer)) return true;
+            }
+            return false;
         }
 
         /// <summary>Spielt die Zieh-Animation für alle zuletzt gezogenen Karten ab (falls ein Presenter existiert).</summary>

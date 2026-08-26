@@ -58,6 +58,21 @@ namespace Rouge.Tcg.EditorTools
             Start(doubled, extra);
         }
 
+        [MenuItem("Rouge TCG/Bot Probe/5 Archetypes (Duel-Szene, Bot vs Bot)")]
+        public static void ProbeArchetypes5()
+        {
+            var catalog = AssetDatabase.LoadAssetAtPath<CardCatalog>("Assets/_Game/Data/Tcg/CardCatalog.asset");
+            string[] families = { "Giftwyrm", "Splithoof", "Waylay", "Bylaw", "Chimekeep" };
+            var main = catalog.cards.Where(c => c != null && c.releaseVersion == "0.1.7"
+                && families.Any(f => c.cardName.Contains(f) || c.cardName == "Stand and Deliver!")
+                && !(c is ReliquaryCardData) && !(c is PlayerCardData)).Select(c => c.cardName).ToList();
+            var extra = catalog.cards.Where(c => c != null && c.releaseVersion == "0.1.7"
+                && families.Any(f => c.cardName.Contains(f)) && c is ReliquaryCardData).Select(c => c.cardName).ToList();
+            var doubled = new List<string>(main);
+            doubled.AddRange(main.Where(n => catalog.FindByName(n) is MonsterCardData));
+            Start(doubled, extra);
+        }
+
         [MenuItem("Rouge TCG/Bot Probe/Abbrechen (Flag löschen)")]
         public static void Cancel() { EditorPrefs.DeleteKey(FlagKey); EditorPrefs.DeleteKey(SnapshotKey); }
 

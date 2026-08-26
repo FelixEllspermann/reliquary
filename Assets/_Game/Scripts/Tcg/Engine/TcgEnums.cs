@@ -269,11 +269,32 @@ namespace Rouge.Tcg
         SetBothLifeToLower,             // die LP beider Spieler werden auf den niedrigeren Wert gesetzt (Settle the Difference)
         HealHalfLpDifference,           // halbe LP-Differenz als Heilung, höchstens amount (The Even Scales)
         SetTargetMonstersFromHandFaceDown, // Ziel-Monster aus der Hand verdeckt in Verteidigung legen; amount 1 = je Karte über der ersten 1 ziehen
-        DrawIfHandAtMost                // 1 Karte ziehen, wenn die Hand danach höchstens amount Karten hält (Making Ends Meet)
+        DrawIfHandAtMost,               // 1 Karte ziehen, wenn die Hand danach höchstens amount Karten hält (Making Ends Meet)
+
+        // --- 5 Archetypes (September 2026) — NUR ANHÄNGEN ---
+        OfferDeal,                      // Splithoof: der GEGNER wählt Option A oder B (dealOptionA/B); folgende Aktionen mit dealGate laufen entsprechend
+        SwapStrongestMonsters,          // die offenen Monster mit dem höchsten ATK beider Spieler tauschen dauerhaft die Kontrolle
+        OpponentSendsStrongestToGrave,  // das offene Monster mit dem höchsten ATK des Gegners geht in den Friedhof (kein "zerstören")
+        DrawPerCount,                   // amount unbenutzt: 1 Karte je gezählter Karte (countKind) ziehen, höchstens targetCount
+        TopDeckWager,                   // beide decken die oberste Deckkarte auf: höheres Level → Hand, Verlierer-Karte → Grab; amount 1 = bei eigenem Sieg 1 ziehen
+        SpecialSummonTargetToOpponentField, // Giftwyrm: Ziel (Hand/Deck/Friedhof) auf das Feld des GEGNERS spezialbeschwören — keine Summon-Trigger
+        ReclaimOwnFromOpponentField,    // Giftwyrm: bis zu targetCount eigene (OriginalOwner) Monster mit nameFilter vom Gegnerfeld aufs eigene zurückholen; amount = ATK-Bonus bis Zugende
+        SpecialSummonSelfFromHand,      // Waylay-Ambush: die Quellkarte aus der Hand spezialbeschwören
+        CancelAttackTarget,             // der laufende Angriff des Ziels wird abgebrochen (setzt CannotAttackThisTurn; ResolveAttack bricht ab)
+        DebuffAllEnemyAtkEot,           // alle offenen gegnerischen Monster verlieren amount ATK bis Zugende
+        ExemptFromDecree,               // Bylaw Loophole: das Ziel-Dekret wirkt bis Zugende nicht auf den Aktivierenden
+        TickCountdownTarget,            // Chimekeep: amount Countdown-Marker vom ZIEL entfernen (eigene Karte); bei 0 feuert dessen Nullschlag
+        StrikeAllOwnCountdowns          // Chimekeep-Carillon: ALLE eigenen Countdown-Karten schlagen sofort (Marker auf 0, Effekte feuern)
     }
 
     /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>
     public enum CoinGate { None, Heads, Tails }
+
+    /// <summary>
+    /// Deal-Gate einer Aktion (Splithoof): läuft nur, wenn der Gegner beim letzten
+    /// OfferDeal dieses Effekts die entsprechende Option gewählt hat.
+    /// </summary>
+    public enum DealGate { None, OptionA, OptionB }
 
     /// <summary>Was BuffSelfPerCount / ähnliche Zähl-Aktionen zählen.</summary>
     public enum EffectCountKind
@@ -291,7 +312,11 @@ namespace Rouge.Tcg
         OwnGraveyardSpells,     // Zauber im eigenen Friedhof (The House Always Wins)
 
         // --- Road to 1000 ---
-        OwnDistinctLevels       // Anzahl VERSCHIEDENER Level unter den eigenen offenen Monstern (Stuck on the Middle Rung)
+        OwnDistinctLevels,      // Anzahl VERSCHIEDENER Level unter den eigenen offenen Monstern (Stuck on the Middle Rung)
+
+        // --- 5 Archetypes ---
+        OwnMonstersOnOpponentField, // eigene (OriginalOwner) Monster auf dem GEGNERFELD (Giftwyrm)
+        AllArtifactsOnField     // Artefakte auf BEIDEN Feldern (Bylaw Enforcer)
     }
 
     public enum TargetKind
@@ -349,7 +374,11 @@ namespace Rouge.Tcg
         AnyMonsterWithLien,        // beliebiges Monster mit Pfandrecht
         EnemyLevel1Monster,        // gegnerisches Level-1-Monster (Changeling Cradle)
         EnemyDefenseMonster,       // gegnerisches Monster in Verteidigungsposition
-        SameAsPrevious             // dieselben Ziele wie die letzte zielende Aktion davor — kein zweiter Dialog (Lock Shields)
+        SameAsPrevious,            // dieselben Ziele wie die letzte zielende Aktion davor — kein zweiter Dialog (Lock Shields)
+
+        // --- 5 Archetypes (September 2026) ---
+        AllyCountdownCard,         // eigene Feldkarte mit Countdown-Markern (Chimekeep)
+        AnyArtifactOnField         // Artefakt in einer Artefakt-Zone BEIDER Seiten (Bylaw Ombudsman/Loophole)
     }
 
     /// <summary>

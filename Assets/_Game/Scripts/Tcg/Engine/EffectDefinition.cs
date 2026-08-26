@@ -88,6 +88,17 @@ namespace Rouge.Tcg
 
         [Tooltip("Nur Monster mit 0 Basis-ATK als Ziel (Regent, Long Live the King)")]
         public bool zeroAtkOnly;
+
+        [Header("5 Archetypes (September 2026)")]
+        [Tooltip("Splithoof: diese Aktion läuft nur, wenn der Gegner beim letzten " +
+                 "OfferDeal des Effekts diese Option gewählt hat. None = immer.")]
+        public DealGate dealGate = DealGate.None;
+
+        [Tooltip("OfferDeal: Text der Option A, wie der Gegner sie im Dialog liest")]
+        public string dealOptionA = "";
+
+        [Tooltip("OfferDeal: Text der Option B")]
+        public string dealOptionB = "";
     }
 
     [Serializable]
@@ -211,6 +222,18 @@ namespace Rouge.Tcg
         [Tooltip("Nur aktivierbar mit HÖCHSTENS so vielen eigenen Monstern (0 = keine " +
                  "Bedingung; Making Ends Meet: 1). Alte Assets ohne dieses Feld laden als 0 = aus.")]
         public int maxOwnMonsters;
+
+        [Header("5 Archetypes: weitere Bedingungen")]
+        [Tooltip("Giftwyrm: dieser Trigger zündet nur, wenn die Karte (beim Verlassen des " +
+                 "Feldes) vom GEGNER kontrolliert war bzw. gerade kontrolliert wird")]
+        public bool onlyWhileControlledByOpponent;
+
+        [Tooltip("Waylay: nur aktivierbar, wenn dein Gegner diesen Zug angegriffen hat")]
+        public bool requireOpponentAttackedThisTurn;
+
+        [Tooltip("Chimekeep: nur aktivierbar, wenn diesen Zug eine deiner Countdown-Karten " +
+                 "ihren Nullschlag hatte (Chime In)")]
+        public bool requireStruckThisTurn;
 
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();

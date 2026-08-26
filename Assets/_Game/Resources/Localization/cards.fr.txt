@@ -4501,3 +4501,242 @@ l0 Joindre les deux bouts
 t0 Payez 1 Mana. Si vous contrôlez 1 monstre ou moins : gagnez 2 Mana ce tour.
 l1 Tirer encore sur la corde
 t1 À la place, payez 2 Mana : piochez de plus 1 carte si votre main compte alors 3 cartes ou moins.
+# ---------- 5 Archetypes (0.1.7) ----------
+## Giftwyrm Ribboncoil
+n Giftwyrm Boucleruban
+l0 Retour à l'expéditeur
+t0 Si cette carte est envoyée au Cimetière tant que votre adversaire la contrôle : piochez 1 carte.
+## Giftwyrm Sweettooth
+n Giftwyrm Becsucré
+l0 Bruits de grignotage
+t0 Durant la End Phase du contrôleur de cette carte, tant que votre adversaire la contrôle : vous avez 1 Mana de plus à votre prochain tour.
+## Giftwyrm Prettybow
+n Giftwyrm Jolinœud
+## Giftwyrm Unboxed
+n Giftwyrm Déballé
+l0 Ça éclot
+t0 Si cette carte est envoyée au Cimetière tant que votre adversaire la contrôle : vous pouvez l'Invoquer Spécialement sur VOTRE terrain.
+## Giftwyrm Registry
+n Liste de Cadeaux Giftwyrm
+l0 Sur la liste
+t0 Payez 2 Mana : Invoquez Spécialement 1 monstre « Giftwyrm » depuis votre Deck sur le terrain de votre ADVERSAIRE.
+l1 La liste complète
+t1 À la place, payez 4 Mana : 2 avec des noms différents.
+## Giftwyrm Thank-You Note
+n Carte de Remerciement Giftwyrm
+l0 Salutations chaleureuses
+t0 Payez 1 Mana : piochez 1 carte pour chaque monstre « Giftwyrm » contrôlé par votre adversaire (max. 3).
+l1 Avec toute ma gratitude
+t1 À la place, payez 2 Mana : ajoutez de plus à votre main 1 carte « Giftwyrm » depuis votre Cimetière.
+## Giftwyrm Molting
+n Mue du Giftwyrm
+l0 La mue
+t0 Payez 2 Mana : ramenez sur VOTRE terrain jusqu'à 2 de vos monstres « Giftwyrm » contrôlés par votre adversaire ; ils peuvent attaquer ce tour.
+l1 Mue affamée
+t1 À la place, payez 4 Mana : ils gagnent de plus 500 ATK chacun jusqu'à la fin de ce tour.
+## Giftwyrm Hollowshell
+n Giftwyrm Coquillevide
+l0 Ce qu'il y avait dedans
+t0 Quand cette carte est Invoquée : 1 monstre contrôlé par votre adversaire perd 400 ATK jusqu'à la fin de ce tour pour chaque « Giftwyrm » qu'il contrôle.
+## Giftwyrm, Ungrateful Guest
+n Giftwyrm, l'Invité Ingrat
+s Votre adversaire contrôle un monstre « Giftwyrm » — payez 2 Mana.
+l0 Un cadeau pour l'hôte
+t0 Quand cette carte est Invoquée : Invoquez Spécialement 1 monstre « Giftwyrm » depuis votre Cimetière sur le terrain de votre ADVERSAIRE.
+l1 Il s'incruste
+t1 Payez 2 Mana : 1 monstre contrôlé par votre adversaire ne peut pas attaquer ce tour.
+## Giftwyrm, the Whole Hamper
+n Giftwyrm, le Panier Entier
+s Votre adversaire contrôle 2+ monstres « Giftwyrm » — payez 3 Mana.
+l0 Le panier éclate
+t0 Quand cette carte est Invoquée : ramenez TOUS vos monstres « Giftwyrm » du terrain adverse sur votre terrain ; ils gagnent 300 ATK jusqu'à la fin de ce tour et peuvent attaquer ce tour.
+## Splithoof Doorknocker
+n Splithoof Heurteporte
+l0 On frappe à la porte
+t0 Quand cette carte est Invoquée — MARCHÉ, votre adversaire choisit : il défausse 1 carte aléatoire, OU vous piochez 1 carte.
+## Splithoof Pennyweight
+n Splithoof Poidsdenier
+l0 Le pouce sur la balance
+t0 Une fois par tour — MARCHÉ, votre adversaire choisit : vous gagnez 1 Mana ce tour, OU vous piochez 1 carte.
+## Splithoof Grinning Ledger
+n Registre Ricanant de Splithoof
+l0 Ouvert à la clientèle
+t0 Les DEUX joueurs peuvent l'activer une fois par tour — payez 1 Mana : piochez 1 carte. Si votre ADVERSAIRE l'active, vous avez 1 Mana de plus à votre prochain tour.
+## Splithoof Hagglehorn
+n Splithoof Cornemarchande
+l0 L'heure du marchandage
+t0 Quand cette carte est Invoquée — MARCHÉ, votre adversaire choisit : 1 monstre au choix du MARCHAND qu'il contrôle perd définitivement 500 ATK, OU vous Invoquez Spécialement 1 monstre « Splithoof » de Niveau 1 depuis votre Deck.
+## Splithoof Sign Here
+n Splithoof : Signez Ici
+l0 Signez ici, je vous prie
+t0 Payez 2 Mana quand un monstre adverse attaque — MARCHÉ, votre adversaire choisit : l'attaque est annulée, OU l'attaque continue et il défausse ensuite 2 cartes aléatoires.
+## Splithoof Repossession
+n Saisie de Splithoof
+l0 La saisie
+t0 Payez 2 Mana : placez un Privilège de 2 sur 1 monstre contrôlé par votre adversaire (à chacune de ses Standby Phases : payer 2 Mana ou il est détruit) ; piochez 1 carte.
+l1 Intérêts composés
+t1 À la place, payez 3 Mana : un Privilège de 3.
+## Splithoof Fiddle Wager
+n Pari du Violon de Splithoof
+l0 Le pari du violon
+t0 Payez 1 Mana : les deux joueurs révèlent la carte du dessus de leur Deck. Le joueur dont la carte a le plus haut Niveau (les non-monstres comptent 0) l'ajoute à sa main ; l'autre va au Cimetière de son propriétaire. En cas d'égalité, les deux restent dessus.
+l1 L'air du diable
+t1 À la place, payez 2 Mana : si VOTRE carte gagne, piochez de plus 1 carte.
+## Splithoof Collections Imp
+n Diablotin de Recouvrement Splithoof
+l0 Paiement en retard
+t0 Quand cette carte est Invoquée : augmentez de 1 le Privilège de 1 monstre contrôlé par votre adversaire.
+## Splithoof, Fair and Square
+n Splithoof, Réglo et Carré
+s Un Marché a été conclu ce tour — payez 2 Mana.
+l0 Lire les petites lignes
+t0 Quand cette carte est Invoquée — MARCHÉ, votre adversaire choisit : VOUS piochez 1 carte, OU les monstres les plus forts des deux joueurs échangent définitivement leur contrôle.
+## Splithoof, the Better Bargain
+n Splithoof, la Meilleure Affaire
+s 3+ Marchés ont été conclus ce Duel — payez 3 Mana.
+l0 L'offre finale
+t0 Quand cette carte est Invoquée — MARCHÉ, votre adversaire choisit : vous piochez 3 cartes, OU il envoie au Cimetière le monstre le plus fort qu'il contrôle.
+l1 Adoucir l'affaire
+t1 Une fois par tour — payez 2 Mana (Rapide) — MARCHÉ, votre adversaire choisit : 1 monstre de votre choix gagne 700 ATK jusqu'à la fin de ce tour, OU vous piochez 1 carte.
+## Waylay Hedgeknife
+n Waylay Serpehaie
+l0 Sorti de la haie
+t0 EMBUSCADE — quand votre adversaire Invoque un monstre : vous pouvez Invoquer Spécialement cette carte depuis votre main (dans la fenêtre de réaction). Puis 1 monstre contrôlé par votre adversaire perd 300 ATK jusqu'à la fin de ce tour.
+## Waylay Roadthorn
+n Waylay Épineroute
+l0 Une épine sur la route
+t0 EMBUSCADE — quand un monstre adverse attaque : vous pouvez Invoquer Spécialement cette carte depuis votre main. Puis l'attaquant perd 500 ATK jusqu'à la fin de ce tour.
+## Waylay Tollgate
+n Barrière de Péage de Waylay
+l0 Compter la recette
+t0 Payez 1 Mana (une fois par tour) : piochez 1 carte, si votre adversaire a attaqué ce tour.
+## Waylay Highwayman
+n Waylay Bandit de Grand Chemin
+l0 La bourse ou l'orgueil
+t0 EMBUSCADE — quand un monstre adverse attaque : vous pouvez Invoquer Spécialement cette carte depuis votre main. Puis piochez 1 carte.
+l1 Route barrée
+t1 Payez 2 Mana : 1 monstre contrôlé par votre adversaire ne peut pas attaquer ce tour.
+## Stand and Deliver!
+n La Bourse ou la Vie !
+l0 La bourse ou la vie !
+t0 Payez 2 Mana quand un monstre adverse attaque : l'attaque est annulée ; piochez 1 carte.
+l1 Et le chapeau avec
+t1 À la place, payez 3 Mana : l'attaquant perd de plus définitivement 300 ATK.
+## Waylay Mislead
+n Waylay : Fausse Piste
+l0 Fausse piste
+t0 Payez 1 Mana : déplacez 1 monstre contrôlé par votre adversaire vers une autre Zone Monstre vide de son côté (votre choix) ; il ne peut pas attaquer ce tour.
+l1 Au fond des bois
+t1 À la place, payez 2 Mana : jusqu'à 2 — ils ne peuvent pas attaquer ce tour.
+## Waylay Campfire Fence
+n Waylay Receleur du Feu de Camp
+l0 Butin à partager
+t0 Quand cette carte est Invoquée : piochez 1 carte.
+## Waylay Nightparcel
+n Waylay Colis de Nuit
+l0 Livraison sans préavis
+t0 EMBUSCADE — durant le tour de votre ADVERSAIRE, payez 2 Mana dans n'importe quelle fenêtre de réaction : Invoquez Spécialement cette carte depuis votre main.
+## Waylay, First Out of the Bushes
+n Waylay, le Premier Sorti des Fourrés
+s Votre adversaire a attaqué ce tour ou le précédent — payez 2 Mana.
+l0 Partager le butin
+t0 Quand cette carte est Invoquée : ajoutez à votre main 1 monstre « Waylay » depuis votre Cimetière.
+## Waylay, King of the Crossroads
+n Waylay, Roi du Carrefour
+s 3+ cartes « Waylay » sont dans votre Cimetière — payez 3 Mana.
+l0 Toutes les routes sont à moi
+t0 Quand cette carte est Invoquée : Invoquez Spécialement jusqu'à 2 monstres « Waylay » depuis votre Cimetière ; ils ne peuvent pas attaquer ce tour.
+l1 Embuscade au croisement
+t1 Payez 2 Mana (Rapide, seulement durant le tour adverse) : tous les monstres face recto de votre adversaire perdent 400 ATK jusqu'à la fin de ce tour.
+## Bylaw Filing Clerk
+n Bylaw Préposé aux Archives
+l0 La voie officielle
+t0 Quand cette carte est Invoquée : ajoutez à votre main 1 Artefact « Bylaw: » depuis votre Deck.
+l1 Procédure accélérée
+t1 Payez 2 Mana : placez-le directement sur le terrain à la place.
+## Bylaw: Quiet Hours
+n Bylaw : Heures de Silence
+## Bylaw: Show of Hands
+n Bylaw : Mains sur Table
+## Bylaw: Standing Room Only
+n Bylaw : Salle Comble
+## Bylaw Enforcer
+n Bylaw Agent d'Exécution
+## Bylaw Ombudsman
+n Bylaw Médiateur
+l0 Déposer une plainte
+t0 Une fois par tour — payez 2 Mana (Rapide) : annulez les effets de 1 Artefact sur l'un ou l'autre terrain jusqu'à la fin de ce tour.
+## Bylaw Loophole
+n Bylaw Vide Juridique
+l0 Le vide juridique
+t0 Payez 2 Mana : choisissez 1 Décret « Bylaw: » sur le terrain — sa règle ne s'applique pas à VOUS ce tour.
+l1 Alinéa 12b
+t1 À la place, payez 3 Mana : jusqu'à 2 Décrets.
+## Bylaw Red Tape
+n Bylaw Paperasse
+l0 Formulaire B-27
+t0 Payez 1 Mana : le prochain Sort que votre adversaire active ce tour coûte 2 Mana de plus.
+l1 En trois exemplaires
+t1 À la place, payez 2 Mana : … et vous piochez 1 carte.
+## Bylaw, Acting Chairwoman
+n Bylaw, la Présidente par Intérim
+s Vous contrôlez un Artefact — payez 2 Mana.
+l0 La séance est ouverte
+t0 Quand cette carte est Invoquée : placez 1 Décret « Bylaw: » depuis votre Deck sur le terrain.
+## Bylaw, the Letter of the Law
+n Bylaw, la Lettre de la Loi
+s Vous contrôlez 2+ Artefacts — payez 3 Mana.
+l0 Motion adoptée
+t0 Payez 2 Mana : placez 1 Décret « Bylaw: » depuis votre Deck sur le terrain.
+## Chimekeep Windup Chorister
+n Chimekeep Choriste à Ressort
+l0 Enfin le premier couplet
+t0 Quand le dernier Compteur d'Heure est retiré : piochez 1 carte ; cette carte gagne définitivement 400 ATK.
+## Chimekeep Bellringer
+n Chimekeep Sonneur
+l0 Sonner d'avance
+t0 Quand cette carte est Invoquée : retirez 1 Compteur d'Heure de 1 de vos cartes.
+l1 Sonner à toute volée
+t1 Payez 2 Mana : de jusqu'à 2 de vos cartes, 1 chacune.
+## Chimekeep Pendulum
+n Chimekeep Balancier
+l0 Tenir la mesure
+t0 Une fois par tour — payez 1 Mana : retirez 1 Compteur d'Heure de 1 de vos cartes.
+## Chimekeep Escapement
+n Chimekeep Échappement
+l0 Libération mesurée
+t0 Quand le dernier Compteur d'Heure est retiré : ajoutez à votre main 1 carte « Chimekeep » depuis votre Deck ; puis piochez 1 carte. Détruisez ensuite cette carte.
+l1 Retenir le ressort
+t1 Une fois par tour — payez 1 Mana : retirez 1 Compteur d'Heure de cette carte.
+## Chimekeep Curfew Bell
+n Chimekeep Cloche du Couvre-Feu
+l0 Tout le monde rentre
+t0 Quand le dernier Compteur d'Heure est retiré : renvoyez à la main jusqu'à 2 cartes contrôlées par votre adversaire. Détruisez ensuite cette carte.
+l1 Sonner en avance
+t1 Une fois par tour — payez 2 Mana : retirez 1 Compteur d'Heure supplémentaire.
+## Chimekeep Overwind
+n Chimekeep : Trop Remonté
+l0 Trop remonter
+t0 Payez 1 Mana : retirez 1 Compteur d'Heure de 1 de vos cartes.
+l1 User les rouages
+t1 À la place, payez 3 Mana : de jusqu'à 2 de vos cartes, 1 chacune.
+## Chimekeep Chime In
+n Chimekeep : Se Joindre au Carillon
+l0 Se joindre au carillon
+t0 Payez 2 Mana. Si l'une de vos cartes a sonné zéro ce tour : piochez 2 cartes.
+l1 Carillonner ensemble
+t1 À la place, payez 3 Mana : … et 1 monstre que vous contrôlez gagne 500 ATK jusqu'à la fin de ce tour.
+## Chimekeep Night Round
+n Chimekeep Ronde de Nuit
+l0 De la compagnie sur la ronde
+t0 Quand le dernier Compteur d'Heure est retiré : Invoquez Spécialement 1 monstre « Chimekeep » depuis votre Cimetière ; il ne peut pas attaquer ce tour.
+## Chimekeep, Quarter Past Doom
+n Chimekeep, la Perdition et Quart
+s Vous contrôlez une carte avec un Compteur d'Heure — payez 2 Mana.
+l0 Le quart sonne
+t0 Quand le dernier Compteur d'Heure est retiré : cette carte gagne définitivement 800 ATK et peut attaquer deux fois cette Battle Phase.
+## Chimekeep, the Midnight Carillon
+n Chimekeep, le Carillon de Minuit
+s Vous contrôlez 2+ cartes avec Compteurs d'Heure — payez 3 Mana.
+l0 Minuit, tout à la fois
+t0 Quand cette carte est Invoquée : TOUTES vos cartes avec Compteurs d'Heure sonnent immédiatement (tous les compteurs à 0 ; leurs effets se déclenchent dans l'ordre du terrain).

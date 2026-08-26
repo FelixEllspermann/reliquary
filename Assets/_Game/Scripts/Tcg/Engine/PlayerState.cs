@@ -107,6 +107,18 @@ namespace Rouge.Tcg
         /// <summary>Countersign: der nächste EIGENE Zauber diesen Zug kostet so viel Mana mehr.</summary>
         public int NextSpellSurcharge;
 
+        // --- 5 Archetypes ---
+        /// <summary>Splithoof: von diesem Spieler diesen Zug angebotene, abgeschlossene Deals.</summary>
+        public int DealsThisTurn;
+        /// <summary>Splithoof: alle abgeschlossenen Deals dieses Spielers im ganzen Duell.</summary>
+        public int DealsThisDuel;
+        /// <summary>Waylay: hat dieser Spieler in diesem eigenen Zug einen Angriff erklärt?
+        /// Rutscht beim eigenen Zugbeginn nach "LastTurn" (wie Milled).</summary>
+        public bool DeclaredAttackThisTurn;
+        public bool DeclaredAttackLastTurn;
+        /// <summary>Chimekeep: hatte eine Karte dieses Spielers diesen Zug ihren Nullschlag?</summary>
+        public bool CountdownStruckThisTurn;
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

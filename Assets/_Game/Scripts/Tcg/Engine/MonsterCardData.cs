@@ -128,6 +128,17 @@ namespace Rouge.Tcg
         [Tooltip("Bedingung: du kontrollierst mindestens so viele Artefakte (0 = aus; Vault's Own Doorframe: 2)")]
         public int selfSummonRequiresArtifacts;
 
+        [Header("5 Archetypes: weitere Bedingungen")]
+        [Tooltip("Giftwyrm: die Selbst-SS stellt diese Karte auf das Feld des GEGNERS zu " +
+                 "(keine Summon-Trigger; der Gegner kontrolliert sie, sie bleibt deine Karte)")]
+        public bool selfSummonToOpponentField;
+
+        [Tooltip("Bedingung: diesen Zug wurde ein GEGNERISCHES Monster zerstört (Waylay Campfire Fence)")]
+        public bool selfSummonRequiresOpponentMonsterDestroyedThisTurn;
+
+        [Tooltip("Bedingung: du kontrollierst eine Karte mit Countdown-Marker (Chimekeep Pendulum)")]
+        public bool selfSummonRequiresOwnCountdown;
+
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -180,6 +191,9 @@ namespace Rouge.Tcg
             if (selfSummonRequiresDeckAtLeast > 0) parts.Add(Loc.F("your Deck holds {0}+ cards", selfSummonRequiresDeckAtLeast));
             if (selfSummonRequiresLpWithin > 0) parts.Add(Loc.F("both players' LP are within {0} of each other", selfSummonRequiresLpWithin));
             if (selfSummonRequiresArtifacts > 0) parts.Add(Loc.F("you control {0}+ Artifacts", selfSummonRequiresArtifacts));
+            // --- 5 Archetypes ---
+            if (selfSummonRequiresOpponentMonsterDestroyedThisTurn) parts.Add(Loc.T("one of your opponent's monsters was destroyed this turn"));
+            if (selfSummonRequiresOwnCountdown) parts.Add(Loc.T("you control a card with an Hour Counter"));
 
             // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
             // der Kartentext sagt es jedes Mal dazu.
@@ -188,6 +202,11 @@ namespace Rouge.Tcg
             // The Squatter: die Zone selbst ist die Bedingung — eigener Satzbau
             if (selfSummonIntoSealedZone)
                 return Loc.F("You can Special Summon this card from your hand into a SEALED Monster Zone on your side — the Seal breaks{0}{1} (once per turn).", position, cost);
+            // Giftwyrm: die Zustellung hat ihren eigenen Satz
+            if (selfSummonToOpponentField)
+                return parts.Count == 0
+                    ? Loc.F("You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).", position, cost)
+                    : Loc.F("While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).", string.Join(Loc.T(" and "), parts), position, cost);
             if (parts.Count == 0)
                 return Loc.F("You can Special Summon this card from your hand{0}{1} (once per turn).", position, cost);
             return Loc.F("While {0}: You can Special Summon this card from your hand{1}{2} (once per turn).", string.Join(Loc.T(" and "), parts), position, cost);

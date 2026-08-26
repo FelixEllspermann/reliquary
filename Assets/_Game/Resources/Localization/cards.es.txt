@@ -4501,3 +4501,242 @@ l0 Llegar a fin de mes
 t0 Paga 1 de Maná. Si controlas 1 monstruo o menos: gana 2 de Maná este turno.
 l1 Estirarlo aún más
 t1 En su lugar, paga 2 de Maná: roba además 1 carta si tu mano queda con 3 cartas o menos.
+# ---------- 5 Archetypes (0.1.7) ----------
+## Giftwyrm Ribboncoil
+n Giftwyrm Rizacintas
+l0 Devolver al remitente
+t0 Si esta carta es mandada al Cementerio mientras tu adversario la controla: roba 1 carta.
+## Giftwyrm Sweettooth
+n Giftwyrm Goloso
+l0 Ruiditos al roer
+t0 Durante la End Phase del controlador de esta carta, mientras tu adversario la controle: tienes 1 de Maná adicional en tu próximo turno.
+## Giftwyrm Prettybow
+n Giftwyrm Lazobello
+## Giftwyrm Unboxed
+n Giftwyrm Desempaquetado
+l0 Eclosiona
+t0 Si esta carta es mandada al Cementerio mientras tu adversario la controla: puedes Invocarla de modo Especial a TU campo.
+## Giftwyrm Registry
+n Registro de Regalos Giftwyrm
+l0 Está en la lista
+t0 Paga 2 de Maná: Invoca de modo Especial 1 monstruo «Giftwyrm» de tu Mazo al campo de tu ADVERSARIO.
+l1 La lista completa
+t1 En su lugar, paga 4 de Maná: 2 con nombres distintos.
+## Giftwyrm Thank-You Note
+n Tarjeta de Agradecimiento Giftwyrm
+l0 Saludos cordiales
+t0 Paga 1 de Maná: roba 1 carta por cada monstruo «Giftwyrm» que controle tu adversario (máx. 3).
+l1 Con profunda gratitud
+t1 En su lugar, paga 2 de Maná: añade además a tu mano 1 carta «Giftwyrm» de tu Cementerio.
+## Giftwyrm Molting
+n Muda del Giftwyrm
+l0 La muda
+t0 Paga 2 de Maná: devuelve a TU campo hasta 2 de tus monstruos «Giftwyrm» que controle tu adversario; pueden atacar este turno.
+l1 Muda hambrienta
+t1 En su lugar, paga 4 de Maná: además ganan 500 ATK cada uno hasta el final de este turno.
+## Giftwyrm Hollowshell
+n Giftwyrm Cascarón Vacío
+l0 Lo que había dentro
+t0 Cuando esta carta es Invocada: 1 monstruo que controle tu adversario pierde 400 ATK hasta el final de este turno por cada «Giftwyrm» que él controle.
+## Giftwyrm, Ungrateful Guest
+n Giftwyrm, el Huésped Ingrato
+s Tu adversario controla un monstruo «Giftwyrm» — paga 2 de Maná.
+l0 Un regalo para el anfitrión
+t0 Cuando esta carta es Invocada: Invoca de modo Especial 1 monstruo «Giftwyrm» de tu Cementerio al campo de tu ADVERSARIO.
+l1 Se queda de más
+t1 Paga 2 de Maná: 1 monstruo que controle tu adversario no puede atacar este turno.
+## Giftwyrm, the Whole Hamper
+n Giftwyrm, la Cesta Entera
+s Tu adversario controla 2+ monstruos «Giftwyrm» — paga 3 de Maná.
+l0 La cesta revienta
+t0 Cuando esta carta es Invocada: devuelve TODOS tus monstruos «Giftwyrm» del campo de tu adversario a tu campo; ganan 300 ATK hasta el final de este turno y pueden atacar este turno.
+## Splithoof Doorknocker
+n Splithoof Llamapuertas
+l0 Llaman a la puerta
+t0 Cuando esta carta es Invocada — TRATO, tu adversario elige: descarta 1 carta aleatoria, O tú robas 1 carta.
+## Splithoof Pennyweight
+n Splithoof Pesapeniques
+l0 El pulgar en la balanza
+t0 Una vez por turno — TRATO, tu adversario elige: ganas 1 de Maná este turno, O robas 1 carta.
+## Splithoof Grinning Ledger
+n Libro de Cuentas Sonriente de Splithoof
+l0 Abierto al público
+t0 AMBOS jugadores pueden activarlo una vez por turno — paga 1 de Maná: roba 1 carta. Si tu ADVERSARIO lo activa, tienes 1 de Maná adicional en tu próximo turno.
+## Splithoof Hagglehorn
+n Splithoof Cuernoregateo
+l0 La hora del regateo
+t0 Cuando esta carta es Invocada — TRATO, tu adversario elige: 1 monstruo a elección del TRATANTE que él controle pierde 500 ATK permanentemente, O tú Invocas de modo Especial 1 monstruo «Splithoof» de Nivel 1 de tu Mazo.
+## Splithoof Sign Here
+n Splithoof: Firme Aquí
+l0 Firme aquí, por favor
+t0 Paga 2 de Maná cuando un monstruo del adversario ataque — TRATO, tu adversario elige: el ataque se cancela, O el ataque continúa y después descarta 2 cartas aleatorias.
+## Splithoof Repossession
+n Embargo de Splithoof
+l0 El embargo
+t0 Paga 2 de Maná: coloca un Gravamen de 2 sobre 1 monstruo que controle tu adversario (en cada una de sus Standby Phases: paga 2 de Maná o se destruye); roba 1 carta.
+l1 Interés compuesto
+t1 En su lugar, paga 3 de Maná: un Gravamen de 3.
+## Splithoof Fiddle Wager
+n Apuesta del Violín de Splithoof
+l0 La apuesta del violín
+t0 Paga 1 de Maná: ambos jugadores revelan la carta superior de su Mazo. El jugador cuya carta tenga el mayor Nivel (las no-monstruo cuentan como 0) la añade a su mano; la otra va al Cementerio de su dueño. En caso de empate, ambas se quedan encima.
+l1 La melodía del diablo
+t1 En su lugar, paga 2 de Maná: si TU carta gana, roba además 1 carta.
+## Splithoof Collections Imp
+n Diablillo de Cobros de Splithoof
+l0 Pago atrasado
+t0 Cuando esta carta es Invocada: aumenta en 1 el Gravamen de 1 monstruo que controle tu adversario.
+## Splithoof, Fair and Square
+n Splithoof, Todo Legal y Correcto
+s Este turno se cerró un Trato — paga 2 de Maná.
+l0 Leer la letra pequeña
+t0 Cuando esta carta es Invocada — TRATO, tu adversario elige: TÚ robas 1 carta, O los monstruos más fuertes de ambos jugadores intercambian el control permanentemente.
+## Splithoof, the Better Bargain
+n Splithoof, el Mejor Negocio
+s En este Duelo se cerraron 3+ Tratos — paga 3 de Maná.
+l0 La oferta final
+t0 Cuando esta carta es Invocada — TRATO, tu adversario elige: robas 3 cartas, O él manda al Cementerio el monstruo más fuerte que controle.
+l1 Endulzar el trato
+t1 Una vez por turno — paga 2 de Maná (Rápido) — TRATO, tu adversario elige: 1 monstruo de tu elección gana 700 ATK hasta el final de este turno, O robas 1 carta.
+## Waylay Hedgeknife
+n Waylay Cuchilloseto
+l0 Desde el seto
+t0 EMBOSCADA — cuando tu adversario Invoca un monstruo: puedes Invocar esta carta de modo Especial desde tu mano (en la ventana de reacción). Después, 1 monstruo que controle tu adversario pierde 300 ATK hasta el final de este turno.
+## Waylay Roadthorn
+n Waylay Espinocamino
+l0 Una espina en el camino
+t0 EMBOSCADA — cuando un monstruo del adversario ataca: puedes Invocar esta carta de modo Especial desde tu mano. Después, el atacante pierde 500 ATK hasta el final de este turno.
+## Waylay Tollgate
+n Barrera de Peaje de Waylay
+l0 Contar la recaudación
+t0 Paga 1 de Maná (una vez por turno): roba 1 carta, si tu adversario atacó este turno.
+## Waylay Highwayman
+n Waylay Salteador
+l0 La bolsa o el orgullo
+t0 EMBOSCADA — cuando un monstruo del adversario ataca: puedes Invocar esta carta de modo Especial desde tu mano. Después roba 1 carta.
+l1 Camino cortado
+t1 Paga 2 de Maná: 1 monstruo que controle tu adversario no puede atacar este turno.
+## Stand and Deliver!
+n ¡La Bolsa o la Vida!
+l0 ¡La bolsa o la vida!
+t0 Paga 2 de Maná cuando un monstruo del adversario ataque: el ataque se cancela; roba 1 carta.
+l1 Y el sombrero también
+t1 En su lugar, paga 3 de Maná: el atacante además pierde permanentemente 300 ATK.
+## Waylay Mislead
+n Waylay: Pista Falsa
+l0 Pista falsa
+t0 Paga 1 de Maná: mueve 1 monstruo que controle tu adversario a otra Zona de Monstruos vacía de su lado (tú eliges); no puede atacar este turno.
+l1 Bosque adentro
+t1 En su lugar, paga 2 de Maná: hasta 2 — no pueden atacar este turno.
+## Waylay Campfire Fence
+n Waylay Perista de la Hoguera
+l0 Botín a repartir
+t0 Cuando esta carta es Invocada: roba 1 carta.
+## Waylay Nightparcel
+n Waylay Paquete Nocturno
+l0 Entrega sin aviso
+t0 EMBOSCADA — durante el turno de tu ADVERSARIO, paga 2 de Maná en cualquier ventana de reacción: Invoca esta carta de modo Especial desde tu mano.
+## Waylay, First Out of the Bushes
+n Waylay, el Primero en Salir del Matorral
+s Tu adversario atacó este turno o el anterior — paga 2 de Maná.
+l0 Repartir el botín
+t0 Cuando esta carta es Invocada: añade a tu mano 1 monstruo «Waylay» de tu Cementerio.
+## Waylay, King of the Crossroads
+n Waylay, Rey de la Encrucijada
+s Hay 3+ cartas «Waylay» en tu Cementerio — paga 3 de Maná.
+l0 Todos los caminos son míos
+t0 Cuando esta carta es Invocada: Invoca de modo Especial hasta 2 monstruos «Waylay» de tu Cementerio; no pueden atacar este turno.
+l1 Emboscada en el cruce
+t1 Paga 2 de Maná (Rápido, solo en el turno del adversario): todos los monstruos boca arriba de tu adversario pierden 400 ATK hasta el final de este turno.
+## Bylaw Filing Clerk
+n Bylaw Archivero
+l0 Por el conducto oficial
+t0 Cuando esta carta es Invocada: añade a tu mano 1 Artefacto «Bylaw:» de tu Mazo.
+l1 Trámite exprés
+t1 Paga 2 de Maná: colócalo directamente en el campo en su lugar.
+## Bylaw: Quiet Hours
+n Bylaw: Horas de Silencio
+## Bylaw: Show of Hands
+n Bylaw: Manos a la Vista
+## Bylaw: Standing Room Only
+n Bylaw: Aforo Completo
+## Bylaw Enforcer
+n Bylaw Agente de Ejecución
+## Bylaw Ombudsman
+n Bylaw Defensor del Pueblo
+l0 Presentar una queja
+t0 Una vez por turno — paga 2 de Maná (Rápido): niega los efectos de 1 Artefacto en cualquiera de los campos hasta el final de este turno.
+## Bylaw Loophole
+n Bylaw Vacío Legal
+l0 El vacío legal
+t0 Paga 2 de Maná: elige 1 Decreto «Bylaw:» en el campo — su regla no se aplica a TI este turno.
+l1 Subpárrafo 12b
+t1 En su lugar, paga 3 de Maná: hasta 2 Decretos.
+## Bylaw Red Tape
+n Bylaw Papeleo
+l0 Formulario B-27
+t0 Paga 1 de Maná: el próximo Hechizo que active tu adversario este turno cuesta 2 de Maná más.
+l1 Por triplicado
+t1 En su lugar, paga 2 de Maná: … y robas 1 carta.
+## Bylaw, Acting Chairwoman
+n Bylaw, la Presidenta en Funciones
+s Controlas un Artefacto — paga 2 de Maná.
+l0 Se abre la sesión
+t0 Cuando esta carta es Invocada: coloca 1 Decreto «Bylaw:» de tu Mazo en el campo.
+## Bylaw, the Letter of the Law
+n Bylaw, la Letra de la Ley
+s Controlas 2+ Artefactos — paga 3 de Maná.
+l0 Moción aprobada
+t0 Paga 2 de Maná: coloca 1 Decreto «Bylaw:» de tu Mazo en el campo.
+## Chimekeep Windup Chorister
+n Chimekeep Corista de Cuerda
+l0 Por fin el primer verso
+t0 Cuando se retira el último Contador de Hora: roba 1 carta; esta carta gana permanentemente 400 ATK.
+## Chimekeep Bellringer
+n Chimekeep Campanero
+l0 Repique anticipado
+t0 Cuando esta carta es Invocada: retira 1 Contador de Hora de 1 de tus cartas.
+l1 Repique general
+t1 Paga 2 de Maná: de hasta 2 de tus cartas, 1 de cada una.
+## Chimekeep Pendulum
+n Chimekeep Péndulo
+l0 Llevar el compás
+t0 Una vez por turno — paga 1 de Maná: retira 1 Contador de Hora de 1 de tus cartas.
+## Chimekeep Escapement
+n Chimekeep Escape
+l0 Liberación medida
+t0 Cuando se retira el último Contador de Hora: añade a tu mano 1 carta «Chimekeep» de tu Mazo; después roba 1 carta. Después destruye esta carta.
+l1 Retener el muelle
+t1 Una vez por turno — paga 1 de Maná: retira 1 Contador de Hora de esta carta.
+## Chimekeep Curfew Bell
+n Chimekeep Campana de Queda
+l0 Todos a casa
+t0 Cuando se retira el último Contador de Hora: devuelve a la mano hasta 2 cartas que controle tu adversario. Después destruye esta carta.
+l1 Tocar antes de hora
+t1 Una vez por turno — paga 2 de Maná: retira 1 Contador de Hora adicional.
+## Chimekeep Overwind
+n Chimekeep: Cuerda de Más
+l0 Dar cuerda de más
+t0 Paga 1 de Maná: retira 1 Contador de Hora de 1 de tus cartas.
+l1 Forzar los engranajes
+t1 En su lugar, paga 3 de Maná: de hasta 2 de tus cartas, 1 de cada una.
+## Chimekeep Chime In
+n Chimekeep: Sumarse al Repique
+l0 Sumarse al repique
+t0 Paga 2 de Maná. Si una de tus cartas llegó a cero este turno: roba 2 cartas.
+l1 Repicar juntos
+t1 En su lugar, paga 3 de Maná: … y 1 monstruo que controles gana 500 ATK hasta el final de este turno.
+## Chimekeep Night Round
+n Chimekeep Ronda Nocturna
+l0 Compañía en la ronda
+t0 Cuando se retira el último Contador de Hora: Invoca de modo Especial 1 monstruo «Chimekeep» de tu Cementerio; no puede atacar este turno.
+## Chimekeep, Quarter Past Doom
+n Chimekeep, Perdición y Cuarto
+s Controlas una carta con un Contador de Hora — paga 2 de Maná.
+l0 Suena el cuarto
+t0 Cuando se retira el último Contador de Hora: esta carta gana permanentemente 800 ATK y puede atacar dos veces esta Battle Phase.
+## Chimekeep, the Midnight Carillon
+n Chimekeep, el Carillón de Medianoche
+s Controlas 2+ cartas con Contadores de Hora — paga 3 de Maná.
+l0 Medianoche, todo a la vez
+t0 Cuando esta carta es Invocada: TODAS tus cartas con Contadores de Hora suenan de inmediato (todos los contadores a 0; sus efectos se activan en orden de campo).

@@ -497,3 +497,20 @@ While both players' LP are within {0} of each other, this card cannot be targete
 During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	自分のドローフェイズに、ドローする代わりに自分の墓地の一番上のカードを手札に加えることができる。
 Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	{0}個の時のカウンターと共にフィールドに出る。自分のスタンバイフェイズごとに1個取り除く。最後の1個が取り除かれた時、カウントダウン効果が発動し、このカードは破壊される。
 the different Levels among your monsters	自分のモンスターの中の異なるレベルの数
+# ---------- 5 Archetypes (September 2026) ----------
+one of your opponent's monsters was destroyed this turn	このターンに相手のモンスターが破壊されている
+you control a card with an Hour Counter	自分が時のカウンターが乗ったカードをコントロールしている
+You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).	このカードを手札から相手フィールドに特殊召喚できる{0}{1}（1ターンに1度）。
+While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).	{0}場合：このカードを手札から相手フィールドに特殊召喚できる{1}{2}（1ターンに1度）。
+This card's effects always belong to its owner — even while the opponent controls it.	このカードの効果は常に持ち主のものである——相手がコントロールしている間も。
+Cannot attack while controlled by anyone but its owner.	持ち主以外がコントロールしている間、攻撃できない。
+Spells cost its controller 1 more Mana.	このカードのコントローラーの魔法のコストは1マナ増える。
+Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.	相手のバトルフェイズごとの最初の攻撃には{0}マナかかる——支払えなければ攻撃できない。
+DECREE: Each player's first attack per Battle Phase costs {0} Mana.	法令：各プレイヤーのバトルフェイズごとの最初の攻撃には{0}マナかかる。
+DECREE: Every card either player draws is revealed.	法令：どちらのプレイヤーがドローしたカードも公開される。
+DECREE: Each player can control at most {0} monsters.	法令：各プレイヤーがコントロールできるモンスターは{0}体まで。
+Your "{0}" cards cannot be destroyed by card effects.	自分の「{0}」カードはカードの効果では破壊されない。
+Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	自分の「Bylaw:」法令は自分には適用されない——相手にのみ適用される。
+If your opponent activates this card's effect: you have {0} additional Mana next turn.	相手がこのカードの効果を発動した場合：自分は次のターン、マナを{0}追加で得る。
+your monsters on your opponent's field	相手フィールドの自分のモンスター
+the Artifacts on both fields	両フィールドのアーティファクト

@@ -1,0 +1,245 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1194ab7c2e4d0f8a63b90d4c7e21aa, type: 3}
+  m_Name: WaylayFirstOutoftheBushes
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
+  cardName: Waylay, First Out of the Bushes
+  artwork: {fileID: 0}
+  rarity: 2
+  isToken: 0
+  releaseVersion: 0.1.7
+  effects:
+  - label: Divide the Spoils
+    text: 'When this card is Summoned: add 1 "Waylay" monster from your Graveyard
+      to your hand.'
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 0
+    trigger: 3
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
+    onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    actions:
+    - type: 16
+      isCost: 0
+      amount: 1
+      target: 4
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: Waylay
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
+  auraAtkBonus: 300
+  auraDefBonus: 0
+  auraNameFilter: Waylay
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 1
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 1
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
+  passiveBlockReliquarySummons: 0
+  passiveNoBattleDestroy: 0
+  passiveUntargetable: 0
+  passiveNoBattleDamageInvolving: 0
+  passiveRedirectBattleDamage: 0
+  passiveDeathCounterLimit: 0
+  passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
+  passiveStatsFromGraveTop: 0
+  passiveAttacksWithDef: 0
+  passiveDefLossAfterAttack: 0
+  passiveSealsAdjacentZones: 0
+  passiveBearerZoneLocked: 0
+  passiveUntargetableWhileLpClose: 0
+  passiveDrawReplacementGraveTop: 0
+  countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
+  level: 2
+  attribute: 4
+  monsterType: 1
+  atk: 1800
+  def: 1500
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
+  selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0
+  selfSummonRequiresOpponentMoreMonsters: 0
+  selfSummonRequiresLifeAtMost: 0
+  selfSummonIntoSealedZone: 0
+  selfSummonRequiresGraveTopMonster: 0
+  selfSummonRequiresRevealedThisTurn: 0
+  selfSummonRequiresLevels1And3: 0
+  selfSummonRequiresOpponentLevel3AndNoneSelf: 0
+  selfSummonRequiresTurnAtLeast: 0
+  selfSummonRequiresDeckAtLeast: 0
+  selfSummonRequiresLpWithin: 0
+  selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0
+  summonText: "Your opponent attacked this or last turn \u2014 pay 2 Mana."
+  summonManaCost: 2
+  reqNamedOnField: 
+  reqNamedCount: 1
+  reqLifeBelowOpponent: 0
+  reqOpponentMoreMonsters: 0
+  reqOpponentMonstersAtLeast: 0
+  reqOpponentNamedOnField: 
+  reqMinMana: 0
+  reqOwnArtifactsOnField: 0
+  reqOwnArtifactsInGrave: 0
+  reqOwnFaceDownMonsters: 0
+  reqMonsterWithEquip: 0
+  reqGraveyardAtLeast: 0
+  reqGraveyardMonstersAtLeast: 0
+  reqGraveyardSpellsAtLeast: 0
+  reqOpponentGraveyardAtLeast: 0
+  reqControlNoMonsters: 0
+  reqOwnMonstersAtLeast: 0
+  reqLifeAtMost: 0
+  reqBanishedAtLeast: 0
+  reqNoReliquariesOnFieldOrBanish: 0
+  reqReliquariesInGraveAtLeast: 0
+  reqOpponentMonsterAtkAtLeast: 0
+  reqHandEmpty: 0
+  reqControlChangedOnField: 0
+  reqDealsThisTurn: 0
+  reqDealsThisDuel: 0
+  reqOpponentNamedCount: 0
+  reqOpponentAttackedRecently: 1
+  reqOwnCountdownCards: 0
+  reqGraveyardNamedCount: 0
+  reqGraveyardNamed: 
+  costBanishMonstersFromGrave: 0
+  costTributeOtherMonster: 0
+  costTributeOwnMonsters: 0
+  costTributeOpponentMonsters: 0

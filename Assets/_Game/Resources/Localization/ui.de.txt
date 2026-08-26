@@ -497,3 +497,20 @@ While both players' LP are within {0} of each other, this card cannot be targete
 During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	In deiner Draw Phase darfst du statt zu ziehen die oberste Karte deines Friedhofs auf deine Hand nehmen.
 Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Kommt mit {0} Stunden-Markern ins Spiel. In jeder deiner Standby Phases: Entferne 1. Wird der letzte entfernt, zündet der Countdown-Effekt und diese Karte wird zerstört.
 the different Levels among your monsters	der verschiedenen Stufen unter deinen Monstern
+# ---------- 5 Archetypes (September 2026) ----------
+one of your opponent's monsters was destroyed this turn	in diesem Zug ein Monster deines Gegners zerstört wurde
+you control a card with an Hour Counter	du eine Karte mit einem Stunden-Marker kontrollierst
+You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).	Du kannst diese Karte aus deiner Hand auf das Feld deines GEGNERS spezialbeschwören{0}{1} (einmal pro Zug).
+While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).	Solange {0}: Du kannst diese Karte aus deiner Hand auf das Feld deines GEGNERS spezialbeschwören{1}{2} (einmal pro Zug).
+This card's effects always belong to its owner — even while the opponent controls it.	Die Effekte dieser Karte gehören immer ihrem Besitzer — auch solange der Gegner sie kontrolliert.
+Cannot attack while controlled by anyone but its owner.	Kann nicht angreifen, solange jemand anderes als ihr Besitzer sie kontrolliert.
+Spells cost its controller 1 more Mana.	Zauber kosten ihren Kontrolleur 1 Mana mehr.
+Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.	Der erste Angriff deines Gegners in jeder Battle Phase kostet ihn {0} Mana — ohne das Mana ist der Angriff nicht erlaubt.
+DECREE: Each player's first attack per Battle Phase costs {0} Mana.	DEKRET: Der erste Angriff jedes Spielers pro Battle Phase kostet {0} Mana.
+DECREE: Every card either player draws is revealed.	DEKRET: Jede gezogene Karte beider Spieler wird offen vorgezeigt.
+DECREE: Each player can control at most {0} monsters.	DEKRET: Jeder Spieler kann höchstens {0} Monster kontrollieren.
+Your "{0}" cards cannot be destroyed by card effects.	Deine „{0}“-Karten können nicht durch Karteneffekte zerstört werden.
+Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	Deine „Bylaw:“-Dekrete gelten nicht mehr für dich — nur noch für deinen Gegner.
+If your opponent activates this card's effect: you have {0} additional Mana next turn.	Aktiviert dein Gegner den Effekt dieser Karte: Du hast in deinem nächsten Zug {0} Mana zusätzlich.
+your monsters on your opponent's field	deiner Monster auf dem Feld deines Gegners
+the Artifacts on both fields	der Artefakte auf beiden Feldern

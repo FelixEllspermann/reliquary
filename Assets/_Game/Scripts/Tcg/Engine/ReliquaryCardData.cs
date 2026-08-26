@@ -93,6 +93,28 @@ namespace Rouge.Tcg
         [Tooltip("Ein Monster auf dem Feld wird von jemand anderem kontrolliert als seinem Besitzer (Broker of Both Sides)")]
         public bool reqControlChangedOnField;
 
+        [Header("5 Archetypes (September 2026)")]
+        [Tooltip("Diesen Zug wurden mindestens so viele Deals geschlossen (0 = aus; Splithoof)")]
+        public int reqDealsThisTurn;
+
+        [Tooltip("In diesem Duell wurden mindestens so viele Deals geschlossen (0 = aus; Splithoof)")]
+        public int reqDealsThisDuel;
+
+        [Tooltip("Wie viele Monster die reqOpponentNamedOnField-Bedingung erfüllen müssen (0 = 1; Giftwyrm-Hamper: 2)")]
+        public int reqOpponentNamedCount;
+
+        [Tooltip("Der Gegner hat in diesem oder im letzten Zug angegriffen (Waylay)")]
+        public bool reqOpponentAttackedRecently;
+
+        [Tooltip("Du kontrollierst mindestens so viele Karten mit Countdown-Markern (0 = aus; Chimekeep)")]
+        public int reqOwnCountdownCards;
+
+        [Tooltip("Mindestens so viele Karten mit diesem Namensteil in deinem Friedhof (0 = aus; Waylay-König)")]
+        public int reqGraveyardNamedCount;
+
+        [Tooltip("Namensfilter für die Friedhofs-Bedingung darüber")]
+        public string reqGraveyardNamed = "";
+
         [Header("Zusatzkosten (bei der Beschwörung bezahlt)")]
         [Tooltip("Banishe so viele Monster aus deinem Friedhof (0 = aus)")]
         [Range(0, 10)] public int costBanishMonstersFromGrave;

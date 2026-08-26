@@ -497,3 +497,20 @@ While both players' LP are within {0} of each other, this card cannot be targete
 During your Draw Phase, you may add the top card of your Graveyard to your hand instead of drawing.	Во время вашей Draw Phase вы можете добавить в руку верхнюю карту вашего Кладбища вместо взятия карты.
 Enters the field with {0} Hour Counters. During each of your Standby Phases: remove 1. When the last one is removed, its Countdown effect fires and this card is destroyed.	Выходит на поле с {0} Счётчиками Часа. В каждую вашу Standby Phase: уберите 1. Когда убран последний, срабатывает эффект отсчёта, и эта карта уничтожается.
 the different Levels among your monsters	различных Уровней среди ваших монстров
+# ---------- 5 Archetypes (September 2026) ----------
+one of your opponent's monsters was destroyed this turn	в этом ходу был уничтожен монстр вашего противника
+you control a card with an Hour Counter	вы контролируете карту со Счётчиком Часа
+You can Special Summon this card from your hand to your OPPONENT's field{0}{1} (once per turn).	Вы можете Особо Призвать эту карту из руки на поле вашего ПРОТИВНИКА{0}{1} (раз в ход).
+While {0}: You can Special Summon this card from your hand to your OPPONENT's field{1}{2} (once per turn).	Пока {0}: Вы можете Особо Призвать эту карту из руки на поле вашего ПРОТИВНИКА{1}{2} (раз в ход).
+This card's effects always belong to its owner — even while the opponent controls it.	Эффекты этой карты всегда принадлежат её владельцу — даже пока её контролирует противник.
+Cannot attack while controlled by anyone but its owner.	Не может атаковать, пока её контролирует кто-либо, кроме владельца.
+Spells cost its controller 1 more Mana.	Заклинания стоят её контролёру на 1 Ману больше.
+Your opponent's first attack each Battle Phase costs them {0} Mana — without it, the attack is not allowed.	Первая атака вашего противника в каждую Battle Phase стоит ему {0} Маны — без неё атака не разрешена.
+DECREE: Each player's first attack per Battle Phase costs {0} Mana.	УКАЗ: Первая атака каждого игрока за Battle Phase стоит {0} Маны.
+DECREE: Every card either player draws is revealed.	УКАЗ: Каждая взятая любым игроком карта раскрывается.
+DECREE: Each player can control at most {0} monsters.	УКАЗ: Каждый игрок может контролировать не более {0} монстров.
+Your "{0}" cards cannot be destroyed by card effects.	Ваши карты «{0}» не могут быть уничтожены эффектами карт.
+Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	Ваши Указы «Bylaw:» больше не действуют на вас — только на противника.
+If your opponent activates this card's effect: you have {0} additional Mana next turn.	Если ваш противник активирует эффект этой карты: у вас на {0} Маны больше в следующем ходу.
+your monsters on your opponent's field	ваших монстров на поле противника
+the Artifacts on both fields	Артефактов на обоих полях

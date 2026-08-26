@@ -73,6 +73,13 @@ namespace Rouge.Tcg
         /// <summary>Countdown-Marker (The Appointed Hour): tickt in der Standby Phase des Kontrolleurs.</summary>
         public int CountdownMarkers;
 
+        // --- 5 Archetypes ---
+        /// <summary>Bylaw Loophole: dieses Dekret wirkt bis Zugende NICHT auf diesen Spieler.</summary>
+        public PlayerState DecreeExemptFor;
+        /// <summary>Giftwyrm: war die Karte beim Verlassen des Feldes unter Fremdkontrolle?
+        /// (MoveToGraveyard setzt den Owner zurück — der Trigger braucht die Vorgeschichte.)</summary>
+        public bool WasDisloyalWhenLeftField;
+
         /// <summary>
         /// Das Level, mit dem diese Karte gerade spielt: temporäre Setzung schlägt
         /// den permanenten Bonus, beides klemmt auf 1..3. Alle Level-Prüfungen der
@@ -226,6 +233,23 @@ namespace Rouge.Tcg
                     foreach (var m in player.MonsterZones)
                         if (m != null && !m.FaceDown && m.MonsterData != null) seen.Add(m.EffectiveLevel);
                     return seen.Count;
+                }
+                case EffectCountKind.OwnMonstersOnOpponentField:
+                {
+                    // Giftwyrm: eigene (OriginalOwner) Monster in den Zonen des Gegners
+                    if (player.Opponent == null) return 0;
+                    int delivered = 0;
+                    foreach (var m in player.Opponent.MonsterZones)
+                        if (m != null && m.OriginalOwner == player) delivered++;
+                    return delivered;
+                }
+                case EffectCountKind.AllArtifactsOnField:
+                {
+                    int artifactsBoth = 0;
+                    foreach (var a in player.ArtifactZones) if (a != null) artifactsBoth++;
+                    if (player.Opponent != null)
+                        foreach (var a in player.Opponent.ArtifactZones) if (a != null) artifactsBoth++;
+                    return artifactsBoth;
                 }
                 default: return 0;
             }
