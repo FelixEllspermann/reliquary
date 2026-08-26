@@ -1,90 +1,98 @@
 # Artwork-Prompts — Road to 1000 (50 Generics, 0.1.7)
 
-*Für Bildgenerierung (Midjourney/SDXL/DALL-E-Klasse). Jeder Prompt ist
-eigenständig: gemeinsamen STIL-BLOCK voranstellen, dann den Karten-Prompt.
-Format quadratisch oder 4:5; das Motiv mittig halten (die Karte beschneidet
-an den Rändern).*
+*Zugeschnitten auf **Anime Illust Diffusion XL v0.8** (SDXL,
+civitai.com/models/124189, Version 372261). Danbooru-Tag-Stil, jeder
+Prompt ist eigenständig und copy-paste-fertig (Quality-Tags schon am Ende).*
 
-**STIL-BLOCK (vor jeden Prompt):**
-> Dark fantasy trading card game illustration, painterly oil painting style,
-> dramatic chiaroscuro lighting, rich muted palette with gold accents,
-> intricate detail, no text, no borders, no watermark, centered composition.
+**Settings (Empfehlung des Modell-Autors):**
+- Sampler: **Euler a**, Steps ~28 (alternativ DPM++ 2M Karras, 35)
+- CFG: **7–9** · VAE: sdxl-vae · kein Refiner
+- Auflösung: gesamt ~1024², Seiten durch 32 teilbar — fürs Karten-Fenster
+  **1024×1024** oder leicht quer **1152×896** (Motiv mittig, die Karte
+  beschneidet die Ränder)
 
-**NEGATIV (falls unterstützt):** text, letters, frame, border, watermark,
-photorealism, modern objects.
+**Negativ-Prompt (exakt so, für ALLE Karten):**
+```
+(worst quality:1.3), low quality, lowres, messy, abstract, ugly, disfigured, bad anatomy, draft, deformed hands, fused fingers, signature, text, multi views
+```
+
+**Optionaler Stil-Anker:** AIDXL reagiert stark auf `by <artist>`-Token aus
+seiner trainierten Liste (Modellseite). Wenn du EINEN Look für alle Karten
+willst: denselben `by xxx`-Token (ggf. gewichtet, z.B. `(by xxx:0.6)`) vor
+jeden Prompt setzen. Die Prompts unten funktionieren auch ohne.
 
 ---
 
 ## A. Der abwesende König
 
-1. **The Crown of the Absent King** — An ornate golden crown resting alone on a dusty velvet cushion atop a stone plinth in an empty throne room, single shaft of pale light from above, cobwebs, motes of dust, the throne behind it empty and shadowed.
-2. **The Sceptre of the Absent King** — A jeweled royal sceptre leaning against an empty throne, its shadow stretching long and wrong across cracked marble, purple twilight through broken windows.
-3. **The Orb of the Absent King** — A golden orb with a cross finial sitting in a shallow pool of still water on the floor of a ruined chapel, its reflection showing a king's silhouette that is not there.
-4. **The Regent Who Keeps the Throne Warm** — A nervous thin steward in oversized royal robes sitting awkwardly on the very edge of a massive throne, holding a candle, surrounded by disapproving ancestor portraits.
-5. **Long Live the King** — A crowd of hands raising goblets and banners toward an empty balcony, confetti falling, the royal standard fluttering over nobody.
+1. **The Crown of the Absent King** — `no humans, still life, golden crown, velvet cushion, stone pedestal, empty throne room, light rays from above, dust motes, cobwebs, shadowed empty throne background, dark fantasy, intricate details, dramatic lighting, chiaroscuro, (amazing quality:1.4), best quality`
+2. **The Sceptre of the Absent King** — `no humans, still life, jeweled royal sceptre, leaning against empty throne, long wrong shadow, cracked marble floor, purple twilight, broken stained glass windows, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+3. **The Orb of the Absent King** — `no humans, still life, golden royal orb, cross finial, shallow water pool, ruined chapel floor, reflection of a king silhouette in water, moonlight, dark fantasy, mysterious atmosphere, intricate details, (amazing quality:1.4), best quality`
+4. **The Regent Who Keeps the Throne Warm** — `1boy, thin nervous steward, oversized royal robe, sitting on edge of massive throne, holding candle, sweatdrop, portraits of stern ancestors on walls, throne room, warm candlelight, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+5. **Long Live the King** — `crowd, multiple boys, raised goblets, waving banners, looking up at empty balcony, confetti, royal standard, castle courtyard, celebration, nobody on balcony, dusk, dark fantasy, dramatic composition, (amazing quality:1.4), best quality`
 
 ## B. Zugemauerte Zonen
 
-6. **Bricklayer of the Eleventh Hour** — A gaunt mason in a leather apron frantically laying glowing bricks by lantern light at midnight, a clock tower striking eleven behind him, mortar dripping like wax.
-7. **The Squatter, Uninvited** — A grinning wiry demon lounging in a cozy armchair inside a freshly bricked-up alcove, tea kettle steaming, personal belongings hung on the sealed walls around him.
-8. **No Room at the Inn** — A furious innkeeper slamming a heavy wooden door, warm light spilling through the crack, a line of shadowy travelers stretching into snowy darkness, a NO VACANCY lantern.
-9. **Condemned Premises** — A grand manor house wrapped entirely in chains and official wax seals, boarded windows, a single glowing official notice nailed to the door.
-10. **The Bricked-Up Door** — A doorway in a castle corridor filled completely with mismatched bricks, fresh mortar still wet, a doorknob absurdly left in place in the middle of the wall.
-11. **The Landlord's Own Padlock** — A massive ornate iron padlock the size of a shield hanging from chains, keyhole glowing faintly orange, keys of every era dangling from its shackle.
+6. **Bricklayer of the Eleventh Hour** — `1boy, gaunt mason, leather apron, laying glowing bricks, trowel, wet mortar, lantern light, clock tower showing eleven, midnight, urgency, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+7. **The Squatter, Uninvited** — `1other, grinning wiry demon, lounging in armchair, cozy bricked-up alcove, steaming tea kettle, personal belongings on walls, smug expression, warm interior light, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+8. **No Room at the Inn** — `1boy, furious innkeeper, slamming heavy wooden door, warm light through door crack, line of shadowy travelers, snowy night street, glowing lantern sign, dark fantasy, dramatic lighting, (amazing quality:1.4), best quality`
+9. **Condemned Premises** — `no humans, grand manor house, wrapped in chains, official wax seals, boarded windows, glowing notice nailed to door, overgrown garden, overcast sky, dark fantasy, intricate details, ominous atmosphere, (amazing quality:1.4), best quality`
+10. **The Bricked-Up Door** — `no humans, castle corridor, doorway filled with mismatched bricks, wet mortar, doorknob left in brick wall, absurd, torchlight, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+11. **The Landlord's Own Padlock** — `no humans, still life, giant ornate iron padlock, hanging from chains, glowing orange keyhole, many antique keys dangling from shackle, dark background, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
 
 ## C. Das oberste Grab
 
-12. **Gravedigger's First Shift** — A young gravedigger leaning on a shovel at dawn, first grave freshly dug, morning mist, a veteran's worn gloves hanging on the cross beside him.
-13. **Echo of the Latest Loss** — A translucent spectral figure rising from the topmost coffin of a stack of coffins, its face mirroring the portrait on that coffin's lid, pale blue glow.
-14. **He Sleeps Lightly** — A gaunt nobleman lying in an open grave with eyes half open, one hand already gripping the grave's edge, moonlight, disturbed soil.
-15. **Last In, First Out** — A skeletal clerk's hand emerging from a filing cabinet made of stacked coffins, pulling the top drawer open, papers and grave soil spilling.
-16. **The Fresh Grave** — A grave so fresh the flowers are still bright, soil moving slightly from below, a warm underground glow seeping through the cracks.
-17. **Buried With His Boots On** — A pair of worn leather boots sticking out of a hastily filled grave, spurs still on, a bandit's hat resting on the mound, desert twilight.
-18. **The Unquiet Topsoil** — A patch of churning cemetery soil rearranging itself, headstones tilted, worms and roots visible in cutaway, one gravestone sinking while another rises.
+12. **Gravedigger's First Shift** — `1boy, young gravedigger, leaning on shovel, freshly dug grave, dawn, morning mist, cemetery, worn gloves hanging on wooden cross, tired smile, dark fantasy, soft lighting, intricate details, (amazing quality:1.4), best quality`
+13. **Echo of the Latest Loss** — `1other, translucent ghost, rising from topmost coffin, stack of coffins, face matching coffin portrait, pale blue glow, cemetery night, spirit, dark fantasy, ethereal, intricate details, (amazing quality:1.4), best quality`
+14. **He Sleeps Lightly** — `1boy, gaunt pale nobleman, lying in open grave, half-open eyes, hand gripping grave edge, disturbed soil, moonlight, cemetery, unsettling, dark fantasy, dramatic lighting, (amazing quality:1.4), best quality`
+15. **Last In, First Out** — `skeletal hand, filing cabinet made of stacked coffins, top drawer pulled open, spilling papers and grave soil, candlelit crypt office, dark fantasy, intricate details, dark humor, (amazing quality:1.4), best quality`
+16. **The Fresh Grave** — `no humans, fresh grave mound, bright flowers, soil bulging from below, warm glow seeping through cracks in earth, cemetery dusk, ominous, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+17. **Buried With His Boots On** — `no humans, worn leather boots sticking out of grave mound, spurs, bandit hat resting on soil, desert twilight, tumbleweed, dark fantasy, western, intricate details, (amazing quality:1.4), best quality`
+18. **The Unquiet Topsoil** — `no humans, churning cemetery soil, tilted headstones, one gravestone sinking, another rising, visible roots and worms, night, eerie, dark fantasy, intricate details, (amazing quality:1.4), best quality`
 
 ## D. Die Stufenschmiede
 
-19. **A Foot in the Door** — An armored boot firmly wedged in a closing ornate door, light from inside cutting across the boot, straining hinges, dramatic angle from floor level.
-20. **The Promotion Board** — A tribunal of stern owl-faced bureaucrats behind a tall bench stamping a kneeling knight's forehead with a glowing rank sigil.
-21. **Demoted for Cause** — A once-mighty armored general having his epaulettes and medals torn away by disembodied gloved hands, his cape crumpled at his feet, shame lighting.
-22. **Cut Down to Size** — A giant ogre shrinking mid-stride, his armor now comically oversized and clattering off, surrounded by smug smaller soldiers of equal height.
-23. **Stuck on the Middle Rung** — A weary climber frozen on the middle rung of an endless ladder into clouds, rungs above polished gold, rungs below rotten wood.
-24. **The Overqualified Doorman** — An immaculate giant in doorman livery with a scholar's spectacles and war medals, arms crossed before a velvet rope, turning away a horrified lordling.
+19. **A Foot in the Door** — `armored boot wedged in closing ornate door, light cutting through door gap, straining hinges, low angle, floor perspective, dramatic, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+20. **The Promotion Board** — `three owl-headed bureaucrats, tall judicial bench, stamping glowing rank sigil on kneeling knight's forehead, courtroom, stern expressions, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+21. **Demoted for Cause** — `1boy, defeated armored general, medals and epaulettes torn away by gloved hands, crumpled cape at feet, shame, spotlight, dark background, dark fantasy, dramatic lighting, (amazing quality:1.4), best quality`
+22. **Cut Down to Size** — `giant ogre shrinking, oversized armor falling off, clattering pauldrons, surrounded by smug soldiers of equal height, battlefield, humor, dark fantasy, dynamic composition, (amazing quality:1.4), best quality`
+23. **Stuck on the Middle Rung** — `1boy, weary climber, clinging to middle rung of endless ladder, ladder into clouds, golden rungs above, rotten rungs below, wind, vertigo, dark fantasy, dramatic perspective, (amazing quality:1.4), best quality`
+24. **The Overqualified Doorman** — `1boy, giant muscular doorman, immaculate livery, scholar glasses, war medals, crossed arms, velvet rope, turning away horrified young noble, night entrance, dark fantasy, intricate details, (amazing quality:1.4), best quality`
 
 ## E. Morgige Nachrichten
 
-25. **The Ink Still Wet** — A quill writing by itself on tomorrow's newspaper front page, ink glistening wet, the headline blurring and rewriting, candlelit print shop.
-26. **The Day After Tomorrow's News** — A newspaper boy hawking papers whose headlines shift as they're read, buyers staring in horror at their own names, gaslit cobblestone street.
-27. **The Self-Fulfilling Prophecy** — A fortune teller's card burning in midair while the exact scene it depicts assembles itself in the smoke behind it, circular composition.
-28. **She Reads the Weather in Entrails** — A wild-eyed seeress in a butcher's apron reading steaming entrails on a stone slab, tiny storm clouds and lightning forming above the offal.
-29. **The Calendar's Last Page** — A monumental wall calendar with one final page, dated in unreadable script, page lifting in the wind, behind it only darkness.
-30. **The Appointed Hour** — A towering baroque grandfather clock with three glowing hour markers orbiting its face, gears exposed, the pendulum a swinging censer trailing smoke.
-31. **Ink for the Third Edition** — A printing press fed by an inkwell of swirling night sky, stars becoming letters on the press plate, feverish printers working.
+25. **The Ink Still Wet** — `no humans, quill writing by itself, newspaper front page, wet glistening ink, headline rewriting itself, candlelit print shop, floating quill, magic, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+26. **The Day After Tomorrow's News** — `1boy, newspaper boy, hawking papers, shifting headlines, horrified buyers reading own names, gaslit cobblestone street, fog, victorian, dark fantasy, dramatic lighting, (amazing quality:1.4), best quality`
+27. **The Self-Fulfilling Prophecy** — `tarot card burning in midair, prophecy scene forming in smoke, circular composition, fortune teller table, crystal ball, candlelight, dark fantasy, mystical, intricate details, (amazing quality:1.4), best quality`
+28. **She Reads the Weather in Entrails** — `1girl, wild-eyed seeress, butcher apron, reading steaming entrails on stone slab, tiny storm clouds with lightning forming above the offal, ritual chamber, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+29. **The Calendar's Last Page** — `no humans, monumental wall calendar, single last page, unreadable script, page lifting in wind, darkness behind the page, torn page remnants, dark fantasy, ominous, intricate details, (amazing quality:1.4), best quality`
+30. **The Appointed Hour** — `no humans, towering baroque grandfather clock, three glowing hour markers orbiting clock face, exposed gears, pendulum censer trailing smoke, dark hall, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+31. **Ink for the Third Edition** — `printing press fed by inkwell of swirling night sky, stars becoming letters on press plate, feverish printers working, workshop, night, dark fantasy, magical, intricate details, (amazing quality:1.4), best quality`
 
 ## F. Schildkante voran
 
-32. **He Who Leads With His Shoulder** — A broad armored veteran mid-charge, shoulder-first behind a massive tower shield, mud and splinters flying, low heroic angle.
-33. **The Vault's Own Doorframe** — A colossal animated stone doorframe with a vault door for a chest, striding forward on pillar legs, keyhole eye glowing.
-34. **Doorstop Made of Dragon Bone** — A wedge carved from a dragon's jawbone propping open an enormous fortress gate, faint ember glow in the bone's cracks, tiny chips on the floor.
-35. **Lead With the Shield** — A phalanx of soldiers advancing in perfect lockstep behind interlocked shields, shield edges forward like a blade wall, dust storm parting around them.
+32. **He Who Leads With His Shoulder** — `1boy, broad armored veteran, charging shoulder-first, massive tower shield, flying mud and splinters, low heroic angle, motion blur, battlefield, dark fantasy, dynamic composition, dramatic lighting, (amazing quality:1.4), best quality`
+33. **The Vault's Own Doorframe** — `no humans, colossal animated stone doorframe golem, vault door chest, striding on pillar legs, glowing keyhole eye, treasure vault interior, dark fantasy, intricate details, imposing, (amazing quality:1.4), best quality`
+34. **Doorstop Made of Dragon Bone** — `no humans, wedge carved from dragon jawbone, propping open enormous fortress gate, ember glow in bone cracks, small bone chips on floor, torchlight, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+35. **Lead With the Shield** — `multiple boys, phalanx formation, advancing in lockstep, interlocked tower shields, shield edges forward, dust storm parting, disciplined, battlefield, dark fantasy, dramatic composition, (amazing quality:1.4), best quality`
 
 ## G. Offene Hand
 
-36. **An Honest Man's Bluff** — A plainly dressed man at a card table showing his empty upturned palms and open coat, while his opponents' faces show utter confusion, candlelight.
-37. **The Beggar Who Shows His Purse** — A beggar proudly holding open a completely empty coin purse turned inside out, genuine smile, passersby inexplicably moved to tears.
-38. **The Transparent Man** — A gentleman whose body is literal clear glass, organs replaced by openly displayed playing cards and honest ledgers, tipping his hat.
-39. **Everything Above Board** — Two merchants at a table with every coin, card and contract laid out in perfect rows between them, both leaning back with crossed arms, harsh overhead light.
+36. **An Honest Man's Bluff** — `1boy, plainly dressed man, card table, showing empty upturned palms, open coat, confused opponents, tavern, candlelight, playing cards on table, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+37. **The Beggar Who Shows His Purse** — `1boy, smiling beggar, holding empty coin purse turned inside out, proud expression, moved passersby wiping tears, cobblestone street, warm light, dark fantasy, heartwarming, intricate details, (amazing quality:1.4), best quality`
+38. **The Transparent Man** — `1boy, gentleman made of clear glass, transparent body, playing cards and ledgers visible inside torso, tipping top hat, monocle, victorian street, dark fantasy, surreal, intricate details, (amazing quality:1.4), best quality`
+39. **Everything Above Board** — `2boys, two merchants at table, coins cards and contracts laid in perfect rows between them, leaning back, crossed arms, harsh overhead light, negotiation, dark fantasy, intricate details, (amazing quality:1.4), best quality`
 
 ## H. Einzelstücke
 
-40. **The Thousandth Card** — A single radiant card floating above an ocean of 999 face-down cards stretching to the horizon, gold light rays, the one card turning toward the viewer (its face only light).
-41. **Countersign** — A devilish notary's hand adding an enormous flourished second signature beneath a tiny one on a contract, the countersignature glowing and burning into the page.
-42. **Eviction Notice** — A stone golem sadly carrying a single potted plant out of its alcove, an official notice nailed where it stood, its packed suitcase absurdly small.
-43. **Wrong Queue, Sir** — A prim clerk behind a counter pointing a white-gloved finger sideways, a monstrous armored brute holding a tiny ticket looking devastated, endless rope queues.
-44. **The Turntable** — A massive circular stone platform in a battlefield rotating with monsters standing on it like chess pieces, gears beneath, motion blur at the edges.
-45. **Settle the Difference** — A giant brass balance scale with two duelists standing in its pans, perfectly level, coins and life essence flowing between the pans as glowing liquid.
-46. **The Even Scales** — An elegant blindfolded figure of justice whose scales hold two identical flames burning in perfect balance, symmetrical composition.
-47. **First Mover's Advantage** — A runner exploding off a starting line while all other racers are still statues covered in dust, sunrise, chalk dust hanging in the air.
-48. **The Standing Order** — A skeletal bank teller stamping the same document over and over into eternity, identical documents stretching in both directions, hourglass on the counter.
-49. **Two Truths and a Lie** — Three identical hooded figures seated at a table, two casting normal shadows and one casting no shadow at all, single candle.
-50. **Making Ends Meet** — Two frayed rope ends being desperately knotted together over an abyss, patched with ribbons, coins and a shoelace, hands working by moonlight.
+40. **The Thousandth Card** — `no humans, single radiant glowing card floating, ocean of face-down cards to horizon, golden light rays, the one card turning toward viewer, card face pure light, dark fantasy, epic, dramatic lighting, (amazing quality:1.4), best quality`
+41. **Countersign** — `devil hand with quill, adding enormous flourished signature under tiny one, burning glowing countersignature, contract paper, wax seals, candlelight, dark fantasy, intricate details, (amazing quality:1.4), best quality`
+42. **Eviction Notice** — `1other, sad stone golem, carrying single potted plant, leaving its alcove, official notice nailed to wall, tiny suitcase, melancholy, dusk, dark fantasy, bittersweet, intricate details, (amazing quality:1.4), best quality`
+43. **Wrong Queue, Sir** — `1boy, prim clerk behind counter, white glove pointing sideways, huge armored brute holding tiny ticket, devastated expression, endless rope queues, bureaucratic hall, dark fantasy, humor, intricate details, (amazing quality:1.4), best quality`
+44. **The Turntable** — `no humans, massive circular stone platform rotating, monsters standing on it like chess pieces, exposed gears beneath, motion blur at edges, battlefield arena, dark fantasy, dynamic composition, (amazing quality:1.4), best quality`
+45. **Settle the Difference** — `giant brass balance scale, two duelists standing in the pans, perfectly level, glowing liquid coins flowing between pans, symmetry, dark hall, dark fantasy, dramatic lighting, (amazing quality:1.4), best quality`
+46. **The Even Scales** — `1girl, blindfolded justice figure, elegant robes, holding scales with two identical flames, perfect balance, symmetrical composition, marble hall, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
+47. **First Mover's Advantage** — `1boy, runner exploding off starting line, other racers frozen as dust-covered statues, sunrise, chalk dust hanging in air, motion blur, track, dark fantasy, dynamic composition, (amazing quality:1.4), best quality`
+48. **The Standing Order** — `1other, skeletal bank teller, stamping documents, identical documents stretching to infinity both directions, hourglass on counter, bank interior, dark fantasy, surreal, intricate details, (amazing quality:1.4), best quality`
+49. **Two Truths and a Lie** — `3others, three identical hooded figures at table, two casting shadows, one casting no shadow, single candle, dark room, unsettling, dark fantasy, dramatic lighting, chiaroscuro, (amazing quality:1.4), best quality`
+50. **Making Ends Meet** — `two frayed rope ends knotted together over abyss, patched with ribbons coins and shoelace, hands working, moonlight, precarious, dark fantasy, intricate details, dramatic lighting, (amazing quality:1.4), best quality`
