@@ -584,6 +584,19 @@ namespace Rouge.Tcg.UI
             statusBadgeRoot.SetAsLastSibling();
             statusBadgeRoot.gameObject.SetActive(true);
 
+            // Die Inspect-Karte hängt unter einer CanvasGroup mit blocksRaycasts=false
+            // (die große Karte soll nicht klickbar sein) — für die Hover-Erklärungen
+            // muss die Badge-Spalte den Zeiger trotzdem fangen: eigene CanvasGroup,
+            // die die Eltern-Gruppe übersteuert. Auf Feldkarten bleibt alles wie es war.
+            if (BadgeTooltips)
+            {
+                var badgeGroup = statusBadgeRoot.GetComponent<CanvasGroup>();
+                if (badgeGroup == null) badgeGroup = statusBadgeRoot.gameObject.AddComponent<CanvasGroup>();
+                badgeGroup.ignoreParentGroups = true;
+                badgeGroup.blocksRaycasts = true;
+                badgeGroup.interactable = true;
+            }
+
             // Geometrie relativ zur Kartenbreite (42/214 ≈ 0.20 im Handoff-Frame)
             float cardW = host != null ? host.rect.width : 112f;
             float cardH = host != null ? host.rect.height : 157f;
