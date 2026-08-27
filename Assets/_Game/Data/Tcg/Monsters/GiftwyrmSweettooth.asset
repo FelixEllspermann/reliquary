@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmSweettooth
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Giftwyrm Sweettooth
-  artwork: {fileID: 0}
+  artwork: {fileID: 8907232908883910429, guid: 95e4dfc73409713489768927bab00740, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

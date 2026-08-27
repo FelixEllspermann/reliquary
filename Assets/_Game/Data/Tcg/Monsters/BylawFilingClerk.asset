@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawFilingClerk
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Bylaw Filing Clerk
-  artwork: {fileID: 0}
+  artwork: {fileID: 7326709845053466623, guid: 976e3e09c6c5a1f4babd98c7faa6b8bd, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

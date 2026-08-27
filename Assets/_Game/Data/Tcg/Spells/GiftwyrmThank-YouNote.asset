@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmThank-YouNote
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Giftwyrm Thank-You Note
-  artwork: {fileID: 0}
+  artwork: {fileID: -4051637120049407289, guid: 0cb797fd127e0d24a9724834ca3a16bc, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

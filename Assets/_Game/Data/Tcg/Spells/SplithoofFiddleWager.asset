@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofFiddleWager
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Splithoof Fiddle Wager
-  artwork: {fileID: 0}
+  artwork: {fileID: 1658577300492002996, guid: 86a7b23f08bcde742887d521b91ef404, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

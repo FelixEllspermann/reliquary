@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmPrettybow
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Giftwyrm Prettybow
-  artwork: {fileID: 0}
+  artwork: {fileID: -687263058052152679, guid: 43e4533aca5c96a46858e3ec07510dc6, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

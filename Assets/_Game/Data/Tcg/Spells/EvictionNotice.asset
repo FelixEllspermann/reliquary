@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EvictionNotice
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Eviction Notice
-  artwork: {fileID: 0}
+  artwork: {fileID: 7530929122809206993, guid: 1ac21388207688949b2a76f32a170649, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7
@@ -51,6 +51,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 10
       isCost: 0
@@ -76,6 +79,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 1
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: Clear the Building
     text: 'Instead, pay 3 Mana: up to 2 such monsters.'
     isInfused: 1
@@ -109,6 +115,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 10
       isCost: 0
@@ -134,6 +143,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 1
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -207,4 +219,14 @@ MonoBehaviour:
   passiveUntargetableWhileLpClose: 0
   passiveDrawReplacementGraveTop: 0
   countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
   speed: 0

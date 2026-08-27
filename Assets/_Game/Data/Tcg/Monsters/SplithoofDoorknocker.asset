@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofDoorknocker
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Splithoof Doorknocker
-  artwork: {fileID: 0}
+  artwork: {fileID: 7980182577430396722, guid: ae77d7b046da8194fb97f23e5ee4d697, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheSquatterUninvited
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Squatter, Uninvited
-  artwork: {fileID: 0}
+  artwork: {fileID: -1940914500096269553, guid: e22be3c3c641fdf458198d5b7e8721eb, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7
@@ -51,6 +51,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 2
       isCost: 0
@@ -76,6 +79,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -149,6 +155,16 @@ MonoBehaviour:
   passiveUntargetableWhileLpClose: 0
   passiveDrawReplacementGraveTop: 0
   countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
   level: 2
   attribute: 4
   monsterType: 5
@@ -186,3 +202,6 @@ MonoBehaviour:
   selfSummonRequiresDeckAtLeast: 0
   selfSummonRequiresLpWithin: 0
   selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofHagglehorn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Splithoof Hagglehorn
-  artwork: {fileID: 0}
+  artwork: {fileID: -1731358707675690012, guid: c73296d5bc241c547a753cbd2a094545, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

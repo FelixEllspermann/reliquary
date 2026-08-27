@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmRegistry
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Giftwyrm Registry
-  artwork: {fileID: 0}
+  artwork: {fileID: -6047215887338888393, guid: 108ff52b0acff2b4d92d549d40c12279, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

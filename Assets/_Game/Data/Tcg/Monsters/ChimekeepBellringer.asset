@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepBellringer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Chimekeep Bellringer
-  artwork: {fileID: 0}
+  artwork: {fileID: -3693705645520171308, guid: 72bd75a5dd4d2c0499efbab1a06f1400, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

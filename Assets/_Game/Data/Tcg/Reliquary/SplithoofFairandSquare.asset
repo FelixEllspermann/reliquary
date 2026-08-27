@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofFairandSquare
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Splithoof, Fair and Square
-  artwork: {fileID: 0}
+  artwork: {fileID: -3663336673985886869, guid: 4677da98b65665b4f9377abef11407ac, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

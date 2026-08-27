@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepEscapement
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Chimekeep Escapement
-  artwork: {fileID: 0}
+  artwork: {fileID: 1002509134692287347, guid: 7fe069cb1790ac04392eb13b2c662cbc, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

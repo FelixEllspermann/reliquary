@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayFirstOutoftheBushes
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Waylay, First Out of the Bushes
-  artwork: {fileID: 0}
+  artwork: {fileID: 3200602084375024090, guid: b9bc7e6460d60e94bafcd69218abeeae, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

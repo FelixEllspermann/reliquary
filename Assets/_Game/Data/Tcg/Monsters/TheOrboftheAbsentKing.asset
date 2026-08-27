@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheOrboftheAbsentKing
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Orb of the Absent King
-  artwork: {fileID: 0}
+  artwork: {fileID: -6875133593110043382, guid: 59b7f67b2857e314e920ac99d580ae99, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7
@@ -54,6 +54,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 133
       isCost: 0
@@ -79,6 +82,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: The Realm Endures
     text: 'During your Standby Phase: gain 300 LP.'
     isInfused: 0
@@ -112,6 +118,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 1
       isCost: 0
@@ -137,6 +146,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: Kept in Trust
     text: 'Pay 2 Mana: shuffle 1 card from your Graveyard into your Deck.'
     isInfused: 1
@@ -170,6 +182,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 43
       isCost: 0
@@ -195,6 +210,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -268,6 +286,16 @@ MonoBehaviour:
   passiveUntargetableWhileLpClose: 0
   passiveDrawReplacementGraveTop: 0
   countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
   level: 2
   attribute: 2
   monsterType: 7
@@ -305,3 +333,6 @@ MonoBehaviour:
   selfSummonRequiresDeckAtLeast: 0
   selfSummonRequiresLpWithin: 0
   selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0

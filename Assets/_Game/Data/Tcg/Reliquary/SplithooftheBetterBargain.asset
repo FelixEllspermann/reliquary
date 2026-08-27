@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithooftheBetterBargain
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Splithoof, the Better Bargain
-  artwork: {fileID: 0}
+  artwork: {fileID: -8872587933721188433, guid: 2de1c3495ccf4524c8a660740cae100f, type: 3}
   rarity: 3
   isToken: 0
   releaseVersion: 0.1.7

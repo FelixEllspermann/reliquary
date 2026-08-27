@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmtheWholeHamper
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Giftwyrm, the Whole Hamper
-  artwork: {fileID: 0}
+  artwork: {fileID: -7182205475988214631, guid: 0b88202d165a01841b28e462a5204256, type: 3}
   rarity: 3
   isToken: 0
   releaseVersion: 0.1.7

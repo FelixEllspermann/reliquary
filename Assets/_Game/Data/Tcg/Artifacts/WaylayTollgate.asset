@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayTollgate
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Waylay Tollgate
-  artwork: {fileID: 0}
+  artwork: {fileID: 5535757893376249295, guid: 6bdb2d427ad719a4495bb736ec784633, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

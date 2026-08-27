@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawLoophole
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Bylaw Loophole
-  artwork: {fileID: 0}
+  artwork: {fileID: -8618780675259269333, guid: 7953e29c34be63e41800f1e0d0b94440, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

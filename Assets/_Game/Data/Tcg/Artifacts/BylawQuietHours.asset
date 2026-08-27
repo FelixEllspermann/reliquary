@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawQuietHours
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: 'Bylaw: Quiet Hours'
-  artwork: {fileID: 0}
+  artwork: {fileID: -5855142509543045453, guid: cc02039dbd054cb46955e7d01a059e21, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

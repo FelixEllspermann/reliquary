@@ -514,3 +514,40 @@ Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	自分�
 If your opponent activates this card's effect: you have {0} additional Mana next turn.	相手がこのカードの効果を発動した場合：自分は次のターン、マナを{0}追加で得る。
 your monsters on your opponent's field	相手フィールドの自分のモンスター
 the Artifacts on both fields	両フィールドのアーティファクト
+# ---------- Status-Badge-Tooltips ----------
+Indestructible	破壊耐性
+Immune	効果耐性
+Untargetable	対象耐性
+Negated	無効化
+Cannot Attack	攻撃不可
+Position Locked	表示形式固定
+Taunt	挑発
+Piercing	貫通
+Multi-Attack	連続攻撃
+Poached	密漁済み
+Temporary Copy	一時的なコピー
+Stolen	強奪済み
+Countdown	カウントダウン
+On Borrowed Time	余命わずか
+Death Counters	死のカウンター
+Lien	抵当
+More Statuses	その他の状態
+Cannot be destroyed this turn — neither by battle nor by card effects.	このターン破壊されない——戦闘でもカードの効果でも。
+The opponent's effect actions bounce off this card until the end of the turn.	ターン終了時まで、相手の効果によるアクションはこのカードに通じない。
+Cannot be targeted by the opponent's effects this turn.	このターン、相手の効果の対象にならない。
+This card's effects are negated until the end of the turn.	このカードの効果はターン終了時まで無効化されている。
+This card cannot attack this turn.	このカードはこのターン攻撃できない。
+Cannot change its battle position this turn.	このターン、表示形式を変更できない。
+The opponent's attacks must target this card this turn.	このターン、相手の攻撃はこのカードに向けなければならない。
+When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.	このターン守備表示モンスターを攻撃した場合、その差分が相手のLPに与えられる。
+May attack {0} times this Battle Phase.	このバトルフェイズに{0}回攻撃できる。
+When it leaves the field, it is banished instead of going to the Graveyard.	フィールドを離れる時、墓地へは行かず除外される。
+A conjured copy — it fades away during the End Phase.	呼び出されたコピー——エンドフェイズに消え去る。
+Controlled by someone other than its owner.	持ち主以外にコントロールされている。
+Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.	最後の刻のカウンターが取り除かれた時に効果が発動する——残り{0}個。コントローラーのスタンバイフェイズごとに1個取り除かれる。
+Goes to the Graveyard during the End Phase.	エンドフェイズに墓地へ送られる。
+This card was Special Summoned onto the field.	このカードは特殊召喚でフィールドに出た。
+Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.	このカードの死のカウンター：{0}個。エンドフェイズごとに1個増え、上限に達すると墓地へ送られる。
+Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	コントローラーは自分のスタンバイフェイズごとに{0}マナ支払う——さもなくばこのカードは破壊される。
+Also active: {0}.	他にも有効：{0}。
+Special Summoned	特殊召喚

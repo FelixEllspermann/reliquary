@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayRoadthorn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Waylay Roadthorn
-  artwork: {fileID: 0}
+  artwork: {fileID: -2499799844996112106, guid: 422754e3f7fd14e468f50de9e71ebeeb, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

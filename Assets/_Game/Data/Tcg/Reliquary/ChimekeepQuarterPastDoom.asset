@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepQuarterPastDoom
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Chimekeep, Quarter Past Doom
-  artwork: {fileID: 0}
+  artwork: {fileID: -6133761443217693420, guid: 016d2c94dc059b44a9142a9d86504c3b, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

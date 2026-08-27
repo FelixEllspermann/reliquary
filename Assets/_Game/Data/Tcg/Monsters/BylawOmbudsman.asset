@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawOmbudsman
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Bylaw Ombudsman
-  artwork: {fileID: 0}
+  artwork: {fileID: -8164541406600633374, guid: 695db8058c94bc047ab8813c9705fd85, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

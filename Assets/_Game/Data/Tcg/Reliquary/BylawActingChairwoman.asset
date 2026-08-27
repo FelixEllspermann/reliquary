@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawActingChairwoman
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Bylaw, Acting Chairwoman
-  artwork: {fileID: 0}
+  artwork: {fileID: 1178858057913848635, guid: 793e6064aafbfb244bbb1684997d99b5, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

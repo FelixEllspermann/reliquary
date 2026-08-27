@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepNightRound
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Chimekeep Night Round
-  artwork: {fileID: 0}
+  artwork: {fileID: -9220682680538574857, guid: a50f224b4b89e214484372bea33fed6b, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

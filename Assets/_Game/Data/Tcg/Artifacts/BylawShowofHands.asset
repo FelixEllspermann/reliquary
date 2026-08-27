@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawShowofHands
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: 'Bylaw: Show of Hands'
-  artwork: {fileID: 0}
+  artwork: {fileID: 3037264128237375838, guid: 6599f21dc08843a4e9e7919f674656d0, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

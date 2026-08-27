@@ -56,6 +56,7 @@ namespace Rouge.Tcg.UI
             if (backPlate != null) backPlate.SetActive(false);
             if (caption != null) caption.SetActive(false);
             cardView.gameObject.SetActive(true);
+            cardView.BadgeTooltips = true; // Hover auf den Status-Badges erklärt den Status
             cardView.Show(instance, false, upright: true, revealFaceDown: true);
             cardView.SetHighlight(false);
 

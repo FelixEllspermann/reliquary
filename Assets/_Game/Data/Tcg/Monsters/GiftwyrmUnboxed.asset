@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmUnboxed
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Giftwyrm Unboxed
-  artwork: {fileID: 0}
+  artwork: {fileID: -5157082369392552152, guid: 3ce7950e805997845ad2a0ffd82b1c9a, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheStandingOrder
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: The Standing Order
-  artwork: {fileID: 0}
+  artwork: {fileID: 6708622273308140862, guid: d639bdd5c168fd541adec2af4c3188f6, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7
@@ -52,6 +52,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 40
       isCost: 0
@@ -77,6 +80,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -150,6 +156,16 @@ MonoBehaviour:
   passiveUntargetableWhileLpClose: 0
   passiveDrawReplacementGraveTop: 1
   countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
   slot: 1
   atkBonus: 0
   defBonus: 0

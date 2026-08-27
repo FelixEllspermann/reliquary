@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayHighwayman
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Waylay Highwayman
-  artwork: {fileID: 0}
+  artwork: {fileID: -6572083127141314029, guid: 850fc5536c7943c4d857efd418926f20, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmMolting
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Giftwyrm Molting
-  artwork: {fileID: 0}
+  artwork: {fileID: -1091224615629591867, guid: cdbf0c6b42712394ebde4d9a4f29e1c2, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

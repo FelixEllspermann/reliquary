@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheSceptreoftheAbsentKing
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: The Sceptre of the Absent King
-  artwork: {fileID: 0}
+  artwork: {fileID: 3222256287696785034, guid: cc87e08957a038b4e95a074a32219609, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7
@@ -54,6 +54,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 133
       isCost: 0
@@ -79,6 +82,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: No One Rises
     text: 'Once per turn: 1 monster your opponent controls loses 300 ATK until the
       end of the turn.'
@@ -113,6 +119,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 7
       isCost: 0
@@ -138,6 +147,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: No One At All
     text: 'Pay 2 Mana: up to 2 monsters your opponent controls lose 300 ATK until
       the end of the turn instead.'
@@ -172,6 +184,9 @@ MonoBehaviour:
     requireOwnMonsterDestroyedThisTurn: 0
     onlyOnFirstOwnTurn: 0
     maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
     actions:
     - type: 7
       isCost: 0
@@ -197,6 +212,9 @@ MonoBehaviour:
       requireLevelBelowControllerCount: 0
       onlyCannotAttack: 0
       zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -270,6 +288,16 @@ MonoBehaviour:
   passiveUntargetableWhileLpClose: 0
   passiveDrawReplacementGraveTop: 0
   countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
   level: 2
   attribute: 1
   monsterType: 7
@@ -307,3 +335,6 @@ MonoBehaviour:
   selfSummonRequiresDeckAtLeast: 0
   selfSummonRequiresLpWithin: 0
   selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0

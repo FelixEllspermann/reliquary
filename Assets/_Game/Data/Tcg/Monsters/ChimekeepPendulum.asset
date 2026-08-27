@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepPendulum
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Chimekeep Pendulum
-  artwork: {fileID: 0}
+  artwork: {fileID: -1400979745138281370, guid: 1a2afd9f6e87f714fbd8db083d7d5038, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

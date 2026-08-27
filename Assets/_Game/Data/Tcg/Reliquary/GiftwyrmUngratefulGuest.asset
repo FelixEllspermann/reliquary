@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmUngratefulGuest
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Giftwyrm, Ungrateful Guest
-  artwork: {fileID: 0}
+  artwork: {fileID: -6473774064765061021, guid: 716ccc29ce432414cbda6f268588e11c, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

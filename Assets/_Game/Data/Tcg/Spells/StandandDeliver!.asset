@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StandandDeliver!
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Stand and Deliver!
-  artwork: {fileID: 0}
+  artwork: {fileID: -8241492687685619766, guid: 4689ae83ab74439448eca8fb727901c9, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

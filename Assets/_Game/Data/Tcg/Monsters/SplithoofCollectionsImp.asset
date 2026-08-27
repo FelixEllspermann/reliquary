@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofCollectionsImp
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Splithoof Collections Imp
-  artwork: {fileID: 0}
+  artwork: {fileID: -64366323421198939, guid: 43e9e1edf07ffdb4d87ae7c48198c7ff, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

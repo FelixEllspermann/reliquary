@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmHollowshell
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Giftwyrm Hollowshell
-  artwork: {fileID: 0}
+  artwork: {fileID: 2844971671155098607, guid: 3dc4c06cfdbb26f4b8f38c6914207452, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

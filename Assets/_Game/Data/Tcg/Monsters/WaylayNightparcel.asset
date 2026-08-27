@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayNightparcel
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Waylay Nightparcel
-  artwork: {fileID: 0}
+  artwork: {fileID: 4623720273150791427, guid: 5d830d2ccfbe5f74d97954653aa91073, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

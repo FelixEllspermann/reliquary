@@ -515,3 +515,40 @@ Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	자신�
 If your opponent activates this card's effect: you have {0} additional Mana next turn.	상대가 이 카드의 효과를 발동했다면: 자신은 다음 턴에 마나를 {0} 추가로 얻는다.
 your monsters on your opponent's field	상대 필드의 자신의 몬스터
 the Artifacts on both fields	양쪽 필드의 아티팩트
+# ---------- Status-Badge-Tooltips ----------
+Indestructible	파괴 내성
+Immune	효과 내성
+Untargetable	대상 내성
+Negated	무효화
+Cannot Attack	공격 불가
+Position Locked	표시 형식 고정
+Taunt	도발
+Piercing	관통
+Multi-Attack	연속 공격
+Poached	밀렵됨
+Temporary Copy	일시적 복사체
+Stolen	강탈됨
+Countdown	카운트다운
+On Borrowed Time	시한부
+Death Counters	죽음의 카운터
+Lien	유치권
+More Statuses	기타 상태
+Cannot be destroyed this turn — neither by battle nor by card effects.	이번 턴에 파괴되지 않는다 — 전투로도, 카드의 효과로도.
+The opponent's effect actions bounce off this card until the end of the turn.	턴 종료시까지 상대의 효과 액션이 이 카드에 통하지 않는다.
+Cannot be targeted by the opponent's effects this turn.	이번 턴에 상대 효과의 대상이 되지 않는다.
+This card's effects are negated until the end of the turn.	이 카드의 효과는 턴 종료시까지 무효화되어 있다.
+This card cannot attack this turn.	이 카드는 이번 턴에 공격할 수 없다.
+Cannot change its battle position this turn.	이번 턴에 표시 형식을 바꿀 수 없다.
+The opponent's attacks must target this card this turn.	이번 턴에 상대의 공격은 이 카드를 대상으로 해야 한다.
+When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.	이번 턴에 수비 표시 몬스터를 공격하면, 그 차이만큼 상대 LP에 데미지를 준다.
+May attack {0} times this Battle Phase.	이번 배틀 페이즈에 {0}번 공격할 수 있다.
+When it leaves the field, it is banished instead of going to the Graveyard.	필드를 벗어날 때 묘지로 가지 않고 제외된다.
+A conjured copy — it fades away during the End Phase.	불러낸 복사체 — 엔드 페이즈에 사라진다.
+Controlled by someone other than its owner.	주인이 아닌 자가 컨트롤하고 있다.
+Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.	마지막 시간 카운터가 제거될 때 효과가 발동한다 — 남은 개수: {0}. 컨트롤러의 스탠바이 페이즈마다 1개씩 제거된다.
+Goes to the Graveyard during the End Phase.	엔드 페이즈에 묘지로 보내진다.
+This card was Special Summoned onto the field.	이 카드는 특수 소환으로 필드에 나왔다.
+Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.	이 카드의 죽음의 카운터: {0}개. 엔드 페이즈마다 1개씩 늘어나며, 한계에 도달하면 묘지로 보내진다.
+Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	컨트롤러는 자신의 스탠바이 페이즈마다 마나 {0}을(를) 지불한다 — 지불하지 않으면 이 카드는 파괴된다.
+Also active: {0}.	그 외 적용 중: {0}.
+Special Summoned	특수 소환됨

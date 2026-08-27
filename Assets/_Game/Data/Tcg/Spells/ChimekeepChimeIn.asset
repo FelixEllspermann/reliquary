@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepChimeIn
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Chimekeep Chime In
-  artwork: {fileID: 0}
+  artwork: {fileID: -4075838522091194064, guid: 752bb74bfbddb454e9d1e006c64a4137, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

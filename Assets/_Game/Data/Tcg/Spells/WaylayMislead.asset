@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayMislead
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Waylay Mislead
-  artwork: {fileID: 0}
+  artwork: {fileID: -5546455560304172023, guid: 9b65f5506ca6a8a4d91d124d3a282bfe, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

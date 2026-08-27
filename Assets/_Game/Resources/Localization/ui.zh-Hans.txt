@@ -515,3 +515,40 @@ Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	你的�
 If your opponent activates this card's effect: you have {0} additional Mana next turn.	若对手发动了这张卡的效果：你的下个回合额外获得{0}魔力。
 your monsters on your opponent's field	你在对手场上的怪兽
 the Artifacts on both fields	双方场上的神器
+# ---------- Status-Badge-Tooltips ----------
+Indestructible	不可破坏
+Immune	效果免疫
+Untargetable	不可指定
+Negated	效果无效
+Cannot Attack	不能攻击
+Position Locked	表示形式锁定
+Taunt	嘲讽
+Piercing	贯穿
+Multi-Attack	多段攻击
+Poached	被盗猎
+Temporary Copy	临时复制体
+Stolen	被夺取
+Countdown	倒计时
+On Borrowed Time	时日无多
+Death Counters	死亡指示物
+Lien	抵押
+More Statuses	更多状态
+Cannot be destroyed this turn — neither by battle nor by card effects.	本回合不会被破坏——无论是战斗还是卡的效果。
+The opponent's effect actions bounce off this card until the end of the turn.	直到回合结束，对手的效果行动对这张卡无效。
+Cannot be targeted by the opponent's effects this turn.	本回合不会成为对手效果的对象。
+This card's effects are negated until the end of the turn.	这张卡的效果无效直到回合结束。
+This card cannot attack this turn.	这张卡本回合不能攻击。
+Cannot change its battle position this turn.	本回合不能改变战斗表示形式。
+The opponent's attacks must target this card this turn.	本回合对手的攻击必须以这张卡为对象。
+When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.	本回合攻击守备表示怪兽时，差值将对对手的LP造成伤害。
+May attack {0} times this Battle Phase.	这个战斗阶段可以攻击{0}次。
+When it leaves the field, it is banished instead of going to the Graveyard.	离场时会被除外，而不是送去墓地。
+A conjured copy — it fades away during the End Phase.	被召唤出的复制体——在结束阶段消失。
+Controlled by someone other than its owner.	由持有者以外的人控制。
+Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.	最后1个时刻指示物被移去时其效果发动——还剩{0}个。其控制者的每个准备阶段移去1个。
+Goes to the Graveyard during the End Phase.	在结束阶段被送去墓地。
+This card was Special Summoned onto the field.	这张卡是被特殊召唤到场上的。
+Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.	这张卡上的死亡指示物：{0}个。每个结束阶段增加1个——达到上限时送去墓地。
+Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	其控制者在自己的每个准备阶段支付{0}魔力——否则这张卡被破坏。
+Also active: {0}.	同时生效：{0}。
+Special Summoned	特殊召唤

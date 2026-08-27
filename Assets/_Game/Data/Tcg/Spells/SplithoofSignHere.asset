@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofSignHere
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Splithoof Sign Here
-  artwork: {fileID: 0}
+  artwork: {fileID: -4837650119516376763, guid: a47982bb8e89ca74c95f6262fb096223, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

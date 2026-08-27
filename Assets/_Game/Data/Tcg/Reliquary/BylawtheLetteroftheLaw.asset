@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawtheLetteroftheLaw
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Bylaw, the Letter of the Law
-  artwork: {fileID: 0}
+  artwork: {fileID: -2226870936155467302, guid: 327e1745a291783428e639b7868c1cbb, type: 3}
   rarity: 3
   isToken: 0
   releaseVersion: 0.1.7

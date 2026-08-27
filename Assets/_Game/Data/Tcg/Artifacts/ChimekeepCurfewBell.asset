@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepCurfewBell
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Chimekeep Curfew Bell
-  artwork: {fileID: 0}
+  artwork: {fileID: 1530355283966267783, guid: a10e4496f56d9ae42a422d5425fc29d1, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

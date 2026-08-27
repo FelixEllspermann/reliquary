@@ -442,7 +442,16 @@ namespace Rouge.Tcg.UI
             public string PillSprite;
             public Color PillColor;
             public string CenterText;    // nur der "+N"-Chip
+            public string TooltipTitle;  // Hover-Erklärung (nur Inspect-Karte)
+            public string TooltipBody;
         }
+
+        /// <summary>
+        /// Hover-Erklärungen auf den Status-Badges aktivieren — nur die
+        /// Inspect-Karte (CardDetailPanel) schaltet das an; auf Feldkarten
+        /// blieben die Badges sonst Klick-Fänger.
+        /// </summary>
+        public bool BadgeTooltips;
 
         private static Sprite BadgeSprite(string name)
         {
@@ -466,31 +475,46 @@ namespace Rouge.Tcg.UI
                 return;
             }
 
-            // Einträge in Roster-Reihenfolge des Handoffs (1–16) einsammeln
+            // Einträge in Roster-Reihenfolge des Handoffs (1–16) einsammeln —
+            // jeder trägt Titel + Erklärung für den Hover auf der Inspect-Karte
             var entries = new List<BadgeEntry>();
-            void Flag(CardStatusFlags flag, string sprite)
+            void Flag(CardStatusFlags flag, string sprite, string title, string body)
             {
-                if ((mask & (int)flag) != 0) entries.Add(new BadgeEntry { Sprite = sprite });
+                if ((mask & (int)flag) != 0)
+                    entries.Add(new BadgeEntry { Sprite = sprite, TooltipTitle = Loc.T(title), TooltipBody = Loc.T(body) });
             }
-            Flag(CardStatusFlags.Indestructible, "BadgeIndestructible");
-            Flag(CardStatusFlags.Immune, "BadgeImmune");
-            Flag(CardStatusFlags.Untargetable, "BadgeUntargetable");
-            Flag(CardStatusFlags.Negated, "BadgeNegated");
-            Flag(CardStatusFlags.CannotAttack, "BadgeCannotAttack");
-            Flag(CardStatusFlags.PositionLocked, "BadgePositionLocked");
-            Flag(CardStatusFlags.Taunt, "BadgeTaunt");
-            Flag(CardStatusFlags.Piercing, "BadgePiercing");
+            Flag(CardStatusFlags.Indestructible, "BadgeIndestructible", "Indestructible",
+                "Cannot be destroyed this turn — neither by battle nor by card effects.");
+            Flag(CardStatusFlags.Immune, "BadgeImmune", "Immune",
+                "The opponent's effect actions bounce off this card until the end of the turn.");
+            Flag(CardStatusFlags.Untargetable, "BadgeUntargetable", "Untargetable",
+                "Cannot be targeted by the opponent's effects this turn.");
+            Flag(CardStatusFlags.Negated, "BadgeNegated", "Negated",
+                "This card's effects are negated until the end of the turn.");
+            Flag(CardStatusFlags.CannotAttack, "BadgeCannotAttack", "Cannot Attack",
+                "This card cannot attack this turn.");
+            Flag(CardStatusFlags.PositionLocked, "BadgePositionLocked", "Position Locked",
+                "Cannot change its battle position this turn.");
+            Flag(CardStatusFlags.Taunt, "BadgeTaunt", "Taunt",
+                "The opponent's attacks must target this card this turn.");
+            Flag(CardStatusFlags.Piercing, "BadgePiercing", "Piercing",
+                "When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.");
             if ((mask & (int)CardStatusFlags.MultiAttack) != 0)
                 entries.Add(new BadgeEntry
                 {
                     Sprite = "BadgeMultiAttack",
                     PillText = "×" + (instance.BonusAttacks + 1),
                     PillSprite = "BadgePillOffense",
-                    PillColor = PillOffenseText
+                    PillColor = PillOffenseText,
+                    TooltipTitle = Loc.T("Multi-Attack"),
+                    TooltipBody = Loc.F("May attack {0} times this Battle Phase.", instance.BonusAttacks + 1)
                 });
-            Flag(CardStatusFlags.BanishOnLeave, "BadgeBanishOnLeave");
-            Flag(CardStatusFlags.TempCopy, "BadgeTempCopy");
-            Flag(CardStatusFlags.Stolen, "BadgeStolen");
+            Flag(CardStatusFlags.BanishOnLeave, "BadgeBanishOnLeave", "Poached",
+                "When it leaves the field, it is banished instead of going to the Graveyard.");
+            Flag(CardStatusFlags.TempCopy, "BadgeTempCopy", "Temporary Copy",
+                "A conjured copy — it fades away during the End Phase.");
+            Flag(CardStatusFlags.Stolen, "BadgeStolen", "Stolen",
+                "Controlled by someone other than its owner.");
             // Road to 1000: die Sanduhr trägt auch den Countdown (The Appointed
             // Hour) — dann mit der Marker-Zahl als Pille.
             if (countdown > 0)
@@ -499,17 +523,23 @@ namespace Rouge.Tcg.UI
                     Sprite = "BadgeEndphase",
                     PillText = countdown.ToString(),
                     PillSprite = "BadgePillCounters",
-                    PillColor = PillCountersText
+                    PillColor = PillCountersText,
+                    TooltipTitle = Loc.T("Countdown"),
+                    TooltipBody = Loc.F("Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.", countdown)
                 });
-            else Flag(CardStatusFlags.EndphaseDoom, "BadgeEndphase");
-            Flag(CardStatusFlags.SpecialSummoned, "BadgeSpecialSummoned");
+            else Flag(CardStatusFlags.EndphaseDoom, "BadgeEndphase", "On Borrowed Time",
+                "Goes to the Graveyard during the End Phase.");
+            Flag(CardStatusFlags.SpecialSummoned, "BadgeSpecialSummoned", "Special Summoned",
+                "This card was Special Summoned onto the field.");
             if (counters > 0)
                 entries.Add(new BadgeEntry
                 {
                     Sprite = "BadgeDeathCounter",
                     PillText = counters.ToString(),
                     PillSprite = "BadgePillCounters",
-                    PillColor = PillCountersText
+                    PillColor = PillCountersText,
+                    TooltipTitle = Loc.T("Death Counters"),
+                    TooltipBody = Loc.F("Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.", counters)
                 });
             if (lien > 0)
                 entries.Add(new BadgeEntry
@@ -517,15 +547,27 @@ namespace Rouge.Tcg.UI
                     Sprite = "BadgeLien",
                     PillText = lien.ToString(),
                     PillSprite = "BadgePillCounters",
-                    PillColor = PillCountersText
+                    PillColor = PillCountersText,
+                    TooltipTitle = Loc.T("Lien"),
+                    TooltipBody = Loc.F("Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.", lien)
                 });
 
-            // Overflow: ab 6 Einträgen zeigt der letzte Platz "+N"
+            // Overflow: ab 6 Einträgen zeigt der letzte Platz "+N" — sein Tooltip
+            // listet auf, was gerade nicht mehr in die Spalte passt
             if (entries.Count > BadgeMaxVisible)
             {
                 int hidden = entries.Count - (BadgeMaxVisible - 1);
+                var hiddenTitles = new List<string>();
+                for (int i = BadgeMaxVisible - 1; i < entries.Count; i++)
+                    hiddenTitles.Add(entries[i].TooltipTitle);
                 entries.RemoveRange(BadgeMaxVisible - 1, hidden);
-                entries.Add(new BadgeEntry { Sprite = "BadgeMore", CenterText = "+" + hidden });
+                entries.Add(new BadgeEntry
+                {
+                    Sprite = "BadgeMore",
+                    CenterText = "+" + hidden,
+                    TooltipTitle = Loc.T("More Statuses"),
+                    TooltipBody = Loc.F("Also active: {0}.", string.Join(", ", hiddenTitles))
+                });
             }
 
             if (statusBadgeRoot == null)
@@ -570,6 +612,21 @@ namespace Rouge.Tcg.UI
                 var image = badge.GetComponent<Image>();
                 image.sprite = BadgeSprite(entry.Sprite);
                 image.enabled = image.sprite != null;
+                // Hover-Erklärung: nur die Inspect-Karte fängt den Zeiger —
+                // auf Feldkarten sollen Klicks weiter die Karte treffen
+                image.raycastTarget = BadgeTooltips;
+                var tooltip = badge.GetComponent<TcgBadgeTooltip>();
+                if (BadgeTooltips)
+                {
+                    if (tooltip == null) tooltip = badge.gameObject.AddComponent<TcgBadgeTooltip>();
+                    tooltip.Title = entry.TooltipTitle ?? "";
+                    tooltip.Body = entry.TooltipBody ?? "";
+                }
+                else if (tooltip != null)
+                {
+                    tooltip.Title = "";
+                    tooltip.Body = "";
+                }
 
                 var pill = (RectTransform)badge.Find("Pill");
                 var center = (RectTransform)badge.Find("Center");

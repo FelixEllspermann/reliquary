@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepWindupChorister
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Chimekeep Windup Chorister
-  artwork: {fileID: 0}
+  artwork: {fileID: 5957019066631612201, guid: 92ab8480362d38a4aa925c1d260ae66c, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

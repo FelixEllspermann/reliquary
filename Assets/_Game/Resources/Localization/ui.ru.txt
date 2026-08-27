@@ -514,3 +514,40 @@ Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	Ваши
 If your opponent activates this card's effect: you have {0} additional Mana next turn.	Если ваш противник активирует эффект этой карты: у вас на {0} Маны больше в следующем ходу.
 your monsters on your opponent's field	ваших монстров на поле противника
 the Artifacts on both fields	Артефактов на обоих полях
+# ---------- Status-Badge-Tooltips ----------
+Indestructible	Неуничтожима
+Immune	Иммунитет
+Untargetable	Не цель
+Negated	Аннулирована
+Cannot Attack	Не может атаковать
+Position Locked	Позиция заблокирована
+Taunt	Провокация
+Piercing	Пробивание
+Multi-Attack	Мультиатака
+Poached	Добыча браконьера
+Temporary Copy	Временная копия
+Stolen	Украдена
+Countdown	Обратный отсчёт
+On Borrowed Time	Дни сочтены
+Death Counters	Счётчики Смерти
+Lien	Залог
+More Statuses	Другие статусы
+Cannot be destroyed this turn — neither by battle nor by card effects.	Не может быть уничтожена в этом ходу — ни в бою, ни эффектами карт.
+The opponent's effect actions bounce off this card until the end of the turn.	Эффектные действия противника отскакивают от этой карты до конца этого хода.
+Cannot be targeted by the opponent's effects this turn.	Не может быть целью эффектов противника в этом ходу.
+This card's effects are negated until the end of the turn.	Эффекты этой карты аннулированы до конца этого хода.
+This card cannot attack this turn.	Эта карта не может атаковать в этом ходу.
+Cannot change its battle position this turn.	Не может сменить боевую позицию в этом ходу.
+The opponent's attacks must target this card this turn.	Атаки противника в этом ходу должны быть направлены на эту карту.
+When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.	Если она атакует монстра в Позиции Защиты в этом ходу, разница бьёт по LP противника.
+May attack {0} times this Battle Phase.	Может атаковать {0} раз(а) в эту Battle Phase.
+When it leaves the field, it is banished instead of going to the Graveyard.	Покидая поле, она изгоняется вместо того, чтобы отправиться на Кладбище.
+A conjured copy — it fades away during the End Phase.	Наколдованная копия — исчезает во время End Phase.
+Controlled by someone other than its owner.	Контролируется кем-то, кроме её владельца.
+Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.	Её эффект срабатывает, когда убран последний Счётчик Часа — осталось {0}. По одному убирается в каждую Standby Phase её контролёра.
+Goes to the Graveyard during the End Phase.	Отправляется на Кладбище во время End Phase.
+This card was Special Summoned onto the field.	Эта карта была Особо Призвана на поле.
+Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.	Счётчиков Смерти на этой карте: {0}. Каждую End Phase добавляется один — на пределе карта уходит на Кладбище.
+Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	Её контролёр платит {0} Маны в каждую свою Standby Phase — иначе эта карта уничтожается.
+Also active: {0}.	Также действуют: {0}.
+Special Summoned	Особо Призвана

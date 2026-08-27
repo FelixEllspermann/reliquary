@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofRepossession
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Splithoof Repossession
-  artwork: {fileID: 0}
+  artwork: {fileID: 2795985802370821382, guid: a755e2868bf58284991b0ee77a9d5360, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

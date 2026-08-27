@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofPennyweight
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Splithoof Pennyweight
-  artwork: {fileID: 0}
+  artwork: {fileID: -5606469175178797473, guid: 6a87f624c1176cf4293524e01224d0f6, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

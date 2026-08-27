@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayHedgeknife
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Waylay Hedgeknife
-  artwork: {fileID: 0}
+  artwork: {fileID: -7613364991398807669, guid: a6a6f2d6d054ff742a7d13b452472813, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

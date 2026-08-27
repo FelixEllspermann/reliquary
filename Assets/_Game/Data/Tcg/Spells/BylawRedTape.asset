@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawRedTape
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Bylaw Red Tape
-  artwork: {fileID: 0}
+  artwork: {fileID: -597157971248814413, guid: 34d80629a40968546950226dade62253, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

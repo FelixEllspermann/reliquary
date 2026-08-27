@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawStandingRoomOnly
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: 'Bylaw: Standing Room Only'
-  artwork: {fileID: 0}
+  artwork: {fileID: -165787936455769215, guid: e918826c9e56a464ea74e897c100ef65, type: 3}
   rarity: 2
   isToken: 0
   releaseVersion: 0.1.7

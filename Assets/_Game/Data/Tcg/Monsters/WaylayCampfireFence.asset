@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayCampfireFence
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Waylay Campfire Fence
-  artwork: {fileID: 0}
+  artwork: {fileID: 3770278881893811650, guid: 8605f4fc07653d44d9c224044cdf3c94, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

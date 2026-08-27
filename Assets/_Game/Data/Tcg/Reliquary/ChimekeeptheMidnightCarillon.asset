@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeeptheMidnightCarillon
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Chimekeep, the Midnight Carillon
-  artwork: {fileID: 0}
+  artwork: {fileID: -6656286574029526856, guid: a42ae73653497064d9265ca62acf8486, type: 3}
   rarity: 3
   isToken: 0
   releaseVersion: 0.1.7

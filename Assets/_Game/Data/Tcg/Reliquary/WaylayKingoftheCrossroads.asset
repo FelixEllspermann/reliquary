@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaylayKingoftheCrossroads
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ReliquaryCardData
   cardName: Waylay, King of the Crossroads
-  artwork: {fileID: 0}
+  artwork: {fileID: -4277653054261453036, guid: a5d1e617ff512e44d9a3cbb55d0cd112, type: 3}
   rarity: 3
   isToken: 0
   releaseVersion: 0.1.7

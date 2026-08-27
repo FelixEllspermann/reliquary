@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiftwyrmRibboncoil
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Giftwyrm Ribboncoil
-  artwork: {fileID: 0}
+  artwork: {fileID: -2659073776768804877, guid: 782203a1b269b5a44b2c1867773f9ccc, type: 3}
   rarity: 0
   isToken: 0
   releaseVersion: 0.1.7

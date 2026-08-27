@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChimekeepOverwind
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
   cardName: Chimekeep Overwind
-  artwork: {fileID: 0}
+  artwork: {fileID: 4364815346506626533, guid: 1fb7fcf6f45a17841bc9c720d9685d5c, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

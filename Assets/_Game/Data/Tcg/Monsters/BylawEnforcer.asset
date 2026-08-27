@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BylawEnforcer
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.MonsterCardData
   cardName: Bylaw Enforcer
-  artwork: {fileID: 0}
+  artwork: {fileID: 956859699697947477, guid: 7efd9fd82798a1b438c7fb0060047915, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7

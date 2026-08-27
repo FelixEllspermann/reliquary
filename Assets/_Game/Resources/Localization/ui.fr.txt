@@ -514,3 +514,40 @@ Your "Bylaw:" Decrees no longer apply to you — only to your opponent.	Vos Déc
 If your opponent activates this card's effect: you have {0} additional Mana next turn.	Si votre adversaire active l'effet de cette carte : vous avez {0} Mana de plus à votre prochain tour.
 your monsters on your opponent's field	vos monstres sur le terrain de votre adversaire
 the Artifacts on both fields	les Artefacts sur les deux terrains
+# ---------- Status-Badge-Tooltips ----------
+Indestructible	Indestructible
+Immune	Immunisée
+Untargetable	Inciblable
+Negated	Annulée
+Cannot Attack	Ne peut pas attaquer
+Position Locked	Position verrouillée
+Taunt	Provocation
+Piercing	Perforant
+Multi-Attack	Multi-attaque
+Poached	Braconnée
+Temporary Copy	Copie temporaire
+Stolen	Volée
+Countdown	Compte à rebours
+On Borrowed Time	En sursis
+Death Counters	Compteurs de Mort
+Lien	Privilège
+More Statuses	Autres états
+Cannot be destroyed this turn — neither by battle nor by card effects.	Ne peut pas être détruite ce tour — ni au combat ni par des effets de carte.
+The opponent's effect actions bounce off this card until the end of the turn.	Les actions d'effet de l'adversaire ricochent sur cette carte jusqu'à la fin de ce tour.
+Cannot be targeted by the opponent's effects this turn.	Ne peut pas être ciblée par les effets de l'adversaire ce tour.
+This card's effects are negated until the end of the turn.	Les effets de cette carte sont annulés jusqu'à la fin de ce tour.
+This card cannot attack this turn.	Cette carte ne peut pas attaquer ce tour.
+Cannot change its battle position this turn.	Ne peut pas changer de position de combat ce tour.
+The opponent's attacks must target this card this turn.	Les attaques de l'adversaire doivent cibler cette carte ce tour.
+When it attacks a Defense Position monster this turn, the difference hits the opponent's LP.	Si elle attaque un monstre en Position de Défense ce tour, la différence frappe les LP de l'adversaire.
+May attack {0} times this Battle Phase.	Peut attaquer {0} fois cette Battle Phase.
+When it leaves the field, it is banished instead of going to the Graveyard.	Quand elle quitte le terrain, elle est bannie au lieu d'aller au Cimetière.
+A conjured copy — it fades away during the End Phase.	Une copie conjurée — elle s'efface durant la End Phase.
+Controlled by someone other than its owner.	Contrôlée par quelqu'un d'autre que son propriétaire.
+Its effect strikes when the last Hour Counter is removed — {0} left. One is removed in each of its controller's Standby Phases.	Son effet se déclenche quand le dernier Compteur d'Heure est retiré — il en reste {0}. Un est retiré à chaque Standby Phase de son contrôleur.
+Goes to the Graveyard during the End Phase.	Va au Cimetière durant la End Phase.
+This card was Special Summoned onto the field.	Cette carte a été Invoquée Spécialement sur le terrain.
+Death Counters on this card: {0}. It gains one each End Phase — at its limit, it goes to the Graveyard.	Compteurs de Mort sur cette carte : {0}. Elle en gagne un à chaque End Phase — à sa limite, elle va au Cimetière.
+Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	Son contrôleur paie {0} Mana à chacune de ses Standby Phases — sinon cette carte est détruite.
+Also active: {0}.	Également actifs : {0}.
+Special Summoned	Invoquée Spécialement

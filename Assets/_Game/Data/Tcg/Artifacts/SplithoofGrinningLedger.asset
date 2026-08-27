@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SplithoofGrinningLedger
   m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.ArtifactCardData
   cardName: Splithoof Grinning Ledger
-  artwork: {fileID: 0}
+  artwork: {fileID: -25944683919038640, guid: b83039ef3377b1944a88835ee1f2b328, type: 3}
   rarity: 1
   isToken: 0
   releaseVersion: 0.1.7
