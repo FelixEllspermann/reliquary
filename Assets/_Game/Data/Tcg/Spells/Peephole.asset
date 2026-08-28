@@ -1,0 +1,243 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f7b67a41002d45b2449b2580b135c, type: 3}
+  m_Name: Peephole
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.SpellCardData
+  cardName: Peephole
+  artwork: {fileID: 0}
+  rarity: 1
+  isToken: 0
+  releaseVersion: 0.1.8
+  effects:
+  - label: A Look Through the Wall
+    text: "Pay 1 Mana: look at your opponent's hand \u2014 you can shuffle 1 Spell
+      from it into their Deck."
+    isInfused: 0
+    infusedKind: 0
+    manaCost: 1
+    trigger: 2
+    oncePerTurn: 0
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
+    onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
+    actions:
+    - type: 42
+      isCost: 0
+      amount: 1
+      target: 47
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
+  - label: The Wider Crack
+    text: 'Instead, pay 2 Mana: you can shuffle 1 card of ANY type instead.'
+    isInfused: 1
+    infusedKind: 1
+    manaCost: 2
+    trigger: 2
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
+    onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
+    actions:
+    - type: 42
+      isCost: 0
+      amount: 1
+      target: 26
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 1
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
+  passiveBlockReliquarySummons: 0
+  passiveNoBattleDestroy: 0
+  passiveUntargetable: 0
+  passiveNoBattleDamageInvolving: 0
+  passiveRedirectBattleDamage: 0
+  passiveDeathCounterLimit: 0
+  passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
+  passiveStatsFromGraveTop: 0
+  passiveAttacksWithDef: 0
+  passiveDefLossAfterAttack: 0
+  passiveSealsAdjacentZones: 0
+  passiveBearerZoneLocked: 0
+  passiveUntargetableWhileLpClose: 0
+  passiveDrawReplacementGraveTop: 0
+  countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
+  countdownZeroKeepsCard: 0
+  passiveDefWhileDefending: 0
+  passiveOpponentMillsBanished: 0
+  passiveCannotBeBanished: 0
+  passiveSummonCapBoth: 0
+  passiveCountdownsTickTwice: 0
+  passiveProtectFaceDownFromEffectDestroy: 0
+  passiveFirstEnemyAttackDetourDeal: 0
+  speed: 0

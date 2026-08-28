@@ -551,3 +551,12 @@ Death Counters on this card: {0}. It gains one each End Phase — at its limit, 
 Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	Ihr Kontrolleur zahlt in jeder seiner Standby Phases {0} Mana — oder diese Karte wird zerstört.
 Also active: {0}.	Außerdem aktiv: {0}.
 Special Summoned	Spezialbeschworen
+you have {0}+ banished cards	du {0}+ verbannte Karten hast
+When its Countdown strikes zero, this card stays on the field.	Erreicht ihr Countdown null, bleibt diese Karte auf dem Feld.
+This card gains {0} DEF while it is being attacked.	Diese Karte erhält {0} DEF, während sie angegriffen wird.
+Cards your opponent mills are banished instead.	Karten, die dein Gegner millt, werden stattdessen verbannt.
+This card cannot be banished.	Diese Karte kann nicht verbannt werden.
+Each player can Summon at most {0} monster(s) per turn.	Jeder Spieler kann pro Zug höchstens {0} Monster beschwören.
+During your Standby Phase, your Countdowns tick twice.	In deiner Standby Phase ticken deine Countdowns doppelt.
+Your face-down monsters cannot be destroyed by card effects.	Deine verdeckten Monster können nicht durch Karteneffekte zerstört werden.
+When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	Erklärt dein Gegner seinen ersten Angriff im Zug, wählt er: Er schickt die oberste Karte seines Decks in den Friedhof, oder der Angriff wird abgebrochen.

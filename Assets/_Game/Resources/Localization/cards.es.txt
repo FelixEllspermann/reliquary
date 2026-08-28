@@ -4740,3 +4740,297 @@ n Chimekeep, el Carillón de Medianoche
 s Controlas 2+ cartas con Contadores de Hora — paga 3 de Maná.
 l0 Medianoche, todo a la vez
 t0 Cuando esta carta es Invocada: TODAS tus cartas con Contadores de Hora suenan de inmediato (todos los contadores a 0; sus efectos se activan en orden de campo).
+## Crossroads Peddler
+n Buhonero de la Encrucijada
+l0 Lo tomas o lo dejas
+t0 Cuando esta carta es invocada, tu adversario debe elegir: robas 1 carta — o esta carta gana 700 ATK y Perforación hasta el final del turno.
+l1 La venta agresiva
+t1 En su lugar, paga 2 Maná — el trato crece: robas 2 — o 700 ATK, Perforación y un ataque adicional.
+## The Long Detour
+n El Largo Desvío
+l0 Ruta panorámica
+t0 Si tu adversario atacó este turno, paga 2 Maná: devuelve 1 monstruo que controle a la mano de su dueño.
+## Final Offer
+n Oferta Final
+l0 Firma o sufre
+t0 Paga 5 Maná. Elige un monstruo de tu adversario — él decide: lo manda al Cementerio, o tomas su control hasta el final del turno.
+l1 Cláusula sin piedad
+t1 En su lugar, paga 7 Maná — ambos caminos se endurecen: lo destierra, o tomas el control Y gana 400 ATK este turno.
+## Cellar Lurker
+n Acechador del Sótano
+l0 Desde la oscuridad
+t0 Cuando un monstruo de tu adversario declara un ataque: puedes Invocar esta carta de modo Especial desde tu mano en Posición de Defensa.
+l1 Tragado por el sótano
+t1 Paga 2 Maná cuando un monstruo de tu adversario ataque: el ataque se cancela.
+## Widow's Ledger
+n El Libro de la Viuda
+l0 Cada nombre queda escrito
+t0 Siempre que uno de tus monstruos sea destruido durante el turno de tu adversario: el monstruo que lo destruyó pierde permanentemente 400 ATK.
+l1 El libro se cierra
+t1 Si uno de tus monstruos fue destruido este turno, paga 3 Maná y manda este Artefacto al Cementerio: Invoca de modo Especial 1 monstruo de tu Cementerio en Posición de Defensa.
+## Trapdoor Stage
+n Escenario con Trampilla
+l0 A través del suelo
+t0 Una vez por turno, cuando tu adversario Invoque un monstruo de modo Especial: ponlo boca abajo.
+l1 Encerrado abajo
+t1 En su lugar, paga 2 Maná: además no puede cambiar de posición hasta tu próximo turno.
+## Second Guess
+n Segunda Opinión
+l0 ¡Ese no — ese!
+t0 Paga 2 Maná cuando un monstruo de tu adversario ataque: cambia el objetivo del ataque a otro de tus monstruos.
+l1 Preparado para ello
+t1 En su lugar, paga 4 Maná: el nuevo objetivo también gana 500 DEF hasta el final del turno.
+## Doomsday Bell
+n Campana del Juicio Final
+l0 La campana dobla
+t0 Cuando la cuenta atrás de esta carta llegue a cero: manda cada monstruo del campo al Cementerio, y después también esta carta.
+l1 Tocar antes de hora
+t1 Paga 1 Maná: retira 1 Marca de Hora de esta carta.
+## Sand in the Gears
+n Arena en los Engranajes
+l0 Retrasar la hora
+t0 Paga 1 Maná: coloca 2 Marcas de Hora sobre cualquier carta del campo.
+l1 Apresurar la hora
+t1 En su lugar, paga 2 Maná: retira 1 Marca de Hora de cualquier carta del campo.
+## Borrowed Hourglass
+n Reloj de Arena Prestado
+l0 Cuando la arena se agota
+t0 Cuando la cuenta atrás de esta carta llegue a cero: roba 2 cartas y esta carta gana permanentemente 800 ATK. Permanece en el campo.
+l1 Darle la vuelta
+t1 Paga 2 Maná: devuelve la cuenta atrás de esta carta a 2 Marcas de Hora.
+## Gravedigger's Dispute
+n Disputa de Sepultureros
+l0 ¿De quién es esta tumba?
+t0 Paga 2 Maná: intercambia las cartas superiores de ambos Cementerios.
+l1 Desenterrarlo enseguida
+t1 En su lugar, paga 4 Maná: después Invoca de modo Especial el nuevo monstruo superior de tu Cementerio en Posición de Defensa.
+## Seance Circle
+n Círculo de Sesión Espiritista
+l0 Daos las manos
+t0 Paga 4 Maná: Invoca de modo Especial un monstruo del Cementerio de tu adversario a tu lado del campo. Cuando deje el campo, destiérralo.
+l1 Espíritu inquieto
+t1 En su lugar, paga 6 Maná: este turno puede atacar dos veces.
+## Unfinished Business
+n Asuntos Pendientes
+l0 Aún no ha terminado
+t0 Mientras esta carta esté en tu Cementerio: ponla en la parte superior de tu Cementerio.
+l1 Poner los asuntos en orden
+t1 Cuando esta carta sea invocada: puedes poner 1 monstruo de tu Cementerio en su parte superior.
+l2 Un último recado
+t2 Mientras esta carta sea la carta superior de tu Cementerio, paga 2 Maná: Invócala de modo Especial en Posición de Defensa.
+## Masquerade Ball
+n Baile de Máscaras
+l0 Máscaras puestas
+t0 Paga 5 Maná: pon cada monstruo boca arriba del campo boca abajo.
+l1 El anfitrión va sin máscara
+t1 En su lugar, paga 7 Maná: … excepto 1 monstruo que controles.
+## Eminent Domain
+n Expropiación Forzosa
+l0 Obras públicas
+t0 Paga 1 Maná y sella una de tus Zonas de Monstruo vacías: roba 2 cartas.
+l1 Apropiación de tierras
+t1 En su lugar, paga 2 Maná: sella una Zona de Monstruo vacía de tu ADVERSARIO y roba 1 carta.
+## The Unwelcome Guest
+n El Huésped Indeseado
+l0 Cobrar el alquiler
+t0 Mientras esta carta ocupe el campo de tu adversario, paga 2 Maná: ganas 2 Maná este turno.
+## Card Sharp
+n Tahúr
+l0 Canta la carta
+t0 Cuando esta carta sea invocada: declara Monstruo, Hechizo o Artefacto y revela la carta superior de tu Mazo. Si acierta, añádela a tu mano; si no, va al Cementerio.
+l1 Dobla la apuesta
+t1 En su lugar, paga 2 Maná: revela las 2 cartas superiores — los aciertos a tu mano, el resto al Cementerio.
+## Peephole
+n Mirilla
+l0 Una mirada a través del muro
+t0 Paga 1 Maná: mira la mano de tu adversario — puedes barajar 1 Hechizo de ella en su Mazo.
+l1 La grieta más ancha
+t1 En su lugar, paga 2 Maná: puedes barajar 1 carta de CUALQUIER tipo.
+## Insurance Policy
+n Póliza de Seguro
+l0 Cobertura personal
+t0 Paga 2 Maná: elige un monstruo que controles — la próxima vez en este Duelo que fuera a ser destruido, no lo es.
+## Silver-Tongued Creditor
+n Acreedor de Lengua de Plata
+l0 Condiciones cómodas
+t0 Cuando esta carta sea invocada: gana 2 Maná este turno. Durante tu próxima Standby Phase: paga 2 Maná o manda esta carta al Cementerio.
+l1 El préstamo mayor
+t1 En su lugar, paga 2 Maná: gana 3 Maná — y la deuda pasa a ser 3.
+## Tomorrow's Bread
+n El Pan de Mañana
+l0 Come hoy
+t0 Paga 1 Maná: roba 2 cartas. Salta tu próximo robo normal.
+l1 Festeja hoy
+t1 En su lugar, paga 3 Maná: roba 3 cartas. Salta tu próximo robo normal.
+## Scrap Broker
+n Chatarrero
+l0 Todo tiene su precio
+t0 Una vez por turno, manda otro Artefacto que controles al Cementerio: roba 1 carta.
+l1 Recompra
+t1 Paga 2 Maná: añade 1 Artefacto de tu Cementerio a tu mano.
+## Posthumous Prodigy
+n Prodigio Póstumo
+l0 Elige al ídolo
+t0 Paga 2 Maná: pon cualquier monstruo de tu Cementerio en su parte superior.
+## Pirouette Duelist
+n Duelista de la Pirueta
+l0 Guía el baile
+t0 Una vez por turno: cambia la posición de batalla de cualquier monstruo del campo.
+l1 Mantén la pose
+t1 En su lugar, paga 1 Maná: además no puede cambiar de posición hasta tu próximo turno.
+## Turnabout Waltz
+n Vals del Cambio
+l0 Todos giran
+t0 Paga 2 Maná: cada monstruo boca arriba del campo cambia su posición de batalla.
+l1 Medio salón de baile
+t1 En su lugar, paga 4 Maná: solo gira un lado de tu elección.
+## Stage Fright
+n Miedo Escénico
+l0 Paralizado bajo los focos
+t0 Paga 2 Maná cuando tu adversario invoque un monstruo: pasa a Posición de Defensa y no puede cambiar de posición este turno.
+l1 A escena
+t1 Paga 2 Maná: voltea 1 de tus monstruos boca abajo; gana 400 ATK hasta el final del turno.
+## Exile Broker
+n Corredor del Exilio
+l0 Pago a las sombras
+t0 Cuando esta carta sea invocada: destierra boca abajo la carta superior de tu Mazo.
+l1 Llama a uno a casa
+t1 Paga 2 Maná: devuelve 1 de tus cartas desterradas a tu Cementerio.
+## Letters from Exile
+n Cartas desde el Exilio
+l0 Palabras que fortalecen
+t0 Paga 1 Maná y destierra 2 cartas de tu Cementerio: 1 de tus monstruos gana 600 ATK hasta el final del turno.
+l1 Cartas camino a casa
+t1 En su lugar, paga 2 Maná: las cartas desterradas vuelven a tu Cementerio durante tu próxima Standby Phase.
+## The Unforgotten
+n El No Olvidado
+l0 Hacia la larga oscuridad
+t0 Destierra esta carta desde tu mano: destierra también boca abajo la carta superior de tu Mazo.
+l1 El largo camino de vuelta
+t1 Si tienes 3+ cartas desterradas, paga 2 Maná: Invoca esta carta de modo Especial desde el destierro.
+l2 Me llevo a uno conmigo
+t2 Paga 2 Maná: destierra la carta superior del Cementerio de tu adversario.
+## Straw Army
+n Ejército de Paja
+l0 Levantad el campo
+t0 Paga 2 Maná: Invoca de modo Especial 2 Fichas de Espantapájaros (Nivel 1, 0/500) en Posición de Defensa.
+l1 Mantened la línea
+t1 En su lugar, paga 4 Maná: 3 Fichas — y hasta tu próximo turno, los monstruos de tu adversario deben atacar Espantapájaros si es posible.
+## Puppet Parade
+n Desfile de Marionetas
+l0 El desfile continúa
+t0 Una vez por turno, cuando uno de tus monstruos sea destruido: Invoca de modo Especial 1 Ficha de Espantapájaros en Posición de Defensa.
+l1 Un rostro real esta noche
+t1 Paga 2 Maná: 1 de tus monstruos copia el ATK y la DEF de cualquier monstruo del campo hasta el final del turno.
+## Man of Straw
+n Hombre de Paja
+l0 La paja se derrama
+t0 Cuando esta carta sea destruida: Invoca de modo Especial 1 Ficha de Espantapájaros en Posición de Defensa.
+l1 Hecho para arder
+t1 Paga 1 Maná y manda esta carta al Cementerio: Invoca de modo Especial 1 Ficha de Espantapájaros en Posición de Defensa.
+## Cartomancer's Eye
+n Ojo del Cartomante
+l0 Lee tu destino
+t0 Una vez por turno: mira la carta superior de tu Mazo — puedes ponerla en el fondo.
+l1 Lee el suyo
+t1 En su lugar, paga 1 Maná: mira la carta superior del Mazo de tu ADVERSARIO — puedes ponerla en el fondo.
+## Stacked Deck
+n Mazo Trucado
+l0 Las reglas de la casa
+t0 Paga 1 Maná: mira las 3 cartas superiores de tu Mazo y devuélvelas en cualquier orden.
+l1 Una se desliza debajo
+t1 En su lugar, paga 3 Maná: después manda la nueva carta superior de tu Mazo al Cementerio.
+## House Dealer
+n Crupier de la Casa
+l0 La apuesta de la casa
+t0 Cuando esta carta sea invocada: revela la carta superior de tu Mazo. Si es un Monstruo, esta carta gana permanentemente 600 ATK.
+l1 Zapato nuevo
+t1 Paga 2 Maná: ambos jugadores ponen su carta superior del Mazo en el fondo.
+## Quarry Collapse
+n Derrumbe de la Cantera
+l0 Que se venga abajo
+t0 Paga 2 Maná: muele 3 cartas de tu Mazo.
+l1 Rescatar los escombros
+t1 En su lugar, paga 4 Maná: después pon 1 monstruo molido en la parte superior de tu Cementerio.
+## Baron of the Undertow
+n Barón de la Resaca
+l0 Arrastrado al fondo
+t0 Cuando esta carta sea invocada: tu adversario muele 2 cartas.
+l1 La corriente profunda
+t1 En su lugar, paga 2 Maná: tu adversario muele 4 cartas.
+## Mudlark Scavenger
+n Rebuscador del Lodazal
+l0 Métete en el agua
+t0 Cuando esta carta sea invocada: muele 2 cartas de tu Mazo.
+l1 Ordena la orilla
+t1 Paga 2 Maná: pon 1 monstruo de tu Cementerio en su parte superior.
+## Mirror Usher
+n Acomodador del Espejo
+l0 Acompañados en persona
+t0 Cuando esta carta sea invocada: copia el ATK y la DEF de un monstruo que controle tu adversario hasta el final del turno.
+l1 Una función más larga
+t1 En su lugar, paga 2 Maná: la copia dura hasta el comienzo de tu próximo turno.
+## Borrowed Face
+n Rostro Prestado
+l0 Duelo de espejos
+t0 Paga 2 Maná cuando un monstruo de tu adversario ataque: 1 de tus monstruos copia el ATK y la DEF del atacante hasta el final del turno.
+l1 El mejor parecido
+t1 En su lugar, paga 3 Maná: además gana 100 ATK hasta el final del turno.
+## Prompter's Box
+n Concha del Apuntador
+l0 De vuelta tras el telón
+t0 Una vez por turno: pon 1 monstruo boca arriba que controles boca abajo.
+l1 Pie para la entrada
+t1 Paga 2 Maná: voltea 1 de tus monstruos boca abajo — sus efectos de Volteo se activan.
+## Lowball Feint
+n Finta a la Baja
+l0 Véndelo barato
+t0 Paga 1 Maná cuando un monstruo de tu adversario ataque: pierde 800 ATK hasta el final del turno.
+l1 Tambaleándose
+t1 En su lugar, paga 2 Maná: si sobrevive a la batalla, pasa a Posición de Defensa al final del turno.
+## Shield Wall Doctrine
+n Doctrina del Muro de Escudos
+l0 Formación de erizo
+t0 Paga 2 Maná: todos tus monstruos pasan a Posición de Defensa y ganan 300 DEF hasta tu próximo turno.
+## Overextension
+n Sobreextensión
+l0 Pillado adelantado
+t0 Si tu adversario atacó este turno, paga 2 Maná: 1 monstruo que controle pasa a Posición de Defensa y no puede cambiar de posición hasta el final de su próximo turno.
+l1 Toda la línea cede
+t1 En su lugar, paga 4 Maná: TODOS los monstruos de tu adversario pasan a Posición de Defensa.
+## Prepaid Ritual
+n Ritual Prepagado
+l0 Pagado por adelantado
+t0 Tu próximo Hechizo de este turno cuesta 2 Maná menos.
+l1 Tributo prepagado
+t1 En su lugar, paga 1 Maná: tu próxima Invocación Normal de este turno necesita 1 Tributo menos.
+## Closing Time
+n Hora de Cierre
+l0 La puerta trasera
+t0 Paga 2 Maná: el toque de queda de invocaciones no se te aplica este turno — la carta permanece en el campo.
+## Reliquary: The Open Casket
+n Relicario: El Ataúd Abierto
+s Tienes 8+ cartas en tu Cementerio — paga 2 Maná.
+l0 Prepara el velatorio
+t0 Una vez por turno: mueve cualquier carta de tu Cementerio a su parte superior.
+l1 Uno se alza de él
+t1 Paga 3 Maná: Invoca de modo Especial 1 monstruo de tu Cementerio en Posición de Defensa.
+## Reliquary: The Eleventh Hour
+n Relicario: La Undécima Hora
+s Controlas 2+ cartas con Marcas de Hora — paga 3 Maná.
+l0 Da la hora
+t0 Paga 2 Maná: una de tus cuentas atrás suena de inmediato.
+## Reliquary: The Hall of Echoes
+n Relicario: La Sala de los Ecos
+s Tienes 3+ cartas desterradas — paga 2 Maná.
+l0 Alimenta la sala
+t0 Una vez por turno: destierra 1 carta de tu Cementerio.
+l1 Un eco regresa
+t1 Paga 3 Maná: devuelve 1 de tus cartas desterradas a tu Cementerio.
+## Reliquary: The Last Bow
+n Relicario: La Última Reverencia
+s Controlas 2+ monstruos boca abajo — paga 2 Maná.
+l0 Salida por la izquierda
+t0 Una vez por turno: pon 1 monstruo boca arriba que controles boca abajo.
+l1 La gran revelación
+t1 Paga 2 Maná: voltea TODOS tus monstruos boca abajo.

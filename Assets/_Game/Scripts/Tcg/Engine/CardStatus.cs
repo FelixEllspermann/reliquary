@@ -38,12 +38,15 @@ namespace Rouge.Tcg
             if (card == null) return 0;
             var flags = CardStatusFlags.None;
             if (card.CannotBeDestroyedThisTurn) flags |= CardStatusFlags.Indestructible;
+            if (card.DestructionShields > 0) flags |= CardStatusFlags.Indestructible;   // Welle 3: Einmal-Schild
             if (card.ImmuneToOpponentThisTurn) flags |= CardStatusFlags.Immune;
             if (card.CannotBeTargetedThisTurn) flags |= CardStatusFlags.Untargetable;
             if (card.EffectsNegated) flags |= CardStatusFlags.Negated;
             if (card.CannotAttackThisTurn) flags |= CardStatusFlags.CannotAttack;
             if (card.PositionLockedThisTurn) flags |= CardStatusFlags.PositionLocked;
+            if (card.PositionLockTurns > 0) flags |= CardStatusFlags.PositionLocked;    // Welle 3: Mehr-Zug-Sperre
             if (card.MustBeAttackedThisTurn) flags |= CardStatusFlags.Taunt;
+            if (card.PersistentTaunt) flags |= CardStatusFlags.Taunt;                   // Welle 3: Vogelscheuchen-Wall
             if (card.PiercingThisTurn) flags |= CardStatusFlags.Piercing;
             if (card.BonusAttacks > 0) flags |= CardStatusFlags.MultiAttack;
             if (card.BanishWhenLeavingField) flags |= CardStatusFlags.BanishOnLeave;

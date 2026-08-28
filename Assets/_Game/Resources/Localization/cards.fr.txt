@@ -4740,3 +4740,297 @@ n Chimekeep, le Carillon de Minuit
 s Vous contrôlez 2+ cartes avec Compteurs d'Heure — payez 3 Mana.
 l0 Minuit, tout à la fois
 t0 Quand cette carte est Invoquée : TOUTES vos cartes avec Compteurs d'Heure sonnent immédiatement (tous les compteurs à 0 ; leurs effets se déclenchent dans l'ordre du terrain).
+## Crossroads Peddler
+n Colporteur de la Croisée
+l0 À prendre ou à laisser
+t0 Quand cette carte est invoquée, votre adversaire doit choisir : vous piochez 1 carte — ou cette carte gagne 700 ATK et Perforation jusqu'à la fin du tour.
+l1 La vente forcée
+t1 À la place, payez 2 Mana — le marché grossit : vous piochez 2 — ou 700 ATK, Perforation et une attaque supplémentaire.
+## The Long Detour
+n Le Long Détour
+l0 Route panoramique
+t0 Si votre adversaire a attaqué ce tour, payez 2 Mana : renvoyez 1 monstre qu'il contrôle dans la main de son propriétaire.
+## Final Offer
+n Dernière Offre
+l0 Signez ou souffrez
+t0 Payez 5 Mana. Ciblez un monstre de votre adversaire — il choisit : il l'envoie au Cimetière, ou vous en prenez le contrôle jusqu'à la fin du tour.
+l1 Clause sans merci
+t1 À la place, payez 7 Mana — les deux voies durcissent : il le bannit, ou vous prenez le contrôle ET il gagne 400 ATK ce tour.
+## Cellar Lurker
+n Rôdeur de la Cave
+l0 Surgi des ténèbres
+t0 Quand un monstre de votre adversaire déclare une attaque : vous pouvez Invoquer Spécialement cette carte depuis votre main en Position de Défense.
+l1 Avalé par la cave
+t1 Payez 2 Mana quand un monstre de votre adversaire attaque : l'attaque est annulée.
+## Widow's Ledger
+n Le Registre de la Veuve
+l0 Chaque nom est inscrit
+t0 Chaque fois qu'un de vos monstres est détruit pendant le tour de votre adversaire : le monstre qui l'a détruit perd définitivement 400 ATK.
+l1 Le registre se ferme
+t1 Si un de vos monstres a été détruit ce tour, payez 3 Mana et envoyez cet Artefact au Cimetière : Invoquez Spécialement 1 monstre depuis votre Cimetière en Position de Défense.
+## Trapdoor Stage
+n Scène à Trappe
+l0 À travers le plancher
+t0 Une fois par tour, quand votre adversaire Invoque Spécialement un monstre : retournez-le face verso.
+l1 Enfermé en dessous
+t1 À la place, payez 2 Mana : il ne peut pas non plus changer de position jusqu'à votre prochain tour.
+## Second Guess
+n Doute Soudain
+l0 Pas lui — lui !
+t0 Payez 2 Mana quand un monstre de votre adversaire attaque : déviez l'attaque vers un autre de vos monstres.
+l1 Paré à l'impact
+t1 À la place, payez 4 Mana : la nouvelle cible gagne aussi 500 DEF jusqu'à la fin du tour.
+## Doomsday Bell
+n Cloche du Jugement Dernier
+l0 Le glas sonne
+t0 Quand le compte à rebours de cette carte atteint zéro : envoyez chaque monstre du terrain au Cimetière, puis cette carte aussi.
+l1 Sonner en avance
+t1 Payez 1 Mana : retirez 1 Marque d'Heure de cette carte.
+## Sand in the Gears
+n Du Sable dans les Rouages
+l0 Retarder l'heure
+t0 Payez 1 Mana : placez 2 Marques d'Heure sur n'importe quelle carte du terrain.
+l1 Hâter l'heure
+t1 À la place, payez 2 Mana : retirez 1 Marque d'Heure de n'importe quelle carte du terrain.
+## Borrowed Hourglass
+n Sablier Emprunté
+l0 Quand le sable s'épuise
+t0 Quand le compte à rebours de cette carte atteint zéro : piochez 2 cartes et cette carte gagne définitivement 800 ATK. Elle reste sur le terrain.
+l1 Le retourner
+t1 Payez 2 Mana : remettez le compte à rebours de cette carte à 2 Marques d'Heure.
+## Gravedigger's Dispute
+n Querelle de Fossoyeurs
+l0 À qui est cette tombe
+t0 Payez 2 Mana : échangez les cartes du dessus des deux Cimetières.
+l1 Déterré aussitôt
+t1 À la place, payez 4 Mana : puis Invoquez Spécialement le nouveau monstre du dessus de votre Cimetière en Position de Défense.
+## Seance Circle
+n Cercle de Séance
+l0 Joignez les mains
+t0 Payez 4 Mana : Invoquez Spécialement un monstre du Cimetière de votre adversaire de votre côté du terrain. Quand il quitte le terrain, bannissez-le.
+l1 Esprit sans repos
+t1 À la place, payez 6 Mana : ce tour, il peut attaquer deux fois.
+## Unfinished Business
+n Affaires Inachevées
+l0 Ce n'est pas terminé
+t0 Tant que cette carte est dans votre Cimetière : placez-la au sommet de votre Cimetière.
+l1 Mettre de l'ordre
+t1 Quand cette carte est invoquée : vous pouvez placer 1 monstre de votre Cimetière à son sommet.
+l2 Une dernière course
+t2 Tant que cette carte est la carte du dessus de votre Cimetière, payez 2 Mana : Invoquez-la Spécialement en Position de Défense.
+## Masquerade Ball
+n Bal Masqué
+l0 Masques en place
+t0 Payez 5 Mana : retournez chaque monstre face recto du terrain face verso.
+l1 L'hôte reste à visage nu
+t1 À la place, payez 7 Mana : … sauf 1 monstre que vous contrôlez.
+## Eminent Domain
+n Expropriation
+l0 Travaux publics
+t0 Payez 1 Mana et scellez une de vos Zones Monstre vides : piochez 2 cartes.
+l1 Mainmise
+t1 À la place, payez 2 Mana : scellez une Zone Monstre vide de votre ADVERSAIRE et piochez 1 carte.
+## The Unwelcome Guest
+n L'Invité Indésirable
+l0 Percevoir le loyer
+t0 Tant que cette carte squatte le terrain de votre adversaire, payez 2 Mana : vous gagnez 2 Mana ce tour.
+## Card Sharp
+n Tricheur Professionnel
+l0 Annoncez la carte
+t0 Quand cette carte est invoquée : déclarez Monstre, Sort ou Artefact, puis révélez la carte du dessus de votre Deck. Si elle correspond, ajoutez-la à votre main ; sinon elle va au Cimetière.
+l1 Doublez la mise
+t1 À la place, payez 2 Mana : révélez les 2 cartes du dessus — les bonnes en main, le reste au Cimetière.
+## Peephole
+n Judas
+l0 Un regard à travers le mur
+t0 Payez 1 Mana : regardez la main de votre adversaire — vous pouvez mélanger 1 Sort de celle-ci dans son Deck.
+l1 La fente élargie
+t1 À la place, payez 2 Mana : vous pouvez mélanger 1 carte de N'IMPORTE quel type.
+## Insurance Policy
+n Police d'Assurance
+l0 Couverture personnelle
+t0 Payez 2 Mana : choisissez un monstre que vous contrôlez — la prochaine fois de ce Duel qu'il devrait être détruit, il ne l'est pas.
+## Silver-Tongued Creditor
+n Créancier à la Langue d'Argent
+l0 Conditions avantageuses
+t0 Quand cette carte est invoquée : gagnez 2 Mana ce tour. Pendant votre prochaine Standby Phase : payez 2 Mana ou envoyez cette carte au Cimetière.
+l1 Le plus gros prêt
+t1 À la place, payez 2 Mana : gagnez 3 Mana — et la dette passe à 3.
+## Tomorrow's Bread
+n Le Pain de Demain
+l0 Mange aujourd'hui
+t0 Payez 1 Mana : piochez 2 cartes. Sautez votre prochaine pioche normale.
+l1 Festoie aujourd'hui
+t1 À la place, payez 3 Mana : piochez 3 cartes. Sautez votre prochaine pioche normale.
+## Scrap Broker
+n Ferrailleur
+l0 Tout a un prix
+t0 Une fois par tour, envoyez un autre Artefact que vous contrôlez au Cimetière : piochez 1 carte.
+l1 Rachat
+t1 Payez 2 Mana : ajoutez 1 Artefact de votre Cimetière à votre main.
+## Posthumous Prodigy
+n Prodige Posthume
+l0 Choisis ton idole
+t0 Payez 2 Mana : placez n'importe quel monstre de votre Cimetière à son sommet.
+## Pirouette Duelist
+n Duelliste de la Pirouette
+l0 Mener la danse
+t0 Une fois par tour : changez la position de combat de n'importe quel monstre du terrain.
+l1 Tenir la pose
+t1 À la place, payez 1 Mana : il ne peut pas non plus changer de position jusqu'à votre prochain tour.
+## Turnabout Waltz
+n Valse du Revirement
+l0 Tout le monde tourne
+t0 Payez 2 Mana : chaque monstre face recto du terrain change de position de combat.
+l1 La moitié du bal
+t1 À la place, payez 4 Mana : seul un côté de votre choix tourne.
+## Stage Fright
+n Trac
+l0 Figé sous les projecteurs
+t0 Payez 2 Mana quand votre adversaire invoque un monstre : il passe en Position de Défense et ne peut pas changer de position ce tour.
+l1 En scène
+t1 Payez 2 Mana : retournez 1 de vos monstres face verso face recto ; il gagne 400 ATK jusqu'à la fin du tour.
+## Exile Broker
+n Courtier de l'Exil
+l0 Versement aux ombres
+t0 Quand cette carte est invoquée : bannissez face verso la carte du dessus de votre Deck.
+l1 Rappelez-en un
+t1 Payez 2 Mana : renvoyez 1 de vos cartes bannies dans votre Cimetière.
+## Letters from Exile
+n Lettres d'Exil
+l0 Des mots qui fortifient
+t0 Payez 1 Mana et bannissez 2 cartes de votre Cimetière : 1 de vos monstres gagne 600 ATK jusqu'à la fin du tour.
+l1 Lettres sur le chemin du retour
+t1 À la place, payez 2 Mana : les cartes bannies reviennent dans votre Cimetière pendant votre prochaine Standby Phase.
+## The Unforgotten
+n L'Inoublié
+l0 Dans la longue nuit
+t0 Bannissez cette carte depuis votre main : bannissez aussi face verso la carte du dessus de votre Deck.
+l1 Le long chemin du retour
+t1 Si vous avez 3+ cartes bannies, payez 2 Mana : Invoquez Spécialement cette carte depuis le bannissement.
+l2 J'en emmène un avec moi
+t2 Payez 2 Mana : bannissez la carte du dessus du Cimetière de votre adversaire.
+## Straw Army
+n Armée de Paille
+l0 Levez le champ
+t0 Payez 2 Mana : Invoquez Spécialement 2 Jetons Épouvantail (Niveau 1, 0/500) en Position de Défense.
+l1 Tenez la ligne
+t1 À la place, payez 4 Mana : 3 Jetons — et jusqu'à votre prochain tour, les monstres de votre adversaire doivent attaquer des Épouvantails si possible.
+## Puppet Parade
+n Parade de Marionnettes
+l0 La parade continue
+t0 Une fois par tour, quand un de vos monstres est détruit : Invoquez Spécialement 1 Jeton Épouvantail en Position de Défense.
+l1 Un vrai visage ce soir
+t1 Payez 2 Mana : 1 de vos monstres copie l'ATK et la DEF de n'importe quel monstre du terrain jusqu'à la fin du tour.
+## Man of Straw
+n Homme de Paille
+l0 La paille se répand
+t0 Quand cette carte est détruite : Invoquez Spécialement 1 Jeton Épouvantail en Position de Défense.
+l1 Fait pour brûler
+t1 Payez 1 Mana et envoyez cette carte au Cimetière : Invoquez Spécialement 1 Jeton Épouvantail en Position de Défense.
+## Cartomancer's Eye
+n Œil du Cartomancien
+l0 Lis ton destin
+t0 Une fois par tour : regardez la carte du dessus de votre Deck — vous pouvez la mettre en dessous.
+l1 Lis le sien
+t1 À la place, payez 1 Mana : regardez la carte du dessus du Deck de votre ADVERSAIRE — vous pouvez la mettre en dessous.
+## Stacked Deck
+n Jeu Truqué
+l0 Les règles de la maison
+t0 Payez 1 Mana : regardez les 3 cartes du dessus de votre Deck et remettez-les dans l'ordre de votre choix.
+l1 Une glisse en dessous
+t1 À la place, payez 3 Mana : envoyez ensuite la nouvelle carte du dessus de votre Deck au Cimetière.
+## House Dealer
+n Croupier de la Maison
+l0 Le pari de la maison
+t0 Quand cette carte est invoquée : révélez la carte du dessus de votre Deck. Si c'est un Monstre, cette carte gagne définitivement 600 ATK.
+l1 Sabot neuf
+t1 Payez 2 Mana : les deux joueurs mettent leur carte du dessus du Deck en dessous.
+## Quarry Collapse
+n Effondrement de la Carrière
+l0 Faites-la tomber
+t0 Payez 2 Mana : envoyez 3 cartes du dessus de votre Deck au Cimetière.
+l1 Fouiller les décombres
+t1 À la place, payez 4 Mana : placez ensuite 1 monstre ainsi envoyé au sommet de votre Cimetière.
+## Baron of the Undertow
+n Baron du Ressac
+l0 Entraîné vers le fond
+t0 Quand cette carte est invoquée : votre adversaire envoie 2 cartes du dessus de son Deck au Cimetière.
+l1 Le courant profond
+t1 À la place, payez 2 Mana : votre adversaire en envoie 4.
+## Mudlark Scavenger
+n Fouilleur de Vase
+l0 Entre dans l'eau
+t0 Quand cette carte est invoquée : envoyez 2 cartes du dessus de votre Deck au Cimetière.
+l1 Trier la laisse de mer
+t1 Payez 2 Mana : placez 1 monstre de votre Cimetière à son sommet.
+## Mirror Usher
+n Placeur du Miroir
+l0 Placé en personne
+t0 Quand cette carte est invoquée : elle copie l'ATK et la DEF d'un monstre que contrôle votre adversaire jusqu'à la fin du tour.
+l1 Une représentation prolongée
+t1 À la place, payez 2 Mana : la copie dure jusqu'au début de votre prochain tour.
+## Borrowed Face
+n Visage Emprunté
+l0 Duel au miroir
+t0 Payez 2 Mana quand un monstre de votre adversaire attaque : 1 de vos monstres copie l'ATK et la DEF de l'attaquant jusqu'à la fin du tour.
+l1 La meilleure ressemblance
+t1 À la place, payez 3 Mana : il gagne aussi 100 ATK jusqu'à la fin du tour.
+## Prompter's Box
+n Trou du Souffleur
+l0 Retour derrière le rideau
+t0 Une fois par tour : posez 1 monstre face recto que vous contrôlez face verso.
+l1 Signal d'entrée
+t1 Payez 2 Mana : retournez 1 de vos monstres face verso face recto — ses effets Flip se déclenchent.
+## Lowball Feint
+n Feinte à la Baisse
+l0 Sous-estime-le
+t0 Payez 1 Mana quand un monstre de votre adversaire attaque : il perd 800 ATK jusqu'à la fin du tour.
+l1 Sonné
+t1 À la place, payez 2 Mana : s'il survit au combat, il passe en Position de Défense à la fin du tour.
+## Shield Wall Doctrine
+n Doctrine du Mur de Boucliers
+l0 Formation en hérisson
+t0 Payez 2 Mana : tous vos monstres passent en Position de Défense et gagnent 300 DEF jusqu'à votre prochain tour.
+## Overextension
+n Surextension
+l0 Pris à découvert
+t0 Si votre adversaire a attaqué ce tour, payez 2 Mana : 1 monstre qu'il contrôle passe en Position de Défense et ne peut pas changer de position jusqu'à la fin de son prochain tour.
+l1 Toute la ligne plie
+t1 À la place, payez 4 Mana : TOUS les monstres de votre adversaire passent en Position de Défense.
+## Prepaid Ritual
+n Rituel Prépayé
+l0 Réglé d'avance
+t0 Votre prochain Sort de ce tour coûte 2 Mana de moins.
+l1 Tribut prépayé
+t1 À la place, payez 1 Mana : votre prochaine Invocation Normale de ce tour demande 1 Tribut de moins.
+## Closing Time
+n L'Heure de Fermeture
+l0 La porte de service
+t0 Payez 2 Mana : le couvre-feu d'invocation ne s'applique pas à vous ce tour — la carte reste sur le terrain.
+## Reliquary: The Open Casket
+n Reliquaire : Le Cercueil Ouvert
+s Vous avez 8+ cartes dans votre Cimetière — payez 2 Mana.
+l0 Préparer la veillée
+t0 Une fois par tour : déplacez n'importe quelle carte de votre Cimetière à son sommet.
+l1 L'un s'en relève
+t1 Payez 3 Mana : Invoquez Spécialement 1 monstre de votre Cimetière en Position de Défense.
+## Reliquary: The Eleventh Hour
+n Reliquaire : La Onzième Heure
+s Vous contrôlez 2+ cartes avec Marques d'Heure — payez 3 Mana.
+l0 Sonner l'heure
+t0 Payez 2 Mana : un de vos comptes à rebours sonne immédiatement.
+## Reliquary: The Hall of Echoes
+n Reliquaire : La Salle des Échos
+s Vous avez 3+ cartes bannies — payez 2 Mana.
+l0 Nourrir la salle
+t0 Une fois par tour : bannissez 1 carte de votre Cimetière.
+l1 Un écho revient
+t1 Payez 3 Mana : renvoyez 1 de vos cartes bannies dans votre Cimetière.
+## Reliquary: The Last Bow
+n Reliquaire : Le Dernier Salut
+s Vous contrôlez 2+ monstres face verso — payez 2 Mana.
+l0 Sortie côté jardin
+t0 Une fois par tour : posez 1 monstre face recto que vous contrôlez face verso.
+l1 La grande révélation
+t1 Payez 2 Mana : retournez TOUS vos monstres face verso face recto.

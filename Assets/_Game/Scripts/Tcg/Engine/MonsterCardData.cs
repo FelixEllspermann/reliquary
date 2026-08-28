@@ -139,6 +139,10 @@ namespace Rouge.Tcg
         [Tooltip("Bedingung: du kontrollierst eine Karte mit Countdown-Marker (Chimekeep Pendulum)")]
         public bool selfSummonRequiresOwnCountdown;
 
+        [Header("Welle 3: 50 Generics")]
+        [Tooltip("Bedingung: mindestens so viele Karten in deiner Verbannung (0 = aus; Exile Broker: 1)")]
+        public int selfSummonRequiresBanishedCards;
+
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -194,6 +198,8 @@ namespace Rouge.Tcg
             // --- 5 Archetypes ---
             if (selfSummonRequiresOpponentMonsterDestroyedThisTurn) parts.Add(Loc.T("one of your opponent's monsters was destroyed this turn"));
             if (selfSummonRequiresOwnCountdown) parts.Add(Loc.T("you control a card with an Hour Counter"));
+            // --- Welle 3 ---
+            if (selfSummonRequiresBanishedCards > 0) parts.Add(Loc.F("you have {0}+ banished cards", selfSummonRequiresBanishedCards));
 
             // Grundregel: Selbst-Spezialbeschwörungen gehen einmal pro Zug —
             // der Kartentext sagt es jedes Mal dazu.

@@ -551,3 +551,12 @@ Death Counters on this card: {0}. It gains one each End Phase — at its limit, 
 Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	コントローラーは自分のスタンバイフェイズごとに{0}マナ支払う——さもなくばこのカードは破壊される。
 Also active: {0}.	他にも有効：{0}。
 Special Summoned	特殊召喚
+you have {0}+ banished cards	自分の除外カードが{0}枚以上
+When its Countdown strikes zero, this card stays on the field.	カウントダウンがゼロになっても、このカードはフィールドに残る。
+This card gains {0} DEF while it is being attacked.	このカードは攻撃されている間、守備力{0}アップ。
+Cards your opponent mills are banished instead.	相手がデッキから墓地へ送るカードは、代わりに除外される。
+This card cannot be banished.	このカードは除外できない。
+Each player can Summon at most {0} monster(s) per turn.	各プレイヤーは1ターンに最大{0}体しかモンスターを召喚できない。
+During your Standby Phase, your Countdowns tick twice.	自分のスタンバイフェイズに、自分のカウントダウンは2回進む。
+Your face-down monsters cannot be destroyed by card effects.	自分の裏側表示モンスターはカードの効果では破壊されない。
+When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	相手が各ターン最初の攻撃を宣言する時、相手は選ぶ：デッキの一番上を墓地へ送るか、攻撃を中止するか。

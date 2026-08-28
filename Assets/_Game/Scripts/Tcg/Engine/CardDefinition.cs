@@ -300,6 +300,36 @@ namespace Rouge.Tcg
                  "hat der Besitzer im nächsten Zug so viel Mana zusätzlich (Splithoof Grinning Ledger)")]
         public int passiveOwnerRoyaltyManaNextTurn;
 
+        [Header("Welle 3: 50 Generics (September 2026)")]
+        [Tooltip("Countdown: beim Nullschlag bleibt die Karte auf dem Feld statt zerstört zu " +
+                 "werden (Borrowed Hourglass)")]
+        public bool countdownZeroKeepsCard;
+
+        [Tooltip(">0: dieses Monster erhält so viel DEF, während es angegriffen wird (Shield Wall Doctrine)")]
+        public int passiveDefWhileDefending;
+
+        [Tooltip("Solange offen auf dem Feld: Karten, die der GEGNER des Besitzers millt, werden " +
+                 "stattdessen verbannt (Baron of the Undertow)")]
+        public bool passiveOpponentMillsBanished;
+
+        [Tooltip("Diese Karte kann nicht verbannt werden (The Unforgotten)")]
+        public bool passiveCannotBeBanished;
+
+        [Tooltip(">0 DEKRET: jeder Spieler kann höchstens so viele Monster PRO ZUG beschwören — " +
+                 "Normal- und Spezialbeschwörungen zusammen (Closing Time)")]
+        public int passiveSummonCapBoth;
+
+        [Tooltip("Standby-Countdowns des Besitzers ticken doppelt (Reliquary: The Eleventh Hour)")]
+        public bool passiveCountdownsTickTwice;
+
+        [Tooltip("Eigene VERDECKTE Monster können nicht durch Karteneffekte zerstört werden " +
+                 "(Reliquary: The Last Bow)")]
+        public bool passiveProtectFaceDownFromEffectDestroy;
+
+        [Tooltip("Der erste Angriff des GEGNERS je Zug stellt ihn vor die Wahl: oberste Deckkarte " +
+                 "ins Grab oder der Angriff wird abgebrochen (The Long Detour)")]
+        public bool passiveFirstEnemyAttackDetourDeal;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -498,6 +528,24 @@ namespace Rouge.Tcg
             if (passiveOwnerRoyaltyManaNextTurn > 0)
                 lines.Add(Loc.F("If your opponent activates this card's effect: you have {0} additional Mana next turn.", passiveOwnerRoyaltyManaNextTurn));
 
+            // --- Welle 3: 50 Generics ---
+            if (countdownZeroKeepsCard)
+                lines.Add(Loc.T("When its Countdown strikes zero, this card stays on the field."));
+            if (passiveDefWhileDefending > 0)
+                lines.Add(Loc.F("This card gains {0} DEF while it is being attacked.", passiveDefWhileDefending));
+            if (passiveOpponentMillsBanished)
+                lines.Add(Loc.T("Cards your opponent mills are banished instead."));
+            if (passiveCannotBeBanished)
+                lines.Add(Loc.T("This card cannot be banished."));
+            if (passiveSummonCapBoth > 0)
+                lines.Add(Loc.F("Each player can Summon at most {0} monster(s) per turn.", passiveSummonCapBoth));
+            if (passiveCountdownsTickTwice)
+                lines.Add(Loc.T("During your Standby Phase, your Countdowns tick twice."));
+            if (passiveProtectFaceDownFromEffectDestroy)
+                lines.Add(Loc.T("Your face-down monsters cannot be destroyed by card effects."));
+            if (passiveFirstEnemyAttackDetourDeal)
+                lines.Add(Loc.T("When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled."));
+
             return lines;
         }
 
@@ -521,6 +569,7 @@ namespace Rouge.Tcg
                 case EffectCountKind.OwnDistinctLevels: return Loc.T("the different Levels among your monsters");
                 case EffectCountKind.OwnMonstersOnOpponentField: return Loc.T("your monsters on your opponent's field");
                 case EffectCountKind.AllArtifactsOnField: return Loc.T("the Artifacts on both fields");
+                case EffectCountKind.OwnBanishedCards: return Loc.T("your banished cards");
                 default: return Loc.T("your monsters on the field");
             }
         }

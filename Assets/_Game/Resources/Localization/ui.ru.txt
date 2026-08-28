@@ -551,3 +551,12 @@ Death Counters on this card: {0}. It gains one each End Phase — at its limit, 
 Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	Её контролёр платит {0} Маны в каждую свою Standby Phase — иначе эта карта уничтожается.
 Also active: {0}.	Также действуют: {0}.
 Special Summoned	Особо Призвана
+you have {0}+ banished cards	у вас {0}+ изгнанных карт
+When its Countdown strikes zero, this card stays on the field.	Когда её отсчёт доходит до нуля, эта карта остаётся на поле.
+This card gains {0} DEF while it is being attacked.	Эта карта получает {0} DEF, пока её атакуют.
+Cards your opponent mills are banished instead.	Карты, которые противник отправляет из Колоды на Кладбище, вместо этого изгоняются.
+This card cannot be banished.	Эту карту нельзя изгнать.
+Each player can Summon at most {0} monster(s) per turn.	Каждый игрок может призывать не более {0} монстров за ход.
+During your Standby Phase, your Countdowns tick twice.	В вашу Стендбай-фазу ваши отсчёты идут дважды.
+Your face-down monsters cannot be destroyed by card effects.	Ваши закрытые монстры не могут быть уничтожены эффектами карт.
+When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	Когда противник объявляет первую атаку за ход, он выбирает: отправить верхнюю карту своей Колоды на Кладбище — или атака отменяется.

@@ -313,6 +313,21 @@ namespace Rouge.Tcg
                 }
             }
 
+            // Welle 3 (The Unforgotten): Effekte aus der eigenen Verbannung
+            foreach (var card in player.Banished.ToArray())
+            {
+                foreach (int index in ActivatableEffects(card, player, EffectTrigger.BanishedIgnition))
+                {
+                    request.Options.Add(new MainActionOption
+                    {
+                        Kind = MainActionKind.ActivateFieldEffect,
+                        Card = card,
+                        EffectIndex = index,
+                        Label = $"{card.Name} (exile): {EffectChoiceLabel(card, index)}"
+                    });
+                }
+            }
+
             // Eigene Artefakte dürfen freiwillig ins Grab — macht volle Artefakt-Zonen
             // wieder frei (Klick aufs Artefakt zeigt die Option).
             foreach (var artifact in player.ArtifactZones)
@@ -330,6 +345,7 @@ namespace Rouge.Tcg
             {
                 if (monster.SummonedThisTurn || monster.HasAttackedThisTurn) continue;
                 if (monster.PositionLockedThisTurn) continue;
+                if (monster.PositionLockTurns > 0) continue; // Welle 3: Stage Fright/Overextension
                 if (monster.PositionChangesUsed >= rules.positionChangesPerTurn) continue;
                 if (monster.Definition != null && monster.Definition.passiveCannotChangePosition) continue; // Small Print
                 string label = monster.FaceDown
@@ -442,12 +458,16 @@ namespace Rouge.Tcg
             return false;
         }
 
+        /// <summary>Prepaid Ritual (Welle 3): Reliquary-Beschwörungskosten abzüglich der Anzahlung.</summary>
+        private static int ReliquaryManaCostFor(PlayerState player, ReliquaryCardData data)
+            => Math.Max(0, data.summonManaCost - player.NextSummonDiscount);
+
         /// <summary>Prüft alle Beschwörungs-Voraussetzungen einer Reliquary-Karte (inkl. Bezahlbarkeit der Kosten).</summary>
         private bool ReliquaryRequirementsMet(PlayerState player, ReliquaryCardData data)
         {
             var opponent = player.Opponent;
             if (ReliquarySummonsBlocked()) return false; // The Fallen One sperrt beide Spieler
-            if (player.Mana < Math.Max(data.summonManaCost, data.reqMinMana)) return false;
+            if (player.Mana < Math.Max(ReliquaryManaCostFor(player, data), data.reqMinMana)) return false;
 
             if (!string.IsNullOrEmpty(data.reqNamedOnField))
             {
@@ -634,8 +654,14 @@ namespace Rouge.Tcg
             if (zoneIndex < 0) yield break;
 
             // ---- Kosten zahlen ----
-            player.Mana -= data.summonManaCost;
-            if (data.summonManaCost > 0) Log($"{player.Name} pays {data.summonManaCost} Mana ({player.Mana} Mana left).");
+            int reliquaryCost = ReliquaryManaCostFor(player, data);
+            player.Mana -= reliquaryCost;
+            if (reliquaryCost > 0) Log($"{player.Name} pays {reliquaryCost} Mana ({player.Mana} Mana left).");
+            if (player.NextSummonDiscount > 0 && reliquaryCost < data.summonManaCost)
+            {
+                Log($"{player.Name}'s prepayment covers the difference.");
+                player.NextSummonDiscount = 0;   // Prepaid Ritual: genau EINE Beschwörung
+            }
             if (tributePick != null)
             {
                 Log($"{player.Name} offers {tributePick.Name} to the Reliquary.");
@@ -725,6 +751,12 @@ namespace Rouge.Tcg
         private IEnumerator ExecuteSelfSpecialSummon(PlayerState player, CardInstance monster, int preferredZone = -1)
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
+            // Closing Time: auch Selbst-Spezialbeschwörungen respektieren die Sperrstunde
+            if (SummonCapReached(player))
+            {
+                Log($"{player.Name} has reached the summon curfew — {monster.Name} stays in hand.");
+                yield break;
+            }
 
             // Giftwyrm: das Geschenk wird dem GEGNER zugestellt — er kontrolliert es,
             // es bleibt aber die Karte des Zustellers (OriginalOwner). Bewusst KEINE
@@ -763,6 +795,7 @@ namespace Rouge.Tcg
                 monster.WasSpecialSummoned = true;
                 monster.WasDisloyalWhenLeftField = false;
                 player.SelfSummonedNamesThisTurn.Add(monster.Name);
+                player.SummonsThisTurn++;   // Closing Time: der Zusteller beschwört
                 ArmCountdown(monster);
                 Log($"{player.Name} delivers {monster.Name} to {receiver.Name}'s field — what a generous gift.");
                 BoardChanged();
@@ -838,6 +871,7 @@ namespace Rouge.Tcg
             monster.Position = summonPosition;
             monster.SummonedThisTurn = true;
             monster.WasSpecialSummoned = true;
+            player.SummonsThisTurn++;   // Closing Time
             ArmCountdown(monster); // Chimekeep
             player.SelfSummonedNamesThisTurn.Add(monster.Name); // "einmal pro Zug"-Gedächtnis
             Log($"{player.Name} special summons {monster.Name} ({monster.CurrentAtk}/{monster.CurrentDef}) in {(monster.Position == BattlePosition.Attack ? "Attack" : "Defense")} Position.");
@@ -894,6 +928,12 @@ namespace Rouge.Tcg
         private IEnumerator ExecuteSummon(PlayerState player, CardInstance monster, int preferredZone = -1)
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
+            // Closing Time: Sperrstunde — mehr Beschwörungen gibt es heute nicht
+            if (SummonCapReached(player))
+            {
+                Log($"{player.Name} has reached the summon curfew — {monster.Name} stays in hand.");
+                yield break;
+            }
             // A Foot in the Door: der Rabatt gilt für die NÄCHSTE Normalbeschwörung dieses Zuges
             int tributes = Math.Max(0, rules.TributesForLevel(monster.MonsterData.level) - player.NextNormalSummonTributeDiscount);
 
@@ -949,6 +989,7 @@ namespace Rouge.Tcg
             monster.FaceDown = setFaceDown;
             monster.SummonedThisTurn = true;
             player.NormalSummonsUsed++;
+            player.SummonsThisTurn++;                   // Closing Time: die Sperrstunde zählt mit
             player.NextNormalSummonTributeDiscount = 0; // A Foot in the Door: verbraucht
             if (!setFaceDown) ArmCountdown(monster);    // Chimekeep (verdeckt: erst beim Flip)
 
@@ -1001,6 +1042,12 @@ namespace Rouge.Tcg
                 Log($"{player.Name} cannot Special Summon this turn — {monster.Name} stays where it is.");
                 yield break;
             }
+            // Closing Time: die Sperrstunde deckelt auch Effekt-Beschwörungen
+            if (SummonCapReached(player))
+            {
+                Log($"{player.Name} has reached the summon curfew — {monster.Name} stays where it is.");
+                yield break;
+            }
             // Bylaw (Standing Room Only): die Obergrenze gilt auch für Effekt-Beschwörungen
             if (player.MonsterCount() >= MonsterCapFor(player))
             {
@@ -1040,6 +1087,7 @@ namespace Rouge.Tcg
             monster.PermanentDefBonus = 0;
             monster.TempAtkBonus = 0;
             monster.TempDefBonus = 0;
+            player.SummonsThisTurn++;   // Closing Time: die Sperrstunde zählt mit
             ArmCountdown(monster); // Chimekeep: die Uhr zieht sich beim Feld-Betreten auf
             Log($"{player.Name} special summons {monster.Name} {sourceDescription}.");
             BoardChanged();
@@ -1130,6 +1178,12 @@ namespace Rouge.Tcg
             {
                 Log($"{player.Name} pays the Countersign surcharge of {player.NextSpellSurcharge} Mana.");
                 player.NextSpellSurcharge = 0;
+            }
+            // Prepaid Ritual: auch die Anzahlung deckt genau EINEN Zauber
+            if (player.NextSpellDiscount > 0)
+            {
+                Log($"{player.Name}'s prepayment is spent.");
+                player.NextSpellDiscount = 0;
             }
             LockEffectForTurn(spell, effectIndex, effect);
 
@@ -1508,6 +1562,8 @@ namespace Rouge.Tcg
             if (effect.requireOwnMonsterDestroyedThisTurn && player.OwnMonstersDestroyedThisTurn <= 0) return false;
             if (effect.onlyOnFirstOwnTurn && player.TurnsTaken != 1) return false;
             if (effect.maxOwnMonsters > 0 && player.MonsterCount() > effect.maxOwnMonsters) return false;
+            // --- Welle 3 ---
+            if (effect.minOwnBanishedCards > 0 && player.Banished.Count < effect.minOwnBanishedCards) return false;
             return true;
         }
 
@@ -1835,6 +1891,13 @@ namespace Rouge.Tcg
                 case TargetKind.AnyArtifactOnField:
                     candidates.AddRange(player.ArtifactZones.Where(a => a != null));
                     candidates.AddRange(player.Opponent.ArtifactZones.Where(a => a != null));
+                    break;
+                case TargetKind.AnyCountdownCard:
+                    candidates.AddRange(player.FieldCards().Where(c => c.CountdownMarkers > 0));
+                    candidates.AddRange(player.Opponent.FieldCards().Where(c => c.CountdownMarkers > 0));
+                    break;
+                case TargetKind.HandSpellOpponent:
+                    candidates.AddRange(player.Opponent.Hand.Where(c => c.SpellData != null));
                     break;
                 // TargetKind.SelfCard: kein Auswahl-Dialog — wird in ResolveEffectActions direkt zur Quellkarte.
             }
@@ -3267,6 +3330,9 @@ namespace Rouge.Tcg
                             source.StatsOverriddenThisTurn = true;
                             source.OverriddenAtk = target.CurrentAtk;
                             source.OverriddenDef = target.CurrentDef;
+                            // Mirror Usher (Or Infused): amount 1 = die Maske hält bis zum
+                            // Beginn des nächsten eigenen Zuges statt nur bis Zugende
+                            if (action.amount == 1) source.CopyStatsUntilOwnersNextTurn = true;
                             Log($"{source.Name} copies {target.Name}'s stats ({source.CurrentAtk}/{source.CurrentDef}).");
                         }
                         break;
@@ -4573,6 +4639,354 @@ namespace Rouge.Tcg
                         }
                         break;
                     }
+
+                    // ================== WELLE 3: 50 GENERICS (SEPTEMBER 2026) ==================
+
+                    case EffectActionType.RedirectAttackToOwnMonster:
+                        // Second Guess: nur sinnvoll, solange ein Angriff auf ein Monster läuft —
+                        // ResolveAttack liest die Vormerkung nach dem Reaktionsfenster aus.
+                        if (target != null && IsOnField(target) && target.MonsterData != null)
+                        {
+                            pendingAttackRedirect = target;
+                            Log($"{source.Name}: the blow is guided toward {target.Name}!");
+                        }
+                        break;
+
+                    case EffectActionType.AddCountdownTarget:
+                        foreach (var clock in affected)
+                        {
+                            if (!IsOnField(clock) || clock.CountdownMarkers <= 0) continue;
+                            clock.CountdownMarkers += Math.Max(1, action.amount);
+                            Log($"{clock.Name}: sand in the gears — {clock.CountdownMarkers} Hour Counters now.");
+                        }
+                        break;
+
+                    case EffectActionType.ResetCountdownSelf:
+                        if (IsOnField(source))
+                        {
+                            source.CountdownMarkers = Math.Max(1, action.amount);
+                            Log($"{source.Name} is turned over — its countdown starts again at {source.CountdownMarkers}.");
+                        }
+                        break;
+
+                    case EffectActionType.SwapGraveTops:
+                    {
+                        var myGrave = player.Graveyard;
+                        var foeGrave = player.Opponent.Graveyard;
+                        if (myGrave.Count == 0 || foeGrave.Count == 0)
+                        {
+                            Log($"{source.Name}: both graveyards need a top card — the dispute fizzles.");
+                            break;
+                        }
+                        var mineTop = myGrave[myGrave.Count - 1];
+                        var theirsTop = foeGrave[foeGrave.Count - 1];
+                        myGrave.RemoveAt(myGrave.Count - 1);
+                        foeGrave.RemoveAt(foeGrave.Count - 1);
+                        mineTop.Owner = player.Opponent;
+                        theirsTop.Owner = player;
+                        foeGrave.Add(mineTop);
+                        myGrave.Add(theirsTop);
+                        Log($"{source.Name}: {mineTop.Name} and {theirsTop.Name} change graves — the diggers shake on it.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.MoveSelfToGraveTop:
+                        if (source.Zone == ZoneType.Graveyard && player.Graveyard.Remove(source))
+                        {
+                            player.Graveyard.Add(source);
+                            Log($"{source.Name} claws its way back to the top of the Graveyard.");
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.MoveGraveTargetToTop:
+                        foreach (var buried in affected)
+                        {
+                            if (buried == null || buried.Zone != ZoneType.Graveyard) continue;
+                            var grave = buried.Owner.Graveyard;
+                            if (!grave.Remove(buried)) continue;
+                            grave.Add(buried);
+                            Log($"{buried.Name} is laid on top of the Graveyard.");
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.SetAllMonstersFaceDown:
+                    {
+                        // Masquerade Ball: alle offenen Monster verdeckt — ein gewähltes
+                        // eigenes (Or Infused) behält sein Gesicht.
+                        var unmasked = target != null && IsOnField(target) ? target : null;
+                        int masked = 0;
+                        foreach (var side in new[] { player, player.Opponent })
+                            foreach (var monster in side.Monsters().ToArray())
+                            {
+                                if (monster.FaceDown || monster == unmasked) continue;
+                                if (monster.Definition != null && monster.Definition.isToken) continue; // Tokens haben kein Gesicht zum Verbergen
+                                monster.Position = BattlePosition.Defense;
+                                monster.FaceDown = true;
+                                masked++;
+                            }
+                        Log(masked > 0
+                            ? $"{source.Name}: {masked} monster(s) put on their masks — the ball begins."
+                            : $"{source.Name}: nobody left to mask.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.BanishOwnDeckTop:
+                    {
+                        int exiled = Math.Min(Math.Max(1, action.amount), player.DeckPile.Count);
+                        for (int exilePick = 0; exilePick < exiled; exilePick++)
+                        {
+                            var top = player.DeckPile[0];
+                            player.DeckPile.RemoveAt(0);
+                            MoveToBanished(top);
+                        }
+                        Log(exiled > 0
+                            ? $"{player.Name} banishes the top {exiled} card(s) of the Deck face-down."
+                            : $"{player.Name}'s Deck is empty — nothing to banish.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.BanishGraveTargetsReturnLater:
+                        foreach (var letter in affected)
+                        {
+                            if (letter == null || letter.Zone != ZoneType.Graveyard) continue;
+                            MoveToBanished(letter);
+                            if (letter.Zone == ZoneType.Banished) player.TimedBanishReturns.Add(letter);
+                            Log($"{letter.Name} is sent into exile — it will find its way home.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.RevealTopBuffSelfIfMonster:
+                    {
+                        if (player.DeckPile.Count == 0) { Log($"{player.Name}'s Deck is empty."); break; }
+                        var wager = player.DeckPile[0];
+                        player.RevealedCardThisTurn = true;
+                        Log($"{player.Name} reveals the top card of the Deck: {wager.Name}.");
+                        if (wager.MonsterData != null && IsOnField(source))
+                        {
+                            source.PermanentAtkBonus += Math.Max(1, action.amount);
+                            Log($"The house wins — {source.Name} permanently gains {Math.Max(1, action.amount)} ATK ({source.CurrentAtk} ATK).");
+                        }
+                        else Log("The house takes the loss gracefully.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.BothTopToBottom:
+                        foreach (var side in new[] { player, player.Opponent })
+                        {
+                            if (side.DeckPile.Count <= 1) continue;
+                            var shuffledAway = side.DeckPile[0];
+                            side.DeckPile.RemoveAt(0);
+                            side.DeckPile.Add(shuffledAway);
+                        }
+                        Log($"{source.Name}: both top cards slide to the bottom — the croupier deals fresh.");
+                        break;
+
+                    case EffectActionType.ToggleTargetPosition:
+                        foreach (var dancer in affected)
+                        {
+                            if (!IsOnField(dancer) || dancer.FaceDown || dancer.MonsterData == null) continue;
+                            if (dancer.PositionLockTurns > 0 || dancer.PositionLockedThisTurn
+                                || (dancer.Definition != null && dancer.Definition.passiveCannotChangePosition))
+                            {
+                                Log($"{dancer.Name} cannot change its position.");
+                                continue;
+                            }
+                            dancer.Position = dancer.Position == BattlePosition.Attack ? BattlePosition.Defense : BattlePosition.Attack;
+                            Log($"{dancer.Name} pirouettes into {(dancer.Position == BattlePosition.Attack ? "Attack" : "Defense")} Position.");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.ToggleAllPositions:
+                    {
+                        var sides = new List<PlayerState>();
+                        if (action.amount == 1)
+                        {
+                            var pick = new OptionRequest
+                            {
+                                Title = $"{source.Name}: whose side turns?",
+                                Card = source,
+                                AllowCancel = false
+                            };
+                            pick.Options.Add("Your monsters");
+                            pick.Options.Add("Your opponent's monsters");
+                            yield return DecideRouted(player, pick);
+                            sides.Add(pick.Result == 1 ? player.Opponent : player);
+                        }
+                        else { sides.Add(player); sides.Add(player.Opponent); }
+                        int turned = 0;
+                        foreach (var side in sides)
+                            foreach (var dancer in side.Monsters())
+                            {
+                                if (dancer.FaceDown) continue;
+                                if (dancer.PositionLockTurns > 0 || dancer.PositionLockedThisTurn
+                                    || (dancer.Definition != null && dancer.Definition.passiveCannotChangePosition)) continue;
+                                dancer.Position = dancer.Position == BattlePosition.Attack ? BattlePosition.Defense : BattlePosition.Attack;
+                                turned++;
+                            }
+                        Log($"{source.Name}: the waltz turns {turned} monster(s) around.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.LockTargetPositionTurns:
+                        foreach (var frozen in affected)
+                        {
+                            if (!IsOnField(frozen) || frozen.MonsterData == null) continue;
+                            frozen.PositionLockTurns = Math.Max(frozen.PositionLockTurns, Math.Max(1, action.amount));
+                            frozen.PositionLockedThisTurn = true;
+                            Log($"{frozen.Name} freezes in place — its position is locked.");
+                        }
+                        break;
+
+                    case EffectActionType.ShieldTargetNextDestruction:
+                        foreach (var insured in affected)
+                        {
+                            if (!IsOnField(insured)) continue;
+                            insured.DestructionShields += Math.Max(1, action.amount);
+                            Log($"{insured.Name} is fully insured — the next destruction is covered.");
+                        }
+                        break;
+
+                    case EffectActionType.ManaDebtNextStandby:
+                        if (IsOnField(source))
+                        {
+                            source.PendingManaDebt = Math.Max(1, action.amount);
+                            Log($"{source.Name}: the bill of {source.PendingManaDebt} Mana comes due next Standby Phase.");
+                        }
+                        break;
+
+                    case EffectActionType.DiscountNextSpellThisTurn:
+                        player.NextSpellDiscount += Math.Max(1, action.amount);
+                        Log($"{player.Name}'s next Spell this turn costs {Math.Max(1, action.amount)} less.");
+                        break;
+
+                    case EffectActionType.DiscountNextSummonThisTurn:
+                        player.NextSummonDiscount += Math.Max(1, action.amount);
+                        Log($"{player.Name}'s next Summon this turn costs {Math.Max(1, action.amount)} less Mana.");
+                        break;
+
+                    case EffectActionType.LiftOwnSummonCapThisTurn:
+                        player.SummonCapLiftedThisTurn = true;
+                        Log($"{player.Name} knows the back door — the summon curfew does not apply to them this turn.");
+                        break;
+
+                    case EffectActionType.SummonScarecrowTokens:
+                        // targetCount > 1 = die Vogelscheuchen halten die Linie (Dauer-Spott)
+                        yield return SpawnScarecrowTokens(player, Math.Max(1, action.amount), taunt: action.targetCount > 1);
+                        break;
+
+                    case EffectActionType.SpecialSummonSelfFromBanished:
+                        if (source.Zone == ZoneType.Banished)
+                        {
+                            yield return SpecialSummonToField(player, source, "from exile", action.summonInDefense);
+                            if (Result != DuelResult.None) yield break;
+                        }
+                        break;
+
+                    case EffectActionType.SendTargetToGraveyard:
+                        foreach (var scrapped in affected)
+                        {
+                            if (!IsOnField(scrapped)) continue;
+                            Log($"{scrapped.Name} is sent to the Graveyard.");
+                            if (presenter != null) yield return presenter.ShowCardSentToGrave(scrapped);
+                            if (scrapped.MonsterData != null) MoveToGraveyardWithEquips(scrapped);
+                            else MoveToGraveyard(scrapped);
+                        }
+                        BoardChanged();
+                        yield return FirePendingGraveTriggers();
+                        if (Result != DuelResult.None) yield break;
+                        break;
+
+                    case EffectActionType.SwitchAllOwnToDefenseBuffDef:
+                    {
+                        int hedgehogs = 0;
+                        foreach (var shield in player.Monsters())
+                        {
+                            if (shield.FaceDown) continue;
+                            if (shield.Position == BattlePosition.Attack
+                                && shield.PositionLockTurns <= 0 && !shield.PositionLockedThisTurn
+                                && (shield.Definition == null || !shield.Definition.passiveCannotChangePosition))
+                                shield.Position = BattlePosition.Defense;
+                            shield.DefBuffUntilOwnersNextTurn += Math.Max(0, action.amount);
+                            hedgehogs++;
+                        }
+                        Log(hedgehogs > 0
+                            ? $"{player.Name}'s line locks shields — {hedgehogs} monster(s) dig in (+{Math.Max(0, action.amount)} DEF until their next turn)."
+                            : $"{player.Name} has no line to dig in.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.FlipAllOwnFaceUp:
+                        foreach (var masked in player.Monsters().ToArray())
+                        {
+                            if (!masked.FaceDown) continue;
+                            masked.FaceDown = false;
+                            ArmCountdown(masked); // Chimekeep: Uhren spannen beim Aufdecken
+                            Log($"{masked.Name} takes its final bow — flipped face-up.");
+                            BoardChanged();
+                            if (responseDepth < 2)
+                            {
+                                yield return OfferTriggeredEffects(masked.Owner, masked, EffectTrigger.OnFlipFaceUp);
+                                if (Result != DuelResult.None) yield break;
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.DebuffDestroyerAtkPermanent:
+                        if (lastDestroyerMonster != null && IsOnField(lastDestroyerMonster))
+                        {
+                            lastDestroyerMonster.PermanentAtkBonus -= Math.Max(1, action.amount);
+                            Log($"The widow writes {lastDestroyerMonster.Name} into her ledger — it permanently loses {Math.Max(1, action.amount)} ATK ({lastDestroyerMonster.CurrentAtk} ATK).");
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.SwitchTargetToDefenseAtEot:
+                        foreach (var weary in affected)
+                        {
+                            if (!IsOnField(weary) || weary.MonsterData == null) continue;
+                            weary.SwitchToDefenseAtEot = true;
+                            Log($"{weary.Name} will slump into Defense Position at the end of the turn.");
+                        }
+                        break;
+
+                    case EffectActionType.DebuffTargetAtkEot:
+                        foreach (var lowballed in affected)
+                        {
+                            if (!IsOnField(lowballed)) continue;
+                            lowballed.TempAtkBonus -= Math.Max(1, action.amount);
+                            Log($"{lowballed.Name} loses {Math.Max(1, action.amount)} ATK until the end of the turn ({lowballed.CurrentAtk} ATK).");
+                        }
+                        BoardChanged();
+                        break;
+
+                    case EffectActionType.SendAllMonstersToGraveyard:
+                    {
+                        var tolled = new List<CardInstance>();
+                        foreach (var side in new[] { player, player.Opponent })
+                            tolled.AddRange(side.Monsters());
+                        if (tolled.Count == 0) { Log($"{source.Name}: the bell tolls over an empty field."); break; }
+                        Log($"{source.Name}: the bell tolls — every monster is sent to the Graveyard.");
+                        foreach (var doomed in tolled)
+                        {
+                            if (!IsOnField(doomed)) continue;
+                            if (presenter != null) yield return presenter.ShowCardSentToGrave(doomed);
+                            MoveToGraveyardWithEquips(doomed);
+                        }
+                        BoardChanged();
+                        yield return FirePendingGraveTriggers();
+                        if (Result != DuelResult.None) yield break;
+                        break;
+                    }
                 }
             }
             BoardChanged();
@@ -4643,6 +5057,26 @@ namespace Rouge.Tcg
             return true;
         }
 
+        /// <summary>
+        /// Closing Time (Welle 3): Beschwörungs-Limit pro Zug für diese Seite.
+        /// 0 = kein Limit. Der Hinterausgang (Infused) hebt es für den Zug auf.
+        /// </summary>
+        private bool SummonCapReached(PlayerState side)
+        {
+            if (side.SummonCapLiftedThisTurn) return false;
+            int cap = 0;
+            foreach (var half in new[] { Player1, Player2 })
+            {
+                if (half == null) continue;
+                foreach (var decree in half.ArtifactZones)
+                {
+                    int limit = decree?.Definition != null ? decree.Definition.passiveSummonCapBoth : 0;
+                    if (limit > 0 && (cap == 0 || limit < cap) && DecreeApplies(decree, side)) cap = limit;
+                }
+            }
+            return cap > 0 && side.SummonsThisTurn >= cap;
+        }
+
         /// <summary>Bylaw (Standing Room Only): Monster-Obergrenze für diese Seite (Standard: Zonenzahl).</summary>
         private int MonsterCapFor(PlayerState side)
         {
@@ -4706,6 +5140,11 @@ namespace Rouge.Tcg
         /// erst beim nächsten Ziehen — Millen allein beendet das Duell nicht.</summary>
         private IEnumerator MillDeck(PlayerState player, int count, Action<int> onMilled = null)
         {
+            // Baron of the Undertow: der Sog des GEGNERS gibt nichts zurück —
+            // was dieser Spieler millt, wird verbannt statt begraben
+            bool undertow = player.Opponent != null && player.Opponent.Monsters().Any(baron =>
+                !baron.FaceDown && !baron.EffectsNegated && baron.Definition != null
+                && baron.Definition.passiveOpponentMillsBanished);
             int actual = Math.Min(count, player.DeckPile.Count);
             for (int i = 0; i < actual; i++)
             {
@@ -4714,7 +5153,12 @@ namespace Rouge.Tcg
                 // Aufdecken auf der Deck-Zone, kurz liegen lassen, dann der Flug —
                 // erst danach wandert die Karte wirklich in den Friedhof
                 if (presenter != null) yield return presenter.ShowMilled(player, card);
-                MoveToGraveyard(card);
+                if (undertow && (card.Definition == null || !card.Definition.passiveCannotBeBanished))
+                {
+                    Log($"{card.Name} is dragged under — banished instead of buried.");
+                    MoveToBanished(card);
+                }
+                else MoveToGraveyard(card);
                 BoardChanged();
             }
             if (actual > 0) player.MilledThisTurn = true;   // Deckay: "hast du gemillt?"
@@ -4855,6 +5299,9 @@ namespace Rouge.Tcg
                 foreach (var leech in player.Monsters())
                     if (!leech.FaceDown && !leech.EffectsNegated && leech.Definition != null
                         && leech.Definition.passiveSpellTaxOnController) cost += 1;
+            // Prepaid Ritual: die Anzahlung deckt den nächsten Zauber dieses Zuges
+            if (isSpellCast && player.NextSpellDiscount > 0)
+                cost = Math.Max(0, cost - player.NextSpellDiscount);
             if (cost <= 0) return cost;
             if (!isSpellCast) return cost;
             if (player.SpellsCastThisTurn > 0) return cost;
@@ -4882,6 +5329,27 @@ namespace Rouge.Tcg
                         && artifact.Definition.passiveSpellTaxBoth) return true;
             }
             return false;
+        }
+
+        /// <summary>The Long Detour: das offene Umweg-Artefakt dieser Seite (null = keins).</summary>
+        private CardInstance DetourArtifactOf(PlayerState side)
+        {
+            foreach (var artifact in side.ArtifactZones)
+                if (artifact != null && !artifact.FaceDown && !artifact.EffectsNegated
+                    && artifact.Definition != null && artifact.Definition.passiveFirstEnemyAttackDetourDeal)
+                    return artifact;
+            return null;
+        }
+
+        /// <summary>Shield Wall Doctrine: DEF-Bonus des Verteidigers im Moment des Angriffs.</summary>
+        private int DefendingBonusOf(CardInstance defender)
+        {
+            if (defender?.Owner == null) return 0;
+            int bonus = 0;
+            foreach (var artifact in defender.Owner.ArtifactZones)
+                if (artifact != null && !artifact.FaceDown && !artifact.EffectsNegated && artifact.Definition != null)
+                    bonus += artifact.Definition.passiveDefWhileDefending;
+            return bonus;
         }
 
         /// <summary>The Duelist's Code: ATK-Bonus des Angreifers (0 = kein Kodex auf dem Feld).</summary>
@@ -6035,6 +6503,7 @@ namespace Rouge.Tcg
             // (per Effekt für diesen Zug — oder dauerhaft per Attention Hound)
             var forcedTargets = player.Opponent.Monsters()
                 .Where(m => m.MustBeAttackedThisTurn
+                            || m.PersistentTaunt   // Welle 3: Vogelscheuchen halten die Linie
                             || (!m.FaceDown && m.Definition != null && m.Definition.passiveTaunt))
                 .ToList();
 
@@ -6146,11 +6615,49 @@ namespace Rouge.Tcg
                 : $"{attacker.Name} attacks {target.Name}!");
             BoardChanged();
 
+            // The Long Detour: der erste Angriff jedes Zuges stellt den Angreifer vor
+            // die Wahl des Artefakt-Besitzers drüben — Wegzoll in Karten oder Umkehr.
+            if (!player.DetourDealResolvedThisTurn && DetourArtifactOf(player.Opponent) is CardInstance detour)
+            {
+                player.DetourDealResolvedThisTurn = true;
+                var crossroads = new OptionRequest
+                {
+                    Title = $"{detour.Name}: {player.Name} must choose",
+                    Card = detour,
+                    AllowCancel = false
+                };
+                crossroads.Options.Add("Send your top deck card to the Graveyard and attack on");
+                crossroads.Options.Add("The attack is cancelled");
+                yield return DecideRouted(player, crossroads);
+                player.Opponent.DealsThisTurn++;   // der Umweg zählt als Deal des Wegewarts
+                player.Opponent.DealsThisDuel++;
+                if (crossroads.Result == 1)
+                {
+                    Log($"{attacker.Name} turns back — the detour was too long.");
+                    yield break;
+                }
+                Log($"{player.Name} pays the detour in cards and marches on.");
+                yield return MillDeck(player, 1);
+                if (Result != DuelResult.None) yield break;
+                if (attacker.Zone != ZoneType.MonsterZone || attacker.FaceDown) yield break;
+            }
+
             if (presenter != null) yield return presenter.ShowAttackDeclared(attacker, target, option.Direct);
 
-            
-yield return OpenResponseWindow(player.Opponent, "attack", attacker);
+            pendingAttackRedirect = null;
+            yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             if (Result != DuelResult.None) yield break;
+            // Second Guess: der Hieb wird auf ein anderes Monster des Verteidigers gelenkt
+            if (pendingAttackRedirect != null)
+            {
+                if (!option.Direct && pendingAttackRedirect.Zone == ZoneType.MonsterZone
+                    && pendingAttackRedirect.Owner == player.Opponent && pendingAttackRedirect != target)
+                {
+                    Log($"The attack now strikes {pendingAttackRedirect.Name} instead of {target.Name}!");
+                    target = pendingAttackRedirect;
+                }
+                pendingAttackRedirect = null;
+            }
             if (attacker.Zone != ZoneType.MonsterZone)
             {
                 Log("The attacker left the field — attack cancelled.");
@@ -6215,7 +6722,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     {
                         if (!noBattleDamage) DealDamage(player.Opponent, attackValue - defenderAtk, attacker.Name, isBattleDamage: true);
                         if (BattleShieldHolds(target)) Log(BattleShieldReason(target));
-                        else yield return DestroyCard(target);
+                        else yield return DestroyCard(target, destroyer: attacker);
                         if (Result == DuelResult.None && target.Zone != ZoneType.MonsterZone)
                             yield return FireBearerKillTriggers(attacker);
                     }
@@ -6223,20 +6730,22 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                     {
                         if (!noBattleDamage) DealDamage(player, defenderAtk - attackValue, target.Name, isBattleDamage: true);
                         if (BattleShieldHolds(attacker)) Log(BattleShieldReason(attacker));
-                        else yield return DestroyCard(attacker);
+                        else yield return DestroyCard(attacker, destroyer: target);
                     }
                     else
                     {
                         Log("Both monsters clash with equal force!");
                         if (BattleShieldHolds(target)) Log(BattleShieldReason(target));
-                        else yield return DestroyCard(target);
+                        else yield return DestroyCard(target, destroyer: attacker);
                         if (BattleShieldHolds(attacker)) Log(BattleShieldReason(attacker));
-                        else yield return DestroyCard(attacker);
+                        else yield return DestroyCard(attacker, destroyer: target);
                     }
                 }
                 else
                 {
-                    int defenderDef = target.CurrentDef;
+                    // Shield Wall Doctrine: die Doktrin des Verteidigers stärkt jede
+                    // Mauer GENAU im Moment des Ansturms
+                    int defenderDef = target.CurrentDef + DefendingBonusOf(target);
                     bool defenderSurvived = true;
                     if (attackValue > defenderDef)
                     {
@@ -6253,7 +6762,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                         else
                         {
                             Log($"{target.Name}'s defense is broken.");
-                            yield return DestroyCard(target);
+                            yield return DestroyCard(target, destroyer: attacker);
                             defenderSurvived = target.Zone == ZoneType.MonsterZone;
                             if (Result == DuelResult.None && !defenderSurvived)
                                 yield return FireBearerKillTriggers(attacker);
@@ -6386,6 +6895,50 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
         /// kein Reaktionsfenster: die Platzierung ist Teil einer Effekt-Auflösung
         /// und gilt nicht als Beschwörung (sonst Mirrorwalk-Endlosschleife).
         /// </summary>
+        // --- Welle 3: 50 Generics ---
+        /// <summary>Second Guess: vorgemerktes neues Angriffsziel — ResolveAttack liest es nach dem Reaktionsfenster.</summary>
+        private CardInstance pendingAttackRedirect;
+        /// <summary>Widow's Ledger: das Monster, das die zuletzt zerstörte Karte auf dem Gewissen hat (nur Kampf).</summary>
+        private CardInstance lastDestroyerMonster;
+
+        /// <summary>
+        /// Straw Army: Scarecrow-Tokens (eigener Token-Typ — KEINE Illusion-Tokens,
+        /// zählen für keine Illusion-Synergie). Mit taunt halten sie die Linie:
+        /// Dauer-Spott, solange sie stehen.
+        /// </summary>
+        private IEnumerator SpawnScarecrowTokens(PlayerState receiver, int count, bool taunt)
+        {
+            var tokenDef = rules != null ? rules.scarecrowToken : null;
+            if (tokenDef == null)
+            {
+                Log("No Scarecrow Token definition configured — nothing happens.");
+                yield break;
+            }
+            int placed = 0;
+            for (int i = 0; i < count; i++)
+            {
+                if (receiver.MonsterCount() >= MonsterCapFor(receiver)) break; // Bylaw: Obergrenze
+                int free = FirstUnsealedFreeZone(receiver);
+                if (free < 0) break;
+                var token = new CardInstance(tokenDef, receiver)
+                {
+                    Zone = ZoneType.MonsterZone,
+                    Position = BattlePosition.Defense,
+                    SummonedThisTurn = true,
+                    WasSpecialSummoned = true,
+                    PersistentTaunt = taunt
+                };
+                receiver.MonsterZones[free] = token;
+                placed++;
+                BoardChanged();
+                if (presenter != null) yield return presenter.ShowSummon(token);
+            }
+            if (placed > 0)
+                Log($"{placed} Scarecrow{(placed == 1 ? "" : "s")} take{(placed == 1 ? "s" : "")} the field{(taunt ? " — attacks must go through them" : "")}.");
+            else
+                Log($"{receiver.Name} has no free Monster Zone — no Scarecrow appears.");
+        }
+
         private IEnumerator SpawnIllusionTokens(PlayerState receiver, int count)
         {
             var tokenDef = rules != null ? rules.illusionToken : null;
@@ -6465,7 +7018,20 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             card.AttacksWithDefThisTurn = false;
             card.CountdownMarkers = 0;
             card.DecreeExemptFor = null;
+            ClearWave3Flags(card);
             card.Owner.Graveyard.Add(card);
+        }
+
+        /// <summary>Welle 3: Feld-Zustände, die jede Zone verlassen (Grab, Verbannung, Hand).</summary>
+        private static void ClearWave3Flags(CardInstance card)
+        {
+            card.PositionLockTurns = 0;
+            card.DestructionShields = 0;
+            card.PendingManaDebt = 0;
+            card.SwitchToDefenseAtEot = false;
+            card.PersistentTaunt = false;
+            card.CopyStatsUntilOwnersNextTurn = false;
+            card.DefBuffUntilOwnersNextTurn = 0;
         }
 
         private void MoveToGraveyardWithEquips(CardInstance monster)
@@ -6482,6 +7048,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
         {
             if (target?.Definition == null) return false;
             // --- The Small Print: Effekt-Immunitäten (auch gegen eigene Effekte) ---
+            // The Last Bow (Welle 3): verdeckte eigene Monster stehen unter dem Schutz des Vorhangs
+            if (IsOnField(target) && target.FaceDown && target.MonsterData != null)
+                foreach (var curtain in target.Owner.FieldCards())
+                    if (curtain != null && curtain != target && !curtain.FaceDown && !curtain.EffectsNegated
+                        && curtain.Definition != null && curtain.Definition.passiveProtectFaceDownFromEffectDestroy)
+                        return true;
             if (IsOnField(target) && !target.FaceDown)
             {
                 if (target.Definition.passiveNoEffectDestroy) return true;
@@ -6511,6 +7083,12 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
         private void MoveToBanished(CardInstance card)
         {
             if (DissolveIfToken(card)) return;
+            // The Unforgotten: einmal heimgekehrt, nie wieder fort
+            if (card.Definition != null && card.Definition.passiveCannotBeBanished)
+            {
+                Log($"{card.Name} cannot be banished — it stays where it is.");
+                return;
+            }
             card.LienAmount = 0;
             card.BanishWhenLeavingField = false;
             card.PiercingThisTurn = false;
@@ -6531,6 +7109,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             card.AttacksWithDefThisTurn = false;
             card.CountdownMarkers = 0;
             card.DecreeExemptFor = null;
+            ClearWave3Flags(card);
             card.Owner.Banished.Add(card);
         }
 
@@ -6571,7 +7150,7 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
             }
         }
 
-        private IEnumerator DestroyCard(CardInstance card, bool asReplacement = false)
+        private IEnumerator DestroyCard(CardInstance card, bool asReplacement = false, CardInstance destroyer = null)
         {
             if (card == null || card.Zone == ZoneType.Graveyard) yield break;
             if (card.CannotBeDestroyedThisTurn)
@@ -6579,6 +7158,15 @@ yield return OpenResponseWindow(player.Opponent, "attack", attacker);
                 Log($"{card.Name} cannot be destroyed this turn.");
                 yield break;
             }
+            // Insurance Policy (Infused): ein Einmal-Schild fängt die Zerstörung ab
+            if (card.DestructionShields > 0)
+            {
+                card.DestructionShields--;
+                Log($"{card.Name} is spared — its insurance pays out.");
+                yield break;
+            }
+            // Widow's Ledger: wer hier den Todesstoß führt, steht im Buch
+            lastDestroyerMonster = destroyer != null && destroyer.MonsterData != null ? destroyer : null;
 
             if (!asReplacement)
             {

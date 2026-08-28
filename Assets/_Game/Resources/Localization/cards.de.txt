@@ -4738,3 +4738,297 @@ n Glockenwacht, das Mitternachts-Carillon
 s Du kontrollierst 2+ Karten mit Stunden-Markern — zahle 3 Mana.
 l0 Mitternacht, alles auf einmal
 t0 Wenn diese Karte beschworen wird: ALLE deine Karten mit Stunden-Markern schlagen sofort (alle Marker auf 0; ihre Effekte feuern in Feld-Reihenfolge).
+## Crossroads Peddler
+n Hausierer am Kreuzweg
+l0 Nimm es oder lass es
+t0 Wenn diese Karte beschworen wird, muss dein Gegner wählen: Du ziehst 1 Karte — oder diese Karte erhält bis zum Ende des Zuges 700 ATK und Durchstoß.
+l1 Die harte Masche
+t1 Zahle stattdessen 2 Mana — der Deal wächst: Du ziehst 2 — oder 700 ATK, Durchstoß und ein zusätzlicher Angriff.
+## The Long Detour
+n Der lange Umweg
+l0 Panoramastraße
+t0 Hat dein Gegner in diesem Zug angegriffen, zahle 2 Mana: Ein Monster, das er kontrolliert, kehrt auf die Hand seines Besitzers zurück.
+## Final Offer
+n Letztes Angebot
+l0 Unterschreib oder leide
+t0 Zahle 5 Mana. Wähle ein Monster deines Gegners — er entscheidet: Er schickt es in den Friedhof, oder du übernimmst bis zum Ende des Zuges die Kontrolle.
+l1 Klausel ohne Gnade
+t1 Zahle stattdessen 7 Mana — beide Wege werden härter: Er verbannt es, oder du übernimmst die Kontrolle UND es erhält diesen Zug 400 ATK.
+## Cellar Lurker
+n Kellerlauerer
+l0 Aus dem Dunkel
+t0 Wenn ein Monster deines Gegners einen Angriff erklärt: Du kannst diese Karte aus deiner Hand in Verteidigungsposition als Spezialbeschwörung beschwören.
+l1 Vom Keller verschluckt
+t1 Zahle 2 Mana, wenn ein Monster deines Gegners angreift: Der Angriff wird abgebrochen.
+## Widow's Ledger
+n Das Buch der Witwe
+l0 Jeder Name wird notiert
+t0 Immer wenn eines deiner Monster im Zug deines Gegners zerstört wird: Das Monster, das es zerstört hat, verliert dauerhaft 400 ATK.
+l1 Das Buch wird geschlossen
+t1 Wurde diesen Zug eines deiner Monster zerstört, zahle 3 Mana und schicke dieses Artefakt in den Friedhof: Beschwöre 1 Monster aus deinem Friedhof in Verteidigungsposition.
+## Trapdoor Stage
+n Falltürbühne
+l0 Durch den Boden
+t0 Einmal pro Zug, wenn dein Gegner ein Monster als Spezialbeschwörung beschwört: Lege es verdeckt.
+l1 Unten eingeschlossen
+t1 Zahle stattdessen 2 Mana: Es kann zusätzlich bis zu deinem nächsten Zug die Position nicht wechseln.
+## Second Guess
+n Zweiter Gedanke
+l0 Nicht den — den!
+t0 Zahle 2 Mana, wenn ein Monster deines Gegners angreift: Lenke den Angriff auf ein anderes deiner Monster um.
+l1 Darauf vorbereitet
+t1 Zahle stattdessen 4 Mana: Das neue Ziel erhält zusätzlich bis zum Ende des Zuges 500 DEF.
+## Doomsday Bell
+n Glocke des Jüngsten Tages
+l0 Die Glocke schlägt
+t0 Wenn der Countdown dieser Karte null erreicht: Schicke jedes Monster auf dem Feld in den Friedhof, danach auch diese Karte.
+l1 Früher läuten
+t1 Zahle 1 Mana: Entferne 1 Stundenmarke von dieser Karte.
+## Sand in the Gears
+n Sand im Getriebe
+l0 Die Stunde verzögern
+t0 Zahle 1 Mana: Lege 2 Stundenmarken auf eine beliebige Karte auf dem Feld.
+l1 Die Stunde beschleunigen
+t1 Zahle stattdessen 2 Mana: Entferne 1 Stundenmarke von einer beliebigen Karte auf dem Feld.
+## Borrowed Hourglass
+n Geliehene Sanduhr
+l0 Wenn der Sand verrinnt
+t0 Wenn der Countdown dieser Karte null erreicht: Ziehe 2 Karten und diese Karte erhält dauerhaft 800 ATK. Sie bleibt auf dem Feld.
+l1 Einmal umdrehen
+t1 Zahle 2 Mana: Setze den Countdown dieser Karte zurück auf 2 Stundenmarken.
+## Gravedigger's Dispute
+n Totengräberstreit
+l0 Wessen Grab ist das hier
+t0 Zahle 2 Mana: Tausche die obersten Karten beider Friedhöfe.
+l1 Gleich wieder ausgraben
+t1 Zahle stattdessen 4 Mana: Beschwöre danach das neue oberste Monster deines Friedhofs in Verteidigungsposition.
+## Seance Circle
+n Séancekreis
+l0 Reicht euch die Hände
+t0 Zahle 4 Mana: Beschwöre ein Monster aus dem Friedhof deines Gegners auf deine Feldseite. Verlässt es das Feld, wird es verbannt.
+l1 Ruheloser Geist
+t1 Zahle stattdessen 6 Mana: Diesen Zug darf es zweimal angreifen.
+## Unfinished Business
+n Unerledigte Geschäfte
+l0 Es ist noch nicht vorbei
+t0 Während diese Karte in deinem Friedhof liegt: Lege sie auf die Spitze deines Friedhofs.
+l1 Alles muss geordnet sein
+t1 Wenn diese Karte beschworen wird: Du kannst 1 Monster in deinem Friedhof auf dessen Spitze legen.
+l2 Ein letzter Botengang
+t2 Solange diese Karte die oberste Karte deines Friedhofs ist, zahle 2 Mana: Beschwöre sie in Verteidigungsposition.
+## Masquerade Ball
+n Maskenball
+l0 Masken auf
+t0 Zahle 5 Mana: Lege jedes offene Monster auf dem Feld verdeckt.
+l1 Der Gastgeber bleibt bloß
+t1 Zahle stattdessen 7 Mana: … außer 1 Monster, das du kontrollierst.
+## Eminent Domain
+n Enteignungsrecht
+l0 Öffentliche Bauarbeiten
+t0 Zahle 1 Mana und versiegle eine deiner leeren Monsterzonen: Ziehe 2 Karten.
+l1 Landnahme
+t1 Zahle stattdessen 2 Mana: Versiegle eine leere Monsterzone deines GEGNERS und ziehe 1 Karte.
+## The Unwelcome Guest
+n Der ungebetene Gast
+l0 Miete kassieren
+t0 Solange diese Karte auf dem Feld deines Gegners haust, zahle 2 Mana: Du erhältst diesen Zug 2 Mana.
+## Card Sharp
+n Falschspieler
+l0 Sag die Karte an
+t0 Wenn diese Karte beschworen wird: Sage Monster, Zauber oder Artefakt an und decke die oberste Karte deines Decks auf. Stimmt sie, nimm sie auf die Hand; sonst geht sie in den Friedhof.
+l1 Verdopple den Einsatz
+t1 Zahle stattdessen 2 Mana: Decke die obersten 2 Karten auf — Treffer auf die Hand, der Rest in den Friedhof.
+## Peephole
+n Guckloch
+l0 Ein Blick durch die Wand
+t0 Zahle 1 Mana: Sieh dir die Hand deines Gegners an — du kannst 1 Zauber daraus in sein Deck mischen.
+l1 Der breitere Spalt
+t1 Zahle stattdessen 2 Mana: Du kannst stattdessen 1 Karte BELIEBIGEN Typs mischen.
+## Insurance Policy
+n Versicherungspolice
+l0 Persönlicher Schutzbrief
+t0 Zahle 2 Mana: Wähle ein Monster, das du kontrollierst — das nächste Mal in diesem Duell, dass es zerstört würde, wird es nicht zerstört.
+## Silver-Tongued Creditor
+n Silberzüngiger Gläubiger
+l0 Bequeme Raten
+t0 Wenn diese Karte beschworen wird: Erhalte diesen Zug 2 Mana. In deiner nächsten Standby Phase: Zahle 2 Mana oder schicke diese Karte in den Friedhof.
+l1 Der größere Kredit
+t1 Zahle stattdessen 2 Mana: Erhalte 3 Mana — und die Schuld beträgt 3.
+## Tomorrow's Bread
+n Das Brot von morgen
+l0 Iss heute
+t0 Zahle 1 Mana: Ziehe 2 Karten. Überspringe dein nächstes normales Ziehen.
+l1 Schlemm heute
+t1 Zahle stattdessen 3 Mana: Ziehe 3 Karten. Überspringe dein nächstes normales Ziehen.
+## Scrap Broker
+n Schrotthändler
+l0 Alles hat seinen Preis
+t0 Einmal pro Zug, schicke ein anderes Artefakt, das du kontrollierst, in den Friedhof: Ziehe 1 Karte.
+l1 Rückkauf
+t1 Zahle 2 Mana: Nimm 1 Artefakt aus deinem Friedhof auf die Hand.
+## Posthumous Prodigy
+n Posthumes Wunderkind
+l0 Wähle das Idol
+t0 Zahle 2 Mana: Lege ein beliebiges Monster in deinem Friedhof auf dessen Spitze.
+## Pirouette Duelist
+n Pirouettenduellant
+l0 Führe den Tanz
+t0 Einmal pro Zug: Ändere die Kampfposition eines beliebigen Monsters auf dem Feld.
+l1 Halte die Pose
+t1 Zahle stattdessen 1 Mana: Es kann zusätzlich bis zu deinem nächsten Zug die Position nicht wechseln.
+## Turnabout Waltz
+n Wendewalzer
+l0 Alle drehen sich
+t0 Zahle 2 Mana: Jedes offene Monster auf dem Feld wechselt seine Kampfposition.
+l1 Der halbe Ballsaal
+t1 Zahle stattdessen 4 Mana: Nur eine Seite deiner Wahl dreht sich.
+## Stage Fright
+n Lampenfieber
+l0 Im Scheinwerfer erstarrt
+t0 Zahle 2 Mana, wenn dein Gegner ein Monster beschwört: Es wird in Verteidigungsposition gedreht und kann diesen Zug die Position nicht wechseln.
+l1 Vorhang auf
+t1 Zahle 2 Mana: Decke 1 deiner verdeckten Monster auf; es erhält bis zum Ende des Zuges 400 ATK.
+## Exile Broker
+n Exilmakler
+l0 Einzahlung in die Schatten
+t0 Wenn diese Karte beschworen wird: Verbanne die oberste Karte deines Decks verdeckt.
+l1 Ruf einen heim
+t1 Zahle 2 Mana: Lege 1 deiner verbannten Karten zurück in deinen Friedhof.
+## Letters from Exile
+n Briefe aus dem Exil
+l0 Worte, die stärken
+t0 Zahle 1 Mana und verbanne 2 Karten aus deinem Friedhof: 1 deiner Monster erhält bis zum Ende des Zuges 600 ATK.
+l1 Briefe auf dem Heimweg
+t1 Zahle stattdessen 2 Mana: Die verbannten Karten kehren in deiner nächsten Standby Phase in deinen Friedhof zurück.
+## The Unforgotten
+n Der Unvergessene
+l0 In die lange Dunkelheit
+t0 Verbanne diese Karte aus deiner Hand: Verbanne zusätzlich die oberste Karte deines Decks verdeckt.
+l1 Der lange Weg zurück
+t1 Hast du 3+ verbannte Karten, zahle 2 Mana: Beschwöre diese Karte aus der Verbannung.
+l2 Ich nehme einen mit
+t2 Zahle 2 Mana: Verbanne die oberste Karte des Friedhofs deines Gegners.
+## Straw Army
+n Stroharmee
+l0 Stellt das Feld auf
+t0 Zahle 2 Mana: Beschwöre 2 Vogelscheuchen-Token (Stufe 1, 0/500) in Verteidigungsposition.
+l1 Haltet die Linie
+t1 Zahle stattdessen 4 Mana: 3 Token — und bis zu deinem nächsten Zug müssen die Monster deines Gegners Vogelscheuchen angreifen, wenn möglich.
+## Puppet Parade
+n Puppenparade
+l0 Die Parade zieht weiter
+t0 Einmal pro Zug, wenn eines deiner Monster zerstört wird: Beschwöre 1 Vogelscheuchen-Token in Verteidigungsposition.
+l1 Heute ein echtes Gesicht
+t1 Zahle 2 Mana: 1 deiner Monster kopiert bis zum Ende des Zuges ATK und DEF eines beliebigen Monsters auf dem Feld.
+## Man of Straw
+n Strohmann
+l0 Das Stroh quillt heraus
+t0 Wenn diese Karte zerstört wird: Beschwöre 1 Vogelscheuchen-Token in Verteidigungsposition.
+l1 Zum Verbrennen gemacht
+t1 Zahle 1 Mana und schicke diese Karte in den Friedhof: Beschwöre 1 Vogelscheuchen-Token in Verteidigungsposition.
+## Cartomancer's Eye
+n Auge des Kartenlegers
+l0 Lies dein Schicksal
+t0 Einmal pro Zug: Sieh dir die oberste Karte deines Decks an — du darfst sie nach unten legen.
+l1 Lies seines
+t1 Zahle stattdessen 1 Mana: Sieh dir die oberste Karte des Decks deines GEGNERS an — du darfst sie nach unten legen.
+## Stacked Deck
+n Gezinkter Stapel
+l0 Hausregeln
+t0 Zahle 1 Mana: Sieh dir die obersten 3 Karten deines Decks an und lege sie in beliebiger Reihenfolge zurück.
+l1 Eine rutscht darunter
+t1 Zahle stattdessen 3 Mana: Schicke danach die neue oberste Karte deines Decks in den Friedhof.
+## House Dealer
+n Croupier des Hauses
+l0 Die Wette des Hauses
+t0 Wenn diese Karte beschworen wird: Decke die oberste Karte deines Decks auf. Ist sie ein Monster, erhält diese Karte dauerhaft 600 ATK.
+l1 Frischer Kartenschuh
+t1 Zahle 2 Mana: Beide Spieler legen ihre oberste Deckkarte nach unten.
+## Quarry Collapse
+n Steinbrucheinsturz
+l0 Bringt ihn zum Einsturz
+t0 Zahle 2 Mana: Mille 3 Karten von deinem Deck.
+l1 Aus dem Schutt geborgen
+t1 Zahle stattdessen 4 Mana: Lege danach 1 gemilltes Monster auf die Spitze deines Friedhofs.
+## Baron of the Undertow
+n Baron der Unterströmung
+l0 In die Tiefe gezogen
+t0 Wenn diese Karte beschworen wird: Dein Gegner millt 2 Karten.
+l1 Die tiefe Strömung
+t1 Zahle stattdessen 2 Mana: Dein Gegner millt 4 Karten.
+## Mudlark Scavenger
+n Schlickwühler
+l0 Wate hinein
+t0 Wenn diese Karte beschworen wird: Mille 2 Karten von deinem Deck.
+l1 Ordne den Spülsaum
+t1 Zahle 2 Mana: Lege 1 Monster in deinem Friedhof auf dessen Spitze.
+## Mirror Usher
+n Spiegelplatzanweiser
+l0 Persönlich zum Platz
+t0 Wenn diese Karte beschworen wird: Sie kopiert bis zum Ende des Zuges ATK und DEF eines Monsters, das dein Gegner kontrolliert.
+l1 Eine längere Vorstellung
+t1 Zahle stattdessen 2 Mana: Die Kopie hält bis zum Beginn deines nächsten Zuges.
+## Borrowed Face
+n Geliehenes Gesicht
+l0 Spiegelduell
+t0 Zahle 2 Mana, wenn ein Monster deines Gegners angreift: 1 deiner Monster kopiert bis zum Ende des Zuges ATK und DEF des Angreifers.
+l1 Das bessere Ebenbild
+t1 Zahle stattdessen 3 Mana: Es erhält zusätzlich bis zum Ende des Zuges 100 ATK.
+## Prompter's Box
+n Souffleurkasten
+l0 Zurück hinter den Vorhang
+t0 Einmal pro Zug: Lege 1 offenes Monster, das du kontrollierst, verdeckt.
+l1 Stichwort zum Auftritt
+t1 Zahle 2 Mana: Decke 1 deiner verdeckten Monster auf — seine Flip-Effekte werden ausgelöst.
+## Lowball Feint
+n Tiefstapler-Finte
+l0 Untertreib es
+t0 Zahle 1 Mana, wenn ein Monster deines Gegners angreift: Es verliert bis zum Ende des Zuges 800 ATK.
+l1 Aus dem Tritt
+t1 Zahle stattdessen 2 Mana: Überlebt es den Kampf, wechselt es am Ende des Zuges in Verteidigungsposition.
+## Shield Wall Doctrine
+n Schildwall-Doktrin
+l0 Igelformation
+t0 Zahle 2 Mana: Alle deine Monster wechseln in Verteidigungsposition und erhalten bis zu deinem nächsten Zug 300 DEF.
+## Overextension
+n Verausgabt
+l0 Zu weit vorgewagt
+t0 Hat dein Gegner in diesem Zug angegriffen, zahle 2 Mana: 1 Monster, das er kontrolliert, wechselt in Verteidigungsposition und kann bis zum Ende seines nächsten Zuges die Position nicht wechseln.
+l1 Die ganze Linie knickt ein
+t1 Zahle stattdessen 4 Mana: ALLE Monster deines Gegners wechseln in Verteidigungsposition.
+## Prepaid Ritual
+n Vorausbezahltes Ritual
+l0 Im Voraus beglichen
+t0 Dein nächster Zauber in diesem Zug kostet 2 Mana weniger.
+l1 Vorausbezahlter Tribut
+t1 Zahle stattdessen 1 Mana: Deine nächste Normalbeschwörung in diesem Zug braucht 1 Tribut weniger.
+## Closing Time
+n Sperrstunde
+l0 Die Hintertür
+t0 Zahle 2 Mana: Die Beschwörungs-Sperrstunde gilt diesen Zug nicht für dich — die Karte bleibt liegen.
+## Reliquary: The Open Casket
+n Reliquiar: Der offene Sarg
+s Du hast 8+ Karten in deinem Friedhof — zahle 2 Mana.
+l0 Richte die Aufbahrung
+t0 Einmal pro Zug: Lege eine beliebige Karte in deinem Friedhof auf dessen Spitze.
+l1 Einer erhebt sich daraus
+t1 Zahle 3 Mana: Beschwöre 1 Monster aus deinem Friedhof in Verteidigungsposition.
+## Reliquary: The Eleventh Hour
+n Reliquiar: Die elfte Stunde
+s Du kontrollierst 2+ Karten mit Stundenmarken — zahle 3 Mana.
+l0 Schlag zur Stunde
+t0 Zahle 2 Mana: Einer deiner Countdowns schlägt sofort.
+## Reliquary: The Hall of Echoes
+n Reliquiar: Die Halle der Echos
+s Du hast 3+ verbannte Karten — zahle 2 Mana.
+l0 Speist die Halle
+t0 Einmal pro Zug: Verbanne 1 Karte aus deinem Friedhof.
+l1 Ein Echo kehrt zurück
+t1 Zahle 3 Mana: Lege 1 deiner verbannten Karten zurück in deinen Friedhof.
+## Reliquary: The Last Bow
+n Reliquiar: Die letzte Verbeugung
+s Du kontrollierst 2+ verdeckte Monster — zahle 2 Mana.
+l0 Abgang zur Bühnenseite
+t0 Einmal pro Zug: Lege 1 offenes Monster, das du kontrollierst, verdeckt.
+l1 Die große Enthüllung
+t1 Zahle 2 Mana: Decke ALLE deine verdeckten Monster auf.

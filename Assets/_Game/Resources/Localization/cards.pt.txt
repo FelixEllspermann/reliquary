@@ -4740,3 +4740,297 @@ n Chimekeep, o Carrilhão da Meia-Noite
 s Você controla 2+ cartas com Marcadores de Hora — pague 3 de Mana.
 l0 Meia-noite, tudo de uma vez
 t0 Quando esta carta for Invocada: TODAS as suas cartas com Marcadores de Hora soam imediatamente (todos os marcadores vão a 0; seus efeitos disparam na ordem do campo).
+## Crossroads Peddler
+n Mascate da Encruzilhada
+l0 É pegar ou largar
+t0 Quando esta carta é invocada, seu oponente deve escolher: você compra 1 carta — ou esta carta ganha 700 ATK e Perfuração até o fim do turno.
+l1 A venda agressiva
+t1 Em vez disso, pague 2 Mana — o acordo cresce: você compra 2 — ou 700 ATK, Perfuração e um ataque adicional.
+## The Long Detour
+n O Longo Desvio
+l0 Rota panorâmica
+t0 Se o seu oponente atacou neste turno, pague 2 Mana: devolva 1 monstro que ele controla para a mão do dono.
+## Final Offer
+n Oferta Final
+l0 Assine ou sofra
+t0 Pague 5 Mana. Escolha um monstro do oponente — ele decide: ele o manda para o Cemitério, ou você assume o controle até o fim do turno.
+l1 Cláusula sem piedade
+t1 Em vez disso, pague 7 Mana — os dois caminhos endurecem: ele o bane, ou você assume o controle E ele ganha 400 ATK neste turno.
+## Cellar Lurker
+n Espreitador do Porão
+l0 Da escuridão
+t0 Quando um monstro do oponente declara um ataque: você pode Invocar esta carta por Invocação-Especial da sua mão em Posição de Defesa.
+l1 Engolido pelo porão
+t1 Pague 2 Mana quando um monstro do oponente atacar: o ataque é cancelado.
+## Widow's Ledger
+n O Livro da Viúva
+l0 Cada nome é anotado
+t0 Sempre que um dos seus monstros for destruído durante o turno do oponente: o monstro que o destruiu perde permanentemente 400 ATK.
+l1 O livro se fecha
+t1 Se um dos seus monstros foi destruído neste turno, pague 3 Mana e mande este Artefato para o Cemitério: Invoque por Invocação-Especial 1 monstro do seu Cemitério em Posição de Defesa.
+## Trapdoor Stage
+n Palco com Alçapão
+l0 Pelo chão
+t0 Uma vez por turno, quando o oponente Invocar um monstro por Invocação-Especial: vire-o com a face para baixo.
+l1 Trancado lá embaixo
+t1 Em vez disso, pague 2 Mana: ele também não pode mudar de posição até o seu próximo turno.
+## Second Guess
+n Segunda Opinião
+l0 Ele não — ele!
+t0 Pague 2 Mana quando um monstro do oponente atacar: mude o alvo do ataque para outro dos seus monstros.
+l1 Preparado para isso
+t1 Em vez disso, pague 4 Mana: o novo alvo também ganha 500 DEF até o fim do turno.
+## Doomsday Bell
+n Sino do Juízo Final
+l0 O sino dobra
+t0 Quando a contagem regressiva desta carta chegar a zero: mande todos os monstros do campo para o Cemitério e depois esta carta também.
+l1 Tocar adiantado
+t1 Pague 1 Mana: remova 1 Marca de Hora desta carta.
+## Sand in the Gears
+n Areia nas Engrenagens
+l0 Atrasar a hora
+t0 Pague 1 Mana: coloque 2 Marcas de Hora em qualquer carta do campo.
+l1 Apressar a hora
+t1 Em vez disso, pague 2 Mana: remova 1 Marca de Hora de qualquer carta do campo.
+## Borrowed Hourglass
+n Ampulheta Emprestada
+l0 Quando a areia se esgota
+t0 Quando a contagem regressiva desta carta chegar a zero: compre 2 cartas e esta carta ganha permanentemente 800 ATK. Ela permanece no campo.
+l1 Virar de novo
+t1 Pague 2 Mana: retorne a contagem regressiva desta carta para 2 Marcas de Hora.
+## Gravedigger's Dispute
+n Disputa de Coveiros
+l0 De quem é esta cova
+t0 Pague 2 Mana: troque as cartas do topo dos dois Cemitérios.
+l1 Desenterrar na hora
+t1 Em vez disso, pague 4 Mana: depois Invoque por Invocação-Especial o novo monstro do topo do seu Cemitério em Posição de Defesa.
+## Seance Circle
+n Círculo de Sessão Espírita
+l0 Deem as mãos
+t0 Pague 4 Mana: Invoque por Invocação-Especial um monstro do Cemitério do oponente para o seu lado do campo. Quando ele deixar o campo, bana-o.
+l1 Espírito inquieto
+t1 Em vez disso, pague 6 Mana: neste turno, ele pode atacar duas vezes.
+## Unfinished Business
+n Assuntos Inacabados
+l0 Ainda não acabou
+t0 Enquanto esta carta estiver no seu Cemitério: coloque-a no topo do seu Cemitério.
+l1 Pôr tudo em ordem
+t1 Quando esta carta for invocada: você pode colocar 1 monstro do seu Cemitério no topo dele.
+l2 Um último recado
+t2 Enquanto esta carta for a carta do topo do seu Cemitério, pague 2 Mana: Invoque-a por Invocação-Especial em Posição de Defesa.
+## Masquerade Ball
+n Baile de Máscaras
+l0 Máscaras postas
+t0 Pague 5 Mana: vire todos os monstros com a face para cima do campo com a face para baixo.
+l1 O anfitrião fica sem máscara
+t1 Em vez disso, pague 7 Mana: … exceto 1 monstro que você controla.
+## Eminent Domain
+n Desapropriação
+l0 Obras públicas
+t0 Pague 1 Mana e sele uma das suas Zonas de Monstro vazias: compre 2 cartas.
+l1 Tomada de terras
+t1 Em vez disso, pague 2 Mana: sele uma Zona de Monstro vazia do OPONENTE e compre 1 carta.
+## The Unwelcome Guest
+n O Hóspede Indesejado
+l0 Cobrar o aluguel
+t0 Enquanto esta carta ocupar o campo do oponente, pague 2 Mana: você ganha 2 Mana neste turno.
+## Card Sharp
+n Trapaceiro de Cartas
+l0 Anuncie a carta
+t0 Quando esta carta for invocada: declare Monstro, Magia ou Artefato e revele a carta do topo do seu Baralho. Se acertar, adicione-a à sua mão; senão ela vai para o Cemitério.
+l1 Dobre a aposta
+t1 Em vez disso, pague 2 Mana: revele as 2 cartas do topo — acertos para a mão, o resto para o Cemitério.
+## Peephole
+n Olho Mágico
+l0 Um olhar através da parede
+t0 Pague 1 Mana: olhe a mão do oponente — você pode embaralhar 1 Magia dela no Baralho dele.
+l1 A fresta mais larga
+t1 Em vez disso, pague 2 Mana: você pode embaralhar 1 carta de QUALQUER tipo.
+## Insurance Policy
+n Apólice de Seguro
+l0 Cobertura pessoal
+t0 Pague 2 Mana: escolha um monstro que você controla — na próxima vez neste Duelo em que ele seria destruído, ele não é.
+## Silver-Tongued Creditor
+n Credor de Língua de Prata
+l0 Condições facilitadas
+t0 Quando esta carta for invocada: ganhe 2 Mana neste turno. Na sua próxima Standby Phase: pague 2 Mana ou mande esta carta para o Cemitério.
+l1 O empréstimo maior
+t1 Em vez disso, pague 2 Mana: ganhe 3 Mana — e a dívida passa a ser 3.
+## Tomorrow's Bread
+n O Pão de Amanhã
+l0 Coma hoje
+t0 Pague 1 Mana: compre 2 cartas. Pule sua próxima compra normal.
+l1 Banqueteie hoje
+t1 Em vez disso, pague 3 Mana: compre 3 cartas. Pule sua próxima compra normal.
+## Scrap Broker
+n Ferro-Velho
+l0 Tudo tem seu preço
+t0 Uma vez por turno, mande outro Artefato que você controla para o Cemitério: compre 1 carta.
+l1 Recompra
+t1 Pague 2 Mana: adicione 1 Artefato do seu Cemitério à sua mão.
+## Posthumous Prodigy
+n Prodígio Póstumo
+l0 Escolha o ídolo
+t0 Pague 2 Mana: coloque qualquer monstro do seu Cemitério no topo dele.
+## Pirouette Duelist
+n Duelista da Pirueta
+l0 Conduza a dança
+t0 Uma vez por turno: mude a posição de batalha de qualquer monstro do campo.
+l1 Segure a pose
+t1 Em vez disso, pague 1 Mana: ele também não pode mudar de posição até o seu próximo turno.
+## Turnabout Waltz
+n Valsa da Reviravolta
+l0 Todos giram
+t0 Pague 2 Mana: todos os monstros com a face para cima do campo mudam de posição de batalha.
+l1 Metade do salão
+t1 Em vez disso, pague 4 Mana: só um lado da sua escolha gira.
+## Stage Fright
+n Medo de Palco
+l0 Paralisado sob os holofotes
+t0 Pague 2 Mana quando o oponente invocar um monstro: ele passa para Posição de Defesa e não pode mudar de posição neste turno.
+l1 Em cena
+t1 Pague 2 Mana: vire 1 dos seus monstros com a face para baixo para cima; ele ganha 400 ATK até o fim do turno.
+## Exile Broker
+n Corretor do Exílio
+l0 Depósito nas sombras
+t0 Quando esta carta for invocada: bana com a face para baixo a carta do topo do seu Baralho.
+l1 Chame um para casa
+t1 Pague 2 Mana: devolva 1 das suas cartas banidas ao seu Cemitério.
+## Letters from Exile
+n Cartas do Exílio
+l0 Palavras que fortalecem
+t0 Pague 1 Mana e bana 2 cartas do seu Cemitério: 1 dos seus monstros ganha 600 ATK até o fim do turno.
+l1 Cartas a caminho de casa
+t1 Em vez disso, pague 2 Mana: as cartas banidas retornam ao seu Cemitério na sua próxima Standby Phase.
+## The Unforgotten
+n O Não Esquecido
+l0 Rumo à longa escuridão
+t0 Bana esta carta da sua mão: bana também com a face para baixo a carta do topo do seu Baralho.
+l1 O longo caminho de volta
+t1 Se você tiver 3+ cartas banidas, pague 2 Mana: Invoque esta carta por Invocação-Especial do banimento.
+l2 Levo um comigo
+t2 Pague 2 Mana: bana a carta do topo do Cemitério do oponente.
+## Straw Army
+n Exército de Palha
+l0 Levantem o campo
+t0 Pague 2 Mana: Invoque por Invocação-Especial 2 Fichas de Espantalho (Nível 1, 0/500) em Posição de Defesa.
+l1 Segurem a linha
+t1 Em vez disso, pague 4 Mana: 3 Fichas — e até o seu próximo turno, os monstros do oponente devem atacar Espantalhos se possível.
+## Puppet Parade
+n Desfile de Marionetes
+l0 O desfile continua
+t0 Uma vez por turno, quando um dos seus monstros for destruído: Invoque por Invocação-Especial 1 Ficha de Espantalho em Posição de Defesa.
+l1 Um rosto de verdade hoje
+t1 Pague 2 Mana: 1 dos seus monstros copia o ATK e a DEF de qualquer monstro do campo até o fim do turno.
+## Man of Straw
+n Homem de Palha
+l0 A palha se espalha
+t0 Quando esta carta for destruída: Invoque por Invocação-Especial 1 Ficha de Espantalho em Posição de Defesa.
+l1 Feito para queimar
+t1 Pague 1 Mana e mande esta carta para o Cemitério: Invoque por Invocação-Especial 1 Ficha de Espantalho em Posição de Defesa.
+## Cartomancer's Eye
+n Olho do Cartomante
+l0 Leia seu destino
+t0 Uma vez por turno: olhe a carta do topo do seu Baralho — você pode colocá-la no fundo.
+l1 Leia o dele
+t1 Em vez disso, pague 1 Mana: olhe a carta do topo do Baralho do OPONENTE — você pode colocá-la no fundo.
+## Stacked Deck
+n Baralho Marcado
+l0 Regras da casa
+t0 Pague 1 Mana: olhe as 3 cartas do topo do seu Baralho e devolva-as em qualquer ordem.
+l1 Uma desliza para baixo
+t1 Em vez disso, pague 3 Mana: depois mande a nova carta do topo do seu Baralho para o Cemitério.
+## House Dealer
+n Crupiê da Casa
+l0 A aposta da casa
+t0 Quando esta carta for invocada: revele a carta do topo do seu Baralho. Se for um Monstro, esta carta ganha permanentemente 600 ATK.
+l1 Sapata nova
+t1 Pague 2 Mana: ambos os jogadores colocam a carta do topo do Baralho no fundo.
+## Quarry Collapse
+n Desabamento da Pedreira
+l0 Derrubem tudo
+t0 Pague 2 Mana: mande 3 cartas do topo do seu Baralho para o Cemitério.
+l1 Resgatar dos escombros
+t1 Em vez disso, pague 4 Mana: depois coloque 1 monstro mandado assim no topo do seu Cemitério.
+## Baron of the Undertow
+n Barão da Ressaca
+l0 Arrastado para o fundo
+t0 Quando esta carta for invocada: o oponente manda 2 cartas do topo do Baralho para o Cemitério.
+l1 A correnteza profunda
+t1 Em vez disso, pague 2 Mana: o oponente manda 4.
+## Mudlark Scavenger
+n Catador do Lodaçal
+l0 Entre na água
+t0 Quando esta carta for invocada: mande 2 cartas do topo do seu Baralho para o Cemitério.
+l1 Organize a beira
+t1 Pague 2 Mana: coloque 1 monstro do seu Cemitério no topo dele.
+## Mirror Usher
+n Lanterninha do Espelho
+l0 Acompanhado pessoalmente
+t0 Quando esta carta for invocada: ela copia o ATK e a DEF de um monstro que o oponente controla até o fim do turno.
+l1 Uma sessão mais longa
+t1 Em vez disso, pague 2 Mana: a cópia dura até o começo do seu próximo turno.
+## Borrowed Face
+n Rosto Emprestado
+l0 Duelo de espelhos
+t0 Pague 2 Mana quando um monstro do oponente atacar: 1 dos seus monstros copia o ATK e a DEF do atacante até o fim do turno.
+l1 A melhor semelhança
+t1 Em vez disso, pague 3 Mana: ele também ganha 100 ATK até o fim do turno.
+## Prompter's Box
+n Caixa do Ponto
+l0 De volta atrás da cortina
+t0 Uma vez por turno: coloque 1 monstro com a face para cima que você controla com a face para baixo.
+l1 Deixa para a entrada
+t1 Pague 2 Mana: vire 1 dos seus monstros com a face para baixo para cima — seus efeitos de Virada são ativados.
+## Lowball Feint
+n Finta por Baixo
+l0 Subestime-o
+t0 Pague 1 Mana quando um monstro do oponente atacar: ele perde 800 ATK até o fim do turno.
+l1 Cambaleando
+t1 Em vez disso, pague 2 Mana: se ele sobreviver à batalha, passa para Posição de Defesa no fim do turno.
+## Shield Wall Doctrine
+n Doutrina da Muralha de Escudos
+l0 Formação de ouriço
+t0 Pague 2 Mana: todos os seus monstros passam para Posição de Defesa e ganham 300 DEF até o seu próximo turno.
+## Overextension
+n Superextensão
+l0 Pego adiantado
+t0 Se o oponente atacou neste turno, pague 2 Mana: 1 monstro que ele controla passa para Posição de Defesa e não pode mudar de posição até o fim do próximo turno dele.
+l1 A linha inteira cede
+t1 Em vez disso, pague 4 Mana: TODOS os monstros do oponente passam para Posição de Defesa.
+## Prepaid Ritual
+n Ritual Pré-Pago
+l0 Pago adiantado
+t0 Sua próxima Magia neste turno custa 2 Mana a menos.
+l1 Tributo pré-pago
+t1 Em vez disso, pague 1 Mana: sua próxima Invocação-Normal neste turno precisa de 1 Tributo a menos.
+## Closing Time
+n Hora de Fechar
+l0 A porta dos fundos
+t0 Pague 2 Mana: o toque de recolher de invocações não se aplica a você neste turno — a carta permanece no campo.
+## Reliquary: The Open Casket
+n Relicário: O Caixão Aberto
+s Você tem 8+ cartas no seu Cemitério — pague 2 Mana.
+l0 Prepare o velório
+t0 Uma vez por turno: mova qualquer carta do seu Cemitério para o topo dele.
+l1 Um se ergue dele
+t1 Pague 3 Mana: Invoque por Invocação-Especial 1 monstro do seu Cemitério em Posição de Defesa.
+## Reliquary: The Eleventh Hour
+n Relicário: A Décima Primeira Hora
+s Você controla 2+ cartas com Marcas de Hora — pague 3 Mana.
+l0 Soe a hora
+t0 Pague 2 Mana: uma das suas contagens regressivas soa imediatamente.
+## Reliquary: The Hall of Echoes
+n Relicário: O Salão dos Ecos
+s Você tem 3+ cartas banidas — pague 2 Mana.
+l0 Alimente o salão
+t0 Uma vez por turno: bana 1 carta do seu Cemitério.
+l1 Um eco retorna
+t1 Pague 3 Mana: devolva 1 das suas cartas banidas ao seu Cemitério.
+## Reliquary: The Last Bow
+n Relicário: A Última Reverência
+s Você controla 2+ monstros com a face para baixo — pague 2 Mana.
+l0 Saída pela coxia
+t0 Uma vez por turno: coloque 1 monstro com a face para cima que você controla com a face para baixo.
+l1 A grande revelação
+t1 Pague 2 Mana: vire TODOS os seus monstros com a face para baixo para cima.

@@ -808,15 +808,57 @@ namespace Rouge.Tcg
                 if (CheckWin()) yield break;
             }
 
+            // Letters from Exile (Welle 3): die Verbannten von gestern kehren ins Grab zurück
+            if (player.TimedBanishReturns.Count > 0)
+            {
+                foreach (var letter in new List<CardInstance>(player.TimedBanishReturns))
+                {
+                    player.TimedBanishReturns.Remove(letter);
+                    if (letter.Zone != ZoneType.Banished) continue;
+                    letter.Owner.Banished.Remove(letter);
+                    letter.Zone = ZoneType.Graveyard;
+                    letter.Owner.Graveyard.Add(letter);
+                    Log($"{letter.Name} finds its way home from exile — back to the Graveyard.");
+                }
+                BoardChanged();
+            }
+
+            // Silver-Tongued Creditor (Welle 3): die Rechnung wird fällig — zahlen oder zahlen
+            foreach (var debtor in new List<CardInstance>(player.Monsters()))
+            {
+                if (debtor.PendingManaDebt <= 0 || debtor.Zone != ZoneType.MonsterZone) continue;
+                int owed = debtor.PendingManaDebt;
+                debtor.PendingManaDebt = 0;
+                if (player.Mana >= owed)
+                {
+                    player.Mana -= owed;
+                    Log($"{player.Name} repays the {owed} Mana owed on {debtor.Name} ({player.Mana} Mana left).");
+                }
+                else
+                {
+                    Log($"{player.Name} cannot cover the debt — {debtor.Name} is repossessed.");
+                    if (presenter != null) yield return presenter.ShowCardSentToGrave(debtor);
+                    MoveToGraveyard(debtor);
+                    BoardChanged();
+                    yield return FirePendingGraveTriggers();
+                    if (CheckWin()) yield break;
+                }
+            }
+
             // The Appointed Hour: die Uhr tickt in jeder eigenen Standby Phase.
             // Beim letzten Marker feuert der CountdownZero-Effekt der Karte —
             // ihren Abgang trägt sie selbst als letzte Aktion im Effekt.
+            // Reliquary The Eleventh Hour (Welle 3): die Uhren des Besitzers ticken doppelt.
+            bool tickTwice = false;
+            foreach (var haste in player.FieldCards())
+                if (!haste.FaceDown && !haste.EffectsNegated && haste.Definition != null
+                    && haste.Definition.passiveCountdownsTickTwice) { tickTwice = true; break; }
             foreach (var clock in new List<CardInstance>(player.FieldCards()))
             {
                 if (clock.CountdownMarkers <= 0 || clock.FaceDown || !IsOnField(clock)) continue;
-                clock.CountdownMarkers--;
+                clock.CountdownMarkers = Math.Max(0, clock.CountdownMarkers - (tickTwice ? 2 : 1));
                 Log(clock.CountdownMarkers > 0
-                    ? $"{clock.Name}: an Hour Counter is removed ({clock.CountdownMarkers} left)."
+                    ? $"{clock.Name}: {(tickTwice ? "two Hour Counters are" : "an Hour Counter is")} removed ({clock.CountdownMarkers} left)."
                     : $"{clock.Name}: the last Hour Counter is removed — the appointed hour has come!");
                 BoardChanged();
                 if (clock.CountdownMarkers <= 0)
@@ -916,6 +958,12 @@ namespace Rouge.Tcg
                 // --- 5 Archetypes ---
                 player.DealsThisTurn = 0;
                 player.CountdownStruckThisTurn = false;
+                // --- Welle 3 ---
+                player.NextSpellDiscount = 0;          // Prepaid Ritual gilt nur "diesen Zug"
+                player.NextSummonDiscount = 0;
+                player.SummonsThisTurn = 0;            // Closing Time zählt je Zug neu
+                player.SummonCapLiftedThisTurn = false;
+                player.DetourDealResolvedThisTurn = false;
                 // Siegel räumen: befristete nach Ablauf, quellgebundene mit toter Quelle
                 player.ZoneSeals.RemoveAll(seal =>
                     (seal.UntilTurn >= 0 && TurnNumber > seal.UntilTurn)
@@ -947,6 +995,14 @@ namespace Rouge.Tcg
                         card.BonusAttacks = 0;
                         card.PositionChangesUsed = 0;
                         card.SummonedThisTurn = false;
+                        // --- Welle 3: Zustände, die "bis zu deinem nächsten Zug" halten ---
+                        if (card.PositionLockTurns > 0) card.PositionLockTurns--;   // Stage Fright/Overextension
+                        card.DefBuffUntilOwnersNextTurn = 0;                        // Shield Wall: Igel löst sich
+                        if (card.CopyStatsUntilOwnersNextTurn)                      // Mirror Usher: Maske fällt
+                        {
+                            card.CopyStatsUntilOwnersNextTurn = false;
+                            card.StatsOverriddenThisTurn = false;
+                        }
                     }
                 }
             }
@@ -962,6 +1018,17 @@ namespace Rouge.Tcg
 
                 foreach (var card in player.FieldCards())
                 {
+                    // Welle 3 (Lowball Feint): der Erschöpfte legt sich am Zugende flach
+                    if (card.SwitchToDefenseAtEot)
+                    {
+                        card.SwitchToDefenseAtEot = false;
+                        if (card.Zone == ZoneType.MonsterZone && !card.FaceDown
+                            && card.Position == BattlePosition.Attack)
+                        {
+                            card.Position = BattlePosition.Defense;
+                            Log($"{card.Name} slumps into Defense Position — the feint took its toll.");
+                        }
+                    }
                     card.TempAtkBonus = 0;
                     card.TempDefBonus = 0;
                     card.EffectsNegated = false;
@@ -972,7 +1039,8 @@ namespace Rouge.Tcg
                     card.ImmuneToOpponentThisTurn = false;
                     card.MustBeAttackedThisTurn = false;
                     card.StatsSwappedThisTurn = false;
-                    card.StatsOverriddenThisTurn = false;
+                    // Mirror Usher (Welle 3): die verlängerte Maske übersteht das Zugende
+                    if (!card.CopyStatsUntilOwnersNextTurn) card.StatsOverriddenThisTurn = false;
                     card.TempLevelThisTurn = 0;          // Demoted for Cause
                     card.AttacksWithDefThisTurn = false; // Lead With the Shield
                     card.DecreeExemptFor = null;         // Bylaw Loophole

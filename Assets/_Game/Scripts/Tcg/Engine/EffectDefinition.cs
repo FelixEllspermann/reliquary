@@ -235,6 +235,11 @@ namespace Rouge.Tcg
                  "ihren Nullschlag hatte (Chime In)")]
         public bool requireStruckThisTurn;
 
+        [Header("Welle 3: 50 Generics")]
+        [Tooltip("Nur aktivierbar mit mindestens so vielen Karten in der EIGENEN Verbannung " +
+                 "(0 = keine Bedingung; The Unforgotten: 3)")]
+        public int minOwnBanishedCards;
+
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();
     }

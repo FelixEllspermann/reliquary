@@ -552,3 +552,12 @@ Death Counters on this card: {0}. It gains one each End Phase — at its limit, 
 Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	其控制者在自己的每个准备阶段支付{0}魔力——否则这张卡被破坏。
 Also active: {0}.	同时生效：{0}。
 Special Summoned	特殊召唤
+you have {0}+ banished cards	你有{0}张以上被除外的卡
+When its Countdown strikes zero, this card stays on the field.	倒计时归零时，此卡留在场上。
+This card gains {0} DEF while it is being attacked.	此卡被攻击时获得{0}守备力。
+Cards your opponent mills are banished instead.	对手从牌库送入墓地的卡改为被除外。
+This card cannot be banished.	此卡不能被除外。
+Each player can Summon at most {0} monster(s) per turn.	每名玩家每回合最多只能召唤{0}只怪兽。
+During your Standby Phase, your Countdowns tick twice.	在你的准备阶段，你的倒计时走两格。
+Your face-down monsters cannot be destroyed by card effects.	你的背面表示怪兽不会被卡片效果破坏。
+When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	对手每回合宣言首次攻击时须选择：将其牌库顶的卡送入墓地，否则攻击被取消。

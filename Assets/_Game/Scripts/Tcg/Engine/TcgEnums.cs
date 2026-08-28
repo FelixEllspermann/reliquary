@@ -71,7 +71,10 @@ namespace Rouge.Tcg
         OnMovedSelf,            // DIESE Karte ist in eine andere Zone gezogen (Left Hand of the Hangman)
 
         // --- Road to 1000 (September 2026) ---
-        CountdownZero           // der letzte Countdown-Marker dieser Karte wurde entfernt (The Appointed Hour)
+        CountdownZero,          // der letzte Countdown-Marker dieser Karte wurde entfernt (The Appointed Hour)
+
+        // --- Welle 3: 50 Generics (September 2026) — NUR ANHÄNGEN ---
+        BanishedIgnition        // aus der EIGENEN Verbannung in der Main Phase aktivierbar (The Unforgotten)
     }
 
     public enum EffectActionType
@@ -284,7 +287,37 @@ namespace Rouge.Tcg
         DebuffAllEnemyAtkEot,           // alle offenen gegnerischen Monster verlieren amount ATK bis Zugende
         ExemptFromDecree,               // Bylaw Loophole: das Ziel-Dekret wirkt bis Zugende nicht auf den Aktivierenden
         TickCountdownTarget,            // Chimekeep: amount Countdown-Marker vom ZIEL entfernen (eigene Karte); bei 0 feuert dessen Nullschlag
-        StrikeAllOwnCountdowns          // Chimekeep-Carillon: ALLE eigenen Countdown-Karten schlagen sofort (Marker auf 0, Effekte feuern)
+        StrikeAllOwnCountdowns,         // Chimekeep-Carillon: ALLE eigenen Countdown-Karten schlagen sofort (Marker auf 0, Effekte feuern)
+
+        // --- Welle 3: 50 Generics (September 2026) — NUR ANHÄNGEN ---
+        RedirectAttackToOwnMonster,     // Second Guess: der laufende Angriff zielt auf ein ANDERES eigenes Monster des Verteidigers
+        AddCountdownTarget,             // Sand in the Gears: amount Countdown-Marker AUF eine Countdown-Karte legen (beide Seiten)
+        ResetCountdownSelf,             // Borrowed Hourglass: Countdown der Quellkarte wieder auf amount Marker stellen
+        SwapGraveTops,                  // Gravedigger's Dispute: die obersten Karten beider Friedhöfe tauschen (samt Besitz)
+        MoveSelfToGraveTop,             // Unfinished Business: die Quellkarte im eigenen Friedhof nach oben legen
+        MoveGraveTargetToTop,           // Open Casket/Mudlark: Ziel-Karte im eigenen Friedhof nach oben legen
+        SetAllMonstersFaceDown,         // Masquerade Ball: alle offenen Monster verdeckt legen; mit AllyMonster-Ziel bleibt das gewählte offen
+        BanishOwnDeckTop,               // Exile Broker: oberste amount Karten des eigenen Decks verdeckt verbannen
+        BanishGraveTargetsReturnLater,  // Letters from Exile Infused: Ziele aus dem Grab verbannen; naechste eigene Standby zurueck ins Grab
+        RevealTopBuffSelfIfMonster,     // House Dealer: oberste Deckkarte aufdecken — Monster: Quellkarte +amount ATK dauerhaft
+        BothTopToBottom,                // House Dealer Infused: BEIDE Spieler legen ihre oberste Deckkarte nach unten
+        ToggleTargetPosition,           // Pirouette Duelist: Kampfposition eines beliebigen Monsters wechseln
+        ToggleAllPositions,             // Turnabout Waltz: amount 0 = ALLE offenen Monster wechseln die Position; 1 = eine Seite nach Wahl
+        LockTargetPositionTurns,        // Stage Fright/Overextension: Ziel kann amount Zuege lang die Position nicht wechseln
+        ShieldTargetNextDestruction,    // Insurance Policy Infused: das naechste Mal, dass das Ziel zerstoert wuerde, passiert nichts
+        ManaDebtNextStandby,            // Silver-Tongued Creditor: naechste eigene Standby amount Mana zahlen oder die Quellkarte geht ins Grab
+        DiscountNextSpellThisTurn,      // Prepaid Ritual: naechster eigener Zauber diesen Zug kostet amount weniger
+        DiscountNextSummonThisTurn,     // Prepaid Ritual Infused: naechste eigene Beschwoerung diesen Zug kostet amount weniger
+        LiftOwnSummonCapThisTurn,       // Closing Time Infused: das Beschwoerungs-Limit gilt diese Runde nicht fuer den Aktivierenden
+        SummonScarecrowTokens,          // Straw Army: amount Scarecrow-Tokens (0/500, DEF) auf eigene freie Zonen; targetCount 1 = Dauer-Taunt
+        SpecialSummonSelfFromBanished,  // The Unforgotten: die Quellkarte aus der eigenen Verbannung beschwoeren
+        SendTargetToGraveyard,          // Scrap Broker: Zielkarte vom Feld in den Friedhof SCHICKEN (kein Zerstoeren)
+        SwitchAllOwnToDefenseBuffDef,   // Shield Wall Infused: alle eigenen Monster in Verteidigung; +amount DEF bis zum naechsten eigenen Zug
+        FlipAllOwnFaceUp,               // The Last Bow Infused: alle eigenen verdeckten Monster aufdecken
+        DebuffDestroyerAtkPermanent,    // Widow's Ledger: das Monster, das den Ausloeser zerstoert hat, verliert dauerhaft amount ATK
+        SwitchTargetToDefenseAtEot,     // Lowball Feint Infused: das Ziel wechselt am Zugende in Verteidigung
+        DebuffTargetAtkEot,             // Lowball Feint: Ziel verliert amount ATK bis Zugende
+        SendAllMonstersToGraveyard      // Doomsday Bell: JEDES Monster beider Felder in den Friedhof (kein Zerstoeren)
     }
 
     /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>
@@ -316,7 +349,10 @@ namespace Rouge.Tcg
 
         // --- 5 Archetypes ---
         OwnMonstersOnOpponentField, // eigene (OriginalOwner) Monster auf dem GEGNERFELD (Giftwyrm)
-        AllArtifactsOnField     // Artefakte auf BEIDEN Feldern (Bylaw Enforcer)
+        AllArtifactsOnField,    // Artefakte auf BEIDEN Feldern (Bylaw Enforcer)
+
+        // --- Welle 3: 50 Generics ---
+        OwnBanishedCards        // ALLE Karten in der eigenen Verbannung (Exile Broker)
     }
 
     public enum TargetKind
@@ -378,7 +414,11 @@ namespace Rouge.Tcg
 
         // --- 5 Archetypes (September 2026) ---
         AllyCountdownCard,         // eigene Feldkarte mit Countdown-Markern (Chimekeep)
-        AnyArtifactOnField         // Artefakt in einer Artefakt-Zone BEIDER Seiten (Bylaw Ombudsman/Loophole)
+        AnyArtifactOnField,        // Artefakt in einer Artefakt-Zone BEIDER Seiten (Bylaw Ombudsman/Loophole)
+
+        // --- Welle 3: 50 Generics ---
+        AnyCountdownCard,          // Feldkarte mit Countdown-Markern auf EINER der beiden Seiten (Sand in the Gears)
+        HandSpellOpponent          // Zauberkarte in der gegnerischen Hand, aufgedeckt gewählt (Peephole)
     }
 
     /// <summary>

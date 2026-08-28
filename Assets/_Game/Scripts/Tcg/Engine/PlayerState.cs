@@ -119,6 +119,20 @@ namespace Rouge.Tcg
         /// <summary>Chimekeep: hatte eine Karte dieses Spielers diesen Zug ihren Nullschlag?</summary>
         public bool CountdownStruckThisTurn;
 
+        // --- Welle 3: 50 Generics ---
+        /// <summary>Prepaid Ritual: der nächste eigene Zauber diesen Zug kostet so viel weniger.</summary>
+        public int NextSpellDiscount;
+        /// <summary>Prepaid Ritual Infused: die nächste eigene Beschwörung diesen Zug kostet so viel weniger Mana.</summary>
+        public int NextSummonDiscount;
+        /// <summary>Closing Time: Beschwörungen (Normal + Spezial) dieses Spielers in diesem Zug — fürs Dekret-Limit.</summary>
+        public int SummonsThisTurn;
+        /// <summary>Closing Time Infused: das Beschwörungs-Limit gilt diese Runde nicht für diesen Spieler.</summary>
+        public bool SummonCapLiftedThisTurn;
+        /// <summary>The Long Detour: hat der Gegner dieses Feld-Besitzers diesen Zug schon seinen Umweg-Deal bezahlt?</summary>
+        public bool DetourDealResolvedThisTurn;
+        /// <summary>Letters from Exile Infused: diese verbannten Karten kehren in der nächsten eigenen Standby ins Grab zurück.</summary>
+        public readonly List<CardInstance> TimedBanishReturns = new List<CardInstance>();
+
         public readonly List<CardInstance> DeckPile = new List<CardInstance>();
         public readonly List<CardInstance> ExtraDeckPile = new List<CardInstance>();
         public readonly List<CardInstance> Hand = new List<CardInstance>();

@@ -550,3 +550,12 @@ Death Counters on this card: {0}. It gains one each End Phase — at its limit, 
 Its controller pays {0} Mana in each of their Standby Phases — or this card is destroyed.	Su controlador paga {0} de Maná en cada una de sus Standby Phases — o esta carta se destruye.
 Also active: {0}.	También activos: {0}.
 Special Summoned	Invocada de modo Especial
+you have {0}+ banished cards	tienes {0}+ cartas desterradas
+When its Countdown strikes zero, this card stays on the field.	Cuando su cuenta atrás llegue a cero, esta carta permanece en el campo.
+This card gains {0} DEF while it is being attacked.	Esta carta gana {0} DEF mientras es atacada.
+Cards your opponent mills are banished instead.	Las cartas que tu adversario muele son desterradas en su lugar.
+This card cannot be banished.	Esta carta no puede ser desterrada.
+Each player can Summon at most {0} monster(s) per turn.	Cada jugador puede Invocar como máximo {0} monstruo(s) por turno.
+During your Standby Phase, your Countdowns tick twice.	Durante tu Standby Phase, tus cuentas atrás avanzan el doble.
+Your face-down monsters cannot be destroyed by card effects.	Tus monstruos boca abajo no pueden ser destruidos por efectos de cartas.
+When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	Cuando tu adversario declara su primer ataque del turno, elige: manda la carta superior de su Mazo al Cementerio, o el ataque se cancela.

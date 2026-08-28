@@ -80,6 +80,22 @@ namespace Rouge.Tcg
         /// (MoveToGraveyard setzt den Owner zurück — der Trigger braucht die Vorgeschichte.)</summary>
         public bool WasDisloyalWhenLeftField;
 
+        // --- Welle 3: 50 Generics ---
+        /// <summary>Stage Fright/Overextension: Position gesperrt, bis der KONTROLLEUR so viele eigene Züge begonnen hat.</summary>
+        public int PositionLockTurns;
+        /// <summary>Insurance Policy: so viele kommende Zerstörungen verpuffen (Einmal-Schilde).</summary>
+        public int DestructionShields;
+        /// <summary>Silver-Tongued Creditor: in der nächsten Standby des Kontrolleurs so viel Mana zahlen, sonst Friedhof (0 = keine Schuld).</summary>
+        public int PendingManaDebt;
+        /// <summary>Lowball Feint Infused: wechselt in der End Phase in Verteidigungsposition.</summary>
+        public bool SwitchToDefenseAtEot;
+        /// <summary>Straw Army Infused: Dauer-Spott — Angriffe müssen hierhin, solange die Karte offen liegt.</summary>
+        public bool PersistentTaunt;
+        /// <summary>Mirror Usher Infused: die kopierten Werte (StatsOverridden) halten bis zum Beginn des nächsten eigenen Zuges.</summary>
+        public bool CopyStatsUntilOwnersNextTurn;
+        /// <summary>Shield Wall Infused: DEF-Bonus bis zum Beginn des nächsten eigenen Zuges des Kontrolleurs.</summary>
+        public int DefBuffUntilOwnersNextTurn;
+
         /// <summary>
         /// Das Level, mit dem diese Karte gerade spielt: temporäre Setzung schlägt
         /// den permanenten Bonus, beides klemmt auf 1..3. Alle Level-Prüfungen der
@@ -152,12 +168,16 @@ namespace Rouge.Tcg
         {
             get
             {
-                int value = BaseDef + PermanentDefBonus + TempDefBonus + AuraBonus(atk: false) + PerCountBonus(atk: false);
+                int value = BaseDef + PermanentDefBonus + TempDefBonus + DefBuffUntilOwnersNextTurn
+                    + AuraBonus(atk: false) + PerCountBonus(atk: false);
                 foreach (var artifact in EquippedArtifacts)
                     if (artifact.ArtifactData != null) value += artifact.ArtifactData.defBonus;
                 return value < 0 ? 0 : value;
             }
         }
+
+        /// <summary>Zählt der Countdown OwnBanishedCards? Zentrale Zählbasis der Welle 3.</summary>
+        public static int BanishedCount(PlayerState player) => player != null ? player.Banished.Count : 0;
 
         /// <summary>
         /// Selbst-Skalierung (Weight of Evidence): dauerhaft +N ATK/DEF pro gezählter
@@ -251,6 +271,7 @@ namespace Rouge.Tcg
                         foreach (var a in player.Opponent.ArtifactZones) if (a != null) artifactsBoth++;
                     return artifactsBoth;
                 }
+                case EffectCountKind.OwnBanishedCards: return player.Banished.Count;
                 default: return 0;
             }
         }

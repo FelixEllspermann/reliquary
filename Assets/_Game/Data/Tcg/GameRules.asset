@@ -23,6 +23,7 @@ MonoBehaviour:
   tributesForLevel2: 1
   tributesForLevel3: 2
   illusionToken: {fileID: 11400000, guid: e099286fb70f081409d671ac94ec6f9e, type: 2}
+  scarecrowToken: {fileID: 11400000, guid: 88d7a0c65028ef74ca54f0e7890817d2, type: 2}
   deckMinSize: 40
   deckMaxSize: 80
   handLimit: 8

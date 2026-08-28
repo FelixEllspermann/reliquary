@@ -44,6 +44,10 @@ namespace Rouge.Tcg
                  "Der Export überspringt Unity-Objekt-Referenzen automatisch.")]
         public MonsterCardData illusionToken;
 
+        [Tooltip("Definition des Scarecrow-Tokens (Straw Army) — EIGENER Token-Typ: zählt " +
+                 "nirgends als Illusion-Token und füttert keine Illusion-Synergien.")]
+        public MonsterCardData scarecrowToken;
+
         [Header("Deck & Hand")]
         [Tooltip("Minimale Deckgröße")]
         public int deckMinSize = 40;
