@@ -1,4 +1,42 @@
 ────────────────────────────────
+0.1.7 · THE ROAD TO 1000
+────────────────────────────────
+
+ONE HUNDRED NEW CARDS
+  · The vault now counts 900 — fifty generics that sharpen every
+    deck, and fifty cards raising five new archetypes
+  · Press NEW CARDS below to leaf through every arrival, art and
+    all
+
+FIVE NEW ARCHETYPES
+  · GIFTWYRM delivers its monsters onto YOUR side of the field —
+    poisoned gifts that serve their old master while you feed them
+  · SPLITHOOF strikes bargains: every deal hands your opponent a
+    choice, and both roads were priced by the dealer
+  · WAYLAY lies in wait and leaps out of your hand mid-battle —
+    attacks can be cancelled, tolls collected, ambushes sprung
+  · BYLAW passes decrees that bind BOTH players — attack taxes,
+    draw disclosures, monster caps — then writes itself the
+    loophole
+  · CHIMEKEEP winds countdown clocks on every summon; strike them
+    early, ring the carillon, and the hour arrives ahead of time
+
+NEW TRICKS FOR EVERY DECK
+  · Coronation pieces that win the duel outright if the regalia
+    holds the field
+  · Zone seals that brick up monster zones, grave-top effects,
+    level games, defenders that attack with DEF, wagers on the top
+    of the deck
+
+A FINER TABLE
+  · Artifacts can now be sent to the graveyard by hand — click one
+    you control and let it go
+  · Hover a status badge on the inspected card and it explains
+    itself — in all nine languages
+  · Menu buttons no longer lose their captions to an unlucky
+    opening animation
+
+────────────────────────────────
 0.1.6c · THE VAULT OPENS ITS DOORS
 ────────────────────────────────
 
