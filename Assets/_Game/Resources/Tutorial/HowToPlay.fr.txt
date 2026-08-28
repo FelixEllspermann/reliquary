@@ -42,7 +42,9 @@ Les ARTEFACTS restent sur la table. Certains s'équipent à un monstre (bonus AT
 
 [img:artifacts|Deux Artefacts de Joueur dans les Zones Artefact. Ils restent jusqu'à ce que quelque chose les retire.]
 
-Les RELIQUES vivent dans votre Extra Deck. Chacune indique ses propres conditions d'Invocation sur la carte — un Cimetière bien garni, trois monstres, un héros aux abois — plus un prix en mana et parfois des sacrifices. Remplissez les conditions et vous pourrez l'appeler durant votre Main Phase.
+Les RELIQUAIRES vivent dans votre Extra Deck. Chacun inscrit sur la carte son état de table — un Cimetière garni, trois monstres, un héros aux abois — plus un prix en Mana. Remplissez les conditions et appelez-le en Main Phase ; pas de tributs ni de sacrifices, la table elle-même est la clé.
+
+Les INCARNATES sont les cartes rouges de l'Extra Deck. Chacun a son propre Niveau. SACRIFIEZ des monstres dont les Niveaux totalisent EXACTEMENT ce Niveau — dont au moins un VESSEL imprimé — et l'Incarnate entre gratuitement ; il retourne à l'Extra Deck lors de votre prochaine Standby Phase. Ou liez-le DÉFINITIVEMENT par son RITE : un Sort rouge qui nomme un sacrifice et l'appelle pour de bon.
 
 LA CARTE JOUEUR est votre héros. Elle fixe vos Points de Vie de départ et vous donne un effet de héros : 2 mana, une fois par tour, toujours disponible. Les héros ne peuvent être ni attaqués ni détruits.
 
@@ -55,7 +57,9 @@ INVOCATION NORMALE — une fois par tour, depuis votre main, durant votre Main P
 
 INVOCATION SPÉCIALE — toute invocation qui n'est pas une Invocation Normale. Ce sont les cartes qui la font : « Invoquez Spécialement 1 monstre depuis votre Cimetière », « vous pouvez Invoquer Spécialement cette carte depuis votre main si… ». Les Invocations Spéciales ne consomment pas votre Invocation Normale et il n'y a pas de limite par tour — sauf que chaque nom de carte ne peut utiliser sa propre condition « vous pouvez Invoquer Spécialement cette carte » qu'une fois par tour.
 
-INVOCATION DE RELIQUE — depuis l'Extra Deck, durant votre Main Phase, une fois ses conditions imprimées remplies. Payez le mana, offrez les sacrifices exigés (certaines les prennent sur le Terrain adverse), choisissez une zone.
+INVOCATION DE RELIQUAIRE — depuis l'Extra Deck, en Main Phase, dès que son état de table imprimé est rempli. Payez le Mana, choisissez une zone — la table est le seul prix.
+
+INVOCATION D'INCARNATE — l'Offrande : choisissez des sacrifices dont les Niveaux totalisent exactement le Niveau de l'Incarnate (dont un Vessel). Sans Mana, jusqu'à votre prochaine Standby Phase. La version RITE est un Sort rouge : sacrifiez le monstre nommé, et l'Incarnate nommé reste pour de bon.
 
 Chaque monstre invoqué reçoit une zone et une position de combat. La Position d'ATTAQUE face visible se bat avec son ATK ; la Position de DÉFENSE tient avec sa DEF et n'inflige aucun dommage. Les monstres face cachée sont toujours en Défense ; personne ne sait ce qu'ils sont avant qu'ils soient retournés.
 

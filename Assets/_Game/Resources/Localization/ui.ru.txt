@@ -560,3 +560,8 @@ Each player can Summon at most {0} monster(s) per turn.	Каждый игрок 
 During your Standby Phase, your Countdowns tick twice.	В вашу Стендбай-фазу ваши отсчёты идут дважды.
 Your face-down monsters cannot be destroyed by card effects.	Ваши закрытые монстры не могут быть уничтожены эффектами карт.
 When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	Когда противник объявляет первую атаку за ход, он выбирает: отправить верхнюю карту своей Колоды на Кладбище — или атака отменяется.
+INCARNATE	ИНКАРНАТ
+RITE	ОБРЯД
+VESSEL	СОСУД
+VESSEL — may serve as the vessel of an Incarnate offering.	СОСУД — может служить сосудом Подношения Инкарнату.
+OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	ПОДНОШЕНИЕ: пожертвуйте монстров, чьи уровни в сумме точно равны {0} — хотя бы один должен быть СОСУДОМ. Призванный так, он вернётся в Экстра-колоду в вашу следующую Стендбай-фазу.

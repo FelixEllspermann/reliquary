@@ -21,6 +21,7 @@ Coût (Cost) :: Ce que vous payez pour activer : mana, une défausse, un sacrifi
 Compteur (Counter) :: Un marqueur placé sur une carte par un effet. Les Compteurs de Mort s'affichent comme un crâne avec un nombre ; la carte explique ce qui arrive quand ils s'accumulent.
 Couplé (Coupled) :: Un effet INFUSED qui améliore l'effet au-dessus de lui (« À la place, payez 2 mana : … »). Par tour, vous utilisez soit la version simple, soit la version couplée, jamais les deux.
 Créer (Craft) :: Transformer de la poussière en une carte qui vous manque. Désenchanter une copie en trop rend de la poussière.
+Deal :: Une offre à laquelle votre adversaire doit répondre : il choisit l'option A ou B et la carte se résout en conséquence. Les deux options favorisent toujours l'offrant.
 Compteur de Mort (Death counter) :: Un compteur qui s'accumule durant les End Phases ; quand une carte atteint sa limite imprimée, elle est détruite. Affiché comme un crâne avec un nombre.
 Deck (Deck) :: Votre pile principale, de 40 à 80 cartes, au plus 3 copies d'une carte. Mélangé, face cachée ; vous piochez du dessus.
 Position de Défense (Defense Position) :: Un monstre couché sur le côté. Il ne peut pas attaquer, tient avec sa DEF et n'inflige aucun dommage de combat. Les monstres face cachée sont toujours en Défense.
@@ -34,7 +35,7 @@ Poussière (Dust) :: Ce que devient une carte désenchantée. Dépensez-la pour 
 Dommages d'effet (Effect damage) :: Dommages infligés par un effet de carte plutôt que par combat (« infligez 800 dommages »). Certaines cartes empêchent l'un et pas l'autre.
 End Phase (End Phase) :: La dernière phase d'un tour : effets « durant votre End Phase », limite de main, puis le tour passe.
 Équiper (Equip) :: Attacher un Artefact de Monstre à un monstre — le porteur. Si le porteur quitte le Terrain, l'Artefact va au Cimetière.
-Extra Deck (Extra Deck) :: Vos Reliques, jusqu'à 20. Jamais piochées ; chacune attend ses conditions d'Invocation imprimées.
+Extra Deck :: Vos Reliquaires et Incarnates, jusqu'à 20. Jamais piochés ; les Reliquaires attendent leur état de table, les Incarnates une Offrande ou leur Rite.
 Face cachée (Face-down) :: Une carte jouée cachée. Les monstres face cachée sont toujours en Position de Défense ; les Sorts face cachée sont Posés et peuvent être activés plus tard.
 Terrain (Field) :: La table : chaque zone des deux duellistes. « Sur le Terrain » signifie face visible ou face cachée dans une Zone Monstre ou Artefact.
 Artefact de Terrain (Field Artifact) :: Un Artefact qui siège dans une Zone Artefact et affecte toute la table, pas un seul monstre.
@@ -45,8 +46,10 @@ Cimetière (Graveyard) :: Où vont les cartes détruites, utilisées et défauss
 Main (Hand) :: Les cartes que vous tenez. Limite 8 à la fin de votre tour.
 Limite de main (Hand limit) :: 8. Si vous en tenez plus durant votre End Phase, vous défaussez jusqu'à 8.
 Héros (Hero) :: Voir Carte Joueur.
+Hour Counter :: La marque du compte à rebours. Une carte à Marques d'Heure en perd une à chaque Standby Phase de son contrôleur ; quand la dernière tombe, son effet de compte à rebours se déclenche.
 Effet d'ignition (Ignition effect) :: Un effet que vous activez vous-même durant votre Main Phase (« Une fois par tour : … »).
 Jeton Illusion (Illusion Token) :: Un Jeton 0/0 que l'archétype « Gaslight » place sur le Terrain adverse. Il occupe une zone et peut être détruit pour en tirer profit.
+Incarnate :: Un monstre rouge de l'Extra Deck avec son propre Niveau. Appelé temporairement par une Offrande — des sacrifices dont les Niveaux totalisent EXACTEMENT son Niveau, dont au moins un Vessel — ou définitivement par son Rite.
 INFUSED (Infused) :: Un effet plus fort sur une carte, qui coûte toujours du mana. Soit Couplé (amélioration de l'effet au-dessus), soit Indépendant (sa propre capacité).
 Niveau (Level) :: 1, 2 ou 3, affiché dans le blason. Un Niveau 2 demande 1 Sacrifice pour une Invocation Normale, un Niveau 3 en demande 2. Les Reliques sont de Niveau 3.
 Points de Vie (Life Points) :: Votre santé. 8000 au départ (certains héros diffèrent). À 0, le duel est perdu.
@@ -59,6 +62,7 @@ Artefact de Monstre (Monster Artifact) :: Un Artefact qui s'équipe à un seul m
 Type de monstre (Monster Type) :: Dragon, Humain, Bête, Mécha, Ange, Démon, Mythe, Animal… Certains effets y prêtent attention.
 Annuler (Negate) :: Désactiver les effets d'une carte. Une carte annulée porte un badge violet NEG jusqu'à la fin du tour ; si elle essaie d'agir, rien ne se passe.
 Invocation Normale (Normal Summon) :: Jouer un monstre depuis votre main durant votre Main Phase, une fois par tour. Gratuit pour le Niveau 1 ; 1 Sacrifice pour le Niveau 2, 2 pour le Niveau 3. Poser un monstre face cachée la consomme aussi.
+Offering :: L'Invocation temporaire d'Incarnate : sacrifiez des monstres dont les Niveaux totalisent exactement le Niveau de l'Incarnate (au moins un Vessel). Sans Mana. L'Incarnate retourne à l'Extra Deck lors de votre prochaine Standby Phase.
 Une fois par tour (Once per turn) :: L'effet peut être utilisé une fois chaque tour. Certains sont une fois par tour par nom de carte — trois copies partagent un seul usage.
 Propriétaire (Owner) :: Du deck de qui une carte provient. Les cartes retournent dans la main, le Deck ou le Cimetière de leur propriétaire même après un changement de contrôle.
 Passif (Passive) :: Un effet simplement actif tant que la carte est face visible sur le Terrain. Pas d'activation, pas de coût, pas de maillon de chaîne.
@@ -74,6 +78,7 @@ Invocation de Relique (Reliquary Summon) :: Appeler une Relique depuis l'Extra D
 Fenêtre de réponse (Response window) :: Le moment après une activation, une invocation ou une déclaration d'attaque où l'autre duelliste peut répondre avec un effet Rapide. Répondre démarre une chaîne.
 Renvoyer dans la main (Return to hand) :: Déplacer une carte du Terrain vers la main de son propriétaire. Voir Renvoi.
 Révéler (Reveal) :: Montrer une carte aux deux joueurs — une carte cherchée, une carte au hasard de la main, le dessus d'un Deck.
+Rite :: Un sous-type de Sort en rouge Incarnate. Chaque Rite nomme un monstre à sacrifier et un Incarnate à appeler — invoqué ainsi, l'Incarnate reste DÉFINITIVEMENT.
 Chercher (Search) :: Prendre une carte précise de votre Deck dans votre main. Le Deck est mélangé ensuite.
 Saison (Season) :: Un mois de jeu classé. Une nouvelle saison commence chaque mois.
 Poser (Set) :: Jouer une carte face cachée : un monstre en Position de Défense (consomme votre Invocation Normale), ou un Sort à activer plus tard.
@@ -112,3 +117,5 @@ Limite d'attaques (Attack limit) :: Tant que « Le Code du Duelliste » est face
 Dommages de combat doublés (Double battle damage) :: Tant que « Gros Enjeux » est actif, tous les dommages de combat infligés à l'un ou l'autre duelliste sont doublés — durant la Battle Phase adverse comme la vôtre.
 Déclarer un type (Declare a type) :: Vous nommez Monstre, Sort ou Artefact avant de révéler des cartes ; celles qui correspondent sont gardées, le reste va au Cimetière.
 Attaque directe (réduite de moitié) (Direct attack (halved)) :: Un monstre qui peut attaquer directement en passant outre les monstres adverses, mais n'inflige ainsi que la moitié de son ATK.
+Vessel :: Un monstre marqué comme réceptacle — imprimé sur la carte. Toute Offrande exige au moins un Vessel parmi ses sacrifices. Souvent de bas Niveau ; deux par archétype.
+Zone Seal :: Une Zone Monstre murée : tant que le sceau tient, rien ne peut y être invoqué, posé ou déplacé. Affichée en briques ; certains sceaux expirent, d'autres dépendent de leur carte source.

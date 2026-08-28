@@ -90,7 +90,8 @@ namespace Rouge.Tcg
         SummonReliquary,        // Reliquary aus dem Extra Deck beschwören (Bedingungen + Kosten)
 
         // Nur anhängen: das Kind geht als Name über die Wire (alte Clients fallen auf EndTurn zurück).
-        SacrificeArtifact       // eigenes Artefakt freiwillig in den Friedhof schicken (Klick aufs Artefakt)
+        SacrificeArtifact,      // eigenes Artefakt freiwillig in den Friedhof schicken (Klick aufs Artefakt)
+        SummonIncarnate         // Incarnate per Opfergabe (exakte Level-Summe, min. 1 Vessel) — temporär
     }
 
     public class MainActionOption
@@ -98,6 +99,10 @@ namespace Rouge.Tcg
         public MainActionKind Kind;
         public CardInstance Card;
         public int EffectIndex = -1;
+
+        /// <summary>SummonIncarnate: die zur Option gehörende Opfergabe (Engine-seitig; geht nicht über die Wire).</summary>
+        public readonly System.Collections.Generic.List<CardInstance> OfferingCards
+            = new System.Collections.Generic.List<CardInstance>();
 
         /// <summary>Wunsch-Zone (z.B. per Drag & Drop gewählt); -1 = erste freie Zone.</summary>
         public int PreferredZoneIndex = -1;

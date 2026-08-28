@@ -344,7 +344,7 @@ namespace Rouge.Tcg.UI
                 var da = catalog.FindByName(a);
                 var db = catalog.FindByName(b);
                 int ka = da != null ? (int)da.Kind : 9, kb = db != null ? (int)db.Kind : 9;
-                bool ra = da is ReliquaryCardData, rb = db is ReliquaryCardData;
+                bool ra = da != null && da.IsExtraDeckCard, rb = db != null && db.IsExtraDeckCard;
                 if (ra != rb) return ra ? 1 : -1;              // Extra Deck ans Ende
                 if (ka != kb) return ka.CompareTo(kb);
                 int la = da is MonsterCardData ma ? ma.level : 0;

@@ -243,6 +243,27 @@ namespace Rouge.Tcg
                         Label = $"Reliquary Summon {reliquary.Name} ({data.summonManaCost} Mana)"
                     });
                 }
+
+                // Incarnates: jede gültige Opfergabe (exakte Level-Summe, min. 1 Vessel)
+                // wird als eigene Option angeboten — der Spieler wählt die Kombination.
+                var incarnatesOffered = new HashSet<CardDefinition>();
+                foreach (var incarnate in player.ExtraDeckPile.ToArray())
+                {
+                    var data = incarnate.Definition as IncarnateCardData;
+                    if (data == null || incarnatesOffered.Contains(data)) continue;
+                    incarnatesOffered.Add(data);
+                    foreach (var offering in IncarnateOfferings(player, data))
+                    {
+                        var option = new MainActionOption
+                        {
+                            Kind = MainActionKind.SummonIncarnate,
+                            Card = incarnate,
+                            Label = $"Incarnate {incarnate.Name} — offer {string.Join(" + ", offering.Select(m => $"{m.Name} (Lv {m.EffectiveLevel})"))}"
+                        };
+                        option.OfferingCards.AddRange(offering);
+                        request.Options.Add(option);
+                    }
+                }
             }
 
             foreach (var spell in player.SpellsOnField())
@@ -423,6 +444,9 @@ namespace Rouge.Tcg
                     break;
                 case MainActionKind.SummonReliquary:
                     yield return ExecuteReliquarySummon(player, option.Card, option.PreferredZoneIndex);
+                    break;
+                case MainActionKind.SummonIncarnate:
+                    yield return ExecuteSummonIncarnate(player, option.Card, option.OfferingCards);
                     break;
                 case MainActionKind.SacrificeArtifact:
                     // Freiwillige Entsorgung: schafft Platz in den Artefakt-Zonen.
@@ -716,14 +740,188 @@ namespace Rouge.Tcg
             yield return RunSummonEvents(monster);
         }
 
+        // ================== INCARNATES (SEPTEMBER 2026) ==================
+
         /// <summary>
-        /// Reliquary-Karten haben keine Hand: Wird eine auf die Hand zurückgegeben, kehrt sie
-        /// stattdessen ins Extra Deck zurück. Zerstörung und Verbannung laufen normal
-        /// (Friedhof bzw. Banishment). True, wenn die Karte umgeleitet wurde.
+        /// Opfergabe-Kombinationen für ein Incarnate: Teilmengen der eigenen Monster,
+        /// deren EffectiveLevel-Summe EXAKT dem Incarnate-Level entspricht und die
+        /// mindestens ein VESSEL enthalten. Unantastbare (cannot be Tributed) bleiben
+        /// außen vor. Begrenzung auf wenige Angebote hält das Menü lesbar.
+        /// </summary>
+        private List<List<CardInstance>> IncarnateOfferings(PlayerState player, IncarnateCardData data, int cap = 4)
+        {
+            var pool = player.Monsters().Where(m => !CannotBeTributed(m)).ToList();
+            var result = new List<List<CardInstance>>();
+            int n = pool.Count;
+            for (int mask = 1; mask < (1 << n) && result.Count < cap; mask++)
+            {
+                int sum = 0;
+                bool vessel = false;
+                var combo = new List<CardInstance>();
+                for (int i = 0; i < n; i++)
+                {
+                    if ((mask & (1 << i)) == 0) continue;
+                    var monster = pool[i];
+                    sum += monster.EffectiveLevel;
+                    if (sum > data.incarnateLevel) break;
+                    if (monster.MonsterData != null && monster.MonsterData.isVessel) vessel = true;
+                    combo.Add(monster);
+                }
+                if (sum == data.incarnateLevel && vessel) result.Add(combo);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Temporäre Incarnate-Beschwörung: die gewählte Opfergabe fällt (Tribut-Trigger
+        /// laufen), das Incarnate betritt das Feld und merkt sich den Rückkehr-Zug.
+        /// </summary>
+        private IEnumerator ExecuteSummonIncarnate(PlayerState player, CardInstance incarnate, List<CardInstance> offering)
+        {
+            if (incarnate.Zone != ZoneType.ExtraDeck || !(incarnate.Definition is IncarnateCardData)) yield break;
+            if (SummonCapReached(player))
+            {
+                Log($"{player.Name} has reached the summon curfew — {incarnate.Name} stays in the Extra Deck.");
+                yield break;
+            }
+
+            var positionRequest = new OptionRequest
+            {
+                Title = $"{incarnate.Name}: choose position",
+                Card = incarnate,
+                AllowCancel = true
+            };
+            positionRequest.Options.Add("Attack Position");
+            positionRequest.Options.Add("Defense Position");
+            yield return DecideRouted(player, positionRequest);
+            if (positionRequest.Result < 0) yield break;
+            var summonPosition = positionRequest.Result == 1 ? BattlePosition.Defense : BattlePosition.Attack;
+
+            Log($"{player.Name} makes an offering of {offering.Count} monster(s) — the Incarnate answers.");
+            foreach (var sacrifice in offering)
+            {
+                if (!IsOnField(sacrifice)) continue;   // ein früherer Trigger hat es schon geholt
+                Log($"{sacrifice.Name} is offered up.");
+                if (presenter != null) yield return presenter.ShowCardSentToGrave(sacrifice);
+                MoveToGraveyardWithEquips(sacrifice);
+                yield return FireTributeTriggers(sacrifice);
+                if (Result != DuelResult.None) yield break;
+            }
+            BoardChanged();
+            yield return FirePendingGraveTriggers();
+            if (Result != DuelResult.None) yield break;
+
+            int zoneIndex = FirstUnsealedFreeZone(player);
+            if (zoneIndex < 0) { Log("No free monster zone — the Incarnate stays in the Extra Deck."); yield break; }
+
+            player.ExtraDeckPile.Remove(incarnate);
+            player.MonsterZones[zoneIndex] = incarnate;
+            incarnate.Owner = player;
+            incarnate.Zone = ZoneType.MonsterZone;
+            incarnate.Position = summonPosition;
+            incarnate.FaceDown = false;
+            incarnate.SummonedThisTurn = true;
+            incarnate.WasSpecialSummoned = true;
+            incarnate.IncarnateReturnTurn = TurnNumber;   // Standby des nächsten eigenen Zuges: zurück
+            player.SummonsThisTurn++;                     // Closing Time zählt mit
+            ArmCountdown(incarnate);
+            Log($"{player.Name} calls forth {incarnate.Name} ({incarnate.CurrentAtk}/{incarnate.CurrentDef}) " +
+                $"in {(summonPosition == BattlePosition.Attack ? "Attack" : "Defense")} Position — flesh for a turn!");
+            BoardChanged();
+            if (presenter != null)
+            {
+                yield return presenter.ShowCardMoved(incarnate);
+                yield return presenter.ShowSummon(incarnate);
+            }
+            yield return RunSummonEvents(incarnate);
+        }
+
+        /// <summary>
+        /// Rite-Zauber (permanent): das benannte Monster wird geopfert, das benannte
+        /// Incarnate betritt das Feld OHNE Rückkehr-Uhr.
+        /// </summary>
+        private IEnumerator ResolveRiteSummon(PlayerState player, CardInstance rite)
+        {
+            var spell = rite.SpellData;
+            if (spell == null || !spell.isRite) yield break;
+            var sacrifices = player.Monsters()
+                .Where(m => !CannotBeTributed(m) && m.Name.Contains(spell.riteSacrificeName)).ToList();
+            var incarnate = player.ExtraDeckPile.FirstOrDefault(c =>
+                c.Definition is IncarnateCardData && c.Name.Contains(spell.riteIncarnateName));
+            if (sacrifices.Count == 0 || incarnate == null)
+            {
+                Log($"{rite.Name}: the rite finds no vessel or no Incarnate — nothing happens.");
+                yield break;
+            }
+            if (SummonCapReached(player))
+            {
+                Log($"{player.Name} has reached the summon curfew — the rite fizzles.");
+                yield break;
+            }
+
+            CardInstance sacrifice = sacrifices[0];
+            if (sacrifices.Count > 1)
+            {
+                var pick = new TargetRequest
+                {
+                    Title = $"{rite.Name}: choose the sacrifice",
+                    Kind = TargetKind.AllyMonster,
+                    Count = 1,
+                    AllowCancel = false
+                };
+                pick.Candidates.AddRange(sacrifices);
+                yield return DecideRouted(player, pick);
+                if (pick.Result.Count > 0 && sacrifices.Contains(pick.Result[0])) sacrifice = pick.Result[0];
+            }
+
+            Log($"{sacrifice.Name} is given to the rite.");
+            if (presenter != null) yield return presenter.ShowCardSentToGrave(sacrifice);
+            MoveToGraveyardWithEquips(sacrifice);
+            yield return FireTributeTriggers(sacrifice);
+            if (Result != DuelResult.None) yield break;
+            yield return FirePendingGraveTriggers();
+            if (Result != DuelResult.None) yield break;
+
+            int zoneIndex = FirstUnsealedFreeZone(player);
+            if (zoneIndex < 0) { Log("No free monster zone — the Incarnate stays in the Extra Deck."); yield break; }
+
+            player.ExtraDeckPile.Remove(incarnate);
+            player.MonsterZones[zoneIndex] = incarnate;
+            incarnate.Owner = player;
+            incarnate.Zone = ZoneType.MonsterZone;
+            incarnate.Position = BattlePosition.Attack;
+            incarnate.FaceDown = false;
+            incarnate.SummonedThisTurn = true;
+            incarnate.WasSpecialSummoned = true;
+            incarnate.IncarnateReturnTurn = -1;   // Riten binden das Fleisch dauerhaft
+            player.SummonsThisTurn++;
+            ArmCountdown(incarnate);
+            Log($"{rite.Name}: {incarnate.Name} ({incarnate.CurrentAtk}/{incarnate.CurrentDef}) is bound in flesh — permanently!");
+            BoardChanged();
+            if (presenter != null)
+            {
+                yield return presenter.ShowCardMoved(incarnate);
+                yield return presenter.ShowSummon(incarnate);
+            }
+            yield return RunSummonEvents(incarnate);
+        }
+
+        /// <summary>Ist die Rite aktivierbar? Benanntes Opfer auf dem Feld + benanntes Incarnate im Extra Deck.</summary>
+        private bool RiteReady(PlayerState player, SpellCardData spell)
+        {
+            if (string.IsNullOrEmpty(spell.riteSacrificeName) || string.IsNullOrEmpty(spell.riteIncarnateName)) return false;
+            if (!player.Monsters().Any(m => !CannotBeTributed(m) && m.Name.Contains(spell.riteSacrificeName))) return false;
+            return player.ExtraDeckPile.Any(c => c.Definition is IncarnateCardData && c.Name.Contains(spell.riteIncarnateName));
+        }
+
+        /// <summary>
+        /// Extra-Deck-Karten (Reliquaries UND Incarnates) haben keine Hand: Wird eine auf die
+        /// Hand zurückgegeben, kehrt sie stattdessen ins Extra Deck zurück. Zerstörung und
+        /// Verbannung laufen normal (Friedhof bzw. Banishment). True, wenn umgeleitet.
         /// </summary>
         private bool ReturnToExtraDeck(CardInstance card)
         {
-            if (!(card.Definition is ReliquaryCardData)) return false;
+            if (card.Definition == null || !card.Definition.IsExtraDeckCard) return false;
             DetachEquipsToGraveyard(card);
             RemoveFromCurrentZone(card);
             if (card.OriginalOwner != null) card.Owner = card.OriginalOwner;
@@ -734,6 +932,9 @@ namespace Rouge.Tcg
             card.TempAtkBonus = 0;
             card.TempDefBonus = 0;
             card.WasSpecialSummoned = false;
+            card.CountdownMarkers = 0;
+            card.IncarnateReturnTurn = -1;
+            ClearWave3Flags(card);
             card.Owner.ExtraDeckPile.Add(card);
             Log($"{card.Name} returns to the Extra Deck.");
             return true;
@@ -1501,6 +1702,9 @@ namespace Rouge.Tcg
                 if (effect.requireOpponentAttackedThisTurn && !player.Opponent.DeclaredAttackThisTurn) continue;
                 if (effect.requireStruckThisTurn && !player.CountdownStruckThisTurn) continue;
                 if (card.SpellData != null && effect.trigger == EffectTrigger.OnActivate && player.SpellsLockedThisTurn) continue;
+                // Incarnates: eine Rite braucht ihr benanntes Opfer auf dem Feld
+                // und ihr benanntes Incarnate im Extra Deck
+                if (card.SpellData != null && card.SpellData.isRite && !RiteReady(player, card.SpellData)) continue;
                 if (!CanPayLifeCosts(effect, player)) continue;
                 if (!ChainContextAllows(effect, player)) continue;
                 if (!MeetsConditions(effect, player)) continue;
@@ -4969,6 +5173,11 @@ namespace Rouge.Tcg
                         BoardChanged();
                         break;
 
+                    case EffectActionType.RiteSummonIncarnate:
+                        yield return ResolveRiteSummon(player, source);
+                        if (Result != DuelResult.None) yield break;
+                        break;
+
                     case EffectActionType.SendAllMonstersToGraveyard:
                     {
                         var tolled = new List<CardInstance>();
@@ -7032,6 +7241,7 @@ namespace Rouge.Tcg
             card.PersistentTaunt = false;
             card.CopyStatsUntilOwnersNextTurn = false;
             card.DefBuffUntilOwnersNextTurn = 0;
+            card.IncarnateReturnTurn = -1;   // Incarnates: die Rückkehr-Uhr endet mit dem Feld
         }
 
         private void MoveToGraveyardWithEquips(CardInstance monster)

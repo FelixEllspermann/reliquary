@@ -42,7 +42,9 @@ ARTEFAKTE bleiben auf dem Tisch. Manche werden an ein Monster angelegt (Bonus-AT
 
 [img:artifacts|Zwei Spieler-Artefakte in den Artefakt-Zonen. Sie bleiben, bis etwas sie entfernt.]
 
-RELIQUIEN wohnen in deinem Extra Deck. Jede nennt ihre eigenen Beschwörungsvoraussetzungen auf der Karte — ein gefüllter Friedhof, drei Monster, ein Held in Bedrängnis — plus einen Mana-Preis und manchmal Opfer. Erfülle die Bedingungen und du kannst sie in deiner Main Phase rufen.
+RELIQUIARE wohnen im Extra Deck. Jedes nennt auf der Karte seinen Board-State — ein gefüllter Friedhof, drei Monster, ein Held am Abgrund — plus einen Mana-Preis. Erfülle die Bedingungen und rufe es in deiner Main Phase; keine Tribute, keine Opfer, das Brett selbst ist der Schlüssel.
+
+INCARNATES sind die roten Karten des Extra Decks. Jedes hat ein eigenes Level. OPFERE Monster, deren Level EXAKT dieses Level ergeben — mindestens eines davon ein aufgedrucktes VESSEL — und das Incarnate betritt das Feld gratis; in deiner nächsten Standby Phase kehrt es ins Extra Deck zurück. Oder binde es PERMANENT mit seiner RITE: einem roten Zauber, der ein Opfer benennt und es für immer ruft.
 
 DIE SPIELERKARTE ist dein Held. Sie legt deine Start-Lebenspunkte fest und gibt dir einen Helden-Effekt: 2 Mana, einmal pro Zug, immer verfügbar. Helden können nicht angegriffen oder zerstört werden.
 
@@ -55,7 +57,9 @@ NORMALBESCHWÖRUNG — einmal pro Zug, aus deiner Hand, in deiner Main Phase. Ei
 
 SPEZIALBESCHWÖRUNG — jede Beschwörung, die keine Normalbeschwörung ist. Karten machen es: „Spezialbeschwöre 1 Monster aus deinem Friedhof“, „du kannst diese Karte aus deiner Hand spezialbeschwören, falls …“. Spezialbeschwörungen verbrauchen deine Normalbeschwörung nicht und es gibt kein Limit pro Zug — außer dass jeder Kartenname seine eigene „du kannst diese Karte spezialbeschwören“-Bedingung nur einmal pro Zug nutzen kann.
 
-RELIQUIEN-BESCHWÖRUNG — aus dem Extra Deck, in deiner Main Phase, sobald die aufgedruckten Voraussetzungen erfüllt sind. Zahle das Mana, bringe die verlangten Opfer (manche nehmen sie vom gegnerischen Spielfeld), wähle eine Zone.
+RELIQUARY SUMMON — aus dem Extra Deck, in deiner Main Phase, sobald der aufgedruckte Board-State erfüllt ist. Zahle das Mana, wähle eine Zone — das Brett ist der einzige Preis.
+
+INCARNATE SUMMON — die Opfergabe: Wähle Opfer, deren Level exakt das Incarnate-Level ergeben (eines muss ein Vessel sein). Kostenlos, aber bis zu deiner nächsten Standby Phase. Die RITE-Variante ist ein roter Zauber: Opfere das benannte Monster, und das benannte Incarnate bleibt für immer.
 
 Jedes beschworene Monster bekommt eine Zone und eine Kampfposition. Offene ANGRIFFSposition kämpft mit ATK; VERTEIDIGUNGSposition hält mit DEF und fügt keinen Schaden zu. Verdeckte Monster sind immer in Verteidigung; niemand weiß, was sie sind, bis sie aufgedeckt werden.
 

@@ -210,7 +210,8 @@ namespace Rouge.Tcg.UI
             {
                 case MonsterCardData monster:
                     string attrHex = ColorUtility.ToHtmlStringRGB(MonsterCardData.AttributeColor(monster.attribute));
-                    string reliquaryTag = definition is ReliquaryCardData ? "<color=#F1E7D2>RELIQUARY</color> · " : "";
+                    string reliquaryTag = definition is ReliquaryCardData ? "<color=#F1E7D2>RELIQUARY</color> · "
+                        : definition is IncarnateCardData ? "<color=#E86A5E>INCARNATE</color> · " : "";
                     return reliquaryTag + $"<color=#{attrHex}>{monster.attribute.ToString().ToUpperInvariant()}</color>" +
                            $" / {monster.monsterType.ToString().ToUpperInvariant()} · {monster.atk} / {monster.def} · {rarityWord}";
                 case SpellCardData spell:

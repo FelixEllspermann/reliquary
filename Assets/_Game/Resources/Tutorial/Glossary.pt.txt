@@ -21,6 +21,7 @@ Custo (Cost) :: O que você paga para ativar: mana, um descarte, um sacrifício,
 Contador (Counter) :: Um marcador que um efeito coloca sobre uma carta. Contadores da Morte aparecem como uma caveira com um número; a carta explica o que acontece quando eles se acumulam.
 Acoplado (Coupled) :: Um efeito Infused que melhora o efeito acima dele («Em vez disso, pague 2 de mana: …»). Por turno você usa ou a versão simples ou a Acoplada, nunca as duas.
 Fabricar (Craft) :: Transformar pó numa carta que lhe falta. Reduzir a pó uma cópia sobrando devolve pó.
+Deal :: Uma oferta que o oponente deve responder: ele escolhe a opção A ou B e a carta resolve de acordo. As duas opções sempre favorecem quem oferece.
 Contador da Morte (Death counter) :: Um contador que sobe durante as End Phases; quando uma carta alcança o limite impresso, é destruída. Aparece como uma caveira com um número.
 Deck :: Sua pilha principal, de 40 a 80 cartas, no máximo 3 cópias de uma carta. Embaralhado, virado para baixo; você compra do topo.
 Posição de Defesa (Defense Position) :: Um monstro deitado de lado. Ele não pode atacar, resiste com sua DEF e não causa dano de batalha. Monstros virados para baixo estão sempre em Defesa.
@@ -34,7 +35,7 @@ Pó (Dust) :: No que uma carta reduzida a pó se transforma. Gaste-o para fabric
 Dano de efeito (Effect damage) :: Dano causado por um efeito de carta e não por batalha («cause 800 de dano»). Algumas cartas previnem um e não o outro.
 End Phase :: A última fase de um turno: efeitos «durante a sua End Phase», limite de mão, e o turno passa.
 Equipar (Equip) :: Prender um Artefato de Monstro a um monstro — o portador. Se o portador sair do Campo, o Artefato vai ao Cemitério.
-Extra Deck :: Seus Relicários, até 20. Nunca são comprados; cada um espera pelos requisitos de Invocação impressos.
+Extra Deck :: Seus Relicários e Incarnates, até 20. Nunca comprados; Relicários esperam seu estado de mesa, Incarnates uma Oferenda ou seu Rito.
 Virada para baixo (Face-down) :: Uma carta jogada escondida. Monstros virados para baixo estão sempre em Posição de Defesa; Magias viradas para baixo estão baixadas e podem ser ativadas depois.
 Campo (Field) :: A mesa: todas as zonas de ambos os duelistas. «No Campo» significa virada para cima ou para baixo numa Zona de Monstros ou de Artefatos.
 Artefato de Campo (Field Artifact) :: Um Artefato que fica numa Zona de Artefatos e afeta a mesa inteira, não um monstro.
@@ -45,8 +46,10 @@ Cemitério (Graveyard) :: Para onde vão as cartas destruídas, usadas e descart
 Mão (Hand) :: As cartas que você segura. Limite de 8 no fim do seu turno.
 Limite de mão (Hand limit) :: 8. Se você tiver mais durante a sua End Phase, descarta até ficar com 8.
 Herói (Hero) :: Ver Carta de Jogador.
+Hour Counter :: A marca da contagem regressiva. Uma carta com Marcas de Hora perde uma em cada Standby Phase de seu controlador; quando a última cai, seu efeito de contagem dispara.
 Efeito de ignição (Ignition effect) :: Um efeito que você mesmo ativa na sua Main Phase («Uma vez por turno: …»).
 Ficha de Ilusão (Illusion Token) :: Uma Ficha 0/0 que o arquétipo Gaslight coloca no Campo do oponente. Ela ocupa uma zona e pode ser destruída para gerar vantagem.
+Incarnate :: Um monstro vermelho do Extra Deck com Nível próprio. Chamado temporariamente por uma Oferenda — sacrifícios cujos Níveis somam EXATAMENTE seu Nível, ao menos um Vessel — ou permanentemente por seu Rito.
 Infused :: Um efeito mais forte de uma carta que sempre custa mana. Ou Acoplado (melhoria do efeito acima) ou Independente (uma habilidade própria).
 Nível (Level) :: 1, 2 ou 3, mostrado no brasão. Um Nível 2 precisa de 1 sacrifício para a Invocação Normal, um Nível 3 precisa de 2. Relicários são de Nível 3.
 Pontos de Vida (Life Points) :: Sua saúde. 8000 no início (alguns heróis variam). A 0, o duelo está perdido.
@@ -59,6 +62,7 @@ Artefato de Monstro (Monster Artifact) :: Um Artefato que se equipa a um monstro
 Tipo de Monstro (Monster Type) :: Dragão, Humano, Fera, Mecha, Anjo, Demônio, Mito, Animal… Alguns efeitos se importam com ele.
 Negar (Negate) :: Desligar os efeitos de uma carta. Uma carta negada carrega um selo violeta NEG até o fim do turno; se tentar agir, nada acontece.
 Invocação Normal (Normal Summon) :: Jogar um monstro da sua mão na sua Main Phase, uma vez por turno. De graça para Nível 1; 1 sacrifício para Nível 2, 2 para Nível 3. Baixar um monstro virado para baixo também a consome.
+Offering :: A Invocação temporária de Incarnate: sacrifique monstros cujos Níveis somem exatamente o Nível do Incarnate (ao menos um Vessel). Sem Mana. O Incarnate volta ao Extra Deck na sua próxima Standby Phase.
 Uma vez por turno (Once per turn) :: O efeito pode ser usado uma vez a cada turno. Alguns são uma vez por turno e por nome de carta — três cópias compartilham um único uso.
 Dono (Owner) :: Do deck de quem uma carta veio. Cartas voltam à mão, ao Deck ou ao Cemitério do dono mesmo depois de mudanças de controle.
 Passivo (Passive) :: Um efeito que simplesmente está ligado enquanto a carta estiver virada para cima no Campo. Sem ativação, sem custo, sem elo de corrente.
@@ -74,6 +78,7 @@ Invocação de Relicário (Reliquary Summon) :: Chamar um Relicário do Extra De
 Janela de resposta (Response window) :: O momento após uma ativação, uma Invocação ou uma declaração de ataque em que o outro duelista pode responder com um efeito Rápido. Responder inicia uma corrente.
 Voltar à mão (Return to hand) :: Mover uma carta do Campo de volta à mão do dono. Ver Devolver.
 Revelar (Reveal) :: Mostrar uma carta a ambos os jogadores — uma carta buscada, uma carta aleatória da mão, o topo de um Deck.
+Rite :: Um subtipo de Magia no vermelho Incarnate. Cada Rito nomeia um monstro a sacrificar e um Incarnate a chamar — invocado assim, o Incarnate fica PERMANENTEMENTE.
 Buscar (Search) :: Pegar uma carta específica do seu Deck e levá-la à sua mão. O Deck é embaralhado depois.
 Temporada (Season) :: Um mês de jogo ranqueado. Uma nova temporada começa a cada mês.
 Baixar (Set) :: Jogar uma carta virada para baixo: um monstro em Posição de Defesa (consome sua Invocação Normal), ou uma Magia para ativar depois.
@@ -112,3 +117,5 @@ Limite de ataques (Attack limit) :: Enquanto «O Código do Duelista» estiver v
 Dano de batalha dobrado (Double battle damage) :: Enquanto «Apostas Altas» estiver valendo, todo dano de batalha a qualquer duelista é dobrado — a Battle Phase do oponente e a sua própria.
 Declarar um tipo (Declare a type) :: Você nomeia Monstro, Magia ou Artefato antes de revelar cartas; as que coincidirem ficam, o resto vai ao Cemitério.
 Ataque direto (pela metade) (Direct attack (halved)) :: Um monstro que pode atacar diretamente passando pelos monstros do oponente, mas desse jeito causa só metade do seu ATK.
+Vessel :: Um monstro marcado como receptáculo — impresso na carta. Toda Oferenda precisa de ao menos um Vessel entre os sacrifícios. Em geral de Nível baixo; dois por arquétipo.
+Zone Seal :: Uma Zona de Monstro emparedada: enquanto o selo durar, nada pode ser invocado, colocado ou movido para lá. Mostrada como tijolos; alguns selos expiram, outros dependem da carta de origem.

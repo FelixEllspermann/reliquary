@@ -275,8 +275,12 @@ namespace Rouge.Tcg.UI
                 : monster != null || playerCard != null ? MonsterInks
                 : spell != null ? SpellInks : ArtifactInks;
 
-            // Chassis + Badge + Crest
-            if (chassisImage != null) chassisImage.sprite = skin.ChassisFor(definition);
+            // Chassis + Badge + Crest (Incarnates: rotes Chassis bzw. Rot-Tint)
+            if (chassisImage != null)
+            {
+                chassisImage.sprite = skin.ChassisFor(definition);
+                chassisImage.color = skin.ChassisTintFor(definition);
+            }
             if (badgeImage != null)
                 badgeImage.sprite = isReliquary && skin.badgeReliquary != null ? skin.badgeReliquary
                     : monster != null || playerCard != null ? skin.badgeMonster
@@ -311,7 +315,10 @@ namespace Rouge.Tcg.UI
             }
 
             // Badge-Text + dynamische Breite, Meta-Strip füllt den Rest
-            string badge = Loc.T(isReliquary ? "RELIQUARY" : monster != null ? "MONSTER" : spell != null ? "SPELL" : artifact != null ? "ARTIFACT" : "PLAYER");
+            string badge = Loc.T(isReliquary ? "RELIQUARY"
+                : definition is IncarnateCardData ? "INCARNATE"
+                : spell != null && spell.isRite ? "RITE"
+                : monster != null ? "MONSTER" : spell != null ? "SPELL" : artifact != null ? "ARTIFACT" : "PLAYER");
             if (badgeText != null)
             {
                 badgeText.text = badge;
@@ -747,7 +754,11 @@ namespace Rouge.Tcg.UI
             if (cCrest != null) cCrest.gameObject.SetActive(!showBack && monster != null);
             if (showBack) return;
 
-            if (cChassis != null) cChassis.sprite = skin.CompactChassisFor(definition);
+            if (cChassis != null)
+            {
+                cChassis.sprite = skin.CompactChassisFor(definition);
+                cChassis.color = skin.ChassisTintFor(definition);
+            }
             if (cName != null)
             {
                 cName.text = Loc.CardName(definition.cardName);

@@ -63,7 +63,7 @@ namespace Rouge.Tcg.UI
             = new List<(Button, Image, TMP_Text, Func<bool>)>();
         private GameObject filterRow;   // nur in der Karten-Ansicht sichtbar
 
-        private static readonly string[] TypeNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY" };
+        private static readonly string[] TypeNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY", "INCARNATE" };
         private static readonly string[] RarityNames = { "C", "U", "R", "L" };
 
         private void Awake()
@@ -225,10 +225,11 @@ namespace Rouge.Tcg.UI
                 {
                     var def = catalog != null ? catalog.FindByName(card.n) : null;
                     if (def == null) return false;
-                    if (typeFilter == 1 && (!(def is MonsterCardData) || def is ReliquaryCardData)) return false;
+                    if (typeFilter == 1 && (!(def is MonsterCardData) || def.IsExtraDeckCard)) return false;
                     if (typeFilter == 2 && !(def is SpellCardData)) return false;
                     if (typeFilter == 3 && !(def is ArtifactCardData)) return false;
                     if (typeFilter == 4 && !(def is ReliquaryCardData)) return false;
+                    if (typeFilter == 5 && !(def is IncarnateCardData)) return false;
                     if (rarityFilter > 0 && (int)def.rarity != rarityFilter - 1) return false;
                     return true;
                 });
@@ -322,7 +323,9 @@ namespace Rouge.Tcg.UI
             var def = catalog != null ? catalog.FindByName(cardName) : null;
             if (def == null) return "";
             string kind = def is ReliquaryCardData ? "RELIQUARY"
+                : def is IncarnateCardData ? "INCARNATE"
                 : def is MonsterCardData ? "MONSTER"
+                : def is SpellCardData s && s.isRite ? "RITE"
                 : def is SpellCardData ? "SPELL"
                 : def is ArtifactCardData ? "ARTIFACT" : "CARD";
             return kind + " · " + def.rarity.ToString().ToUpperInvariant();

@@ -42,7 +42,9 @@ ARTIFACTS stay on the table. Some equip to a monster (bonus ATK / DEF and effect
 
 [img:artifacts|Two Player Artifacts in the Artifact Zones. They stay until something removes them.]
 
-RELIQUARIES live in your Extra Deck. Each one names its own Summon requirements on the card — a stocked Graveyard, three monsters, a hero on the ropes — plus a Mana price and sometimes tributes. Meet the terms and you can call it in your Main Phase.
+RELIQUARIES live in your Extra Deck. Each one names its own board state on the card — a stocked Graveyard, three monsters, a hero on the ropes — plus a Mana price. Meet the terms and you can call it in your Main Phase; no tributes, no sacrifices, the board itself is the key.
+
+INCARNATES are the red cards of the Extra Deck. Each has a Level of its own. OFFER monsters whose Levels total EXACTLY that Level — at least one of them a printed VESSEL — and the Incarnate takes the field for free; it returns to the Extra Deck during your next Standby Phase. Or bind it PERMANENTLY with its RITE: a red Spell that names one sacrifice and calls it for good.
 
 THE PLAYER CARD is your hero. It sets your starting Life Points and gives you one hero effect: 2 Mana, once per turn, always available. Heroes cannot be attacked or destroyed.
 
@@ -55,7 +57,9 @@ NORMAL SUMMON — once per turn, from your hand, in your Main Phase. A Level 1 m
 
 SPECIAL SUMMON — every summon that is not a Normal Summon. Cards do it: "Special Summon 1 monster from your Graveyard", "you can Special Summon this card from your hand if …". Special Summons do not use up your Normal Summon and there is no limit per turn — except that each card name can use its own "you can Special Summon this card" condition only once per turn.
 
-RELIQUARY SUMMON — from the Extra Deck, in your Main Phase, once its printed requirements are met. Pay the Mana, offer the tributes it demands (some take them from your opponent's field), choose a zone.
+RELIQUARY SUMMON — from the Extra Deck, in your Main Phase, once its printed board state is met. Pay the Mana, choose a zone — the board is the only price.
+
+INCARNATE SUMMON — the Offering: pick sacrifices whose Levels total exactly the Incarnate's Level (one must be a Vessel). Free of Mana, gone by your next Standby Phase. The RITE version is a red Spell: sacrifice the named monster, and the named Incarnate stays for good.
 
 Every summoned monster gets a zone and a battle position. Face-up ATTACK Position fights with its ATK; DEFENSE Position holds with its DEF and deals no damage. Face-down monsters are always in Defense; nobody knows what they are until they flip.
 

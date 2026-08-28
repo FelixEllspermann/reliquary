@@ -561,3 +561,8 @@ Each player can Summon at most {0} monster(s) per turn.	每名玩家每回合最
 During your Standby Phase, your Countdowns tick twice.	在你的准备阶段，你的倒计时走两格。
 Your face-down monsters cannot be destroyed by card effects.	你的背面表示怪兽不会被卡片效果破坏。
 When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	对手每回合宣言首次攻击时须选择：将其牌库顶的卡送入墓地，否则攻击被取消。
+INCARNATE	降临体
+RITE	仪式
+VESSEL	容器
+VESSEL — may serve as the vessel of an Incarnate offering.	容器 — 可作为降临体供奉的容器。
+OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	供奉：牺牲等级总和恰好为{0}的怪兽——其中至少1只须为容器。以此方式召唤后，在你的下个准备阶段回到额外卡组。

@@ -274,7 +274,7 @@ namespace Rouge.Tcg.UI
         }
 
         // ---------- Filter ----------
-        private static readonly string[] TypeChipNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY" };
+        private static readonly string[] TypeChipNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY", "INCARNATE" };
         private static readonly string[] AttrChipNames = { "ALL", "FI", "WA", "LI", "DA", "EA", "WI" };
 
         /// <summary>
@@ -639,10 +639,11 @@ namespace Rouge.Tcg.UI
         private bool PassesFilter(CardDefinition card)
         {
             // MONSTER meint das Hauptdeck — Reliquarys haben ihren eigenen Filter
-            if (typeFilter == 1 && (!(card is MonsterCardData) || card is ReliquaryCardData)) return false;
+            if (typeFilter == 1 && (!(card is MonsterCardData) || card.IsExtraDeckCard)) return false;
             if (typeFilter == 2 && !(card is SpellCardData)) return false;
             if (typeFilter == 3 && !(card is ArtifactCardData)) return false;
             if (typeFilter == 4 && !(card is ReliquaryCardData)) return false;
+            if (typeFilter == 5 && !(card is IncarnateCardData)) return false;
             if (ownedFilter > 0 && CollectionMode)
             {
                 // Besitz zählt über alle Finishes — wer nur die Glossy hat, "besitzt" die Karte
@@ -677,6 +678,9 @@ namespace Rouge.Tcg.UI
                 {
                     haystack += " " + m.attribute.ToString().ToLowerInvariant() + " " + m.monsterType.ToString().ToLowerInvariant() + " monster";
                     if (card is ReliquaryCardData) haystack += " reliquary extra";
+                    if (card is IncarnateCardData) haystack += " incarnate extra";
+                    if (card is MonsterCardData vesselCheck && vesselCheck.isVessel) haystack += " vessel";
+                    if (card is SpellCardData riteCheck && riteCheck.isRite) haystack += " rite";
                 }
                 else if (card is SpellCardData s)
                     haystack += s.speed == SpellSpeed.Quick ? " quick spell" : " spell";
@@ -1023,7 +1027,7 @@ namespace Rouge.Tcg.UI
         {
             var deck = CurrentDeck;
             if (deck == null || card == null) return 0;
-            var list = card is ReliquaryCardData ? deck.Extra : deck.Cards;
+            var list = card.IsExtraDeckCard ? deck.Extra : deck.Cards;
             int count = 0;
             foreach (var name in list) if (name == card.cardName) count++;
             return count;
@@ -1034,7 +1038,7 @@ namespace Rouge.Tcg.UI
         {
             var deck = CurrentDeck;
             if (deck == null || card == null) return 0;
-            bool extra = card is ReliquaryCardData;
+            bool extra = card.IsExtraDeckCard;
             var list = extra ? deck.Extra : deck.Cards;
             int count = 0;
             for (int i = 0; i < list.Count; i++)
@@ -1272,7 +1276,7 @@ namespace Rouge.Tcg.UI
 
             var inDeck = deck == null
                 ? new List<CardDefinition>()
-                : pool.Where(c => c != null && !(c is ReliquaryCardData) && CountInDeck(c) > 0)
+                : pool.Where(c => c != null && !c.IsExtraDeckCard && CountInDeck(c) > 0)
                     .OrderBy(c => c.Kind).ThenBy(c => c is MonsterCardData m ? m.level : 0).ThenBy(c => c.cardName)
                     .ToList();
 
@@ -1296,7 +1300,7 @@ namespace Rouge.Tcg.UI
             // Extra-Deck-Sektion: Trenner-Header + Reliquary-Gitter unter dem Hauptgitter
             var inExtra = deck == null
                 ? new List<CardDefinition>()
-                : pool.Where(c => c is ReliquaryCardData && CountInDeck(c) > 0)
+                : pool.Where(c => c != null && c.IsExtraDeckCard && CountInDeck(c) > 0)
                     .OrderBy(c => c.cardName).ToList();
             int extraCount = deck != null ? deck.Extra.Count : 0;
             if (extraCount > 0 || inExtra.Count > 0)
@@ -1428,8 +1432,8 @@ namespace Rouge.Tcg.UI
         {
             var deck = CurrentDeck;
             if (deck == null || card == null) return;
-            bool isReliquary = card is ReliquaryCardData;
-            if (isReliquary)
+            bool isExtra = card.IsExtraDeckCard;
+            if (isExtra)
             {
                 if (deck.Extra.Count >= ExtraMax) { ShowFeedback($"Extra Deck is full (max {ExtraMax})."); return; }
             }
@@ -1463,7 +1467,7 @@ namespace Rouge.Tcg.UI
                 return;
             }
 
-            if (isReliquary)
+            if (isExtra)
             {
                 deck.Extra.Add(card.cardName);
                 deck.ExtraFinishes.Add(finish);
@@ -1482,15 +1486,15 @@ namespace Rouge.Tcg.UI
         {
             var deck = CurrentDeck;
             if (deck == null || card == null) return;
-            bool isReliquary = card is ReliquaryCardData;
-            var list = isReliquary ? deck.Extra : deck.Cards;
-            var finishes = isReliquary ? deck.ExtraFinishes : deck.CardFinishes;
+            bool isExtra = card.IsExtraDeckCard;
+            var list = isExtra ? deck.Extra : deck.Cards;
+            var finishes = isExtra ? deck.ExtraFinishes : deck.CardFinishes;
 
             // Von hinten: das zuletzt gelegte Exemplar geht zuerst wieder raus
             for (int i = list.Count - 1; i >= 0; i--)
             {
                 if (list[i] != card.cardName) continue;
-                var slot = isReliquary ? deck.ExtraFinishAt(i) : deck.FinishAt(i);
+                var slot = isExtra ? deck.ExtraFinishAt(i) : deck.FinishAt(i);
                 if (slot != finish) continue;
                 list.RemoveAt(i);
                 if (i < finishes.Count) finishes.RemoveAt(i);

@@ -340,7 +340,7 @@ namespace Rouge.Tcg
                 for (int i = 0; i < deckCards.Count; i++)
                 {
                     var definition = deckCards[i];
-                    if (definition == null || definition is PlayerCardData || definition is ReliquaryCardData) continue;
+                    if (definition == null || definition is PlayerCardData || definition.IsExtraDeckCard) continue;
                     player.DeckPile.Add(new CardInstance(definition, player)
                     {
                         Zone = ZoneType.Deck,
@@ -352,7 +352,7 @@ namespace Rouge.Tcg
             if (extraCards != null)
                 for (int i = 0; i < extraCards.Count; i++)
                 {
-                    if (!(extraCards[i] is ReliquaryCardData)) continue;
+                    if (extraCards[i] == null || !extraCards[i].IsExtraDeckCard) continue;
                     player.ExtraDeckPile.Add(new CardInstance(extraCards[i], player)
                     {
                         Zone = ZoneType.ExtraDeck,
@@ -419,9 +419,9 @@ namespace Rouge.Tcg
             foreach (var definition in deckDef.cards)
             {
                 if (definition == null || definition is PlayerCardData) continue;
-                if (definition is ReliquaryCardData reliquary)
+                if (definition.IsExtraDeckCard)
                 {
-                    player.ExtraDeckPile.Add(new CardInstance(reliquary, player) { Zone = ZoneType.ExtraDeck });
+                    player.ExtraDeckPile.Add(new CardInstance(definition, player) { Zone = ZoneType.ExtraDeck });
                     continue;
                 }
                 player.DeckPile.Add(new CardInstance(definition, player) { Zone = ZoneType.Deck });
@@ -429,7 +429,7 @@ namespace Rouge.Tcg
             Shuffle(player.DeckPile);
 
             foreach (var definition in deckDef.extraCards)
-                if (definition is ReliquaryCardData)
+                if (definition != null && definition.IsExtraDeckCard)
                     player.ExtraDeckPile.Add(new CardInstance(definition, player) { Zone = ZoneType.ExtraDeck });
 
             if (deckDef.playerCard != null)
@@ -806,6 +806,18 @@ namespace Rouge.Tcg
                 OnLifeChanged?.Invoke(player, player.LifePoints - before);
                 BoardChanged();
                 if (CheckWin()) yield break;
+            }
+
+            // Incarnates: temporär beschworenes Fleisch zerfällt — in der Standby
+            // Phase des NÄCHSTEN eigenen Zuges kehrt das Incarnate ins Extra Deck
+            // zurück (Riten-Beschwörungen tragen keine Uhr).
+            foreach (var incarnate in new List<CardInstance>(player.Monsters()))
+            {
+                if (incarnate.IncarnateReturnTurn < 0 || TurnNumber <= incarnate.IncarnateReturnTurn) continue;
+                if (incarnate.Zone != ZoneType.MonsterZone) continue;
+                Log($"{incarnate.Name}'s borrowed flesh dissolves — the offering is spent.");
+                ReturnToExtraDeck(incarnate);
+                BoardChanged();
             }
 
             // Letters from Exile (Welle 3): die Verbannten von gestern kehren ins Grab zurück

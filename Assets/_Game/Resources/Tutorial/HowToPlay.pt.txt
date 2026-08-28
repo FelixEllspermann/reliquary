@@ -42,7 +42,9 @@ Os ARTEFATOS ficam na mesa. Alguns se equipam a um monstro (ATK/DEF extra e efei
 
 [img:artifacts|Dois Artefatos de Jogador nas Zonas de Artefatos. Eles ficam até algo removê-los.]
 
-Os RELICÁRIOS vivem no seu Extra Deck. Cada um nomeia na carta os próprios requisitos de Invocação — um Cemitério bem abastecido, três monstros, um herói nas cordas — mais um preço de mana e às vezes sacrifícios. Cumpra os termos e você pode chamá-lo na sua Main Phase.
+Os RELICÁRIOS vivem no seu Extra Deck. Cada um imprime na carta seu estado de mesa — um Cemitério cheio, três monstros, um herói nas cordas — mais um preço de Mana. Cumpra os termos e chame-o na sua Main Phase; sem tributos nem sacrifícios, a própria mesa é a chave.
+
+Os INCARNATES são as cartas vermelhas do Extra Deck. Cada um tem Nível próprio. SACRIFIQUE monstros cujos Níveis somem EXATAMENTE esse Nível — ao menos um deles um VESSEL impresso — e o Incarnate entra de graça; ele volta ao Extra Deck na sua próxima Standby Phase. Ou prenda-o PERMANENTEMENTE com seu RITO: uma Magia vermelha que nomeia um sacrifício e o chama de vez.
 
 A CARTA DE JOGADOR é o seu herói. Ela define seus Pontos de Vida iniciais e lhe dá um efeito de herói: 2 de mana, uma vez por turno, sempre disponível. Heróis não podem ser atacados nem destruídos.
 
@@ -55,7 +57,9 @@ INVOCAÇÃO NORMAL — uma vez por turno, da sua mão, na sua Main Phase. Um mon
 
 INVOCAÇÃO ESPECIAL — toda Invocação que não é Normal. As cartas a fazem: «Invoque de Modo Especial 1 monstro do seu Cemitério», «você pode Invocar esta carta de Modo Especial da sua mão se…». Invocações Especiais não gastam a sua Invocação Normal e não têm limite por turno — exceto que cada nome de carta só pode usar a própria condição de «você pode Invocar esta carta de Modo Especial» uma vez por turno.
 
-INVOCAÇÃO DE RELICÁRIO — do Extra Deck, na sua Main Phase, quando os requisitos impressos forem cumpridos. Pague o mana, ofereça os sacrifícios que ele exige (alguns os tomam do Campo do seu oponente), escolha uma zona.
+INVOCAÇÃO DE RELICÁRIO — do Extra Deck, na sua Main Phase, quando seu estado de mesa impresso for cumprido. Pague o Mana, escolha uma zona — a mesa é o único preço.
+
+INVOCAÇÃO DE INCARNATE — a Oferenda: escolha sacrifícios cujos Níveis somem exatamente o Nível do Incarnate (um deve ser Vessel). Sem Mana, até sua próxima Standby Phase. A versão RITO é uma Magia vermelha: sacrifique o monstro nomeado e o Incarnate nomeado fica de vez.
 
 Todo monstro Invocado recebe uma zona e uma posição de batalha. A Posição de ATAQUE virada para cima luta com o ATK; a Posição de DEFESA resiste com a DEF e não causa dano. Monstros virados para baixo estão sempre em Defesa; ninguém sabe o que são até serem virados.
 

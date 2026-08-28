@@ -517,7 +517,7 @@ namespace Rouge.Tcg.UI
         private void AddCard(CardDefinition card, CardFinish finish)
         {
             var deck = EditedDeck;
-            bool isReliquary = card is ReliquaryCardData;
+            bool isReliquary = card.IsExtraDeckCard;
             int inDeck = CountInDeck(card.cardName);
             if (inDeck >= PoolCount(card.cardName)) { ShowFeedback("No copies left in your pool."); return; }
             if (isReliquary)
@@ -536,7 +536,7 @@ namespace Rouge.Tcg.UI
         private void RemoveCard(CardDefinition card, CardFinish finish)
         {
             var deck = EditedDeck;
-            var list = card is ReliquaryCardData ? deck.Extra : deck.Cards;
+            var list = card.IsExtraDeckCard ? deck.Extra : deck.Cards;
             int index = list.LastIndexOf(card.cardName);
             if (index >= 0) list.RemoveAt(index);
             RebuildAll();

@@ -21,6 +21,7 @@ Coste (Cost) :: Lo que pagas para activar: maná, un descarte, un sacrificio, de
 Contador (Counter) :: Un marcador que un efecto pone sobre una carta. Los Contadores de Muerte se muestran como una calavera con un número; la carta explica qué pasa cuando se acumulan.
 Acoplado (Coupled) :: Un efecto Infused que mejora el efecto de encima («En su lugar, paga 2 de maná: …»). Cada turno usas o la versión simple o la Acoplada, nunca ambas.
 Fabricar (Craft) :: Convertir polvo en una carta que te falta. Despolvar una copia sobrante devuelve polvo.
+Deal :: Una oferta que tu adversario debe responder: elige la opción A o B y la carta se resuelve en consecuencia. Ambas opciones siempre favorecen a quien ofrece.
 Contador de Muerte (Death counter) :: Un contador que sube durante las End Phases; cuando una carta alcanza su límite impreso, es destruida. Se muestra como una calavera con un número.
 Deck :: Tu pila principal, de 40 a 80 cartas, como máximo 3 copias de una carta. Barajado, boca abajo; robas de arriba.
 Posición de Defensa (Defense Position) :: Un monstruo tumbado de lado. No puede atacar, resiste con su DEF y no inflige daño de batalla. Los monstruos boca abajo siempre están en Defensa.
@@ -34,7 +35,7 @@ Polvo (Dust) :: En lo que se convierte una carta despolvada. Gástalo para fabri
 Daño de efecto (Effect damage) :: Daño infligido por un efecto de carta y no por batalla («inflige 800 de daño»). Algunas cartas evitan uno y no el otro.
 End Phase :: La última fase de un turno: efectos «durante tu End Phase», límite de mano, y el turno pasa.
 Equipar (Equip) :: Colocar un Artefacto de Monstruo sobre un monstruo — el portador. Si el portador deja el Campo, el Artefacto va al Cementerio.
-Extra Deck :: Tus Relicarios, hasta 20. Nunca se roban; cada uno espera a que se cumplan sus requisitos de Invocación impresos.
+Extra Deck :: Tus Relicarios e Incarnates, hasta 20. Nunca se roban; los Relicarios esperan su estado de mesa, los Incarnates una Ofrenda o su Rito.
 Boca abajo (Face-down) :: Una carta jugada oculta. Los monstruos boca abajo siempre están en Posición de Defensa; las Magias boca abajo están Colocadas y pueden activarse más tarde.
 Campo (Field) :: La mesa: cada zona de ambos duelistas. «En el Campo» significa boca arriba o boca abajo en una Zona de Monstruos o de Artefactos.
 Artefacto de Campo (Field Artifact) :: Un Artefacto que ocupa una Zona de Artefactos y afecta a toda la mesa, no a un monstruo.
@@ -45,8 +46,10 @@ Cementerio (Graveyard) :: Adonde van las cartas destruidas, usadas y descartadas
 Mano (Hand) :: Las cartas que tienes. Límite de 8 al final de tu turno.
 Límite de mano (Hand limit) :: 8. Si tienes más durante tu End Phase, descartas hasta quedarte con 8.
 Héroe (Hero) :: Ver Carta de Jugador.
+Hour Counter :: La marca de cuenta atrás. Una carta con Marcas de Hora pierde una en cada Standby Phase de su controlador; cuando cae la última, su efecto de cuenta atrás se dispara.
 Efecto de ignición (Ignition effect) :: Un efecto que activas tú mismo en tu Main Phase («Una vez por turno: …»).
 Ficha de Ilusión (Illusion Token) :: Una Ficha 0/0 que el arquetipo Gaslight pone en el Campo del adversario. Ocupa una zona y puede destruirse para sacar ventaja.
+Incarnate :: Un monstruo rojo del Extra Deck con Nivel propio. Se llama temporalmente mediante una Ofrenda — sacrificios cuyos Niveles suman EXACTAMENTE su Nivel, al menos uno un Vessel — o permanentemente mediante su Rito.
 Infused :: Un efecto más fuerte de una carta que siempre cuesta maná. O bien Acoplado (mejora del efecto de encima) o Independiente (una capacidad propia).
 Nivel (Level) :: 1, 2 o 3, mostrado en el escudo. Un Nivel 2 necesita 1 sacrificio para la Invocación Normal, un Nivel 3 necesita 2. Los Relicarios son de Nivel 3.
 Puntos de Vida (Life Points) :: Tu salud. 8000 al empezar (algunos héroes varían). A 0, el duelo está perdido.
@@ -59,6 +62,7 @@ Artefacto de Monstruo (Monster Artifact) :: Un Artefacto que se equipa a un mons
 Tipo de Monstruo (Monster Type) :: Dragón, Humano, Bestia, Mecha, Ángel, Demonio, Mito, Animal… A algunos efectos les importa.
 Negar (Negate) :: Apagar los efectos de una carta. Una carta negada lleva una insignia violeta NEG hasta el final del turno; si intenta actuar, no pasa nada.
 Invocación Normal (Normal Summon) :: Jugar un monstruo de tu mano en tu Main Phase, una vez por turno. Gratis para Nivel 1; 1 sacrificio para Nivel 2, 2 para Nivel 3. Colocar un monstruo boca abajo también la consume.
+Offering :: La Invocación temporal de Incarnate: sacrifica monstruos cuyos Niveles sumen exactamente el Nivel del Incarnate (al menos un Vessel). Sin Maná. El Incarnate vuelve al Extra Deck en tu próxima Standby Phase.
 Una vez por turno (Once per turn) :: El efecto puede usarse una vez cada turno. Algunos son una vez por turno y por nombre de carta — tres copias comparten un solo uso.
 Dueño (Owner) :: Del deck de quién salió una carta. Las cartas vuelven a la mano, el Deck o el Cementerio de su dueño incluso tras un cambio de control.
 Pasivo (Passive) :: Un efecto que simplemente está activo mientras la carta esté boca arriba en el Campo. Sin activación, sin coste, sin eslabón de cadena.
@@ -74,6 +78,7 @@ Invocación de Relicario (Reliquary Summon) :: Llamar a un Relicario desde el Ex
 Ventana de respuesta (Response window) :: El momento tras una activación, una Invocación o una declaración de ataque en que el otro duelista puede responder con un efecto Rápido. Responder inicia una cadena.
 Devolver a la mano (Return to hand) :: Mover una carta del Campo de vuelta a la mano de su dueño. Ver Rebotar.
 Revelar (Reveal) :: Mostrar una carta a ambos jugadores — una carta buscada, una carta al azar de la mano, la parte superior de un Deck.
+Rite :: Un subtipo de Hechizo en rojo Incarnate. Cada Rito nombra un monstruo a sacrificar y un Incarnate a llamar — invocado así, el Incarnate se queda PERMANENTEMENTE.
 Buscar (Search) :: Tomar una carta concreta de tu Deck y llevarla a tu mano. El Deck se baraja después.
 Temporada (Season) :: Un mes de juego clasificatorio. Cada mes empieza una temporada nueva.
 Colocar (Set) :: Jugar una carta boca abajo: un monstruo en Posición de Defensa (consume tu Invocación Normal), o una Magia para activarla más tarde.
@@ -112,3 +117,5 @@ Límite de ataques (Attack limit) :: Mientras «El Código del Duelista» esté 
 Daño de batalla doble (Double battle damage) :: Mientras «Apuestas Altas» esté en marcha, todo el daño de batalla a cualquier duelista se duplica — la Battle Phase del adversario y la tuya propia.
 Declarar un tipo (Declare a type) :: Nombras Monstruo, Magia o Artefacto antes de revelar cartas; las coincidencias se conservan, el resto va al Cementerio.
 Ataque directo (a la mitad) (Direct attack (halved)) :: Un monstruo que puede atacar directamente pasando junto a los monstruos del adversario, pero de ese modo solo inflige la mitad de su ATK.
+Vessel :: Un monstruo marcado como recipiente — impreso en la carta. Toda Ofrenda necesita al menos un Vessel entre sus sacrificios. Normalmente de Nivel bajo; dos por arquetipo.
+Zone Seal :: Una Zona de Monstruo tapiada: mientras el sello aguante, nada puede invocarse, colocarse ni moverse allí. Se muestra como ladrillos; algunos sellos caducan, otros dependen de su carta de origen.

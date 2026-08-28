@@ -55,6 +55,7 @@ MonoBehaviour:
     onlyWhileControlledByOpponent: 0
     requireOpponentAttackedThisTurn: 0
     requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
     actions:
     - type: 37
       isCost: 0
@@ -166,6 +167,14 @@ MonoBehaviour:
   protectsNamedFromEffectDestroy: 
   passiveDecreesSpareOwner: 0
   passiveOwnerRoyaltyManaNextTurn: 0
+  countdownZeroKeepsCard: 0
+  passiveDefWhileDefending: 0
+  passiveOpponentMillsBanished: 0
+  passiveCannotBeBanished: 0
+  passiveSummonCapBoth: 0
+  passiveCountdownsTickTwice: 0
+  passiveProtectFaceDownFromEffectDestroy: 0
+  passiveFirstEnemyAttackDetourDeal: 0
   level: 2
   attribute: 5
   monsterType: 1
@@ -206,3 +215,5 @@ MonoBehaviour:
   selfSummonToOpponentField: 0
   selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
   selfSummonRequiresOwnCountdown: 0
+  selfSummonRequiresBanishedCards: 0
+  isVessel: 1

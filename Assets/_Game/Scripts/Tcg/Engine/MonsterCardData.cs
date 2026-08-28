@@ -143,6 +143,21 @@ namespace Rouge.Tcg
         [Tooltip("Bedingung: mindestens so viele Karten in deiner Verbannung (0 = aus; Exile Broker: 1)")]
         public int selfSummonRequiresBanishedCards;
 
+        [Header("Incarnates (September 2026)")]
+        [Tooltip("VESSEL: dieses Monster kann als Gefäß einer Incarnate-Opfergabe dienen — " +
+                 "mindestens ein Opfer der temporären Incarnate-Beschwörung muss ein Vessel sein " +
+                 "(wie Tuner in Yu-Gi-Oh; steht auf der Karte).")]
+        public bool isVessel;
+
+        /// <summary>Vessel-Kennzeichnung als erste Kartenzeile — vor allen Passiva.</summary>
+        public override System.Collections.Generic.List<string> BuildPassiveLines()
+        {
+            var lines = base.BuildPassiveLines();
+            if (isVessel)
+                lines.Insert(0, Loc.T("VESSEL — may serve as the vessel of an Incarnate offering."));
+            return lines;
+        }
+
         public override CardKind Kind => CardKind.Monster;
 
         public override Color FrameColor => new Color(0.80f, 0.55f, 0.25f);
@@ -232,11 +247,14 @@ namespace Rouge.Tcg
             }
         }
 
-        /// <summary>"Fire Beast"-Kurzform mit eingefärbtem Attribut (Rich Text).</summary>
+        /// <summary>"Fire Beast"-Kurzform mit eingefärbtem Attribut (Rich Text);
+        /// Vessels tragen ihr Siegel direkt in der Zeile.</summary>
         public string AttributeTypeRichText()
         {
             string hex = ColorUtility.ToHtmlStringRGB(AttributeColor(attribute));
-            return $"<color=#{hex}>{Loc.T(attribute.ToString())}</color> {Loc.T(monsterType.ToString())}";
+            string line = $"<color=#{hex}>{Loc.T(attribute.ToString())}</color> {Loc.T(monsterType.ToString())}";
+            if (isVessel) line += $" · <color=#C23B2E>{Loc.T("VESSEL")}</color>";
+            return line;
         }
     }
 }

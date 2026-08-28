@@ -17,6 +17,8 @@ namespace Rouge.Tcg
         public Sprite chassisArtifact;
         public Sprite chassisPlayer;
         public Sprite chassisReliquary;  // weißes Extra-Deck-Chassis
+        [Tooltip("Incarnates (rot) — fehlt das Sprite, wird das Monster-Chassis rot getönt")]
+        public Sprite chassisIncarnate;  // rotes Extra-Deck-Chassis
 
         [Header("Rückseite & Overlays")]
         public Sprite cardBack;
@@ -73,6 +75,8 @@ namespace Rouge.Tcg
         public Sprite compactArtifact;
         public Sprite compactPlayer;
         public Sprite compactReliquary;
+        [Tooltip("Incarnates (rot) — fehlt das Sprite, wird das Monster-Chassis rot getönt")]
+        public Sprite compactIncarnate;
         public Sprite backZone;          // Rückseite in Zonengröße (Weave 13, Diamant 46)
         public Sprite backHand;          // Gegner-Handrücken (62x87, Weave 9, Diamant 26)
 
@@ -96,6 +100,7 @@ namespace Rouge.Tcg
             switch (definition)
             {
                 case ReliquaryCardData _: return compactReliquary != null ? compactReliquary : compactMonster;
+                case IncarnateCardData _: return compactIncarnate != null ? compactIncarnate : compactMonster;
                 case MonsterCardData _: return compactMonster;
                 case SpellCardData _: return compactSpell;
                 case ArtifactCardData _: return compactArtifact;
@@ -110,12 +115,25 @@ namespace Rouge.Tcg
             switch (definition)
             {
                 case ReliquaryCardData _: return chassisReliquary != null ? chassisReliquary : chassisMonster;
+                case IncarnateCardData _: return chassisIncarnate != null ? chassisIncarnate : chassisMonster;
                 case MonsterCardData _: return chassisMonster;
                 case SpellCardData _: return chassisSpell;
                 case ArtifactCardData _: return chassisArtifact;
                 case PlayerCardData _: return chassisPlayer;
                 default: return chassisMonster;
             }
+        }
+
+        /// <summary>
+        /// Incarnates ohne eigenes Chassis-Sprite bekommen das Monster-Chassis mit
+        /// diesem Rot-Tint — so sind sie sofort als „rote Karten" lesbar, bis ein
+        /// echtes Incarnate-Chassis eingehängt wird.
+        /// </summary>
+        public Color ChassisTintFor(CardDefinition definition)
+        {
+            if (definition is IncarnateCardData && chassisIncarnate == null)
+                return new Color(1f, 0.66f, 0.62f);
+            return Color.white;
         }
     }
 }

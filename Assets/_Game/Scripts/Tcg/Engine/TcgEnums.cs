@@ -317,7 +317,10 @@ namespace Rouge.Tcg
         DebuffDestroyerAtkPermanent,    // Widow's Ledger: das Monster, das den Ausloeser zerstoert hat, verliert dauerhaft amount ATK
         SwitchTargetToDefenseAtEot,     // Lowball Feint Infused: das Ziel wechselt am Zugende in Verteidigung
         DebuffTargetAtkEot,             // Lowball Feint: Ziel verliert amount ATK bis Zugende
-        SendAllMonstersToGraveyard      // Doomsday Bell: JEDES Monster beider Felder in den Friedhof (kein Zerstoeren)
+        SendAllMonstersToGraveyard,     // Doomsday Bell: JEDES Monster beider Felder in den Friedhof (kein Zerstoeren)
+
+        // --- Incarnates (September 2026) — NUR ANHÄNGEN ---
+        RiteSummonIncarnate             // Rite-Zauber: benanntes Monster opfern, benanntes Incarnate PERMANENT beschwoeren
     }
 
     /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>

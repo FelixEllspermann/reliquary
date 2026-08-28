@@ -334,6 +334,12 @@ namespace Rouge.Tcg
 
         public abstract Color FrameColor { get; }
 
+        /// <summary>
+        /// Gehört diese Karte ins EXTRA DECK statt ins Hauptdeck? Reliquaries und
+        /// Incarnates — die zentrale Wahrheit für Deck-Editor, Duel-Setup und UI.
+        /// </summary>
+        public bool IsExtraDeckCard => this is ReliquaryCardData || this is IncarnateCardData;
+
         /// <summary>Anzeige-Farbe der Seltenheit (grau/grün/blau/gold).</summary>
         public static Color RarityColor(CardRarity rarity)
         {

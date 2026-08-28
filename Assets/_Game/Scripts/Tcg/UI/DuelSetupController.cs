@@ -753,7 +753,7 @@ namespace Rouge.Tcg.UI
             foreach (var card in opponent.deck.cards)
             {
                 if (card == null) continue;
-                if (card is ReliquaryCardData) MatchContext.BotExtraCards.Add(card.cardName);
+                if (card.IsExtraDeckCard) MatchContext.BotExtraCards.Add(card.cardName);
                 else MatchContext.BotDeckCards.Add(card.cardName);
             }
             foreach (var card in opponent.deck.extraCards)

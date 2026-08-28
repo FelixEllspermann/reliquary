@@ -162,7 +162,7 @@ namespace Rouge.Tcg.UI
         private static bool AnyReliquaryOnField(PlayerState player)
         {
             foreach (var monster in player.Monsters())
-                if (monster.Definition is ReliquaryCardData) return true;
+                if (monster.Definition != null && monster.Definition.IsExtraDeckCard) return true;
             return false;
         }
 

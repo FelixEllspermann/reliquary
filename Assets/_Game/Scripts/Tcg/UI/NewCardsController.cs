@@ -49,7 +49,7 @@ namespace Rouge.Tcg.UI
         private const float CellHeight = 165f;
         private const float FillBudgetMs = 5f;
 
-        private static readonly string[] KindNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY" };
+        private static readonly string[] KindNames = { "ALL", "MONSTER", "SPELL", "ARTIFACT", "RELIQUARY", "INCARNATE" };
 
         private TcgCardView preview;
         private TMP_Text previewName, previewRules, countText;
@@ -133,7 +133,7 @@ namespace Rouge.Tcg.UI
         /// <summary>Monster vor Zaubern vor Artefakten, Reliquaries ans Ende; innerhalb nach Namen (hält Archetypes zusammen).</summary>
         private static int CompareCards(CardDefinition a, CardDefinition b)
         {
-            bool ra = a is ReliquaryCardData, rb = b is ReliquaryCardData;
+            bool ra = a.IsExtraDeckCard, rb = b.IsExtraDeckCard;
             if (ra != rb) return ra ? 1 : -1;
             int ka = (int)a.Kind, kb = (int)b.Kind;
             if (ka != kb) return ka.CompareTo(kb);
@@ -144,10 +144,11 @@ namespace Rouge.Tcg.UI
         {
             switch (kindFilter)
             {
-                case 1: return card is MonsterCardData && !(card is ReliquaryCardData);
+                case 1: return card is MonsterCardData && !card.IsExtraDeckCard;
                 case 2: return card is SpellCardData;
                 case 3: return card is ArtifactCardData;
                 case 4: return card is ReliquaryCardData;
+                case 5: return card is IncarnateCardData;
                 default: return true;
             }
         }

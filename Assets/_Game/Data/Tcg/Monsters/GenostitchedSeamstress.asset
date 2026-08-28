@@ -47,6 +47,15 @@ MonoBehaviour:
     requireMilledLastTurn: 0
     minOwnGraveyardNamed: 0
     graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
     actions:
     - type: 16
       isCost: 0
@@ -68,6 +77,13 @@ MonoBehaviour:
       onlyWithoutEffects: 0
       summonInDefense: 0
       coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   - label: Stitch It On
     text: 'Instead, pay 2 Mana: Equip 1 Artifact from your Graveyard to this card.'
     isInfused: 1
@@ -96,6 +112,15 @@ MonoBehaviour:
     requireMilledLastTurn: 0
     minOwnGraveyardNamed: 0
     graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
     actions:
     - type: 33
       isCost: 0
@@ -117,6 +142,13 @@ MonoBehaviour:
       onlyWithoutEffects: 0
       summonInDefense: 0
       coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
   auraAtkBonus: 0
   auraDefBonus: 0
   auraNameFilter: 
@@ -182,6 +214,32 @@ MonoBehaviour:
   passiveTailsAsHeadsWhenBehind: 0
   passiveLienAtkPenalty: 0
   passiveStolenAtkBonus: 0
+  passiveStatsFromGraveTop: 0
+  passiveAttacksWithDef: 0
+  passiveDefLossAfterAttack: 0
+  passiveSealsAdjacentZones: 0
+  passiveBearerZoneLocked: 0
+  passiveUntargetableWhileLpClose: 0
+  passiveDrawReplacementGraveTop: 0
+  countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
+  countdownZeroKeepsCard: 0
+  passiveDefWhileDefending: 0
+  passiveOpponentMillsBanished: 0
+  passiveCannotBeBanished: 0
+  passiveSummonCapBoth: 0
+  passiveCountdownsTickTwice: 0
+  passiveProtectFaceDownFromEffectDestroy: 0
+  passiveFirstEnemyAttackDetourDeal: 0
   level: 1
   attribute: 1
   monsterType: 4
@@ -208,3 +266,19 @@ MonoBehaviour:
   selfSummonRequiresOpponentDefenseMonster: 0
   selfSummonRequiresLienOnField: 0
   selfSummonLifeCost: 0
+  selfSummonRequiresOpponentMoreMonsters: 0
+  selfSummonRequiresLifeAtMost: 0
+  selfSummonIntoSealedZone: 0
+  selfSummonRequiresGraveTopMonster: 0
+  selfSummonRequiresRevealedThisTurn: 0
+  selfSummonRequiresLevels1And3: 0
+  selfSummonRequiresOpponentLevel3AndNoneSelf: 0
+  selfSummonRequiresTurnAtLeast: 0
+  selfSummonRequiresDeckAtLeast: 0
+  selfSummonRequiresLpWithin: 0
+  selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0
+  selfSummonRequiresBanishedCards: 0
+  isVessel: 1

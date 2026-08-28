@@ -560,3 +560,8 @@ Each player can Summon at most {0} monster(s) per turn.	Chaque joueur ne peut In
 During your Standby Phase, your Countdowns tick twice.	Pendant votre Standby Phase, vos comptes à rebours avancent deux fois.
 Your face-down monsters cannot be destroyed by card effects.	Vos monstres face verso ne peuvent pas être détruits par des effets de carte.
 When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	Quand votre adversaire déclare sa première attaque du tour, il choisit : envoyer la carte du dessus de son Deck au Cimetière, ou l'attaque est annulée.
+INCARNATE	INCARNATE
+RITE	RITE
+VESSEL	VESSEL
+VESSEL — may serve as the vessel of an Incarnate offering.	VESSEL — peut servir de réceptacle à une Offrande d'Incarnate.
+OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	OFFRANDE : Sacrifiez des monstres dont les Niveaux totalisent exactement {0} — dont au moins un VESSEL. Invoqué ainsi, il retourne à l'Extra Deck lors de votre prochaine Standby Phase.

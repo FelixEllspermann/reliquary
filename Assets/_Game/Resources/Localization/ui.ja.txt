@@ -560,3 +560,8 @@ Each player can Summon at most {0} monster(s) per turn.	各プレイヤーは1�
 During your Standby Phase, your Countdowns tick twice.	自分のスタンバイフェイズに、自分のカウントダウンは2回進む。
 Your face-down monsters cannot be destroyed by card effects.	自分の裏側表示モンスターはカードの効果では破壊されない。
 When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled.	相手が各ターン最初の攻撃を宣言する時、相手は選ぶ：デッキの一番上を墓地へ送るか、攻撃を中止するか。
+INCARNATE	インカーネイト
+RITE	儀式
+VESSEL	器
+VESSEL — may serve as the vessel of an Incarnate offering.	器 — インカーネイトの供物の器となれる。
+OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	供物：レベル合計がちょうど{0}になるモンスターを生け贄に捧げる——うち1体は器であること。この方法で召喚された場合、次の自分のスタンバイフェイズにエクストラデッキへ戻る。

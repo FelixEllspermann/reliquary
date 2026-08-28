@@ -21,6 +21,7 @@ Kosten (Cost) :: Was du für eine Aktivierung zahlst: Mana, ein Abwerfen, ein Op
 Marke (Counter) :: Ein Marker, den ein Effekt auf eine Karte legt. Todesmarken werden als Totenkopf mit Zahl angezeigt; die Karte erklärt, was passiert, wenn sie sich stapeln.
 Gekoppelt (Coupled) :: Ein INFUSED-Effekt, der den Effekt darüber verbessert („Zahle stattdessen 2 Mana: …“). Pro Zug nutzt du entweder die einfache Version oder die gekoppelte, nie beide.
 Herstellen (Craft) :: Staub in eine fehlende Karte verwandeln. Das Entstauben einer überzähligen Kopie gibt Staub zurück.
+Deal :: Ein Angebot, das dein Gegner beantworten muss: Er wählt Option A oder B, die Karte löst entsprechend auf. Beide Optionen nützen stets dem Anbieter.
 Todesmarke (Death counter) :: Eine Marke, die während der End Phases hochzählt; erreicht eine Karte ihr aufgedrucktes Limit, wird sie zerstört. Angezeigt als Totenkopf mit Zahl.
 Deck (Deck) :: Dein Hauptstapel, 40 bis 80 Karten, höchstens 3 Kopien einer Karte. Gemischt, verdeckt; du ziehst von oben.
 Verteidigungsposition (Defense Position) :: Ein quer liegendes Monster. Es kann nicht angreifen, hält mit seiner DEF und fügt keinen Kampfschaden zu. Verdeckte Monster sind immer in Verteidigung.
@@ -34,7 +35,7 @@ Staub (Dust) :: Das, was aus einer entstaubten Karte wird. Gib ihn aus, um Karte
 Effektschaden (Effect damage) :: Schaden durch einen Karteneffekt statt durch Kampf („füge 800 Schaden zu“). Manche Karten verhindern nur eines von beidem.
 End Phase (End Phase) :: Die letzte Phase eines Zuges: „während deiner End Phase“-Effekte, Handlimit, dann geht der Zug über.
 Ausrüsten (Equip) :: Ein Monster-Artefakt an ein Monster anlegen — den Träger. Verlässt der Träger das Spielfeld, geht das Artefakt auf den Friedhof.
-Extra Deck (Extra Deck) :: Deine Reliquien, bis zu 20. Werden nie gezogen; jede wartet auf ihre aufgedruckten Beschwörungsvoraussetzungen.
+Extra Deck :: Deine Reliquiare und Incarnates, bis zu 20. Nie gezogen; Reliquiare warten auf ihren Board-State, Incarnates auf eine Opfergabe oder ihre Rite.
 Verdeckt (Face-down) :: Eine versteckt gespielte Karte. Verdeckte Monster sind immer in Verteidigungsposition; verdeckte Zauber sind gesetzt und können später aktiviert werden.
 Spielfeld (Field) :: Der Tisch: alle Zonen beider Duellanten. „Auf dem Spielfeld“ heißt offen oder verdeckt in einer Monster- oder Artefakt-Zone.
 Feld-Artefakt (Field Artifact) :: Ein Artefakt, das in einer Artefakt-Zone liegt und den ganzen Tisch beeinflusst, nicht ein einzelnes Monster.
@@ -45,8 +46,10 @@ Friedhof (Graveyard) :: Wohin zerstörte, benutzte und abgeworfene Karten gehen.
 Hand (Hand) :: Die Karten, die du hältst. Limit 8 am Ende deines Zuges.
 Handlimit (Hand limit) :: 8. Hältst du während deiner End Phase mehr, wirfst du bis auf 8 ab.
 Held (Hero) :: Siehe Spielerkarte.
+Hour Counter :: Die Countdown-Marke. Eine Karte mit Stundenmarken verliert in jeder Standby Phase ihres Kontrolleurs eine; fällt die letzte, feuert ihr Countdown-Effekt.
 Ignitionseffekt (Ignition effect) :: Ein Effekt, den du selbst in deiner Main Phase aktivierst („Einmal pro Zug: …“).
 Illusions-Token (Illusion Token) :: Ein 0/0-Token, den der „Gaslicht“-Archetyp auf das gegnerische Spielfeld stellt. Er blockiert eine Zone und kann gewinnbringend zerstört werden.
+Incarnate :: Ein rotes Extra-Deck-Monster mit eigenem Level. Gerufen entweder temporär über eine Opfergabe — Opfer, deren Level EXAKT sein Level ergeben, mindestens eines ein Vessel — oder permanent über seine Rite.
 INFUSED (Infused) :: Ein stärkerer Effekt auf einer Karte, der immer Mana kostet. Entweder gekoppelt (Verbesserung des Effekts darüber) oder eigenständig (eigene Fähigkeit).
 Stufe (Level) :: 1, 2 oder 3, im Wappen angezeigt. Eine Stufe 2 braucht 1 Opfer für die Normalbeschwörung, eine Stufe 3 braucht 2. Reliquien sind Stufe 3.
 Lebenspunkte (Life Points) :: Deine Gesundheit. 8000 zu Beginn (manche Helden weichen ab). Bei 0 ist das Duell verloren.
@@ -59,6 +62,7 @@ Monster-Artefakt (Monster Artifact) :: Ein Artefakt, das an ein einzelnes Monste
 Monster-Typ (Monster Type) :: Drache, Mensch, Bestie, Mecha, Engel, Dämon, Mythos, Tier … Manche Effekte achten darauf.
 Annullieren (Negate) :: Die Effekte einer Karte abschalten. Eine annullierte Karte trägt bis zum Ende des Zuges ein violettes NEG-Abzeichen; versucht sie zu wirken, passiert nichts.
 Normalbeschwörung (Normal Summon) :: Ein Monster aus deiner Hand in deiner Main Phase spielen, einmal pro Zug. Gratis für Stufe 1; 1 Opfer für Stufe 2, 2 für Stufe 3. Auch das verdeckte Setzen eines Monsters verbraucht sie.
+Offering :: Die temporäre Incarnate-Beschwörung: Opfere Monster, deren Level exakt das Incarnate-Level ergeben (mindestens ein Vessel). Kein Mana. Das Incarnate kehrt in deiner nächsten Standby Phase ins Extra Deck zurück.
 Einmal pro Zug (Once per turn) :: Der Effekt kann jeden Zug einmal benutzt werden. Manche gelten einmal pro Zug und Kartenname — drei Kopien teilen sich eine Nutzung.
 Besitzer (Owner) :: Aus wessen Deck eine Karte stammt. Karten kehren auf die Hand, ins Deck oder auf den Friedhof ihres Besitzers zurück, auch nachdem die Kontrolle gewechselt hat.
 Passiv (Passive) :: Ein Effekt, der einfach an ist, solange die Karte offen auf dem Spielfeld liegt. Keine Aktivierung, keine Kosten, kein Kettenglied.
@@ -74,6 +78,7 @@ Reliquien-Beschwörung (Reliquary Summon) :: Eine Reliquie aus dem Extra Deck ru
 Reaktionsfenster (Response window) :: Der Moment nach einer Aktivierung, einer Beschwörung oder einer Angriffsansage, in dem der andere Duellant mit einem Schnelleffekt antworten darf. Eine Antwort startet eine Kette.
 Auf die Hand zurückgeben (Return to hand) :: Eine Karte vom Spielfeld auf die Hand ihres Besitzers zurückbewegen. Siehe Bounce.
 Aufdecken (Reveal) :: Eine Karte beiden Spielern zeigen — eine gesuchte Karte, eine zufällige Handkarte, die oberste Karte eines Decks.
+Rite :: Eine Zauber-Unterart in Incarnate-Rot. Jede Rite benennt ein Monster zum Opfern und ein Incarnate zum Rufen — so beschworen bleibt das Incarnate PERMANENT.
 Suchen (Search) :: Eine bestimmte Karte aus deinem Deck auf die Hand nehmen. Das Deck wird danach gemischt.
 Saison (Season) :: Ein Monat Ranglistenspiel. Jeden Monat beginnt eine neue Saison.
 Setzen (Set) :: Eine Karte verdeckt spielen: ein Monster in Verteidigungsposition (verbraucht deine Normalbeschwörung) oder einen Zauber für später.
@@ -112,3 +117,5 @@ Angriffslimit (Attack limit) :: Solange „Der Kodex des Duellanten“ offen lie
 Doppelter Kampfschaden (Double battle damage) :: Solange „Hohe Einsätze“ läuft, wird jeder Kampfschaden an beiden Duellanten verdoppelt — in der gegnerischen Battle Phase und in deiner eigenen.
 Eine Art ansagen (Declare a type) :: Du sagst Monster, Zauber oder Artefakt an, bevor Karten aufgedeckt werden; Treffer behältst du, der Rest geht auf den Friedhof.
 Direkter Angriff (halbiert) (Direct attack (halved)) :: Ein Monster, das an den gegnerischen Monstern vorbei direkt angreifen darf, dabei aber nur seinen halben ATK zufügt.
+Vessel :: Ein als Gefäß markiertes Monster — steht auf der Karte. Jede Opfergabe braucht mindestens ein Vessel unter den Opfern. Meist niedrigstufig; zwei je Archetyp.
+Zone Seal :: Eine zugemauerte Monsterzone: Solange das Siegel hält, kann nichts hineinbeschworen, -gelegt oder -gezogen werden. Als Backstein-Overlay sichtbar; manche Siegel laufen ab, andere hängen an ihrer Quellkarte.

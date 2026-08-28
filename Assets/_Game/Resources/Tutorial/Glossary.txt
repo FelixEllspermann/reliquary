@@ -21,6 +21,7 @@ Cost :: What you pay to activate: Mana, a discard, a tribute, banishing a card. 
 Counter :: A marker placed on a card by an effect. Death counters are shown as a skull with a number; the card explains what happens when they pile up.
 Coupled :: An Infused effect that upgrades the effect above it ("Instead, pay 2 Mana: …"). Per turn you use either the plain version or the Coupled one, never both.
 Craft :: Turn dust into a card you are missing. Dusting a spare copy gives dust back.
+Deal :: An offer your opponent must answer: they pick option A or B, and the card resolves accordingly. Both options always favour the dealer.
 Death counter :: A counter that ticks up during End Phases; when a card reaches its printed limit it is destroyed. Shown as a skull with a number.
 Deck :: Your main pile, 40 to 80 cards, at most 3 copies of a card. Shuffled, face-down; you draw from the top.
 Defense Position :: A monster lying sideways. It cannot attack, holds with its DEF, and deals no battle damage. Face-down monsters are always in Defense.
@@ -34,7 +35,7 @@ Dust :: What a dusted card turns into. Spend it to craft cards.
 Effect damage :: Damage dealt by a card effect rather than by battle ("inflict 800 damage"). Some cards prevent one and not the other.
 End Phase :: The last phase of a turn: "during your End Phase" effects, hand limit, then the turn passes.
 Equip :: To attach a Monster Artifact to a monster — the bearer. If the bearer leaves the field, the Artifact goes to the Graveyard.
-Extra Deck :: Your Reliquaries, up to 20. Never drawn; each waits for its printed Summon requirements.
+Extra Deck :: Your Reliquaries and Incarnates, up to 20. Never drawn; Reliquaries wait for their printed board state, Incarnates for an Offering or their Rite.
 Face-down :: A card played hidden. Face-down monsters are always in Defense Position; face-down Spells are Set and can be activated later.
 Field :: The table: every zone of both duelists. "On the field" means face-up or face-down in a Monster or Artifact Zone.
 Field Artifact :: An Artifact that sits in an Artifact Zone and affects the whole table, not one monster.
@@ -45,8 +46,10 @@ Graveyard :: Where destroyed, used and discarded cards go. Many effects bring ca
 Hand :: The cards you hold. Limit 8 at the end of your turn.
 Hand limit :: 8. If you hold more during your End Phase, you discard down to 8.
 Hero :: See Player Card.
+Hour Counter :: The countdown marker. A card with Hour Counters loses one during each of its controller's Standby Phases; when the last one goes, its Countdown effect fires.
 Ignition effect :: An effect you activate yourself in your Main Phase ("Once per turn: …").
 Illusion Token :: A 0/0 Token the Gaslight archetype places on the opponent's field. It fills a zone and can be destroyed for value.
+Incarnate :: A red Extra Deck monster with a Level of its own. Called either temporarily through an Offering — sacrifices whose Levels total EXACTLY its Level, at least one a Vessel — or permanently through its Rite.
 Infused :: A stronger effect on a card that always costs Mana. Either Coupled (upgrade of the effect above) or Standalone (its own ability).
 Level :: 1, 2 or 3, shown in the crest. A Level 2 needs 1 tribute to Normal Summon, a Level 3 needs 2. Reliquaries are Level 3.
 Life Points :: Your health. 8000 to start (some heroes differ). At 0, the duel is lost.
@@ -59,6 +62,7 @@ Monster Artifact :: An Artifact that equips to one monster.
 Monster Type :: Dragon, Human, Beast, Mecha, Angel, Demon, Myth, Animal … Some effects care about it.
 Negate :: To switch a card's effects off. A negated card wears a violet NEG badge until the end of the turn; if it tries to act, nothing happens.
 Normal Summon :: Playing a monster from your hand in your Main Phase, once per turn. Free for Level 1; 1 tribute for Level 2, 2 for Level 3. Setting a monster face-down uses it too.
+Offering :: The temporary Incarnate Summon: sacrifice monsters whose Levels total exactly the Incarnate's Level (at least one Vessel). No Mana. The Incarnate returns to the Extra Deck during your next Standby Phase.
 Once per turn :: The effect can be used once each turn. Some are once per turn per card name — three copies share one use.
 Owner :: Whose deck a card came from. Cards return to their owner's hand, Deck or Graveyard even after control changed.
 Passive :: An effect that is simply on while the card is face-up on the field. No activation, no cost, no chain link.
@@ -74,6 +78,7 @@ Reliquary Summon :: Calling a Reliquary from the Extra Deck once its requirement
 Response window :: The moment after an activation, a summon or an attack declaration in which the other duelist may answer with a Quick effect. Answering starts a chain.
 Return to hand :: To move a card from the field back to its owner's hand. See Bounce.
 Reveal :: To show a card to both players — a searched card, a random hand card, the top of a Deck.
+Rite :: A Spell subtype in Incarnate red. Each Rite names one monster to sacrifice and one Incarnate to call — summoned this way, the Incarnate stays PERMANENTLY.
 Search :: To take a specific card from your Deck to your hand. The Deck is shuffled afterwards.
 Season :: A month of ranked play. A new season begins each month.
 Set :: To play a card face-down: a monster in Defense Position (uses your Normal Summon), or a Spell to be activated later.
@@ -112,3 +117,5 @@ Attack limit :: While The Duelist's Code is face-up, each duelist may declare on
 Double battle damage :: While High Stakes is running, every battle damage to either duelist is doubled — the opponent's Battle Phase and your own.
 Declare a type :: You name Monster, Spell or Artifact before revealing cards; matches are kept, the rest go to the Graveyard.
 Direct attack (halved) :: A monster that may attack directly past the opponent's monsters, but deals only half its ATK that way.
+Vessel :: A monster marked as a vessel — printed on the card. Every Offering needs at least one Vessel among its sacrifices. Usually low-Level monsters; two per archetype.
+Zone Seal :: A bricked-up Monster Zone: nothing can be summoned, set or moved into it while the seal holds. Shown as a brick overlay; some seals expire, some are bound to their source card.

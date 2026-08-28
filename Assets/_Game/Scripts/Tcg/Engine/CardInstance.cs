@@ -96,6 +96,12 @@ namespace Rouge.Tcg
         /// <summary>Shield Wall Infused: DEF-Bonus bis zum Beginn des nächsten eigenen Zuges des Kontrolleurs.</summary>
         public int DefBuffUntilOwnersNextTurn;
 
+        // --- Incarnates ---
+        /// <summary>Temporäre Opfergabe-Beschwörung: Zugnummer der Beschwörung — in der Standby
+        /// Phase des nächsten EIGENEN Zuges (TurnNumber größer) kehrt die Karte ins Extra Deck
+        /// zurück. -1 = permanent (Rite oder kein Incarnate).</summary>
+        public int IncarnateReturnTurn = -1;
+
         /// <summary>
         /// Das Level, mit dem diese Karte gerade spielt: temporäre Setzung schlägt
         /// den permanenten Bonus, beides klemmt auf 1..3. Alle Level-Prüfungen der
