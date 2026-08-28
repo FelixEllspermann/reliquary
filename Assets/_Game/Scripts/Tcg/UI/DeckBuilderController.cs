@@ -278,36 +278,46 @@ namespace Rouge.Tcg.UI
         private static readonly string[] AttrChipNames = { "ALL", "FI", "WA", "LI", "DA", "EA", "WI" };
 
         /// <summary>
-        /// Fünfter Typ-Filter für das Extra Deck. Wird als Kopie des ARTIFACT-Chips
-        /// erzeugt, damit er ohne weiteres Verdrahten exakt im Stil der anderen sitzt.
+        /// Extra-Deck-Typ-Filter (RELIQUARY + INCARNATE). Beide Chips entstehen als
+        /// Kopien des ARTIFACT-Chips, damit sie ohne weiteres Verdrahten exakt im
+        /// Stil der anderen sitzen; die onClick-Schleife danach greift auch sie.
         /// </summary>
         private void BuildReliquaryChip()
         {
             if (typeChipButtons == null || typeChipButtons.Length < 4) return;
-            if (typeChipButtons.Length >= 5 && typeChipButtons[4] != null) return;
             var template = typeChipButtons[3];
             if (template == null || template.transform.parent == null) return;
 
-            var copy = Instantiate(template.gameObject, template.transform.parent);
-            copy.name = "ChipReliquary";
-            copy.transform.SetSiblingIndex(template.transform.GetSiblingIndex() + 1);
-
-            // Ohne Layout-Gruppe sitzt die Kopie auf dem Original — dann eine Chip-Breite weiterrücken
-            if (template.transform.parent.GetComponent<LayoutGroup>() == null && typeChipButtons[2] != null)
+            var templateBg = typeChipBgs.Length > 3 ? typeChipBgs[3] : null;
+            var templateLabel = typeChipLabels.Length > 3 ? typeChipLabels[3] : null;
+            if (typeChipButtons.Length < 6)
             {
-                var previous = (RectTransform)typeChipButtons[2].transform;
-                var last = (RectTransform)template.transform;
-                ((RectTransform)copy.transform).anchoredPosition =
-                    last.anchoredPosition + (last.anchoredPosition - previous.anchoredPosition);
+                System.Array.Resize(ref typeChipButtons, 6);
+                System.Array.Resize(ref typeChipBgs, 6);
+                System.Array.Resize(ref typeChipLabels, 6);
             }
 
-            System.Array.Resize(ref typeChipButtons, 5);
-            System.Array.Resize(ref typeChipBgs, 5);
-            System.Array.Resize(ref typeChipLabels, 5);
-            typeChipButtons[4] = copy.GetComponent<Button>();
-            typeChipBgs[4] = FindSame(template.gameObject, copy, typeChipBgs.Length > 3 ? typeChipBgs[3] : null);
-            typeChipLabels[4] = FindSame(template.gameObject, copy, typeChipLabels.Length > 3 ? typeChipLabels[3] : null);
-            if (typeChipLabels[4] != null) typeChipLabels[4].text = Loc.T(TypeChipNames[4]);
+            for (int slot = 4; slot <= 5; slot++)
+            {
+                if (typeChipButtons[slot] != null) continue;
+                var copy = Instantiate(template.gameObject, template.transform.parent);
+                copy.name = slot == 4 ? "ChipReliquary" : "ChipIncarnate";
+                copy.transform.SetSiblingIndex(template.transform.GetSiblingIndex() + (slot - 3));
+
+                // Ohne Layout-Gruppe sitzt die Kopie auf dem Original — dann je eine Chip-Breite weiterrücken
+                if (template.transform.parent.GetComponent<LayoutGroup>() == null && typeChipButtons[2] != null)
+                {
+                    var previous = (RectTransform)typeChipButtons[2].transform;
+                    var last = (RectTransform)template.transform;
+                    ((RectTransform)copy.transform).anchoredPosition =
+                        last.anchoredPosition + (last.anchoredPosition - previous.anchoredPosition) * (slot - 3);
+                }
+
+                typeChipButtons[slot] = copy.GetComponent<Button>();
+                typeChipBgs[slot] = FindSame(template.gameObject, copy, templateBg);
+                typeChipLabels[slot] = FindSame(template.gameObject, copy, templateLabel);
+                if (typeChipLabels[slot] != null) typeChipLabels[slot].text = Loc.T(TypeChipNames[slot]);
+            }
         }
 
         /// <summary>Findet in einer Kopie das Gegenstück zu einer Komponente der Vorlage.</summary>

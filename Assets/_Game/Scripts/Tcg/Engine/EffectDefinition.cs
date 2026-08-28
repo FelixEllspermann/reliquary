@@ -240,6 +240,11 @@ namespace Rouge.Tcg
                  "(0 = keine Bedingung; The Unforgotten: 3)")]
         public int minOwnBanishedCards;
 
+        [Header("Incarnates")]
+        [Tooltip("Avatar: nur aktivierbar, wenn das letzte Kettenglied ein GEGNER-Effekt ist, " +
+                 "der ihn Karten ziehen ließe (DrawCards & Co.)")]
+        public bool requiresOpponentDrawChainLink;
+
         [Tooltip("Aktionen, die bei der Auflösung in Reihenfolge ausgeführt werden")]
         public List<EffectAction> actions = new List<EffectAction>();
     }

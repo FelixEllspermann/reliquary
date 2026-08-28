@@ -44,6 +44,18 @@ namespace Rouge.Tcg
             int reliquaryIndex = request.Options.FindIndex(o => o.Kind == MainActionKind.SummonReliquary);
             if (reliquaryIndex >= 0) return reliquaryIndex;
 
+            // 0a) Incarnate-Opfergabe: nur wenn der Tausch sich lohnt — das Incarnate
+            // schlägt die aufgegebene Kampfkraft (Avatar zählt seine Opfer selbst)
+            for (int i = 0; i < request.Options.Count; i++)
+            {
+                var option = request.Options[i];
+                if (option.Kind != MainActionKind.SummonIncarnate) continue;
+                var data = option.Card?.Definition as IncarnateCardData;
+                if (data == null) continue;
+                int offeredAtk = option.OfferingCards.Sum(m => m.CurrentAtk);
+                if (data.passiveBaseStatsFromOffering || data.atk > offeredAtk - 400) return i;
+            }
+
             // 0b) Eigenbedingte Spezialbeschwörung (kostet keinen Normal Summon)
             int selfSummonIndex = request.Options.FindIndex(o => o.Kind == MainActionKind.SpecialSummonSelf);
             if (selfSummonIndex >= 0) return selfSummonIndex;

@@ -566,3 +566,11 @@ RITE	의식
 VESSEL	그릇
 VESSEL — may serve as the vessel of an Incarnate offering.	그릇 — 인카네이트 공물의 그릇이 될 수 있다.
 OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	공물: 레벨 합이 정확히 {0}이 되도록 몬스터를 제물로 바친다 — 그중 1장은 그릇이어야 한다. 이렇게 소환되면 다음 스탠바이 페이즈에 엑스트라 덱으로 돌아간다.
+Monsters that battle this card permanently lose {0} ATK after the battle.	이 카드와 전투한 몬스터는 전투 후 영구히 공격력 {0}을 잃는다.
+Your opponent cannot Summon monsters from their Graveyard.	상대는 묘지에서 몬스터를 소환할 수 없다.
+While this card is on the field, neither player can activate Spells.	이 카드가 필드에 있는 한, 어느 플레이어도 마법을 발동할 수 없다.
+Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.	상대가 아티팩트 효과를 발동할 때마다 이 카드는 영구히 공격력·수비력 {0}을 얻는다.
+If this card would be destroyed, you may discard 1 card from your hand instead.	이 카드가 파괴될 경우, 대신 패에서 카드 1장을 버려도 된다.
+This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats.	이 카드는 소환을 위해 바쳐진 모든 몬스터의 원래 공격력·수비력 합계를 기본 수치로 하여 필드에 나온다.
+Your opponent cannot activate effects in response to your monster effects.	상대는 당신의 몬스터 효과에 대응하여 효과를 발동할 수 없다.
+Neither player can Special Summon monsters, except Incarnate Summons.	어느 플레이어도 몬스터를 특수 소환할 수 없다 — 인카네이트 소환은 예외.

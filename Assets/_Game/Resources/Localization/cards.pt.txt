@@ -5040,3 +5040,59 @@ l0 Saída pela coxia
 t0 Uma vez por turno: coloque 1 monstro com a face para cima que você controla com a face para baixo.
 l1 A grande revelação
 t1 Pague 2 Mana: vire TODOS os seus monstros com a face para baixo para cima.
+## Maw of the First Winter
+n Goela do Primeiro Inverno
+l0 A primeira geada
+t0 Quando esta carta for invocada: cada monstro do oponente passa para Posição de Defesa e não pode mudar de posição até o fim do próximo turno do oponente.
+l1 Congelamento profundo
+t1 RÁPIDO, uma vez por turno — pague 4 Mana: escolha 1 monstro do campo; ele perde permanentemente 500 ATK. Se com isso chegar a 0 ATK, destrua-o.
+## The Hungering Demon
+n O Demônio Faminto
+l0 O primeiro prato
+t0 Quando esta carta for invocada: bana as 3 cartas do topo do Baralho do oponente; esta carta ganha permanentemente 200 ATK por carta banida assim.
+l1 Esvaziar a despensa
+t1 RÁPIDO, uma vez por turno — pague 3 Mana: bana todos os monstros do seu Cemitério; esta carta ganha 100 ATK até o fim do turno por carta banida assim.
+## Colossus of the Broken Gate
+n Colosso do Portão Partido
+## She Who Outlives
+n Ela, Que Sobrevive
+l0 A bênção dela
+t0 Quando esta carta for invocada: você pode escolher 1 monstro do campo; ele não pode mais ser destruído em batalha.
+l1 Um passo além do véu
+t1 RÁPIDO, uma vez por turno — pague 2 Mana: bana esta carta até o fim do turno (ela volta a uma zona livre, ou ao Cemitério se não houver); invoque 1 monstro de LUZ com 2000 ou menos ATK do seu Cemitério.
+l2 Mais um passo além
+t2 Em vez disso, pague 5 Mana: invoque-o do seu Baralho.
+## Avatar of the Thousandth Card
+n Avatar da Milésima Carta
+l0 O preço da ganância
+t0 RÁPIDO, uma vez por turno — pague 2 Mana quando o oponente ativar um efeito que o deixaria comprar: negue a ativação e destrua a carta. Se era um monstro, cause a ele dano igual ao ATK dele.
+## Rite of the First Winter
+n Rito do Primeiro Inverno
+l0 O rito
+t0 Pague 3 Mana e sacrifique "Ice Warden": invoque "Goela do Primeiro Inverno" do seu Extra Deck — permanentemente.
+l1 Preparar o receptáculo
+t1 Pague 1 Mana: adicione 1 "Ice Warden" do seu Baralho à sua mão.
+## Rite of Unending Hunger
+n Rito da Fome Sem Fim
+l0 O rito
+t0 Pague 3 Mana e sacrifique "Archfiend Overlord": invoque "O Demônio Faminto" do seu Extra Deck — permanentemente.
+l1 Preparar o receptáculo
+t1 Pague 1 Mana: adicione 1 "Archfiend Overlord" do seu Baralho à sua mão.
+## Rite of the Broken Gate
+n Rito do Portão Partido
+l0 O rito
+t0 Pague 4 Mana e sacrifique "Sworn to the Gate": invoque "Colosso do Portão Partido" do seu Extra Deck — permanentemente.
+l1 Preparar o receptáculo
+t1 Pague 1 Mana: adicione 1 "Sworn to the Gate" do seu Baralho à sua mão.
+## Rite of Eternal Life
+n Rito da Vida Eterna
+l0 O rito
+t0 Pague 4 Mana e sacrifique "Wenna, Who Waits Outside": invoque "Ela, Que Sobrevive" do seu Extra Deck — permanentemente.
+l1 Preparar o receptáculo
+t1 Pague 1 Mana: adicione 1 "Wenna, Who Waits Outside" do seu Baralho à sua mão.
+## Rite of the Thousandth
+n Rito da Milésima
+l0 O rito
+t0 Pague 5 Mana e sacrifique "The Thousandth Card": invoque o "Avatar da Milésima Carta" do seu Extra Deck — permanentemente.
+l1 Preparar o receptáculo
+t1 Pague 1 Mana: adicione 1 "The Thousandth Card" do seu Baralho à sua mão.

@@ -565,3 +565,11 @@ RITE	儀式
 VESSEL	器
 VESSEL — may serve as the vessel of an Incarnate offering.	器 — インカーネイトの供物の器となれる。
 OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	供物：レベル合計がちょうど{0}になるモンスターを生け贄に捧げる——うち1体は器であること。この方法で召喚された場合、次の自分のスタンバイフェイズにエクストラデッキへ戻る。
+Monsters that battle this card permanently lose {0} ATK after the battle.	このカードと戦闘したモンスターは、戦闘後に永続的に攻撃力{0}を失う。
+Your opponent cannot Summon monsters from their Graveyard.	相手は墓地からモンスターを召喚できない。
+While this card is on the field, neither player can activate Spells.	このカードがフィールドにある限り、どちらのプレイヤーも魔法を発動できない。
+Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.	相手がアーティファクトの効果を発動するたび、このカードは永続的に攻撃力・守備力{0}アップ。
+If this card would be destroyed, you may discard 1 card from your hand instead.	このカードが破壊される場合、代わりに手札を1枚捨ててもよい。
+This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats.	このカードは、その召喚のために捧げられたすべてのモンスターの元々の攻撃力・守備力の合計を基本値としてフィールドに現れる。
+Your opponent cannot activate effects in response to your monster effects.	相手はあなたのモンスター効果に対して効果を発動できない。
+Neither player can Special Summon monsters, except Incarnate Summons.	どちらのプレイヤーもモンスターを特殊召喚できない——インカーネイト召喚を除く。

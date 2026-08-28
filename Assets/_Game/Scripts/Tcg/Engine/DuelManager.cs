@@ -1022,6 +1022,9 @@ namespace Rouge.Tcg
 
         private void ClearTempModifiers()
         {
+            // She Who Outlives: geblinkte Karten kehren VOR dem Aufräumen zurück,
+            // damit ihre Zug-Zustände normal mitgeräumt werden.
+            ReturnBlinkedCards();
             foreach (var player in new[] { Player1, Player2 })
             {
                 player.ExtraNormalSummons = 0;

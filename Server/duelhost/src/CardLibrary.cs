@@ -40,6 +40,8 @@ namespace Rouge.DuelHost
             // Unity-Objekte) — nach dem Laden per Name nachziehen.
             library.Rules.illusionToken = library.Catalog.cards
                 .Find(c => c.cardName == "Illusion Token") as MonsterCardData;
+            library.Rules.scarecrowToken = library.Catalog.cards
+                .Find(c => c.cardName == "Scarecrow Token") as MonsterCardData;
 
             return library;
         }
@@ -48,6 +50,7 @@ namespace Rouge.DuelHost
         {
             "MonsterCardData" => new MonsterCardData(),
             "ReliquaryCardData" => new ReliquaryCardData(),
+            "IncarnateCardData" => new IncarnateCardData(),
             "SpellCardData" => new SpellCardData(),
             "ArtifactCardData" => new ArtifactCardData(),
             "PlayerCardData" => new PlayerCardData(),

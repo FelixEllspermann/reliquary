@@ -1,109 +1,69 @@
-# Incarnates — die ersten 5 (Design zur Review)
+# Incarnates — die ersten 5 (Designs von Felix, GEBAUT)
 
-Stand: 2026-08-29 · Status: **Design zur Review** (Groundworks sind gebaut, diese
-Karten NICHT) · Neue Extra-Deck-Kartenart in Rot + Riten-Zauber + Vessel-System.
+Stand: 2026-08-29 · Status: **GEBAUT** (releaseVersion 0.1.8, Katalog 961) · Felix'
+Designs ersetzen den ersten Entwurf; Bau-Details im Commit dokumentiert.
 
-**Die Regeln (gebaut):** Ein Incarnate hat ein eigenes Level (4–9). Zwei Wege aufs Feld:
-- **Opfergabe (temporär):** Monster opfern, deren Level-Summe EXAKT das Incarnate-Level
-  ergibt — mindestens eines ein **Vessel** (70 sind markiert, 2 je Archetyp, alle Lv 1–2).
-  Kein Mana. In der Standby Phase deines nächsten Zuges kehrt es ins Extra Deck zurück.
-- **Rite (permanent):** Roter Zauber, benennt EIN Opfer-Monster und EIN Incarnate —
-  so gerufen bleibt es dauerhaft.
-
-Design-Spannung: Die Opfergabe ist der günstige Blitz (großer Auftritt, eine Runde),
-die Rite die teure Bindung (das benannte Opfer muss ins Deck und aufs Feld). Effekte
-sind so gebaut, dass BEIDE Wege sich lohnen: On-Summon-Impact für die Opfergabe,
-Dauer-Passiva für die Rite.
+**System (gebaut):** Incarnates = rote Extra-Deck-Karten mit eigenem Level.
+- **Opfergabe (temporär):** Level-Summe der Opfer EXAKT = Incarnate-Level, mind. 1 VESSEL,
+  kein Mana; Rückkehr ins Extra Deck in der Standby Phase des nächsten eigenen Zuges.
+  **114 Vessels** markiert: je Archetyp 2 niedrige + 1 Lv3, 10 Generics, plus die 5
+  Riten-Opfer (Ice Warden, Archfiend Overlord, Sworn to the Gate, Wenna, The Thousandth Card).
+- **Rite (permanent):** rote Zauber mit Mana-Kosten, opfern ihr benanntes Monster.
+  Jede Rite sucht per [Infused – 1] ihr Opfer aus dem Deck.
 
 ---
 
-## 1. Maw of the First Winter — Incarnate · Lv 4 · 2400/1800 · Water/Myth
-- **E1 (On Summon):** Der Atem des ersten Winters: ALLE Monster deines Gegners können
-  diesen Zug nicht angreifen und nicht die Position wechseln. *(Massen-Freeze — Cannot
-  Attack + Position-Lock auf alle; Massen-Variante NEU-klein)*
-- **E2 (passiv):** Monster, die dieses Incarnate angreifen, verlieren nach dem Kampf
-  dauerhaft 300 ATK. *(Frostbiss — Widow-Kontext-Baustein ✓)*
-- **[Infused – 2]:** Ein Monster deines Gegners wird verdeckt gelegt. *(SetTargetFaceDownDefense ✓)*
-- **Rite: „Rite of the First Winter"** — Opfer: **Tidebound Skimmer** (Vessel). Der
-  Gezeiten-Läufer friert im ersten Frost ein.
-- Rolle: Der Tempo-Dieb — eine Opfergabe (z.B. Lv2+Lv2 oder Lv3+Lv1) kauft dir eine
-  komplette Runde Ruhe.
+## 1. Maw of the First Winter — Lv 7 · 2000/2000 · Water/Myth
+- **E1 (On Summon):** Alle Gegner-Monster → Verteidigung + Position-Lock bis zum Ende
+  des nächsten gegnerischen Zuges.
+- **E2 (passiv):** Monster, die mit ihr im Kampf waren (beide Richtungen), verlieren
+  danach dauerhaft 500 ATK.
+- **E3 (passiv):** Kann nicht im Kampf zerstört werden.
+- **E4 [Infused – 4, Quick, beide Züge, 1×/Zug]:** Ziel-Monster verliert dauerhaft
+  500 ATK; fällt es dadurch auf 0, wird es zerstört.
+- **Rite of the First Winter (3 Mana)** — Opfer: **Ice Warden** (Vessel).
 
-## 2. The Hungering Choir — Incarnate · Lv 5 · 2700/2000 · Dark/Demon
-- **E1 (On Summon):** Verbanne die obersten 3 Karten des GEGNER-Friedhofs; dieses
-  Incarnate erhält dauerhaft 300 ATK je so verbannter Karte. *(BanishOpponentGraveTop ✓
-  + Zähl-Kopplung NEU-klein)*
-- **E2 (passiv):** Dein Gegner kann keine Monster aus seinem Friedhof beschwören.
-  *(Anti-Recursion-Aura NEU-klein)* — der Chor singt, und die Toten bleiben liegen.
-- **[Or Infused +2] auf E1:** Verbanne 5 statt 3.
-- **Rite: „Rite of the Hungering Choir"** — Opfer: **Sacrilegion Willing Lamb** (Vessel).
-  Das willige Lamm, verschlungen vom Chor — die Sakrilegion-Brücke.
-- Rolle: Der Grab-Henker — gegen Friedhofs-Decks (GraveTop-Familie, Séance, Deckay)
-  brutal, sonst solide.
+## 2. The Hungering Demon — Lv 7 · 3000/2500 · Dark/Demon
+- **E1 (On Summon):** Verbanne die obersten 3 Karten des GEGNER-DECKS; +200 ATK
+  permanent je Karte.
+- **E2 (passiv):** Der Gegner kann keine Monster aus dem Friedhof beschwören.
+- **E3 (passiv):** Kann nicht vom Feld verbannt werden.
+- **E4 [Infused – 3, Quick, beide Züge, 1×/Zug]:** Verbanne ALLE Monster aus deinem
+  Friedhof; +100 ATK bis Zugende je Karte.
+- **Rite of Unending Hunger (3 Mana)** — Opfer: **Archfiend Overlord** (Vessel).
 
-## 3. Colossus of the Broken Gate — Incarnate · Lv 6 · 3000/2600 · Earth/Mecha
-- **E1 (On Summon):** Zerstöre bis zu 2 Zauber/Artefakte deines Gegners.
-  *(EnemySpellOrArtifact ✓, targetCount 2)*
-- **E2 (passiv):** Durchstoß. *(passivePiercing ✓)*
-- **[Infused – 2]:** Dieses Incarnate darf diese Battle Phase zweimal angreifen.
-  *(GrantAdditionalAttack ✓)*
-- **Rite: „Rite of the Broken Gate"** — Opfer: **Barrierstruck Mason** (Vessel). Der
-  Maurer, der das Tor errichtete, reißt es nieder.
-- Rolle: Der Belagerungsbrecher — Backrow-Removal + Piercing-Druck; via Rite die
-  permanente Abrissbirne.
+## 3. Colossus of the Broken Gate — Lv 8 · 2400/2500 · Earth/Demon
+- **E1 (passiv):** Solange er auf dem Feld liegt, kann KEIN Spieler Zauber aktivieren.
+- **E2 (passiv):** Kann nicht von Effekten als Ziel gewählt werden.
+- **E3 (passiv):** Jede gegnerische Artefakt-Effekt-Aktivierung: +200 ATK und DEF permanent.
+- **Rite of the Broken Gate (4 Mana)** — Opfer: **Sworn to the Gate** (Vessel; die Karte
+  wurde zugleich umgebaut: „Kein Spieler kann Monster spezialbeschwören — außer
+  Incarnate-Beschwörungen" statt der alten Besitzer-Sperre).
 
-## 4. She Who Outlives — Incarnate · Lv 7 · 2900/2900 · Light/Myth
-- **E1 (On Summon):** Deine anderen Monster können diesen Zug nicht zerstört werden
-  (Kampf und Effekte). *(CannotBeDestroyed-EOT, Massen-Variante NEU-klein)*
-- **E2 (passiv, die Vergänglichkeits-Pointe):** Kehrt dieses Incarnate ins Extra Deck
-  zurück ODER verlässt es das Feld: Beschwöre 1 Level-1-Monster aus deinem Friedhof in
-  Verteidigungsposition. *(Abschiedsgeschenk — Rückkehr-Trigger NEU-klein)* — sie geht,
-  aber sie lässt Leben zurück.
-- **[Infused – 3]:** Ein Monster deines Gegners kann diesen Zug nicht angreifen.
-  *(CannotAttackThisTurn ✓)*
-- **Rite: „Rite of Her Outliving"** — Opfer: **Heavenly Acolyte** (Vessel). Die Novizin
-  gibt ihr Leben — und überdauert in IHR.
-- Rolle: Der Schutzwall mit Nachlass — die Opfergabe schützt einen Angriffs-Zug, die
-  Rite macht sie zur dauerhaften Lebensversicherung.
+## 4. She Who Outlives — Lv 8 · 3000/3000 · Light/Myth
+- **E1 (On Summon):** Wähle 1 Monster auf dem Feld; es kann permanent nicht mehr durch
+  Kampf zerstört werden.
+- **E2 (passiv):** Würde sie zerstört, darf ihr Besitzer stattdessen 1 Handkarte abwerfen.
+- **E3 [Infused – 2, Quick, 1×/Zug]:** Verbanne sie bis Zugende (Rückkehr in freie Zone,
+  sonst Friedhof; die Temporär-Uhr einer Opfergabe läuft weiter); beschwöre 1
+  LICHT-Monster ≤2000 ATK aus dem Friedhof.
+- **E4 [Or Infused +3]:** …oder aus dem Deck.
+- **Rite of Eternal Life (4 Mana)** — Opfer: **Wenna, Who Waits Outside** (Vessel).
 
-## 5. Avatar of the Thousandth Card — Incarnate · Lv 8 · ?/? · Dark/Myth
-- **E1 (passiv, die Opfergabe-Fantasie):** Dieses Incarnate betritt das Feld mit den
-  AUFSUMMIERTEN gedruckten ATK und DEF aller Monster, die für seine Beschwörung geopfert
-  wurden. *(Opfer-Summen-Stats NEU-mittel)* — drei 2000er geopfert = ein 6000er-Koloss
-  für eine Runde; via Rite nur vom benannten Einzelopfer gespeist (bewusst schwächer,
-  dafür permanent — der Tradeoff der Kartenart in einer Karte).
-- **E2 (On Summon):** Dein Gegner kann diesen Zug keine Karten als Reaktion auf
-  Angriffe dieses Incarnates aktivieren?? — GESTRICHEN, zu komplex. Stattdessen:
-  **E2 (passiv):** Kann nicht zum Ziel gegnerischer Effekte werden. *(passiveUntargetable ✓)*
-- **[Infused – 3]:** Alle anderen offenen Monster verlieren bis Zugende 500 ATK.
-  *(DebuffAllEnemyAtkEot ✓ + eigene? Nur gegnerische — DebuffAllEnemyAtkEot ✓)*
-- **Rite: „Rite of the Thousandth"** — Opfer: **The Thousandth Card**. Die tausendste
-  Karte wird zum Avatar ihrer selbst — das Jubiläums-Easter-Egg zur 1000er-Marke.
-- Rolle: Das Finisher-Monument — die Level-8-Opfergabe frisst fast dein Board und
-  gebiert einen Titanen auf Zeit.
+## 5. Avatar of the Thousandth Card — Lv 9 · ?/? · Dark/Angel
+- **E1 (passiv):** Betritt das Feld mit den AUFSUMMIERTEN gedruckten ATK/DEF aller
+  Opfer als Basiswerte (per Rite: nur The Thousandth Card — 1000/1000-Basis).
+- **E2 (passiv):** Der Gegner kann keine Effekte als Reaktion auf deine Monster-Effekte
+  aktivieren (das Reaktionsfenster öffnet gar nicht erst).
+- **E3 [Infused – 2, Quick, 1×/Zug, nur auf ein Gegner-Kettenglied mit Draw]:** Negiere
+  die Aktivierung, zerstöre die Karte; war es ein Monster, erleidet der Gegner Schaden
+  in Höhe seiner ATK.
+- **Rite of the Thousandth (5 Mana)** — Opfer: **The Thousandth Card** (Vessel).
 
 ---
 
-## Die 5 Riten (rote Zauber, isRite)
+## Nachweise (Selftest, 300 Duelle, 0 Fehler)
 
-| Rite | Opfer (steht auf der Karte) | Incarnate | Mana |
-|---|---|---|---|
-| Rite of the First Winter | Tidebound Skimmer | Maw of the First Winter | 2 |
-| Rite of the Hungering Choir | Sacrilegion Willing Lamb | The Hungering Choir | 2 |
-| Rite of the Broken Gate | Barrierstruck Mason | Colossus of the Broken Gate | 3 |
-| Rite of Her Outliving | Heavenly Acolyte | She Who Outlives | 3 |
-| Rite of the Thousandth | The Thousandth Card | Avatar of the Thousandth Card | 4 |
-
-Jede Rite trägt zusätzlich einen kleinen Zweitnutzen als **[Infused – 1]**:
-„Füge das benannte Opfer-Monster aus deinem Deck deiner Hand hinzu" — die Rite SUCHT
-ihr eigenes Opfer, wenn es noch fehlt. *(AddTargetFromDeckToHand ✓ mit nameFilter)*
-
-## Bilanz
-
-| | |
-|---|---|
-| Incarnates | 5 (Level 4/5/6/7/8 — eine Treppe) |
-| Riten | 5 (je 1, mit Such-Infused) |
-| Direkter LP-Schaden | 0 |
-| Neue Engine-Bausteine | Massen-Freeze, Massen-Schutz, Anti-Grab-Aura, Rückkehr-Trigger (je NEU-klein) · Opfer-Summen-Stats (NEU-mittel) |
-| Katalog nach Bau | 951 + 10 = 961 |
+55 Opfergaben · 10 Standby-Rückkehren · 214 Riten-Opferungen · 88 Deck-Verschlingungen ·
+5 Frostbisse · 33 Segen · 64 Schleier-Blinks · 212 Outlive-Rettungen · 1 Gier-Bestrafung.
+Regression (Zufall + Welle-3-Decks): 420 weitere Duelle, 0 Fehler.

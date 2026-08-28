@@ -101,6 +101,11 @@ namespace Rouge.Tcg
         /// Phase des nächsten EIGENEN Zuges (TurnNumber größer) kehrt die Karte ins Extra Deck
         /// zurück. -1 = permanent (Rite oder kein Incarnate).</summary>
         public int IncarnateReturnTurn = -1;
+        /// <summary>She Who Outlives: permanenter Kampfschild — kann nicht durch Kampf zerstört werden.</summary>
+        public bool PermanentBattleShield;
+        /// <summary>Avatar: Basiswerte aus der Opfergabe (-1 = aus). Ersetzen die gedruckten Werte, solange die Karte auf dem Feld liegt.</summary>
+        public int IncarnateBaseAtk = -1;
+        public int IncarnateBaseDef = -1;
 
         /// <summary>
         /// Das Level, mit dem diese Karte gerade spielt: temporäre Setzung schlägt
@@ -150,14 +155,18 @@ namespace Rouge.Tcg
             }
         }
 
-        /// <summary>Grundwert vor Boni — bei kopierten oder vertauschten Werten die Ersatzzahl.</summary>
+        /// <summary>Grundwert vor Boni — bei kopierten oder vertauschten Werten die Ersatzzahl;
+        /// Avatar-Incarnates tragen die Summe ihrer Opfergabe als Basis.</summary>
         private int BaseAtk => StatsOverriddenThisTurn ? OverriddenAtk
-            : StatsSwappedThisTurn ? (StatSource != null ? StatSource.def : 0)
-            : (StatSource != null ? StatSource.atk : 0);
+            : StatsSwappedThisTurn ? RawBaseDef
+            : RawBaseAtk;
 
         private int BaseDef => StatsOverriddenThisTurn ? OverriddenDef
-            : StatsSwappedThisTurn ? (StatSource != null ? StatSource.atk : 0)
-            : (StatSource != null ? StatSource.def : 0);
+            : StatsSwappedThisTurn ? RawBaseAtk
+            : RawBaseDef;
+
+        private int RawBaseAtk => IncarnateBaseAtk >= 0 ? IncarnateBaseAtk : (StatSource != null ? StatSource.atk : 0);
+        private int RawBaseDef => IncarnateBaseDef >= 0 ? IncarnateBaseDef : (StatSource != null ? StatSource.def : 0);
 
         public int CurrentAtk
         {

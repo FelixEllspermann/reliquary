@@ -5040,3 +5040,59 @@ l0 Salida por la izquierda
 t0 Una vez por turno: pon 1 monstruo boca arriba que controles boca abajo.
 l1 La gran revelación
 t1 Paga 2 Maná: voltea TODOS tus monstruos boca abajo.
+## Maw of the First Winter
+n Fauces del Primer Invierno
+l0 La primera helada
+t0 Cuando esta carta sea invocada: cada monstruo de tu adversario pasa a Posición de Defensa y no puede cambiar de posición hasta el final del próximo turno de tu adversario.
+l1 Congelación profunda
+t1 RÁPIDO, una vez por turno — paga 4 Maná: elige 1 monstruo del campo; pierde permanentemente 500 ATK. Si con ello llega a 0 ATK, destrúyelo.
+## The Hungering Demon
+n El Demonio Hambriento
+l0 El primer plato
+t0 Cuando esta carta sea invocada: destierra las 3 cartas superiores del Mazo de tu adversario; esta carta gana permanentemente 200 ATK por cada carta así desterrada.
+l1 Vaciar la despensa
+t1 RÁPIDO, una vez por turno — paga 3 Maná: destierra todos los monstruos de tu Cementerio; esta carta gana 100 ATK hasta el final del turno por cada carta así desterrada.
+## Colossus of the Broken Gate
+n Coloso de la Puerta Rota
+## She Who Outlives
+n Ella, Que Sobrevive
+l0 Su bendición
+t0 Cuando esta carta sea invocada: puedes elegir 1 monstruo del campo; ya no puede ser destruido en batalla.
+l1 Un paso tras el velo
+t1 RÁPIDO, una vez por turno — paga 2 Maná: destierra esta carta hasta el final del turno (vuelve a una zona libre, o al Cementerio si no la hay); Invoca 1 monstruo de LUZ con 2000 o menos ATK desde tu Cementerio.
+l2 Un paso más allá
+t2 En su lugar, paga 5 Maná: invócalo desde tu Mazo.
+## Avatar of the Thousandth Card
+n Avatar de la Milésima Carta
+l0 El precio de la codicia
+t0 RÁPIDO, una vez por turno — paga 2 Maná cuando tu adversario active un efecto que le permitiría robar: niega la activación y destruye la carta. Si era un monstruo, inflígele daño igual a su ATK.
+## Rite of the First Winter
+n Rito del Primer Invierno
+l0 El rito
+t0 Paga 3 Maná y sacrifica a "Ice Warden": Invoca a "Fauces del Primer Invierno" desde tu Extra Deck — permanentemente.
+l1 Preparar el recipiente
+t1 Paga 1 Maná: añade 1 "Ice Warden" de tu Mazo a tu mano.
+## Rite of Unending Hunger
+n Rito del Hambre Sin Fin
+l0 El rito
+t0 Paga 3 Maná y sacrifica a "Archfiend Overlord": Invoca a "El Demonio Hambriento" desde tu Extra Deck — permanentemente.
+l1 Preparar el recipiente
+t1 Paga 1 Maná: añade 1 "Archfiend Overlord" de tu Mazo a tu mano.
+## Rite of the Broken Gate
+n Rito de la Puerta Rota
+l0 El rito
+t0 Paga 4 Maná y sacrifica a "Sworn to the Gate": Invoca a "Coloso de la Puerta Rota" desde tu Extra Deck — permanentemente.
+l1 Preparar el recipiente
+t1 Paga 1 Maná: añade 1 "Sworn to the Gate" de tu Mazo a tu mano.
+## Rite of Eternal Life
+n Rito de la Vida Eterna
+l0 El rito
+t0 Paga 4 Maná y sacrifica a "Wenna, Who Waits Outside": Invoca a "Ella, Que Sobrevive" desde tu Extra Deck — permanentemente.
+l1 Preparar el recipiente
+t1 Paga 1 Maná: añade 1 "Wenna, Who Waits Outside" de tu Mazo a tu mano.
+## Rite of the Thousandth
+n Rito de la Milésima
+l0 El rito
+t0 Paga 5 Maná y sacrifica a "The Thousandth Card": Invoca al "Avatar de la Milésima Carta" desde tu Extra Deck — permanentemente.
+l1 Preparar el recipiente
+t1 Paga 1 Maná: añade 1 "The Thousandth Card" de tu Mazo a tu mano.

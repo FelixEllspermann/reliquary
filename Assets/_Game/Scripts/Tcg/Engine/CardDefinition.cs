@@ -330,6 +330,38 @@ namespace Rouge.Tcg
                  "ins Grab oder der Angriff wird abgebrochen (The Long Detour)")]
         public bool passiveFirstEnemyAttackDetourDeal;
 
+        [Header("Incarnates (September 2026)")]
+        [Tooltip(">0: Monster, die mit dieser Karte im Kampf waren (angreifend oder angegriffen), " +
+                 "verlieren nach dem Kampf dauerhaft so viel ATK (Maw of the First Winter)")]
+        public int passiveDebuffOpponentAfterCombat;
+
+        [Tooltip("Solange offen auf dem Feld: der GEGNER des Besitzers kann keine Monster aus " +
+                 "seinem Friedhof beschwören (The Hungering Demon)")]
+        public bool passiveOpponentNoGraveSummons;
+
+        [Tooltip("Solange offen auf dem Feld: KEIN Spieler kann Zauber aktivieren (Colossus of the Broken Gate)")]
+        public bool passiveNoSpellsBoth;
+
+        [Tooltip(">0: aktiviert der GEGNER des Besitzers einen Artefakt-Effekt, erhält diese Karte " +
+                 "dauerhaft so viel ATK und DEF (Colossus of the Broken Gate)")]
+        public int passiveGrowOnEnemyArtifactActivation;
+
+        [Tooltip("Würde diese Karte zerstört, darf der Besitzer stattdessen 1 Handkarte abwerfen " +
+                 "(She Who Outlives)")]
+        public bool passiveDiscardToSurvive;
+
+        [Tooltip("Incarnate: betritt das Feld mit den AUFSUMMIERTEN gedruckten ATK/DEF aller für " +
+                 "seine Beschwörung geopferten Monster als Basiswerte (Avatar of the Thousandth Card)")]
+        public bool passiveBaseStatsFromOffering;
+
+        [Tooltip("Solange offen auf dem Feld: der Gegner kann keine Effekte als Reaktion auf " +
+                 "MONSTER-Effekte des Besitzers aktivieren (Avatar of the Thousandth Card)")]
+        public bool passiveNoResponseToOwnerMonsterEffects;
+
+        [Tooltip("DEKRET: KEIN Spieler kann Monster spezialbeschwören — außer Incarnate-Beschwörungen " +
+                 "(Sworn to the Gate)")]
+        public bool passiveNoSpecialSummonsBothExceptIncarnates;
+
         public abstract CardKind Kind { get; }
 
         public abstract Color FrameColor { get; }
@@ -551,6 +583,24 @@ namespace Rouge.Tcg
                 lines.Add(Loc.T("Your face-down monsters cannot be destroyed by card effects."));
             if (passiveFirstEnemyAttackDetourDeal)
                 lines.Add(Loc.T("When your opponent declares their first attack each turn, they choose: send the top card of their Deck to the Graveyard, or the attack is cancelled."));
+
+            // --- Incarnates ---
+            if (passiveDebuffOpponentAfterCombat > 0)
+                lines.Add(Loc.F("Monsters that battle this card permanently lose {0} ATK after the battle.", passiveDebuffOpponentAfterCombat));
+            if (passiveOpponentNoGraveSummons)
+                lines.Add(Loc.T("Your opponent cannot Summon monsters from their Graveyard."));
+            if (passiveNoSpellsBoth)
+                lines.Add(Loc.T("While this card is on the field, neither player can activate Spells."));
+            if (passiveGrowOnEnemyArtifactActivation > 0)
+                lines.Add(Loc.F("Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.", passiveGrowOnEnemyArtifactActivation));
+            if (passiveDiscardToSurvive)
+                lines.Add(Loc.T("If this card would be destroyed, you may discard 1 card from your hand instead."));
+            if (passiveBaseStatsFromOffering)
+                lines.Add(Loc.T("This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats."));
+            if (passiveNoResponseToOwnerMonsterEffects)
+                lines.Add(Loc.T("Your opponent cannot activate effects in response to your monster effects."));
+            if (passiveNoSpecialSummonsBothExceptIncarnates)
+                lines.Add(Loc.T("Neither player can Special Summon monsters, except Incarnate Summons."));
 
             return lines;
         }

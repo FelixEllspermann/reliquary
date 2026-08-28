@@ -15,6 +15,8 @@ MonoBehaviour:
   cardName: Immovable Object
   artwork: {fileID: 21300000, guid: e3c7233339b85da4580fa648e55adfea, type: 3}
   rarity: 0
+  isToken: 0
+  releaseVersion: 
   effects: []
   auraAtkBonus: 0
   auraDefBonus: 0
@@ -36,6 +38,85 @@ MonoBehaviour:
   passiveDefPerCountKind: 0
   passiveCannotAttack: 0
   passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
+  passiveBlockReliquarySummons: 0
+  passiveNoBattleDestroy: 0
+  passiveUntargetable: 0
+  passiveNoBattleDamageInvolving: 0
+  passiveRedirectBattleDamage: 0
+  passiveDeathCounterLimit: 0
+  passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
+  passiveStatsFromGraveTop: 0
+  passiveAttacksWithDef: 0
+  passiveDefLossAfterAttack: 0
+  passiveSealsAdjacentZones: 0
+  passiveBearerZoneLocked: 0
+  passiveUntargetableWhileLpClose: 0
+  passiveDrawReplacementGraveTop: 0
+  countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
+  countdownZeroKeepsCard: 0
+  passiveDefWhileDefending: 0
+  passiveOpponentMillsBanished: 0
+  passiveCannotBeBanished: 0
+  passiveSummonCapBoth: 0
+  passiveCountdownsTickTwice: 0
+  passiveProtectFaceDownFromEffectDestroy: 0
+  passiveFirstEnemyAttackDetourDeal: 0
+  passiveDebuffOpponentAfterCombat: 0
+  passiveOpponentNoGraveSummons: 0
+  passiveNoSpellsBoth: 0
+  passiveGrowOnEnemyArtifactActivation: 0
+  passiveDiscardToSurvive: 0
+  passiveBaseStatsFromOffering: 0
+  passiveNoResponseToOwnerMonsterEffects: 0
+  passiveNoSpecialSummonsBothExceptIncarnates: 0
   level: 2
   attribute: 5
   monsterType: 4
@@ -50,4 +131,31 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsters: 0
   selfSummonRequiresAttribute: 0
   selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
   selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0
+  selfSummonRequiresOpponentMoreMonsters: 0
+  selfSummonRequiresLifeAtMost: 0
+  selfSummonIntoSealedZone: 0
+  selfSummonRequiresGraveTopMonster: 0
+  selfSummonRequiresRevealedThisTurn: 0
+  selfSummonRequiresLevels1And3: 0
+  selfSummonRequiresOpponentLevel3AndNoneSelf: 0
+  selfSummonRequiresTurnAtLeast: 0
+  selfSummonRequiresDeckAtLeast: 0
+  selfSummonRequiresLpWithin: 0
+  selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0
+  selfSummonRequiresBanishedCards: 0
+  isVessel: 1

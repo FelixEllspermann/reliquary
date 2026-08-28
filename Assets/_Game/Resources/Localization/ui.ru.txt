@@ -565,3 +565,11 @@ RITE	ОБРЯД
 VESSEL	СОСУД
 VESSEL — may serve as the vessel of an Incarnate offering.	СОСУД — может служить сосудом Подношения Инкарнату.
 OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	ПОДНОШЕНИЕ: пожертвуйте монстров, чьи уровни в сумме точно равны {0} — хотя бы один должен быть СОСУДОМ. Призванный так, он вернётся в Экстра-колоду в вашу следующую Стендбай-фазу.
+Monsters that battle this card permanently lose {0} ATK after the battle.	Монстры, сражавшиеся с этой картой, после боя навсегда теряют {0} ATK.
+Your opponent cannot Summon monsters from their Graveyard.	Противник не может призывать монстров со своего Кладбища.
+While this card is on the field, neither player can activate Spells.	Пока эта карта на поле, ни один игрок не может активировать Заклинания.
+Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.	Каждый раз, когда противник активирует эффект Артефакта, эта карта навсегда получает {0} ATK и DEF.
+If this card would be destroyed, you may discard 1 card from your hand instead.	Если эта карта должна быть уничтожена, вместо этого можно сбросить 1 карту из руки.
+This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats.	Эта карта выходит на поле с суммой напечатанных ATK и DEF всех монстров, пожертвованных для её призыва, в качестве базовых значений.
+Your opponent cannot activate effects in response to your monster effects.	Противник не может активировать эффекты в ответ на эффекты ваших монстров.
+Neither player can Special Summon monsters, except Incarnate Summons.	Ни один игрок не может призывать монстров Особым образом — кроме призывов Инкарнатов.

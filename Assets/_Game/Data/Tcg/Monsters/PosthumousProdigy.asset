@@ -55,6 +55,7 @@ MonoBehaviour:
     requireOpponentAttackedThisTurn: 0
     requireStruckThisTurn: 0
     minOwnBanishedCards: 0
+    requiresOpponentDrawChainLink: 0
     actions:
     - type: 187
       isCost: 0
@@ -174,6 +175,14 @@ MonoBehaviour:
   passiveCountdownsTickTwice: 0
   passiveProtectFaceDownFromEffectDestroy: 0
   passiveFirstEnemyAttackDetourDeal: 0
+  passiveDebuffOpponentAfterCombat: 0
+  passiveOpponentNoGraveSummons: 0
+  passiveNoSpellsBoth: 0
+  passiveGrowOnEnemyArtifactActivation: 0
+  passiveDiscardToSurvive: 0
+  passiveBaseStatsFromOffering: 0
+  passiveNoResponseToOwnerMonsterEffects: 0
+  passiveNoSpecialSummonsBothExceptIncarnates: 0
   level: 1
   attribute: 0
   monsterType: 7
@@ -215,3 +224,4 @@ MonoBehaviour:
   selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
   selfSummonRequiresOwnCountdown: 0
   selfSummonRequiresBanishedCards: 0
+  isVessel: 1

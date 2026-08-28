@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e20183b5d207743b9072e08e1d1e41, type: 3}
+  m_Name: AvataroftheThousandthCard
+  m_EditorClassIdentifier: Rouge.Tcg.Engine::Rouge.Tcg.IncarnateCardData
+  cardName: Avatar of the Thousandth Card
+  artwork: {fileID: 0}
+  rarity: 3
+  isToken: 0
+  releaseVersion: 0.1.8
+  effects:
+  - label: The Price of Greed
+    text: "QUICK, once per turn \u2014 pay 2 Mana, when your opponent activates an
+      effect that would let them draw: negate the activation and destroy the card.
+      If it was a monster, inflict damage to your opponent equal to its ATK."
+    isInfused: 1
+    infusedKind: 0
+    manaCost: 2
+    trigger: 1
+    oncePerTurn: 1
+    onlyIfSpecialSummoned: 0
+    requiresEquippedArtifact: 0
+    eitherPlayerMayActivate: 0
+    quickWindow: 0
+    mandatory: 0
+    onlyReliquarySummonResponse: 0
+    onlyDuringYourTurn: 0
+    onlyDuringOpponentTurn: 0
+    onlyFromExtraDeck: 0
+    oncePerDuel: 0
+    onlyDuringMainPhase: 0
+    onlyDuringBattlePhase: 0
+    minMana: 0
+    minOwnMonsters: 0
+    minOwnFaceDownMonsters: 0
+    minOwnGraveyardCards: 0
+    requireOpponentMoreHandCards: 0
+    requireOpponentMoreMonsters: 0
+    requireMilledLastTurn: 0
+    minOwnGraveyardNamed: 0
+    graveyardNamedFilter: 
+    requiresControlNamed: 
+    onlyWhileGraveTop: 0
+    requireOwnMonsterDestroyedThisTurn: 0
+    onlyOnFirstOwnTurn: 0
+    maxOwnMonsters: 0
+    onlyWhileControlledByOpponent: 0
+    requireOpponentAttackedThisTurn: 0
+    requireStruckThisTurn: 0
+    minOwnBanishedCards: 0
+    requiresOpponentDrawChainLink: 1
+    actions:
+    - type: 216
+      isCost: 0
+      amount: 1
+      target: 0
+      targetExcludesSelf: 0
+      useTypeFilter: 0
+      typeFilter: 0
+      levelFilter: 0
+      targetCount: 1
+      upToTargets: 0
+      nameFilter: 
+      mentionsFilter: 
+      maxAtkFilter: 0
+      useAttributeFilter: 0
+      attributeFilter: 0
+      countKind: 0
+      excludeSameName: 0
+      onlyWithoutEffects: 0
+      summonInDefense: 0
+      coinGate: 0
+      summonCannotAttack: 0
+      requireLevelBelowControllerCount: 0
+      onlyCannotAttack: 0
+      zeroAtkOnly: 0
+      dealGate: 0
+      dealOptionA: 
+      dealOptionB: 
+  auraAtkBonus: 0
+  auraDefBonus: 0
+  auraNameFilter: 
+  auraUseTypeFilter: 0
+  auraTypeFilter: 3
+  auraLevelFilter: 0
+  auraOnlyFaceDown: 0
+  auraExcludesSelf: 0
+  passiveTaunt: 0
+  battleShieldMinOwnArtifacts: 0
+  tributeWorth: 1
+  protectsNamedFromTargeting: 
+  conditionalDoubleAttack: 0
+  doubleAttackAttribute: 4
+  passiveAtkPerCount: 0
+  passiveAtkPerCountKind: 0
+  passiveDefPerCount: 0
+  passiveDefPerCountKind: 0
+  passiveCannotAttack: 0
+  passiveNoAttackOnSummonTurn: 0
+  passiveNoDirectAttackOnSummonTurn: 0
+  fieldLimitName: 
+  fieldLimitCount: 0
+  passiveBurnPerMill: 0
+  passiveBlockReliquarySummons: 0
+  passiveNoBattleDestroy: 0
+  passiveUntargetable: 0
+  passiveNoBattleDamageInvolving: 0
+  passiveRedirectBattleDamage: 0
+  passiveDeathCounterLimit: 0
+  passiveOpponentMillAmplify: 0
+  passiveProtectAllFromTargetingAndAttacks: 0
+  passiveEndPhaseLpToll: 0
+  passiveOpponentMustSetSpells: 0
+  auraAdjacentOnly: 0
+  auraAloneOnly: 0
+  auraCrowdedAtkPenalty: 0
+  facingAtkPenalty: 0
+  passiveAdjacentNoEffectDestroy: 0
+  passiveAdjacentNoBattleDestroy: 0
+  passiveAdjacentDebuffOnDestroy: 0
+  passiveNoEffectDestroy: 0
+  passiveCannotBeTributed: 0
+  passiveCannotChangePosition: 0
+  passiveNoAttackAfterPositionChange: 0
+  passiveNoNormalSummon: 0
+  passiveControllerStandbyLpLoss: 0
+  passiveOwnerNoOtherSpecialSummons: 0
+  passiveLoneImmunity: 0
+  passiveLowHandImmunity: 0
+  passivePiercing: 0
+  passiveBearerPiercing: 0
+  passiveBreakOnFailedPierce: 0
+  passiveDirectAttackHalved: 0
+  passiveNoDirectAttack: 0
+  passiveSpellTaxBoth: 0
+  passiveOneAttackBonus: 0
+  passiveStandbyBonusMana: 0
+  passiveHandCapForSurvival: 0
+  passiveDestroyWhenLifeAtMost: 0
+  passiveLifeCostsFree: 0
+  passiveCoinChoose: 0
+  passiveTailsAsHeadsWhenBehind: 0
+  passiveLienAtkPenalty: 0
+  passiveStolenAtkBonus: 0
+  passiveStatsFromGraveTop: 0
+  passiveAttacksWithDef: 0
+  passiveDefLossAfterAttack: 0
+  passiveSealsAdjacentZones: 0
+  passiveBearerZoneLocked: 0
+  passiveUntargetableWhileLpClose: 0
+  passiveDrawReplacementGraveTop: 0
+  countdownMarkers: 0
+  passiveServesOriginalOwner: 0
+  passiveCannotAttackWhileDisloyal: 0
+  passiveSpellTaxOnController: 0
+  passiveAttackToll: 0
+  passiveAttackTaxBoth: 0
+  passiveDrawRevealBoth: 0
+  passiveMonsterCapBoth: 0
+  protectsNamedFromEffectDestroy: 
+  passiveDecreesSpareOwner: 0
+  passiveOwnerRoyaltyManaNextTurn: 0
+  countdownZeroKeepsCard: 0
+  passiveDefWhileDefending: 0
+  passiveOpponentMillsBanished: 0
+  passiveCannotBeBanished: 0
+  passiveSummonCapBoth: 0
+  passiveCountdownsTickTwice: 0
+  passiveProtectFaceDownFromEffectDestroy: 0
+  passiveFirstEnemyAttackDetourDeal: 0
+  passiveDebuffOpponentAfterCombat: 0
+  passiveOpponentNoGraveSummons: 0
+  passiveNoSpellsBoth: 0
+  passiveGrowOnEnemyArtifactActivation: 0
+  passiveDiscardToSurvive: 0
+  passiveBaseStatsFromOffering: 1
+  passiveNoResponseToOwnerMonsterEffects: 1
+  passiveNoSpecialSummonsBothExceptIncarnates: 0
+  level: 3
+  attribute: 1
+  monsterType: 6
+  atk: 0
+  def: 0
+  canSelfSpecialSummon: 0
+  selfSummonRequiresNameOnField: 
+  selfSummonChecksOpponentField: 0
+  selfSummonRequiresFaceDownOnField: 0
+  selfSummonRequiresArtifact: 0
+  selfSummonRequiredNameCount: 1
+  selfSummonRequiresOpponentMonsters: 0
+  selfSummonRequiresAttribute: 0
+  selfSummonRequiredAttribute: 0
+  selfSummonRequiresMilled: 0
+  selfSummonRequiresGraveNamedCount: 0
+  selfSummonRequiresGraveNamed: 
+  selfSummonPosition: 1
+  selfSummonRequiresNoOwnMonsters: 0
+  selfSummonRequiresOwnMonsters: 0
+  selfSummonRequiresLifeBelowOpponent: 0
+  selfSummonRequiresHandAtMost: 0
+  selfSummonRequiresHandAtLeast: 0
+  selfSummonRequiresOpponentDefenseMonster: 0
+  selfSummonRequiresLienOnField: 0
+  selfSummonLifeCost: 0
+  selfSummonRequiresOpponentMoreMonsters: 0
+  selfSummonRequiresLifeAtMost: 0
+  selfSummonIntoSealedZone: 0
+  selfSummonRequiresGraveTopMonster: 0
+  selfSummonRequiresRevealedThisTurn: 0
+  selfSummonRequiresLevels1And3: 0
+  selfSummonRequiresOpponentLevel3AndNoneSelf: 0
+  selfSummonRequiresTurnAtLeast: 0
+  selfSummonRequiresDeckAtLeast: 0
+  selfSummonRequiresLpWithin: 0
+  selfSummonRequiresArtifacts: 0
+  selfSummonToOpponentField: 0
+  selfSummonRequiresOpponentMonsterDestroyedThisTurn: 0
+  selfSummonRequiresOwnCountdown: 0
+  selfSummonRequiresBanishedCards: 0
+  isVessel: 0
+  incarnateLevel: 9

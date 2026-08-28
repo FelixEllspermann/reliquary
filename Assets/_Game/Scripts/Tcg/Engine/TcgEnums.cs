@@ -320,7 +320,13 @@ namespace Rouge.Tcg
         SendAllMonstersToGraveyard,     // Doomsday Bell: JEDES Monster beider Felder in den Friedhof (kein Zerstoeren)
 
         // --- Incarnates (September 2026) — NUR ANHÄNGEN ---
-        RiteSummonIncarnate             // Rite-Zauber: benanntes Monster opfern, benanntes Incarnate PERMANENT beschwoeren
+        RiteSummonIncarnate,            // Rite-Zauber: benanntes Monster opfern, benanntes Incarnate PERMANENT beschwoeren
+        DebuffTargetAtkPermanentDestroyIfZero, // Maw Infused: Ziel verliert dauerhaft amount ATK; faellt es dadurch auf 0, wird es zerstoert
+        BanishOpponentDeckTopBuffSelfPer, // Hungering Demon: targetCount Karten vom GEGNER-Deck verbannen; Quellkarte +amount ATK dauerhaft je Karte
+        BanishAllOwnGraveMonstersBuffSelfEotPer, // Hungering Demon Infused: ALLE Monster aus dem eigenen Grab verbannen; +amount ATK bis Zugende je Karte
+        GrantNoBattleDestroyPermanent,  // She Who Outlives: Ziel kann PERMANENT nicht durch Kampf zerstoert werden
+        BlinkSelfUntilEot,              // She Who Outlives Infused: Quellkarte bis Zugende verbannen; Rueckkehr in freie Zone, sonst Friedhof
+        NegateDrawEffectPunish          // Avatar Infused: voriges Gegner-Kettenglied (mit Draw) negieren, Karte zerstoeren; Monster: Schaden = dessen ATK
     }
 
     /// <summary>Münzwurf-Gate einer Aktion: läuft nur, wenn der letzte Wurf des Effekts so fiel.</summary>

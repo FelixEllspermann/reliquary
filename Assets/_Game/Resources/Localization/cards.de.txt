@@ -5038,3 +5038,59 @@ l0 Abgang zur Bühnenseite
 t0 Einmal pro Zug: Lege 1 offenes Monster, das du kontrollierst, verdeckt.
 l1 Die große Enthüllung
 t1 Zahle 2 Mana: Decke ALLE deine verdeckten Monster auf.
+## Maw of the First Winter
+n Schlund des Ersten Winters
+l0 Der erste Frost
+t0 Wenn diese Karte beschworen wird: Jedes Monster deines Gegners wird in Verteidigungsposition gedreht und kann bis zum Ende des nächsten gegnerischen Zuges die Position nicht wechseln.
+l1 Tiefkühlung
+t1 QUICK, einmal pro Zug — zahle 4 Mana: Wähle 1 Monster auf dem Feld; es verliert dauerhaft 500 ATK. Fällt es dadurch auf 0 ATK, zerstöre es.
+## The Hungering Demon
+n Der Hungernde Dämon
+l0 Der erste Gang
+t0 Wenn diese Karte beschworen wird: Verbanne die obersten 3 Karten des Gegner-Decks; diese Karte erhält dauerhaft 200 ATK je so verbannter Karte.
+l1 Die Speisekammer leeren
+t1 QUICK, einmal pro Zug — zahle 3 Mana: Verbanne alle Monster aus deinem Friedhof; diese Karte erhält bis zum Ende des Zuges 100 ATK je so verbannter Karte.
+## Colossus of the Broken Gate
+n Koloss des Zerborstenen Tores
+## She Who Outlives
+n Sie, die Überdauert
+l0 Ihr Segen
+t0 Wenn diese Karte beschworen wird: Du kannst 1 Monster auf dem Feld wählen; es kann nicht mehr durch Kampf zerstört werden.
+l1 Schritt hinter den Schleier
+t1 QUICK, einmal pro Zug — zahle 2 Mana: Verbanne diese Karte bis zum Ende des Zuges (sie kehrt in eine freie Zone zurück, sonst in den Friedhof); beschwöre 1 LICHT-Monster mit höchstens 2000 ATK aus deinem Friedhof.
+l2 Ein Schritt weiter noch
+t2 Zahle stattdessen 5 Mana: Beschwöre es aus deinem Deck.
+## Avatar of the Thousandth Card
+n Avatar der Tausendsten Karte
+l0 Der Preis der Gier
+t0 QUICK, einmal pro Zug — zahle 2 Mana, wenn dein Gegner einen Effekt aktiviert, der ihn ziehen ließe: Negiere die Aktivierung und zerstöre die Karte. War es ein Monster, füge deinem Gegner Schaden in Höhe seiner ATK zu.
+## Rite of the First Winter
+n Ritus des Ersten Winters
+l0 Der Ritus
+t0 Zahle 3 Mana und opfere „Eiswächter“: Beschwöre „Schlund des Ersten Winters“ aus deinem Extra Deck — permanent.
+l1 Das Gefäß bereiten
+t1 Zahle 1 Mana: Füge 1 „Eiswächter“ aus deinem Deck deiner Hand hinzu.
+## Rite of Unending Hunger
+n Ritus des Unstillbaren Hungers
+l0 Der Ritus
+t0 Zahle 3 Mana und opfere „Erzdämon-Oberherr“: Beschwöre „Der Hungernde Dämon“ aus deinem Extra Deck — permanent.
+l1 Das Gefäß bereiten
+t1 Zahle 1 Mana: Füge 1 „Erzdämon-Oberherr“ aus deinem Deck deiner Hand hinzu.
+## Rite of the Broken Gate
+n Ritus des Zerborstenen Tores
+l0 Der Ritus
+t0 Zahle 4 Mana und opfere „Dem Tor geschworen“: Beschwöre „Koloss des Zerborstenen Tores“ aus deinem Extra Deck — permanent.
+l1 Das Gefäß bereiten
+t1 Zahle 1 Mana: Füge 1 „Dem Tor geschworen“ aus deinem Deck deiner Hand hinzu.
+## Rite of Eternal Life
+n Ritus des Ewigen Lebens
+l0 Der Ritus
+t0 Zahle 4 Mana und opfere „Wenna, die draußen wartet“: Beschwöre „Sie, die Überdauert“ aus deinem Extra Deck — permanent.
+l1 Das Gefäß bereiten
+t1 Zahle 1 Mana: Füge 1 „Wenna, die draußen wartet“ aus deinem Deck deiner Hand hinzu.
+## Rite of the Thousandth
+n Ritus der Tausendsten
+l0 Der Ritus
+t0 Zahle 5 Mana und opfere „Die tausendste Karte“: Beschwöre „Avatar der Tausendsten Karte“ aus deinem Extra Deck — permanent.
+l1 Das Gefäß bereiten
+t1 Zahle 1 Mana: Füge 1 „Die tausendste Karte“ aus deinem Deck deiner Hand hinzu.

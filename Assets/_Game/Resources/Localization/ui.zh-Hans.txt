@@ -566,3 +566,11 @@ RITE	仪式
 VESSEL	容器
 VESSEL — may serve as the vessel of an Incarnate offering.	容器 — 可作为降临体供奉的容器。
 OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	供奉：牺牲等级总和恰好为{0}的怪兽——其中至少1只须为容器。以此方式召唤后，在你的下个准备阶段回到额外卡组。
+Monsters that battle this card permanently lose {0} ATK after the battle.	与此卡进行战斗的怪兽在战斗后永久失去{0}攻击力。
+Your opponent cannot Summon monsters from their Graveyard.	对手不能从其墓地召唤怪兽。
+While this card is on the field, neither player can activate Spells.	此卡在场期间，任何玩家都不能发动法术。
+Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.	每当对手发动神器效果，此卡永久获得{0}攻击力与守备力。
+If this card would be destroyed, you may discard 1 card from your hand instead.	此卡将被破坏时，可以改为从手牌舍弃1张卡。
+This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats.	此卡以为其召唤而牺牲的所有怪兽的原始攻守总和作为基础数值入场。
+Your opponent cannot activate effects in response to your monster effects.	对手不能对你的怪兽效果发动效果作为回应。
+Neither player can Special Summon monsters, except Incarnate Summons.	任何玩家都不能特殊召唤怪兽——降临体召唤除外。

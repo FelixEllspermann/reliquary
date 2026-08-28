@@ -5040,3 +5040,59 @@ l0 Sortie côté jardin
 t0 Une fois par tour : posez 1 monstre face recto que vous contrôlez face verso.
 l1 La grande révélation
 t1 Payez 2 Mana : retournez TOUS vos monstres face verso face recto.
+## Maw of the First Winter
+n Gueule du Premier Hiver
+l0 Le premier gel
+t0 Quand cette carte est invoquée : chaque monstre de votre adversaire passe en Position de Défense et ne peut pas changer de position jusqu'à la fin du prochain tour adverse.
+l1 Grand froid
+t1 RAPIDE, une fois par tour — payez 4 Mana : choisissez 1 monstre du terrain ; il perd définitivement 500 ATK. S'il tombe ainsi à 0 ATK, détruisez-le.
+## The Hungering Demon
+n Le Démon Affamé
+l0 Le premier service
+t0 Quand cette carte est invoquée : bannissez les 3 cartes du dessus du Deck adverse ; cette carte gagne définitivement 200 ATK par carte ainsi bannie.
+l1 Vider le garde-manger
+t1 RAPIDE, une fois par tour — payez 3 Mana : bannissez tous les monstres de votre Cimetière ; cette carte gagne 100 ATK jusqu'à la fin du tour par carte ainsi bannie.
+## Colossus of the Broken Gate
+n Colosse de la Porte Brisée
+## She Who Outlives
+n Celle Qui Survit
+l0 Sa bénédiction
+t0 Quand cette carte est invoquée : vous pouvez choisir 1 monstre du terrain ; il ne peut plus être détruit au combat.
+l1 Un pas derrière le voile
+t1 RAPIDE, une fois par tour — payez 2 Mana : bannissez cette carte jusqu'à la fin du tour (elle revient dans une zone libre, sinon au Cimetière) ; invoquez 1 monstre LUMIÈRE de 2000 ATK ou moins depuis votre Cimetière.
+l2 Un pas plus loin encore
+t2 À la place, payez 5 Mana : invoquez-le depuis votre Deck.
+## Avatar of the Thousandth Card
+n Avatar de la Millième Carte
+l0 Le prix de l'avidité
+t0 RAPIDE, une fois par tour — payez 2 Mana quand votre adversaire active un effet qui le ferait piocher : annulez l'activation et détruisez la carte. Si c'était un monstre, infligez-lui des dommages égaux à son ATK.
+## Rite of the First Winter
+n Rite du Premier Hiver
+l0 Le rite
+t0 Payez 3 Mana et sacrifiez « Ice Warden » : invoquez « Gueule du Premier Hiver » depuis votre Extra Deck — définitivement.
+l1 Préparer le réceptacle
+t1 Payez 1 Mana : ajoutez 1 « Ice Warden » de votre Deck à votre main.
+## Rite of Unending Hunger
+n Rite de la Faim Sans Fin
+l0 Le rite
+t0 Payez 3 Mana et sacrifiez « Archfiend Overlord » : invoquez « Le Démon Affamé » depuis votre Extra Deck — définitivement.
+l1 Préparer le réceptacle
+t1 Payez 1 Mana : ajoutez 1 « Archfiend Overlord » de votre Deck à votre main.
+## Rite of the Broken Gate
+n Rite de la Porte Brisée
+l0 Le rite
+t0 Payez 4 Mana et sacrifiez « Sworn to the Gate » : invoquez « Colosse de la Porte Brisée » depuis votre Extra Deck — définitivement.
+l1 Préparer le réceptacle
+t1 Payez 1 Mana : ajoutez 1 « Sworn to the Gate » de votre Deck à votre main.
+## Rite of Eternal Life
+n Rite de la Vie Éternelle
+l0 Le rite
+t0 Payez 4 Mana et sacrifiez « Wenna, Who Waits Outside » : invoquez « Celle Qui Survit » depuis votre Extra Deck — définitivement.
+l1 Préparer le réceptacle
+t1 Payez 1 Mana : ajoutez 1 « Wenna, Who Waits Outside » de votre Deck à votre main.
+## Rite of the Thousandth
+n Rite de la Millième
+l0 Le rite
+t0 Payez 5 Mana et sacrifiez « The Thousandth Card » : invoquez « Avatar de la Millième Carte » depuis votre Extra Deck — définitivement.
+l1 Préparer le réceptacle
+t1 Payez 1 Mana : ajoutez 1 « The Thousandth Card » de votre Deck à votre main.

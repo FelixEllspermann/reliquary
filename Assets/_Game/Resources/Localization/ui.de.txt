@@ -565,3 +565,11 @@ RITE	RITE
 VESSEL	VESSEL
 VESSEL — may serve as the vessel of an Incarnate offering.	VESSEL — kann als Gefäß einer Incarnate-Opfergabe dienen.
 OFFERING: Sacrifice monsters whose Levels total exactly {0} — at least one must be a VESSEL. Summoned this way, it returns to the Extra Deck during your next Standby Phase.	OPFERGABE: Opfere Monster, deren Level exakt {0} ergeben — mindestens eines muss ein VESSEL sein. So beschworen kehrt es in deiner nächsten Standby Phase ins Extra Deck zurück.
+Monsters that battle this card permanently lose {0} ATK after the battle.	Monster, die mit dieser Karte kämpfen, verlieren nach dem Kampf dauerhaft {0} ATK.
+Your opponent cannot Summon monsters from their Graveyard.	Dein Gegner kann keine Monster aus seinem Friedhof beschwören.
+While this card is on the field, neither player can activate Spells.	Solange diese Karte auf dem Feld liegt, kann kein Spieler Zauber aktivieren.
+Each time your opponent activates an Artifact effect, this card permanently gains {0} ATK and DEF.	Jedes Mal, wenn dein Gegner einen Artefakt-Effekt aktiviert, erhält diese Karte dauerhaft {0} ATK und DEF.
+If this card would be destroyed, you may discard 1 card from your hand instead.	Würde diese Karte zerstört, kannst du stattdessen 1 Handkarte abwerfen.
+This card enters the field with the combined printed ATK and DEF of every monster sacrificed for its Summon as its base stats.	Diese Karte betritt das Feld mit den aufsummierten gedruckten ATK und DEF aller für ihre Beschwörung geopferten Monster als Basiswerten.
+Your opponent cannot activate effects in response to your monster effects.	Dein Gegner kann keine Effekte als Reaktion auf deine Monster-Effekte aktivieren.
+Neither player can Special Summon monsters, except Incarnate Summons.	Kein Spieler kann Monster spezialbeschwören — außer Incarnate-Beschwörungen.

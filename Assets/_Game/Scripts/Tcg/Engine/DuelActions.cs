@@ -244,8 +244,14 @@ namespace Rouge.Tcg
                     });
                 }
 
-                // Incarnates: jede gültige Opfergabe (exakte Level-Summe, min. 1 Vessel)
-                // wird als eigene Option angeboten — der Spieler wählt die Kombination.
+            }
+
+            // Incarnates: jede gültige Opfergabe (exakte Level-Summe, min. 1 Vessel)
+            // wird als eigene Option angeboten — der Spieler wählt die Kombination.
+            // Bewusst AUSSERHALB der Reliquary-Bedingungen: die Opfergabe räumt ihre
+            // Zone selbst frei, ein volles Board ist ihre beste Stunde.
+            if (player.ExtraDeckPile.Count > 0 && !player.CannotSpecialSummonThisTurn)
+            {
                 var incarnatesOffered = new HashSet<CardDefinition>();
                 foreach (var incarnate in player.ExtraDeckPile.ToArray())
                 {
@@ -491,6 +497,7 @@ namespace Rouge.Tcg
         {
             var opponent = player.Opponent;
             if (ReliquarySummonsBlocked()) return false; // The Fallen One sperrt beide Spieler
+            if (SpecialSummonsBlockedForAll(isIncarnateSummon: false)) return false; // Sworn to the Gate
             if (player.Mana < Math.Max(ReliquaryManaCostFor(player, data), data.reqMinMana)) return false;
 
             if (!string.IsNullOrEmpty(data.reqNamedOnField))
@@ -779,6 +786,12 @@ namespace Rouge.Tcg
         private IEnumerator ExecuteSummonIncarnate(PlayerState player, CardInstance incarnate, List<CardInstance> offering)
         {
             if (incarnate.Zone != ZoneType.ExtraDeck || !(incarnate.Definition is IncarnateCardData)) yield break;
+            // Effekt-Sperren gelten auch hier — nur Sworn to the Gate lässt Incarnates durch
+            if (player.CannotSpecialSummonThisTurn)
+            {
+                Log($"{player.Name} cannot Special Summon this turn — {incarnate.Name} stays in the Extra Deck.");
+                yield break;
+            }
             if (SummonCapReached(player))
             {
                 Log($"{player.Name} has reached the summon curfew — {incarnate.Name} stays in the Extra Deck.");
@@ -798,6 +811,11 @@ namespace Rouge.Tcg
             var summonPosition = positionRequest.Result == 1 ? BattlePosition.Defense : BattlePosition.Attack;
 
             Log($"{player.Name} makes an offering of {offering.Count} monster(s) — the Incarnate answers.");
+            // Avatar of the Thousandth Card: die Opfer geben ihre gedruckten Werte —
+            // VOR dem Umzug gezählt, danach kennt niemand mehr ihre Gestalt
+            int offeredAtk = 0, offeredDef = 0;
+            foreach (var sacrifice in offering)
+                if (sacrifice.MonsterData != null) { offeredAtk += sacrifice.MonsterData.atk; offeredDef += sacrifice.MonsterData.def; }
             foreach (var sacrifice in offering)
             {
                 if (!IsOnField(sacrifice)) continue;   // ein früherer Trigger hat es schon geholt
@@ -824,6 +842,11 @@ namespace Rouge.Tcg
             incarnate.WasSpecialSummoned = true;
             incarnate.IncarnateReturnTurn = TurnNumber;   // Standby des nächsten eigenen Zuges: zurück
             player.SummonsThisTurn++;                     // Closing Time zählt mit
+            if (incarnate.Definition.passiveBaseStatsFromOffering)
+            {
+                incarnate.IncarnateBaseAtk = offeredAtk;  // Avatar: die Summe der Gaben
+                incarnate.IncarnateBaseDef = offeredDef;
+            }
             ArmCountdown(incarnate);
             Log($"{player.Name} calls forth {incarnate.Name} ({incarnate.CurrentAtk}/{incarnate.CurrentDef}) " +
                 $"in {(summonPosition == BattlePosition.Attack ? "Attack" : "Defense")} Position — flesh for a turn!");
@@ -875,6 +898,8 @@ namespace Rouge.Tcg
             }
 
             Log($"{sacrifice.Name} is given to the rite.");
+            int riteAtk = sacrifice.MonsterData != null ? sacrifice.MonsterData.atk : 0;
+            int riteDef = sacrifice.MonsterData != null ? sacrifice.MonsterData.def : 0;
             if (presenter != null) yield return presenter.ShowCardSentToGrave(sacrifice);
             MoveToGraveyardWithEquips(sacrifice);
             yield return FireTributeTriggers(sacrifice);
@@ -895,6 +920,11 @@ namespace Rouge.Tcg
             incarnate.WasSpecialSummoned = true;
             incarnate.IncarnateReturnTurn = -1;   // Riten binden das Fleisch dauerhaft
             player.SummonsThisTurn++;
+            if (incarnate.Definition.passiveBaseStatsFromOffering)
+            {
+                incarnate.IncarnateBaseAtk = riteAtk;  // Avatar per Rite: nur das eine Opfer speist ihn
+                incarnate.IncarnateBaseDef = riteDef;
+            }
             ArmCountdown(incarnate);
             Log($"{rite.Name}: {incarnate.Name} ({incarnate.CurrentAtk}/{incarnate.CurrentDef}) is bound in flesh — permanently!");
             BoardChanged();
@@ -952,6 +982,12 @@ namespace Rouge.Tcg
         private IEnumerator ExecuteSelfSpecialSummon(PlayerState player, CardInstance monster, int preferredZone = -1)
         {
             if (monster.MonsterData == null || !player.Hand.Contains(monster)) yield break;
+            // Sworn to the Gate: niemand spezialbeschwört — außer Incarnates
+            if (SpecialSummonsBlockedForAll(isIncarnateSummon: false))
+            {
+                Log($"The gate is sworn shut — {monster.Name} stays in hand.");
+                yield break;
+            }
             // Closing Time: auch Selbst-Spezialbeschwörungen respektieren die Sperrstunde
             if (SummonCapReached(player))
             {
@@ -1243,6 +1279,18 @@ namespace Rouge.Tcg
                 Log($"{player.Name} cannot Special Summon this turn — {monster.Name} stays where it is.");
                 yield break;
             }
+            // Sworn to the Gate: niemand spezialbeschwört — außer Incarnates
+            if (SpecialSummonsBlockedForAll(isIncarnateSummon: false))
+            {
+                Log($"The gate is sworn shut — {monster.Name} stays where it is.");
+                yield break;
+            }
+            // Hungering Demon: der Friedhof des Gegners bleibt versiegelt
+            if (monster.Zone == ZoneType.Graveyard && GraveSummonsBlockedFor(player))
+            {
+                Log($"The hunger seals the grave — {monster.Name} stays buried.");
+                yield break;
+            }
             // Closing Time: die Sperrstunde deckelt auch Effekt-Beschwörungen
             if (SummonCapReached(player))
             {
@@ -1518,6 +1566,9 @@ namespace Rouge.Tcg
                 Log($"{card.Owner.Name} collects the house's cut — {card.Definition.passiveOwnerRoyaltyManaNextTurn} Mana next turn.");
             }
 
+            // Colossus of the Broken Gate: gegnerische Artefakt-Aktivierungen füttern ihn
+            if (card.ArtifactData != null) FeedColossi(player);
+
             activationSerial++;
             int chainLink = ++chainDepth;
             chainCards.Add(card);
@@ -1702,9 +1753,13 @@ namespace Rouge.Tcg
                 if (effect.requireOpponentAttackedThisTurn && !player.Opponent.DeclaredAttackThisTurn) continue;
                 if (effect.requireStruckThisTurn && !player.CountdownStruckThisTurn) continue;
                 if (card.SpellData != null && effect.trigger == EffectTrigger.OnActivate && player.SpellsLockedThisTurn) continue;
+                // Colossus of the Broken Gate: das Tor verschließt ALLE Zauber — für beide Spieler
+                if (card.SpellData != null && effect.trigger == EffectTrigger.OnActivate && SpellsLockedByColossus()) continue;
                 // Incarnates: eine Rite braucht ihr benanntes Opfer auf dem Feld
                 // und ihr benanntes Incarnate im Extra Deck
                 if (card.SpellData != null && card.SpellData.isRite && !RiteReady(player, card.SpellData)) continue;
+                // Avatar: der Draw-Konter zündet nur auf ein Gegner-Kettenglied, das ziehen ließe
+                if (effect.requiresOpponentDrawChainLink && !OpponentDrawChainLinkOpen(player)) continue;
                 if (!CanPayLifeCosts(effect, player)) continue;
                 if (!ChainContextAllows(effect, player)) continue;
                 if (!MeetsConditions(effect, player)) continue;
@@ -5178,6 +5233,101 @@ namespace Rouge.Tcg
                         if (Result != DuelResult.None) yield break;
                         break;
 
+                    case EffectActionType.DebuffTargetAtkPermanentDestroyIfZero:
+                        foreach (var chilled in affected)
+                        {
+                            if (!IsOnField(chilled) || chilled.MonsterData == null) continue;
+                            chilled.PermanentAtkBonus -= Math.Max(1, action.amount);
+                            Log($"{chilled.Name} permanently loses {Math.Max(1, action.amount)} ATK ({chilled.CurrentAtk} ATK).");
+                            BoardChanged();
+                            if (chilled.CurrentAtk <= 0)
+                            {
+                                Log($"{chilled.Name} freezes solid — shattered!");
+                                yield return DestroyCard(chilled);
+                                if (Result != DuelResult.None) yield break;
+                            }
+                        }
+                        break;
+
+                    case EffectActionType.BanishOpponentDeckTopBuffSelfPer:
+                    {
+                        int devoured = Math.Min(Math.Max(1, action.targetCount), player.Opponent.DeckPile.Count);
+                        for (int bite = 0; bite < devoured; bite++)
+                        {
+                            var morsel = player.Opponent.DeckPile[0];
+                            player.Opponent.DeckPile.RemoveAt(0);
+                            MoveToBanished(morsel);
+                        }
+                        if (devoured > 0 && IsOnField(source))
+                        {
+                            source.PermanentAtkBonus += devoured * Math.Max(1, action.amount);
+                            Log($"{source.Name} devours the top {devoured} card(s) of {player.Opponent.Name}'s Deck — permanently +{devoured * Math.Max(1, action.amount)} ATK ({source.CurrentAtk} ATK).");
+                        }
+                        else Log($"{player.Opponent.Name}'s Deck offers nothing to devour.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.BanishAllOwnGraveMonstersBuffSelfEotPer:
+                    {
+                        var feast = player.Graveyard.Where(c => c.MonsterData != null).ToArray();
+                        int eaten = 0;
+                        foreach (var bone in feast)
+                        {
+                            MoveToBanished(bone);
+                            if (bone.Zone == ZoneType.Banished) eaten++;
+                        }
+                        if (eaten > 0 && IsOnField(source))
+                        {
+                            source.TempAtkBonus += eaten * Math.Max(1, action.amount);
+                            Log($"{source.Name} devours {eaten} monster(s) from the grave — +{eaten * Math.Max(1, action.amount)} ATK until the end of the turn ({source.CurrentAtk} ATK).");
+                        }
+                        else Log($"{source.Name} finds no bones to gnaw.");
+                        BoardChanged();
+                        break;
+                    }
+
+                    case EffectActionType.GrantNoBattleDestroyPermanent:
+                        foreach (var blessed in affected)
+                        {
+                            if (!IsOnField(blessed) || blessed.MonsterData == null) continue;
+                            blessed.PermanentBattleShield = true;
+                            Log($"{blessed.Name} receives her blessing — it can no longer be destroyed by battle.");
+                        }
+                        break;
+
+                    case EffectActionType.BlinkSelfUntilEot:
+                        if (IsOnField(source))
+                        {
+                            // Die Rückkehr-Uhr überlebt den Blink: temporär beschworene
+                            // Incarnates bleiben temporär, auch nach dem Ausflug ins Exil.
+                            blinkedCards.Add((source, player, source.IncarnateReturnTurn));
+                            Log($"{source.Name} slips beyond the veil until the end of the turn.");
+                            MoveToBanished(source);
+                            BoardChanged();
+                        }
+                        break;
+
+                    case EffectActionType.NegateDrawEffectPunish:
+                    {
+                        if (chainCards.Count < 2) break;
+                        var greedy = chainCards[chainCards.Count - 2];
+                        if (greedy == null || greedy.Owner == player || greedy.EffectsNegated) break;
+                        greedy.EffectsNegated = true;
+                        chainNegatedCards.Add(greedy);
+                        Log($"{source.Name} negates {greedy.Name}'s activation — greed is punished!");
+                        BoardChanged();
+                        int punishment = greedy.MonsterData != null ? greedy.CurrentAtk : 0;
+                        yield return DestroyCard(greedy);
+                        if (Result != DuelResult.None) yield break;
+                        if (punishment > 0)
+                        {
+                            DealDamage(player.Opponent, punishment, source.Name);
+                            if (CheckWin()) yield break;
+                        }
+                        break;
+                    }
+
                     case EffectActionType.SendAllMonstersToGraveyard:
                     {
                         var tolled = new List<CardInstance>();
@@ -5598,6 +5748,87 @@ namespace Rouge.Tcg
             return false;
         }
 
+        // ================== HELFER: INCARNATES ==================
+
+        /// <summary>Sworn to the Gate: KEIN Spieler kann spezialbeschwören — außer Incarnate-Beschwörungen.</summary>
+        private bool SpecialSummonsBlockedForAll(bool isIncarnateSummon)
+        {
+            if (isIncarnateSummon) return false;
+            foreach (var side in new[] { Player1, Player2 })
+            {
+                if (side == null) continue;
+                foreach (var gate in side.Monsters())
+                    if (!gate.FaceDown && !gate.EffectsNegated && gate.Definition != null
+                        && gate.Definition.passiveNoSpecialSummonsBothExceptIncarnates) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Hungering Demon: der Gegner dieses Spielers sperrt seine Grab-Beschwörungen.</summary>
+        private bool GraveSummonsBlockedFor(PlayerState player)
+        {
+            if (player.Opponent == null) return false;
+            foreach (var demon in player.Opponent.Monsters())
+                if (!demon.FaceDown && !demon.EffectsNegated && demon.Definition != null
+                    && demon.Definition.passiveOpponentNoGraveSummons) return true;
+            return false;
+        }
+
+        /// <summary>Colossus of the Broken Gate: liegt irgendwo offen die Zauber-Sperre?</summary>
+        private bool SpellsLockedByColossus()
+        {
+            foreach (var side in new[] { Player1, Player2 })
+            {
+                if (side == null) continue;
+                foreach (var gate in side.Monsters())
+                    if (!gate.FaceDown && !gate.EffectsNegated && gate.Definition != null
+                        && gate.Definition.passiveNoSpellsBoth) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Avatar-Konter: ist das letzte Kettenglied ein GEGNER-Effekt, der ihn ziehen ließe?</summary>
+        private bool OpponentDrawChainLinkOpen(PlayerState player)
+        {
+            if (chainCards.Count == 0 || chainEffects.Count == 0) return false;
+            var last = chainCards[chainCards.Count - 1];
+            var lastEffect = chainEffects[chainEffects.Count - 1];
+            if (last == null || lastEffect == null || last.Owner == player || last.EffectsNegated) return false;
+            foreach (var action in lastEffect.actions)
+                if (action.type == EffectActionType.DrawCards
+                    || action.type == EffectActionType.DrawPerCount
+                    || action.type == EffectActionType.DrawUntilMatchOpponentHand
+                    || action.type == EffectActionType.DrawIfHandAtMost
+                    || action.type == EffectActionType.MillAndSalvage) return true;
+            return false;
+        }
+
+        /// <summary>Avatar: unterdrückt der Besitzer die Reaktionen auf seine Monster-Effekte?</summary>
+        private static bool ResponsesLockedByAvatar(PlayerState owner)
+        {
+            if (owner == null) return false;
+            foreach (var avatar in owner.Monsters())
+                if (!avatar.FaceDown && !avatar.EffectsNegated && avatar.Definition != null
+                    && avatar.Definition.passiveNoResponseToOwnerMonsterEffects) return true;
+            return false;
+        }
+
+        /// <summary>Colossus: der Gegner hat einen Artefakt-Effekt aktiviert — die Tore wachsen.</summary>
+        private void FeedColossi(PlayerState activator)
+        {
+            if (activator.Opponent == null) return;
+            foreach (var colossus in activator.Opponent.Monsters())
+            {
+                int grow = colossus.FaceDown || colossus.EffectsNegated || colossus.Definition == null
+                    ? 0 : colossus.Definition.passiveGrowOnEnemyArtifactActivation;
+                if (grow <= 0) continue;
+                colossus.PermanentAtkBonus += grow;
+                colossus.PermanentDefBonus += grow;
+                Log($"{colossus.Name} feeds on the artifice — permanently +{grow} ATK and DEF ({colossus.CurrentAtk}/{colossus.CurrentDef}).");
+            }
+            BoardChanged();
+        }
+
         private bool AnyLienOnField()
         {
             foreach (var side in new[] { Player1, Player2 })
@@ -5952,6 +6183,9 @@ namespace Rouge.Tcg
         {
             if (monster?.Definition != null && monster.Definition.passiveNoBattleDestroy)
                 return $"{monster.Name} stands firm — it cannot be destroyed by battle.";
+            // She Who Outlives: der geschenkte, dauerhafte Kampfschild
+            if (monster != null && monster.PermanentBattleShield)
+                return $"{monster.Name} stands firm — her blessing holds.";
             // The Small Print: Sworn to the Gate (allein), Castellan-Nachbarn
             if (monster?.Definition != null && monster.Owner != null && monster.Zone == ZoneType.MonsterZone)
             {
@@ -6401,6 +6635,10 @@ namespace Rouge.Tcg
         private IEnumerator OpenResponseWindow(PlayerState firstPriority, string context, CardInstance contextCard, bool isPhaseWindow = false)
         {
             if (responseDepth >= 2) yield break;
+            // Avatar of the Thousandth Card: auf MONSTER-Effekte seines Besitzers
+            // gibt es keine Antwort — das Aktivierungs-Fenster öffnet gar nicht erst.
+            if (context == "activation" && contextCard != null && contextCard.MonsterData != null
+                && ResponsesLockedByAvatar(contextCard.Owner)) yield break;
             // Waehrend eine Kette sich ABBAUT, geht kein neues Fenster auf: was
             // ein aufloesender Effekt anstoesst (Beschwoerungen, Artefakte),
             // laeuft durch, ohne dass jemand hineingraetschen kann. Reagiert
@@ -7006,6 +7244,26 @@ namespace Rouge.Tcg
                 attacker.PermanentDefBonus -= attacker.Definition.passiveDefLossAfterAttack;
                 Log($"{attacker.Name} chips from the impact — it permanently loses {attacker.Definition.passiveDefLossAfterAttack} DEF ({attacker.CurrentDef} DEF).");
             }
+
+            // Maw of the First Winter: wer mit ihr kämpfte, trägt den Frost davon —
+            // in beide Richtungen (sie greift an ODER wird angegriffen)
+            if (!option.Direct && target != null)
+            {
+                int frostOnTarget = attacker.Definition != null && !attacker.FaceDown
+                    ? attacker.Definition.passiveDebuffOpponentAfterCombat : 0;
+                if (frostOnTarget > 0 && target.Zone == ZoneType.MonsterZone)
+                {
+                    target.PermanentAtkBonus -= frostOnTarget;
+                    Log($"{target.Name} is frostbitten — it permanently loses {frostOnTarget} ATK ({target.CurrentAtk} ATK).");
+                }
+                int frostOnAttacker = target.Definition != null && !target.FaceDown
+                    ? target.Definition.passiveDebuffOpponentAfterCombat : 0;
+                if (frostOnAttacker > 0 && attacker.Zone == ZoneType.MonsterZone)
+                {
+                    attacker.PermanentAtkBonus -= frostOnAttacker;
+                    Log($"{attacker.Name} is frostbitten — it permanently loses {frostOnAttacker} ATK ({attacker.CurrentAtk} ATK).");
+                }
+            }
             BoardChanged();
         }
 
@@ -7109,6 +7367,37 @@ namespace Rouge.Tcg
         private CardInstance pendingAttackRedirect;
         /// <summary>Widow's Ledger: das Monster, das die zuletzt zerstörte Karte auf dem Gewissen hat (nur Kampf).</summary>
         private CardInstance lastDestroyerMonster;
+        /// <summary>She Who Outlives (Blink): geblinkte Karten samt Besitzer und konservierter
+        /// Incarnate-Rückkehr-Uhr — am Zugende kehren sie in eine freie Zone zurück (sonst Grab).</summary>
+        private readonly List<(CardInstance card, PlayerState owner, int returnTurn)> blinkedCards
+            = new List<(CardInstance, PlayerState, int)>();
+
+        /// <summary>Zugende: die Geblinkten kehren aus dem Schleier zurück.</summary>
+        public void ReturnBlinkedCards()
+        {
+            foreach (var (card, owner, returnTurn) in blinkedCards.ToArray())
+            {
+                if (card.Zone != ZoneType.Banished) continue;   // wurde anderweitig bewegt
+                owner.Banished.Remove(card);
+                int free = FirstUnsealedFreeZone(owner);
+                if (free < 0)
+                {
+                    card.Zone = ZoneType.Graveyard;
+                    card.Owner = owner;
+                    owner.Graveyard.Add(card);
+                    Log($"{card.Name} returns from beyond the veil — but finds no room and falls to the Graveyard.");
+                    continue;
+                }
+                owner.MonsterZones[free] = card;
+                card.Owner = owner;
+                card.Zone = ZoneType.MonsterZone;
+                card.FaceDown = false;
+                card.Position = BattlePosition.Attack;
+                card.IncarnateReturnTurn = returnTurn;   // die Rückkehr-Uhr tickt weiter
+                Log($"{card.Name} steps back through the veil.");
+            }
+            blinkedCards.Clear();
+        }
 
         /// <summary>
         /// Straw Army: Scarecrow-Tokens (eigener Token-Typ — KEINE Illusion-Tokens,
@@ -7242,6 +7531,9 @@ namespace Rouge.Tcg
             card.CopyStatsUntilOwnersNextTurn = false;
             card.DefBuffUntilOwnersNextTurn = 0;
             card.IncarnateReturnTurn = -1;   // Incarnates: die Rückkehr-Uhr endet mit dem Feld
+            card.PermanentBattleShield = false;
+            card.IncarnateBaseAtk = -1;      // Avatar: die Opfergabe-Basis vergeht mit dem Feld
+            card.IncarnateBaseDef = -1;
         }
 
         private void MoveToGraveyardWithEquips(CardInstance monster)
@@ -7374,6 +7666,38 @@ namespace Rouge.Tcg
                 card.DestructionShields--;
                 Log($"{card.Name} is spared — its insurance pays out.");
                 yield break;
+            }
+            // She Who Outlives: statt zu sterben darf der Besitzer 1 Handkarte opfern
+            if (card.Definition != null && card.Definition.passiveDiscardToSurvive
+                && IsOnField(card) && card.Owner != null && card.Owner.Hand.Count > 0)
+            {
+                var outlive = new YesNoRequest
+                {
+                    Title = "Outlive?",
+                    Card = card,
+                    Question = $"Discard 1 card from your hand instead of losing {card.Name}?"
+                };
+                yield return DecideRouted(card.Owner, outlive);
+                if (outlive.Result)
+                {
+                    var pick = new TargetRequest
+                    {
+                        Title = $"{card.Name}: choose the card to discard",
+                        Kind = TargetKind.HandCardSelf,
+                        Count = 1,
+                        AllowCancel = false
+                    };
+                    pick.Candidates.AddRange(card.Owner.Hand);
+                    yield return DecideRouted(card.Owner, pick);
+                    var price = pick.Result.Count > 0 && card.Owner.Hand.Contains(pick.Result[0])
+                        ? pick.Result[0] : card.Owner.Hand[0];
+                    Log($"{card.Owner.Name} discards {price.Name} — {card.Name} outlives.");
+                    if (presenter != null) yield return presenter.ShowCardSentToGrave(price);
+                    MoveToGraveyard(price);
+                    BoardChanged();
+                    yield return FirePendingGraveTriggers();
+                    yield break;
+                }
             }
             // Widow's Ledger: wer hier den Todesstoß führt, steht im Buch
             lastDestroyerMonster = destroyer != null && destroyer.MonsterData != null ? destroyer : null;
