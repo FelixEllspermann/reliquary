@@ -461,7 +461,7 @@ namespace Rouge.Tcg.UI
             button.transition = Selectable.Transition.None;
             button.onClick.AddListener(() => Show(false));
             var label = MakeText("Label", close.rectTransform, skin.oswald, 13f, Hex("#EBCE8A", 1f));
-            label.text = "CLOSE";
+            label.text = Loc.T("CLOSE");
             label.characterSpacing = 22f;
             label.alignment = TextAlignmentOptions.Center;
             Stretch((RectTransform)label.transform);

@@ -97,11 +97,30 @@ namespace Rouge.Tcg.UI
             glossary.onClick.AddListener(() => { SfxManager.Click(); ShowGlossary(); });
         }
 
+        /// <summary>
+        /// Die TopBar macht ihre Knöpfe zu Icon-Knöpfen: Label aus, Icon rein,
+        /// Hover-Hinweis dran (MainMenuController.CompactTopBar). Läuft das vor
+        /// unserem Klonen, erbt der Klon ein abgeschaltetes Label und einen
+        /// Hinweis ohne Text — deshalb hier alles zurückdrehen.
+        /// </summary>
+        private static void StripTopBarLeftovers(GameObject clone)
+        {
+            foreach (var junk in new[] { "Icon", "~Hint" })
+            {
+                var child = clone.transform.Find(junk);
+                if (child != null) Destroy(child.gameObject);
+            }
+            foreach (var behaviour in clone.GetComponents<MonoBehaviour>())
+                if (behaviour != null && behaviour.GetType().Name == "TopBarHint")
+                    Destroy(behaviour);
+        }
+
         /// <summary>Klon des News-Knopfs an Position x (rückt x hinter sich weiter).</summary>
         private Button CloneRailButton(Transform parent, string name, string caption, float width, ref float x, float y)
         {
             var clone = Instantiate(newsButton.gameObject, parent);
             clone.name = name;
+            StripTopBarLeftovers(clone);
             var rect = (RectTransform)clone.transform;
             rect.anchorMin = new Vector2(0f, 0f);
             rect.anchorMax = new Vector2(0f, 0f);
@@ -111,7 +130,11 @@ namespace Rouge.Tcg.UI
             x += width + 12f;
 
             var label = clone.GetComponentInChildren<TMP_Text>(true);
-            if (label != null) label.text = caption;
+            if (label != null)
+            {
+                label.gameObject.SetActive(true);
+                label.text = caption;
+            }
 
             var button = clone.GetComponent<Button>();
             button.onClick.RemoveAllListeners();
@@ -645,13 +668,14 @@ namespace Rouge.Tcg.UI
         {
             var clone = Instantiate(buttonTemplate.gameObject, panel);
             clone.name = name;
-            foreach (var junk in new[] { "Glow", "~FxGlow", "Icon" })
+            foreach (var junk in new[] { "Glow", "~FxGlow", "Icon", "~Hint" })
             {
                 var child = clone.transform.Find(junk);
                 if (child != null) Destroy(child.gameObject);
             }
             var inherited = clone.GetComponent<UiButtonFx>();
             if (inherited != null) Destroy(inherited);
+            StripTopBarLeftovers(clone);
 
             var rect = (RectTransform)clone.transform;
             rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0f);
@@ -668,7 +692,14 @@ namespace Rouge.Tcg.UI
                 button.onClick.AddListener(() => { SfxManager.Click(); onClick(); });
             }
             var label = clone.GetComponentInChildren<TMP_Text>(true);
-            if (label != null) { label.text = caption; label.color = Hex("#D9C79B", 1f); }
+            if (label != null)
+            {
+                // CompactTopBar schaltet das Vorlagen-Label ab, sobald der Knopf
+                // sein Icon bekommt — je nach Timing erbt der Klon dieses aus.
+                label.gameObject.SetActive(true);
+                label.text = caption;
+                label.color = Hex("#D9C79B", 1f);
+            }
 
             // Die Leisten-Knöpfe sind ember getönt; im Fenster gilt das Gold des Rahmens
             var frame = clone.transform.Find("Frame");

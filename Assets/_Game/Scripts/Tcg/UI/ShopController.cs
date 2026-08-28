@@ -678,7 +678,7 @@ namespace Rouge.Tcg.UI
                 var closeLabel = close.GetComponentInChildren<TMP_Text>(true);
                 if (closeLabel != null)
                 {
-                    closeLabel.text = "CLOSE";
+                    closeLabel.text = Loc.T("CLOSE");
                     closeLabel.color = HexColor("#D9C79B", 1f);
                 }
             }

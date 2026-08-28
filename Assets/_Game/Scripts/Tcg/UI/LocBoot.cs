@@ -50,7 +50,7 @@ namespace Rouge.Tcg.UI
                 hooked = true;
                 // Zweimal fegen: sofort (statische Szenen-Labels) und kurz danach —
                 // manche Texte setzt erst ein Start()/Refresh nach dem Laden.
-                SceneManager.sceneLoaded += (_, _) => { SweepSceneLabels(); ScheduleLateSweep(); };
+                SceneManager.sceneLoaded += (_, _) => { HardenSceneFonts(); SweepSceneLabels(); ScheduleLateSweep(); };
                 Application.quitting += RemoveFallback;   // Editor-Play-Ende & Build-Quit
             }
         }
@@ -338,6 +338,36 @@ namespace Rouge.Tcg.UI
                 return asset;
             }
             return null;
+        }
+
+        // ================== Atlas-Härtung ==================
+
+        private static readonly HashSet<int> hardenedFonts = new HashSet<int>();
+
+        /// <summary>
+        /// Multi-Atlas für jede dynamische Schrift der Szene abschalten (samt
+        /// Fallback-Ketten). Grund ist dieselbe Projekt-Erfahrung wie oben: TMP
+        /// zeichnet Glyphen auf Atlas-Textur 2 leer — Menü-Knöpfe wie CLOSE/NEW
+        /// CARDS blieben sporadisch ohne Beschriftung, sobald ihre spät
+        /// angefragten Glyphen erst auf der zweiten Seite landeten. Die
+        /// Projekt-Fonts sind dafür auf 2048er-Atlanten vergrößert.
+        /// </summary>
+        private static void HardenSceneFonts()
+        {
+            foreach (var label in Object.FindObjectsByType<TMP_Text>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                HardenFont(label.font);
+            if (TMP_Settings.defaultFontAsset != null)
+                HardenFont(TMP_Settings.defaultFontAsset);
+        }
+
+        private static void HardenFont(TMP_FontAsset font)
+        {
+            if (font == null || !hardenedFonts.Add(font.GetInstanceID())) return;
+            if (font.atlasPopulationMode == AtlasPopulationMode.Dynamic)
+                font.isMultiAtlasTexturesEnabled = false;
+            var fallbacks = font.fallbackFontAssetTable;
+            if (fallbacks == null) return;
+            foreach (var fallback in fallbacks) HardenFont(fallback);
         }
 
         // ================== Szenen-Sweep ==================
