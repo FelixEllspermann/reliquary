@@ -115,8 +115,15 @@ namespace Rouge.Tcg
         [Tooltip("Namensfilter für die Friedhofs-Bedingung darüber")]
         public string reqGraveyardNamed = "";
 
-        [Header("Zusatzkosten (bei der Beschwörung bezahlt)")]
-        [Tooltip("Banishe so viele Monster aus deinem Friedhof (0 = aus)")]
+        // =====================================================================
+        // VERALTET seit 28.08.2026 (Design-Regel): Reliquary-Beschwörungen
+        // verlangen KEINE Aktionen mehr — nur Board-State-Voraussetzungen (reqs)
+        // + Mana. Aktionskosten (Tribute, Grab-Banish, Zerstören) sind für eine
+        // KÜNFTIGE neue Kartenart reserviert. Diese Felder bleiben nur, weil
+        // Assets Zahlenwerte speichern — auf KEINER Karte mehr setzen!
+        // =====================================================================
+        [Header("Zusatzkosten — VERALTET, nicht mehr benutzen (siehe Kommentar)")]
+        [Tooltip("VERALTET: Banishe so viele Monster aus deinem Friedhof (0 = aus)")]
         [Range(0, 10)] public int costBanishMonstersFromGrave;
 
         [Tooltip("Zerstöre 1 anderes Monster, das du kontrollierst")]

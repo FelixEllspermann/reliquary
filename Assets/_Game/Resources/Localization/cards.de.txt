@@ -141,7 +141,7 @@ l1 Das Kleingedruckte
 t1 Zahle stattdessen 1 Mana: Spezialbeschwöre außerdem 1 „Erzdämon“-Monster verdeckt aus deinem Friedhof.
 ## Archfiend Dominus
 n Erzdämon-Dominus
-s Dein Gegner kontrolliert 2+ Monster. Kosten 2 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+s Dein Gegner kontrolliert 3+ Monster — zahle 4 Mana.
 l0 Thron des Verderbens
 t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster, das dein Gegner kontrolliert.
 ## Archfiend Executioner
@@ -168,7 +168,7 @@ l0 Schwer wiegt die Krone
 t0 Während deiner Standby Phase: Gib „Erzdämon-Krone“ aus deinem Friedhof auf deine Hand zurück.
 ## Archfiend Kingmaker
 n Erzdämon-Königsmacher
-s 3+ Monster in deinem Friedhof. Kosten 3 Mana; opfere 1 Monster, das du kontrollierst.
+s 5+ Monster in deinem Friedhof — zahle 4 Mana.
 l0 Krönung in Blut
 t0 Wenn diese Karte beschworen wird: Zerstöre bis zu 2 Monster mit 1500 oder weniger ATK, die dein Gegner kontrolliert; diese Karte erhält dauerhaft 200 ATK für jedes.
 l1 Den Hofstaat erheben
@@ -928,7 +928,7 @@ l1 Günstige Winde
 t1 Zahle stattdessen 1 Mana: Erhalte außerdem 1 Mana.
 ## Fethaerbreese, the Held Breath
 n Fethaerbreese, der Angehaltene Atem
-s 2 oder mehr „Fethaerbreese“-Monster unter deiner Kontrolle und 5+ Karten in deinem Friedhof. Kosten 3 Mana; opfere 1 anderes Monster.
+s Du kontrollierst 2+ „Fethaerbreese“-Monster und hast 5+ Karten im Friedhof — zahle 4 Mana.
 l0 Der angehaltene Atem
 t0 Wenn diese Karte beschworen wird: Wähle 1 Karte, die dein Gegner kontrolliert, als Ziel; annulliere ihre Effekte bis zum Ende des Zuges.
 l1 Nichts wird gesprochen
@@ -1367,7 +1367,7 @@ l1 In die Welt beißen
 t1 Einmal pro Zug — zahle 3 Mana: Verbanne 1 Karte, die dein Gegner kontrolliert.
 ## Gravemaw, the Bottomless
 n Grabschlund, der Bodenlose
-s Kosten 1 Mana. Verbanne 4 Monster aus deinem Friedhof.
+s 6+ Monster in deinem Friedhof — zahle 3 Mana.
 l0 Endloser Hunger
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 Monster aus deinem Friedhof.
 ## Grief Counselor
@@ -1388,9 +1388,11 @@ l1 Den Einsatz erhöhen
 t1 Zahle 2 Mana: Wirf eine Münze. Kopf — diese Karte erhält bis zum Ende des Zuges 900 ATK. Zahl — sie verliert bis zum Ende des Zuges 900 ATK.
 ## Grunn, Who Eats His Own
 n Grunn, der die Eigenen frisst
-s Kosten 1 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+s Du kontrollierst 3+ Monster — zahle 3 Mana.
 l0 Immer noch Hunger
 t0 Wenn diese Karte beschworen wird: Bis zu 2 Monster, die dein Gegner kontrolliert, verlieren dauerhaft 500 ATK.
+l1 Immer noch hungrig danach
+t1 Zahle 1 Mana und schicke 1 anderes Monster, das du kontrollierst, in den Friedhof: Diese Karte erhält dauerhaft 400 ATK.
 ## Guardian Amulet
 n Wächteramulett
 l0 Schützender Segen
@@ -1783,7 +1785,7 @@ l1 Die Wärme teilen
 t1 Einmal pro Zug: Zahle 1 Mana; 1 Monster der Stufe 1, das du kontrollierst, erhält bis zum Ende dieses Zuges 300 ATK.
 ## Kindlekin, the Last Ember
 n Zundersippe, die Letzte Glut
-s Du kontrollierst 4+ Monster und 6+ Karten in deinem Friedhof. Kosten 4 Mana. Verbanne 2 Monster aus deinem Friedhof.
+s Du kontrollierst 4+ Monster, hast 6+ Karten im Friedhof und 3+ verbannte Karten — zahle 4 Mana.
 l0 Alles brennt
 t0 Wenn diese Karte beschworen wird: Zerstöre alle Monster auf dem Spielfeld außer BESTIE-Monstern.
 l1 Aus der Asche
@@ -2382,7 +2384,7 @@ l1 Treuebonus
 t1 Zahle stattdessen 1 Mana: Erhalte außerdem 2 Mana.
 ## Mechination Worldgear
 n Maschination-Weltgetriebe
-s Du kontrollierst 3+ Monster und 5+ Karten in deinem Friedhof. Kosten 3 Mana. Zerstöre 1 anderes Monster, das du kontrollierst.
+s Du kontrollierst 3+ Monster und hast 5+ Karten im Friedhof — zahle 4 Mana.
 l0 Die große Umdrehung
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 ERDE-Monster der Stufe 1 aus deinem Friedhof.
 l1 Die größere Umdrehung
@@ -2964,7 +2966,7 @@ l1 Bereinigte Ausgabe
 t1 Zahle stattdessen 3 Mana: Bis zu 4.
 ## Redactor, Final Edition
 n Redaktor, Letzte Ausgabe
-s 5+ Karten in deinem Friedhof. Opfere 1 Monster, das du kontrollierst. Kosten 3 Mana.
+s 6+ Karten in deinem Friedhof — zahle 4 Mana.
 l0 Redaktionsschluss
 t0 Einmal pro Zug, wenn dein Gegner außerhalb seiner Draw Phase zieht: Er wirft 1 zufällige Karte ab.
 l1 Druck stoppen
@@ -3064,7 +3066,9 @@ l1 Günstige Konditionen
 t1 Zahle stattdessen 3 Mana: Erhalte außerdem 2 Mana.
 ## Sacrilegion First Sacrament
 n Sakrilegion-Erstes Sakrament
-s Opfere 1 Monster, das du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. Kosten 2 Mana.
+s Du und dein Gegner kontrolliert je 1+ Monster — zahle 2 Mana.
+l0 Der erste Ritus
+t0 Wenn diese Karte beschworen wird: Schicke 1 anderes Monster, das du kontrollierst, und das stärkste Monster deines Gegners in den Friedhof.
 ## Sacrilegion Grand Sacrist
 n Sakrilegion-Großsakristan
 l0 Gesammelte Reliquien
@@ -3107,7 +3111,7 @@ l2 Die Gefallenen erheben
 t2 Du kannst 2 Mana zahlen: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
 ## Sacrilegion Second Sacrament
 n Sakrilegion-Zweites Sakrament
-s Opfere 2 Monster, die du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. Kosten 3 Mana.
+s Du kontrollierst 2+ Monster und hast 4+ Karten im Friedhof — zahle 3 Mana.
 l0 Den Geringsten zurückholen
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deinem Friedhof.
 l1 Zwei zurückholen
@@ -3124,7 +3128,9 @@ l0 Geschworener Eid
 t0 Zahle 1 Mana: Spezialbeschwöre 1 LICHT-Monster der Stufe 1 aus deiner Hand.
 ## Sacrilegion Third Sacrament
 n Sakrilegion-Drittes Sakrament
-s Opfere 1 Monster, das du kontrollierst, und 2 Monster, die dein Gegner kontrolliert. Kosten 4 Mana.
+s Du kontrollierst 1+ Monster, dein Gegner 2+ und du hast 5+ Karten im Friedhof — zahle 5 Mana.
+l0 Der dritte Ritus
+t0 Wenn diese Karte beschworen wird: Schicke 1 anderes Monster, das du kontrollierst, und die 2 stärksten Monster deines Gegners in den Friedhof.
 ## Sacrilegion Twice-Blessed
 n Sakrilegion-Zweifach Gesegneter
 ## Sacrilegion Vowkeeper
@@ -3141,14 +3147,14 @@ l1 Wieder freiwillig
 t1 Einmal pro Zug, solange diese Karte in deinem Friedhof liegt: Zahle 2 Mana; setze sie verdeckt auf dein Spielfeld.
 ## Sacrilegion, Communion of Bone
 n Sakrilegion, Kommunion aus Knochen
-s Opfere 1 Monster, das du kontrollierst, und 1 deines Gegners. 6+ Karten in deinem Friedhof. Kosten 4 Mana.
+s Du kontrollierst 2+ Monster und hast 6+ Karten im Friedhof — zahle 5 Mana.
 l0 Kommunion
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
 l1 Letzter Ritus
 t1 Zahle 3 Mana und opfere 1 anderes Monster, das du kontrollierst: Zerstöre 1 Monster, das dein Gegner kontrolliert.
 ## Sacrilegion, the Last Oath
 n Sakrilegion, der Letzte Eid
-s Opfere 2 Monster, die du kontrollierst, und 1 Monster, das dein Gegner kontrolliert. 8+ Karten in deinem Friedhof. Kosten 5 Mana.
+s Du kontrollierst 3+ Monster, dein Gegner 1+ und du hast 8+ Karten im Friedhof — zahle 6 Mana.
 l0 Der Eid ist gehalten
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 LICHT-Monster der Stufe 1 aus deinem Friedhof.
 l1 Der Eid wird erhoben
@@ -3486,7 +3492,7 @@ l0 Königliche Audienz
 t0 Einmal pro Zug — zahle 2 Mana: Füge deiner Hand 1 „Schmuseling“-Karte aus deinem Deck hinzu.
 ## Snugglet Blanket Fortress
 n Schmuseling-Deckenfestung
-s Du kontrollierst 3 „Schmuseling“-Monster und hast 3+ Karten in deinem Friedhof. Opfere 1 Monster, das du kontrollierst. Kosten 3 Mana.
+s Du kontrollierst 3 „Snugglet“-Monster und hast 3+ Karten im Friedhof — zahle 4 Mana.
 l0 Die Decke festziehen
 t0 Einmal pro Zug, im Zug beider Spieler: Zahle 2 Mana; 1 „Schmuseling“-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
 ## Snugglet Bumble
@@ -3497,7 +3503,7 @@ l1 Fleißige Biene
 t1 Zahle stattdessen 2 Mana: Füge außerdem 1 „Schmuseling“-Zauber hinzu.
 ## Snugglet Cuddlepile, Three Deep
 n Schmuseling-Kuschelhaufen, Drei Hoch
-s Du kontrollierst 3 „Schmuseling“-Monster. Opfere 1 Monster, das du kontrollierst. Kosten 2 Mana.
+s Du kontrollierst 3 „Snugglet“-Monster — zahle 3 Mana.
 l0 Einer passt noch rein
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Schmuseling“-Monster aus deinem Friedhof.
 ## Snugglet Group Hug
@@ -3556,14 +3562,14 @@ l0 Ansprung
 t0 Einmal pro Zug: 1 Monster, das dein Gegner kontrolliert, verliert bis zum Ende dieses Zuges 300 ATK.
 ## Snugglet, Big Spoon
 n Schmuseling, Großer Löffel
-s Du kontrollierst 3 „Schmuseling“-Monster. Kosten 3 Mana; opfere 1 Monster, das du kontrollierst.
+s Du kontrollierst 3 „Snugglet“-Monster — zahle 4 Mana.
 l0 Alle rein
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre 1 „Schmuseling“-Monster aus deinem Friedhof.
 l1 Fest im Arm halten
 t1 Zahle 2 Mana: 1 „Schmuseling“-Monster, das du kontrollierst, kann in diesem Zug nicht zerstört werden.
 ## Snugglet, the Whole Squish
 n Schmuseling, das Ganze Knuddelknäuel
-s Du kontrollierst 3 „Schmuseling“-Monster und hast 5+ Karten in deinem Friedhof. Opfere 2 Monster, die du kontrollierst. Kosten 4 Mana.
+s Du kontrollierst 4+ Monster (davon 3 „Snugglet“) und hast 5+ Karten im Friedhof — zahle 5 Mana.
 l0 Die ganze Familie
 t0 Wenn diese Karte beschworen wird: Spezialbeschwöre bis zu 2 „Schmuseling“-Monster aus deinem Friedhof.
 l1 Gruppenkuscheln
@@ -3674,7 +3680,7 @@ l0 Die Zeit der Auslese
 t0 Zahle 4 Mana: Zerstöre alle Monster auf dem Spielfeld, außer Bestien.
 ## The Debt Made Flesh
 n Die fleischgewordene Schuld
-s Deine LP sind 4000 oder weniger. Kosten 3 Mana. Verbanne 2 Monster aus deinem Friedhof.
+s Deine LP sind höchstens 4000 und du hast 4+ Karten im Friedhof — zahle 4 Mana.
 l0 Zahltag
 t0 Wenn diese Karte beschworen wird: Zerstöre 1 Monster, das dein Gegner kontrolliert.
 ## The Door That Held

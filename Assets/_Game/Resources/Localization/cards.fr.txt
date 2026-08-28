@@ -143,7 +143,7 @@ l1 Les petites lignes
 t1 À la place, payez 1 mana : Invoquez aussi Spécialement 1 monstre « Archdémon » depuis votre Cimetière face cachée.
 ## Archfiend Dominus
 n Dominus Archdémon
-s Votre adversaire contrôle 2+ monstres. Coût : 2 mana. Détruisez 1 autre monstre que vous contrôlez.
+s Votre adversaire contrôle 3+ monstres — payez 4 Mana.
 l0 Trône de ruine
 t0 Quand cette carte est Invoquée : détruisez 1 monstre que votre adversaire contrôle.
 ## Archfiend Executioner
@@ -170,7 +170,7 @@ l0 Lourde est la couronne
 t0 Durant votre Standby Phase : renvoyez « Couronne Archdémon » de votre Cimetière dans votre main.
 ## Archfiend Kingmaker
 n Faiseur de Rois Archdémon
-s 3+ monstres dans votre Cimetière. Coût : 3 mana ; Sacrifiez 1 monstre que vous contrôlez.
+s 5+ monstres dans votre Cimetière — payez 4 Mana.
 l0 Couronnement dans le sang
 t0 Quand cette carte est Invoquée : détruisez jusqu'à 2 monstres que votre adversaire contrôle avec 1500 ATK ou moins ; cette carte gagne 200 ATK de façon permanente pour chacun.
 l1 Réunir la cour
@@ -930,7 +930,7 @@ l1 Vents favorables
 t1 À la place, payez 1 mana : gagnez aussi 1 mana.
 ## Fethaerbreese, the Held Breath
 n Fethaerbreese, le Souffle Retenu
-s 2 monstres « Fethaerbreese » ou plus que vous contrôlez et 5+ cartes dans votre Cimetière. Coût : 3 mana ; Sacrifiez 1 autre monstre.
+s Vous contrôlez 2+ monstres « Fethaerbreese » et avez 5+ cartes dans votre Cimetière — payez 4 Mana.
 l0 Le souffle retenu
 t0 Quand cette carte est Invoquée : ciblez 1 carte que votre adversaire contrôle ; annulez ses effets jusqu'à la fin du tour.
 l1 Rien n'est dit
@@ -1369,7 +1369,7 @@ l1 Mordre le monde
 t1 Une fois par tour — payez 3 mana : bannissez 1 carte que votre adversaire contrôle.
 ## Gravemaw, the Bottomless
 n Gueule-de-Tombe, le Sans-Fond
-s Coût : 1 mana. Bannissez 4 monstres de votre Cimetière.
+s 6+ monstres dans votre Cimetière — payez 3 Mana.
 l0 Faim sans fin
 t0 Quand cette carte est Invoquée : Invoquez Spécialement 1 monstre depuis votre Cimetière.
 ## Grief Counselor
@@ -1390,9 +1390,11 @@ l1 Monter les enchères
 t1 Payez 2 mana : lancez une pièce. Face — cette carte gagne 900 ATK jusqu'à la fin du tour. Pile — elle perd 900 ATK jusqu'à la fin du tour.
 ## Grunn, Who Eats His Own
 n Grunn, qui Dévore les Siens
-s Coût : 1 mana. Détruisez 1 autre monstre que vous contrôlez.
+s Vous contrôlez 3+ monstres — payez 3 Mana.
 l0 Toujours faim
 t0 Quand cette carte est Invoquée : jusqu'à 2 monstres que votre adversaire contrôle perdent 500 ATK de façon permanente.
+l1 Il mange encore
+t1 Payez 1 Mana et envoyez au Cimetière 1 autre monstre que vous contrôlez : cette carte gagne définitivement 400 ATK.
 ## Guardian Amulet
 n Amulette Gardienne
 l0 Bénédiction protectrice
@@ -1785,7 +1787,7 @@ l1 Partager la chaleur
 t1 Une fois par tour : payez 1 mana ; 1 monstre de Niveau 1 que vous contrôlez gagne 300 ATK jusqu'à la fin de ce tour.
 ## Kindlekin, the Last Ember
 n Braisillon, la Dernière Braise
-s Vous contrôlez 4+ monstres et avez 6+ cartes dans votre Cimetière. Coût : 4 mana. Bannissez 2 monstres de votre Cimetière.
+s Vous contrôlez 4+ monstres, avez 6+ cartes dans votre Cimetière et 3+ cartes bannies — payez 4 Mana.
 l0 Tout brûle
 t0 Quand cette carte est Invoquée : détruisez tous les monstres sur le Terrain sauf les monstres BÊTE.
 l1 Des cendres
@@ -2384,7 +2386,7 @@ l1 Prime de fidélité
 t1 À la place, payez 1 mana : gagnez aussi 2 mana.
 ## Mechination Worldgear
 n Engrenage-Monde Méchination
-s Vous contrôlez 3+ monstres et avez 5+ cartes dans votre Cimetière. Coût : 3 mana. Détruisez 1 autre monstre que vous contrôlez.
+s Vous contrôlez 3+ monstres et avez 5+ cartes dans votre Cimetière — payez 4 Mana.
 l0 Le grand tour
 t0 Quand cette carte est Invoquée : Invoquez Spécialement jusqu'à 2 monstres TERRE de Niveau 1 depuis votre Cimetière.
 l1 Le plus grand tour
@@ -2966,7 +2968,7 @@ l1 Édition purgée
 t1 À la place, payez 3 mana : jusqu'à 4.
 ## Redactor, Final Edition
 n Rédacteur, Édition Finale
-s 5+ cartes dans votre Cimetière. Sacrifiez 1 monstre que vous contrôlez. Coût : 3 mana.
+s 6+ cartes dans votre Cimetière — payez 4 Mana.
 l0 Bouclage
 t0 Une fois par tour, quand votre adversaire pioche hors de sa Draw Phase : il défausse 1 carte au hasard.
 l1 Arrêtez les rotatives
@@ -3066,7 +3068,9 @@ l1 Conditions favorables
 t1 À la place, payez 3 mana : gagnez aussi 2 mana.
 ## Sacrilegion First Sacrament
 n Premier Sacrement Sacrilégion
-s Sacrifiez 1 monstre que vous contrôlez et 1 monstre que votre adversaire contrôle. Coût : 2 mana.
+s Vous et votre adversaire contrôlez chacun 1+ monstres — payez 2 Mana.
+l0 Le premier rite
+t0 Quand cette carte est invoquée : envoyez au Cimetière 1 autre monstre que vous contrôlez et le monstre le plus fort de votre adversaire.
 ## Sacrilegion Grand Sacrist
 n Grand Sacristain Sacrilégion
 l0 Reliques rassemblées
@@ -3109,7 +3113,7 @@ l2 Relever les tombés
 t2 Vous pouvez payer 2 mana : Invoquez Spécialement 1 monstre LUMIÈRE de Niveau 1 depuis votre Cimetière.
 ## Sacrilegion Second Sacrament
 n Second Sacrement Sacrilégion
-s Sacrifiez 2 monstres que vous contrôlez et 1 monstre que votre adversaire contrôle. Coût : 3 mana.
+s Vous contrôlez 2+ monstres et avez 4+ cartes dans votre Cimetière — payez 3 Mana.
 l0 Rendre le moindre
 t0 Quand cette carte est Invoquée : Invoquez Spécialement 1 monstre LUMIÈRE de Niveau 1 depuis votre Cimetière.
 l1 En rendre deux
@@ -3126,7 +3130,9 @@ l0 Serment juré
 t0 Payez 1 mana : Invoquez Spécialement 1 monstre LUMIÈRE de Niveau 1 depuis votre main.
 ## Sacrilegion Third Sacrament
 n Troisième Sacrement Sacrilégion
-s Sacrifiez 1 monstre que vous contrôlez et 2 monstres que votre adversaire contrôle. Coût : 4 mana.
+s Vous contrôlez 1+ monstres, votre adversaire 2+ et vous avez 5+ cartes dans votre Cimetière — payez 5 Mana.
+l0 Le troisième rite
+t0 Quand cette carte est invoquée : envoyez au Cimetière 1 autre monstre que vous contrôlez et les 2 monstres les plus forts de votre adversaire.
 ## Sacrilegion Twice-Blessed
 n Deux-Fois-Béni Sacrilégion
 ## Sacrilegion Vowkeeper
@@ -3143,14 +3149,14 @@ l1 Se porter volontaire encore
 t1 Une fois par tour, tant que cette carte est dans votre Cimetière : payez 2 mana ; Posez-la face cachée sur votre Terrain.
 ## Sacrilegion, Communion of Bone
 n Sacrilégion, Communion d'Os
-s Sacrifiez 1 monstre que vous contrôlez et 1 que votre adversaire contrôle. 6+ cartes dans votre Cimetière. Coût : 4 mana.
+s Vous contrôlez 2+ monstres et avez 6+ cartes dans votre Cimetière — payez 5 Mana.
 l0 Communion
 t0 Quand cette carte est Invoquée : Invoquez Spécialement jusqu'à 2 monstres LUMIÈRE de Niveau 1 depuis votre Cimetière.
 l1 Dernier rite
 t1 Payez 3 mana et Sacrifiez 1 autre monstre que vous contrôlez : détruisez 1 monstre que votre adversaire contrôle.
 ## Sacrilegion, the Last Oath
 n Sacrilégion, le Dernier Serment
-s Sacrifiez 2 monstres que vous contrôlez et 1 monstre que votre adversaire contrôle. 8+ cartes dans votre Cimetière. Coût : 5 mana.
+s Vous contrôlez 3+ monstres, votre adversaire 1+ et vous avez 8+ cartes dans votre Cimetière — payez 6 Mana.
 l0 Le serment est tenu
 t0 Quand cette carte est Invoquée : Invoquez Spécialement jusqu'à 2 monstres LUMIÈRE de Niveau 1 depuis votre Cimetière.
 l1 Le serment est élevé
@@ -3488,7 +3494,7 @@ l0 Convocation royale
 t0 Une fois par tour — payez 2 mana : ajoutez 1 carte « Câlinou » de votre Deck à votre main.
 ## Snugglet Blanket Fortress
 n Forteresse de Couvertures Câlinou
-s Vous contrôlez 3 monstres « Câlinou » et avez 3+ cartes dans votre Cimetière. Sacrifiez 1 monstre que vous contrôlez. Coût : 3 mana.
+s Vous contrôlez 3 monstres « Snugglet » et avez 3+ cartes dans votre Cimetière — payez 4 Mana.
 l0 Serrer la couverture
 t0 Une fois par tour, durant le tour de n'importe quel joueur : payez 2 mana ; 1 monstre « Câlinou » que vous contrôlez ne peut pas être détruit ce tour.
 ## Snugglet Bumble
@@ -3499,7 +3505,7 @@ l1 Abeille affairée
 t1 À la place, payez 2 mana : ajoutez aussi 1 Sort « Câlinou ».
 ## Snugglet Cuddlepile, Three Deep
 n Tas de Câlins Câlinou, Trois d'Épaisseur
-s Vous contrôlez 3 monstres « Câlinou ». Sacrifiez 1 monstre que vous contrôlez. Coût : 2 mana.
+s Vous contrôlez 3 monstres « Snugglet » — payez 3 Mana.
 l0 De la place pour un de plus
 t0 Quand cette carte est Invoquée : Invoquez Spécialement 1 monstre « Câlinou » depuis votre Cimetière.
 ## Snugglet Group Hug
@@ -3558,14 +3564,14 @@ l0 Bond
 t0 Une fois par tour : 1 monstre que votre adversaire contrôle perd 300 ATK jusqu'à la fin de ce tour.
 ## Snugglet, Big Spoon
 n Câlinou, Grande Cuillère
-s Vous contrôlez 3 monstres « Câlinou ». Coût : 3 mana ; Sacrifiez 1 monstre que vous contrôlez.
+s Vous contrôlez 3 monstres « Snugglet » — payez 4 Mana.
 l0 Tout le monde dedans
 t0 Quand cette carte est Invoquée : Invoquez Spécialement 1 monstre « Câlinou » depuis votre Cimetière.
 l1 Les serrer contre soi
 t1 Payez 2 mana : 1 monstre « Câlinou » que vous contrôlez ne peut pas être détruit ce tour.
 ## Snugglet, the Whole Squish
 n Câlinou, le Grand Câlin Moelleux
-s Vous contrôlez 3 monstres « Câlinou » et avez 5+ cartes dans votre Cimetière. Sacrifiez 2 monstres que vous contrôlez. Coût : 4 mana.
+s Vous contrôlez 4+ monstres (dont 3 « Snugglet ») et avez 5+ cartes dans votre Cimetière — payez 5 Mana.
 l0 Toute la famille
 t0 Quand cette carte est Invoquée : Invoquez Spécialement jusqu'à 2 monstres « Câlinou » depuis votre Cimetière.
 l1 Câlin de groupe
@@ -3676,7 +3682,7 @@ l0 La saison de l'abattage
 t0 Payez 4 mana : détruisez tous les monstres sur le Terrain, sauf les Bêtes.
 ## The Debt Made Flesh
 n La Dette Faite Chair
-s Vos LP sont à 4000 ou moins. Coût : 3 mana. Bannissez 2 monstres de votre Cimetière.
+s Vos LP sont de 4000 ou moins et vous avez 4+ cartes dans votre Cimetière — payez 4 Mana.
 l0 Jour de recouvrement
 t0 Quand cette carte est Invoquée : détruisez 1 monstre que votre adversaire contrôle.
 ## The Door That Held

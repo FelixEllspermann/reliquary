@@ -143,7 +143,7 @@ l1 La letra pequeña
 t1 En su lugar, paga 1 de maná: Invoca además de Modo Especial 1 monstruo «Archidemonio» desde tu Cementerio boca abajo.
 ## Archfiend Dominus
 n Dominus Archidemonio
-s Tu adversario controla 2+ monstruos. Coste: 2 de maná. Destruye 1 otro monstruo que controlas.
+s Tu adversario controla 3+ monstruos — paga 4 Maná.
 l0 Trono de ruina
 t0 Cuando esta carta es Invocada: destruye 1 monstruo que controle tu adversario.
 ## Archfiend Executioner
@@ -170,7 +170,7 @@ l0 Pesada es la corona
 t0 Durante tu Standby Phase: devuelve «Corona Archidemonio» de tu Cementerio a tu mano.
 ## Archfiend Kingmaker
 n Hacedor de Reyes Archidemonio
-s 3+ monstruos en tu Cementerio. Coste: 3 de maná; Sacrifica 1 monstruo que controlas.
+s 5+ monstruos en tu Cementerio — paga 4 Maná.
 l0 Coronación en sangre
 t0 Cuando esta carta es Invocada: destruye hasta 2 monstruos que controle tu adversario con 1500 o menos ATK; esta carta gana permanentemente 200 ATK por cada uno.
 l1 Alzar la corte
@@ -930,7 +930,7 @@ l1 Vientos favorables
 t1 En su lugar, paga 1 de maná: gana además 1 de maná.
 ## Fethaerbreese, the Held Breath
 n Fethaerbreese, el Aliento Contenido
-s Controlas 2 o más monstruos «Fethaerbreese» y hay 5+ cartas en tu Cementerio. Coste: 3 de maná; Sacrifica 1 otro monstruo.
+s Controlas 2+ monstruos "Fethaerbreese" y tienes 5+ cartas en tu Cementerio — paga 4 Maná.
 l0 El aliento contenido
 t0 Cuando esta carta es Invocada: elige 1 carta que controle tu adversario; niega sus efectos hasta el final del turno.
 l1 Nada se pronuncia
@@ -1369,7 +1369,7 @@ l1 Morder el mundo
 t1 Una vez por turno — paga 3 de maná: destierra 1 carta que controle tu adversario.
 ## Gravemaw, the Bottomless
 n Faucetumba, el Sin Fondo
-s Coste: 1 de maná. Destierra 4 monstruos de tu Cementerio.
+s 6+ monstruos en tu Cementerio — paga 3 Maná.
 l0 Hambre sin fin
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial 1 monstruo desde tu Cementerio.
 ## Grief Counselor
@@ -1390,9 +1390,11 @@ l1 Subir las apuestas
 t1 Paga 2 de maná: lanza una moneda. Cara — esta carta gana 900 ATK hasta el final del turno. Cruz — pierde 900 ATK hasta el final del turno.
 ## Grunn, Who Eats His Own
 n Grunn, que Devora a los Suyos
-s Coste: 1 de maná. Destruye 1 otro monstruo que controlas.
+s Controlas 3+ monstruos — paga 3 Maná.
 l0 Aún con hambre
 t0 Cuando esta carta es Invocada: hasta 2 monstruos que controle tu adversario pierden permanentemente 500 ATK.
+l1 Sigue comiendo
+t1 Paga 1 Maná y manda al Cementerio 1 otro monstruo que controles: esta carta gana permanentemente 400 ATK.
 ## Guardian Amulet
 n Amuleto Guardián
 l0 Bendición protectora
@@ -1785,7 +1787,7 @@ l1 Compartir el calor
 t1 Una vez por turno: paga 1 de maná; 1 monstruo de Nivel 1 que controlas gana 300 ATK hasta el final de este turno.
 ## Kindlekin, the Last Ember
 n Ascuita, la Última Brasa
-s Controlas 4+ monstruos y hay 6+ cartas en tu Cementerio. Coste: 4 de maná. Destierra 2 monstruos de tu Cementerio.
+s Controlas 4+ monstruos, tienes 6+ cartas en tu Cementerio y 3+ cartas desterradas — paga 4 Maná.
 l0 Todo arde
 t0 Cuando esta carta es Invocada: destruye todos los monstruos del Campo excepto los monstruos BESTIA.
 l1 De las cenizas
@@ -2384,7 +2386,7 @@ l1 Bono de fidelidad
 t1 En su lugar, paga 1 de maná: gana además 2 de maná.
 ## Mechination Worldgear
 n Engranaje del Mundo Mechinación
-s Controlas 3+ monstruos y hay 5+ cartas en tu Cementerio. Coste: 3 de maná. Destruye 1 otro monstruo que controlas.
+s Controlas 3+ monstruos y tienes 5+ cartas en tu Cementerio — paga 4 Maná.
 l0 El gran giro
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial hasta 2 monstruos de TIERRA de Nivel 1 desde tu Cementerio.
 l1 El giro mayor
@@ -2966,7 +2968,7 @@ l1 Edición purgada
 t1 En su lugar, paga 3 de maná: hasta 4.
 ## Redactor, Final Edition
 n Redactor, la Edición Final
-s 5+ cartas en tu Cementerio. Sacrifica 1 monstruo que controlas. Coste: 3 de maná.
+s 6+ cartas en tu Cementerio — paga 4 Maná.
 l0 Cierre de imprenta
 t0 Una vez por turno, cuando tu adversario roba fuera de su Draw Phase: descarta 1 carta al azar.
 l1 Paren las rotativas
@@ -3066,7 +3068,9 @@ l1 Condiciones favorables
 t1 En su lugar, paga 3 de maná: gana además 2 de maná.
 ## Sacrilegion First Sacrament
 n Primer Sacramento Sacrilegión
-s Sacrifica 1 monstruo que controlas y 1 monstruo que controle tu adversario. Coste: 2 de maná.
+s Tú y tu adversario controláis 1+ monstruos cada uno — paga 2 Maná.
+l0 El primer rito
+t0 Cuando esta carta sea invocada: manda al Cementerio 1 otro monstruo que controles y el monstruo más fuerte de tu adversario.
 ## Sacrilegion Grand Sacrist
 n Gran Sacristán Sacrilegión
 l0 Reliquias reunidas
@@ -3109,7 +3113,7 @@ l2 Alzar a los caídos
 t2 Puedes pagar 2 de maná: Invoca de Modo Especial 1 monstruo de LUZ de Nivel 1 desde tu Cementerio.
 ## Sacrilegion Second Sacrament
 n Segundo Sacramento Sacrilegión
-s Sacrifica 2 monstruos que controlas y 1 monstruo que controle tu adversario. Coste: 3 de maná.
+s Controlas 2+ monstruos y tienes 4+ cartas en tu Cementerio — paga 3 Maná.
 l0 Devolver al menor
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial 1 monstruo de LUZ de Nivel 1 desde tu Cementerio.
 l1 Devolver a dos
@@ -3126,7 +3130,9 @@ l0 Juramento prestado
 t0 Paga 1 de maná: Invoca de Modo Especial 1 monstruo de LUZ de Nivel 1 desde tu mano.
 ## Sacrilegion Third Sacrament
 n Tercer Sacramento Sacrilegión
-s Sacrifica 1 monstruo que controlas y 2 monstruos que controle tu adversario. Coste: 4 de maná.
+s Controlas 1+ monstruos, tu adversario 2+ y tienes 5+ cartas en tu Cementerio — paga 5 Maná.
+l0 El tercer rito
+t0 Cuando esta carta sea invocada: manda al Cementerio 1 otro monstruo que controles y los 2 monstruos más fuertes de tu adversario.
 ## Sacrilegion Twice-Blessed
 n Dos Veces Bendito Sacrilegión
 ## Sacrilegion Vowkeeper
@@ -3143,14 +3149,14 @@ l1 Ofrecerse de nuevo
 t1 Una vez por turno, mientras esta carta esté en tu Cementerio: paga 2 de maná; Colócala boca abajo en tu Campo.
 ## Sacrilegion, Communion of Bone
 n Sacrilegión, Comunión de Hueso
-s Sacrifica 1 monstruo que controlas y 1 que controle tu adversario. 6+ cartas en tu Cementerio. Coste: 4 de maná.
+s Controlas 2+ monstruos y tienes 6+ cartas en tu Cementerio — paga 5 Maná.
 l0 Comunión
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial hasta 2 monstruos de LUZ de Nivel 1 desde tu Cementerio.
 l1 Rito final
 t1 Paga 3 de maná y Sacrifica 1 otro monstruo que controlas: destruye 1 monstruo que controle tu adversario.
 ## Sacrilegion, the Last Oath
 n Sacrilegión, el Último Juramento
-s Sacrifica 2 monstruos que controlas y 1 monstruo que controle tu adversario. 8+ cartas en tu Cementerio. Coste: 5 de maná.
+s Controlas 3+ monstruos, tu adversario 1+ y tienes 8+ cartas en tu Cementerio — paga 6 Maná.
 l0 El juramento se cumple
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial hasta 2 monstruos de LUZ de Nivel 1 desde tu Cementerio.
 l1 El juramento se eleva
@@ -3488,7 +3494,7 @@ l0 Convocatoria real
 t0 Una vez por turno — paga 2 de maná: añade 1 carta «Acurruquín» de tu Deck a tu mano.
 ## Snugglet Blanket Fortress
 n Fortaleza de Mantas Acurruquín
-s Controlas 3 monstruos «Acurruquín» y tienes 3+ cartas en tu Cementerio. Sacrifica 1 monstruo que controlas. Coste: 3 de maná.
+s Controlas 3 monstruos "Snugglet" y tienes 3+ cartas en tu Cementerio — paga 4 Maná.
 l0 Estirar bien la manta
 t0 Una vez por turno, durante el turno de cualquier jugador: paga 2 de maná; 1 monstruo «Acurruquín» que controlas no puede ser destruido este turno.
 ## Snugglet Bumble
@@ -3499,7 +3505,7 @@ l1 Abeja atareada
 t1 En su lugar, paga 2 de maná: añade además 1 Magia «Acurruquín».
 ## Snugglet Cuddlepile, Three Deep
 n Montón de Mimos Acurruquín, de Tres en Fondo
-s Controlas 3 monstruos «Acurruquín». Sacrifica 1 monstruo que controlas. Coste: 2 de maná.
+s Controlas 3 monstruos "Snugglet" — paga 3 Maná.
 l0 Sitio para uno más
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial 1 monstruo «Acurruquín» desde tu Cementerio.
 ## Snugglet Group Hug
@@ -3558,14 +3564,14 @@ l0 Zarpazo
 t0 Una vez por turno: 1 monstruo que controle tu adversario pierde 300 ATK hasta el final de este turno.
 ## Snugglet, Big Spoon
 n Acurruquín, Cuchara Grande
-s Controlas 3 monstruos «Acurruquín». Coste: 3 de maná; Sacrifica 1 monstruo que controlas.
+s Controlas 3 monstruos "Snugglet" — paga 4 Maná.
 l0 Todos dentro
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial 1 monstruo «Acurruquín» desde tu Cementerio.
 l1 Abrazarlos fuerte
 t1 Paga 2 de maná: 1 monstruo «Acurruquín» que controlas no puede ser destruido este turno.
 ## Snugglet, the Whole Squish
 n Acurruquín, el Achuchón Completo
-s Controlas 3 monstruos «Acurruquín» y tienes 5+ cartas en tu Cementerio. Sacrifica 2 monstruos que controlas. Coste: 4 de maná.
+s Controlas 4+ monstruos (3 de ellos "Snugglet") y tienes 5+ cartas en tu Cementerio — paga 5 Maná.
 l0 La familia entera
 t0 Cuando esta carta es Invocada: Invoca de Modo Especial hasta 2 monstruos «Acurruquín» desde tu Cementerio.
 l1 Abrazo de grupo
@@ -3676,7 +3682,7 @@ l0 La temporada de purga
 t0 Paga 4 de maná: destruye todos los monstruos del Campo, excepto las Bestias.
 ## The Debt Made Flesh
 n La Deuda Hecha Carne
-s Tus LP son 4000 o menos. Coste: 3 de maná. Destierra 2 monstruos de tu Cementerio.
+s Tus LP son 4000 o menos y tienes 4+ cartas en tu Cementerio — paga 4 Maná.
 l0 Día de cobro
 t0 Cuando esta carta es Invocada: destruye 1 monstruo que controle tu adversario.
 ## The Door That Held
